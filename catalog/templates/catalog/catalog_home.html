@@ -1,7 +1,7 @@
 {% extends "catalog_base.html"%}
 {% load i18n %}
 {% block HEADER_BANNER_TITLE %}
-        <h4>{% trans "LYSHOP" %}</h4>
+        <h4>{% trans "CATALOG" %}</h4>
 {% endblock HEADER_BANNER_TITLE %}
 
 {% block MAIN %}
@@ -29,13 +29,15 @@
                                                 </div>
                                         </div>
                                         <div class="col-6">
-                                        <div class="product-price right">
-                                          <span class="">{{p.price}}</span>   <span>{% trans "XAF" %}</span>
-                                        </div>
+                                                <div class="product-price right">
+                                                        <span class="">{{p.price}}</span>   <span>{% trans "XAF" %}</span>
+                                                </div>
                                         </div>
                                 </div><!--End of details-->
                         </div><!--End of content-->
-                        <div class="actions row"><a class="mat-button mat-button-default" href="{{p.get_absolute_url}}">{% trans "Details" %}</a></div>
+                        <div class="actions row">
+                                <a class="mat-button mat-button-default" href="{{p.get_absolute_url}}">{% trans "Details" %}</a>
+                        </div>
                     </div><!--End of Product item-->
                 </div><!--End of box-->
         </div>
