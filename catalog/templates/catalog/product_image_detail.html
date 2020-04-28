@@ -1,0 +1,34 @@
+{% extends "catalog_base.html"%}
+{% load i18n %}
+
+{% block  HEADER_BANNER_TITLE %}
+    <h4> {% trans "Product Image" %} </h4>
+{% endblock HEADER_BANNER_TITLE %}
+
+{% block MAIN %}
+
+
+<div class="container">
+            <div class="mat-box">
+                
+                <ul class="actions">
+                    <li><a class="mat-button mat-button-text" href="{{image.product.get_absolute_url}}"> {% trans "Back" %}</a></li>
+                </ul>
+            </div>
+        
+        
+        <div class="col-xs-12">
+            <div class="mat-list-wrapper">
+                <div class="mat-list-header">
+                    <div class="title">
+                        <span>{{image.product.name}}</span> <span>{{image.product.brand}}</span>
+                    </div>
+                </div>
+                
+                <div class="image-wrapper full">
+                    <img class="img-responsive js-zoom" src="{{image.get_image_url}}"/>
+                </div>
+            </div>
+        </div>      
+</div>
+{% endblock MAIN %}

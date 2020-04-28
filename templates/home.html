@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+{% load i18n %} 
+
+{% block HEADER_BANNER %}
+<div class="banner">
+    <div class="banner--title">
+      <h1> {%trans 'Welcome to PAY'%} </h1>
+      <h2>{% trans 'ONLINE SHOPPING MADE EASY' %}</h2>
+    </div><!--End of Banner Titlte-->
+    <div class="banner--content">
+        <p class="banner--description banner-entry">
+          {% blocktrans trimmed %}
+          Are you looking for something new ? 
+          {% endblocktrans %}
+        </p>
+        <p class="banner--description banner-entry">
+          {% blocktrans trimmed %}
+          You can get it by LYSHOP
+          {% endblocktrans %}
+        </p>
+    </div><!--End of Banner Content-->
+      
+  <div class="banner--actions">
+    <a class="mat-button mat-button-default" href="#"> {% trans 'Discover LYSHOP' %} </a>
+  </div><!--End of Banner Actions-->
+  
+</div><!--End of Banner-->
+{% endblock HEADER_BANNER %}
+
+{% block MAIN %}
+<div class="row">
+  <div class="home-leading">
+      <div class="full welcome-text center">
+          <h2> {% trans "An ideal payment solution for everyone" %} </h2>
+          <div>
+            {% blocktrans trimmed %}
+            You don't have time to go out ?
+            {% endblocktrans %}
+          </div>
+          <div>
+            {% blocktrans trimmed %}
+            Wherever you are, place your order with a simple click !
+            {% endblocktrans %}
+          </div>
+      </div>
+  </div>
+</div>
+<div class="grid">
+        <div class="flex responsive">
+            <div id="discover" class="mat-card">
+                <div class="card__image adapt-color">
+                    <img class="contain" src="images/businessman.svg" alt="">
+                </div>
+
+                <div class="mat-card--body">
+                    <div class="title center">
+                    {% trans "Discover LYSHOP" %}
+                    </div>
+                    <div class="secondary--text">
+                    <p class="center">
+                        {%trans "Create your LYSHOP account." %}
+                    </p>
+                    </div>
+                </div>
+
+
+                <div class="mat-card--footer">
+                    <div class="card__actions">
+                      <button class="mat-button mat-button-outlined">
+                          {% trans "Learn more" %}
+                      </button>
+                    </div>
+                </div><!--End of card footer-->
+            </div>    <!--End of card-->
+        </div>     <!--End of Responsive-->
+
+        <div class="flex responsive">
+            <div id="customer" class="mat-card">
+                <div class="card--image">
+                    <object class="contain" data="images/customer.svg" type="image/svg+xml"></object>
+                    <!-- <img class="contain" src="images/customer.svg" alt=""> -->
+                </div>
+
+                <div class="mat-card--body">
+                    <div class="title center">
+                    {% trans "For individuals" %}
+                    </div>
+                    <div class="secondary--text">
+                    <p class="center">
+                        {%trans "With a LYSHOP account, start shopping online"%}
+                    </p>
+                    </div>
+                </div>
+
+
+                <div class="mat-card--footer">
+                    <div class="actions">
+                      <button class="mat-button mat-button-outlined">
+                          {% trans "Learn more" %}
+                      </button>
+                    </div>
+                </div><!--End of card footer-->
+          </div><!--End of card-->
+      </div><!--End of column-->
+    </div>    <!--End of Grid-->
+<div class="row">
+  <div class="tabs">
+    <div class="tabs--title">
+      <div class="full welcome-text center">
+        <h3> {%trans "Usage"%} </h3>
+      </div>
+    </div>
+    <div class="tab-bar">
+      <div class="row">
+        <span class="tab active" data-toggle="#customer-usage" data-index="0">{% trans "For individuals" %}</span>
+        <span class="tab" data-toggle="#enterprise-usage" data-index="1">{% trans "For Business" %}</span>
+      </div>
+
+    </div>
+    <!--End of Tab-bar-->
+
+    <div class="tab-container container">
+      <div id="customer-usage" class="tab-content grid">
+        <div class="usage-step responsive">
+          <div class="row">
+              <div class="image">
+                <img src="" alt="">
+              </div>
+              <div class="row">
+                <div class="circle">1</div>
+                <div class="usage-description">
+                  <a class="mat-button mat-button-text" href="#"> {%trans "Create your free account"%} </a> 
+                </div>
+              </div>
+          </div>
+
+        </div> <!--End of usage-step-->
+        <div class="usage-step responsive">
+          <div class="row">
+            <div class="image">
+                <img src="" alt="">
+            </div>
+            <div class="row">
+            <div class="circle">2</div>
+              <div class="usage-description">
+                <a class="mat-button mat-button-text" href="#"> {%trans "Add items to your cart"%} </a>
+              </div>
+            </div>
+          </div>
+
+        </div> <!--End of usage-step-->
+        <div class="usage-step responsive">
+          <div class="row">
+              <div class="image">
+                <img src="" alt="">
+              </div>
+              <div class="row">
+              <div class="circle">3</div>
+                <div class="usage-description">
+                    <a class="mat-button mat-button-text" href="#"> {%trans "Proceed to checkout" %} </a>
+                </div>
+              </div>
+          
+          </div>
+
+        </div> <!--End of usage-step-->
+
+      </div> <!--End of Customer-usage-->
+      <div id="enterprise-usage" class="tab-content grid">
+
+        <div class="usage-step responsive">
+            <div class="row">
+              <div class="image">
+                <img src="" alt="">
+              </div>
+              <div class="row">
+                  <div class="circle">1</div>
+                  <div class="usage-description">
+                    <a class="mat-button mat-button-text" href="#"> {%trans "Create your Business account for free" %} </a>
+                  </div>
+              </div>
+            </div>
+
+        </div>
+        <div class="usage-step responsive">
+
+          <div class="row">
+              <div class="image">
+                <img src="" alt="">
+              </div>
+              <div class="row">
+                <div class="circle">2</div>
+                <div class="usage-description">
+                  <a class="mat-button mat-button-text" href="#"> {%trans "Choose the option that suits your business"%} </a>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="usage-step responsive">
+          <div class="row">
+            <div class="image">
+                <img src="" alt="">
+            </div>
+            <div class="row">
+              <div class="circle">3</div>
+              <div class="usage-description">
+                <a class="mat-button mat-button-text" href="#"> {%trans 'Add your items you want to sell in LYSHOP'%}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <span class="mat-button mat-button-outlined">{% trans "Tell me More" %}</span>
+      </div>
+    </div>
+  </div> <!--End of tabs-->
+
+</div>
+<div class="advantages grid">
+  <div class="responsive">
+    <div class="advantage">
+      <h3 class="left">{% trans "More security" %}</h3>
+      <p class="left">
+      {% blocktrans trimmed %}
+      Your payments are secure.
+In case of non-delivery, your payment will be refunded
+      {% endblocktrans %}
+      </p>
+      <a class="mat-button mat-button-outlined" href="#">{% trans "Customer protection" %}</a>
+    </div>
+    <!--End of advantage-->
+  </div>
+  <!--End of column-->
+  <div class="responsive">
+    <div class="advantage">
+      <h3 class="left">{% trans "More security for your business" %}</h3>
+      <p class="left">
+      {% blocktrans trimmed%}
+        You can check the validity of each transaction
+      {% endblocktrans %}
+      </p>
+      <a class="mat-button mat-button-outlined" href="#">{% trans "Protection for business" %}</a>
+    </div>
+    <!--End of advantage-->
+  </div>
+  <!--End of column-->
+</div>
+{% endblock MAIN %}

@@ -1,0 +1,20 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% if not can_access_dashboard %}
+{% include "tags/unauthorized.html" %}
+{% else %}
+
+{% block HEADER_BANNER %}
+        {% block BANNER_TITLE %}
+                <h4>{% trans "PAY REPORT" %}</h4>
+        {% endblock BANNER_TITLE %}
+{% endblock HEADER_BANNER %}
+
+{% block MAIN_CONTENT %}
+<div class="container">
+    <div id="reports" class="container">
+
+    </div>
+</div>
+{% endblock MAIN_CONTENT %}
+{% endif %}

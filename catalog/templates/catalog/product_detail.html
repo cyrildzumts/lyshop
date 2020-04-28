@@ -1,0 +1,85 @@
+{% extends "catalog_base.html"%}
+{% load i18n %}
+{% block  HEADER_BANNER_TITLE %}
+    <h4> {{product.name}}</h4>
+{% endblock HEADER_BANNER_TITLE %}
+
+{% block MAIN %}
+<div class="container">
+  <ul class="row">
+    {% if product.category.parent %}
+    <li class="mat-button"><a href="{{product.category.parent.get_absolute_url}}"><span>{% trans product.category.parent.display_name %}</span><span></span></a></li>
+
+    {% endif %}
+    <li class="mat-button"><a href="{{product.category.get_absolute_url}}">{% trans product.category.display_name %}</a></li>
+  </ul>
+  <div class="grid baseline">
+    <div class="col-m-12 col-6">
+      <div class="container">
+        <div class="mat-box">
+            <div>
+              <h4>{% trans "Images" %}</h4>
+            </div>
+            <div class="row">
+              <div class="img-wrapper">
+                <img class="img-responsive" src="{{product.images.first.get_image_url}}" alt="">
+              </div>
+            </div>
+
+            <div class="row separator">
+            {% for image in image_list %}
+              <div class="img-wrapper col-3">
+                <img class="img-responsive" src="{{image.get_image_url}}" alt="">
+                {% comment %}<a class="mat-button mat-button-outlined" href="{{image.get_absolute_url}}">{% trans "See" %}</a>
+                {% endcomment %}
+              </div>
+            {% endfor %}
+            </div>
+         </div><!--End of mat-box-->
+      </div><!--container-->
+    </div><!--End of col-8-->
+    <div class="col-m-12 col-6">
+      <div class="container">
+        <div class="mat-box full">
+            <div class="product-detail">
+                <div class="title">
+                  <span>{{product.name}}</span>
+                </div>
+                <div class="brand">
+                  <span class="value">{{product.brand}}</span>
+                </div>
+                <div class="price">
+                  <span class="emphasis">{{product.price}} {% trans "XAF" %}</span>
+                </div>
+                <div class="description">
+                <p>{{product.description}}</p>
+                </div>
+                <div class="actions">
+                  <a class="mat-button mat-button-default full" href="#">{% trans "Add to Cart" %}</a>
+                </div>
+            </div>
+
+            <div class="box-content">
+                          
+            </div><!--End of content-->
+        </div><!--End of mat-box-->
+      </div><!--End of container-->
+    </div><!--End of col-4 -->
+    <div class="col-m-12 col-12">
+      <div class="mat-box">
+            <h4>{% trans "Variants" %}</h4>
+            <div class="mat-box-content">
+              <div class="mat-list-wrapper">
+                  <ul class="mat-list">
+                      {% for variant in variant_list %}
+                        <li class="matt-list-item"><a class="mat-button mat-button-text" href="{{variant.get_absolute_url}}">{{variant.display_name}}</a></li>
+                      {% endfor %}
+                  </ul>
+              </div><!--End of wrapper-->
+            </div><!--End of content-->
+        </div><!--End of mat-box-->
+    </div><!--End of col-12-->
+  
+  </div><!--End of row-->
+</div>
+{% endblock MAIN %}

@@ -1,0 +1,68 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Product Parent " %} : {{product}}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col col-9">
+                <div class="banner--actions">
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
+                    {% if can_add_product %}
+                    <a class="mat-button mat-button-outlined" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"> {% trans "Add new Product" %}</a>
+                    {% endif %}
+                        
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+{% block MAIN_CONTENT %}
+
+<div class="container">
+<div class="col-xs-12 col-6">
+    <div class="mat-table-wrapper">
+        <div class="row">
+            <div class="mat-table-title">
+                {% trans "Variant List" %}
+            </div>
+        </div><!--End of Row-->
+        <table id="product-list" class="mat-table js-filter-table">
+          <thead>
+                  <tr>
+                          <!--<th><input id="filter-select-all" type="checkbox" name="allselected"></th>-->
+                          <th>{% trans "Name" %}</th>
+                          <th>{% trans "Display Name" %}</th>
+                          <th>{% trans "Price" %}</th>
+                          <th>{% trans "Details" %}</th>
+                          <th>{% trans "Delete Action" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for variant in variant_list  %}
+                  <tr>
+                  <!--<td class="checkbox"><input type="checkbox" name="selected-brands"></td>-->
+                  <td>{{variant.name}}</td>
+                  <td>{{variant.display_name}}</td>
+                  <td><span>{{variant.price}}</span> <span>{% trans "XAF" %}</span></td>
+                  <td><a class="mat-button mat-button-default" href="{{variant.get_dashboard_url}}"> {% trans "Details" %}</a></td>
+                  {% if can_delete_product %}<td><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{{variant.get_delete_url}}"> {% trans "Delete" %}</a></td>{% endif %}
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+
+    </table>
+    {% include "tags/pagination.html" with page_set=variant_list %}
+    </div><!--End of Table Wrapper-->
+  </div>
+</div>
+{% endblock MAIN_CONTENT %}

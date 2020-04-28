@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %} 
+{% block MAIN %}
+    <div  class="row">
+        <div class="error-40x box">
+            <div class="title">
+                {% trans "Bad Request ! " %} :  400  Oups !
+            </div>
+            <div class="box-content content">
+                    <p> {% trans "The server did not understand your request." %}</p>
+            </div>
+            <div class="actions">
+                <a class="mat-button mat-button-default" href="{% url 'home' %}">{% trans "Go back to Home Page" %} </a>
+            </div>
+        </div>
+    </div> 
+  {% endblock MAIN %}

@@ -1,0 +1,115 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% if not can_access_dashboard %}
+{% include "tags/unauthorized.html" %}
+{% else %}
+
+{% block HEADER_BANNER %}
+        {% block BANNER_TITLE %}
+                {% include "tags/dashboard_summary.html" %}
+        {% endblock BANNER_TITLE %}
+{% endblock HEADER_BANNER %}
+
+{% block MAIN_CONTENT %}
+<div class="container row">
+        <div class="col col-10">
+                <div class="container">
+                        <div class="row">
+                                <div class="col col-9">
+                                        <div class="row">
+                                                {% if can_view_transfer %}
+                                                
+                                                <div class="col col-6">
+                                                        <div class="row">
+                                                           <div class="mat-table-wrapper">
+                                                                <div class="row">
+                                                                        <div class="list-title">
+                                                                                {% trans "Transfer History" %}
+                                                                        </div>
+                                                                </div>
+                                                                
+                                                                <table id="transfer-list" class="mat-table js-filter-table">
+                                                                        <thead>
+                                                                                <tr>
+                                                                                        <!--<th><input id="filter-select-all" type="checkbox" name="allselected-transfer"></th>-->
+                                                                                        <th>{% trans "Sender" %}</th>
+                                                                                        <th>{% trans "Amount" %}</th>
+                                                                                        <th>{% trans "Date of Transfer" %}</th>
+                                                                                </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                                {% for xfer in recent_transfers  %}
+                                                                                <tr>
+                                                                                <!--<td class="checkbox"><input type="checkbox" name="selected-transfer"></td>-->
+                                                                                <td>{{xfer.sender.username}}</td>
+                                                                                <td>{{xfer.amount}} {% trans "XAF" %}</td>
+                                                                                <td>{{xfer.created_at|date:"F j, Y"}}</td>
+                                                                                </tr>
+                                                                                {% endfor %}
+                                                                                
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                                
+                                                                        </tfoot>
+                                                        
+                                                                </table>
+                                                                
+                                                           </div> <!--End of Table Wrapper-->
+                                                        </div> <!--End of Row-->
+                                                </div> <!--End of Col-6-->
+                                                {% endif %}
+                                                {% if can_view_service %}
+                                                
+                                                
+                                                <div class="col col-6">
+
+                                                        <div class="row">
+                                                           <div class="mat-table-wrapper">
+                                                                <div class="row">
+                                                                        <div class="list-title">
+                                                                                {% trans "Service History" %}
+                                                                        </div>
+                                                                </div>
+                                                                
+                                                                <table id="service-list" class="mat-table js-filter-table">
+                                                                        <thead>
+                                                                                <tr>
+                                                                                        <!--<th><input id="filter-select-all" type="checkbox" name="allselected"></th>-->
+                                                                                        <th>{% trans "Service Name" %}</th>
+                                                                                        <th>{% trans "Price" %}</th>
+                                                                                        <th>{% trans "Date of usage" %}</th>
+                                                                                </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                                {% for s in recent_services  %}
+                                                                                <tr>
+                                                                                <!--<td class="checkbox"><input type="checkbox" name="selected-service"></td>-->
+                                                                                <td>{{s.name}}</td>
+                                                                                <td>{{s.price}} {% trans "XAF" %}</td>
+                                                                                <td>{{s.created_at|date:"F j, Y"}}</td>
+                                                                                </tr>
+                                                                                {% endfor %}
+                                                                                
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                                
+                                                                        </tfoot>
+                                                        
+                                                                </table>
+                                                                
+                                                           </div> <!--End of Table Wrapper-->
+                                                        </div> <!--End of Row-->
+                                                        
+                                                
+                                                </div><!--End of Col-6-->
+                                                {% endif %}
+                                        </div><!--End of Row-->
+                                </div><!--End of Col-9-->
+                        </div><!--End of Row-->
+                </div><!--End of Container-->
+        </div><!--End of Col-10-->
+
+</div>
+{% include "tags/analytics.html" %}
+{% endblock MAIN_CONTENT %}
+{% endif %}

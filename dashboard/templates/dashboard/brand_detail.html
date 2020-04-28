@@ -1,0 +1,59 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+
+{% block MAIN_CONTENT %}
+{% if can_view_brand %}
+
+
+<div class="container">
+        <div class="mat-box full">
+          <div class="mat-box-title">
+            <h3> {% trans "Name" %} : {{brand.name}} </h3>
+            <h4> {% trans "Display Name" %} : {{brand.display_name}}</h4>
+          </div>
+          <div class="mat-box-content">
+              <div>
+                <span><i class="fas fa-eye">{% trans "Code" %} : </i>{{brand.code}}</span>
+              </div>
+              <div>
+                <span><i class="fas fa-eye"></i>{{brand.view_count}}</span>
+              </div>
+
+          </div>
+          <div class="container">
+              <ul class="actions row" role="navigation">
+                  {% if can_change_brand %}<li class="list-item"><a class="mat-button mat-button-text" href="{{brand.get_update_url}}"> {% trans "Edit" %} </a> </li>{% endif %}
+                  {% if can_add_brand %}<li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:brand-create' %}"> {% trans "Add new Brand" %} </a> </li>{% endif %}
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:brands' %}"> {% trans "Brands" %} </a> </li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a></li>
+              </ul>
+          </div>
+        </div><!--End of mat-box-->
+        {% if product_list %}
+        <div class="mat-list-wrapper">
+          <div class="mat-list-title">
+            <h4>{% trans "Brand Products" %}</h4>
+            <span>{{product_list.count}}</span>
+          </div>
+          <ul class="mat-list">
+            {% for p in product_list %}
+            <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'dashboard:brand-product' brand.brand_uuid p.product_uuid %}">{{p.name}}</a></li>
+            {% endfor %}
+          </ul>
+
+        </div>
+        
+        {% else %}
+        <div class="mat-box">
+          <span>{% trans "No product available for this brand" %}</span>
+        </div>
+        {% endif %}
+
+</div>
+
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN_CONTENT %}

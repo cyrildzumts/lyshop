@@ -1,0 +1,100 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+
+{% block MAIN %}
+{% if can_view_product %}
+
+{% if can_delete_product %}
+<form action="{{attribute.get_delete_url}}" method="POST">{% csrf_token %}
+
+<div class="actions">
+  <button type="submit" class="mat-button warn">{% trans "Delete" %}</button>
+</div>
+</form>
+{% endif %}
+
+<div class="mat-box">
+  <div>
+    <span class="key">{% trans "Name" %}</span> <span class="value">{{attribute.name}}</span>
+  </div>
+  <div>
+    <span class="key">{% trans "Display Name" %}</span> <span class="value">{{attribute.display_name}}</span>
+  </div>
+  <div>
+    <span class="key">{% trans "Value" %}</span> <span class="value">{{attribute.value}}</span>
+  </div>
+  <div>
+    <span class="key">{% trans "Value Type" %}</span> <span class="value">{{attribute.value_type}}</span>
+  </div>
+</div>
+
+{% if can_change_product%}
+<div class="container">
+    <form  class="form" name="attribute" action="{{attribute.get_update_url}}" method="POST">{% csrf_token %}
+        <div id="error-login" class="error-login left">
+        </div>
+        <div class="form-group">
+            <label for="name">{% trans "Name" %}</label>
+            <input type="text" name="name" value="{{attribute.name}}">
+        </div>
+        <div class="form-group">
+            <label for="display_name">{% trans "Display Name" %}</label>
+            <input type="text" name="display_name" value="{{attribute.display_name}}">
+        </div>
+        <div class="form-group">
+            <label for="value">{% trans "Value" %}</label>
+            <input type="text" name="value" value="{{attribute.value}}">
+        </div>
+        <div class="form-group">
+            <label for="value_type">{% trans "Value Type" %}</label>
+            <input type="text" name="value_type" value="{{attribute.value_type}}">
+            <select name="value_type" id="">
+              <option value="{{attribute.value_type}}" selected>{{attribute.value_type}}</option>
+              {% for k,v in attribute_types %}
+                <option value="{{k}}">{{v}}</option>
+              {% endfor %}
+            </select>
+        </div>
+          {% comment "" %}
+          <div class="form-group flex-column">
+            
+            <input type="text" name="recipient" placeholder="{% trans 'Nom du destinataire' %}">
+            <input type="text" name="amount" placeholder="{% trans 'Montant' %}">
+            <input type="text" name="details" placeholder="{% trans 'Description du transfert' %}">
+          </div>
+          {% endcomment %}
+          
+          <div class="form-group row">
+            <button class="mat-button mat-button-text" type="submit">{% trans "Update" %}</button>
+            <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Cancel" %}</a>
+          </div>
+    </form>
+</div>
+{% if product_list %}
+        <div class="mat-list-wrapper">
+          <div class="mat-list-title">
+            <h4>{% trans "Products" %}</h4>
+            <span>{{product_list.count}}</span>
+          </div>
+          <ul class="mat-list">
+            {% for p in product_list %}
+            <li class="mat-list-item"><a class="mat-button mat-button-text" href="{{p.get_dashboard_url}}">{{p.name}}</a></li>
+            {% endfor %}
+          </ul>
+
+        </div>
+        
+        {% else %}
+        <div class="mat-box">
+          <span>{% trans "No product available for this attribute" %}</span>
+        </div>
+        {% endif %}
+
+{% endif %}
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+
+{% endblock MAIN %}

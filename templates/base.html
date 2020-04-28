@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="{{LANGUAGE_CODE}}">
+{% load static %}
+{% load i18n %} 
+<head>
+        <meta charset="utf-8">
+        {% block META_REDIRECT %}
+        
+        {% endblock META_REDIRECT %}
+        <title>
+                {% block title %} {{page_title}} {% endblock %}
+        </title>
+        {% comment "" %}
+        
+        
+        <meta name="keywords" content="{{meta_keywords}}" />
+        <meta name="description" content="{{meta_description}}" />
+        {% endcomment %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% load static %}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+        
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+        <!-- Add icon library -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" media="all" />
+
+        {% block external %} {% endblock external %}
+</head>
+
+<body>
+<header class="header">
+{% block HEADER_PANEL %}
+<div class="header--panel">
+  <div class="col col-1">
+   <div class="row">
+        <button class="js-menu menu-button mat-button"><i class="btn-icon fas fa-bars"></i> {% trans "Menu" %}</button>
+        <button class="js-menu-close menu-close menu-button mat-button"><i class="btn-icon fas fa-times"></i> {% trans "Close" %}</button>
+        <ul class="logo">
+            <li><a class="mat-button mat-button-text" href="{%url 'catalog:catalog-home'%}">{{site_name}}</a></li>
+        </ul>
+   </div>
+    
+  </div>
+    <ul class="mat-list site-panel">
+        <li><a class="mat-button mat-button-text" href="{%url 'catalog:catalog-home'%}">{% trans "Catalog" %}</a></li>
+      <li class="mat-list-item"><a class="mat-button mat-button-text" href="#discover">{% trans 'Discover our services'%}</a></li>
+      {% if is_dashboard_allowed %}
+       <li class="mat-list-item"><a class="mat-button mat-button-text" href="{%url 'dashboard:home'%}">{% trans "Dashboard" %}</a></li>
+      {% endif %}
+      {% if request.user.is_authenticated %}
+      <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{% trans 'My Account' %}</a></li>
+      <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}"><i class="fas fa-shopping-cart"></i></a></li>
+      <li class="mat-list-item"><a class="signout-btn mat-button mat-button-text signout" href="{% url 'accounts:logout' %}">{% trans 'Logout' %}</a></li>
+      {% else %}
+      <li class="mat-list-item"><a class="dialog-btn mat-button mat-button-text" href="{% url 'accounts:register' %}" data-tab="1" data-target="#signup-dialog">{% trans 'Create an Account' %}</a></li>
+      <li class="mat-list-item"><a class="dialog-btn mat-button mat-button-text" href="{% url 'accounts:login' %}" data-tab="0" data-target="#signup-dialog">{% trans 'Login' %}</a></li>
+      
+      {% endif %}
+      <li  class="mat-list-item">
+        <form id="lang-form" name="localization-form" action="{% url 'set_language' %}" method="POST">{% csrf_token %}
+                <input name="next" type="hidden" value="{{redirect_to}}">
+                <input id="current-lang" type="hidden" name="language" value="">
+        <ul class="row languages">
+        </ul>
+        </form>
+      </li>
+      {% if dev_mode %}
+        {% block GRID %}
+        <li><button class="js-grid-enable baseline-grid-btn mat-button mat-button-text">{% trans "Enable Grid" %}</button></li>
+        {% endblock GRID %}
+        {% endif %}
+    </ul>
+</div>
+{% endblock HEADER_PANEL %}
+
+
+                
+</header>
+        <div class="page">
+                
+                <div class="page--banner">
+                        {% block HEADER_BANNER %}
+                        {% endblock HEADER_BANNER %}
+                </div>
+                {% comment %}{% block MESSAGES %}
+                {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+                {% endfor %}
+                
+                </ul>
+                
+                {% endif %}
+                
+                {% endblock MESSAGES %}
+                {% endcomment %}
+                {% block DIALOGS %}
+                
+                {% endblock DIALOGS %}
+
+                 {% block SIGNUP_DIALOG %}
+                
+                {% endblock SIGNUP_DIALOG %}
+
+                <main class="container">
+                {% block MAIN %}
+                
+                {% endblock MAIN %}
+                </main>
+
+                <footer class="footer column row">
+                {% block FOOTER %}
+                
+                {% endblock FOOTER %}
+                <div class="footer-list">
+                        {% now "Y" as current_year %}
+                        <ul class="flex">
+                                <li class="list-item flex"><div class="copyright">Copyright <i class="fa fa-copyright"></i><span class="copyright-year">{{current_year}}</span> </div> <div class="site">{{site_name}} - {%trans 'ONLINE SHOP' %} </div></li>
+                                <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'about' %}">{% trans "About us" %}</a></li>
+                                <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'faq' %}">{% trans "FAQ" %}</a></li>
+                        </ul>
+                </div>
+                </footer>
+        </div>
+{% block NOTIFICATIONS %}
+        <div id="notifications-wrapper" class="flex-column notifications-wrapper">
+                <div class="row notifications-controls">
+                        <button class="mat-button mat-button-default"><i class="button-icon icon"></i> <span class="button-text">{% trans "Close all" %}</span></button>
+                </div>
+                {% if messages %}
+                        <ul class="messages">
+                        {% for message in messages %}
+                                <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+                        {% endfor %}
+                        
+                        </ul>
+                        
+                {% endif %}
+                
+                <div class="notifications-container">
+
+                        <ul id="notifications" class="notification-list">
+                        {% if notifications %}
+                                {% for notification in notifications %}
+                                <li class="notification-contaner">
+                                        <div class="notification box">
+                                                <span class="js-close"></span>
+                                                <div class="title">{{notification.title}}</div>
+                                                <div class="content">{{notification.content}}</div>
+                                        </div>
+                                </li>
+                                {% endfor %}
+                        {% endif %}
+                        </ul>
+                </div>
+        </div>
+{% endblock NOTIFICATIONS %}
+
+        {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {% endcomment %}
+         
+        {% comment "" %}
+        
+         <script  src="{% static "js/lib/pubsub.js" %}"></script>
+         {% endcomment %}
+        <script  src="{% static 'js/vendor/jquery-3.5.0.min.js' %}"></script>
+        <script  type="application/javascript" src="{% static 'js/lyshop.js' %}"></script> 
+        {% block SCRIPT %}
+        {% endblock SCRIPT %}
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %} 
+{% block MAIN %}
+    <div  class="row">
+        <div class="error-40x box">
+            <div class="title">
+                {% trans "Internal Server Error ! " %} :  500  Oups !
+            </div>
+            <div class="box-content content">
+                    <p>{% trans "The server has encountered an internal error." %}</p>
+                    <p>{% trans "If this problem persists please contact us." %}</p>
+                    <p>{% trans "Our technicians are working on the problem." %}</p>
+            </div>
+            <div class="actions">
+                <a class="mat-button mat-button-default" href="{% url 'home' %}">{% trans "Go back to Home Page" %} </a>
+            </div>
+        </div>
+    </div> 
+  {% endblock MAIN %}

@@ -1,0 +1,25 @@
+{% load i18n %}
+
+
+<div class="row">
+     <div class="form-group">
+        <label for="name">{% trans "Attribute Name" %}</label>
+        <input type="text"  name="name">
+     </div>
+      <div class="form-group">
+        <label for="display_name">{% trans "Attribute Display Name" %}</label>
+        <input type="text"  name="display_name">
+     </div>
+      <div class="form-group">
+        <label for="value">{% trans "Attribute Value" %}</label>
+        <input type="text"  name="value">
+     </div>
+      <div class="form-group">
+        <label for="value_type">{% trans "Value Type" %}</label>
+        <select name="value_type">
+        {% for k,v in attribute_types %}
+            <option value="{{k}}">{% trans v %}</option>
+        {% endfor %}
+        </select>
+     </div>
+</div>

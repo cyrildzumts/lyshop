@@ -1,0 +1,33 @@
+
+
+{% extends "catalog_base.html"%}
+{% load i18n %}
+{% load l10n %}
+
+{% block  HEADER_BANNER_TITLE %}
+        <h4> {% trans "Category" %} - {{category.name}}</h4>
+{% endblock HEADER_BANNER_TITLE %}
+
+{% block MAIN %}
+
+
+<div class="container">
+       {% for p in product_list %}
+       
+        <div class="col-md-12 col-3">
+        <div class="mat-box">
+                <div class="title">
+                        {{p.display_name}}
+                </div>
+                <div class="img-wrapper">
+                    <img class="img-responsive" src="{{p.images.first.get_image_url}}" alt="{{p.display_name}}">
+                </div>
+                <div class="mat-box-content">
+                        <div><span>{{p.brand}}</span> <span>{{p.price|unlocalize}}</span> {% trans "XAF" %}</div>
+                </div>
+                <div class="actions row"><a class="mat-button mat-button-default" href="{{p.get_absolute_url}}">{% trans "Details" %}</a></div>
+        </div>
+        </div>
+       {% endfor %}
+</div>
+{% endblock MAIN %}

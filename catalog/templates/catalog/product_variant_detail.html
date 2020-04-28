@@ -1,0 +1,112 @@
+{% extends "catalog_base.html"%}
+{% load i18n %}
+{% block  HEADER_BANNER_TITLE %}
+    <h4> {{product.name}}</h4>
+{% endblock HEADER_BANNER_TITLE %}
+
+{% block MAIN %}
+<div class="container">
+  <ul class="row">
+    {% if product.category.parent %}
+    <li class="mat-button"><a href="{{product.category.parent.get_absolute_url}}"><span>{% trans product.category.parent.display_name %}</span><span></span></a></li>
+
+    {% endif %}
+    <li class="mat-button"><a href="{{product.category.get_absolute_url}}">{% trans product.category.display_name %}</a></li>
+  </ul>
+  <div class="container">
+    <div class="col-m-12 col-6">
+      <div class="container">
+        <div class="wrapper full">
+            <div class="row">
+              <div class="img-wrapper">
+                <img class="img-responsive" src="{{product.images.first.get_image_url}}" alt="">
+              </div>
+            </div>
+
+            <div class="row separator">
+            {% for image in image_list %}
+              <div class="img-wrapper col-3">
+                <img class="img-responsive" src="{{image.get_image_url}}" alt="">
+                {% comment %}<a class="mat-button mat-button-outlined" href="{{image.get_absolute_url}}">{% trans "See" %}</a>
+                {% endcomment %}
+              </div>
+            {% endfor %}
+            </div>
+         </div><!--End of mat-box-->
+      </div><!--container-->
+    </div><!--End of col-8-->
+    <div class="col-m-12 col-6">
+      <div class="container">
+        <div class="wrapper full">
+            <form id="add-cart-form" action="{% url 'cart:cart-add' %}" method="POST">{% csrf_token %}
+            <input type="hidden" name="product" value="{{variant.product_uuid}}">
+            
+            <div class="product-detail-properties left">
+                
+                   <div class="left">
+                      <div class="title left">
+                        <span>{{product.display_name}}</span>
+                      </div>
+                      <div class="brand">
+                        <span class="value">{{product.brand}}</span>
+                      </div>
+                      <div class="price">
+                        <span class="emphasis">{{variant.price}} {% trans "XAF" %}</span>
+                      </div>
+                      <ul class="mat-list">
+                          {% for attr in common_attrs %}
+                            <li class="attr-wrapper">
+                            <div class="attr">
+                              <span>{% trans attr.display_name %}</span><span class="value">{{attr.value}}</span>
+                            </div>
+                            </li>
+                          {% endfor %}
+                          {% if selective_attrs %}
+                          <li class="attr-wrapper">
+                            <div class="attr">
+                              <label for="selective_attr"><span>{% trans selective_attrs.display_name %}</span></label>
+                              <select id="selective-attr" name="attr" >
+                              {% for attr in selective_attrs.attr_list %}
+                                <option value="{{attr.id}}">{{attr.value}}</option>
+                              {% endfor %}
+                              </select>
+                            </div>
+                          </li>
+                          {% endif %}
+                          <li class="attr-wrapper">
+                            <div class="attr description">
+                                <span>{% trans "Description" %}</span><p>{{product.description}}</p>
+                            </div>
+                          </li>
+                      </ul>
+                
+                </div>
+                <div class="actions">
+                  <button type="submit" class="mat-button mat-button-default js-add-to-cart-"><span class="icon fas fa-shopping-cart">{% trans "Add to Cart" %}</span></button>
+                </div>
+            </div><!--End of product detail-->
+            </form>
+            <div class="box-content">
+                          
+            </div><!--End of content-->
+        </div><!--End of mat-box-->
+      </div><!--End of container-->
+    </div><!--End of col-4 -->
+    <div class="col-m-12 col-12">
+      <div class="mat-box">
+            <h4>{% trans "Variants" %}</h4>
+            <div class="mat-box-content">
+              <div class="mat-list-wrapper">
+                  <ul class="mat-list">
+                      {% for v in variant_list %}
+                        <li class="matt-list-item"><a class="mat-button mat-button-text" href="{{v.get_absolute_url}}">{{v.display_name}}</a></li>
+                      {% endfor %}
+                  </ul>
+              </div><!--End of wrapper-->
+            </div><!--End of content-->
+        </div><!--End of mat-box-->
+    </div><!--End of col-12-->
+  
+  </div><!--End of row-->
+</div>
+{% endblock MAIN %}

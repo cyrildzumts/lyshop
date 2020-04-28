@@ -1,0 +1,103 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Groups" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col col-9">
+                <div class="banner--actions">
+                    {% if can_add_group %}<a class="mat-button mat-button-default" href="{% url 'dashboard:group-create' %}"> <i class="fas fas-plus"></i> <span>{% trans "Create A Group" %}</span> </a>{% endif %}
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>
+                        
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+{% block MAIN_CONTENT %}
+
+{% if can_view_group %}
+
+
+<div id="group-delete-dialog" class="dialog">
+    <div class="dialog-content">
+        <div class="title warning">
+            <h4>{% trans "Group Delete Confirmation" %}</h4>
+        </div>
+        <div class="content">
+                <span> {% trans "Do you really want to delete this Group ? " %}</span>
+                <span> {% trans "This action is irreversible." %}</span>
+        </div>
+        <div class="row">
+            <button class="mat-button mat-button-outlined js-close" type="button">{% trans "Cancel" %}</button>
+            {% if can_delete_group %}<button class="mat-button mat-button-default warning js-confirm" type="button">{% trans "Delete" %}</button>{% endif %}
+        </div>
+    </div><!--End of Dialog Content-->
+    
+</div><!--End of Dialog-->
+
+<div class="container">
+    {% if groups %}
+    <div class="col-m-12 col-8">
+    <div class="mat-table-wrapper">
+        <div class="row">
+            <div class="mat-table-title">
+                {% trans "Groups" %}
+            </div>
+        </div><!--End of Row-->
+        <form action="{% url 'dashboard:groups-delete' %}" method="POST">{% csrf_token %}
+        <table id="group-list" class="mat-table js-filter-table">
+          <thead>
+                {% if can_delete_group %}<tr><div class="actions"><button class="js-activable mat-button mat-button-outlined warn"><span>{% trans "Delete Selected" %}</span></button></div></tr>{% endif %}
+                <tr>
+                    {% if can_delete_group %}<th><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="Select all"></th>{% endif %}
+                    <th>{% trans "Group Name" %}</th>
+                    <th>{% trans "Permissions" %}</th>
+                    <th>{% trans "Members" %}</th>
+                    <th>{% trans "Details" %}</th>
+                    <th>{% trans "Action" %}</th>
+                </tr>
+          </thead>
+          <tbody>
+                  {% for g in groups  %}
+                  <tr>
+                  <td class="checkbox"><input class="js-selectable" type="checkbox" name="groups" value="{{g.pk}}"></td>
+                  <td>{{g.name}}</td>
+                  <td>{{g.permissions.count}}</td>
+                  <td>{{g.user_set.count}}</td>
+                  <td><a class="mat-button mat-button-text" href="{% url 'dashboard:group-detail' g.pk %}"><i class="fas fa-info"></i><span>{% trans "Detail" %}</span></a></td>
+                  {% if can_delete_group %}<td><a class="mat-button mat-button-text danger js-need-confirmation" data-target="#group-delete-dialog" href="{% url 'dashboard:group-delete' g.pk %}"><i class="far fa-trash-alt"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+          <tfoot>
+                  
+          </tfoot>
+
+        </table>
+        </form>
+        {% include "tags/pagination.html" with page_set=groups %} 
+    </div><!--End of Table Wrapper-->
+    {% else %}
+    <p> {% trans "There is currently no Group" %} ...</p>
+    {% endif %}
+    </div>
+</div>
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+
+{% endblock MAIN_CONTENT %}

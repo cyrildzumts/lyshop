@@ -1,0 +1,11 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% block  HEADER_BANNER_TITLE %}
+    <h4> {% trans "Product Update" %} - {{product.name}}</h4>
+{% endblock HEADER_BANNER_TITLE %}
+{% block MAIN %}
+
+<div class="container">
+    {% include "tags/product_update_form.html" %}
+</div>
+{% endblock MAIN %}

@@ -1,0 +1,44 @@
+{% extends "catalog_base.html"%}
+{% load i18n %}
+{% block HEADER_BANNER_TITLE %}
+        <h4>{% trans "LYSHOP" %}</h4>
+{% endblock HEADER_BANNER_TITLE %}
+
+{% block MAIN %}
+<div class="container">
+       {% for p in product_list %}
+       
+        <div class="col-md-12 col-3">
+                <div class="mat-box">
+                    <div class="product-item">
+                        <div class="img-wrapper">
+                        {% if p.images and p.images.first %}
+                                <img class="img-responsive" src="{{p.images.first.get_image_url}}" alt="{{p.display_name}}">
+                        {% else %}
+                                <img class="img-responsive" src="{{p.product.images.first.get_image_url}}" alt="{{p.display_name}}">
+                        {% endif %}
+                        
+                        </div>
+                        <div class="mat-box-content">
+                                <div class="item-details row">
+                                        <div class="col-6">
+                                                <div class="title left">
+                                                        <span class="full emphasis">{{p.product.brand}}</span> 
+                                                        <span class="full">{{p.display_name}}</span>
+                                                </div>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="product-price right">
+                                          <span class="">{{p.price}}</span>   <span>{% trans "XAF" %}</span>
+                                        </div>
+                                        </div>
+                                </div><!--End of details-->
+                        </div><!--End of content-->
+                        <div class="actions row"><a class="mat-button mat-button-default" href="{{p.get_absolute_url}}">{% trans "Details" %}</a></div>
+                    </div><!--End of Product item-->
+                </div><!--End of box-->
+        </div>
+       {% endfor %}
+</div>
+
+{% endblock MAIN %}

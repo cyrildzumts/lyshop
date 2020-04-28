@@ -1,0 +1,39 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+
+{% block  HEADER_BANNER_TITLE %}
+    <h4> {% trans "Product Image" %} </h4>
+{% endblock HEADER_BANNER_TITLE %}
+
+{% block MAIN %}
+
+
+<div class="container">
+            <div class="mat-box">
+                
+                <ul class="actions">
+                    <li><a class="mat-button mat-button-text" href="{{product_image.get_update_url}}"> {% trans "Update" %}</a></li>
+                </ul>
+            </div>
+        
+        
+        <div class="col-xs-12 col-6">
+            <div class="mat-list-wrapper">
+                <div class="mat-list-header">
+                    <div class="title">
+                    {% trans "Image Info" %}
+                    </div>
+                </div>
+                <ul class="mat-list">
+                    <li class="mat-list-item entry">
+                        <div class="col-m-12 col-4">
+                            <div class="image-wrapper">
+                                <img class="img-responsive js-zoom" src="{{product_image.image.url}}"/>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>      
+</div>
+{% endblock MAIN %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %} 
+{% block MAIN %}
+    <div  class="row">
+        <div class="error-40x box">
+            <div class="title">
+                {% trans "Access Forbidden ! " %} :  403  Oups !
+            </div>
+            <div class="box-content content">
+                    <p> {% trans "You are not allowed to access this page." %}</p>
+            </div>
+            <div class="actions">
+                <a class="mat-button mat-button-default" href="{% url 'home' %}">{% trans "Go back to Home Page" %} </a>
+            </div>
+        </div>
+    </div> 
+  {% endblock MAIN %}

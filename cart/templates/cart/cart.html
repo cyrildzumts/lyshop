@@ -1,0 +1,62 @@
+{% extends "cart_base.html" %}
+{% load i18n %}
+{% block MAIN %}
+{% csrf_token %}
+{% if item_list %}
+    <div class="mat-list-wrapper">
+        <ul class="mat-list">
+            <li class="mat-list-item">
+                <div class="list-header row">
+                    <span class="col-4">{% trans "Items" %}</span><span class="col-2">{% trans "Quantity" %}</span><span class="col-1">{% trans "Unit Price" %}</span><span class="col-1">{% trans "Total Price" %}</span><span class="col-1"></span>
+                </div>
+            </li>
+            
+            {% for item in item_list %}
+                <li class="" id="item-{{item.id}}">
+                    <div class="cart-item row">
+                        <div class="col-4">
+                            <div class="row row-left align-left">
+                                <div class="row">
+                                    <span class="img-wrapper">
+                                        <img class="img-responsive" src="{{item.get_image_url}}" alt="{{item.display_name}}">
+                                    </span>
+                                </div>
+                                <div class="item-info flex-column align-left">
+                                    <span class="uppercase">{{item.display_name}}</span>
+                                    <span class="uppercase">{{item.brand.display_name}}</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="col-2">
+                            <span class="fas fa-minus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="decrement" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span> <input data-parent="item-{{item.id}}" type="text" name="quantity" id="item-quantity-{{item.id}}" value="{{item.quantity}}"> <span class="fas fa-plus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="increment" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span>
+                        </div>
+                        <div class="col-1">
+                            <div class="price"><span>{{item.unit_price}}</span><span class="">{% trans "XAF" %}</span></div>
+                        </div>
+                        <div class="col-1">
+                            <div class="price"><span id="item-total-price-{{item.id}}">{{item.total_price}}</span><span class="">{% trans "XAF" %}</span></div>
+                        </div>
+                        <div class="col-1">
+                            <span class="js-cart-delete-item" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="delete" data-target="item-{{item.id}}" ><i class="fas fa-times-circle"></i></span>
+                        </div>
+                    
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="summary row align-left">
+            <div class=" col-m-12 col-4 uppercase">
+                <div class="container align-left">
+                    <div class="row tuple"><span>{% trans "Total" %}</span><div class="price"><span class="js-cart-total">{{cart.amount}}</span><span>{% trans "XAF" %}</span></div></div>
+                    <div class="row tuple"><span>{% trans "Number of items" %}</span><span class="js-cart-quantity">{{cart.quantity}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <a class="mat-button mat-button-default" href="{% url 'orders:checkout' %}">{% trans "Checkout" %}</a>
+        </div>
+    </div>
+{% endif %}
+{% endblock MAIN %}
