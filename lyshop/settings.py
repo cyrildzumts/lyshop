@@ -48,7 +48,7 @@ CELERY_DEFAULT_EXCHANGE_TYPE = 'direct'
 
 CELERY_NAMESPACE = 'CELERY'
 
-ALLOWED_HOSTS = ['localhost','http://lyshop.com', 'www.lyshop.com', 'lyshop.com', os.environ['LYSHOP_ALLOWED_HOST']]
+ALLOWED_HOSTS = [os.getenv('LYSHOP_ALLOWED_HOST')]
 
 #EMAIL SETTINGS
 EMAIL_HOST = os.environ.get('LYSHOP_EMAIL_HOST')
