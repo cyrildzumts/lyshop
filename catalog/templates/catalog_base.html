@@ -9,24 +9,52 @@
         <div class="full welcome-text center">
                 {% block  HEADER_BANNER_TITLE %}
                     <h4> {% trans "Catalog" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
+                {% endblock HEADER_BANNER_TITLE %} 
         </div>
-        <div class="container">
-
-            <div class="col col-9">
-                <ul class="banner--actions">
-                        {% for c in root_category_list %}
-                        <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
-                        {% endfor %}
-                        
-                </ul><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
     </div>
 {% endblock HEADER_BANNER %}
+{% block CATEGORIES %}
+<div id="category-list" class="row">
+    <ul class="list-md-vertical list-horizontal">
+            {% for c in root_category_list %}
+            <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+            {% endfor %}
+            
+    </ul><!--End of list-->
+</div>
+{% endblock CATEGORIES %}
+{% block FILTER %}
+<div id="filter" class="row">
+    <div class="col-md-12 col-2">
+        <div class="filter-option">
+            <ul>
+                <li><span>{% trans "FILTER OPTION 1" %}</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12 col-2">
+        <div class="filter-option">
+            <ul>
+                <li><span>{% trans "FILTER OPTION 2" %}</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12 col-2">
+        <div class="filter-option">
+            <ul>
+                <li><span>{% trans "FILTER OPTION 3" %}</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12 col-2">
+        <div class="filter-option">
+            <ul>
+                <li><span>{% trans "FILTER OPTION 4" %}</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock FILTER %}
 {% block MAIN %}
 
 {% endblock MAIN %}
