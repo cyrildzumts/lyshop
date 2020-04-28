@@ -15,6 +15,7 @@
 {% endblock HEADER_BANNER %}
 {% block MAIN %}
 {% block CATEGORIES %}
+{% if root_category_list %}
 <div id="category-list" class="row">
     <ul class="list-md-vertical list-horizontal">
             {% for c in root_category_list %}
@@ -23,8 +24,10 @@
             
     </ul><!--End of list-->
 </div>
+{% endif %}
 {% endblock CATEGORIES %}
 {% block FILTER %}
+{% if is_content_available %}
 <div id="filter" class="row">
     <div class="col-md-12 col-2">
         <div class="filter-option">
@@ -55,6 +58,7 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% endblock FILTER %}
 
 {% block MAIN_CONTENT %}
