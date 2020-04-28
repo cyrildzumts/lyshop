@@ -173,7 +173,7 @@ DATABASES = {
         'sslmode': 'require'
     },
     'TEST'  :{
-        'NAME': 'test_db',
+        'NAME': os.getenv('LYSHOP_TEST_DATABASE', 'test_db'),
     },
    },
 
