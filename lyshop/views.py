@@ -31,7 +31,7 @@ def home(request):
     on the root template folder.
     """
     template_name = "home.html"
-    page_title = settings.SITE_NAME + "Online Shopping"
+    page_title = settings.SITE_NAME
     context = {
         'page_title': page_title,
         'user_is_authenticated' : request.user.is_authenticated

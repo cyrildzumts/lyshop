@@ -8,9 +8,7 @@
         <h4> {% trans "Category" %} - {{category.name}}</h4>
 {% endblock HEADER_BANNER_TITLE %}
 
-{% block MAIN %}
-
-
+{% block MAIN_CONTENT %}
 <div class="container">
        {% for p in product_list %}
        
@@ -30,4 +28,4 @@
         </div>
        {% endfor %}
 </div>
-{% endblock MAIN %}
+{% endblock MAIN_CONTENT %}
