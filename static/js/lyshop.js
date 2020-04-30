@@ -19,6 +19,94 @@ function ajax(options){
     });
 }
 
+function add_tot_cart(product){
+    var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]');
+    var option = {
+        type:'POST',
+        dataType: 'json',
+        url : '/cart/ajax-add-to-cart/',
+        data : {product:product.id, quantity:product.quantity, csrfmiddlewaretoken: csrfmiddlewaretoken.val()}
+    }
+    console.log('Adding product %s into user cart', product.name);
+    add_promise = ajax(option).then(function(response){
+        console.log("Product %s added into cart", product.name);
+        console.log(response);
+    }, function(reason){
+        console.error("Error on adding Product %s into cart", product.name);
+        console.error(reason);
+    });
+}
+
+function form_submit_add_cart(){
+    var form = $('#add-cart-form');
+    if(form.length < 0){
+        console.log("No add to cart form found");
+        return;
+    }
+    var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]', form);
+    var data = {};
+    var inputs = form.serializeArray();
+
+    inputs.forEach(function(v,index){
+        console.log("name : %s - value : %s", v.name, v.value)
+        data[v.name] = v.value;
+    });    
+    var option = {
+        type:'POST',
+        dataType: 'json',
+        url : '/cart/ajax-add-to-cart/',
+        data : data
+    }
+    console.log("inputs : %s", inputs.length);
+    console.log("data : ", data);
+    console.log("option : ", option);
+    
+    add_promise = ajax(option).then(function(response){
+        console.log("Product added into cart");
+        console.log(response);
+    }, function(reason){
+        console.error("Error on adding Product into cart");
+        console.error(reason);
+    });
+    
+}
+
+function update_cart_item(item, to_update, plus_or_minus){
+    console.log("updating item ", item);
+    console.log("updating object ", to_update);
+    console.log("Update action %s", plus_or_minus);
+    var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]');
+    var data = {};
+    data['csrfmiddlewaretoken'] = csrfmiddlewaretoken.val();
+    data['quantity'] = to_update['quantity'];
+    data['action'] = to_update['action'];
+    data['item'] = to_update['item_uuid'];
+
+    var option = {
+        type:'POST',
+        dataType: 'json',
+        url : '/cart/ajax-cart-item/' + data['item'] + '/' + data['action'] + '/',
+        data : data
+    }
+    add_promise = ajax(option).then(function(response){
+        console.log(response);
+        if(response['removed']){
+            to_update.parent.fadeOut('slow').remove()
+        }else{
+            to_update.target.val(response['item_quantity']);
+            to_update.update.html(response['item_total'].replace('.', ','));
+        }
+
+        to_update.cart_total.html(response['cart_total'].replace('.', ','));
+        to_update.cart_quantity.html(response['cart_quantity']);
+        
+    }, function(reason){
+        console.error("Error on updating cart item \"%s\"",data['item']);
+        console.error("Error Response Text : \"%s\"", reason.responseText)
+        console.error(reason);
+    });
+}
+
 var Tabs = (function(){
     function Tabs(){
         this.currentTab     = 0;
@@ -913,6 +1001,342 @@ function prevent_leaving(){
     //window.onbeforeunload = onbeforeunload;
 }
 
+function create_attribute(index){
+    console.log("Adding attribute");
+    var id = `attr-form-${index}`;
+    var div = $('<div/>', {
+        'class': 'row',
+        'id': id
+    });
+    var delete_button = $("<button/>", {
+        'id': id + '-delete-btn',
+        'data' : {'target': '#' + id},
+        'text': 'Delete',
+        'class' : 'mat-button mat-button-default'
+    });
+    delete_button.on('click', function(){
+        div.remove();
+        decremente_management_form(form);
+        console.log("Removed attribute with id \"%s\"", id);
+    });
+    var label_name = $("<label/>").text(attr_template.name + " : ");
+    var input_name = $('<input type="text">').attr({
+        'id':`id-form-${index}-name`,
+        'name': `form-${index}-name`,
+        'maxlength': input_max_length
+    });
+    input_name.appendTo(label_name);
+    var label_display_name = $("<label/>").text(attr_template.display_name + " : ");
+    var input_display_name = $('<input type="text">').attr({
+        'id':`id-form-${index}-display_name`,
+        'name': `form-${index}-display_name`,
+        'maxlength': input_max_length
+    });
+    input_display_name.appendTo(label_display_name);
+    var label_value = $("<label/>").text(attr_template.value + " : ");
+    var input_value = $('<input type="text">').attr({
+        'id':`id-form-${index}-value`,
+        'name': `form-${index}-value`,
+        'maxlength': input_max_length
+    });
+    input_value.appendTo(label_value);
+    var label_value_type = $("<label/>").text(attr_template.value_type + " : ");
+    var select_value_type = $('<select/>').attr({
+        'id':`id-form-${index}-value_type`,
+        'name': `form-${index}-value_type`,
+    });
+    select_value_type.appendTo(label_value_type);
+    $('<option/>', {
+        'selected': 'selected',
+        'value': undefined,
+        'text' : "Select a type"
+    }).appendTo(select_value_type);
+    attr_template.value_types.forEach(function(el, index){
+        $('<option/>', {
+            'value': el.key,
+            'text' : el.value
+        }).appendTo(select_value_type);
+    });
+    var input_form_id = $('<input type="hidden">').attr({
+        'id':`id-form-${index}-id`,
+        'name': `form-${index}-id`,
+    });
+    div.append([label_name, label_display_name, label_value, label_value_type, input_form_id, delete_button]);
+    div.appendTo(container);
+    incremente_management_form(form);
+    console.log("[OK] Adding attribute done!");
+    return div;
+}
+
+var AttributManager = (function(){
+    function AttributManager(options){
+        this.form = $('#form-attrs-management');
+        this.attrs_container = $('#attrs-container', this.form);
+        this.attrs_inputs = [];
+        this.total_form = 0;
+        this.replace_pattern = /\d+/g;
+        this.id_form_TOTAL_FORMS = $("#id_form-TOTAL_FORMS", this.form);
+        this.id_form_INITIAL_FORMS = $("#id_form-INITIAL_FORMS", this.form);
+        this.id_form_MIN_NUM_FORMS = $("#id_form-MIN_NUM_FORMS", this.form);
+        this.id_form_MAX_NUM_FORMS = $("#id_form-MAX_MIN_FORMS", this.form);
+    };
+    AttributManager.prototype.init = function(){
+
+    };
+
+    AttributManager.prototype.addAttribute = function(){
+
+    };
+
+    AttributManager.prototype.removeAttribute = function(){
+
+    };
+
+    AttributManager.prototype.clear = function(){
+        this.total_form = 0;
+        this.updateManagementForm();
+
+    };
+
+    AttributManager.prototype.updateFormInputIndex = function(){
+        var name;
+        var id;
+        var self = this;
+        this.attrs_inputs.forEach(function (arr_input, index) {
+            arr_input.forEach(function(e, i){
+                self.updateInputIndex(e, index);
+            });
+        });
+    };
+
+    AttributManager.prototype.updateInputIndex = function(input, index){
+        var name = input.attr('name');
+        var id = input.attr('id');
+        input.attr({
+            id: id.replace(this.replace_pattern, index),
+            name: name.replace(this.replace_pattern, index)
+        });
+    }
+
+    AttributManager.prototype.create_attribute = function(){
+        console.log("Adding attribute");
+        var self = this;
+        var id = `attr-form-${this.total_form}`;
+        var div = $('<div/>', {
+            'class': 'row',
+            'id': id
+        });
+        var delete_button = $("<button/>", {
+            'id': id + '-delete-btn',
+            'text': 'Delete',
+            'class' : 'mat-button mat-button-default'
+        }).attr({
+            'data-target': '#' + id
+        });
+        delete_button.on('click', function(){
+            div.remove();
+            self.decremente_management_form();
+            self.updateFormInputIndex();
+            console.log("Removed attribute with id \"%s\"", id);
+        });
+        var label_name = $("<label/>").text(attr_template.name + " : ");
+        var input_name = $('<input type="text">').attr({
+            'id':`id-form-${this.total_form}-name`,
+            'name': `form-${this.total_form}-name`,
+            'maxlength': input_max_length
+        });
+        input_name.appendTo(label_name);
+        var label_display_name = $("<label/>").text(attr_template.display_name + " : ");
+        var input_display_name = $('<input type="text">').attr({
+            'id':`id-form-${this.total_form}-display_name`,
+            'name': `form-${this.total_form}-display_name`,
+            'maxlength': input_max_length
+        });
+        input_display_name.appendTo(label_display_name);
+        var label_value = $("<label/>").text(attr_template.value + " : ");
+        var input_value = $('<input type="text">').attr({
+            'id':`id-form-${this.total_form}-value`,
+            'name': `form-${this.total_form}-value`,
+            'maxlength': input_max_length
+        });
+        input_value.appendTo(label_value);
+        var label_value_type = $("<label/>").text(attr_template.value_type + " : ");
+        var select_value_type = $('<select/>').attr({
+            'id':`id-form-${this.total_form}-value_type`,
+            'name': `form-${this.total_form}-value_type`,
+        });
+        select_value_type.appendTo(label_value_type);
+        $('<option/>', {
+            'selected': 'selected',
+            'value': undefined,
+            'text' : "Select a type"
+        }).appendTo(select_value_type);
+        attr_template.value_types.forEach(function(el, index){
+            $('<option/>', {
+                'value': el.key,
+                'text' : el.value
+            }).appendTo(select_value_type);
+        });
+        var input_form_id = $('<input type="hidden">').attr({
+            'id':`id-form-${this.total_form}-id`,
+            'name': `form-${this.total_form}-id`,
+        });
+        div.append([label_name, label_display_name, label_value, label_value_type, input_form_id, delete_button]);
+        div.appendTo(container);
+        self.incremente_management_form();
+        self.attrs_inputs.push([input_name, input_display_name, input_value, select_value_type, input_form_id]);
+        console.log("[OK] Adding attribute done!");
+        return div;
+    };
+
+    AttributManager.prototype.incremente_management_form = function(){
+        this.total_form = this.total_form + 1;
+        this.id_form_TOTAL_FORMS.val(this.total_form);
+        this.id_form_MIN_NUM_FORMS.val(this.total_form);
+        this.id_form_MAX_NUM_FORMS.val(this.total_form);
+    };
+
+    AttributManager.prototype.updateManagementForm = function(){
+        this.id_form_TOTAL_FORMS.val(this.total_form);
+        this.id_form_MIN_NUM_FORMS.val(this.total_form);
+        this.id_form_MAX_NUM_FORMS.val(this.total_form);
+    };
+
+    AttributManager.prototype.decremente_management_form = function(){
+        this.total_form = this.total_form - 1;
+        this.id_form_TOTAL_FORMS.val(this.total_form);
+        this.id_form_MIN_NUM_FORMS.val(this.total_form);
+        this.id_form_MAX_NUM_FORMS.val(this.total_form);
+    };
+
+
+
+    return AttributManager;
+})();
+
+var id_form_TOTAL_FORMS;
+var id_form_INITIAL_FORMS;
+var id_form_MIN_NUM_FORMS;
+var id_form_MAX_NUM_FORMS;
+var formset_prefix = 'form';
+var total_form = 0;
+var input_max_length = 32;
+var attr_list = [];
+var replace_pattern = /\d+/g;
+
+function updateInputIndex(input, index){
+    var name = input.attr('name');
+    var id = input.attr('id');
+    var new_name = name.replace(replace_pattern, index);
+    var new_id = id.replace(replace_pattern, index);
+    console.log("Updating input with id \"%s\" - name = \"%s\" with index \"%s\"", id, name, index);
+    input.attr({
+        id: new_id,
+        name: new_name
+    });
+    console.log("Updated input with id \"%s\" - name = \"%s\" with index \"%s\"", new_id, new_name, index);
+}
+
+function incremente_management_form(container){
+    total_form = total_form + 1;
+    $("#id_form-TOTAL_FORMS", container).val(total_form);
+    $("#id_form-MAX_NUM_FORMS", container).val(total_form);
+    $("#id_form-MIN_NUM_FORMS", container).val(total_form);
+}
+
+function decremente_management_form(container){
+    total_form = total_form - 1;
+    $("#id_form-TOTAL_FORMS", container).val(total_form);
+    $("#id_form-MAX_NUM_FORMS", container).val(total_form);
+    $("#id_form-MIN_NUM_FORMS", container).val(total_form);
+}
+
+function updateManagementForm(){
+    var name;
+        var id;
+        attr_list.forEach(function (arr_input, index) {
+            arr_input.forEach(function(e, i){
+                updateInputIndex(e, index);
+            });
+        });
+}
+
+function create_attribute_entry(container, form){
+    console.log("Adding attribute");
+
+    var id = `attr-form-${total_form}`;
+    var div = $('<div/>', {
+        'class': 'row',
+        'id': id
+    });
+    var delete_button = $("<button/>", {
+        'id': id + '-delete-btn',
+        'text': 'Delete',
+        'class' : 'mat-button mat-button-default'
+    }).attr({
+        'data-target': '#' + id,
+        'data-index': total_form
+    });
+    delete_button.on('click', function(){
+        var attr_index = $(this).data('index');
+        var attr = attr_list[attr_index];
+        attr_list.splice(attr_index, 1);
+        div.remove();
+        decremente_management_form(form);
+        updateManagementForm();
+        console.log("Removed attribute with id \"%s\"", id);
+    });
+    var label_name = $("<label/>").text(attr_template.name + " : ");
+    var input_name = $('<input type="text">').attr({
+        'id':`id-form-${total_form}-name`,
+        'name': `form-${total_form}-name`,
+        'maxlength': input_max_length
+    });
+    input_name.appendTo(label_name);
+    var label_display_name = $("<label/>").text(attr_template.display_name + " : ");
+    var input_display_name = $('<input type="text">').attr({
+        'id':`id-form-${total_form}-display_name`,
+        'name': `form-${total_form}-display_name`,
+        'maxlength': input_max_length
+    });
+    input_display_name.appendTo(label_display_name);
+    var label_value = $("<label/>").text(attr_template.value + " : ");
+    var input_value = $('<input type="text">').attr({
+        'id':`id-form-${total_form}-value`,
+        'name': `form-${total_form}-value`,
+        'maxlength': input_max_length
+    });
+    input_value.appendTo(label_value);
+    var label_value_type = $("<label/>").text(attr_template.value_type + " : ");
+    var select_value_type = $('<select/>').attr({
+        'id':`id-form-${total_form}-value_type`,
+        'name': `form-${total_form}-value_type`,
+    });
+    select_value_type.appendTo(label_value_type);
+    $('<option/>', {
+        'selected': 'selected',
+        'value': undefined,
+        'text' : "Select a type"
+    }).appendTo(select_value_type);
+    attr_template.value_types.forEach(function(el, index){
+        $('<option/>', {
+            'value': el.key,
+            'text' : el.value
+        }).appendTo(select_value_type);
+    });
+    var input_form_id = $('<input type="hidden">').attr({
+        'id':`id-form-${total_form}-id`,
+        'name': `form-${total_form}-id`,
+    });
+    div.append([label_name, label_display_name, label_value, label_value_type, input_form_id, delete_button]);
+    attr_list.push([input_name, input_display_name, input_value, select_value_type, input_form_id]);
+    div.appendTo(container);
+    incremente_management_form(form);
+    console.log("[OK] Adding attribute done!");
+    return div;
+}
+
+
 $(document).ready(function(){
 let account = new Account();
 account.init();
@@ -1065,16 +1489,86 @@ slider.init();
     $('.mat-list').on('click', '.mat-list-item', function(){
         $(this).toggleClass('active');
     });
+
     $('.js-dialog-open').on('click', function(){
         var target = $($(this).data('target'));
         target.show();
     });
 
     $('.js-dialog-close').on('click', function(){
-        $(this).parent().hide();
-        
+        var parent = $(this).parents('.dialog').hide();
+        $('input[type!="hidden"]', parent).val('');
+    });
+    $('.js-clear-input').on('click', function(){
+        var target = $(this).data('target');
+        $(':input', target).val('');
+    });
+    $('.js-reveal-btn').on('click', function(){
+        var target = $(this).data('target');
+        $('.js-revealable', target).show();
+    });
+    $('.js-revealable-hide').on('click', function(){
+        console.log('hidding revealable inputs');
+        var target = $(this).data('target');
+        $('.js-revealable', target).hide();
+    });
+    $('.js-add-to-cart').on('click', function(event){
+        var target = $(event.target);
+        var product = {
+            id : target.data('id'),
+            name: target.data('name'),
+            quantity : target.data('quantity')
+        }
+        add_tot_cart(product);
     });
 
+    $('#add-cart-form').submit(function(event){
+        console.log("submiting cart form");
+        event.preventDefault();
+        form_submit_add_cart();
+    });
+
+    $('.js-add-new-attribute').on('click', function(){
+        var target = $($(this).data('target'));
+        var form_container = $($(this).data('form'));
+        create_attribute_entry(target, form_container);
+    });
+
+    var selectable_list = $(".js-selectable");
+    var activable_list = $(".js-activable");
+    var select_all = $('.js-select-all');
+    selectable_list.on('click', function(){
+        var is_selected = selectable_list.is(function (el) {
+            return this.checked;
+        });
+        
+        var selected_all = selectable_list.is(function (el) {
+            return !this.checked;
+        });
+        select_all.prop('checked', !selected_all);
+        activable_list.prop('disabled', !is_selected);
+    });
+
+    select_all.on('click', function(){
+        console.log("Select All clicked : %s", this.checked);
+        selectable_list.prop('checked', this.checked);
+        activable_list.prop('disabled', !this.checked);
+    });
+
+    $('.js-cart-update-item-quantity,.js-cart-delete-item').on('click', function(){
+        var item = $(this);
+        var obj = {};
+        obj['action'] = item.data('action');
+        obj['target'] = $('#' + item.data('target'));
+        obj['update'] = $('#' + item.data('update'));
+        obj['parent'] = $('#' + item.data('parent'));
+        obj['cart_total'] = $('.js-cart-total');
+        obj['cart_quantity'] = $('.js-cart-quantity');
+        obj['item_uuid'] = item.data('item');
+        var plus_or_minus = item.data('action') == "increment";
+        update_cart_item(item, obj, plus_or_minus);
+    });
+    
 });
 
 
