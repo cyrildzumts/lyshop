@@ -1,6 +1,14 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
-
+{% block HEADER_BANNER %}
+  <div class="row">
+        <div class="col-6">
+            <div class="title">
+                <h3>{% trans "New Brand" %}</h3>
+            </div>
+        </div> 
+  </div>
+{% endblock HEADER_BANNER %}
 {% block MAIN_CONTENT %}
 
 {% include "tags/brand_creation_form.html" %}

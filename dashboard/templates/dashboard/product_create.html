@@ -1,5 +1,12 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
+{% block HEADER_BANNER %}
+  <div class="row">
+        <div class="col col-6">
+            <span>{% trans "New Product" %}</span>
+        </div> 
+  </div>
+{% endblock HEADER_BANNER %}
 
 {% block MAIN %}
 

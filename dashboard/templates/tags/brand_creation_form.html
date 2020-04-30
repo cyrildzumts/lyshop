@@ -8,10 +8,7 @@
     <div class="container">
         
         <div class="mat-box">
-        
-                <div class="title">
-                    <h3>{% trans "New Brand" %}</h3>
-                </div>
+    
                 <form class="form" name="add-brand" action="{% url 'dashboard:brand-create' %}" method="POST">{% csrf_token %}
                     <input type="hidden" name="added_by" value="{{request.user.pk}}">
                     <div class="container">
