@@ -1,4 +1,5 @@
 from django.db.models import F,Q,Count, Sum, FloatField
+from django.contrib.auth.models import User
 from cart.models import CartItem, CartModel
 from catalog.models import ProductVariant, Product
 import logging
@@ -14,6 +15,19 @@ def refresh_cart(cart):
         cart.refresh_from_db()
     
     return cart
+
+def get_cart(user=None):
+    if not (isinstance(user, User)):
+        logger.error(f"{user} is not an instance of User")
+        return None
+
+    try:
+        cart = CartModel.objects.get(user=user)
+    except CartModel.DoesNotExist:
+        cart = None
+        logger.warning(f"Cart not found for user {user.username}")
+    return cart
+
 
 def add_to_cart(cart, product):
     """
@@ -74,3 +88,16 @@ def remove_from_cart(cart, cart_item=None):
     deleted_count, delete_items = CartItem.objects.filter(id=cart_item.id, cart=cart).delete()
     refresh_cart(cart)
     return deleted_count, delete_items
+
+def cart_items_count(user=None):
+    if not (isinstance(user, User)):
+        return "user params is not an instance of User", -1
+    
+    #aggregation = CartItem.objects.filter(cart__user=user).aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('unit_price'), output_field=FloatField()))
+    #CartModel.objects.filter(id=cart.id).update(quantity=aggregation['count'], amount=aggregation['total'])
+    items_count = 0
+    cart = get_cart(user)
+    if cart:
+        items_count = cart.quantity
+    
+    return items_count
