@@ -38,7 +38,7 @@
         <form action="{% url 'dashboard:brands-delete' %}" method="POST">{% csrf_token %}
         <table id="brand-list" class="mat-table js-filter-table">
             <div class="actions">
-                <button id="js-delete-attrs-btn" class="mat-button mat-button-outlined js-activable" disabled>{% trans "Delete Selected" %}</button>
+                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled>{% trans "Delete Selected" %}</button>
             </div>
           <thead>
                   

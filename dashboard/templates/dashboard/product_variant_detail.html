@@ -18,7 +18,10 @@
                     <a class="mat-button mat-button-default warn" href="{{variant.get_update_url}}"><span class="fas fa-pen"></span><span class="">{% trans "Edit" %}</span></a>
                     {% endif %}
                     {% if can_delete_product %}
-                    <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a>
+                    <form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
+                        <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></button>
+                        {% comment %} <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a> {% endcomment %}
+                    </form>
                     {% endif %}
                     
                         
