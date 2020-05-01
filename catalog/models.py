@@ -252,7 +252,7 @@ class ProductVariant(models.Model):
     article_number = models.IntegerField(blank=True, null=True)
     product = models.ForeignKey(Product, related_name='variants' ,on_delete=models.CASCADE, blank=False, null=False)
     is_active = models.BooleanField(default=True)
-    attributes = models.ManyToManyField(ProductAttribute, related_name='products', blank=True)
+    attributes = models.ManyToManyField(ProductAttribute, related_name='products', null=True, blank=True)
     price = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     quantity = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
