@@ -707,11 +707,12 @@ def product_variant_delete(request, variant_uuid=None):
         logger.warning(f"request method used for the Delete : \"{request.method}\"")
         raise SuspiciousOperation('Bad request')
 
-    product = get_object_or_404(models.ProductVariant, product_uuid=variant_uuid)
-    ProductVariant.objects.filter(pk=product.pk).delete()
-    logger.info(f'Product Variant \"{product.display_name}\" deleted by user \"{request.user.username}\"')
+    product_variant = get_object_or_404(models.ProductVariant, product_uuid=variant_uuid)
+    product = product_variant.product
+    ProductVariant.objects.filter(pk=product_variant.pk).delete()
+    logger.info(f'Product Variant \"{product_variant.display_name}\" deleted by user \"{request.user.username}\"')
     messages.success(request, _('Product variant deleted'))
-    return redirect('dashboard:products')
+    return redirect(product.get_dashboard_url())
 
 
 
