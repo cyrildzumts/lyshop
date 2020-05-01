@@ -702,16 +702,15 @@ def product_variant_delete(request, variant_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    if request.method is not "POST":
+    if request.method != "POST":
         logger.warning(f"Delete request refused. User {request.user.username} trying to delete a product variant {variant_uuid} in non POST request")
         logger.warning(f"request method used for the Delete : \"{request.method}\"")
         raise SuspiciousOperation('Bad request')
 
     product = get_object_or_404(models.ProductVariant, product_uuid=variant_uuid)
-    p_name = product.name
     ProductVariant.objects.filter(pk=product.pk).delete()
-    logger.info(f'Product Variant \"{p_name}\" deleted by user \"{request.user.username}\"')
-    messages.success(request, _('Product deleted'))
+    logger.info(f'Product Variant \"{product.display_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('Product variant deleted'))
     return redirect('dashboard:products')
 
 
