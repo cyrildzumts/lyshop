@@ -313,7 +313,6 @@ def generate_product_sku(sender, instance, created, **kwargs):
         sku = f"{instance.product.category.code}{instance.product.brand.code}" + str(instance.id).zfill(conf.PRODUCT_NUMBER_LENGTH)
         logger.debug(f'SKU for Product variant {instance.name} generated : {sku}')
         sku_int = int(sku)
-        logger.debug("Saving generated SKU in the product ...")
         if ProductVariant.objects.filter(pk=instance.pk).exists():
             logger.debug("Saving generated SKU in the product ...")
             updated_rows_count = ProductVariant.objects.filter(pk=instance.pk).update(sku=sku, article_number=sku_int)
