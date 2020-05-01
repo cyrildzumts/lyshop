@@ -309,6 +309,7 @@ class ProductImage(models.Model):
 @receiver(post_save, sender=ProductVariant)
 def generate_product_sku(sender, instance, created, **kwargs):
     if created:
-        logger.debug(f'New Product variant create {instance.name}')
+        logger.debug(f'Generating SKU for newly created Product variant {instance.name}')
         code = f"{instance.product.category.code}{instance.product.brand.code}" + str(instance.id).zfill(conf.PRODUCT_NUMBER_LENGTH)
-        ProductVariant.objects.filter(pk=instance.pk).update(sku=code, article_number=int(code))
+        updated_rows_count = ProductVariant.objects.filter(pk=instance.pk).update(sku=code, article_number=int(code))
+        logger.info(f"SKU created for Product Variant {instance.name}. affected Rows : {updated_rows_count}")
