@@ -704,7 +704,7 @@ def product_variant_delete(request, variant_uuid=None):
 
     if request.method is not "POST":
         logger.warning(f"Delete request refused. User {request.user.username} trying to delete a product variant {variant_uuid} in non POST request")
-        logger.warning("request method used for the Delete : \"{request.method}\"")
+        logger.warning(f"request method used for the Delete : \"{request.method}\"")
         raise SuspiciousOperation('Bad request')
 
     product = get_object_or_404(models.ProductVariant, product_uuid=variant_uuid)
