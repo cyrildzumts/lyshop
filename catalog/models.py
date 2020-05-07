@@ -315,8 +315,12 @@ def generate_product_sku(sender, instance, created, **kwargs):
         sku_int = int(sku)
         if ProductVariant.objects.filter(pk=instance.pk).exists():
             logger.debug("Saving generated SKU in the product ...")
-            updated_rows_count = ProductVariant.objects.filter(pk=instance.pk).update(sku=sku, article_number=sku_int)
-            logger.info(f"[ OK ] SKU created for Product Variant {instance.name}. affected Rows : {updated_rows_count}")
+            try :
+                updated_rows_count = ProductVariant.objects.filter(pk=instance.pk).update(sku=sku, article_number=sku_int)
+                logger.info(f"[ OK ] SKU created for Product Variant {instance.name}. affected Rows : {updated_rows_count}")
+            except Exception as e:
+                logger.error(f"[ ERROR ] SKU created but could not update Product Variant {instance.name}.")
+                logger.exception(e)
         else :
             logger.debug("[ FAILED ] SKU not saved in new ProductVariant : instance not found in the database")
         
