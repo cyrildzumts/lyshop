@@ -249,7 +249,7 @@ class ProductVariant(models.Model):
     name = models.CharField(max_length=32, null=False, blank=False)
     display_name = models.CharField(max_length=32, null=True, blank=True)
     sku = models.CharField(max_length=32,blank=True, null=True)
-    article_number = models.BigIntegerField(blank=True, null=True)
+    article_number = models.CharField(max_length=32,blank=True, null=True)
     product = models.ForeignKey(Product, related_name='variants' ,on_delete=models.CASCADE, blank=False, null=False)
     is_active = models.BooleanField(default=True)
     attributes = models.ManyToManyField(ProductAttribute, related_name='products', null=True, blank=True)
