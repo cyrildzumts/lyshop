@@ -312,11 +312,10 @@ def generate_product_sku(sender, instance, created, **kwargs):
         logger.debug(f'Generating SKU for newly created Product variant {instance.name}')
         sku = f"{instance.product.category.code}{instance.product.brand.code}" + str(instance.id).zfill(conf.PRODUCT_NUMBER_LENGTH)
         logger.debug(f'SKU for Product variant {instance.name} generated : {sku}')
-        sku_int = int(sku)
         if ProductVariant.objects.filter(pk=instance.pk).exists():
             logger.debug("Saving generated SKU in the product ...")
             try :
-                updated_rows_count = ProductVariant.objects.filter(pk=instance.pk).update(sku=sku, article_number=sku_int)
+                updated_rows_count = ProductVariant.objects.filter(pk=instance.pk).update(sku=sku, article_number=sku)
                 logger.info(f"[ OK ] SKU created for Product Variant {instance.name}. affected Rows : {updated_rows_count}")
             except Exception as e:
                 logger.error(f"[ ERROR ] SKU created but could not update Product Variant {instance.name}.")
