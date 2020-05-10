@@ -21,7 +21,7 @@
                     <img class="img-responsive" src="{{p.images.first.get_image_url}}" alt="{{p.display_name}}">
                 </div>
                 <div class="mat-box-content">
-                        <div><span>{{p.brand}}</span> <span>{{p.price|unlocalize}}</span> {% trans "XAF" %}</div>
+                        <div><span>{{p.brand.display_name}}</span> <span>{{p.price|unlocalize}}</span> {% trans "XAF" %}</div>
                 </div>
                 <div class="actions row"><a class="mat-button mat-button-default" href="{{p.get_absolute_url}}">{% trans "Details" %}</a></div>
         </div>
