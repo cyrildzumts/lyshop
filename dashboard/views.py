@@ -422,7 +422,7 @@ def product_delete(request, product_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    if request.method is not "POST":
+    if request.method != "POST":
         raise SuspiciousOperation('Bad request')
 
     product = get_object_or_404(models.Product, product_uuid=product_uuid)
