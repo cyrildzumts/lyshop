@@ -35,6 +35,7 @@
                 {% trans "Products" %}
             </div>
         </div><!--End of Row-->
+        <form action="{% url 'dashboard:product-delete' product.product_uuid %}" method="POST">{% csrf_token %}
         <table id="product-list" class="mat-table js-filter-table">
           <thead>
                   <tr>
@@ -54,13 +55,14 @@
                   <td>{{product.display_name}}</td>
                   <td><span>{{product.price}}</span> <span>{% trans "XAF" %}</span></td>
                   <td><a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"> {% trans "Details" %}</a></td>
-                  {% if can_delete_product %}<td><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:product-delete' product.product_uuid %}"> {% trans "Delete" %}</a></td>{% endif %}
+                  {% if can_delete_product %}<td><button class="mat-button mat-button-default warning danger js-need-confirmation" type="submit"> {% trans "Delete" %}</button></td>{% endif %}
                   </tr>
                   {% endfor %}
                   
           </tbody>
 
     </table>
+    </form>
     {% include "tags/pagination.html" with page_set=product_list %}
     </div><!--End of Table Wrapper-->
   </div>
