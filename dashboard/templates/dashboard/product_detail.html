@@ -4,7 +4,7 @@
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
                 {% block  HEADER_BANNER_TITLE %}
-                    <h4> {{product.name}}</h4>
+                    <h4> {{product.display_name}}</h4>
                 {% endblock HEADER_BANNER_TITLE %}
                 
         </div>
@@ -66,7 +66,7 @@
 <div class="container">
         <div class="mat-box">
             <div class="title">
-              <span>{{product.name}}</span>
+              <span>{{product.display_name}}</span>
             </div>
             <div class="box-content">
                 <div class="entry">
