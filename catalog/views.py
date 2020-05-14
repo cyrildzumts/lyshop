@@ -65,7 +65,7 @@ class ProductDetailView(DetailView):
 def catalog_home(request):
     page_title = _('Catalog Home')
     template_name = conf.CATALOG_HOME_TEMPLATE_NAME
-    recent_products = ProductVariant.objects.all()[:conf.LATEST_QUERYSET_LIMIT]
+    recent_products = Product.objects.all()[:conf.LATEST_QUERYSET_LIMIT]
     context = {
         'page_title' : page_title,
         'product_list': recent_products
@@ -84,7 +84,7 @@ def category_detail(request, category_uuid=None):
     logger.info(f"Cat {category.display_name} children : {subcats.count()}")
     filterquery = Q(product__category__category_uuid=category_uuid)
     subcatquery = Q(product__category__id__in=subcats.values_list('id'))
-    queryset = ProductVariant.objects.filter(filterquery | subcatquery)
+    queryset = Product.objects.filter(filterquery | subcatquery)
     page_title = _(category.display_name)
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
@@ -138,11 +138,29 @@ def product_detail(request, product_uuid=None):
     Product.objects.filter(product_uuid=product_uuid).update(view_count=F('view_count') + 1)
     images = ProductImage.objects.filter(product=product)
     variants = ProductVariant.objects.filter(product=product)
+
+    Product.objects.filter(product_uuid=product_uuid).update(view_count=F('view_count') + 1)
+    images = ProductImage.objects.filter(product=product)
+    common_attrs, selective_attrs = catalog_service.get_product_variant_attrs(product.id)
+    #attrs = variant.attributes.all()
+    #attrs_values = variant.attributes.values('name','display_name').annotate(count=Count('name'))
+    filter_attrs = []
+    selectable_attrs = []
+    '''
+    for e in attrs_values:
+        if e['count'] > 1:
+            selectable_attrs.append({'name': e['name'], 'display_name': e['display_name'], 'values': sorted([k.get('value') for k in attrs.filter(name=e['name']).values('value')])})
+            filter_attrs.append(e['name'])
+    '''
     context = {
         'page_title': page_title,
+        #'variant': variant,
         'product': product,
-        'variant_list': variants,
-        'image_list': images
+        'image_list': images,
+        ##'attribute_list': variant.attributes.exclude(name__in=filter_attrs).all(),
+        ##'selectable_attrs': selectable_attrs,
+        'common_attrs' : common_attrs,
+        'selective_attrs' : selective_attrs
     }
     return render(request,template_name, context)
 
