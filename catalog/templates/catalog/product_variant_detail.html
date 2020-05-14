@@ -61,12 +61,12 @@
                             </div>
                             </li>
                           {% endfor %}
-                          {% if selective_attrs %}
+                          {% if selectable_attrs %}
                           <li class="attr-wrapper">
                             <div class="attr">
-                              <label for="selective_attr"><span>{% trans selective_attrs.display_name %}</span></label>
+                              <label for="selective_attr"><span>{% trans selectable_attrs.display_name %}</span></label>
                               <select id="selective-attr" name="attr" >
-                              {% for attr in selective_attrs.attr_list %}
+                              {% for attr in selectable_attrs.attr_list %}
                                 <option value="{{attr.id}}">{{attr.value}}</option>
                               {% endfor %}
                               </select>
