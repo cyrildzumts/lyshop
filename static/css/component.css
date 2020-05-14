@@ -2113,6 +2113,11 @@ input[type=text]:focus, textarea:focus{
 }
 
 @media only screen and (max-width:40em){
+	.list-md-vertical{
+		display: flex;
+		flex-direction: column;
+
+	}
 	.mat-table thead{
 		border: none;
 		width: 1px;
@@ -2152,6 +2157,11 @@ input[type=text]:focus, textarea:focus{
 
 
 @media only screen and (min-width:40em){
+	.list-horizontal{
+		display: flex;
+		flex-direction: row;
+		
+	}
 	.menu-button{
 		display: none;
 	}
