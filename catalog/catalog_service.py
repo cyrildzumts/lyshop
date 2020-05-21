@@ -4,6 +4,24 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+def get_product_attributes(product_id):
+    common_attrs = None
+    selective_attrs = []
+    p = Product.objects.get(id=product_id)
+    variants = p.variants.all()
+    attrs_qs = ProductAttribute.objects.none()
+    attrs_dict_list = []
+    attrs_qs_list = []
+    for v in variants:
+        attrs_dict_list.append({'variant_id':v.id, 'attrs' : v.attributes.all()})
+        attrs_qs_list.append(v.attribute.all())
+    
+    common_attrs = ProductAttribute.objects.intersection(*attrs_qs_list)
+    for attr in attrs_dict_list:
+        selective_attrs.append({'variant_id' : attr['variant_id'], 'attrs': attr['attrs'].difference(common_attrs)})
+
+    return common_attrs, selective_attrs
+
 def get_product_variant_attrs(product_id):
     """
     This method returns a tuple that contains two queryset :

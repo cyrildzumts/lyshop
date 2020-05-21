@@ -58,6 +58,7 @@
                             <li class="attr-wrapper">
                             <div class="attr">
                               <span class="key">{% trans attr.display_name %}</span><span class="value">{{attr.value}}</span>
+                              <input type="hidden" name="attr" value="{{attr.id}}">
                             </div>
                             </li>
                           {% endfor %}
