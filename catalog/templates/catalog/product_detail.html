@@ -66,10 +66,10 @@
                           <li class="attr-wrapper">
                             <div class="attr">
                               <label for="selective_attr"><span>{% trans selective_attrs.display_name %}</span></label>
-                              <select id="selective-attr" name="attr" >
+                              <select id="selective-attr" name="variant" >
                               {% for attr in selective_attrs %}
                                   {% for attribute in attr.attrs %}
-                                  <option value="{{attr.variant_id}}">{{attribute}}</option>
+                                  <option value="{{attr.variant_uuid}}">{{attribute}}</option>
                                   {% endfor %}
                                 
                               {% endfor %}

@@ -180,7 +180,7 @@ class ProductAttribute(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return f"Attribute {self.name} - {self.value}" 
+        return f"{self.display_name} - {self.value}" 
     
     def get_dashboard_url(self):
         return reverse("dashboard:attribute-detail", kwargs={"attribute_uuid": self.attribute_uuid})

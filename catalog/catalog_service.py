@@ -13,12 +13,12 @@ def get_product_attributes(product_id):
     attrs_dict_list = []
     attrs_qs_list = []
     for v in variants:
-        attrs_dict_list.append({'variant_id':v.id, 'attrs' : v.attributes.all()})
+        attrs_dict_list.append({'variant_id':v.id, 'variant_uuid': v.product_uuid, 'attrs' : v.attributes.all()})
         attrs_qs_list.append(v.attributes.all())
     
     common_attrs = ProductAttribute.objects.intersection(*attrs_qs_list)
     for attr in attrs_dict_list:
-        selective_attrs.append({'variant_id' : attr['variant_id'], 'attrs': attr['attrs'].difference(common_attrs)})
+        selective_attrs.append({'variant_id' : attr['variant_id'], 'variant_uuid': attr['variant_uuid'], 'attrs': attr['attrs'].difference(common_attrs)})
 
     return common_attrs, selective_attrs
 
