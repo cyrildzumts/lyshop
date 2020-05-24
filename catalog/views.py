@@ -137,28 +137,12 @@ def product_detail(request, product_uuid=None):
     product = get_object_or_404(Product, product_uuid=product_uuid)
     Product.objects.filter(product_uuid=product_uuid).update(view_count=F('view_count') + 1)
     images = ProductImage.objects.filter(product=product)
-    variants = ProductVariant.objects.filter(product=product)
+    common_attrs, selective_attrs = catalog_service.get_product_attributes(product.id)
 
-    Product.objects.filter(product_uuid=product_uuid).update(view_count=F('view_count') + 1)
-    images = ProductImage.objects.filter(product=product)
-    common_attrs, selective_attrs = catalog_service.get_product_variant_attrs(product.id)
-    #attrs = variant.attributes.all()
-    #attrs_values = variant.attributes.values('name','display_name').annotate(count=Count('name'))
-    filter_attrs = []
-    selectable_attrs = []
-    '''
-    for e in attrs_values:
-        if e['count'] > 1:
-            selectable_attrs.append({'name': e['name'], 'display_name': e['display_name'], 'values': sorted([k.get('value') for k in attrs.filter(name=e['name']).values('value')])})
-            filter_attrs.append(e['name'])
-    '''
     context = {
         'page_title': page_title,
-        #'variant': variant,
         'product': product,
         'image_list': images,
-        ##'attribute_list': variant.attributes.exclude(name__in=filter_attrs).all(),
-        ##'selectable_attrs': selectable_attrs,
         'common_attrs' : common_attrs,
         'selective_attrs' : selective_attrs
     }

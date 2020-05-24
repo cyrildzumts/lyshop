@@ -67,8 +67,11 @@
                             <div class="attr">
                               <label for="selective_attr"><span>{% trans selective_attrs.display_name %}</span></label>
                               <select id="selective-attr" name="attr" >
-                              {% for attr in selective_attrs.attr_list %}
-                                <option value="{{attr.id}}">{{attr.value}}</option>
+                              {% for attr in selective_attrs %}
+                                  {% for attribute in attr.attrs %}
+                                  <option value="{{attr.variant_id}}">{{attribute}}</option>
+                                  {% endfor %}
+                                
                               {% endfor %}
                               </select>
                             </div>
@@ -95,6 +98,8 @@
         </div><!--End of mat-box-->
       </div><!--End of container-->
     </div><!--End of col-4 -->
+    {% if variant_list %}
+
     <div class="col-m-12 col-12">
       <div class="mat-box">
             <h4>{% trans "Variants" %}</h4>
@@ -109,7 +114,7 @@
             </div><!--End of content-->
         </div><!--End of mat-box-->
     </div><!--End of col-12-->
-  
+    {% endif %}
   </div><!--End of row-->
 </div>
 {% endblock MAIN %}
