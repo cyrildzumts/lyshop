@@ -28,6 +28,7 @@ def refresh_order(order):
     return order
 
 def create_order_from_cart(user):
+    logger.debug("creating order from Cart")
     order = Order.objects.create(user=user)
     items_queryset = get_user_cartitems(user)
     batch_size = 10
@@ -37,6 +38,7 @@ def create_order_from_cart(user):
         if not batch:
             break
         OrderItem.objects.bulk_create(batch, batch_size)
+    logger.debug("Order created from Cart")
     return refresh_order(order)
 
 def request_payment(url=None, **data):
