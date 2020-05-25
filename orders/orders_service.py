@@ -32,16 +32,22 @@ def create_order_from_cart(user):
     order = Order.objects.create(user=user)
     logger.debug("order instance created")
     items_queryset = get_user_cartitems(user)
-    logger.debug("got catietms queryset")
+    logger.debug("got cartitems queryset")
     batch_size = 10
     logger.debug("preparing orderitems from CartItems")
-    orderitems = (OrderItem(order=order, product=item.product, quantity=item.quantity, unit_price=item.unit_price,total_price=item.total_price) for item in items_queryset)
+    orderitems = None
+    try:
+        orderitems = (OrderItem(order=order, product=item.product, quantity=item.quantity, unit_price=item.unit_price,total_price=item.total_price) for item in items_queryset)
+    except Exception as e:
+        logger.error("error on preparing orderitems from CartItems")
+        logger.exception(e)
     logger.debug("orderitems prepared from CartItems")
-    while True:
-        batch = list(islice(orderitems, batch_size))
-        if not batch:
-            break
-        OrderItem.objects.bulk_create(batch, batch_size)
+    if orderitems:
+        while True:
+            batch = list(islice(orderitems, batch_size))
+            if not batch:
+                break
+            OrderItem.objects.bulk_create(batch, batch_size)
     logger.debug("Order created from Cart")
     return refresh_order(order)
 
