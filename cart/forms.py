@@ -28,7 +28,3 @@ class AddCartForm(forms.Form):
     product = forms.UUIDField()
     variant_uuid = forms.UUIDField()
 
-class AddCartForm2(forms.ModelForm):
-    class Meta:
-        model = ProductVariant
-        fields = ['product_uuid']

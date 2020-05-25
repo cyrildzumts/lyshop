@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.db.models import F, Q, Count, Sum, FloatField
 from catalog import conf
 from catalog.models import ProductVariant, Product
-from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm, AddCartForm2
+from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from catalog import catalog_service
