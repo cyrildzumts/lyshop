@@ -106,6 +106,6 @@ def cart_items_count(user=None):
 def get_cartitems(user):
     cart = get_cart(user)
     cartitems_queryset = None
-    if cart == None:
+    if cart:
         cartitems_queryset = CartItem.objects.filter(cart=cart)
     return cartitems_queryset
