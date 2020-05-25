@@ -3,8 +3,6 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
-from cart.models import CartItem, CartModel
-from cart import cart_service
 from orders import orders_service
 from orders import commons
 from orders.forms import ShippingAddressForm, BillingAddressForm, PaymentRequestForm, PaymentOptionForm
@@ -20,7 +18,7 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 @login_required
 def checkout(request):
-    cart, created = CartModel.objects.get_or_create(user=request.user)
+    cart = orders_service.get_user_cart(request.user)
     template_name = 'orders/order.html'
     context = {
         'page_title' : _("Checkout") + ' - ' + settings.SITE_NAME
@@ -50,6 +48,8 @@ def checkout(request):
                     'product_name' : 'Product sold by LYSHOP'
                 }
                 logger.debug("Sending request payment")
+                order = orders_service.create_order_from_cart(user=request.user)
+                #cart_items_queryset = orders_service.get_user_cartitems(request.user)
                 response = orders_service.request_payment(commons.PAYMENT_PAY_URL, **payment_data)
                 if response:
                     logger.debug("request payment succeed")

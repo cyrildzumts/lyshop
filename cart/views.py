@@ -358,11 +358,3 @@ def cart_clear(request):
         'status' : True
     }
     return JsonResponse(context)
-
-
-@login_required
-def checkout(request):
-    cart, created = CartModel.objects.get_or_create(user=request.user)
-
-
-
