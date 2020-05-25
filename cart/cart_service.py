@@ -29,21 +29,21 @@ def get_cart(user=None):
     return cart
 
 
-def add_to_cart(cart, product):
+def add_to_cart(cart, product_variant):
     """
 
     """
-    if not (isinstance(cart, CartModel) and isinstance(product, ProductVariant)):
+    if not (isinstance(cart, CartModel) and isinstance(product_variant, ProductVariant)):
         logger.error(f"type error : please verify the cart and product type")
         return None, False
-    if CartItem.objects.filter(cart=cart,product=product).exists():
-        logger.info('Product already present in the cart. cart will update the item quantity')
+    if CartItem.objects.filter(cart=cart,product=product_variant).exists():
+        logger.info('Product already present in the cart.')
         #cart_item = CartItem.objects.get(cart=cart, product=product)
         #quantity = cart_item.quantity + 1
         #return update_cart(cart, cart_item, quantity)
         return None
 
-    cart_item = CartItem.objects.create(cart=cart, product=product, quantity=1, unit_price=product.price, total_price=product.price)
+    cart_item = CartItem.objects.create(cart=cart, product=product_variant, quantity=1, unit_price=product_variant.price, total_price=product_variant.price)
     refresh_cart(cart)
     logger.info('Product added into the cart')
     return cart_item

@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.db.models import F, Q, Count, Sum, FloatField
 from catalog import conf
 from catalog.models import ProductVariant, Product
-from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm
+from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm, AddCartForm2
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from catalog import catalog_service
@@ -82,14 +82,10 @@ def ajax_add_to_cart(request):
         form = AddCartForm(postdata)
         if form.is_valid():
             logger.debug("Summitted data are valid")
-            product = form.cleaned_data['product']
+            variant_uuid = form.cleaned_data['variant_uuid']
             attr = form.cleaned_data['attr']
-            variant = get_object_or_404(ProductVariant, product_uuid=product)
-            if attr:
-                v = catalog_service.get_variant_from_attr(attr, variant.product)
-            else:
-                v = variant
-            result = cart_service.add_to_cart(cart, v)
+            variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid)
+            result = cart_service.add_to_cart(cart, variant)
             if result:
                 context['success'] = True
                 context['status'] = True

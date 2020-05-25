@@ -26,3 +26,9 @@ class CartItemUpdateForm(forms.ModelForm):
 class AddCartForm(forms.Form):
     attr = forms.IntegerField(required=False)
     product = forms.UUIDField()
+    variant_uuid = forms.UUIDField()
+
+class AddCartForm2(forms.ModelForm):
+    class Meta:
+        model = ProductVariant
+        fields = ['product_uuid']
