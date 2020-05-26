@@ -17,7 +17,7 @@
                         <div class="col-4">
                             <div class="row row-left align-left">
                                 <div class="row">
-                                    <span class="img-wrapper">
+                                    <span class="img-wrapper col-3">
                                         <img class="img-responsive" src="{{item.get_image_url}}" alt="{{item.display_name}}">
                                     </span>
                                 </div>
@@ -30,7 +30,7 @@
                         </div>
                         
                         <div class="col-2">
-                            <span class="fas fa-minus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="decrement" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span> <input data-parent="item-{{item.id}}" type="text" name="quantity" id="item-quantity-{{item.id}}" value="{{item.quantity}}"> <span class="fas fa-plus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="increment" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span>
+                            <div><span class="fas fa-minus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="decrement" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span> <input data-parent="item-{{item.id}}" type="text" name="quantity" id="item-quantity-{{item.id}}" value="{{item.quantity}}"> <span class="fas fa-plus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="increment" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span></div>
                         </div>
                         <div class="col-1">
                             <div class="price"><span>{{item.unit_price}}</span><span class="">{% trans "XAF" %}</span></div>
@@ -39,7 +39,7 @@
                             <div class="price"><span id="item-total-price-{{item.id}}">{{item.total_price}}</span><span class="">{% trans "XAF" %}</span></div>
                         </div>
                         <div class="col-1">
-                            <span class="js-cart-delete-item" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="delete" data-target="item-{{item.id}}" ><i class="fas fa-times-circle"></i></span>
+                            <div><span class="js-cart-delete-item" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="delete" data-target="item-{{item.id}}" ><i class="fas fa-times-circle"></i></span></div>
                         </div>
                     
                     </div>
