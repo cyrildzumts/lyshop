@@ -2114,9 +2114,11 @@ input[type=text]:focus, textarea:focus{
 
 .custom-input{
 	display: inline-flex;
-	width: auto;
+	min-width: 25px;
 	height: 32px;
 	border: 2px solid #ccc;
+	align-items: center;
+	justify-content: center;
 }
 
 .custom-input input{
