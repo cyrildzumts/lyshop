@@ -2120,6 +2120,7 @@ input[type=text]:focus, textarea:focus{
 }
 
 .custom-input input{
+	display: none;
 	border: none !important;
 	min-width: 20px;
 	max-width: 50px;
