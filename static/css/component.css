@@ -2121,15 +2121,17 @@ input[type=text]:focus, textarea:focus{
 
 .custom-input input{
 	border: none !important;
+	min-width: 20px;
+	max-width: 50px;
 }
-.custom-input .js-edit{
+.custom-input .input-edit{
 	display: none;
 }
 
-.custom-input .js-edit-close{
+.custom-input .input-edit-close{
 	display: none;
 }
-.custom-input:hover .js-edit{
+.custom-input:hover .input-edit{
 	display: inline-block;
 }
 
