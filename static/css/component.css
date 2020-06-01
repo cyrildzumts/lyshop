@@ -2112,6 +2112,31 @@ input[type=text]:focus, textarea:focus{
 	display: none;
 }
 
+.custom-input{
+	display: inline-flex;
+	width: auto;
+	height: 32px;
+	border: 2px solid #ccc;
+}
+
+.custom-input input{
+	border: none !important;
+}
+.custom-input .js-edit{
+	display: none;
+}
+
+.custom-input .js-edit-close{
+	display: none;
+}
+.custom-input:hover .js-edit{
+	display: inline-block;
+}
+
+.custom-input input:not([display=none]){
+	border: none !important;
+}
+
 @media only screen and (max-width:40em){
 	.list-md-vertical{
 		display: flex;
