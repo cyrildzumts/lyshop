@@ -2120,28 +2120,31 @@ input[type=text]:focus, textarea:focus{
 	align-items: center;
 	justify-content: center;
 }
-
+.custom-input .input-value{
+	display: inline-block;
+	width: 100%;
+}
 .custom-input input{
-	display: none;
-	border: none !important;
 	min-width: 20px;
 	max-width: 50px;
 }
-.custom-input .input-edit{
+.custom-input .input-edit-wrapper{
 	display: none;
 }
 
-.custom-input .input-edit-close{
-	display: none;
-}
-.custom-input:hover .input-edit{
-	display: inline-block;
+
+.custom-input:hover .input-edit-wrapper{
+	display: block;
 }
 
+/*
 .custom-input input:not([display=none]){
 	border: none !important;
 }
-
+.custom-input .input-edit-close{
+	display: none;
+}
+*/
 @media only screen and (max-width:40em){
 	.list-md-vertical{
 		display: flex;
