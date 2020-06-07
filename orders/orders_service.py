@@ -38,6 +38,7 @@ def create_order_from_cart(user):
     orderitems = None
     try:
         orderitems = (OrderItem(order=order, product=item.product, quantity=item.quantity, unit_price=item.unit_price,total_price=item.total_price) for item in items_queryset)
+        batch_size = len(orderitems)
     except Exception as e:
         logger.error("error on preparing orderitems from CartItems")
         logger.exception(e)
