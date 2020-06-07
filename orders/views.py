@@ -40,19 +40,23 @@ def checkout(request):
             logger.debug(f"Selected Payment Option : {payment_option}")
             if payment_option == commons.PAYMENT_PAY_WITH_PAY:
                 payment_data = {
+                    'requester_name': settings.PAY_USERNAME,
                     'amount': cart.amount,
+
                     'customer_name': request.user.get_full_name(),
                     'quantity': cart.quantity,
-                    'description': 'Purchase by LYSHOP',
+                    'description': settings.PAY_REQUEST_DESCRIPTION,
                     'country' : shipping_address_form.cleaned_data.get('shipping_country'),
-                    'product_name' : 'Product sold by LYSHOP'
+                    'product_name' : 'LYSHOP'
                 }
                 logger.debug("Sending request payment")
                 order = orders_service.create_order_from_cart(user=request.user)
                 #cart_items_queryset = orders_service.get_user_cartitems(request.user)
-                response = orders_service.request_payment(commons.PAYMENT_PAY_URL, **payment_data)
+                response = orders_service.request_payment(payment_data)
                 if response:
                     logger.debug("request payment succeed")
+                    orders_service.order_clear_cart(request.user)
+                    PaymentRequest.objects.create(**payment_data, token=response['token'])
                 else:
                     logger.debug("request payment failed")
                 

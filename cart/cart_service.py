@@ -29,6 +29,13 @@ def get_cart(user=None):
     return cart
 
 
+def clear_cart(user=None):
+    cart = get_cart(user)
+    num_of_deleted_objects, deleted_objects_map = CartItem.objects.filter(cart).delete()
+    logger.debug("Cart for user {user} has been clearded. {num_of_deleted_objects} Cartitems deleted")
+    return refresh_cart(cart)
+
+
 def add_to_cart(cart, product_variant):
     """
 

@@ -51,17 +51,21 @@ def create_order_from_cart(user):
     logger.debug("Order created from Cart")
     return refresh_order(order)
 
-def request_payment(url=None, **data):
-    if not url or not data:
-        return None
-    
-    if not settings.PAY_USERNAME or not settings.PAY_REQUEST_TOKEN:
+
+def order_clear_cart(user):
+    return cart_service.clear_cart(user)
+
+
+def request_payment(data=None):
+    if not settings.PAY_REQUEST_URL or not settings.PAY_USERNAME or not settings.PAY_REQUEST_TOKEN:
         logger.warning('PAY:USER or PAY_REQUEST_TOKEN environment variable is not defined.')
         return None
-    
-    response = requests.post(url, data=data, auth=(settings.PAY_USERNAME, settings.PAY_REQUEST_TOKEN))
-    
+    url = settings.PAY_REQUEST_URL
+    headers={'Authorization': f"Token {settings.PAY_REQUEST_TOKEN}"}
+    logger.debug('Sending payment request')
+    response = requests.post(url, data=data, headers=headers)
+    logger.debug(f'payment request response : {response}')
     if not response:
-        logger.error(f"Error on requesting a payment to the url {url} : status code {response.status_code}")
+        logger.error(f"Error on requesting a payment to the url {url} : status code {response.status_code} - error : {response.error}")
         return None
     return response.json()['token']
