@@ -57,10 +57,10 @@ def order_clear_cart(user):
 
 
 def request_payment(data=None):
-    if not settings.PAY_REQUEST_URL or not settings.PAY_USERNAME or not settings.PAY_REQUEST_TOKEN:
+    if not settings.LYSHOP_PAY_REQUEST_URL or not settings.PAY_USERNAME or not settings.PAY_REQUEST_TOKEN:
         logger.warning('PAY:USER or PAY_REQUEST_TOKEN environment variable is not defined.')
         return None
-    url = settings.PAY_REQUEST_URL
+    url = settings.LYSHOP_PAY_REQUEST_URL
     headers={'Authorization': f"Token {settings.PAY_REQUEST_TOKEN}"}
     logger.debug('Sending payment request')
     response = requests.post(url, data=data, headers=headers)
