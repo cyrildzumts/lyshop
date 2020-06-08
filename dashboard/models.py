@@ -56,4 +56,9 @@ class AccessPermissions(models.Model):
             (Constants.USER_CHANGE_PERM, 'Dashboard Can Change User'),
             (Constants.USER_ADD_PERM, 'Dashboard Can Add User'),
             (Constants.USER_DELETE_PERM, 'Dashboard Can Delete User'),
+
+            (Constants.ORDER_VIEW_PERM, 'Dashboard Can View Order'),
+            (Constants.ORDER_CHANGE_PERM, 'Dashboard Can Change Order'),
+            (Constants.ORDER_ADD_PERM, 'Dashboard Can Add Order'),
+            (Constants.ORDER_DELETE_PERM, 'Dashboard Can Delete Order'),
         ]

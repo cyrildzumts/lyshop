@@ -36,6 +36,11 @@ urlpatterns = [
     path('groups/',views.groups, name='groups'),
     path('groups/delete/',views.groups_delete, name='groups-delete'),
 
+    path('orders/', views.orders, name='orders'),
+    path('orders/detail/<uuid:order_uuid>/', views.order_detail, name='order-detail'),
+    #path('orders/update/<uuid:order_uuid>/', views.order_detail, name='order-update'),
+    #path('orders/delete/<uuid:order_uuid>/', views.order_detail, name='order-delete'),
+
     path('products/', views.products, name='products'),
     path('products/detail/<uuid:product_uuid>/', views.product_detail, name='product-detail'),
     path('products/update/<uuid:product_uuid>/', views.product_update, name='product-update'),

@@ -28,6 +28,7 @@ from accounts.account_services import AccountService
 from catalog.models import (
     Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage
 )
+from orders.models import Order, OrderItem
 from catalog.forms import (BrandForm, ProductAttributeForm, 
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
     DeleteAttributeForm, CategoriesDeleteForm
@@ -271,6 +272,8 @@ def category_products(request, category_uuid=None):
     return render(request,template_name, context)
 
 
+
+
 @login_required
 def create_product(request):
     template_name = 'dashboard/product_create.html'
@@ -310,6 +313,115 @@ def create_product(request):
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
+
+@login_required
+def orders(request):
+
+    username = request.user.username
+    can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_access_dashboard:
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    can_view_order = PermissionManager.user_can_view_order(request.user)
+    if not can_view_order:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    queryset = Order.objects.filter(user=request.user)
+    template_name = "dashboard/order_list.html"
+    page_title = _("Dashboard Orders") + " - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['orders'] = list_set
+    context.update(get_view_permissions(request.user))
+    context['can_delete_order'] = PermissionManager.user_can_delete_order(request.user)
+    context['can_update_order'] = PermissionManager.user_can_change_order(request.user)
+    return render(request,template_name, context)
+
+
+@login_required
+def order_detail(request, order_uuid=None):
+    template_name = 'dashboard/order_detail.html'
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    page_title = _('Order Detail')
+    
+
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    orderItems = OrderItem.objects.filter(order=order)
+    context = {
+        'page_title': page_title,
+        'order': order,
+        'orderItems': orderItems,
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def order_update(request, order_uuid=None):
+    template_name = 'dashboard/order_detail.html'
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    page_title = _('Order Detail')
+    
+
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    orderItems = OrderItem.objects.filter(order=order)
+    context = {
+        'page_title': page_title,
+        'order': order,
+        'orderItems': orderItems,
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+@login_required
+def order_delete(request, order_uuid=None):
+    template_name = 'dashboard/order_detail.html'
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    page_title = _('Order Detail')
+    
+
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    orderItems = OrderItem.objects.filter(order=order)
+    context = {
+        'page_title': page_title,
+        'order': order,
+        'orderItems': orderItems,
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
 
 @login_required
 def products(request):

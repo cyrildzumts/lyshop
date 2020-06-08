@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.utils.translation import gettext_lazy as _
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from orders import orders_service
 from orders import commons
@@ -15,7 +17,43 @@ import uuid
 
 
 logger = logging.getLogger(__name__)
+
 # Create your views here.
+
+@login_required
+def orders(request):
+
+    username = request.user.username
+    context = {}
+    queryset = Order.objects.filter(user=request.user)
+    template_name = "orders/order_list.html"
+    page_title = _("Dashboard Orders") + " - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['orders'] = list_set
+    return render(request,template_name, context)
+
+@login_required
+def order_detail(request, order_uuid=None):
+    template_name = 'orders/order_detail.html'
+    username = request.user.username
+    page_title = _('Order Detail')
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    orderItems = OrderItem.objects.filter(order=order)
+    context = {
+        'page_title': page_title,
+        'order': order,
+        'orderItems': orderItems,
+    }
+    return render(request,template_name, context)
+
 @login_required
 def checkout(request):
     cart = orders_service.get_user_cart(request.user)

@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from catalog.models import ProductVariant
 from catalog import conf
@@ -85,6 +86,18 @@ class Order(models.Model):
 
     def __str__(self):
         return f'Order {self.user.username}'
+    
+    def get_absolute_url(self):
+        return reverse("orders:order-detail", kwargs={"order_uuid": self.order_uuid})
+    
+    def get_dashboard_url(self):
+        return reverse("dashboard:order-detail", kwargs={"order_uuid": self.order_uuid})
+    
+    def get_update_url(self):
+        return reverse("dashboard:order-update", kwargs={"order_uuid": self.order_uuid})
+    
+    def get_delete_url(self):
+        return reverse("dashboard:order-delete", kwargs={"order_uuid": self.order_uuid})
     
 
 
