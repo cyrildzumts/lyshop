@@ -48,10 +48,10 @@
                   <tr>
                     <!--<td class="checkbox"><input type="checkbox" name="selected-service"></td>-->
                     <td scope="row" data-label="User">{{o.user.get_full_name}}</td>
-                    <td data-label="Amount">{{o.amount}} {% trans "XAF" %}</td>
-                    <td data-label="Status">{{o.status}} {% trans "Status" %}</td>
-                    <td data-label="Date">{{o.created_at|date:"F j, Y"}}</td>
-                    <td data-label="Details"><a class="mat-button mat-button-default" href="{{o.get_dashboard_url}}">{% trans "More" %}</a></td>
+                    <td data-label="{% trans 'Amount' %}">{{o.amount}} {% trans "XAF" %}</td>
+                    <td data-label="{% trans 'Status' %}">{{o.status}} </td>
+                    <td data-label="{% trans 'Date' %}">{{o.created_at|date:"F j, Y"}}</td>
+                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_dashboard_url}}">{% trans "More" %}</a></td>
                   </tr>
                   {% endfor %}
                   

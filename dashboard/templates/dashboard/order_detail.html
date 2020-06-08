@@ -41,7 +41,7 @@
                         <span class="key">{% trans "Status" %} :</span> <span class="value">{{order.status}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Date" %} :</span> <span class="value">{{order.created_at}}</span>
+                        <span class="key">{% trans "Date" %} :</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span>
                     </div>
                 </div>
         </div>
