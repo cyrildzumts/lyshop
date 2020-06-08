@@ -328,7 +328,7 @@ def orders(request):
         raise PermissionDenied
 
     context = {}
-    queryset = Order.objects.filter(user=request.user)
+    queryset = Order.objects.all()
     template_name = "dashboard/order_list.html"
     page_title = _("Dashboard Orders") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
