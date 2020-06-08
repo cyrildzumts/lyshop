@@ -45,7 +45,7 @@ class CartModel(models.Model):
 
 class CartItem(models.Model):
     cart = models.ForeignKey(CartModel, on_delete=models.CASCADE, related_name='items')
-    product = models.OneToOneField(ProductVariant, on_delete=models.CASCADE, related_name="cartitems")
+    product = models.ForeignKey(ProductVariant, on_delete=models.CASCADE, related_name="cartitems")
     quantity = models.IntegerField(default=0, blank=True, null=True)
     unit_price = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     total_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
