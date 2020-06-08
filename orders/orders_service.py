@@ -66,6 +66,6 @@ def request_payment(data=None):
     response = requests.post(url, data=data, headers=headers)
     logger.debug(f'payment request response : {response}')
     if not response:
-        logger.error(f"Error on requesting a payment to the url {url} : status code {response.status_code} - error : {response.error}")
-        return None
+        logger.error(f"Error on requesting a payment to the url {url} : status code {response.status_code} - error : {response}")
+        return response
     return response.json()['token']
