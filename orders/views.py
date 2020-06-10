@@ -93,8 +93,12 @@ def checkout(request):
                 response = orders_service.request_payment(payment_data)
                 if response:
                     logger.debug("request payment succeed")
+                    
                     orders_service.order_clear_cart(request.user)
+                    logger.debug("Creating Payment Request")
                     PaymentRequest.objects.create(**payment_data, token=response['token'])
+                    messages.success(request,"order has been successfully submitted")
+                    return redirect('catalog:catalog-home')
                 else:
                     logger.debug("request payment failed")
                 

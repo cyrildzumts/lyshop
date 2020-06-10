@@ -53,6 +53,7 @@ def create_order_from_cart(user):
 
 
 def order_clear_cart(user):
+    logger.debug("Order - Clearing Cart Items")
     return cart_service.clear_cart(user)
 
 
@@ -67,5 +68,5 @@ def request_payment(data=None):
     logger.debug(f'payment request response : {response}')
     if not response:
         logger.error(f"Error on requesting a payment to the url {url} : status code {response.status_code} - error : {response}")
-        return response
-    return response.json()['token']
+
+    return response
