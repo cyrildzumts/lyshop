@@ -9,11 +9,15 @@ logger = logging.getLogger(__name__)
 
 
 def refresh_cart(cart):
-    if cart:
-        aggregation = CartItem.objects.filter(cart=cart).aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('unit_price'), output_field=FloatField()))
-        CartModel.objects.filter(id=cart.id).update(quantity=aggregation['count'], amount=aggregation['total'])
-        cart.refresh_from_db()
     
+    if cart:
+        logger.debug("refreshing Cart")
+        aggregation = CartItem.objects.filter(cart=cart).aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('unit_price'), output_field=FloatField()))
+        logger.debug("Cart Items agregation ready")
+        CartModel.objects.filter(id=cart.id).update(quantity=aggregation['count'], amount=aggregation['total'])
+        logger.debug("Cart updated")
+        cart.refresh_from_db()
+        logger.debug("Cart refreshed from db")
     return cart
 
 def get_cart(user=None):
