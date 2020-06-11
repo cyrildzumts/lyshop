@@ -9,13 +9,13 @@ logger = logging.getLogger(__name__)
 
 
 def refresh_cart(cart):
-    cart_empty = True
+    cart_exist = False
     if cart:
         logger.debug("refreshing Cart")
         cartitems = CartItem.objects.filter(cart=cart)
-        cart_empty = cartitems.exists()
-        if not cart_empty:
-            aggregation = CartItem.objects.filter(cart=cart).aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('unit_price'), output_field=FloatField()))
+        cart_exist = cartitems.exists()
+        if  cart_exist:
+            aggregation = cartitems.aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('unit_price'), output_field=FloatField()))
             logger.debug("Cart Items agregation ready")
             CartModel.objects.filter(id=cart.id).update(quantity=aggregation['count'], amount=aggregation['total'])
             logger.debug("Cart updated")
@@ -24,7 +24,7 @@ def refresh_cart(cart):
         else:
             logger.debug(f"No Cartitems found for user {cart.user.username}")
             CartModel.objects.filter(id=cart.id).update(quantity=0, amount=0)
-    return cart, cart_empty
+    return cart, cart_exist
 
 def get_cart(user=None):
     if not (isinstance(user, User)):

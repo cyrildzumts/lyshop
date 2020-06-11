@@ -32,10 +32,10 @@ def cart(request):
     template_name = 'cart/cart.html'
     if request.method == 'POST':
         pass
-    cart, cart_empty = cart_service.refresh_cart(cart)
+    cart, cartitems_exist = cart_service.refresh_cart(cart)
     context = {
         'cart': cart,
-        'cart_empty' : cart_empty,
+        'cartitems_exist' : cartitems_exist,
         'item_list' : CartItem.objects.filter(cart=cart),
         'page_title' : _("Shopping Cart") + ' - ' + settings.SITE_NAME
     }

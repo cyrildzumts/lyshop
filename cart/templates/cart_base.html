@@ -17,7 +17,7 @@
             <div class="col-m-12 col-9">
                 <ul class="banner--actions">
                     <li><a class="mat-button mat-button-outlined" href="{% url 'catalog:catalog-home' %}">{% trans 'Continue Shopping' %}</a></li>
-                    {% if not cart_empty %}
+                    {% if cartitems_exist %}
                     <li><a class="mat-button mat-button-default" href="{% url 'orders:checkout' %}">{% trans "Checkout" %}</a></li>     
                     {% endif %}
                 </ul><!--End of Banner-Actions-->
