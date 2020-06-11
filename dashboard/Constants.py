@@ -29,6 +29,10 @@ IDCARD_ADD_PERM = 'can_add_idcard'
 IDCARD_CHANGE_PERM = 'can_change_idcard'
 IDCARD_DELETE_PERM = 'can_delete_idcard'
 
+PAYMENT_VIEW_PERM = 'can_view_payment'
+PAYMENT_ADD_PERM = 'can_add_payment'
+PAYMENT_CHANGE_PERM = 'can_change_payment'
+PAYMENT_DELETE_PERM = 'can_delete_payment'
 
 PRODUCT_VIEW_PERM = 'can_view_product'
 PRODUCT_ADD_PERM = 'can_add_product'

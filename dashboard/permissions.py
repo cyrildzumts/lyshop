@@ -180,8 +180,25 @@ class PermissionManager :
     @staticmethod
     def user_can_view_transfer(user=None):
         return PermissionManager.user_has_perm(user=user, perm=Constants.TRANSFER_VIEW_PERM)
-
     
+    ## PAYMENT
+
+    @staticmethod
+    def user_can_change_payment(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.PAYMENT_CHANGE_PERM)
+    
+    @staticmethod
+    def user_can_add_payment(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.PAYMENT_ADD_PERM)
+    
+    @staticmethod
+    def user_can_delete_payment(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.PAYMENT_DELETE_PERM)
+
+    @staticmethod
+    def user_can_view_payment(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.PAYMENT_VIEW_PERM)
+
     ## VOUCHER PERMISSION
 
     @staticmethod
