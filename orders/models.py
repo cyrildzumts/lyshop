@@ -82,7 +82,7 @@ class OrderItem(models.Model):
 class PaymentRequest(models.Model):
     token = models.CharField(max_length=32, blank=True, null=True)
     verification_code = models.TextField(max_length=80, blank=True, null=True)
-    order = models.ForeignKey(Order, related_name='payment_request', on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, related_name='payment_request', on_delete=models.CASCADE, blank=True, null=True)
     seller = models.ForeignKey(User, on_delete=models.CASCADE ,blank=False )
     amount = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     unit_price = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES, blank=True, null=True)
