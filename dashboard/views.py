@@ -51,20 +51,20 @@ def dashboard(request):
     can_view_dashboard = PermissionManager.user_can_access_dashboard(request.user)
     page_title = _('Dashboard') + ' - ' + settings.SITE_NAME
     username = request.user.username
-    if not can_view_dashboard :
-        logger.warning(f"Dashboard : PermissionDenied to user {username} for path {request.path}")
-        raise PermissionDenied
-    else : 
-        context = {
+    context = {
             'name'          : username,
             'page_title'    : page_title,
             'is_allowed'     : can_view_dashboard
         }
+    if not can_view_dashboard :
+        logger.warning(f"Dashboard : PermissionDenied to user {username} for path {request.path}")
+        raise PermissionDenied
+    else : 
+        
         context.update(get_view_permissions(request.user))
 
         logger.info(f"Authorized Access : User {username} has requested the Dashboard Page")
 
-    context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
 @login_required
