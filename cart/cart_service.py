@@ -9,11 +9,12 @@ logger = logging.getLogger(__name__)
 
 
 def refresh_cart(cart):
-    
+    cart_empty = True
     if cart:
         logger.debug("refreshing Cart")
         cartitems = CartItem.objects.filter(cart=cart)
-        if cartitems.exists():
+        cart_empty = cartitems.exists()
+        if not cart_empty:
             aggregation = CartItem.objects.filter(cart=cart).aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('unit_price'), output_field=FloatField()))
             logger.debug("Cart Items agregation ready")
             CartModel.objects.filter(id=cart.id).update(quantity=aggregation['count'], amount=aggregation['total'])
@@ -21,8 +22,9 @@ def refresh_cart(cart):
             cart.refresh_from_db()
             logger.debug("Cart refreshed from db")
         else:
-            logger.debug(f"No Cartitems for user {cart.user.username}")
-    return cart
+            logger.debug(f"No Cartitems found for user {cart.user.username}")
+            CartModel.objects.filter(id=cart.id).update(quantity=0, amount=0)
+    return cart, cart_empty
 
 def get_cart(user=None):
     if not (isinstance(user, User)):
@@ -42,7 +44,8 @@ def clear_cart(user=None):
     logger.debug(f"Cart - Clearing cart for user {user.username}")
     num_of_deleted_objects, deleted_objects_map = CartItem.objects.filter(cart=cart).delete()
     logger.debug(f"Cart for user {user.username} has been clearded. {num_of_deleted_objects} Cartitems deleted")
-    return refresh_cart(cart)
+    cart, cart_empty = refresh_cart(cart)
+    return cart
 
 
 def add_to_cart(cart, product_variant):

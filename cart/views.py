@@ -32,9 +32,10 @@ def cart(request):
     template_name = 'cart/cart.html'
     if request.method == 'POST':
         pass
-    cart_service.refresh_cart(cart)
+    cart, cart_empty = cart_service.refresh_cart(cart)
     context = {
         'cart': cart,
+        'cart_empty' : cart_empty,
         'item_list' : CartItem.objects.filter(cart=cart),
         'page_title' : _("Shopping Cart") + ' - ' + settings.SITE_NAME
     }
@@ -215,10 +216,11 @@ def ajax_cart_item_delete(request, item_uuid):
         return JsonResponse(context, status=HTTPStatus.METHOD_NOT_ALLOWED)
 
     deleted_rows, deleted_items = CartItem.objects.filter(item_uuid=item_uuid).delete()
-    cart = cart_service.refresh_cart(cart)
+    cart, cart_empty = cart_service.refresh_cart(cart)
     if deleted_rows == 1:
         context['success'] = True
         context['status'] = True
+        context['cart_empty'] = cart_empty
         context['cart_total'] = cart.amount
         context['cart_quantity'] = cart.quantity
         return JsonResponse(context)
