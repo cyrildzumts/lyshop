@@ -70,8 +70,10 @@
             <a class="mat-button mat-button-default" href="{% url 'orders:checkout' %}">{% trans "Checkout" %}</a>
         </div>
     </div>
-{% endif %}
+{% else %}
 <div class="mat-box">
     <span>{% trans "Your shopping cart is empty" %}</span>
 </div>
+{% endif %}
+
 {% endblock MAIN %}
