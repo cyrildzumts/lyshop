@@ -68,8 +68,8 @@ urlpatterns = [
     path('products/attributes/add/<uuid:variant_uuid>/', views.add_attributes, name='attribute-add'),
     path('products/attributes/remove/<uuid:variant_uuid>/', views.remove_attributes, name='attribute-remove'),
 
-    #path('payment-requests/', views.payment_requests, name='payment-requests'),
-    #path('payment-requests/detail/<uuid:request_uuid>/', views.payment_request_details, name='payment-request-detail'),
+    path('payment-requests/', views.payment_requests, name='payment-requests'),
+    path('payment-requests/detail/<uuid:request_uuid>/', views.payment_request_details, name='payment-request-detail'),
     path('policies/', views.policies, name='policies'),
     path('policies/detail/<uuid:policy_uuid>/', views.policy_details, name='policy-detail'),
     path('policies/remove/<uuid:policy_uuid>/', views.policy_remove, name='policy-remove'),
