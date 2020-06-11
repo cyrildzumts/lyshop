@@ -96,7 +96,7 @@ def checkout(request):
                     
                     orders_service.order_clear_cart(request.user)
                     logger.debug("Creating Payment Request")
-                    PaymentRequest.objects.create(**payment_data, token=response['token'])
+                    PaymentRequest.objects.create(**payment_data, token=response.json()['token'])
                     messages.success(request,"order has been successfully submitted")
                     return redirect('catalog:catalog-home')
                 else:

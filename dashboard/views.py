@@ -28,7 +28,7 @@ from accounts.account_services import AccountService
 from catalog.models import (
     Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage
 )
-from orders.models import Order, OrderItem
+from orders.models import Order, OrderItem, PaymentRequest
 from catalog.forms import (BrandForm, ProductAttributeForm, 
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
     DeleteAttributeForm, CategoriesDeleteForm
@@ -2414,3 +2414,61 @@ def create_account(request):
     return render(request, template_name, context)
 
 
+
+@login_required
+def payment_requests(request):
+    username = request.user.username
+    can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_access_dashboard:
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    can_view_payment = PermissionManager.user_can_view_payment(request.user)
+    if not can_view_payment:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    #current_account = Account.objects.get(user=request.user)
+    queryset = PaymentRequest.objects.all().order_by('-created_at')
+    template_name = "dashboard/payment_request_list.html"
+    page_title = "Payments Requests - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    try:
+        request_set = paginator.page(page)
+    except PageNotAnInteger:
+        request_set = paginator.page(1)
+    except EmptyPage:
+        request_set = None
+    context['page_title'] = page_title
+    context['requests'] = request_set
+    context['can_delete_payment'] = PermissionManager.user_can_delete_payment(request.user)
+    context['can_update_payment'] = PermissionManager.user_can_change_payment(request.user)
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def payment_request_details(request, request_uuid=None):
+    username = request.user.username
+    can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_access_dashboard:
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    can_view_payment = PermissionManager.user_can_view_payment(request.user)
+    if not can_view_payment:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    payment_request = get_object_or_404(PaymentRequest, request_uuid=request_uuid)
+    template_name = "dashboard/payment_request_detail.html"
+    page_title = "Payment Details - " + settings.SITE_NAME
+    context['page_title'] = page_title
+    context['payment_request'] = payment_request
+    context['can_delete_payment'] = PermissionManager.user_can_delete_payment(request.user)
+    context['can_update_payment'] = PermissionManager.user_can_change_payment(request.user)
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)

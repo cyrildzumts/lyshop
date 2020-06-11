@@ -53,10 +53,9 @@
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}">{% trans "Products Attributes" %}</a></li>
                               {% endif %}
                                {% if can_view_order %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:orders'%}">{% trans "Orders" %}</a></li>{% endif %}
-                              {% comment %}{% if can_view_payment %} 
+                              {% if can_view_payment %} 
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-requests'%}">{% trans "Payment Requests" %}</a></li>
                               {% endif %}
-                              {% endcomment %}
                               
                               {% if can_view_policy %}
                                     <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:policies' %}">{% trans "Policies" %}</a></li>
