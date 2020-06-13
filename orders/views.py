@@ -77,6 +77,7 @@ def checkout(request):
             payment_option = payment_option_form.cleaned_data.get('payment_option')
             logger.debug(f"Selected Payment Option : {payment_option}")
             if payment_option == commons.PAYMENT_PAY_WITH_PAY:
+                order = orders_service.create_order_from_cart(user=request.user)
                 payment_data = {
                     'requester_name': settings.PAY_USERNAME,
                     'amount': cart.amount,
@@ -88,7 +89,7 @@ def checkout(request):
                     'product_name' : 'LYSHOP'
                 }
                 logger.debug("Sending request payment")
-                order = orders_service.create_order_from_cart(user=request.user)
+                
                 #cart_items_queryset = orders_service.get_user_cartitems(request.user)
                 response = orders_service.request_payment(payment_data)
                 if response:
@@ -96,7 +97,7 @@ def checkout(request):
                     
                     orders_service.order_clear_cart(request.user)
                     logger.debug("Creating Payment Request")
-                    PaymentRequest.objects.create(**payment_data, token=response.json()['token'])
+                    PaymentRequest.objects.create(**payment_data, order=order, token=response.json()['token'])
                     messages.success(request,"order has been successfully submitted")
                     return redirect('catalog:catalog-home')
                 else:
