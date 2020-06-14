@@ -30,21 +30,22 @@ def get_cart(user=None):
     if not (isinstance(user, User)):
         logger.error(f"{user} is not an instance of User")
         return None
-
+    cart = None
     try:
         cart = CartModel.objects.get(user=user)
     except CartModel.DoesNotExist:
-        cart = None
         logger.warning(f"Cart not found for user {user.username}")
     return cart
 
 
 def clear_cart(user=None):
     cart = get_cart(user)
-    logger.debug(f"Cart - Clearing cart for user {user.username}")
-    num_of_deleted_objects, deleted_objects_map = CartItem.objects.filter(cart=cart).delete()
-    logger.debug(f"Cart for user {user.username} has been clearded. {num_of_deleted_objects} Cartitems deleted")
-    cart, cart_empty = refresh_cart(cart)
+    
+    if user and cart and isinstance(user, User):
+        logger.debug(f"Cart - Clearing cart for user {user.username}")
+        num_of_deleted_objects, deleted_objects = CartItem.objects.filter(cart=cart).delete()
+        logger.debug(f"Cart for user {user.username} has been clearded. {num_of_deleted_objects} Cartitems deleted")
+        cart, cart_empty = refresh_cart(cart)
     return cart
 
 
@@ -110,7 +111,7 @@ def remove_from_cart(cart, cart_item=None):
 
 def cart_items_count(user=None):
     if not (isinstance(user, User)):
-        return "user params is not an instance of User", -1
+        return "user parameter is not an instance of User", -1
     
     #aggregation = CartItem.objects.filter(cart__user=user).aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('unit_price'), output_field=FloatField()))
     #CartModel.objects.filter(id=cart.id).update(quantity=aggregation['count'], amount=aggregation['total'])
