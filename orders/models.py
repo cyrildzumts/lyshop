@@ -81,7 +81,7 @@ class OrderItem(models.Model):
 
 
 class PaymentRequest(models.Model):
-    token = models.CharField(max_length=32, blank=True, null=True)
+    token = models.CharField(max_length=128, blank=True, null=True)
     pay_url = models.TextField(max_length=256, blank=False, null=False)
     verification_code = models.TextField(max_length=80, blank=True, null=True)
     order = models.ForeignKey(Order, related_name='payment_requests', on_delete=models.CASCADE, blank=True, null=True)
@@ -91,7 +91,7 @@ class PaymentRequest(models.Model):
     quantity = models.IntegerField(default=1, blank=True, null=True)
     tva = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES, blank=True, null=True)
     commission =  models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES, blank=True, null=True)
-    country = models.CharField(max_length=32, blank=True, null=True)
+    country = models.CharField(max_length=128, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(default=commons.PR_CREATED,max_length=32, blank=False, null=False)
