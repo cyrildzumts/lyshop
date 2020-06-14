@@ -2463,12 +2463,16 @@ def payment_request_details(request, request_uuid=None):
         raise PermissionDenied
 
     context = {}
+    logger.debug("(payment_request_details) - querying Payment request object")
     payment_request = get_object_or_404(PaymentRequest, request_uuid=request_uuid)
+    logger.debug("[OK] querying Payment request object")
     template_name = "dashboard/payment_request_detail.html"
     page_title = "Payment Details - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['payment_request'] = payment_request
     context['can_delete_payment'] = PermissionManager.user_can_delete_payment(request.user)
     context['can_update_payment'] = PermissionManager.user_can_change_payment(request.user)
+    logger.debug("(payment_request_details) - Updating context object")
     context.update(get_view_permissions(request.user))
+    logger.debug("[OK] (payment_request_details) - Updating context object")
     return render(request,template_name, context)

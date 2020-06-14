@@ -35,7 +35,7 @@
           <thead>
                   <tr>
                           <!--<th><input id="filter-select-all" type="checkbox" name="allselected"></th>-->
-                          <th scope="col">{% trans "Seller" %}</th>
+                          <th scope="col">{% trans "Customer" %}</th>
                           <th scope="col">{% trans "Amount" %}</th>
                           <th scope="col">{% trans "Status" %}</th>
                           <th scope="col">{% trans "Date" %}</th>
@@ -46,7 +46,7 @@
                   {% for r in requests  %}
                   <tr>
                     <!--<td class="checkbox"><input type="checkbox" name="selected-service"></td>-->
-                    <td scope="row" data-label="Seller">{{r.seller.get_full_name}}</td>
+                    <td scope="row" data-label="Customer">{{r.customer.get_full_name}}</td>
                     <td data-label="Amount">{{r.amount}} {% trans "XAF" %}</td>
                     <td data-label="Status">{{r.status}}</td>
                     <td data-label="Date">{{r.created_at|date:"M j, Y"}}</td>
