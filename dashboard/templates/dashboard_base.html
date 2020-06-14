@@ -16,7 +16,10 @@
                   <ul class="panel panel-align-rigth">
                         <li class="entry"><a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">Dashboard</a></li>
                         <li class="entry"><a class="mat-button mat-button-text" href="#" ><i class="far fa-bell"></i></a></li> 
-                        <li class="entry"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{{user.username}}</a></li>
+                        {% if account %}
+                              <li class="entry"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{{user.username}}</a></li>
+                        {% endif %}
+                        
                         {% for lang in LANGUAGES %}
                               {% if lang.0 == LANGUAGE_CODE %}
                               <li class="entry"><span class="lang active" title="{{lang.1}}"> {{lang.0}} </span></li>
