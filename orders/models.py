@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from catalog.models import ProductVariant
 from catalog import conf
 from orders import commons
+from lyshop import settings
 import uuid
 
 # Create your models here.
@@ -95,6 +96,7 @@ class PaymentRequest(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(default=commons.PR_CREATED,max_length=32, blank=False, null=False)
     product_name = models.CharField(max_length=255 ,blank=False, null=False)
+    requester_name = models.CharField(max_length=255 ,blank=False, null=False, default=settings.PAY_USERNAME)
     customer_name = models.CharField(max_length=255 ,blank=False, null=False)
     description = models.CharField(max_length=255 ,blank=False, null=False)
     request_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
