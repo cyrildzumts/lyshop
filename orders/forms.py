@@ -8,8 +8,8 @@ class PaymentRequestForm(forms.ModelForm):
     
     class Meta:
         model = PaymentRequest
-        fields = ['token', 'seller', 'amount', 'unit_price','quantity', 'tva', 'commission',
-        'country', 'status', 'product_name', 'customer_name', 'description'
+        fields = ['token','pay_url', 'verification_code', 'order', 'amount', 'unit_price','quantity', 'tva', 'commission',
+        'country', 'status', 'product_name','customer', 'customer_name', 'description'
         ]
 
 class ShippingAddressForm(forms.Form):
