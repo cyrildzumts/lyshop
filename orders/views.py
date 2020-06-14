@@ -81,7 +81,7 @@ def checkout(request):
                 payment_data = {
                     'requester_name': settings.PAY_USERNAME,
                     'amount': cart.amount,
-
+                    'customer' : request.user,
                     'customer_name': request.user.get_full_name(),
                     'quantity': cart.quantity,
                     'description': settings.PAY_REQUEST_DESCRIPTION,
@@ -93,11 +93,16 @@ def checkout(request):
                 #cart_items_queryset = orders_service.get_user_cartitems(request.user)
                 response = orders_service.request_payment(payment_data)
                 if response:
+                    response_json = response.json()
                     logger.debug("request payment succeed")
                     
                     orders_service.order_clear_cart(request.user)
                     logger.debug("Creating Payment Request")
-                    PaymentRequest.objects.create(**payment_data, order=order, token=response.json()['token'])
+                    payment_data['token'] = response_json['token']
+                    payment_data['pay_url'] = response_json['url']
+                    payment_data['order'] = order
+                    payment_data['verification_code'] = response_json['verification_code']
+                    PaymentRequest.objects.create(**payment_data)
                     messages.success(request,"order has been successfully submitted")
                     return redirect('catalog:catalog-home')
                 else:
