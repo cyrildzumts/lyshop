@@ -10,7 +10,7 @@
         <div class="container">
             <div class="col col-9">
                 <div class="banner--actions">
-                    {% if can_view_payment %}<a class="mat-button mat-button-default" href="{% url 'dashboard:payments' %}"> <i class="fas fas-plus"></i> <span>{% trans "Payments" %}</span> </a>{% endif %}
+                    {% if can_view_payment %}<a class="mat-button mat-button-default" href="{% url 'dashboard:payment-requests' %}"> <i class="fas fas-plus"></i> <span>{% trans "Payments" %}</span> </a>{% endif %}
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>
                     
                         
