@@ -102,9 +102,15 @@ def checkout(request):
                     payment_data['order'] = order
                     payment_data['customer'] = request.user
                     payment_data['verification_code'] = response_json['verification_code']
-                    PaymentRequest.objects.create(**payment_data)
-                    messages.success(request,"order has been successfully submitted")
-                    return redirect('catalog:catalog-home')
+                    try:
+                        PaymentRequest.objects.create(**payment_data)
+                        messages.success(request,"order has been successfully submitted")
+                        return redirect('catalog:catalog-home')
+                    except Exception as e:
+                        messages.error(request,"An error occured during processing Order")
+                        logger.error(f"Error on creating PaymentRequest object")
+                        logger.exception(e)
+                    
                 else:
                     logger.debug("request payment failed")
                 
