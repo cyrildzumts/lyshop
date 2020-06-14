@@ -81,7 +81,6 @@ def checkout(request):
                 payment_data = {
                     'requester_name': settings.PAY_USERNAME,
                     'amount': cart.amount,
-                    'customer' : request.user,
                     'customer_name': request.user.get_full_name(),
                     'quantity': cart.quantity,
                     'description': settings.PAY_REQUEST_DESCRIPTION,
@@ -101,6 +100,7 @@ def checkout(request):
                     payment_data['token'] = response_json['token']
                     payment_data['pay_url'] = response_json['url']
                     payment_data['order'] = order
+                    payment_data['customer'] = request.user
                     payment_data['verification_code'] = response_json['verification_code']
                     PaymentRequest.objects.create(**payment_data)
                     messages.success(request,"order has been successfully submitted")
