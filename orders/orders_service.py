@@ -63,10 +63,14 @@ def request_payment(data=None):
         return None
     url = settings.LYSHOP_PAY_REQUEST_URL
     headers={'Authorization': f"Token {settings.PAY_REQUEST_TOKEN}"}
-    logger.debug('Sending payment request')
-    response = requests.post(url, data=data, headers=headers)
-    logger.debug(f'payment request response : {response}')
-    if not response:
-        logger.error(f"Error on requesting a payment to the url {url} : status code {response.status_code} - error : {response}")
-
+    logger.debug(f'Sending payment request to url {url}')
+    response = None
+    try:
+        response = requests.post(url, data=data, headers=headers)
+        logger.debug(f'payment request response : {response}')
+        if not response:
+            logger.error(f"Error on requesting a payment to the url {url} : status code {response.status_code} - error : {response}")
+    except Exception as e:
+        logger.error(f"Error on sending Payment request at url {url}")
+        logger.exception(e)
     return response
