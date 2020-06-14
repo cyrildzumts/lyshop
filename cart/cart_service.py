@@ -111,7 +111,7 @@ def remove_from_cart(cart, cart_item=None):
 
 def cart_items_count(user=None):
     if not (isinstance(user, User)):
-        return "user parameter is not an instance of User", -1
+        return -1
     
     #aggregation = CartItem.objects.filter(cart__user=user).aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('unit_price'), output_field=FloatField()))
     #CartModel.objects.filter(id=cart.id).update(quantity=aggregation['count'], amount=aggregation['total'])
@@ -119,7 +119,9 @@ def cart_items_count(user=None):
     cart = get_cart(user)
     if cart:
         items_count = cart.quantity
-    
+        logger.debug(f"Cart Items Count : {items_count}")
+    else:
+        logger.debug(f"No Cart found for user {user.username} - Cart Items Count : {items_count}")
     return items_count
 
 
