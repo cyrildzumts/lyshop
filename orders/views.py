@@ -1,10 +1,9 @@
-from django.shortcuts import render, redirect
-from django.utils.translation import gettext_lazy as _
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from orders import orders_service
 from orders import commons
 from orders.forms import ShippingAddressForm, BillingAddressForm, PaymentRequestForm, PaymentOptionForm
@@ -85,6 +84,8 @@ def checkout(request):
                     'quantity': cart.quantity,
                     'description': settings.PAY_REQUEST_DESCRIPTION,
                     'country' : shipping_address_form.cleaned_data.get('shipping_country'),
+                    'redirect_success_url': request.build_absolute_uri(reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})),
+                    'redirect_failed_url': request.build_absolute_uri(reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})),
                     'product_name' : 'LYSHOP'
                 }
                 logger.debug("Sending request payment")
@@ -131,4 +132,44 @@ def checkout(request):
     
     elif request.method == 'GET':
         logger.debug("Processing Checkout POST request")
+    return render(request, template_name, context)
+
+
+def checkout_success(request, order_uuid, request_uuid):
+    page_title = _("Checkout succeed") + " - " + settings.SITE_NAME
+    template_name = "orders/checkout_success.html"
+    order = None
+    payment_request = None
+    #queryset = PaymentRequest.objects.filter(request_uuid=request_uuid, order__order_uuid=order_uuid)
+    try:
+        payment_request = PaymentRequest.objects.get(request_uuid=request_uuid, order__order_uuid=order_uuid, customer=request.user)
+        order = payment_request.order
+    except PaymentRequest.DoesNotExists:
+        logger.error(f"checkout_success view call with invalid order uuid \"{order_uuid}\" or payment request uuid \"{request_uuid}\". No order found")
+
+    context = {
+        'page_title' : page_title,
+        'order' : order,
+        'payment_request': payment_request
+    }
+    return render(request, template_name, context)
+
+
+def checkout_failed(request, order_uuid, request_uuid):
+    page_title = _("Checkout failed") + " - " + settings.SITE_NAME
+    template_name = "orders/checkout_failed.html"
+    order = None
+    payment_request = None
+    #queryset = PaymentRequest.objects.filter(request_uuid=request_uuid, order__order_uuid=order_uuid)
+    try:
+        payment_request = PaymentRequest.objects.get(request_uuid=request_uuid, order__order_uuid=order_uuid, customer=request.user)
+        order = payment_request.order
+    except PaymentRequest.DoesNotExists:
+        logger.error(f"checkout_success view call with invalid order uuid \"{order_uuid}\" or payment request uuid \"{request_uuid}\". No order found")
+
+    context = {
+        'page_title' : page_title,
+        'order' : order,
+        'payment_request': payment_request
+    }
     return render(request, template_name, context)
