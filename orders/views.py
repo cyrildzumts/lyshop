@@ -111,9 +111,9 @@ def checkout(request):
                     payment_data['customer'] = request.user
                     payment_data['verification_code'] = response_json['verification_code']
                     try:
-                        PaymentRequest.objects.create(**payment_data)
+                        payment_request = PaymentRequest.objects.create(**payment_data)
                         messages.success(request,"order has been successfully submitted")
-                        return redirect('catalog:catalog-home')
+                        return redirect('orders:checkout-redirect-payment', kwargs={'request_uuid' : payment_request.request_uuid})
                     except Exception as e:
                         messages.error(request,"An error occured during processing Order")
                         logger.error(f"Error on creating PaymentRequest object")
@@ -141,6 +141,22 @@ def checkout(request):
         logger.debug("Processing Checkout POST request")
     return render(request, template_name, context)
 
+
+def checkout_redirect_payment(request, request_uuid):
+    page_title = _("Checkout Redirect to PAY") + " - " + settings.SITE_NAME
+    template_name = "orders/checkout_redirect_payment.html"
+    payment_request = None
+    #queryset = PaymentRequest.objects.filter(request_uuid=request_uuid, order__order_uuid=order_uuid)
+    try:
+        payment_request = PaymentRequest.objects.get(request_uuid=request_uuid)
+    except PaymentRequest.DoesNotExists:
+        logger.error(f"checkout_redirect view call with invalid  requestuuid \"{request_uuid}\". No Paymentrequest found")
+        raise Http404
+    context = {
+        'page_title' : page_title,
+        'payment_request': payment_request
+    }
+    return render(request, template_name, context)
 
 def checkout_success(request, order_uuid):
     page_title = _("Checkout succeed") + " - " + settings.SITE_NAME

@@ -1,0 +1,17 @@
+{% extends "base.html"%}
+{% load i18n %}
+{% block META_REDIRECT %}
+        <meta http-equiv='refresh' content="3;url='{{payment_request.pay_url}}'"/>
+{% endblock META_REDIRECT %}
+{% block MAIN %}
+
+<div class="container">
+    <div>
+        <p> 
+        {% trans "You will be redirected to Pay for payment in an instant." %}
+        {% trans "Click here to directly go to PAY if you don't want to wait." %} : <a class="mat-button mat-button-default" href="{{payment_request.pay_url}}">{% trans "PAY" %}</a>
+        
+        </p>
+    </div>
+</div>
+{% endblock MAIN %}

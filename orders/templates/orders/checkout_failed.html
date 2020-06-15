@@ -1,0 +1,11 @@
+{% extends "base.html"%}
+{% load i18n %}
+{% block META_REDIRECT %}
+        <meta http-equiv='refresh' content="3;url={%url 'acounts:account'%}"/>
+{% endblock META_REDIRECT %}
+{% block MAIN %}
+
+<div class="container">
+    {% include "tags/checkout_failed_content.html" %}
+</div>
+{% endblock MAIN %}
