@@ -113,7 +113,7 @@ def checkout(request):
                     try:
                         payment_request = PaymentRequest.objects.create(**payment_data)
                         messages.success(request,"order has been successfully submitted")
-                        return redirect('orders:checkout-redirect-payment', kwargs={'request_uuid' : payment_request.request_uuid})
+                        return redirect('orders:checkout-redirect-payment', request_uuid=payment_request.request_uuid)
                     except Exception as e:
                         messages.error(request,"An error occured during processing Order")
                         logger.error(f"Error on creating PaymentRequest object")
