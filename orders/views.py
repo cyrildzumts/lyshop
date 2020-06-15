@@ -78,18 +78,23 @@ def checkout(request):
             if payment_option == commons.PAYMENT_PAY_WITH_PAY:
                 order = orders_service.create_order_from_cart(user=request.user)
                 logger.debug("Order ready. Now preparing payment data")
-                payment_data = {
-                    'requester_name': settings.PAY_USERNAME,
-                    'amount': cart.amount,
-                    'customer_name': request.user.get_full_name(),
-                    'quantity': cart.quantity,
-                    'description': settings.PAY_REQUEST_DESCRIPTION,
-                    'country' : shipping_address_form.cleaned_data.get('shipping_country'),
-                    'redirect_success_url': request.build_absolute_uri(reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})),
-                    'redirect_failed_url': request.build_absolute_uri(reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})),
-                    'product_name' : 'LYSHOP'
-                }
-                logger.debug("Sending request payment")
+                try:
+                    payment_data = {
+                        'requester_name': settings.PAY_USERNAME,
+                        'amount': cart.amount,
+                        'customer_name': request.user.get_full_name(),
+                        'quantity': cart.quantity,
+                        'description': settings.PAY_REQUEST_DESCRIPTION,
+                        'country' : shipping_address_form.cleaned_data.get('shipping_country'),
+                        'redirect_success_url': request.build_absolute_uri(reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})),
+                        'redirect_failed_url': request.build_absolute_uri(reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})),
+                        'product_name' : 'LYSHOP'
+                    }
+                    logger.debug("Sending request payment")
+                except Exception as e:
+                    logger.error("Eror on prepayring payment data")
+                    logger.exception(e)
+                    raise e
                 
                 #cart_items_queryset = orders_service.get_user_cartitems(request.user)
                 response = orders_service.request_payment(payment_data)
