@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
+from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 from orders import orders_service
 from orders import commons
@@ -141,18 +142,18 @@ def checkout(request):
     return render(request, template_name, context)
 
 
-def checkout_success(request, order_uuid, request_uuid):
+def checkout_success(request, order_uuid):
     page_title = _("Checkout succeed") + " - " + settings.SITE_NAME
     template_name = "orders/checkout_success.html"
     order = None
     payment_request = None
     #queryset = PaymentRequest.objects.filter(request_uuid=request_uuid, order__order_uuid=order_uuid)
     try:
-        payment_request = PaymentRequest.objects.get(request_uuid=request_uuid, order__order_uuid=order_uuid, customer=request.user)
+        payment_request = PaymentRequest.objects.get(order__order_uuid=order_uuid, customer=request.user)
         order = payment_request.order
     except PaymentRequest.DoesNotExists:
-        logger.error(f"checkout_success view call with invalid order uuid \"{order_uuid}\" or payment request uuid \"{request_uuid}\". No order found")
-
+        logger.error(f"checkout_success view call with invalid order uuid \"{order_uuid}\". No order found")
+        raise Http404
     context = {
         'page_title' : page_title,
         'order' : order,
@@ -161,17 +162,18 @@ def checkout_success(request, order_uuid, request_uuid):
     return render(request, template_name, context)
 
 
-def checkout_failed(request, order_uuid, request_uuid):
+def checkout_failed(request, order_uuid):
     page_title = _("Checkout failed") + " - " + settings.SITE_NAME
     template_name = "orders/checkout_failed.html"
     order = None
     payment_request = None
     #queryset = PaymentRequest.objects.filter(request_uuid=request_uuid, order__order_uuid=order_uuid)
     try:
-        payment_request = PaymentRequest.objects.get(request_uuid=request_uuid, order__order_uuid=order_uuid, customer=request.user)
+        payment_request = PaymentRequest.objects.get(order__order_uuid=order_uuid, customer=request.user)
         order = payment_request.order
     except PaymentRequest.DoesNotExists:
-        logger.error(f"checkout_success view call with invalid order uuid \"{order_uuid}\" or payment request uuid \"{request_uuid}\". No order found")
+        logger.error(f"checkout_success view call with invalid order uuid \"{order_uuid}\". No order found")
+        raise Http404
 
     context = {
         'page_title' : page_title,
