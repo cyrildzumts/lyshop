@@ -187,7 +187,7 @@ DEV_MODE = DEFAULT_DATABASE == 'dev'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = DEV_MODE
-DEBUG = TRUE
+DEBUG = True
 
 
 # Password validation
