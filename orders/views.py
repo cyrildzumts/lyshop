@@ -187,14 +187,14 @@ def checkout_failed(request, order_uuid):
     try:
         payment_request = PaymentRequest.objects.filter(order__order_uuid=order_uuid, customer=request.user).get()
         logger.info(f"Checkout failed : found payment request with order uuid \"{order_uuid}\"")
-        order = payment_request.order
+        #order = payment_request.order
     except PaymentRequest.DoesNotExist:
         logger.error(f"checkout_failed view call with invalid order uuid \"{order_uuid}\". No order found")
         raise Http404
 
     context = {
         'page_title' : page_title,
-        'order' : order,
+        #'order' : order,
         'payment_request': payment_request
     }
     return render(request, template_name, context)
