@@ -185,7 +185,7 @@ def checkout_failed(request, order_uuid):
     payment_request = None
     #queryset = PaymentRequest.objects.filter(request_uuid=request_uuid, order__order_uuid=order_uuid)
     try:
-        payment_request = PaymentRequest.objects.get(order__order_uuid=order_uuid, customer=request.user)
+        payment_request = PaymentRequest.objects.filter(order__order_uuid=order_uuid, customer=request.user).get()
         logger.info(f"Checkout failed : found payment request with order uuid \"{order_uuid}\"")
         order = payment_request.order
     except PaymentRequest.DoesNotExist:
