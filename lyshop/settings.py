@@ -186,8 +186,8 @@ DATABASES['default'] = DATABASES[DEFAULT_DATABASE]
 DEV_MODE = DEFAULT_DATABASE == 'dev'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DEV_MODE
-
+#DEBUG = DEV_MODE
+DEBUG = TRUE
 
 
 # Password validation
