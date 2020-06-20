@@ -2623,8 +2623,11 @@ nav.topnav li:hover ul{
     cursor: pointer;
 }
 
+.form-non-edit input{
+    border: none;
+}
 input.non-editable{
-    border: 1px solid #ccc;
+    border: none;
     color: #ccc;
 
 }

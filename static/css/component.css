@@ -1372,6 +1372,20 @@ a {
 input[type=text]:focus, textarea:focus{
 	border: 2px solid #555;
 }
+.form-non-edit input{
+    border: none;
+}
+input.non-editable{
+    border: none;
+    color: #ccc;
+
+}
+
+input.editable{
+    border: 2px solid #242424;
+    color: #242424;
+
+}
 
 /**************************/
 .template{
