@@ -20,6 +20,7 @@ function deactivate_editable_inputs(context){
 function init(){
     var $editable_inputs = $('input.js-editable');
     $editable_inputs.removeClass('editable');
+    $('#form-controls').hide();
 }
 
 $(document).ready(function(){
@@ -28,6 +29,7 @@ $(document).ready(function(){
         var ctx = $($(this).data('target'));
         $(this).addClass('disabled');
         activate_editable_inputs(ctx);
+        $('#form-controls').show();
     });
 
     $('.js-form-edit-cancel').on('click', function(event){
