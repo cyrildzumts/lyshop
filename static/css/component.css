@@ -254,8 +254,26 @@ label{
 	padding: 16px 8px;
 	/*width: 250px;*/
 	text-align: left;
-	max-width: 250px;
+	max-width: 350px;
+	color: #CCC;
 }
+
+.mat-input label{
+	text-align: left;
+	max-width: 350px;
+	color: #CCC;
+	font-weight: 600;
+}
+
+.mat-input label input{
+	text-align: left;
+	color: #242424;
+	font-weight: 500;
+	border: none;
+	border-bottom: 2px solid #CCC;
+
+}
+
 
 a.button{
   text-decoration: none;
