@@ -295,7 +295,20 @@ label{
 	border-radius: 0 !important;
 
 }
+.mat-input span{
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+	color: #242424;
+	font-weight: 500;
+	letter-spacing: .2px;
+	border: none !important;
+	border-radius: none;
+	border-bottom: 2px solid #CCC !important;
+	padding: 8px 0 !important;
+	border-radius: 0 !important;
 
+}
 
 a.button{
   text-decoration: none;
