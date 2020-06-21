@@ -254,6 +254,7 @@ label{
 	padding: 16px 8px;
 	/*width: 250px;*/
 	text-align: left;
+	max-width: 250px;
 }
 
 a.button{
