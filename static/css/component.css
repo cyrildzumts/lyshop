@@ -258,20 +258,30 @@ label{
 	color: #CCC;
 }
 
+.mat-input{
+	position: relative;
+}
+
 .mat-input label{
+	display: inline-block;
+	position: absolute;
+	left: 0;
 	text-align: left;
 	max-width: 350px;
 	color: #CCC;
 	font-weight: 600;
+	padding: 0;
 }
 
-.mat-input label input{
+.mat-input label input, .mat-input input{
+	display: inline-block;
 	width: 100%;
 	text-align: left;
 	color: #242424;
 	font-weight: 500;
 	border: none;
 	border-bottom: 2px solid #CCC;
+	padding: 8px 0;
 
 }
 
