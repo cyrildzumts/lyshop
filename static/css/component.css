@@ -266,6 +266,7 @@ label{
 }
 
 .mat-input label input{
+	width: 100%;
 	text-align: left;
 	color: #242424;
 	font-weight: 500;
