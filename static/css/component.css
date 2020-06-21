@@ -260,6 +260,7 @@ label{
 
 .mat-input{
 	position: relative;
+	padding: 8px;
 }
 
 .mat-input label{
@@ -279,9 +280,11 @@ label{
 	text-align: left;
 	color: #242424;
 	font-weight: 500;
-	border: none;
-	border-bottom: 2px solid #CCC;
+	border: none !important;
+	border-radius: none;
+	border-bottom: 2px solid #CCC !important;
 	padding: 8px 0 !important;
+	border-radius: 0 !important;
 
 }
 
