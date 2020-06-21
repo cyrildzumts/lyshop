@@ -270,7 +270,7 @@ label{
 	max-width: 350px;
 	color: #CCC;
 	font-weight: 600;
-	padding: 0;
+	padding: 0 !important;
 }
 
 .mat-input label input, .mat-input input{
@@ -281,7 +281,7 @@ label{
 	font-weight: 500;
 	border: none;
 	border-bottom: 2px solid #CCC;
-	padding: 8px 0;
+	padding: 8px 0 !important;
 
 }
 
