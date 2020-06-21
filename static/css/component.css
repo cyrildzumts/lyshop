@@ -264,7 +264,7 @@ label{
 
 .mat-input label{
 	display: inline-block;
-	position: absolute;
+	/*position: absolute;*/
 	left: 0;
 	text-align: left;
 	max-width: 350px;
