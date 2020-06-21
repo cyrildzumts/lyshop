@@ -261,6 +261,7 @@ label{
 .mat-input{
 	position: relative;
 	min-height: 72px;
+	width: 100%;
 	padding: 8px;
 }
 
