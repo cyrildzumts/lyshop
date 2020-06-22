@@ -258,14 +258,14 @@ label{
 	color: #CCC;
 }
 
-.mat-input{
+.mat-input, .form-group{
 	position: relative;
 	min-height: 72px;
 	width: 100%;
 	padding: 8px;
 }
 
-.mat-input label{
+.mat-input label, .form-group label{
 	display: inline-block;
 	/*position: absolute;*/
 	left: 0;
@@ -281,7 +281,7 @@ label{
 	cursor: text;
 }
 
-.mat-input label input, .mat-input input{
+.mat-input label input, .mat-input input, .form-group label, .form-group input{
 	display: inline-block;
 	width: 100%;
 	text-align: left;
@@ -295,7 +295,7 @@ label{
 	border-radius: 0 !important;
 
 }
-.mat-input span{
+.mat-input span, .form-group span{
 	display: inline-block;
 	width: 100%;
 	text-align: left;
