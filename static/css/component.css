@@ -467,6 +467,10 @@ a.button{
   font-size: 1.75em;
 }
 
+.product-title{
+	font-size: 1em;
+}
+
 /* Design Component */
 .wrapper{
   padding: 1rem;
