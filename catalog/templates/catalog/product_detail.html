@@ -14,7 +14,7 @@
     <li class="mat-button"><a href="{{product.category.get_absolute_url}}">{% trans product.category.display_name %}</a></li>
   </ul>
   <div class="container">
-    <div class="col-m-12 col-6">
+    <div class="col-m-12 col-4">
       <div class="container">
         <div class="wrapper full">
             <div class="row">
@@ -35,7 +35,7 @@
          </div><!--End of mat-box-->
       </div><!--container-->
     </div><!--End of col-8-->
-    <div class="col-m-12 col-6">
+    <div class="col-m-12 col-4">
       <div class="container">
         <div class="wrapper full">
             <form id="add-cart-form" action="{% url 'cart:cart-add' %}" method="POST">{% csrf_token %}
