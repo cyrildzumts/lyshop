@@ -170,6 +170,7 @@ def checkout_success(request, order_uuid):
     queryset.update(status=commons.ORDER_PAID)
     payment_request = queryset.first()
     order = payment_request.order
+    Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAID)
         
     context = {
         'page_title' : page_title,
