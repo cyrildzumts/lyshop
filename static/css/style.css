@@ -79,7 +79,7 @@
 .mat-box-content{
     display: flex;
     width: 100%;
-    /*padding: 16px;*/
+    padding: 16px;
     /*margin: 16px;*/
     font-size: 1em;
     flex-direction: column;
