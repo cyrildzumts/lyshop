@@ -347,6 +347,8 @@ a.button{
    --width-tablet: 6;
   --width-desktop: 4;
   /*height: 64rem;*/
+  background-color: var(--sidebar-bg-color);
+  color: var(--sidebar-color);
 }
 
 

@@ -10,6 +10,19 @@
 
 {% block MAIN_CONTENT %}
 <div class="container">
-       {% include "tags/products_snippet.html" with product_list=product_list %}
+        <div class="col-m-12 col-2">
+                <div class="sidebar">
+
+                </div>
+        </div>
+
+        <div class="col-m-12 col-8">
+                <div class="wrapper">
+                        <div class="container">
+                                {% include "tags/products_snippet.html" with product_list=product_list %}
+                        </div>
+                </div>
+        </div>
+       
 </div>
 {% endblock MAIN_CONTENT %}
