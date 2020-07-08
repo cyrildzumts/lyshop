@@ -24,6 +24,15 @@
             
     </ul><!--End of list-->
 </div>
+{% if subcategory_list %}
+<div id="subcategory-list" class="row">
+    <ul class="list-md-vertical list-horizontal">
+            {% for c in subcategory_list %}
+            <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+            {% endfor %}
+            
+    </ul><!--End of list-->
+</div>
 {% endif %}
 {% endblock CATEGORIES %}
 {% block FILTER %}

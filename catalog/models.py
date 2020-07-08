@@ -119,7 +119,7 @@ class Category(models.Model):
         return self.name
     
     def get_children(self):
-        return Category.objects.filter(parent__id=self.id)
+        return Category.objects.filter(parent=self)
     
     def get_absolute_url(self):
         return reverse("catalog:category-detail", kwargs={"category_uuid": self.category_uuid})
