@@ -27,30 +27,30 @@
 {% endif %}
 {% endblock CATEGORIES %}
 {% block FILTER %}
-{% if is_content_available %}
-<div id="filter" class="row">
-    <div class="col-md-12 col-2">
+
+<div id="filter" class="row wrap">
+    <div class="col-m-12 col-2">
         <div class="filter-option">
             <ul>
                 <li><span>{% trans "FILTER OPTION 1" %}</span></li>
             </ul>
         </div>
     </div>
-    <div class="col-md-12 col-2">
+    <div class="col-m-12 col-2">
         <div class="filter-option">
             <ul>
                 <li><span>{% trans "FILTER OPTION 2" %}</span></li>
             </ul>
         </div>
     </div>
-    <div class="col-md-12 col-2">
+    <div class="col-m-12 col-2">
         <div class="filter-option">
             <ul>
                 <li><span>{% trans "FILTER OPTION 3" %}</span></li>
             </ul>
         </div>
     </div>
-    <div class="col-md-12 col-2">
+    <div class="col-m-12 col-2">
         <div class="filter-option">
             <ul>
                 <li><span>{% trans "FILTER OPTION 4" %}</span></li>
@@ -58,7 +58,6 @@
         </div>
     </div>
 </div>
-{% endif %}
 {% endblock FILTER %}
 
 {% block MAIN_CONTENT %}
