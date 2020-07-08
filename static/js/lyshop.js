@@ -583,7 +583,7 @@ var Notification = (function(){
             console.log("Notification found");
             $(this.notifications.data('toggle')).show();
         }
-    }
+    };
 
     return Notification;
 })();
@@ -1325,7 +1325,7 @@ function create_attribute_entry(container, form){
 $(document).ready(function(){
 let account = new Account();
 account.init();
-let notifications = new Notification();
+var notifications = new Notification();
 notifications.init();
 let tabs = new Tabs();
 tabs.init();
