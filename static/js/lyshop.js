@@ -570,6 +570,24 @@ var Notify = (function(){
     return Notify;
 })();
 
+var Notification = (function(){
+    function Notification(){
+        this.messages = {};
+        this.notifications = {};
+    }
+
+    Notification.prototype.init = function(){
+        console.log("Notification initialized");
+        this.notifications = $('.notification-list');
+        if(this.notifications.length > 0){
+            console.log("Notification found");
+            $(this.notifications.data('toggle')).show();
+        }
+    }
+
+    return Notification;
+})();
+
 
 
 var Collapsible = (function(){
@@ -1307,6 +1325,8 @@ function create_attribute_entry(container, form){
 $(document).ready(function(){
 let account = new Account();
 account.init();
+let notifications = new Notification();
+notifications.init();
 let tabs = new Tabs();
 tabs.init();
 

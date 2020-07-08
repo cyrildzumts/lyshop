@@ -137,7 +137,7 @@
                         <button class="mat-button mat-button-default"><i class="fa"></i> <span class="button-text">{% trans "Close all" %}</span></button>
                 </div>
                 {% if messages %}
-                <ul id="messages" class="messages notification-list">
+                <ul id="messages" class="messages notification-list" data-toggle="#notifications-wrapper">
                 {% for message in messages %}
                         <li {% if message.tags %} class="{{message.tags}}" {% endif %}>
                                 <div class="notification box">
@@ -149,9 +149,9 @@
                 </ul>
                 {% endif %}
                 {% if notifications %}
-                <ul id="notifications" class="notification-list">
+                <ul id="notifications" class="notifications notification-list" data-toggle="#notifications-wrapper">
                 {% for notification in notifications %}
-                        <li class="notification-contaner">
+                        <li class="">
                                 <div class="notification box">
                                         <i class="js-close fas fa-times-circle"></i>
                                         <div class="title">{{notification.title}}</div>
