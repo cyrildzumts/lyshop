@@ -102,7 +102,9 @@ function update_cart_item(item, to_update, plus_or_minus){
         }
 
         to_update.cart_total.html(response['cart_total'].replace('.', ','));
-        to_update.cart_quantity.html(response['cart_quantity']);
+        to_update.cart_quantity.html(response['count']);
+        //$("#cart-badge").text(response.count)
+        document.getElementById('cart-badge').textContent = response.count;
         
     }, function(reason){
         console.error("Error on updating cart item \"%s\"",data['item']);

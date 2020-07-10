@@ -149,7 +149,7 @@ def ajax_cart_item_increment(request, item_uuid):
         context['item_quantity'] = item.quantity
         context['item_total'] = item.total_price
         context['cart_total'] = cart.amount
-        context['cart_quantity'] = cart.quantity
+        context['count'] = cart.quantity
 
         return JsonResponse(context)
     
@@ -199,7 +199,7 @@ def ajax_cart_item_decrement(request, item_uuid):
         context['item_quantity'] = item.quantity
         context['item_total'] = item.total_price
         context['cart_total'] = cart.amount
-        context['cart_quantity'] = cart.quantity
+        context['count'] = cart.quantity
 
         return JsonResponse(context)
 
@@ -223,7 +223,7 @@ def ajax_cart_item_delete(request, item_uuid):
         context['status'] = True
         context['cart_empty'] = cart_empty
         context['cart_total'] = cart.amount
-        context['cart_quantity'] = cart.quantity
+        context['count'] = cart.quantity
         return JsonResponse(context)
     else :
         context['error'] = 'No Cart Item found.'
@@ -251,7 +251,7 @@ def ajax_cart_item_to_wishlist(request, item_uuid):
     context['success'] = True
     context['status'] = True
     context['cart_total'] = cart.amount
-    context['cart_quantity'] = cart.quantity
+    context['count'] = cart.quantity
     return JsonResponse(context)
     
 
@@ -320,7 +320,7 @@ def ajax_cart_item_update(request, item_uuid=None, action=None):
         else:
             context['removed'] = True
         context['cart_total'] = cart.amount
-        context['cart_quantity'] = cart.quantity
+        context['count'] = cart.quantity
         logger.info(f'Cart Item \"{item_uuid}\" updated by user \"{request.user}\""')
         return JsonResponse(context)
     
