@@ -128,21 +128,22 @@
 
 .entry .key, .entry .value{
     display: inline-block;
-    min-width: 250px;
+    /*min-width: 250px;*/
     text-align: left;
 }
 
 .entry .key{
     font-weight: 600;
-    width: 50%;
+    /*width: 50%;*/
     padding-right: 16px;
 }
 
+/*
 .key:after{
-    content: ":";
+    content: ;
     float: right;
 }
-
+*/
 .entry .value{
     font-weight: 400;
     text-align: right;
