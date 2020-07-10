@@ -1672,6 +1672,13 @@ input.editable{
 	color: #1976d2;
 	/*border-radius: 4px;*/
 }
+
+.mat-button-default *{
+	color: #fafafa;
+	font-weight: 700;
+}
+
+
 .mat-button, button{
 	display: flex;
 	position: relative;
@@ -1686,7 +1693,7 @@ input.editable{
 	text-decoration: none;
 	font-size: 0.75em;
 	font-weight: 500;
-	font-family: inherit;
+	font-family: 'Monserrat';
 	padding: 0 16px;
 	margin: 8px;
 	border: none;
