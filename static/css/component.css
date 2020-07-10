@@ -1707,7 +1707,9 @@ input.editable{
 
 .mat-button .btn-icon, .mat-button .icon, button .btn-icon, button .icon{
 	font-size: x-large;
-	margin: 0 8px 0 0;
+	margin-left: 8px;
+	margin-right: 8px;
+
 }
 
 .mat-list-wrapper{
