@@ -383,17 +383,24 @@ a.button{
   text-align: center;
 }
 
-.logo .mat-button, .header--panel .mat-button{
+.logo .mat-button{
+	margin: 0 16px;
+}
+
+/*
+.header--panel .mat-button{
 	min-width: 0;
 	padding: 0;
 	margin: 0 16px;
 }
+*/
 
+/*
 .header--panel .mat-button:last-child, .logo .mat-button:last-child{
 	padding: 0;
 	margin: 0 ;
 }
-
+*/
 
 
 .nav-container{
