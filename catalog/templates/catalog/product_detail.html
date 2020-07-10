@@ -56,7 +56,7 @@
                       <ul class="mat-list">
                           {% for attr in common_attrs %}
                             <li class="attr-wrapper">
-                            <div class="attr">
+                            <div class="attr entry">
                               <span class="key">{% trans attr.display_name %}</span><span class="value">{{attr.value}}</span>
                               <input type="hidden" name="attr" value="{{attr.id}}">
                             </div>
@@ -64,9 +64,9 @@
                           {% endfor %}
                           {% if selective_attrs %}
                           <li class="attr-wrapper">
-                            <div class="attr">
-                              <label for="selective_attr"><span>{% trans selective_attrs.display_name %}</span></label>
-                              <select id="selective-attr" name="variant_uuid" >
+                            <div class="attr entry">
+                              <label for="selective-attr"><span class="key">{% trans selective_attrs.display_name %}</span></label>
+                              <select id="selective-attr" name="variant_uuid" class="value" >
                                   <option value=""></option>
                               {% for attr in selective_attrs %}
                                   {% for attribute in attr.attrs %}
@@ -77,8 +77,6 @@
                               </select>
                             </div>
                           </li>
-                          {% else %}
-                          <li class="attr-wrapper"><div class="attr">No Selective Attributes</div></li>
                           {% endif %}
                           <li class="attr-wrapper">
                             <div class="attr description">

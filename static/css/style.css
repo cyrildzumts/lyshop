@@ -116,7 +116,7 @@
     width: 100%;
     font-size: 1em;
     text-align: center;
-    padding: 8px 8px;
+    padding-bottom: 16px;
 }
 
 .box .entry{
@@ -127,15 +127,15 @@
 }
 
 .entry .key, .entry .value{
-    display: block;
+    display: inline-block;
     min-width: 250px;
-    padding: 0 16px;
     text-align: left;
 }
 
 .entry .key{
     font-weight: 600;
     width: 50%;
+    padding-right: 16px;
 }
 
 .key:after{
@@ -146,6 +146,7 @@
 .entry .value{
     font-weight: 400;
     text-align: right;
+    padding-left: 16px;
 }
 
 .box .title{
