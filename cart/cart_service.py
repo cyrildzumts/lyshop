@@ -66,7 +66,7 @@ def add_to_cart(cart, product_variant):
     cart_item = CartItem.objects.create(cart=cart, product=product_variant, quantity=1, unit_price=product_variant.price, total_price=product_variant.price)
     refresh_cart(cart)
     logger.info('Product added into the cart')
-    return cart_item
+    return cart_item, cart
 
 def update_cart(cart, cart_item=None, quantity=1):
     """

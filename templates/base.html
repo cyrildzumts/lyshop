@@ -55,7 +55,9 @@
       {% else %}
       {% endif %}
       
-      <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}"><div class="row"><span class="fas fa-shopping-cart"><i class="badge">{{cart_items_count}}</i></span></div></a></li>
+      <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}">
+        <div id="cart-wrapper" class="cart"><i class="fas fa-shopping-cart"></i><span id="cart-badge" class="badge">{{cart_items_count}}</span></div></a>
+        </li>
       <li class="mat-list-item"><a class="signout-btn mat-button mat-button-text signout" href="{% url 'accounts:logout' %}">{% trans 'Logout' %}</a></li>
       {% else %}
       <li class="mat-list-item"><a class="dialog-btn mat-button mat-button-text" href="{% url 'accounts:register' %}" data-tab="1" data-target="#signup-dialog">{% trans 'Create an Account' %}</a></li>

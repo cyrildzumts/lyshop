@@ -54,7 +54,7 @@ def add_to_cart(request):
         form = AddToCartForm(postdata)
         if form.is_valid():
             product = form.cleaned_data['product']
-            result = cart_service.add_to_cart(cart, product)
+            result , cart = cart_service.add_to_cart(cart, product)
             if result:
                 context['success'] = True
                 context['status'] = True
@@ -86,10 +86,11 @@ def ajax_add_to_cart(request):
             variant_uuid = form.cleaned_data['variant_uuid']
             attr = form.cleaned_data['attr']
             variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid)
-            result = cart_service.add_to_cart(cart, variant)
+            result, cart = cart_service.add_to_cart(cart, variant)
             if result:
                 context['success'] = True
                 context['status'] = True
+                context['count'] = cart.quantity
                 return JsonResponse(context)
 
         else:
