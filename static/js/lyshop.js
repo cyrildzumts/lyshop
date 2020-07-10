@@ -66,6 +66,8 @@ function form_submit_add_cart(){
     add_promise = ajax(option).then(function(response){
         console.log("Product added into cart");
         console.log(response);
+        //$("#cart-badge").text(response.count)
+        document.getElementById('cart-badge').textContent = response.count;
     }, function(reason){
         console.error("Error on adding Product into cart");
         console.error(reason);
