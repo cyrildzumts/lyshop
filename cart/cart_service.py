@@ -56,12 +56,12 @@ def add_to_cart(cart, product_variant):
     if not (isinstance(cart, CartModel) and isinstance(product_variant, ProductVariant)):
         logger.error(f"type error : please verify the cart and product type")
         return None, False
-    if CartItem.objects.filter(cart=cart,product=product_variant).exists():
+    queryset = CartItem.objects.filter(cart=cart,product=product_variant)
+    if queryset.exists():
         logger.info('Product already present in the cart.')
-        #cart_item = CartItem.objects.get(cart=cart, product=product)
-        #quantity = cart_item.quantity + 1
-        #return update_cart(cart, cart_item, quantity)
-        return None
+        cart_item = queryset.first()
+        updated_rows, cartitem = update_cart(cart, cart_item, cart_item.quantity + 1)
+        return cart_item, cart
 
     cart_item = CartItem.objects.create(cart=cart, product=product_variant, quantity=1, unit_price=product_variant.price, total_price=product_variant.price)
     refresh_cart(cart)

@@ -32,7 +32,7 @@ function add_to_cart(product){
         console.log("Product %s added into cart", product.name);
         console.log(response);
         //$("#cart-badge").text(response.count)
-        document.getElementById('cart-badge').textContent(response.count);
+        document.getElementById('cart-badge').textContent = response.count;
     }, function(reason){
         console.error("Error on adding Product %s into cart", product.name);
         console.error(reason);
