@@ -60,7 +60,7 @@ def add_to_cart(cart, product_variant):
     if queryset.exists():
         logger.info('Product already present in the cart.')
         cart_item = queryset.first()
-        updated_rows, cartitem = update_cart(cart, cart_item, cart_item.quantity + 1)
+        updated_rows, cart_sitem = update_cart(cart, cart_item, cart_item.quantity + 1)
         return cart_item, cart
 
     cart_item = CartItem.objects.create(cart=cart, product=product_variant, quantity=1, unit_price=product_variant.price, total_price=product_variant.price)
