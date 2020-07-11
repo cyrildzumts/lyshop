@@ -141,7 +141,7 @@ def apply_coupon(cart, coupon):
     try:
         coupon_model = Coupon.objects.get(name=coupon, is_active=True)
         price = cart.amount
-        solded_price = price *((100 - coupon_model.reduction) / 100.0)
+        solded_price = float(price) *((100 - coupon_model.reduction) / 100.0)
         CartModel.objects.filter(pk=cart.pk).update(coupon=coupon_model, solded_price=solded_price)
         logger.info(f"Coupon \"{coupon}\" applied to Cart for user \"{cart.user.username}\"")
     except ObjectDoesNotExist as e:
