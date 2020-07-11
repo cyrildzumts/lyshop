@@ -2595,7 +2595,10 @@ def coupon_update(request, coupon_uuid=None):
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         activated = postdata.get('is_active')
-        logger.debug(f"Coupon Activated {activated}")
+        logger.debug("Coupon Postdata")
+        for k, v in postdata:
+            logger.debug("key : \"{k}\" - value : \"{v}\"")
+        
         if postdata.get('is_active') == 'on':
             postdata['activated_by'] = request.user.pk
             postdata['activated_at'] = timezone.now()
