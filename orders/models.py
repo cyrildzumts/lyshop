@@ -36,7 +36,7 @@ class Order(models.Model):
     is_closed = models.BooleanField(default=False, blank=True, null=True)
     status = models.IntegerField(default=commons.ORDER_SUBMITTED)
     payment_option = models.IntegerField(default=commons.PAY_AT_ORDER)
-    coupon = models.ForeignKey(Coupon, related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
+    coupon = models.ForeignKey("cart.Coupon", related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
     order_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):
