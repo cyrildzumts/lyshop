@@ -33,7 +33,7 @@
   --disabled-bg-color: #fafafa;
   --disabled-hover-bg-color: #aaaaaa;
   --mat-list-item-hover-bg : #ccc;
-  --mat-list-item-hover-color : #242424;
+  --mat-list-item-hover-color : #aaa;
   --mat-list-item-active-bg : #454545;
   --mat-list-item-active-color : #fafafa;
 
@@ -1804,17 +1804,18 @@ input.editable{
 	align-items: center;
 	justify-content: center;
 	padding: 0;
-	margin: 0;
+	margin: 8px auto;
 	/*overflow: hidden;*/
 	width: 100%;
-	height: 48px;
-	max-height: 72px;
+	min-height: 48px;
+	/*max-height: 72px;*/
 	border-bottom: 1px solid #ccc;
 	cursor: pointer;
 }
 
 .mat-list-item:last-child{
 	border-bottom: none;
+	margin: 0 auto;
 }
 
 .mat-list-item .mat-button{
@@ -1824,7 +1825,7 @@ input.editable{
 }
 
 .mat-list-item:hover{
-	background-color: var(--mat-list-item-hover-bg);
+	/*background-color: var(--mat-list-item-hover-bg);*/
 	color: var(--mat-list-item-hover-color);
 }
 
