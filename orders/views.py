@@ -79,10 +79,11 @@ def checkout(request):
             if payment_option == commons.PAYMENT_PAY_WITH_PAY:
                 order = orders_service.create_order_from_cart(user=request.user)
                 logger.debug("Order ready. Now preparing payment data")
+
                 try:
                     payment_data = {
                         'requester_name': settings.PAY_USERNAME,
-                        'amount': cart.amount,
+                        'amount': order.total,
                         'customer_name': request.user.get_full_name(),
                         'quantity': cart.quantity,
                         'description': settings.PAY_REQUEST_DESCRIPTION,

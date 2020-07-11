@@ -12,6 +12,8 @@ import uuid
 
 logger = logging.getLogger(__name__)
 
+SHIPPING_PRICE = 3000
+EXPRESS_SHIPPING_PRICE = 5000
 
 def get_user_cart(user):
     return cart_service.get_cart(user)
@@ -29,7 +31,13 @@ def refresh_order(order):
 
 def create_order_from_cart(user):
     logger.debug("creating order from Cart")
-    order = Order.objects.create(user=user)
+    cart = get_user_cart(user)
+    total = 0
+    if cart.coupon:
+        total = cart.solded_price + SHIPPING_PRICE
+    else:
+        total = cart.amount + SHIPPING_PRICE
+    order = Order.objects.create(user=user, coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total)
     logger.debug("order instance created")
     items_queryset = get_user_cartitems(user)
     logger.debug("got cartitems queryset")
@@ -49,7 +57,7 @@ def create_order_from_cart(user):
                 break
             OrderItem.objects.bulk_create(batch, batch_size)
     logger.debug("Order created from Cart")
-    return refresh_order(order)
+    return order
 
 
 def order_clear_cart(user):

@@ -27,12 +27,16 @@ class Order(models.Model):
     user = models.ForeignKey(User, related_name='orders', blank=True, null=True, on_delete=models.SET_NULL)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     amount = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    shipping_price = models.DecimalField(default=0, blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    solded_price = models.DecimalField(default=0, blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    total = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     quantity = models.IntegerField(default=0, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     is_active = models.BooleanField(default=True, blank=True, null=True)
     is_closed = models.BooleanField(default=False, blank=True, null=True)
     status = models.IntegerField(default=commons.ORDER_SUBMITTED)
     payment_option = models.IntegerField(default=commons.PAY_AT_ORDER)
+    coupon = models.ForeignKey(Coupon, related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
     order_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):
