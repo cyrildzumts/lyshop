@@ -9,7 +9,7 @@
         
         <div class="mat-box">
     
-                <form class="form" name="add-coupon" action="{{coupon.get_update_url}}" method="POST">{% csrf_token %}
+                <form class="form" name="update-coupon" action="{{coupon.get_update_url}}" method="POST">{% csrf_token %}
                     <div class="container">
                         <input type="hidden" name="added_by" value="{{coupon.added_by.pk}}" readonly>
                         <div class="form-group">
@@ -27,7 +27,7 @@
                         
                         <div class="form-group">
                             <label for="is-active">{% trans "Is Active" %}</label>
-                            <input id="is-active" type="checkbox"  name="is_active" {% if coupon.is_active %}checked{% endif %} >
+                            <input id="is-active" type="checkbox"  name="is_active" {% if coupon.is_active %}checked="checked"{% endif %} >
                         </div>
                     
                     </div><!-- End of container-->

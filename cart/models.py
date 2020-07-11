@@ -15,7 +15,7 @@ class Coupon(models.Model):
     activated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activated_coupons', blank=True, null=True)
     activated_at = models.DateTimeField(blank=True, null=True)
     expire_at = models.DateTimeField(blank=True, null=True)
-    is_active = models.BooleanField(default=False, blank=True, null=True)
+    is_active = models.BooleanField(default=False, blank=True)
     coupon_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):
