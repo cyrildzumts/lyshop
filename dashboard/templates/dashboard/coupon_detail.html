@@ -12,7 +12,7 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
-                    <a class="mat-button mat-button-text" href="{{coupon.get_dashboard_update_url}}"><span class="pen"></span>{% trans "Edit" %}</a>
+                    <a class="mat-button mat-button-text" href="{{coupon.get_update_url}}"><span class="pen"></span>{% trans "Edit" %}</a>
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:coupon-create'%}"><span class="add"></span>{% trans "New Coupon" %}</a>
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:coupons' %}"><span class="back"></span>{% trans "Coupons" %}</a>
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><span class="home"></span>{% trans "Dashboard" %}</a>
@@ -35,7 +35,7 @@
           </div>
           <div class="mat-box-content">
             <p> {% trans "Reduction" %} : {{coupon.reduction}} % </p>
-            <p> {% trans "Create at" %} : {{coupon.created_at}} {% trans "XAF" %} </p>
+            <p> {% trans "Create at" %} : {{coupon.created_at}}</p>
             <p> {% trans "Status" %} : {% if coupon.is_active %}{% trans "Activated" %} {% else %}{% trans "Not activated" %}{% endif %} </p>
             <p> {% trans "Added by" %} : {{coupon.added_by.username}}</p>  
           </div>
