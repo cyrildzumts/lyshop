@@ -13,10 +13,25 @@ class Coupon(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='added_coupons', blank=False, null=False)
     activated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activated_coupons', blank=True, null=True)
-    activated_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    activated_at = models.DateTimeField(blank=True, null=True)
     expire_at = models.DateTimeField(blank=True, null=True)
     is_active = models.BooleanField(default=False, blank=True, null=True)
     coupon_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+
+    def __str__(self):
+        return f"Coupon - {self.name} - {self.reduction}"
+
+    def get_absolute_url(self):
+        return reverse("dashboard:coupon-detail", kwargs={"coupon_uuid": self.coupon_uuid})
+    
+    def get_dashboard_url(self):
+        return reverse("dashboard:coupon-detail", kwargs={"coupon_uuid": self.coupon_uuid})
+    
+    def get_update_url(self):
+        return reverse("dashboard:coupon-update", kwargs={"coupon_uuid": self.coupon_uuid})
+    
+    def get_delete_url(self):
+        return reverse("dashboard:coupon-delete", kwargs={"coupon_uuid": self.coupon_uuid})
 
 class CartModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cart")

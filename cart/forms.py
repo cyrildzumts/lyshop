@@ -31,4 +31,4 @@ class AddCartForm(forms.Form):
 class CouponForm(forms.ModelForm):
     class Meta:
         model = Coupon
-        fields = ['name', 'reduction', 'added_by', 'activated_by', 'is_active']
+        fields = ['name', 'reduction', 'added_by', 'activated_by', 'activated_at', 'is_active', 'expire_at']

@@ -16,6 +16,7 @@ from django.urls import reverse, resolve
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidden
 from django.contrib import messages
 from django.db.models import F, Q
+from django.utils import timezone
 from django.forms import formset_factory, modelformset_factory
 from dashboard.permissions import PermissionManager, get_view_permissions
 from rest_framework.authtoken.models import Token
@@ -33,7 +34,8 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
     DeleteAttributeForm, CategoriesDeleteForm
 )
-
+from cart.models import Coupon
+from cart.forms import CouponForm
 from catalog import models
 import json
 import logging
@@ -2476,3 +2478,191 @@ def payment_request_details(request, request_uuid=None):
     context.update(get_view_permissions(request.user))
     logger.debug("[OK] (payment_request_details) - Updating context object")
     return render(request,template_name, context)
+
+
+
+@login_required
+def coupons(request):
+    username = request.user.username
+    can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_access_dashboard:
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    can_view_coupon = PermissionManager.user_can_view_coupon(request.user)
+    if not can_view_coupon:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    #current_account = Account.objects.get(user=request.user)
+    queryset = Coupon.objects.all().order_by('-created_at')
+    template_name = "dashboard/coupon_list.html"
+    page_title = "Coupon - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    try:
+        request_set = paginator.page(page)
+    except PageNotAnInteger:
+        request_set = paginator.page(1)
+    except EmptyPage:
+        request_set = None
+    context['page_title'] = page_title
+    context['coupon_list'] = request_set
+    context['can_delete_coupon'] = PermissionManager.user_can_delete_coupon(request.user)
+    context['can_update_coupon'] = PermissionManager.user_can_change_coupon(request.user)
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def coupon_detail(request, coupon_uuid=None):
+    username = request.user.username
+    can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_access_dashboard:
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    can_view_coupon = PermissionManager.user_can_view_coupon(request.user)
+    if not can_view_coupon:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid)
+    template_name = "dashboard/coupon_detail.html"
+    page_title = "Coupon" + " - " + settings.SITE_NAME
+    context['page_title'] = page_title
+    context['coupon'] = group
+    context['can_delete_coupon'] = PermissionManager.user_can_delete_coupon(request.user)
+    context['can_update_coupon'] = PermissionManager.user_can_change_coupon(request.user)
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def coupon_create(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_add_coupon(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/coupon_create.html'
+    page_title = _('New Coupon')
+    
+    form = None
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = CouponForm(postdata)
+        if form.is_valid():
+            coupon = form.save()
+            messages.success(request, _('New Coupon created'))
+            logger.info(f'New Coupon added by user \"{username}\"')
+            return redirect(coupon)
+        else:
+            messages.error(request, _('Coupon not created'))
+            logger.error(f'Error on creating new Coupon. Action requested by user \"{username}\"')
+    else:
+        form = CouponForm()
+    context = {
+        'page_title': page_title,
+        'form' : form
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+
+@login_required
+def coupon_update(request, coupon_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_coupon(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/coupon_update.html'
+    page_title = _('Coupon Update')
+    
+    form = None
+    username = request.user.username
+    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        if postdata.get('is_active') == 'on':
+            postdata['activated_by'] = request.user.pk
+            postdata['activated_at'] = timezone.now()
+        form = CouponForm(postdata, instance=coupon)
+        if form.is_valid():
+            coupon = form.save()
+            messages.success(request, _('Coupon updated'))
+            logger.info(f'Coupon updated by user \"{username}\"')
+            return redirect('dashboard:coupon-detail', coupon_uuid=coupon_uuid)
+        else:
+            messages.error(request, _('Coupon not updated'))
+            logger.error(f'Error on updated Coupon. Action requested by user \"{username}\"')
+    else:
+        form = CouponForm(instance=coupon)
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'coupon': coupon
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+
+@login_required
+def coupon_delete(request, coupon_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_coupon(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method is not "POST":
+        raise SuspiciousOperation('Bad request')
+
+    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid)
+    coupon_name = coupon.name
+    coupon.delete()
+    logger.info(f'Coupon \"{coupon_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('Coupon deleted'))
+    return redirect('dashboard:coupons')
+
+
+@login_required
+def coupons_delete(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_coupon(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request. Expected POST request but received a GET')
+    
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('coupons')
+
+    if len(id_list):
+        coupon_list = list(map(int, id_list))
+        Coupon.objects.filter(id__in=coupon_list).delete()
+        messages.success(request, f"Coupon \"{coupon_list}\" deleted")
+        logger.info(f"Coupons \"{coupon_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"Coupons could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('dashboard:coupons')

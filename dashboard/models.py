@@ -65,5 +65,10 @@ class AccessPermissions(models.Model):
             (Constants.PAYMENT_VIEW_PERM, 'Dashboard Can View Payment'),
             (Constants.PAYMENT_CHANGE_PERM, 'Dashboard Can Change Payment'),
             (Constants.PAYMENT_ADD_PERM, 'Dashboard Can Add Payment'),
-            (Constants.PAYMENT_DELETE_PERM, 'Dashboard Can Delete Payment')
+            (Constants.PAYMENT_DELETE_PERM, 'Dashboard Can Delete Payment'),
+
+            (Constants.COUPON_VIEW_PERM, 'Dashboard Can View Coupon'),
+            (Constants.COUPON_CHANGE_PERM, 'Dashboard Can Change Coupon'),
+            (Constants.COUPON_ADD_PERM, 'Dashboard Can Add Coupon'),
+            (Constants.COUPON_DELETE_PERM, 'Dashboard Can Delete Coupon')
         ]

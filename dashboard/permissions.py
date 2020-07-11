@@ -199,6 +199,25 @@ class PermissionManager :
     def user_can_view_payment(user=None):
         return PermissionManager.user_has_perm(user=user, perm=Constants.PAYMENT_VIEW_PERM)
 
+    
+    ## COUPON
+
+    @staticmethod
+    def user_can_change_coupon(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON_CHANGE_PERM)
+    
+    @staticmethod
+    def user_can_add_coupon(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON__ADD_PERM)
+    
+    @staticmethod
+    def user_can_delete_coupon(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON__DELETE_PERM)
+
+    @staticmethod
+    def user_can_view_coupon(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON__VIEW_PERM)
+
     ## VOUCHER PERMISSION
 
     @staticmethod
@@ -293,6 +312,11 @@ def get_view_permissions(user=None):
         'can_add_policy': PermissionManager.user_can_add_policy(user),
         'can_delete_policy': PermissionManager.user_can_delete_policy(user),
         'can_change_policy': PermissionManager.user_can_change_policy(user),
+
+        'can_view_coupon': PermissionManager.user_can_view_coupon(user),
+        'can_add_coupon': PermissionManager.user_can_add_coupon(user),
+        'can_delete_coupon': PermissionManager.user_can_delete_coupon(user),
+        'can_change_coupon': PermissionManager.user_can_change_coupon(user),
 
         'can_view_group' : PermissionManager.user_can_view_group(user),
         'can_add_group' : PermissionManager.user_can_add_group(user),

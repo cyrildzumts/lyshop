@@ -24,6 +24,13 @@ urlpatterns = [
     path('categories/update/<uuid:category_uuid>/', views.category_update, name='category-update'),
     path('categories/create/', views.category_create, name='category-create'),
 
+    path('coupon-create/',views.coupon_create, name='coupon-create'),
+    path('coupon-detail/<int:pk>/',views.coupon_detail, name='coupon-detail'),
+    path('coupon-delete/<int:pk>/',views.coupon_delete, name='coupon-delete'),
+    path('coupon-update/<int:pk>/',views.coupon_update, name='coupon-update'),
+    path('coupons/',views.coupons, name='coupons'),
+    path('coupons/delete/',views.coupons_delete, name='coupons-delete'),
+
     #path('cases/', views.cases, name='cases'),
     #path('cases/detail/<issue_uuid>/', views.case_details, name='case-detail'),
     #path('cases/close/<issue_uuid>/', views.case_close, name='case-close'),
