@@ -2594,10 +2594,12 @@ def coupon_update(request, coupon_uuid=None):
     coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid)
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
+        activated = postdata.get('is_active')
+        logger.debug(f"Coupon Activated {activated}")
         if postdata.get('is_active') == 'on':
             postdata['activated_by'] = request.user.pk
             postdata['activated_at'] = timezone.now()
-            logger.debug("Coupon Activated")
+            
         form = CouponForm(postdata, instance=coupon)
         if form.is_valid():
             coupon = form.save()
