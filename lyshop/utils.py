@@ -2,13 +2,12 @@
 from django.apps import apps
 import secrets
 
+
 PAGINATED_BY = 10
 
 def get_postdata(request):
     return request.POST.copy()
 
-
-def 
 
 def get_session(request):
     return request.session
