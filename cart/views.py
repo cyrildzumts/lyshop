@@ -37,7 +37,7 @@ def cart(request):
         'cart': cart,
         'cartitems_exist' : cartitems_exist,
         'item_list' : CartItem.objects.filter(cart=cart),
-        'page_title' : _("Shopping Cart") + ' - ' + settings.SITE_NAME
+        'page_title' : _("Cart") + ' - ' + settings.SITE_NAME
     }
 
     return render(request, template_name, context)
