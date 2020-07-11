@@ -208,15 +208,15 @@ class PermissionManager :
     
     @staticmethod
     def user_can_add_coupon(user=None):
-        return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON__ADD_PERM)
+        return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON_ADD_PERM)
     
     @staticmethod
     def user_can_delete_coupon(user=None):
-        return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON__DELETE_PERM)
+        return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON_DELETE_PERM)
 
     @staticmethod
     def user_can_view_coupon(user=None):
-        return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON__VIEW_PERM)
+        return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON_VIEW_PERM)
 
     ## VOUCHER PERMISSION
 
