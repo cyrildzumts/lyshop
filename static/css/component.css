@@ -1864,6 +1864,11 @@ input.editable{
 
 }
 
+.cart-item .price{
+	font-size: 0.875em;
+	
+}
+
 .entry .part{
 	padding: 0 16px;
 	width: 25%;
