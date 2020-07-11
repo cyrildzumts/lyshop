@@ -70,30 +70,30 @@
                     <h4>{% trans "Summary" %}</h4>
                 </div>
                 <div class="mat-box-content">
-                    <div class="container align-left">
+                    <div class="container left">
                         <div class="entry"><span class="key">{% trans "Coupon" %}</span><input id="coupon" class="js-coupon value" name="coupon"></div>
                         <div class="entry"><span class="key">{% trans "Number of items" %}</span><span class="js-cart-quantity value">{{cart.quantity}}</span></div>
                         <div class="entry"><span class="key">{% trans "Reduction" %}</span><span class="js-cart-reduction value"></span></div>
-                        <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price"><span class="js-cart-total value">{{cart.amount}}</span><span>{% trans "XAF" %}</span></div></div>
+                        <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price right"><span class="js-cart-total value">{{cart.amount}}</span><span>{% trans "XAF" %}</span></div></div>
                         <div class="actions"><a class="mat-button mat-button-default" href="{% url 'orders:checkout' %}">{% trans "Checkout" %}</a></div>
                     </div>
                     <div class="container">
-                        <p class="entry align-left">{% trans "We accept the following payment methods" %}</p>
+                        <p class="entry left">{% trans "We accept the following payment methods" %}</p>
                         <div class="row row-left entry">
                             <i class="key">{% trans "PAY" %}</i>
                             <i class="key">{% trans "CASH" %}</i>
                         </div>
                     </div>
                     <div class="container">
-                        <p class="entry align-left">{% trans "The price and shipping cost will be confirm when you first close your order" %}</p>
+                        <p class="entry left">{% trans "The price and shipping cost will be confirm when you first close your order" %}</p>
                     </div>
                 </div>
             </div><!--End of Box-->
             <div class="mat-box">
                 <div class="mat-box-content">
                     <ul>
-                        <li><p class="entry align-left">{% trans "Standard shipping are 3000 XAF" %}</p></li>
-                        <li><p class="entry align-left">{% trans "Express shipping are 5000 XAF. Express shipping are sent as soon as possible so that the customer receives the order on the next few days." %}</p></li>
+                        <li><p class="entry left">{% trans "Standard shipping are 3000 XAF" %}</p></li>
+                        <li><p class="entry left">{% trans "Express shipping are 5000 XAF. Express shipping are sent as soon as possible so that the customer receives the order on the next few days." %}</p></li>
                     </ul>
                 </div>
             </div><!--End of Box-->
