@@ -2597,6 +2597,7 @@ def coupon_update(request, coupon_uuid=None):
         if postdata.get('is_active') == 'on':
             postdata['activated_by'] = request.user.pk
             postdata['activated_at'] = timezone.now()
+            logger.debug("Coupon Activated")
         form = CouponForm(postdata, instance=coupon)
         if form.is_valid():
             coupon = form.save()
