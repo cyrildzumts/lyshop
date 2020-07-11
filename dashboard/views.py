@@ -2601,7 +2601,7 @@ def coupon_update(request, coupon_uuid=None):
         if form.is_valid():
             coupon = form.save()
             messages.success(request, _('Coupon updated'))
-            logger.info(f'Coupon updated by user \"{username}\"')
+            logger.info(f'Coupon updated by user \"{username}\" - coupon is_active = \"{coupon.is_active}\"')
             return redirect('dashboard:coupon-detail', coupon_uuid=coupon_uuid)
         else:
             messages.error(request, _('Coupon not updated'))
