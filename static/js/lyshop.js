@@ -39,6 +39,29 @@ function add_to_cart(product){
     });
 }
 
+function add_to_coupon(){
+    var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]');
+    var coupon = $('#coupon').val();
+    var option = {
+        type:'POST',
+        dataType: 'json',
+        url : '/cart/ajax-add-coupon/',
+        data : {coupon:coupon, csrfmiddlewaretoken: csrfmiddlewaretoken.val()}
+    }
+    add_promise = ajax(option).then(function(response){
+        console.log(response);
+        /*
+        context['reduction'] 
+        context['total']
+        */
+        document.getElementById('reduction').textContent = response.reduction;
+        document.getElementById('total').textContent = response.total;
+    }, function(reason){
+        console.error("Error on adding Coupon \"%s\" to user cart", coupon);
+        console.error(reason);
+    });
+}
+
 function form_submit_add_cart(){
     var form = $('#add-cart-form');
     if(form.length < 0){

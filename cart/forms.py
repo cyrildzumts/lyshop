@@ -1,5 +1,5 @@
 from django import forms
-from cart.models import CartItem
+from cart.models import CartItem, Coupon
 from catalog.models import Product, ProductVariant
 
 
@@ -28,3 +28,7 @@ class AddCartForm(forms.Form):
     product = forms.UUIDField()
     variant_uuid = forms.UUIDField()
 
+class CouponForm(forms.ModelForm):
+    class Meta:
+        model = Coupon
+        fiels = ['name', 'reduction', 'added_by', 'activated_by', 'is_active']

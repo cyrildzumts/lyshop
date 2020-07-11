@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.db.models import F, Q, Count, Sum, FloatField
 from catalog import conf
 from catalog.models import ProductVariant, Product
-from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm
+from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm, CouponForm
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from catalog import catalog_service
@@ -43,6 +43,10 @@ def cart(request):
     return render(request, template_name, context)
 
 
+
+
+
+
 @login_required
 def add_to_cart(request):
     cart, created = CartModel.objects.get_or_create(user=request.user)
@@ -69,6 +73,32 @@ def add_to_cart(request):
         context['error'] = 'Bad Request'
         context['status'] = False
         return redirect('catalog:home')
+
+
+@login_required
+def ajax_add_coupon(request):
+    cart, created = CartModel.objects.get_or_create(user=request.user)
+    context = {
+        'success' : False,
+        'status' : False,
+    }
+    if request.method == 'POST':
+        postdata = request.POST.copy()
+        coupon = postdata.get('coupon')
+        coupon_applied = cart_service.apply_coupon(cart, coupon)
+        cart.refresh_from_db()
+        if coupon_applied:
+            context['success'] = True
+            context['status'] = True
+            context['reduction'] = cart.amount - cart.solded_price
+            context['total'] = cart.solded_price
+            return JsonResponse(context)
+        else:
+            return JsonResponse(context, status=HTTPStatus.NOT_ACCEPTABLE)
+    else:
+        context['error'] = 'Method not allowed. POST requets expected.'
+        return JsonResponse(context, status=HTTPStatus.METHOD_NOT_ALLOWED)
+
 
 @login_required
 def ajax_add_to_cart(request):
@@ -151,7 +181,7 @@ def ajax_cart_item_increment(request, item_uuid):
         context['cart_total'] = cart.amount
         context['count'] = cart.quantity
 
-        return JsonResponse(context)
+        return JsonResponse(context, status=HTTPStatus.NOT_ACCEPTABLE)
     
       
 

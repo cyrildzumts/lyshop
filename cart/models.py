@@ -7,19 +7,30 @@ import uuid
 
 # Create your models here.
 
+class Coupon(models.Model):
+    name = models.CharField(max_length=32, blank=False, null=False, unique=True)
+    reduction = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='added_coupons', blank=False, null=False)
+    activated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activated_coupons', blank=True, null=True)
+    activated_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    expire_at = models.DateTimeField(blank=True, null=True)
+    is_active = models.BooleanField(default=False, blank=True, null=True)
+    coupon_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+
 class CartModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cart")
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     #last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     amount = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    solded_price = models.DecimalField(default=0, blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     quantity = models.IntegerField(default=0, blank=True, null=True)
+    coupon = models.ForeignKey(Coupon, related_name="carts", blank=True, null=True, on_delete=models.SET_NULL)
     cart_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):
         return f"Cart - {self.user.username} - {self.quantity} items"
     
-
-
     def get_absolute_url(self):
         return reverse("cart", kwargs={"cart_uuid": self.cart_uuid})
     

@@ -1,6 +1,7 @@
 from django.db.models import F,Q,Count, Sum, FloatField
 from django.contrib.auth.models import User
-from cart.models import CartItem, CartModel
+from django.core.exceptions import ObjectDoesNotExist
+from cart.models import CartItem, CartModel, Coupon
 from catalog.models import ProductVariant, Product
 import logging
 
@@ -131,3 +132,21 @@ def get_cartitems(user):
     if cart:
         cartitems_queryset = CartItem.objects.filter(cart=cart)
     return cartitems_queryset
+
+def apply_coupon(cart, coupon):
+    if not isinstance(cart, CartModel) :
+        return False
+    if not isinstance(coupon, str):
+        return False
+    try:
+        coupon_model = Coupon.objects.filter(name=coupon, is_active=True)
+        price = cart.amount
+        solded_price = price *((100 - coupon_model.reduction) / 100.0)
+        CartModel.objects.filter(pk=cart.pk).update(coupon=coupon_model, solded_price=solded_price)
+        logger.info(f"Coupon \"{coupon}\" applied to Cart for user \"{cart.user.username}\"")
+    except ObjectDoesNotExist as e:
+        logger.warn(f"No coupon found with the name \"{coupon}\"")
+        logger.exception(e)
+        return False
+    return True
+    
