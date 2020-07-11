@@ -11,7 +11,7 @@
     
                 <form class="form" name="add-coupon" action="{{coupon.get_update_url}}" method="POST">{% csrf_token %}
                     <div class="container">
-                        <input type="hidden" name="added_by" value="{{coupon.added_by}}" readonly>
+                        <input type="hidden" name="added_by" value="{{coupon.added_by.pk}}" readonly>
                         <div class="form-group">
                             <label for="name">{% trans "Name" %}</label>
                             <input id="name" type="text"  name="name" value="{{coupon.name}}">
