@@ -2533,7 +2533,7 @@ def coupon_detail(request, coupon_uuid=None):
     template_name = "dashboard/coupon_detail.html"
     page_title = "Coupon" + " - " + settings.SITE_NAME
     context['page_title'] = page_title
-    context['coupon'] = group
+    context['coupon'] = coupon
     context['can_delete_coupon'] = PermissionManager.user_can_delete_coupon(request.user)
     context['can_update_coupon'] = PermissionManager.user_can_change_coupon(request.user)
     context.update(get_view_permissions(request.user))
