@@ -1866,7 +1866,8 @@ input.editable{
 
 .cart-item .price{
 	font-size: 0.875em;
-	
+	font-weight: 700;
+
 }
 
 .entry .part{
