@@ -79,18 +79,14 @@
                     </div>
                     <div class="container">
                         <p>{% trans "We accept the following payment methods" %}</p>
-                        <div class="row row-left">
-                            <i>{% trans "PAY" %}</i>
-                            <i>{% trans "CASH" %}</i>
+                        <div class="row row-left entry">
+                            <i class="key">{% trans "PAY" %}</i>
+                            <i class="key">{% trans "CASH" %}</i>
                         </div>
                     </div>
                     <div class="container">
                         <p>{% trans "The price and shipping cost will be confirm when you first close your order" %}</p>
                     </div>
-                </div>
-                
-                <div class="actions">
-                    <a class="mat-button mat-button-default" href="{% url 'orders:checkout' %}">{% trans "Checkout" %}</a>
                 </div>
             </div><!--End of Box-->
             <div class="mat-box">
