@@ -4,7 +4,7 @@
 {% csrf_token %}
 {% if item_list %}
 <div class="container">
-    <div class="col-m-12 col-8">
+    <div class="col-m-12 col-9">
         <div class="mat-list-wrapper">
             <ul class="mat-list">
                 <li class="mat-list-item">
@@ -63,7 +63,7 @@
             
         </div><!--End mat-list-wrapper-->
     </div>
-    <div class="col-m-12 col-4">
+    <div class="col-m-12 col-3">
         <div class="container">
             <div class="mat-box full">
                 <div class="title">
@@ -75,7 +75,7 @@
                         <div class="entry"><span class="key">{% trans "Number of items" %}</span><span class="js-cart-quantity value">{{cart.quantity}}</span></div>
                         <div class="entry"><span class="key">{% trans "Reduction" %}</span><span class="js-cart-reduction value"></span></div>
                         <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price"><span class="js-cart-total value">{{cart.amount}}</span><span>{% trans "XAF" %}</span></div></div>
-                        <div class="entry"><a class="mat-button mat-button-default" href="{% url 'orders:checkout' %}">{% trans "Checkout" %}</a></div>
+                        <div class="actions"><a class="mat-button mat-button-default" href="{% url 'orders:checkout' %}">{% trans "Checkout" %}</a></div>
                     </div>
                     <div class="container">
                         <p>{% trans "We accept the following payment methods" %}</p>
