@@ -40,20 +40,19 @@ function add_to_cart(product){
 }
 
 function add_to_coupon(){
-    var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]');
+    var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
     var coupon = $('#coupon').val();
+    if(coupon.length == 0 || csrfmiddlewaretoken.length == 0){
+        return;
+    }
     var option = {
         type:'POST',
         dataType: 'json',
         url : '/cart/ajax-add-coupon/',
-        data : {coupon:coupon, csrfmiddlewaretoken: csrfmiddlewaretoken.val()}
+        data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
     }
     add_promise = ajax(option).then(function(response){
         console.log(response);
-        /*
-        context['reduction'] 
-        context['total']
-        */
         document.getElementById('reduction').textContent = response.reduction;
         document.getElementById('total').textContent = response.total;
     }, function(reason){
@@ -1584,6 +1583,7 @@ slider.init();
         var plus_or_minus = item.data('action') == "increment";
         update_cart_item(item, obj, plus_or_minus);
     });
+    $('.js-add-coupon').on('click', add_to_coupon);
     
 });
 

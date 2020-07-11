@@ -71,7 +71,11 @@
                 </div>
                 <div class="mat-box-content">
                     <div class="container left">
-                        <div class="entry"><span class="key">{% trans "Coupon" %}</span><input id="coupon" class="js-coupon value" name="coupon"></div>
+                        <div class="entry">
+                            <span class="key">{% trans "Coupon" %}</span>
+                            <input id="coupon" class="js-coupon value" name="coupon">
+                            <button class="js-add-coupon mat-button mat-button-text" data-target="coupon">{% trans "Add" %}</button>
+                        </div>
                         <div class="entry"><span class="key">{% trans "Number of items" %}</span><span class="js-cart-quantity value">{{cart.quantity}}</span></div>
                         <div class="entry"><span class="key">{% trans "Reduction" %}</span><span id="reduction" class="js-cart-reduction value"></span></div>
                         <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price right"><span id="total" class="js-cart-total value">{{cart.amount}}</span><span>{% trans "XAF" %}</span></div></div>
