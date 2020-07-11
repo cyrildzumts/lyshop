@@ -139,7 +139,7 @@ def apply_coupon(cart, coupon):
     if not isinstance(coupon, str):
         return False
     try:
-        coupon_model = Coupon.objects.filter(name=coupon, is_active=True)
+        coupon_model = Coupon.objects.get(name=coupon, is_active=True)
         price = cart.amount
         solded_price = price *((100 - coupon_model.reduction) / 100.0)
         CartModel.objects.filter(pk=cart.pk).update(coupon=coupon_model, solded_price=solded_price)
