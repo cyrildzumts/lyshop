@@ -43,6 +43,7 @@ function add_to_coupon(){
     var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
     var coupon = $('#coupon').val();
     if(coupon.length == 0 || csrfmiddlewaretoken.length == 0){
+        console.error("invalid coupon");
         return;
     }
     var option = {
