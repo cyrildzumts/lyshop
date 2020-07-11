@@ -25,9 +25,9 @@ urlpatterns = [
     path('categories/create/', views.category_create, name='category-create'),
 
     path('coupon-create/',views.coupon_create, name='coupon-create'),
-    path('coupon-detail/<uid:coupon_uuid>/',views.coupon_detail, name='coupon-detail'),
-    path('coupon-delete/<uid:coupon_uuid>/',views.coupon_delete, name='coupon-delete'),
-    path('coupon-update/<uid:coupon_uuid>/',views.coupon_update, name='coupon-update'),
+    path('coupon-detail/<uuid:coupon_uuid>/',views.coupon_detail, name='coupon-detail'),
+    path('coupon-delete/<uuid:coupon_uuid>/',views.coupon_delete, name='coupon-delete'),
+    path('coupon-update/<uuid:coupon_uuid>/',views.coupon_update, name='coupon-update'),
     path('coupons/',views.coupons, name='coupons'),
     path('coupons/delete/',views.coupons_delete, name='coupons-delete'),
 
