@@ -146,7 +146,6 @@ def apply_coupon(cart, coupon):
         logger.info(f"Coupon \"{coupon}\" applied to Cart for user \"{cart.user.username}\"")
     except ObjectDoesNotExist as e:
         logger.warn(f"No coupon found with the name \"{coupon}\"")
-        logger.exception(e)
         return False
     return True
     
