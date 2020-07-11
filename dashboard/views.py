@@ -2596,8 +2596,7 @@ def coupon_update(request, coupon_uuid=None):
         postdata = utils.get_postdata(request)
         activated = postdata.get('is_active')
         logger.debug("Coupon Postdata")
-        for k, v in postdata:
-            logger.debug("key : \"{k}\" - value : \"{v}\"")
+        utils.show_dict_contents(postdata, "Coupon Postdata")
         
         if postdata.get('is_active') == 'on':
             postdata['activated_by'] = request.user.pk

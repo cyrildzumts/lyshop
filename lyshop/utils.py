@@ -1,13 +1,21 @@
 
 from django.apps import apps
 import secrets
+import logging
 
+logger = logging.getLogger(__name__)
 
 PAGINATED_BY = 10
 
 def get_postdata(request):
     return request.POST.copy()
 
+
+def show_dict_contents(dict_obj, header):
+    logger.info(f"Displaying Dict content for {header}")
+    for k, v in dict_obj.items():
+            logger.debug(f"key : \"{k}\" - value : \"{v}\"")
+    logger.info(f"Displaying Dict content for {header} Done")
 
 def get_session(request):
     return request.session
