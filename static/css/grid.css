@@ -114,8 +114,8 @@
 
 }
 
-.spread-around{
-  
+.space-around{
+  justify-content: space-around;
 }
 .column {
   --columns: 12; /* number of columns in the grid system */
