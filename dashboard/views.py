@@ -2606,6 +2606,7 @@ def coupon_update(request, coupon_uuid=None):
         else:
             messages.error(request, _('Coupon not updated'))
             logger.error(f'Error on updated Coupon. Action requested by user \"{username}\"')
+            logger.error(form.errors)
     else:
         form = CouponForm(instance=coupon)
     context = {
