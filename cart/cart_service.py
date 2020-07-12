@@ -45,8 +45,9 @@ def clear_cart(user=None):
     if user and cart and isinstance(user, User):
         logger.debug(f"Cart - Clearing cart for user {user.username}")
         num_of_deleted_objects, deleted_objects = CartItem.objects.filter(cart=cart).delete()
+        CartModel.objects.filter(pk=cart.pk).update(coupon=None, amount=0, solded_price=0, quantity=0)
         logger.debug(f"Cart for user {user.username} has been clearded. {num_of_deleted_objects} Cartitems deleted")
-        cart, cart_empty = refresh_cart(cart)
+        cart.refresh_from_db()
     return cart
 
 
@@ -107,7 +108,10 @@ def update_cart(cart, cart_item=None, quantity=1):
 
 def remove_from_cart(cart, cart_item=None):
     deleted_count, delete_items = CartItem.objects.filter(id=cart_item.id, cart=cart).delete()
-    refresh_cart(cart)
+    if CartItem.objects.filter(cart=cart).exists():
+        refresh_cart(cart)
+    else:
+        clear_cart(cart.user)
     return deleted_count, delete_items
 
 def cart_items_count(user=None):
