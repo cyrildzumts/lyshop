@@ -69,7 +69,7 @@ class CartModel(models.Model):
     def get_reduction(self):
         r = 0
         if self.coupon:
-            r = self.amount * (self.coupon.reduction / 100.0) 
+            r = float(self.amount) * (self.coupon.reduction / 100.0) 
         return r
 
 
