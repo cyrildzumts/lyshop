@@ -1,5 +1,6 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
+{% load tz %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -58,7 +59,7 @@
                   <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="coupons" value="{{coupon.pk}}"><span class="checkbox-label"></span></label></td>
                   <td>{{coupon.name}}</td>
                   <td>{{coupon.reduction}}</td>
-                  <td>{{coupon.created_at}}</td>
+                  <td>{{coupon.created_at|localtime}}</td>
                   <td>{% if coupon.is_active %}
                     {% trans "Activated" %}
                   {% else %}
