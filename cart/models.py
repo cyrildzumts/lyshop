@@ -66,8 +66,11 @@ class CartModel(models.Model):
     def update_item(self, pk, quantity):
         pass
 
-
-
+    def get_reduction(self):
+        r = 0
+        if self.coupon:
+            r = self.amount * (coupon.reduction / 100.0) 
+        return r
 
 
 class CartItem(models.Model):
