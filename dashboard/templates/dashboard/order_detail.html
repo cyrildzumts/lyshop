@@ -27,22 +27,43 @@
 
 {% if can_view_order  %}
 <div class="container">
-        <div class="box">
+        <div class="mat-box">
                 <div class="title">
                     <span class="success">{% trans "Order" %}</span>
                 </div>
                 <div class="box-content">
                     <div class="entry">
-                        <span class="key">{% trans "User" %} :</span> <span class="value">{{order.user.get_full_name}}</span>
+                        <span class="key">{% trans "Customer" %} :</span> <span class="value">{{order.user.get_full_name}}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Amount" %} :</span> <span class="value">{{order.amount}} {% trans "XAF" %}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Shipping Price" %} :</span> <span class="value">{{order.shipping_price}} {% trans "XAF" %}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Reduction" %} :</span> <span class="value">{{order.get_reduction}} {% trans "XAF" %}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Solded Price" %} :</span> <span class="value">{{order.solded_price}} {% trans "XAF" %}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Total" %} :</span> <span class="value">{{order.total}} {% trans "XAF" %}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Payment Option" %} :</span> <span class="value">{{order.payment_option}}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Coupon" %} :</span> <span class="value">{{order.coupon}}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Status" %} :</span> <span class="value">{{order.status}}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Date" %} :</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Last Edit Date" %} :</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span>
                     </div>
                 </div>
         </div>

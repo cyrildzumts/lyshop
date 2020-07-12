@@ -54,7 +54,11 @@ class Order(models.Model):
     def get_delete_url(self):
         return reverse("dashboard:order-delete", kwargs={"order_uuid": self.order_uuid})
     
-
+    def get_reduction(self):
+        r = 0
+        if self.coupon:
+            r = float(self.amount) * (self.coupon.reduction / 100.0) 
+        return r
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='order_items', on_delete=models.CASCADE)
