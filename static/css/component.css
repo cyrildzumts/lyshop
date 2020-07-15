@@ -1400,6 +1400,7 @@ a {
 	margin: 4px 2px;
 }
 
+/*
 .form-group{
 	display: flex;
 	justify-content: right;
@@ -1408,6 +1409,7 @@ a {
 	padding: 0;
 	margin-bottom: 16px;
 }
+*/
 
 .form-group input, .form-group textarea, .form-group select{
 	/*width: 100%;*/
