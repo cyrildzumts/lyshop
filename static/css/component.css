@@ -282,7 +282,7 @@ label{
 	cursor: text;
 }
 
-.mat-input label input, .mat-input input, .form-group label, .form-group input{
+.mat-input label input, .mat-input input, .form-group input{
 	display: inline-block;
 	width: 100%;
 	text-align: left;
