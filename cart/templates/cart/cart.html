@@ -75,7 +75,7 @@
                         <div class="entry"><span class="key">{% trans "Number of items" %}</span><span class="js-cart-quantity value">{{cart.quantity}}</span></div>
                         {% if cart.coupon %}
                         <div class="entry"><span class="key">{% trans "Reduction" %}</span><span id="reduction" class="js-cart-reduction value">{{cart.get_reduction}} <span>{% trans "XAF" %}</span></span></div>
-                        <div class="entry"><span class="key">{% trans "Total" "(no reduction)" %}</span><div class="price right"><span id="total" class="js-cart-total value">{{cart.amount}}</span><span>{% trans "XAF" %}</span></div></div>
+                        <div class="entry"><span class="key">{% trans "Total" %}({% trans "no reduction" %})</span><div class="price right"><span id="total" class="js-cart-total value">{{cart.amount}}</span><span>{% trans "XAF" %}</span></div></div>
                         <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price right"><span id="solded-price" class="js-cart-solded-price value">{{cart.solded_price}}</span><span>{% trans "XAF" %}</span></div></div>
                         {% else %}
                         <div class="entry"><span class="key">{% trans "Reduction" %}</span><span id="reduction" class="js-cart-reduction value">0</span></div>
