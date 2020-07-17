@@ -12,11 +12,11 @@ from django.contrib.auth.models import User
 from django.db.models import F, Q, Count, Sum, FloatField
 from catalog import conf
 from catalog.models import ProductVariant, Product
-from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm, CouponForm
+from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm, CouponForm, CartItemQuantityUpdateForm
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from catalog import catalog_service
-from lyshop import settings
+from lyshop import settings, utils
 from http import HTTPStatus
 import json
 import logging
@@ -233,6 +233,69 @@ def ajax_cart_item_decrement(request, item_uuid):
 
         return JsonResponse(context)
 
+
+
+
+@login_required
+def ajax_cart_item_update_quantity(request):
+    logger.info(f"Ajax Cart item update requested by User \"{request.user}\"")
+    cart, created = CartModel.objects.get_or_create(user=request.user)
+    item = None
+    context = {
+        'success' : False
+    }
+    if request.method != 'POST':
+        context['error'] = 'Method not allowed. POST requets expected.'
+        context['status'] = False
+        return JsonResponse(context, status=HTTPStatus.METHOD_NOT_ALLOWED)
+
+    form = CartItemQuantityUpdateForm(utils.get_postdata(request))
+    if not form.is_valid():
+        context['error'] = 'Invalid Form'
+        context['status'] = False
+        logger.error(f"Cart item update quantity : Form error  \"{form.errors}\"")
+        return JsonResponse(context, status=HTTPStatus.BAD_REQUEST)
+    try:
+        item = CartItem.objects.filter(item_uuid=form.cleaned_data.get('item_uuid')).select_related().get()
+    except CartItem.DoesNotExist as e:
+        context['error'] = 'No Cart Item found.'
+        context['status'] = False
+        logger.info(f"Cart item update quantity : Cart Item not found.")
+        return JsonResponse(context, status=HTTPStatus.NOT_FOUND)
+
+
+    item_quantity = item.quantity
+    requested_quantity = form.cleaned_data.get('quantity')
+    updated_rows , item = cart_service.update_cart(cart, item, requested_quantity)
+    
+    if updated_rows == -1 :
+        context['error'] = f'Requested quantity \"{requested_quantity}\" not available.'
+        context['status'] = False
+        context['is_active'] = True
+        logger.info(f"Cart item update quantity : Requested quantity \"{requested_quantity}\" not available.")
+        return JsonResponse(context, status=HTTPStatus.NOT_ACCEPTABLE)
+    
+    if updated_rows == 0:
+        context['error'] = f'invalid quantity \"{requested_quantity}\" received.'
+        context['status'] = False
+        context['is_active'] = True
+        logger.error(f'invalid quantity \"{requested_quantity}\" received.')
+        return JsonResponse(context, status=HTTPStatus.NOT_ACCEPTABLE)
+
+    if updated_rows == 1:
+        cart.refresh_from_db()
+        item.refresh_from_db()
+        context['success'] = True
+        context['status'] = True
+        context['item_quantity'] = requested_quantity
+        context['item_total'] = item.total_price
+        context['total'] = cart.amount
+        context['solded_price'] = cart.solded_price
+        context['reduction'] = cart.get_reduction()
+        context['cart_quantity'] = cart.quantity
+        logger.info(f"Updated  Cart Item  \"{item}\" quantity from Cart \"{cart}\" to quantity {item.quantity}")
+        return JsonResponse(context, status=HTTPStatus.NOT_ACCEPTABLE)
+    
 
 @login_required
 def ajax_cart_item_delete(request, item_uuid):

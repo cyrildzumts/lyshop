@@ -136,6 +136,46 @@ function update_cart_item(item, to_update, plus_or_minus){
     });
 }
 
+function update_cart_item_quantity(item_uuid, quantity, target){
+    console.log("updating item ", item_uuid);
+    var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]');
+    var data = {};
+    data['csrfmiddlewaretoken'] = csrfmiddlewaretoken.val();
+    data['quantity'] = quantity;
+    data['action'] = 'update';
+    data['item_uuid'] = item_uuid;
+
+    var option = {
+        type:'POST',
+        dataType: 'json',
+        url : '/cart/ajax-cart-item-update/',
+        data : data
+    }
+    add_promise = ajax(option).then(function(response){
+        console.log(response);
+
+        if(response['item_quantity'] == 0){
+            $('#' + target.data('parent')).fadeOut('slow').remove();
+        }else{
+            target.val(response['item_quantity']);
+            $('#' + target.data('total')).html(response['item_total'].replace('.', ','));
+        }
+        if(response['solded_price']){
+            $('#solded_price').html(response['solded_price'].replace('.', ','));
+        }
+        $('#reduction').html(response['reduction'].replace('.', ','));
+        $('#total').html(response['total'].replace('.', ','));
+        $('.js-cart-quantity').html(response['cart_quantity']);
+        document.getElementById('cart-badge').textContent = response['cart_quantity'];
+        
+    }, function(reason){
+        console.error("Error on updating cart item \"%s\"",data['item_uuid']);
+        console.error("Error Response Text : \"%s\"", reason.responseText)
+        console.error(reason);
+    });
+}
+
+
 var Tabs = (function(){
     function Tabs(){
         this.currentTab     = 0;
@@ -1583,6 +1623,23 @@ slider.init();
         obj['item_uuid'] = item.data('item');
         var plus_or_minus = item.data('action') == "increment";
         update_cart_item(item, obj, plus_or_minus);
+    });
+    $('.js-cart-item-quantity').on('keypress', function(e){
+        if(e.which != 13){
+            return;
+        }
+        var item = $(this);
+        /*
+        var obj = {};
+        obj['action'] = 'quantity';
+        obj['target'] = item;
+        obj['update'] = $('#' + item.data('update'));
+        obj['parent'] = $('#' + item.data('parent'));
+        obj['cart_total'] = $('.js-cart-total');
+        obj['cart_quantity'] = $('.js-cart-quantity');
+        obj['item_uuid'] = item.data('item');
+        */
+        update_cart_item_quantity(item.data('item'), item.data('quantity'), item);
     });
     $('.js-add-coupon').on('click', add_to_coupon);
     

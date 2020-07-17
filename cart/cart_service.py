@@ -91,9 +91,18 @@ def update_cart(cart, cart_item=None, quantity=1):
         return 0, False
 
     if quantity <= cart_item.product.quantity:
+        item_old_quantity = cart_item.quantity
+        item_old_total_price = cart_item.total_price
         updated_rows = CartItem.objects.filter(id=cart_item.id, is_active=True).update(quantity=quantity, total_price=F('unit_price') * quantity)
         cart_item.refresh_from_db()
-        refresh_cart(cart)
+        cart_quantity = cart.quantity - item_old_quantity + quantity
+        cart_amount = cart.amount - item_old_total_price + cart_item.total_price
+        cart_solded_price = 0
+        reduction = cart.get_reduction()
+        if reduction:
+            cart_solded_price = float(cart_amount) - reduction
+        CartModel.objects.filter(pk=cart.pk).update(quantity=cart_quantity, amount=cart_amount, solded_price=cart_solded_price)
+        #refresh_cart(cart)
         logger.info(f'update_cart : {updated_rows} row(s) in Cart Item updated quantity field to {quantity}')
         return updated_rows, cart_item
 
@@ -107,11 +116,22 @@ def update_cart(cart, cart_item=None, quantity=1):
 
 
 def remove_from_cart(cart, cart_item=None):
+    logger.info(f"Removing Cart Item \"{cart_item}\" from Cart \"{cart}\"")
+    item_quantity = cart_item.quantity
+    item_total_price = cart_item.total_price
+    old_card_quantity = cart.quantity
     deleted_count, delete_items = CartItem.objects.filter(id=cart_item.id, cart=cart).delete()
-    if CartItem.objects.filter(cart=cart).exists():
-        refresh_cart(cart)
-    else:
-        clear_cart(cart.user)
+    if deleted_count:
+        logger.info(f"Removed Cart Item \"{cart_item}\" from Cart \"{cart}\"")
+        if cart_item.quantity == cart.quantity:
+            CartModel.objects.filter(pk=cart.pk).update(quantity=0, amount=0, solded_price=0)
+            logger.info(f"Cleared Cart \"{cart}\"")
+        else:
+            solded_price = cart.amount
+            if cart.coupon:
+                solded_price = float(cart.amount) - cart.get_reduction()
+            CartModel.objects.filter(pk=cart.pk).update(quantity=F('quantity') - cart_item.quantity, amount=F('amount')-cart_item.total_price, solded_price=solded_price)
+            logger.info(f"Updated Cart \"{cart}\"")
     return deleted_count, delete_items
 
 def cart_items_count(user=None):

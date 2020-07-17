@@ -10,6 +10,7 @@ urlpatterns = [
     path('add-to-cart/', views.add_to_cart, name='cart-add'),
     path('ajax-add-coupon/', views.ajax_add_coupon, name='cart-add-coupon'),
     path('ajax-add-to-cart/', views.ajax_add_to_cart, name='cart-add-ajax'),
+    path('ajax-cart-item-update/', views.ajax_cart_item_update_quantity, name='cart-item-update-ajax'),
     path('ajax-cart-item/<uuid:item_uuid>/<str:action>/', views.ajax_cart_item_update, name='ajax-cart-item-update'),
     path('cart-update/<uuid:item_uuid>/', views.cart_update, name='cart-update'),
     path('cart-clear/', views.cart_clear, name='cart-clear'),

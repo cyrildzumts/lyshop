@@ -71,6 +71,7 @@ class CartModel(models.Model):
         if self.coupon:
             r = float(self.amount) * (self.coupon.reduction / 100.0) 
         return r
+    
 
 
 class CartItem(models.Model):

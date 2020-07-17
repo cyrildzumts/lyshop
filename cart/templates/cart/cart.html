@@ -35,13 +35,9 @@
                                 <div>
                                     <span class="fas fa-minus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="decrement" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span> 
                                     <div class="custom-input js-custom-input"> 
-                                        <span class="input-value">{{item.quantity}}</span>
                                         <div class="input-edit-wrapper">
-                                            <span class="js-edit input-edit"><i class="fas fa-pen"></i></span> 
-                                            <input data-parent="item-{{item.id}}" type="text" name="quantity" id="item-quantity-{{item.id}}" value="{{item.quantity}}">
-                                            <span class="js-edit-close input-edit-close"><i class="fas fa-times"></i></span>
+                                            <input class="js-cart-item-quantity" data-total="item-total-price-{{item.id}}" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" type="text" name="quantity" id="item-quantity-{{item.id}}" value="{{item.quantity}}">
                                         </div>
-                                        
                                     </div> 
                                     <span class="fas fa-plus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="increment" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span>
                                 </div>
@@ -79,7 +75,8 @@
                         <div class="entry"><span class="key">{% trans "Number of items" %}</span><span class="js-cart-quantity value">{{cart.quantity}}</span></div>
                         {% if cart.coupon %}
                         <div class="entry"><span class="key">{% trans "Reduction" %}</span><span id="reduction" class="js-cart-reduction value">{{cart.get_reduction}} <span>{% trans "XAF" %}</span></span></div>
-                        <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price right"><span id="total" class="js-cart-total value">{{cart.solded_price}}</span><span>{% trans "XAF" %}</span></div></div>
+                        <div class="entry"><span class="key">{% trans "Total" "(no reduction)" %}</span><div class="price right"><span id="total" class="js-cart-total value">{{cart.amount}}</span><span>{% trans "XAF" %}</span></div></div>
+                        <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price right"><span id="solded-price" class="js-cart-solded-price value">{{cart.solded_price}}</span><span>{% trans "XAF" %}</span></div></div>
                         {% else %}
                         <div class="entry"><span class="key">{% trans "Reduction" %}</span><span id="reduction" class="js-cart-reduction value">0</span></div>
                         <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price right"><span id="total" class="js-cart-total value">{{cart.amount}}</span><span>{% trans "XAF" %}</span></div></div>
