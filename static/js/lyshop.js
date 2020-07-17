@@ -1575,6 +1575,7 @@ slider.init();
         $('.js-revealable', target).hide();
     });
     $('.js-add-to-cart').on('click', function(event){
+        console.log("add cart item btn");
         var target = $(event.target);
         var product = {
             id : target.data('id'),
