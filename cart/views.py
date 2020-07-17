@@ -270,6 +270,7 @@ def ajax_cart_item_update_quantity(request):
     
     if updated_rows == -1 :
         context['error'] = f'Requested quantity \"{requested_quantity}\" not available.'
+        context['item_quantity'] = item.quantity
         context['status'] = False
         context['is_active'] = True
         logger.info(f"Cart item update quantity : Requested quantity \"{requested_quantity}\" not available.")
@@ -277,6 +278,7 @@ def ajax_cart_item_update_quantity(request):
     
     if updated_rows == 0:
         context['error'] = f'invalid quantity \"{requested_quantity}\" received.'
+        context['item_quantity'] = item.quantity
         context['status'] = False
         context['is_active'] = True
         logger.error(f'invalid quantity \"{requested_quantity}\" received.')

@@ -173,9 +173,11 @@ function update_cart_item_quantity(item_uuid, quantity, target){
         document.getElementById('cart-badge').textContent = response['cart_quantity'];
         
     }, function(reason){
+
         console.error("Error on updating cart item \"%s\"",data['item_uuid']);
         console.error("Error Response Text : \"%s\"", reason.responseText)
         console.error(reason);
+        target.val(reason['item_quantity']);
     });
 }
 

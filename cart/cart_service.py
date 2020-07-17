@@ -88,7 +88,7 @@ def update_cart(cart, cart_item=None, quantity=1):
     
     if quantity < 0:
         logger.warning('update_cart : quantity must be 0 or a positive number')
-        return 0, False
+        return 0, cart_item
 
     if quantity <= cart_item.product.quantity:
         item_old_quantity = cart_item.quantity
@@ -110,9 +110,9 @@ def update_cart(cart, cart_item=None, quantity=1):
         if cart_item.product.quantity == 0 and cart_item.product.is_active:
             CartItem.objects.filter(id=cart_item.id).update(is_active=False)
         logger.warning('update_cart : The required quantity is not available')
-        return -1, False
+        return -1, cart_item
 
-    return None, False
+    return None, cart_item
 
 
 def remove_from_cart(cart, cart_item=None):
