@@ -1574,6 +1574,7 @@ slider.init();
         var target = $(this).data('target');
         $('.js-revealable', target).hide();
     });
+    /*
     $('.js-add-to-cart').on('click', function(event){
         console.log("add cart item btn");
         var target = $(event.target);
@@ -1584,6 +1585,7 @@ slider.init();
         }
         add_to_cart(product);
     });
+    */
 
     $('#add-cart-form').submit(function(event){
         console.log("submiting cart form");
