@@ -160,10 +160,14 @@ function update_cart_item_quantity(item_uuid, quantity, target){
             target.val(response['item_quantity']);
             $('#' + target.data('total')).html(response['item_total'].replace('.', ','));
         }
-        if(response['solded_price']){
+
+        if(response['reduction']){
+            $('#reduction').html(response['reduction'].replace('.', ','));
             $('#solded_price').html(response['solded_price'].replace('.', ','));
+        }else{
+            $('#reduction').html(response['reduction']);
         }
-        $('#reduction').html(response['reduction'].replace('.', ','));
+        
         $('#total').html(response['total'].replace('.', ','));
         $('.js-cart-quantity').html(response['cart_quantity']);
         document.getElementById('cart-badge').textContent = response['cart_quantity'];
