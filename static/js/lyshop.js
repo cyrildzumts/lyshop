@@ -1639,7 +1639,7 @@ slider.init();
         obj['cart_quantity'] = $('.js-cart-quantity');
         obj['item_uuid'] = item.data('item');
         */
-        update_cart_item_quantity(item.data('item'), item.data('quantity'), item);
+        update_cart_item_quantity(item.data('item'), item.val(), item);
     });
     $('.js-add-coupon').on('click', add_to_coupon);
     
