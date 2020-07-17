@@ -294,7 +294,7 @@ def ajax_cart_item_update_quantity(request):
         context['reduction'] = cart.get_reduction()
         context['cart_quantity'] = cart.quantity
         logger.info(f"Updated  Cart Item  \"{item}\" quantity from Cart \"{cart}\" to quantity {item.quantity}")
-        return JsonResponse(context, status=HTTPStatus.NOT_ACCEPTABLE)
+        return JsonResponse(context)
     
 
 @login_required
