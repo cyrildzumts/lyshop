@@ -23,11 +23,10 @@ class CartItemUpdateForm(forms.ModelForm):
         model = CartItem
         fields = ['product', 'quantity']
 
-class CartItemQuantityUpdateForm(forms.ModelForm):
+class CartItemQuantityUpdateForm(forms.Form):
+    item_uuid = forms.UUIDField()
+    quantity = forms.IntegerField()
 
-    class Meta:
-        model = CartItem
-        fields = ['item_uuid', 'quantity']
 
 
 class AddCartForm(forms.Form):
