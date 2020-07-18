@@ -118,6 +118,7 @@ def ajax_add_to_cart(request):
             variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid)
             result, cart = cart_service.add_to_cart(cart, variant)
             if result:
+                cart.refresh_from_db()
                 context['success'] = True
                 context['status'] = True
                 context['quantity'] = cart.quantity

@@ -69,15 +69,17 @@ def add_to_cart(cart, product_variant):
     if queryset.exists():
         logger.info('Product already present in the cart.')
         cart_item = queryset.first()
-        updated_rows, cart_sitem = update_cart(cart, cart_item, cart_item.quantity + 1)
-        return cart_item, cart
+        updated_rows, cart_item = update_cart(cart, cart_item, cart_item.quantity + 1)
+        if updated_rows:
+            return cart_item, cart
+        else:
+            return None, cart
 
     cart_item = CartItem.objects.create(cart=cart, product=product_variant, quantity=1, unit_price=product_variant.price, total_price=product_variant.price)
     solded_price = 0
     if cart.coupon:
         solded_price = get_cart_solded_price(cart.amount + cart_item.total_price, cart.coupon.reduction)
     CartModel.objects.filter(pk=cart.pk).update(quantity=F('quantity') + 1, amount=F('amount') + cart_item.total_price, solded_price=solded_price)
-    cart.refresh_from_db()
     logger.info('Product added into the cart')
     return cart_item, cart
 
@@ -109,11 +111,9 @@ def update_cart(cart, cart_item=None, quantity=1):
         cart_quantity = cart.quantity - item_old_quantity + quantity
         cart_amount = cart.amount - item_old_total_price + cart_item.total_price
         cart_solded_price = 0
-        reduction = cart.get_reduction()
-        if reduction:
-            cart_solded_price = float(cart_amount) - reduction
+        if cart.coupon:
+            cart_solded_price = get_cart_solded_price(float(cart_amount), cart.coupon.reduction)
         CartModel.objects.filter(pk=cart.pk).update(quantity=cart_quantity, amount=cart_amount, solded_price=cart_solded_price)
-        #refresh_cart(cart)
         logger.info(f'update_cart : {updated_rows} row(s) in Cart Item updated quantity field to {quantity}')
         return updated_rows, cart_item
 
