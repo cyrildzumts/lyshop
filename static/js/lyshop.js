@@ -831,8 +831,6 @@ slider.init();
     var collapsible = new Collapsible();
     collapsible.init();
     
-    var modal = new Modal({transaction_factory: transaction, factories: {transaction : transaction, cases : cases, notify : notify}});
-
     $('.js-grid-enable').on('click', function(){
         $(this).toggleClass('active');
         $('body, body > header.header').toggleClass('baseline-16');
