@@ -120,7 +120,7 @@ def ajax_add_to_cart(request):
             if result:
                 context['success'] = True
                 context['status'] = True
-                context['count'] = cart.quantity
+                context['quantity'] = cart.quantity
                 return JsonResponse(context)
 
         else:

@@ -11,7 +11,7 @@ function add_to_cart(product){
         console.log("Product %s added into cart", product.name);
         console.log(response);
         //$("#cart-badge").text(response.count)
-        document.getElementById('cart-badge').textContent = response.count;
+        document.getElementById('cart-badge').textContent = response.quantity;
     }, function(reason){
         console.error("Error on adding Product %s into cart", product.name);
         console.error(reason);
@@ -52,7 +52,7 @@ function form_submit_add_cart(){
     var inputs = form.serializeArray();
 
     inputs.forEach(function(v,index){
-        console.log("name : %s - value : %s", v.name, v.value)
+        console.debug("name : %s - value : %s", v.name, v.value)
         data[v.name] = v.value;
     });    
     var option = {
@@ -69,7 +69,7 @@ function form_submit_add_cart(){
         console.log("Product added into cart");
         console.log(response);
         //$("#cart-badge").text(response.count)
-        document.getElementById('cart-badge').textContent = response.count;
+        document.getElementById('cart-badge').textContent = response.quantity;
     }, function(reason){
         console.error("Error on adding Product into cart");
         console.error(reason);

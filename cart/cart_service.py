@@ -51,6 +51,13 @@ def clear_cart(user=None):
     return cart
 
 
+def get_cart_solded_price(amount=0.0, percent=0):
+    solded_price = None
+    if amount and percent:
+        solded_price = float(amount) *((100 - percent) / 100.0)
+    return solded_price
+
+
 def add_to_cart(cart, product_variant):
     """
 
@@ -66,7 +73,11 @@ def add_to_cart(cart, product_variant):
         return cart_item, cart
 
     cart_item = CartItem.objects.create(cart=cart, product=product_variant, quantity=1, unit_price=product_variant.price, total_price=product_variant.price)
-    refresh_cart(cart)
+    solded_price = 0
+    if cart.coupon:
+        solded_price = get_cart_solded_price(cart.amount + cart_item.total_price, cart.coupon.reduction)
+    CartModel.objects.filter(pk=cart.pk).update(quantity=F('quantity') + 1, amount=F('amount') + cart_item.total_price, solded_price=solded_price)
+    cart.refresh_from_db()
     logger.info('Product added into the cart')
     return cart_item, cart
 
