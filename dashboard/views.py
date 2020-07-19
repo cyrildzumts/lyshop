@@ -640,7 +640,7 @@ def product_image_delete(request, image_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     
-    if request.method is not "POST":
+    if request.method != "POST":
         raise SuspiciousOperation('Bad request')
 
     context = {}
@@ -1189,7 +1189,7 @@ def brand_detail(request, brand_uuid=None):
     template_name = 'dashboard/brand_detail.html'
     page_title = _('Brand Detail')
     
-    if request.method is not "GET":
+    if request.method != "GET":
         raise SuspiciousOperation('Bad request')
 
     brand = get_object_or_404(models.Brand, brand_uuid=brand_uuid)
@@ -1251,7 +1251,7 @@ def brand_delete(request, brand_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    if request.method is not "POST":
+    if request.method != "POST":
         raise SuspiciousOperation('Bad request')
 
     brand = get_object_or_404(models.Brand, brand_uuid=brand_uuid)
@@ -2634,7 +2634,7 @@ def coupon_delete(request, coupon_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    if request.method is not "POST":
+    if request.method != "POST":
         raise SuspiciousOperation('Bad request')
 
     coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid)
