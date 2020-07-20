@@ -16,11 +16,11 @@
           
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>
                     {% if can_change_product %}
-                    <a class="mat-button mat-button-default warn" href="{{variant.get_update_url}}"><span class="fas fa-pen"></span><span class="">{% trans "Edit" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{{variant.get_update_url}}"><span class="fas fa-pen icon"></span><span class="">{% trans "Edit" %}</span></a>
                     {% endif %}
                     {% if can_delete_product %}
                     <form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
-                        <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></button>
+                        <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash icon"></span><span class="">{% trans "Delete" %}</span></button>
                         {% comment %} <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a> {% endcomment %}
                     </form>
                     {% endif %}
@@ -86,8 +86,8 @@
               <h4>{% trans "Product Info" %}</h4>
             </div>
             <div class="actions">
-              <span class="mat-button js-add-attr-btn js-dialog-open" data-target="#attr-dialog"><i class="fas fa-plus"></i>{% trans "Add Attribute" %}</span>
-              <span class="mat-button js-reveal-btn" data-target="#variant-attrs"><i class="fas fa-pen"></i>{% trans "Edit Attribute" %}</span>
+              <span class="mat-button js-add-attr-btn js-dialog-open" data-target="#attr-dialog"><i class="fas fa-plus icon"></i> <span>{% trans "Add Attribute" %}</span></span>
+              <span class="mat-button js-reveal-btn" data-target="#variant-attrs"><i class="fas fa-pen icon"></i><span>{% trans "Edit Attribute" %}</span></span>
             </div>
             <div class="mat-box-content">
               <ul id="variant-attrs" class="mat-list">
