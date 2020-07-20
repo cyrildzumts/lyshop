@@ -1,5 +1,6 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
+{% load static %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -182,4 +183,5 @@ var attr_template = {
 ]
 };
 </script>
+<script  type="application/javascript" src="{% static 'js/attributes.js' %}"></script> 
 {% endblock SCRIPT %}
