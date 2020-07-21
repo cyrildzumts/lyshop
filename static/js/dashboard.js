@@ -107,11 +107,39 @@ var PermissionGroupManager = (function(){
 })();
 
 
+var JSFilter = (function(){
+    function JSFilter(){
+        console.log("creating JSFilter instance");
+        this.init();
+        console.log("JSFilter instance created");
+    };
+
+    JSFilter.prototype.init = function(){
+        console.log("JSFilter instance initializing");
+        $('.js-jsfilter-input, .js-list-filter').on('keyup', function(event){
+            event.stopPropagation();
+            var value = this.value.trim().toLowerCase();
+            var target_container = this.getAttribute('data-target');
+            var el = this.getAttribute('data-element');
+            $(target_container + " " +  el).filter(function(){
+                $(this).toggle(this.innerHTML.toLowerCase().includes(value));
+            });
+        });
+
+        console.log("JSFilter instance initialized");
+    };
+
+
+    return JSFilter;
+})();
+
+
 $(document).ready(function(){
     var permissionManager = new PermissionGroupManager();
-    
+    var jsfilter = new JSFilter();
     var group = new Group();
     permissionManager.init();
+    jsfilter.init();
     group.init();
 
     $('.js-user-selector').on('click', 'li', function(){
