@@ -53,6 +53,12 @@
                                 <span class="key">{% trans "Last login" %}</span> <span class="value">{{user_instance.last_login|date:"F j, Y"}}</span>
                         </div>
                 </div>
+                <div class="actions">
+                        <form action="{% url 'dashboard:generate-token' %}" method="POST">{% csrf_token %}
+                                <input type="hidden" name="user" value="{{user_instance.pk}}">
+                                <button type="submit"><i class="fas fa-key"></i><span>{% trans "Create Token" %}</span></button>
+                        </form>
+                </div>
                 
         </div>
         {% if user_instance.account %}
