@@ -13,7 +13,7 @@
             <div class="col-m-12 col-9">
                 <div class="banner--actions">
                     {% if can_add_brand %}
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:brand-create'%}"> {% trans "Add new Brand" %}</a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:brand-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "Add new Brand" %}</span></a>
                     {% endif %}
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
                         
@@ -38,7 +38,7 @@
         <form action="{% url 'dashboard:brands-delete' %}" method="POST">{% csrf_token %}
         <table id="brand-list" class="mat-table js-filter-table">
             <div class="actions">
-                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled>{% trans "Delete Selected" %}</button>
+                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-remove"></i> <span>{% trans "Delete Seleted" %}</span></button>
             </div>
           <thead>
                   

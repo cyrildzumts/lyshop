@@ -18,7 +18,7 @@
     {% if can_add_user %}
     <a class="mat-button mat-button-default" href="{% url 'dashboard:create-user' %}"> <i class="fas fa-user-plus icon"></i><span>{% trans "New User" %}</span></a>
     {% endif %}
-    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
+    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> <i class="fas fa-user-plus icon"></i><span>{% trans "Dashboard" %}</span></a>
   </div>
 </div>
 

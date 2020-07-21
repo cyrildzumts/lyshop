@@ -14,7 +14,7 @@
             <div class="col col-9">
                 <div class="banner--actions">
                     {% if can_add_category %}
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:category-create'%}"> {% trans "Add new Category" %}</a>{% endif %}
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:category-create'%}"> <i class="fas fa-plus icon"></i> <span>{% trans "Add new Category" %}</span> </a>{% endif %}
                     
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
                         
