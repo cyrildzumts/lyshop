@@ -5,16 +5,42 @@
 {% else %}
 
 {% block HEADER_BANNER %}
-        {% block BANNER_TITLE %}
-                <h4>{% trans "PAY REPORT" %}</h4>
-        {% endblock BANNER_TITLE %}
+<div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "REPORTS" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col-m-12 col-9">
+                <div class="banner--actions">
+                
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+                        
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
 {% endblock HEADER_BANNER %}
 
 {% block MAIN_CONTENT %}
 <div class="container">
-    <div id="reports" class="container">
-
+    <div class="col-m-12 col-9">
+        <div id="reports" class="container">
+                {% if reports %}
+                
+                {% else %}
+                <div class="warn">
+                        {% trans "There is no report now." %}
+                </div>
+                {% endif %}
+        </div>
     </div>
+    
 </div>
 {% endblock MAIN_CONTENT %}
 {% endif %}
