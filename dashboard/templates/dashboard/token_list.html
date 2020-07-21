@@ -12,7 +12,10 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
-                    
+                    {% if can_generate_token %}
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:generate-token' %}"><i class="fas fa-plus icon"></i><span>{% trans "Add User Token" %}</span></a>
+                    {% endif %}
+
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>
                     
                         

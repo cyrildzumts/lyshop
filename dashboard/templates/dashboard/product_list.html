@@ -12,10 +12,10 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
                     {% if can_add_product %}
-                    <a class="mat-button mat-button-outlined" href="{% url 'dashboard:product-create'%}"> {% trans "Add new Product" %}</a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:product-create'%}"> {% trans "Add new Product" %}</a>
                     {% endif %}
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
                         
                 </div><!--End of Banner-Actions-->
             </div><!--End of Responsive-->

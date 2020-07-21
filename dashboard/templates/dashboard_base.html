@@ -51,6 +51,7 @@
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:home'%}">{% trans "Dashboard" %}</a></li>
                               {% if can_view_group %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:groups'%}">{% trans "Groups" %}</a></li>{% endif %}
                               {% if can_view_brand %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:brands'%}">{% trans "Brands" %}</a></li>{% endif %}
+                              {% if can_view_category %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}">{% trans "Categories" %}</a></li>{% endif %}
                               {% if can_view_coupon %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:coupons'%}">{% trans "Coupons" %}</a></li>{% endif %}
                               {% if can_view_product %} 
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
@@ -70,7 +71,6 @@
                                     <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}">{% trans "Users" %}</a></li>
                                     <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:tokens' %}">{% trans "Token" %}</a></li>
                               {% endif %}
-                              {% if can_view_category %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}">{% trans "Categories" %}</a></li>{% endif %}
                               {% if can_generate_token %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:generate-token' %}">{% trans "Token AUTH API" %}</a></li>{% endif %}
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'accounts:logout'%}">{% trans "Logout" %}</a></li>
                   </ul>

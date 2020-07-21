@@ -13,10 +13,10 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
                     {% if can_add_coupon %}
-                    <a class="mat-button mat-button-outlined" href="{% url 'dashboard:coupon-create'%}"> {% trans "Add new Coupon" %}</a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:coupon-create'%}"> {% trans "Add new Coupon" %}</a>
                     {% endif %}
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
                         
                 </div><!--End of Banner-Actions-->
             </div><!--End of Responsive-->
