@@ -10,10 +10,9 @@
                 <h3><span>{% trans "Permission" %}</span> - <span>{{permission.name}}</span></h3>
              </div>
              <div class="row actions">
-                <a class="mat-button mat-button-text" href="{% url 'dashboard:permissions' %}"><i class="fas fa-arrow-left"></i> <span>{% trans "Go Back" %}</span></a>
-                <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>
-                {% if can_delete_permission %}<a class="mat-button mat-button-text danger" href="{% url 'dashboard:permission-delete' permission.pk %}"><i class="far fa-trash-alt"></i><span>{% trans "Delete" %}</span></a>{% endif %}
-                {% if can_change_permission %}<a class="mat-button mat-button-text" href="{% url 'dashboard:permission-update' group.pk %}"><i class="far fa-edit"></i><span>{% trans "Edit" %}</span></a>{% endif %}
+                {% if can_delete_permission %}<a class="mat-button mat-button-text danger" href="{% url 'dashboard:permission-delete' permission.pk %}"><i class="fas fa-trash-alt"></i><span>{% trans "Delete" %}</span></a>{% endif %}
+                {% if can_change_permission %}<a class="mat-button mat-button-text" href="{% url 'dashboard:permission-update' group.pk %}"><i class="fas fa-pen"></i><span>{% trans "Edit" %}</span></a>{% endif %}
+                <a class="mat-button mat-button-text" href="{% url 'dashboard:permissions' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
              </div>
              <div class="box-content">
                 {% if permission.groups %}

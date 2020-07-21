@@ -13,11 +13,11 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
-                    {% if can_delete_category %}<a class="mat-button mat-button-text" href="{{category.get_delete_url}}"> {% trans "Delete" %} </a>{% endif %}
-                    {% if can_change_category %}<a class="mat-button mat-button-text" href="{{category.get_update_url}}"> {% trans "Edit" %} </a>{% endif %}
+                    {% if can_change_category %}<a class="mat-button mat-button-text" href="{{category.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>{% endif %}
                     {% if can_add_category %}<a class="mat-button mat-button-text" href="{% url 'dashboard:category-create' %}"> {% trans "Add new Category" %} </a>{% endif %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}"> {% trans "Categories" %} </a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
+                    {% if can_delete_category %}<a class="mat-button mat-button-text" href="{{category.get_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span> </a>{% endif %}
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}"> <i class="fas icon"></i><span>{% trans "Categories" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> <i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     
                         
                 </div><!--End of Banner-Actions-->
