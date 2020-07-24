@@ -1,6 +1,8 @@
 
 APP_PREFIX = 'dashboard.'
 
+MAX_RECENT = 5
+
 DASHBOARD_VIEW_PERM = 'can_view_dashboard'
 TOKEN_GENERATE_PERM = 'can_generate_token'
 

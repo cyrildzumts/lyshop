@@ -15,10 +15,11 @@ from django.http import HttpResponse
 from django.urls import reverse, resolve
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidden
 from django.contrib import messages
-from django.db.models import F, Q
+from django.db.models import F, Q, Count, Sum
 from django.utils import timezone
 from django.forms import formset_factory, modelformset_factory
 from dashboard.permissions import PermissionManager, get_view_permissions
+from dashboard import Constants
 from rest_framework.authtoken.models import Token
 from lyshop import utils, settings
 from dashboard.forms import (AccountForm, GroupFormCreation, PolicyForm, PolicyGroupForm, 
@@ -1425,17 +1426,25 @@ def reports(request):
     if not can_access_dashboard:
         logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-    can_view_user = PermissionManager.user_can_view_user(request.user)
-    if not can_view_user:
+    can_view_order = PermissionManager.user_can_view_order(request.user)
+    if not can_view_order:
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
     context = {}
-    queryset = User.objects.all()
+    qs_orders = Order.objects.all()
+    qs_users = User.objects.all()
+    qs_products = ProductVariant.objects.filter(is_active=True)
+    qs_total_product = ProductVariant.objects.aggregate(product_count=Sum('quantity'))
     template_name = "dashboard/reports.html"
     page_title = _("Dashboard Reports") + " - " + settings.SITE_NAME
     
     context['page_title'] = page_title
+    context['recent_orders'] = qs_orders[:Constants.MAX_RECENT]
+    context['orders'] = qs_orders
+    context['users'] = qs_users
+    context['products'] = qs_products
+    context['product_count'] = qs_total_product['product_count']
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
         

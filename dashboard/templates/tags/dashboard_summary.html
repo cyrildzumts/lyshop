@@ -3,29 +3,18 @@
 <div class="container">
 
         <div id="metrics" class="row flex-wrap">
-                <div id="payments" class="metric mat-box">
-                        <div class="metric-title">{% trans "Payments" %}</div>
-                        <span class="metric-value">0</span>
-                </div>
+
                 <div id="transfers" class="metric mat-box">
-                        <div class="metric-title">{% trans "Transfers" %}</div>
-                        <span class="metric-value">0</span>
+                        <div class="metric-title">{% trans "Orders" %}</div>
+                        <span class="metric-value">{{orders.count}}</span>
                 </div>
                 <div id="p_requests" class="metric mat-box">
-                        <div class="metric-title">{% trans "Payment Requests" %}</div>
-                        <span class="metric-value">0</span>
+                        <div class="metric-title">{% trans "Products" %}</div>
+                        <span class="metric-value">{{product_count}}</span>
                 </div>
                 <div id="users" class="metric mat-box">
                         <div class="metric-title">{% trans "Users" %}</div>
-                        <span class="metric-value">0</span>
-                </div>
-                <div id="services" class="metric mat-box">
-                        <div class="metric-title">{% trans "Services" %}</div>
-                        <span class="metric-value">0</span>
-                </div>
-                <div id="vouchers" class="metric mat-box">
-                        <div class="metric-title">{% trans "Vouchers" %}</div>
-                        <div class="metric-value"><span class="sold">0</span><i class="separator-ht"></i><span class="total">0</span></div>
+                        <span class="metric-value">{{users.count}}</span>
                 </div>
         </div>
   </div>
