@@ -38,6 +38,7 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
 from cart.models import Coupon
 from cart.forms import CouponForm
 from catalog import models
+from dashboard import analytics
 import json
 import logging
 
@@ -1433,6 +1434,7 @@ def reports(request):
 
     context = {}
     qs_orders = Order.objects.all()
+    currents_orders = analytics.get_orders()
     qs_users = User.objects.all()
     qs_products = ProductVariant.objects.filter(is_active=True)
     qs_total_product = ProductVariant.objects.aggregate(product_count=Sum('quantity'))
@@ -1442,6 +1444,7 @@ def reports(request):
     context['page_title'] = page_title
     context['recent_orders'] = qs_orders[:Constants.MAX_RECENT]
     context['orders'] = qs_orders
+    context['current_orders'] = currents_orders
     context['users'] = qs_users
     context['products'] = qs_products
     context['product_count'] = qs_total_product['product_count']
