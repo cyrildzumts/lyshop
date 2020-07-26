@@ -1,7 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.permissions import BasePermission, IsAuthenticated
 
-
 from api.serializers import ( 
     Account, AccountSerializer, BrandSerializer, ProductVariantSerializer, ProductSerializer, ProductAttributeSerializer,
     CategorySerializer, CartItemSerializer, OrderSerializer, OrderItemSerializer,
@@ -9,26 +8,24 @@ from api.serializers import (
  )
 
 
-
-
  class AccountViewSet(viewsets.ReadOnlyModelViewSet):
-     queryset = AccountSerializer.Meta.model.objects.all()
-     serializer_class = AccountSerializer
-     #permission_classes = [IsAuthenticated]
+    queryset = AccountSerializer.Meta.model.objects.all()
+    serializer_class = AccountSerializer
+    #permission_classes = [IsAuthenticated]
     
 
 
  class BrandViewSet(viewsets.ReadOnlyModelViewSet):
-     queryset = BrandSerializer.Meta.model.objects.all()
-     serializer_class = BrandSerializer
-     #permission_classes = [IsAuthenticated]
+    queryset = BrandSerializer.Meta.model.objects.all()
+    serializer_class = BrandSerializer
+    #permission_classes = [IsAuthenticated]
 
 
 
  class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
-     queryset = CategorySerializer.Meta.model.objects.all()
-     serializer_class = CategorySerializer
-     #permission_classes = [IsAuthenticated]
+    queryset = CategorySerializer.Meta.model.objects.all()
+    serializer_class = CategorySerializer
+    #permission_classes = [IsAuthenticated]
     
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
