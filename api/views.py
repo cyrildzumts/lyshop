@@ -83,7 +83,7 @@ def analytics_data(request):
     logger.info(f"Report data requested by user \"{request.user.username}\"")
     response_status = status.HTTP_200_OK
     try:
-        data{
+        data = {
             'report' : analytics.report_orders_for_year()
         }
     except ValueError as e:
