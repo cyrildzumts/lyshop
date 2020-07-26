@@ -38,7 +38,7 @@ class Order(models.Model):
     payment_option = models.IntegerField(default=commons.PAY_AT_ORDER)
     coupon = models.ForeignKey("cart.Coupon", related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
     order_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-
+    DEFAULT_FIELDS = ['user', 'amount', 'quantity', 'created_at', 'status', 'coupon', 'payment_option', 'total', 'shipping_price', 'is_closed', 'solded_price', 'order_uuid']
     def __str__(self):
         return f'Order {self.user.username}'
     
@@ -69,6 +69,7 @@ class OrderItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     is_active = models.BooleanField(default=True, blank=True, null=True)
     item_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    DEFAULT_FIELDS = ['order', 'product', 'quantity', 'unit_price', 'total_price','created_at', 'item_uuid']
 
     def __str__(self):
         return f"OrderIem - {self.product.name} - {self.quantity}"
@@ -111,7 +112,7 @@ class PaymentRequest(models.Model):
     redirect_failed_url = models.TextField(max_length=256, blank=True, null=True)
     failed_reason = models.TextField(max_length=256, blank=True, null=True)
     request_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-
+    DEFAULT_FIELDS = ['token', 'pay_url', 'verification_code', 'order', 'customer', 'amount', 'created_at', 'status', 'request_uuid']
     def __str__(self):
         return "Payment Request id : {0} - Amount : {1}".format(self.pk, self.amount)
     
