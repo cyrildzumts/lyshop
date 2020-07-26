@@ -110,6 +110,7 @@ function dashboardUpdate(){
         dataType: 'json'
     }
     var promise = ajax(options).then(function(response){
+        console.log("analytics fetch succeed");
         report = response.report;
         refresh_chart(response.report);
         //updateMetrics(response)
