@@ -5,10 +5,20 @@ var order_chart;
 var products_chart;
 var requests_chart;
 var user_chart;
-var analytics_data = [12,48,2,14,132,45,70,56,80,88,76,96];
 var analytics_label = 'Orders';
 var analytics_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var chart_type = 'line';
+var orders_conf = {
+    type : chart_type,
+    data : {
+        labels : [],
+        datasets : [{
+            label: '',
+            data: []
+        }],
+    },
+    options:{}
+};
 var report;
 function updateChart(){
     var options = {
@@ -20,7 +30,7 @@ function updateChart(){
     var promise = ajax(options).then(function(response){
         dispatchChartUpdate(response)
     }, function(error){
-        console.log("payments fetch failed");
+        console.log("Orders fetch failed");
         console.log(error);
     });
 }
@@ -31,6 +41,14 @@ function dispatchChartUpdate(response){
     updateOrderChart(order_chart, label, datasets);
 }
 
+function refresh_chart(response_report){
+    orders_conf.data.labels = response_report.months;
+    orders_conf.data.datasets[0].label = response_report.label;
+    orders_conf.data.datasets[0].data = response_report.data;
+    order_chart.update();
+}
+
+
 function updateOrderChart(chart,label, datasets){
     var data = []
     datasets.forEach(dataset => {
@@ -40,19 +58,7 @@ function updateOrderChart(chart,label, datasets){
     chart.update();
 }
 
-function paymentCounts(chart, label, data){
-    if(!chart.data.labels.contains(label)){
-        chart.data.labels.push(label);
-        chart.data.datasets.push(data);
-    }else{
-        for(dataset in chart.data.datasets){
-            if (dataset.label == data.label){
 
-                break;
-            }
-        }
-    }
-}
 
 function addMetric(container, data){
     var el = $('<div/>').addClass('metric');
@@ -104,7 +110,9 @@ function dashboardUpdate(){
         dataType: 'json'
     }
     var promise = ajax(options).then(function(response){
-        updateMetrics(response)
+        report = response.report;
+        refresh_chart(response.report);
+        //updateMetrics(response)
     }, function(error){
         console.log("analytics fetch failed");
         console.log(error);
@@ -121,18 +129,19 @@ var ctx_orders = $('#orders-diagram');
 var ctx_products = $('#products-diagram');
 //var ctx_requests = $('#payment-request-diagram');
 var ctx_users = $('#users-diagram');
-
-var orders_conf = {
+/*
+orders_conf = {
     type : chart_type,
     data : {
-        labels : analytics_labels,
+        labels : report.months,
         datasets : [{
-            label: 'Orders',
-            data: []
+            label: report.label,
+            data: report.data
         }],
     },
     options:{}
 };
+*/
 var products_conf = {
     type : chart_type,
     data : {
@@ -169,10 +178,10 @@ var users_conf = {
     options:{}
 };
 var empty_conf = {};
-//order_chart = new Chart(ctx_orders, orders_conf);
+order_chart = new Chart(ctx_orders, orders_conf);
 //products_chart = new Chart(ctx_products, products_conf);
 //requests_chart = new Chart(ctx_requests, requests_conf);
 //user_chart = new Chart(ctx_users, users_conf);
-//dashboardUpdate();
-//dashboardIntervalHandle = setInterval(dashboardUpdate,60000); // 1000*60*1 = 1min
+dashboardUpdate();
+dashboardIntervalHandle = setInterval(dashboardUpdate,30000); // 1000*60*1 = 1min
 });
