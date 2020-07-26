@@ -1448,7 +1448,7 @@ def reports(request):
     context['users'] = qs_users
     context['products'] = qs_products
     context['product_count'] = qs_total_product['product_count']
-    context['report'] = analytics.report_orders_for_year()
+    context['report'] = json.dumps(analytics.report_orders_for_year())
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
         
