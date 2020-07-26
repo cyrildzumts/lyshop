@@ -1,12 +1,12 @@
 
 
 
-var payment_chart;
-var transfers_chart;
+var order_chart;
+var products_chart;
 var requests_chart;
 var user_chart;
 var analytics_data = [12,48,2,14,132,45,70,56,80,88,76,96];
-var analytics_label = 'Payments';
+var analytics_label = 'Orders';
 var analytics_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var chart_type = 'line';
 
@@ -28,15 +28,15 @@ function dispatchChartUpdate(response){
     var label = response.label;
     var datasets = response.datasets;
     console.log("Dispatching chart update to \"%s\"",label);
-    updatePaymentChart(payment_chart, label, datasets);
+    updateOrderChart(order_chart, label, datasets);
 }
 
-function updatePaymentChart(chart,label, datasets){
-    var payment_data = []
+function updateOrderChart(chart,label, datasets){
+    var data = []
     datasets.forEach(dataset => {
-        payment_data[dataset.month - 1] = dataset.count;
+        data[dataset.month - 1] = dataset.count;
     });
-    chart.data.datasets[0].data = payment_data;
+    chart.data.datasets[0].data = data;
     chart.update();
 }
 
@@ -80,10 +80,10 @@ function updateMetrics(metrics_data){
         if(data.label == "Vouchers"){
             $('#vouchers .metric-value .sold', container).text(data.sold);
             $('#vouchers .metric-value .total', container).text(data.count);
-        }else if (data.label == "Payments"){
-            $('#payments .metric-value', container).text(data.count);
-        }else if(data.label == "Transfers"){
-            $('#transfers .metric-value', container).text(data.count);
+        }else if (data.label == "Orders"){
+            $('#orders .metric-value', container).text(data.count);
+        }else if(data.label == "Products"){
+            $('#products .metric-value', container).text(data.count);
         }else if(data.label == "Payment Requests"){
             $('#p_requests .metric-value', container).text(data.count);
         }else if(data.label == "Users"){
@@ -117,33 +117,34 @@ console.log("analytics ready");
 Chart.defaults.global.elements.line.fill = false;
 Chart.defaults.global.elements.line.borderWidth = 2;
 
-var ctx_payments = $('#payments-diagram');
-var ctx_transfers = $('#transfers-diagram');
-var ctx_requests = $('#payment-request-diagram');
+var ctx_orders = $('#orders-diagram');
+var ctx_products = $('#products-diagram');
+//var ctx_requests = $('#payment-request-diagram');
 var ctx_users = $('#users-diagram');
 
-var payments_conf = {
+var orders_conf = {
     type : chart_type,
     data : {
         labels : analytics_labels,
         datasets : [{
-            label: 'Payments',
+            label: 'Orders',
             data: []
         }],
     },
     options:{}
 };
-var transfers_conf = {
+var products_conf = {
     type : chart_type,
     data : {
         labels : analytics_labels,
         datasets : [{
-            label: 'Transfers',
+            label: 'Products',
             data: []
         }],
     },
     options:{}
 };
+/*
 var requests_conf = {
     type : chart_type,
     data : {
@@ -155,6 +156,7 @@ var requests_conf = {
     },
     options:{}
 };
+*/
 var users_conf = {
     type : chart_type,
     data : {
@@ -167,9 +169,9 @@ var users_conf = {
     options:{}
 };
 var empty_conf = {};
-payment_chart = new Chart(ctx_payments, payments_conf);
-transfers_chart = new Chart(ctx_transfers, transfers_conf);
-requests_chart = new Chart(ctx_requests, requests_conf);
+order_chart = new Chart(ctx_orders, orders_conf);
+products_chart = new Chart(ctx_products, products_conf);
+//requests_chart = new Chart(ctx_requests, requests_conf);
 user_chart = new Chart(ctx_users, users_conf);
 dashboardUpdate();
 dashboardIntervalHandle = setInterval(dashboardUpdate,60000); // 1000*60*1 = 1min

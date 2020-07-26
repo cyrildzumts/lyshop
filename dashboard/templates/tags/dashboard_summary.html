@@ -4,16 +4,16 @@
 
         <div id="metrics" class="row flex-wrap">
 
-                <div id="transfers" class="metric mat-box">
+                <div id="orders" class="metric mat-box">
                         <div class="metric-title">{% trans "Orders" %}</div>
                         <span class="metric-value">{{orders.count}}</span>
                 </div>
-                <div id="p_requests" class="metric mat-box">
+                <div id="products" class="metric mat-box">
                         <div class="metric-title">{% trans "Products" %}</div>
                         <span class="metric-value">{{product_count}}</span>
                 </div>
-                <div id="users" class="metric mat-box">
-                        <div class="metric-title">{% trans "Current Orders" %}</div>
+                <div id="current_orders" class="metric mat-box">
+                        <div class="metric-title">{% trans "Current Month Orders" %}</div>
                         <span class="metric-value">{{current_orders.count}}</span>
                 </div>
                 <div id="users" class="metric mat-box">

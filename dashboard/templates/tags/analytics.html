@@ -1,32 +1,28 @@
 {% load static %}
 {% load i18n %}
 
+<script>
+var report = {{report}};
+
+</script>
+
 <div class="container">
 
     <div class="row">
         <div class="col-m-12 col-4">
             <div class="diagram-wrapper">
-                <div class="title">{% trans "Payments" %}</div>
+                <div class="title">{% trans "Orders" %}</div>
                 <div class="diagram">
-                    <canvas id="payments-diagram" ></canvas>
+                    <canvas id="orders-diagram" ></canvas>
                 </div>
             </div>
 
         </div>
         <div class="col-m-12 col-4">
             <div class="diagram-wrapper">
-                <div class="title">{% trans "Transfers" %}</div>
+                <div class="title">{% trans "Products" %}</div>
                 <div class="diagram">
-                    <canvas id="transfers-diagram" ></canvas>
-                </div>
-            </div>
-            
-        </div>
-        <div class="col-m-12 col-4">
-            <div class="diagram-wrapper">
-                <div class="title">{% trans "Payments Request" %}</div>
-                <div class="diagram">
-                    <canvas id="payment-request-diagram" ></canvas>
+                    <canvas id="products-diagram" ></canvas>
                 </div>
             </div>
             
