@@ -28,10 +28,6 @@
 {% block SCRIPT_VAR %}
     {% if report %}
     {{report|json_script:"report_script"}}
-
-    <script>
-    var report = JSON.parse(document.getElementById("report_script").textContent);
-    </script>
     {% endif %}
 {% endblock SCRIPT_VAR %}
 

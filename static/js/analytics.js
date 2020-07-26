@@ -9,7 +9,7 @@ var analytics_data = [12,48,2,14,132,45,70,56,80,88,76,96];
 var analytics_label = 'Orders';
 var analytics_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var chart_type = 'line';
-
+var report;
 function updateChart(){
     var options = {
         url:'/api/analytics/',
@@ -113,7 +113,7 @@ function dashboardUpdate(){
 }
 $(document).ready(function(){
 console.log("analytics ready");
-
+report = JSON.parse(document.getElementById("report_script").textContent);
 Chart.defaults.global.elements.line.fill = false;
 Chart.defaults.global.elements.line.borderWidth = 2;
 
@@ -169,10 +169,10 @@ var users_conf = {
     options:{}
 };
 var empty_conf = {};
-order_chart = new Chart(ctx_orders, orders_conf);
-products_chart = new Chart(ctx_products, products_conf);
+//order_chart = new Chart(ctx_orders, orders_conf);
+//products_chart = new Chart(ctx_products, products_conf);
 //requests_chart = new Chart(ctx_requests, requests_conf);
-user_chart = new Chart(ctx_users, users_conf);
-dashboardUpdate();
-dashboardIntervalHandle = setInterval(dashboardUpdate,60000); // 1000*60*1 = 1min
+//user_chart = new Chart(ctx_users, users_conf);
+//dashboardUpdate();
+//dashboardIntervalHandle = setInterval(dashboardUpdate,60000); // 1000*60*1 = 1min
 });
