@@ -113,7 +113,7 @@ function dashboardUpdate(){
 }
 $(document).ready(function(){
 console.log("analytics ready");
-report = JSON.parse(document.getElementById("report_script").textContent);
+report = JSON.parse(JSON.parse(document.getElementById("report_script").textContent));
 Chart.defaults.global.elements.line.fill = false;
 Chart.defaults.global.elements.line.borderWidth = 2;
 
