@@ -8,21 +8,21 @@ from api.serializers import (
  )
 
 
- class AccountViewSet(viewsets.ReadOnlyModelViewSet):
+class AccountViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = AccountSerializer.Meta.model.objects.all()
     serializer_class = AccountSerializer
     #permission_classes = [IsAuthenticated]
     
 
 
- class BrandViewSet(viewsets.ReadOnlyModelViewSet):
+class BrandViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = BrandSerializer.Meta.model.objects.all()
     serializer_class = BrandSerializer
     #permission_classes = [IsAuthenticated]
 
 
 
- class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
+class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CategorySerializer.Meta.model.objects.all()
     serializer_class = CategorySerializer
     #permission_classes = [IsAuthenticated]
