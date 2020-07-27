@@ -39,6 +39,37 @@ var orders_conf = {
         scales : default_scales
     }
 };
+var orders_price_conf = {
+    type : chart_type,
+    data : {
+        labels : [],
+        datasets : [{
+            label: '',
+            data: []
+        }],
+    },
+    options:{
+        scales : {
+            xAxes: [
+                {
+                    scaleLabel: {
+                        display : true,
+                        labelString : "Months"
+                    }
+                }
+            ],
+            yAxes: [
+                {
+                    scaleLabel: {
+                        display : true,
+                        labelString : "Price in XAF"
+                    }
+                }
+            ]
+        }
+    }
+};
+
 var products_conf = {
     type : chart_type,
     data : {
@@ -88,13 +119,19 @@ function dispatchChartUpdate(response){
 }
 
 function refresh_chart(response){
-    order_report = response.order_report;
-    product_report = response.product_report;
-    new_user_report = response.new_user_report;
+    let order_report = response.order_report;
+    let order_price_report = response.order_price_report;
+    let product_report = response.product_report;
+    let new_user_report = response.new_user_report;
+
 
     orders_conf.data.labels = order_report.months;
     orders_conf.data.datasets[0].label = order_report.label;
     orders_conf.data.datasets[0].data = order_report.data;
+
+    orders_price_conf.data.labels = order_price_report.months;
+    orders_price_conf.data.datasets[0].label = order_price_report.label;
+    orders_price_conf.data.datasets[0].data = order_price_report.data;
 
     products_conf.data.labels = product_report.months;
     products_conf.data.datasets[0].label = product_report.label;
@@ -189,13 +226,13 @@ Chart.defaults.global.elements.line.borderWidth = 2;
 
 var ctx_orders = $('#orders-diagram');
 var ctx_products = $('#products-diagram');
-//var ctx_requests = $('#payment-request-diagram');
+var ctx_orders_prices = $('#orders-price-diagram');
 var ctx_new_users = $('#users-diagram');
 
 var empty_conf = {};
 order_chart = new Chart(ctx_orders, orders_conf);
 product_chart = new Chart(ctx_products, products_conf);
-//requests_chart = new Chart(ctx_requests, requests_conf);
+order_price_chart = new Chart(ctx_orders_prices, orders_price_conf);
 new_user_chart = new Chart(ctx_new_users, new_users_conf);
 dashboardUpdate();
 dashboardIntervalHandle = setInterval(dashboardUpdate,30000); // 1000*60*1 = 1min

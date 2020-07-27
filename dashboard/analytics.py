@@ -67,6 +67,34 @@ def report_orders(year=timezone.now().year):
     return report
 
 
+def report_orders_price(year=timezone.now().year):
+    logger.info(f"Report Orders for date year=\"{year}\"")
+    if year < 0 or year > timezone.now().year :
+        error_str = f"report_orders_for_year : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
+        logger.error(error_str)
+        raise ValueError(error_str)
+    
+    data = []
+    if year == timezone.now().year:
+        MONTH_LIMIT = timezone.now().month
+    else :
+        MONTH_LIMIT = YEAR_MONTHS_COUNT
+    
+    months = list(range(1, MONTH_LIMIT + 1))
+
+    for m in months:
+        amount = Order.objects.filter(created_at__year=year, created_at__month=m).aggregate(amount=Sum('amount')).get('amount', 0)
+        data.append(amount or 0)
+
+    report = {
+        'label': 'Order Price',
+        'year' : year,
+        'months': months,
+        'data' : data
+    }
+    return report
+
+
 
 def report_products(year=timezone.now().year):
     logger.info(f"Report Product for date year=\"{year}\"")

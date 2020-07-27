@@ -83,11 +83,13 @@ def analytics_data(request):
     logger.info(f"Report data requested by user \"{request.user.username}\"")
     response_status = status.HTTP_200_OK
     order_report = analytics.report_orders()
+    order_price_report = analytics.report_orders_price()
     new_user_report = analytics.report_new_users()
     product_report = analytics.report_products()
     try:
         data = {
             'report' : order_report,
+            'order_price_report' : order_price_report,
             'order_report' : order_report,
             'product_report' : product_report,
             'new_user_report' : new_user_report
