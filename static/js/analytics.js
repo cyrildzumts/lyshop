@@ -7,7 +7,7 @@ var request_chart;
 var new_user_chart;
 var analytics_label = 'Orders';
 var analytics_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-var chart_type = 'line';
+var chart_type = 'bar';
 var orders_conf = {
     type : chart_type,
     data : {
