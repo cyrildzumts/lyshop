@@ -8,6 +8,24 @@ var new_user_chart;
 var analytics_label = 'Orders';
 var analytics_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var chart_type = 'bar';
+var default_scales = {
+    xAxes: [
+        {
+            scaleLabel: {
+                display : true,
+                labelString : "Months"
+            }
+        }
+    ],
+    yAxes: [
+        {
+            scaleLabel: {
+                display : true,
+                labelString : "Count"
+            }
+        }
+    ]
+}
 var orders_conf = {
     type : chart_type,
     data : {
@@ -17,7 +35,9 @@ var orders_conf = {
             data: []
         }],
     },
-    options:{}
+    options:{
+        scales : default_scales
+    }
 };
 var products_conf = {
     type : chart_type,
@@ -28,7 +48,9 @@ var products_conf = {
             data: []
         }],
     },
-    options:{}
+    options:{
+        scales : default_scales
+    }
 };
 var new_users_conf = {
     type : chart_type,
@@ -39,7 +61,9 @@ var new_users_conf = {
             data: []
         }],
     },
-    options:{}
+    options:{
+        scales : default_scales
+    }
 };
 var report;
 function updateChart(){
