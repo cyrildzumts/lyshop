@@ -3,7 +3,7 @@
 
 var order_chart;
 var product_chart;
-var request_chart;
+var order_price_chart;
 var new_user_chart;
 var analytics_label = 'Orders';
 var analytics_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -144,6 +144,7 @@ function refresh_chart(response){
     order_chart.update();
     product_chart.update();
     new_user_chart.update();
+    order_price_chart.update();
 }
 
 
