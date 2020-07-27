@@ -22,8 +22,8 @@
           </div>
           <div class="container">
               <ul class="actions row" role="navigation">
-                  {% if can_change_brand %}<li class="list-item"><a class="mat-button mat-button-text" href="{{brand.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>{% endif %}
-                  {% if can_add_brand %}<li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:brand-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Group" %}</span></a> </li>{% endif %}
+                  {% if can_change_brand %}<li class="list-item"><a class="mat-button mat-button-default" href="{{brand.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>{% endif %}
+                  {% if can_add_brand %}<li class="list-item"> <a class="mat-button mat-button-default" href="{% url 'dashboard:brand-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Group" %}</span></a> </li>{% endif %}
                   <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:brands' %}"><i class="fas icon"></i><span>{% trans "Brands" %}</span></a> </li>
                   <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
               </ul>
