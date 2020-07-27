@@ -76,7 +76,7 @@
                   <td>{{g.permissions.count}}</td>
                   <td>{{g.user_set.count}}</td>
                   <td><a class="mat-button mat-button-text" href="{% url 'dashboard:group-detail' g.pk %}"><i class="fas fa-info"></i><span>{% trans "Detail" %}</span></a></td>
-                  {% if can_delete_group %}<td><a class="mat-button mat-button-text danger js-need-confirmation" data-target="#group-delete-dialog" href="{% url 'dashboard:group-delete' g.pk %}"><i class="far fa-trash-alt"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
+                  {% if can_delete_group %}<td><a class="mat-button mat-button-text danger js-need-confirmation" data-target="#group-delete-dialog" href="{% url 'dashboard:group-delete' g.pk %}"><i class="far fa-trash-alt icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   

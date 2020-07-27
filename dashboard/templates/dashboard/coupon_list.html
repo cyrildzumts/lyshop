@@ -39,7 +39,7 @@
         <form action="{% url 'dashboard:coupons-delete' %}" method="POST">{% csrf_token %}
         <table id="coupon-list" class="mat-table js-filter-table">
             <div class="actions">
-                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled>{% trans "Delete Selected" %}</button>
+                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button>
             </div>
           <thead>
                   
@@ -65,8 +65,8 @@
                   {% else %}
                     {% trans "Not Activated" %}
                   {% endif %}</td>
-                  <td><a class="mat-button mat-button-default" href="{{coupon.get_dashboard_url}}"> {% trans "Details" %}</a></td>
-                  {% if can_delete_coupon %}<td><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{{coupon.get_delete_url}}"> {% trans "Delete" %}</a></td>{% endif %}
+                  <td><a class="mat-button mat-button-default" href="{{coupon.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                  {% if can_delete_coupon %}<td><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{{coupon.get_delete_url}}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   
