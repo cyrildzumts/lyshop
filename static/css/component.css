@@ -1715,11 +1715,17 @@ input.editable{
 	/*border-radius: 20px;*/
 }
 
-.mat-button .btn-icon, .mat-button .icon, button .btn-icon, button .icon{
+.mat-button .btn-icon, .mat-button .icon, .mat-button .fas, .mat-button .far, button .btn-icon, button .icon{
 	font-weight: 700;
 	/*margin-left: 0.5em;*/
 	margin-right: 0.5em;
 
+}
+
+.mat-button .icon-right{
+	font-weight: 700;
+	margin-right: unset;
+	margin-left: 0.5em;
 }
 
 .mat-list-wrapper{
