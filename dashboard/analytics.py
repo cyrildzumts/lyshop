@@ -84,7 +84,7 @@ def report_products(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
 
     for m in months:
-        data.append(ProductVariant.objects.filter(created_at__year=year, created_at__month=m).aggregate(count=Sum('quantity'))['count'])
+        data.append(ProductVariant.objects.filter(created_at__year=year, created_at__month=m).aggregate(count=Sum('quantity')).get('count', 0))
 
     report = {
         'label': 'Products',
