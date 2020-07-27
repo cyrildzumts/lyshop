@@ -13,7 +13,7 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
-                    {% if can_add_group %}<a class="mat-button mat-button-default" href="{% url 'dashboard:group-create' %}"> <i class="fas fas-plus"></i> <span>{% trans "Add new Group" %}</span> </a>{% endif %}
+                    {% if can_add_group %}<a class="mat-button mat-button-default" href="{% url 'dashboard:group-create' %}"> <i class="fas fa-plus icon"></i> <span>{% trans "Add new Group" %}</span> </a>{% endif %}
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                         
                 </div><!--End of Banner-Actions-->
@@ -58,7 +58,7 @@
         <form action="{% url 'dashboard:groups-delete' %}" method="POST">{% csrf_token %}
         <table id="group-list" class="mat-table js-filter-table">
           <thead>
-                {% if can_delete_group %}<tr><div class="actions"><button class="js-activable mat-button mat-button-default warn"><span>{% trans "Delete Selected" %}</span></button></div></tr>{% endif %}
+                {% if can_delete_group %}<tr><div class="actions"><button class="js-activable mat-button mat-button-default warn"><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button></div></tr>{% endif %}
                 <tr>
                     {% if can_delete_group %}<th><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="Select all"></th>{% endif %}
                     <th>{% trans "Group Name" %}</th>
@@ -75,7 +75,7 @@
                   <td>{{g.name}}</td>
                   <td>{{g.permissions.count}}</td>
                   <td>{{g.user_set.count}}</td>
-                  <td><a class="mat-button mat-button-text" href="{% url 'dashboard:group-detail' g.pk %}"><i class="fas fa-info"></i><span>{% trans "Detail" %}</span></a></td>
+                  <td><a class="mat-button mat-button-text" href="{% url 'dashboard:group-detail' g.pk %}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
                   {% if can_delete_group %}<td><a class="mat-button mat-button-text danger js-need-confirmation" data-target="#group-delete-dialog" href="{% url 'dashboard:group-delete' g.pk %}"><i class="far fa-trash-alt icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
