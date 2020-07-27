@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from dashboard import Constants
 
 
@@ -75,7 +76,7 @@ class AccessPermissions(models.Model):
 
 
 class LoginReport(models.Model):
-    user = models.ForeignKey(unique=False, related_name="login_report", blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, unique=False, related_name="login_report", blank=True, null=True)
     is_anonymous_user = models.BooleanField(default=True)
     user_agent = models.CharField(max_length=256, blank=True, null=True)
     date_login = models.DateTimeField(auto_now_add=True)
@@ -92,7 +93,7 @@ class LoginReport(models.Model):
 
 
 class UserAction(models.Model):
-    user = models.ForeignKey(unique=False, related_name="actions", blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, unique=False, related_name="actions", blank=True, null=True)
     is_anonymous_user = models.BooleanField(default=True)
     user_agent = models.CharField(max_length=256, blank=True, null=True)
     request_method = models.CharField(max_length=128, blank=True, null=True)
@@ -119,7 +120,7 @@ class UserAction(models.Model):
 
 
 class LoggedUser(models.Model):
-    user = models.ForeignKey(unique=True,related_name="logged_user", blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL,unique=True,related_name="logged_user", blank=True, null=True)
     user_agent = models.CharField(max_length=256, blank=True, null=True)
     request_method = models.CharField(max_length=128, blank=True, null=True)
     date_login = models.DateTimeField(auto_now_add=True)
