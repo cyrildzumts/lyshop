@@ -72,3 +72,72 @@ class AccessPermissions(models.Model):
             (Constants.COUPON_ADD_PERM, 'Dashboard Can Add Coupon'),
             (Constants.COUPON_DELETE_PERM, 'Dashboard Can Delete Coupon')
         ]
+
+
+class LoginReport(models.Model):
+    user = models.ForeignKey(unique=False, related_name="login_report", blank=True, null=True)
+    is_anonymous_user = models.BooleanField(default=True)
+    user_agent = models.CharField(max_length=256, blank=True, null=True)
+    date_login = models.DateTimeField(auto_now_add=True)
+    ip_address = models.IPAddressField()
+
+    def __str__(self):
+        return f"LoginReport {self.user} - Date {self.date_login} - IP {self.ip_address}"
+    
+    @staticmethod
+    def report(user):
+        if not isinstance(user, User):
+            raise ValueError(f"{user} is not an user instance")
+        queryset = LoginReport.objects.filter(user=user)
+
+
+class UserAction(models.Model):
+    user = models.ForeignKey(unique=False, related_name="actions", blank=True, null=True)
+    is_anonymous_user = models.BooleanField(default=True)
+    user_agent = models.CharField(max_length=256, blank=True, null=True)
+    request_method = models.CharField(max_length=128, blank=True, null=True)
+    query_string = models.CharField(max_length=256, blank=True, null=True)
+    remote_host = models.CharField(max_length=128, blank=True, null=True)
+    requested_path = models.CharField(max_length=256, blank=True, null=True)
+    date_action = models.DateTimeField(auto_now_add=True)
+    ip_address = models.IPAddressField()
+
+    def __str__(self):
+        return f"UserAction {self.user} - Date {self.date_action} - IP {self.ip_address}"
+    
+    @staticmethod
+    def report(user):
+        if not isinstance(user, User):
+            raise ValueError(f"{user} is not an user instance")
+        queryset = UserAction.objects.filter(user=user)
+    
+    @staticmethod
+    def user_action(sender, request, user, **kwargs):
+        UserAction.objects.create(user=user, user_agent=request.META.HTTP_USER_AGENT, is_anonymous_user=user.is_anonymous,
+            ip_address=request.META.REMOTE_ADDR, request_method=request.META.REQUEST_METHOD, query_string=request.META.QUERY_STRING,
+            remote_host=request.META.REMOTE_HOST, requested_path=request.get_full_path())
+
+
+class LoggedUser(models.Model):
+    user = models.ForeignKey(unique=True,related_name="logged_user", blank=True, null=True)
+    user_agent = models.CharField(max_length=256, blank=True, null=True)
+    request_method = models.CharField(max_length=128, blank=True, null=True)
+    date_login = models.DateTimeField(auto_now_add=True)
+    ip_address = models.IPAddressField()
+
+    def __str__(self):
+        return f"LoggedUser {self.user} - Date {self.date_login} - IP {self.ip_address}"
+    
+    @staticmethod
+    def report(user):
+        if not isinstance(user, User):
+            raise ValueError(f"{user} is not an user instance")
+        queryset = LoggedUser.objects.filter(user=user)
+
+    @staticmethod
+    def user_logged_in(sender, requet, user, **kwargs):
+        LoggedUser.objects.create(user=user, user_agent=request.META.HTTP_USER_AGENT, 
+            ip_address=request.META.REMOTE_ADDR, request_method=request.META.REQUEST_METHOD)
+    
+
+    

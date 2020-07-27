@@ -29,14 +29,7 @@ def get_data_from_request(request_dict, key):
 
     
 def get_model(app_name=None, modelName=None):
-    model = None
-    if app_name and modelName:
-        try:
-            model = apps.get_model(app_name, modelName)
-        except LookupError as e:
-            pass
-
-    return model
+    return apps.get_model(app_name, modelName)
 
 def get_all_fields_from_form(instance):
     """"

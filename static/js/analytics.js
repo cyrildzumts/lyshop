@@ -2,13 +2,35 @@
 
 
 var order_chart;
-var products_chart;
-var requests_chart;
-var user_chart;
+var product_chart;
+var request_chart;
+var new_user_chart;
 var analytics_label = 'Orders';
 var analytics_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var chart_type = 'line';
 var orders_conf = {
+    type : chart_type,
+    data : {
+        labels : [],
+        datasets : [{
+            label: '',
+            data: []
+        }],
+    },
+    options:{}
+};
+var products_conf = {
+    type : chart_type,
+    data : {
+        labels : [],
+        datasets : [{
+            label: '',
+            data: []
+        }],
+    },
+    options:{}
+};
+var new_users_conf = {
     type : chart_type,
     data : {
         labels : [],
@@ -41,11 +63,26 @@ function dispatchChartUpdate(response){
     updateOrderChart(order_chart, label, datasets);
 }
 
-function refresh_chart(response_report){
-    orders_conf.data.labels = response_report.months;
-    orders_conf.data.datasets[0].label = response_report.label;
-    orders_conf.data.datasets[0].data = response_report.data;
+function refresh_chart(response){
+    order_report = response.order_repor;
+    product_report = response.product_report;
+    new_user_report = response.new_user_report;
+
+    orders_conf.data.labels = order_report.months;
+    orders_conf.data.datasets[0].label = orders_conf.label;
+    orders_conf.data.datasets[0].data = order_report.data;
+
+    products_conf.data.labels = product_report.months;
+    products_conf.data.datasets[0].label = product_report.label;
+    products_conf.data.datasets[0].data = product_report.data;
+
+    new_users_conf.data.labels = new_user_report.months;
+    new_users_conf.data.datasets[0].label = new_user_report.label;
+    new_users_conf.data.datasets[0].data = new_user_report.data;
+    
     order_chart.update();
+    product_chart.update();
+    new_user_chart.update();
 }
 
 
@@ -112,7 +149,7 @@ function dashboardUpdate(){
     var promise = ajax(options).then(function(response){
         console.log("analytics fetch succeed");
         report = response.report;
-        refresh_chart(response.report);
+        refresh_chart(response);
         //updateMetrics(response)
     }, function(error){
         console.log("analytics fetch failed");
@@ -129,60 +166,13 @@ Chart.defaults.global.elements.line.borderWidth = 2;
 var ctx_orders = $('#orders-diagram');
 var ctx_products = $('#products-diagram');
 //var ctx_requests = $('#payment-request-diagram');
-var ctx_users = $('#users-diagram');
-/*
-orders_conf = {
-    type : chart_type,
-    data : {
-        labels : report.months,
-        datasets : [{
-            label: report.label,
-            data: report.data
-        }],
-    },
-    options:{}
-};
-*/
-var products_conf = {
-    type : chart_type,
-    data : {
-        labels : analytics_labels,
-        datasets : [{
-            label: 'Products',
-            data: []
-        }],
-    },
-    options:{}
-};
-/*
-var requests_conf = {
-    type : chart_type,
-    data : {
-        labels : analytics_labels,
-        datasets : [{
-            label: 'Payment Requests',
-            data: []
-        }],
-    },
-    options:{}
-};
-*/
-var users_conf = {
-    type : chart_type,
-    data : {
-        labels : analytics_labels,
-        datasets : [{
-            label: 'Users Online',
-            data: []
-        }],
-    },
-    options:{}
-};
+var ctx_new_users = $('#users-diagram');
+
 var empty_conf = {};
 order_chart = new Chart(ctx_orders, orders_conf);
-//products_chart = new Chart(ctx_products, products_conf);
+products_chart = new Chart(ctx_products, products_conf);
 //requests_chart = new Chart(ctx_requests, requests_conf);
-//user_chart = new Chart(ctx_users, users_conf);
+new_user_chart = new Chart(ctx_new_users, new_users_conf);
 dashboardUpdate();
 dashboardIntervalHandle = setInterval(dashboardUpdate,30000); // 1000*60*1 = 1min
 });
