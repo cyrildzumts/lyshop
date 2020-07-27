@@ -69,7 +69,7 @@ function refresh_chart(response){
     new_user_report = response.new_user_report;
 
     orders_conf.data.labels = order_report.months;
-    orders_conf.data.datasets[0].label = orders_conf.label;
+    orders_conf.data.datasets[0].label = order_report.label;
     orders_conf.data.datasets[0].data = order_report.data;
 
     products_conf.data.labels = product_report.months;
