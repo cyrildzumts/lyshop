@@ -170,7 +170,7 @@ var ctx_new_users = $('#users-diagram');
 
 var empty_conf = {};
 order_chart = new Chart(ctx_orders, orders_conf);
-products_chart = new Chart(ctx_products, products_conf);
+product_chart = new Chart(ctx_products, products_conf);
 //requests_chart = new Chart(ctx_requests, requests_conf);
 new_user_chart = new Chart(ctx_new_users, new_users_conf);
 dashboardUpdate();
