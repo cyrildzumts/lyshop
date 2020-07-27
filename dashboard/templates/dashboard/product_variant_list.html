@@ -12,9 +12,9 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"> <i class="fas fa-home icon"></i> <span>{% trans "Dashboard" %}</span> </a>
                     {% if can_add_product %}
-                    <a class="mat-button mat-button-outlined" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"> {% trans "Add new Product" %}</a>
+                    <a class="mat-button mat-button-outlined" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><i class="fas fa-plus"></i><span>{% trans "Add new Product" %}</span></a>
                     {% endif %}
                         
                 </div><!--End of Banner-Actions-->
@@ -53,8 +53,8 @@
                   <td>{{variant.name}}</td>
                   <td>{{variant.display_name}}</td>
                   <td><span>{{variant.price}}</span> <span>{% trans "XAF" %}</span></td>
-                  <td><a class="mat-button mat-button-default" href="{{variant.get_dashboard_url}}"> {% trans "Details" %}</a></td>
-                  {% if can_delete_product %}<td><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{{variant.get_delete_url}}"> {% trans "Delete" %}</a></td>{% endif %}
+                  <td><a class="mat-button mat-button-default" href="{{variant.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                  {% if can_delete_product %}<td><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{{variant.get_delete_url}}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   

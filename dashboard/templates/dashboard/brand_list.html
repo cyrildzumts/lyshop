@@ -38,7 +38,7 @@
         <form action="{% url 'dashboard:brands-delete' %}" method="POST">{% csrf_token %}
         <table id="brand-list" class="mat-table js-filter-table">
             <div class="actions">
-                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-remove"></i> <span>{% trans "Delete Seleted" %}</span></button>
+                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i> <span>{% trans "Delete Seleted" %}</span></button>
             </div>
           <thead>
                   
@@ -58,8 +58,8 @@
                   <td>{{brand.name}}</td>
                   <td>{{brand.display_name}}</td>
                   <td>{{brand.code}}</td>
-                  <td><a class="mat-button mat-button-default" href="{{brand.get_dashboard_url}}"> {% trans "Details" %}</a></td>
-                  {% if can_delete_brand %}<td><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:brand-delete' brand.brand_uuid %}"> {% trans "Delete" %}</a></td>{% endif %}
+                  <td><a class="mat-button mat-button-default" href="{{brand.get_dashboard_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
+                  {% if can_delete_brand %}<td><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:brand-delete' brand.brand_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   

@@ -13,10 +13,10 @@
           </div>
           <div class="mat-box-content">
               <div>
-                <span class="mat-button mat-button-text"><i class="fas fa-barcode">{% trans "Code" %} : </i>{{brand.code}}</span>
+                <span class="mat-button mat-button-text"><i class="fas fa-barcode icon">{% trans "Code" %} : </i>{{brand.code}}</span>
               </div>
               <div>
-                <span class="mat-button mat-button-text"><i class="fas fa-eye"></i>{{brand.view_count}}</span>
+                <span class="mat-button mat-button-text"><i class="fas fa-eye icon"></i>{{brand.view_count}}</span>
               </div>
 
           </div>
@@ -37,7 +37,7 @@
           </div>
           <ul class="mat-list">
             {% for p in product_list %}
-            <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'dashboard:brand-product' brand.brand_uuid p.product_uuid %}">{{p.name}}</a></li>
+            <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'dashboard:brand-product' brand.brand_uuid p.product_uuid %}"><i class="fas fa-info"></i><span>{{p.name}}</span></a></li>
             {% endfor %}
           </ul>
 

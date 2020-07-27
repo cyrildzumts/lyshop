@@ -13,7 +13,7 @@
             <div class="col col-9">
                 <div class="banner--actions">
                     {% if can_change_product %}<a class="mat-button mat-button-default" href="{{product.get_update_url}}"> <i class="fas fas-plus"></i> <span>{% trans "Edit" %}</span> </a>{% endif %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     <a class="mat-button mat-button-text" href="{%url 'dashboard:products' %}"> {% trans "Products" %}</a>
                         
                 </div><!--End of Banner-Actions-->
@@ -68,7 +68,7 @@
             <div class="title">
               <span>{{product.display_name}}</span>
             </div>
-            <div class="box-content">
+            <div class="mat-box-content">
                 <div class="entry">
                   <span class="key">{% trans "Category" %}</span><span class="value">{{product.category}}</span>
                 </div>
@@ -100,7 +100,7 @@
             <div class="mat-box-content">
               <div class="mat-list-wrapper">
                   <div class="mat-lit-title">
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><span><i class="fas fa-plus"></i> {% trans "Add Variant" %}</span></a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a>
                   </div>
                   <ul class="mat-list">
                       {% for variant in variant_list %}
@@ -115,7 +115,7 @@
               <h4>{% trans "Images" %}</h4>
             </div>
             <div class="container">
-                <a class="mat-button mat-button-text" href="{% url 'dashboard:product-image-create' product.product_uuid %}">{% trans "Add Image" %}</a>
+                <a class="mat-button mat-button-text" href="{% url 'dashboard:product-image-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Image" %}</span></a>
               </div>
             <div class="grid">
             {% load static %}

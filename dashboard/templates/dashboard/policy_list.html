@@ -12,8 +12,8 @@
 
             <div class="col-xs-12 col-9">
                 <div class="banner--actions">
-                    {% if can_add_policy %}<a class="mat-button mat-button-default" href="{% url 'dashboard:policy-create' %}"><i class="fas fa-plus"></i> <span>{% trans "Add new Policy" %}</span></a>{% endif %}
-                    {% if can_delete_policy %}<a class="mat-button mat-button-default warn js-need-confirmation" href="{% url 'dashboard:policy-remove-all' %}"> <i class="fas fa-remove"></i> <span>{% trans "Delete All Policies" %}</span> </a>{% endif %}
+                    {% if can_add_policy %}<a class="mat-button mat-button-default" href="{% url 'dashboard:policy-create' %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add new Policy" %}</span></a>{% endif %}
+                    {% if can_delete_policy %}<a class="mat-button mat-button-default warn js-need-confirmation" href="{% url 'dashboard:policy-remove-all' %}"> <i class="fas fa-remove icon"></i> <span>{% trans "Delete All Policies" %}</span> </a>{% endif %}
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><span class="home"></span><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     
                 </div><!--End of Banner-Actions-->
@@ -37,7 +37,7 @@
         <form action="{% url 'dashboard:policies-delete' %}" method="POST">{% csrf_token %}
         <table id="policy-list" class="mat-table js-filter-table">
           <thead>
-            <tr><div class="actions"><button class="js-activable mat-button mat-button-outlined warn"><span>{% trans "Delete Selected" %}</span></button></div></tr>
+            <tr><div class="actions"><button class="js-activable mat-button mat-button-outlined warn"><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button></div></tr>
             <tr>
                 <th><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected"></th>
                 <th>{% trans "Commission" %}</th>
@@ -55,7 +55,7 @@
                   <td>{{policy.daily_limit}} {% trans "XAF" %}</td>
                   <td>{{policy.weekly_limit}} {% trans "XAF" %}</td>
                   <td>{{policy.monthly_limit}} {% trans "XAF" %}</td>
-                  <td><a class="mat-button mat-button-default" href="{{policy.get_dashboard_url}}"> {% trans "Detail" %}</a></td>
+                  <td><a class="mat-button mat-button-default" href="{{policy.get_dashboard_url}}"><i class="fas fa-info icon"></i> <span>{% trans "Detail" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   
