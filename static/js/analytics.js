@@ -64,7 +64,7 @@ function dispatchChartUpdate(response){
 }
 
 function refresh_chart(response){
-    order_report = response.order_repor;
+    order_report = response.order_report;
     product_report = response.product_report;
     new_user_report = response.new_user_report;
 
