@@ -44,6 +44,13 @@
         <div class="filter-option mat-box">
             <ul class="mat-box-content">
                 <li><span>{% trans "BRAND FILTER" %}</span></li>
+                <li>
+                    <div class="mat-input">
+                        <label for="brand-filter">{% trans "Brand" %}</label>
+                        <input id="brand-filter" type="text" name="brand_filter" value="">
+                    </div>
+                </li>
+                
             </ul>
         </div>
     </div>
@@ -51,6 +58,15 @@
         <div class="filter-option mat-box">
             <ul class="mat-box-content">
                 <li><span>{% trans "PRICE FILTER" %}</span></li>
+                <li>
+                    <div class="mat-input">
+                        <label for="min-price-filter">{% trans "Min Price" %}</label>
+                        <input id="min-price-filter" type="text" name="min_price_filter" value="">
+                        <label for="max-price-filter">{% trans "Max Price" %}</label>
+                        <input id="max-price-filter" type="text" name="max_price_filter" value="">
+                    </div>
+                </li>
+                
             </ul>
         </div>
     </div>
