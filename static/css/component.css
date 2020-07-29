@@ -264,8 +264,13 @@ label{
 	align-items: center;
 }
 
+
 .label-row-left{
 	justify-content: start;
+}
+
+.label-row input{
+	margin-left: 4px;
 }
 
 .mat-input, .form-group{
