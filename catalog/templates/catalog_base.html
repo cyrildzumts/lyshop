@@ -50,6 +50,9 @@
                         <input id="brand-filter" type="text" name="brand_filter" value="">
                     </div>
                 </li>
+                {% for b in brand_list %}
+                <li><label for="brand-{{b.id}}"><input type="checkbox" name="brands" id="brand-{{b.id}}">{{b.display_name}}</label></li>
+                {% endfor %}
                 
             </ul>
         </div>
