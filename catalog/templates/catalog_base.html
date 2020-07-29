@@ -42,19 +42,23 @@
 <div id="filter" class="container">
     <div class="col-m-12 col-2">
         <div class="filter-option mat-box">
-            <ul class="mat-box-content">
-                <li><span>{% trans "BRAND FILTER" %}</span></li>
-                <li>
-                    <div class="mat-input">
-                        <label for="brand-filter">{% trans "Brand" %}</label>
-                        <input id="brand-filter" type="text" name="brand_filter" value="">
-                    </div>
-                </li>
-                {% for b in brand_list %}
-                <li><div><label class="label-row label-row-left" for="brand-{{b.id}}"><input type="checkbox" name="brands" id="brand-{{b.id}}">{{b.display_name}}</label></div></li>
-                {% endfor %}
-                
-            </ul>
+            <div class="title">
+                <span>{% trans "BRAND FILTER" %}</span>
+                <div class="mat-input">
+                    <label for="brand-filter">{% trans "Brand" %}</label>
+                    <input id="brand-filter" class="js-list-filter" data-target="filterable-brand" type="text" name="brand_filter" value="">
+                </div>
+            </div>
+            
+            <div class="mat-box-content">
+                <ul id="filterable-brand" class="mat-list" data-element="li">
+                    {% for b in brand_list %}
+                    <li id="brand-item-{{b.id}}" class="" data-value="{{b.display_name}}"><div><label class="label-row label-row-left" for="brand-{{b.id}}"><input type="checkbox" name="brands" id="brand-{{b.id}}">{{b.display_name}}</label></div></li>
+                    {% endfor %}
+                    
+                </ul>
+            </div>
+            
         </div>
     </div>
     <div class="col-m-12 col-2">
