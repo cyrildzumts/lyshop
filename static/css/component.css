@@ -271,6 +271,7 @@ label{
 
 .label-row input{
 	margin-left: 4px;
+	margin-right: 4px;
 }
 
 .mat-input, .form-group{
