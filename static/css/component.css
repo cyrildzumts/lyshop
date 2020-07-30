@@ -488,8 +488,8 @@ a.button{
 }
 */
 .title{
-  text-align: center;
-  font-size: 1.75em;
+  /*text-align: center;*/
+  font-size: 1.25em;
 }
 
 .product-title{
@@ -1557,13 +1557,13 @@ input.editable{
 }
 
 .collapsible{
+	position: relative;
     width: 100%;
-    padding: 5px;
+    padding: 8px 4px;
     margin: 2px;
 }
 
-.collapsible .collapse-content{
-	display: flex;
+.collapsible .collapse-content, .collapsible .content{
     display: none;
 }
 

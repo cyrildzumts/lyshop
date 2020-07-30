@@ -29,4 +29,10 @@ var ListFilter = (function(){
 
 $(document).ready(function(){
     var listfilter = new ListFilter();
+    $('.collapsible .toggle').on('click', function(event){
+        var parent = $(this).parent();
+        var target = $('.' + this.getAttribute('data-toggle'), parent);
+        $('input', parent).val('');
+        target.toggle();
     });
+});
