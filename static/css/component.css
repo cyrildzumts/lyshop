@@ -350,13 +350,6 @@ a.button{
 	margin-bottom: 32px;
 }
 
-.content {
-  --width-mobile: 12;
-  --width-tablet: 6;
-  --width-desktop: 8;
-  /*height: 64rem;*/
-}
-
 .sidebar {
   --width-mobile: 12;
    --width-tablet: 6;
@@ -1090,12 +1083,6 @@ button, input, select, textarea{
   /*height: 12rem;*/
 }
 
-.content {
-  --width-mobile: 12;
-  --width-tablet: 6;
-  --width-desktop: 8;
-  /*height: 64rem;*/
-}
 
 .sidebar {
   --width-mobile: 12;
