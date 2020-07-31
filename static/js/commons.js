@@ -62,7 +62,7 @@ $(document).ready(function(){
     });
 
     $('.js-filter-btn').on('click', function(event){
-        var cxt = $('#' + this.getAttribute('data-context'));
+        var ctx = $('#' + this.getAttribute('data-context'));
         var input_name = this.getAttribute('data-input-name');
         var filter_field = this.getAttribute("data-filter-field");
         var value_list = [];
@@ -73,7 +73,7 @@ $(document).ready(function(){
     });
 
     $('.js-filter-reset-btn').on('click', function(event){
-        var cxt = $('#' + this.getAttribute('data-context'));
+        var ctx = $('#' + this.getAttribute('data-context'));
         
         listfilter.reset_filter(ctx);
     });
