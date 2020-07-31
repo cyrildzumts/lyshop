@@ -22,6 +22,31 @@ var ListFilter = (function(){
         console.log("ListFilter instance initialized");
     };
 
+    ListFilter.prototype.filter = function(ctx, filter_field, value_list){
+        if(!ctx || !filter_field || !value_list || value_list.length == 0){
+            console.log("Filter called with missing argumtent");
+            return;
+        }
+        $(".filterable", ctx).each(function(index, element){
+            let filter_value = this.getAttribute(filter_field);
+            $(this).toggle(value_list.includes(filter_value));
+        });
+        console.log("Listfilter : filter run with success");
+    };
+
+    ListFilter.prototype.reset_filter = function(ctx){
+        if(!ctx){
+            console.log(" Reset Filter called with missing context");
+            return;
+        }
+        $("input:checkbox", ctx).each(function(){
+            this.checked = false;
+        });
+        $(".filterable", ctx).each(function(index, element){
+            $(this).show();
+        });
+        console.log("Listfilter : reset run with success");
+    };
 
     return ListFilter;
 })();
@@ -34,5 +59,22 @@ $(document).ready(function(){
         var target = $('.' + this.getAttribute('data-toggle'), parent);
         $('input', parent).val('');
         target.toggle();
+    });
+
+    $('.js-filter-btn').on('click', function(event){
+        var cxt = $('#' + this.getAttribute('data-context'));
+        var input_name = this.getAttribute('data-input-name');
+        var filter_field = this.getAttribute("data-filter-field");
+        var value_list = [];
+        $("input:checked[name=\"" + input_name + "\"]", ctx).each(function(){
+            value_list.push(this.value)
+        });
+        listfilter.filter(ctx, filter_field, value_list);
+    });
+
+    $('.js-filter-reset-btn').on('click', function(event){
+        var cxt = $('#' + this.getAttribute('data-context'));
+        
+        listfilter.reset_filter(ctx);
     });
 });
