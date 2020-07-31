@@ -36,15 +36,15 @@ var ListFilter = (function(){
         console.log("Listfilter : filter run with success");
     };
 
-    ListFilter.prototype.reset_filter = function(ctx){
-        if(!ctx){
+    ListFilter.prototype.reset_filter = function(ctx, container){
+        if(!ctx || !container){
             console.log(" Reset Filter called with missing context");
             return;
         }
         $("input:checkbox", ctx).each(function(){
             this.checked = false;
         });
-        $(".filterable", ctx).each(function(index, element){
+        $(".filterable", container).each(function(index, element){
             $(this).show();
         });
         console.log("Listfilter : reset run with success");
@@ -66,18 +66,19 @@ $(document).ready(function(){
     $('.js-filter-btn').on('click', function(event){
         var ctx = $('#' + this.getAttribute('data-context'));
         var input_name = this.getAttribute('data-input-name');
+        var container = this.getAttribute('data-container');
         var filter_field = this.getAttribute("data-filter-field");
         var value_list = [];
         $("input:checked[name=\"" + input_name + "\"]", ctx).each(function(){
             console.log("adding value to filter : %s", this.getAttribute("data-value"));
             value_list.push(this.getAttribute("data-value"));
         });
-        listfilter.filter(ctx, filter_field, value_list);
+        listfilter.filter(container, filter_field, value_list);
     });
 
     $('.js-filter-reset-btn').on('click', function(event){
         var ctx = $('#' + this.getAttribute('data-context'));
-        
-        listfilter.reset_filter(ctx);
+        var container = this.getAttribute('data-container');
+        listfilter.reset_filter(ctx, container);
     });
 });
