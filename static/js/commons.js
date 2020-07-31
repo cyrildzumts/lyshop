@@ -66,7 +66,7 @@ $(document).ready(function(){
     $('.js-filter-btn').on('click', function(event){
         var ctx = $('#' + this.getAttribute('data-context'));
         var input_name = this.getAttribute('data-input-name');
-        var container = this.getAttribute('data-container');
+        var container = $('#' + this.getAttribute('data-container'));
         var filter_field = this.getAttribute("data-filter-field");
         var value_list = [];
         $("input:checked[name=\"" + input_name + "\"]", ctx).each(function(){
@@ -78,7 +78,7 @@ $(document).ready(function(){
 
     $('.js-filter-reset-btn').on('click', function(event){
         var ctx = $('#' + this.getAttribute('data-context'));
-        var container = this.getAttribute('data-container');
+        var container = $('#' + this.getAttribute('data-container'));
         listfilter.reset_filter(ctx, container);
     });
 });
