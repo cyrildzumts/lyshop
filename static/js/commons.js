@@ -67,6 +67,7 @@ $(document).ready(function(){
         var filter_field = this.getAttribute("data-filter-field");
         var value_list = [];
         $("input:checked[name=\"" + input_name + "\"]", ctx).each(function(){
+            console.log("adding value to filter : %s", this.value);
             value_list.push(this.value)
         });
         listfilter.filter(ctx, filter_field, value_list);
