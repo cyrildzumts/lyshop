@@ -53,7 +53,7 @@
                         <div class="mat-box-content">
                             <ul id="filterable-brand" class="mat-list" data-element="li" data-input-name="brands">
                                 {% for b in brand_list %}
-                                <li id="brand-item-{{b.id}}" class="" data-value="{{b.display_name}}"><div><label class="label-row label-row-left" for="brand-{{b.id}}"><input class="filter-input" type="checkbox" name="brand" id="brand-{{b.id}}" value="{{b.id}}">{{b.display_name}}</label></div></li>
+                                <li id="brand-item-{{b.id}}" class="" data-value="{{b.display_name}}"><div><label class="label-row label-row-left" for="brand-{{b.id}}"><input class="filter-input" type="checkbox" name="brand" id="brand-{{b.id}}" value="{{b.id}}" data-value="{{b.id}}">{{b.display_name}}</label></div></li>
                                 {% endfor %}
                                 
                             </ul>
