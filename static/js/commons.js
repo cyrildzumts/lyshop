@@ -27,8 +27,10 @@ var ListFilter = (function(){
             console.log("Filter called with missing argumtent");
             return;
         }
+        console.log("Filtering started");
         $(".filterable", ctx).each(function(index, element){
             let filter_value = this.getAttribute(filter_field);
+            console.log(" Filter Field = \"%s\" - Filter Value = \"%s\" - Value List = [\"%s\"]", filter_field ,filter_value, value_list)
             $(this).toggle(value_list.includes(filter_value));
         });
         console.log("Listfilter : filter run with success");
