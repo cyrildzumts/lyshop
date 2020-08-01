@@ -2,20 +2,24 @@
 
 <div class="responsive">
     
-    <form id="idcard-form" name="idcard" action="{% url 'dashboard:product-image-create' product.product_uuid%}" enctype="multipart/form-data" method="POST">{% csrf_token %}
+    <form id="image-form" name="product-image" action="{% url 'dashboard:product-image-create' product.product_uuid%}" enctype="multipart/form-data" method="POST">{% csrf_token %}
         <input type="hidden" name="user" value="{{request.user.pk}}">
         <input type="hidden" name="product" value="{{product.pk}}">
         <div class="form-group">
             <label for="name">{% trans "Name" %}* : </label>
             <input type="text" name="name" id="name">
         </div>
-        <div class="form-group">
+        <div class="drag-area" ondrop="onDropHandler(event);" ondragover="onDragOverHandler(event);">
             <label for="image">{% trans "Product Image :" %} (jpg, png)*</label>
-            <input type="file" name="image" id="image">    
+            <input type="file" name="image" id="image">
+            <p class="hint">{% blocktrans %}Please Drag and drop the product images here{% endblocktrans %}</p>
+            <ul class="file-list" data-format="jpg, jpeg, png" data-max-size="2097152">
+            
+            </ul>   
         </div>
         <div class="form-group row">
-            <a class="mat-button mat-button-default js-cancel" href="{% url 'dashboard:home' %}"> {% trans "Cancel" %} </a>
-            <button class="mat-button mat-button-default" type="submit">{% trans "Send" %}</button>
+            <a class="mat-button mat-button-default js-cancel" href="{{product.get_dashboard_url}}"> {% trans "Cancel" %} </a>
+            <button class="mat-button mat-button-default js-send" type="submit"><i class="fas fa-plus icon"></i><span>{% trans "Add Image" %}</span></button>
         </div>
     </form>
 </div>

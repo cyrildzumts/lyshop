@@ -53,6 +53,53 @@ var ListFilter = (function(){
     return ListFilter;
 })();
 
+var DragDrop = (function(){
+
+    function DragDrop(){
+
+    };
+
+    DragDrop.prototype.init = function(){
+
+    };
+
+    DragDrop.prototype.accept = function(event){
+
+    };
+
+    DragDrop.prototype.drag = function (event) {
+        
+    };
+
+    return DragDrop;
+})();
+
+function onDropHandler(event){
+    console.log("File(s) dropped");
+    event.preventDefault();
+    if(event.dataTransfer.items){
+        var items = event.dataTransfer.items;
+        for(var i = 0; i < items.length; i++){
+            if(items[i].kind === 'file'){
+                var file = items[i].getAsFile();
+                console.log("... file[" + i + "].name = " + file.name);
+            }
+        }
+    }else{
+        var files = event.dataTransfer.files;
+        for(var i = 0; i < files.length; i++){
+            //var file = files[i]
+            console.log("... file[" + i + "].name = " + files[i].name);
+        }
+    }
+}
+
+
+function onDragOverHandler(event){
+    console.log("File(s) in drop area");
+    event.preventDefault();
+
+}
 
 $(document).ready(function(){
     var listfilter = new ListFilter();

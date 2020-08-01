@@ -1561,6 +1561,43 @@ input.editable{
 	padding: 10px 5px;
 }
 
+.drag-area{
+	width: 100%;
+	min-height: 22em;
+	border: 2px solid #ccc;
+}
+
+.drag-area .file-list{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
+	padding: 8px 16px;
+	margin: 8px auto;
+}
+.file-list{
+	display: flex;
+	background-color: #fafafa;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
+	padding: 8px 16px;
+	margin: 8px auto;
+	list-style-type: none;
+}
+.file-list .file-entry{
+	display: block;
+	width: 100%;
+	font-size: 0.825em;
+	font-weight: 700;
+	color: #242424;
+	text-decoration: none;
+}
+
+
+.drag-area input{
+	display: none;
+}
 
 .card{
 	width: 344px;
