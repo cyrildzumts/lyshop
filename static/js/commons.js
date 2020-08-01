@@ -76,6 +76,7 @@ var DragDrop = (function(){
 
 function onDropHandler(event){
     console.log("File(s) dropped");
+    console.log(this);
     event.preventDefault();
     if(event.dataTransfer.items){
         var items = event.dataTransfer.items;
@@ -97,6 +98,7 @@ function onDropHandler(event){
 
 function onDragOverHandler(event){
     console.log("File(s) in drop area");
+    console.log(this);
     event.preventDefault();
 
 }
