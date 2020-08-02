@@ -205,6 +205,7 @@ var FileUpload = (function(){
             class: 'fas fa-times icon'
         });
         li.append(entry_text, entry_remove_btn).appendTo(that.file_list_container);
+        that.file_list_container.remove('.no-data');
         this.clean = false;
         return this;
     };
