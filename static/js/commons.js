@@ -152,6 +152,7 @@ var FileUpload = (function(){
         this.form = undefined;
         this.formData = undefined;
         this.clean = true;
+        this.drag_area = $('.drag-area');
         this.file_list_container = $('.file-list');
         this.file_entries = {};
         this.empty_element = $('.no-data', this.file_list_container);
@@ -213,6 +214,7 @@ var FileUpload = (function(){
         });
         li.append(entry_text, entry_remove_btn).appendTo(that.file_list_container);
         $('.no-data', that.file_list_container).remove();
+        this.drag_area.addClass('non-empty');
         this.clean = false;
         return this;
     };
@@ -225,6 +227,7 @@ var FileUpload = (function(){
             console.log("removed files : %s", fileNames);
             if(this.files.length == 0){
                 this.file_list_container.append(this.empty_element);
+                this.drag_area.removeClass('non-empty');
             }
             this.clean = false;
         }else{
