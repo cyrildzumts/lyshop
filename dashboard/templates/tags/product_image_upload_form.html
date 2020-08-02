@@ -10,7 +10,7 @@
             <input type="text" name="name" id="name">
         </div>
         {% endcomment %}
-        <div class="drag-area" ondrop="onDropHandler(event);" ondragover="onDragOverHandler(event);" ondragstart="onDragStartHandler(event);" ondragend="onDragEndHandler(event);">
+        <div class="drag-area" ondrop="onDropHandler(event);" ondragover="onDragOverHandler(event);" ondragenter="onDragStartHandler(event);" ondragleave="onDragEndHandler(event);">
             <p class="hint">{% blocktrans %}Please Drag and drop the product images here{% endblocktrans %}</p>
             <p class="hint">{% blocktrans %}Accepted formats{% endblocktrans %} : <b>jpeg</b>, <b>jpg</b> and <b>png</b></p>
             <ul class="file-list" data-format="jpg, jpeg, png" data-max-size="2097152">
