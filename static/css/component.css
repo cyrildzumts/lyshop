@@ -1,6 +1,7 @@
 /* Utility */
 
 :root{
+  --active-border-color: #45A29E;
   --body-bg: #1F2833;
   --header-hover-color: #66FCF1; 
   --header-bg: #45A29E;
@@ -412,8 +413,8 @@ a.button{
 }
 */
 
-.kiosk .selected{
-	border-bottom: 2px solid #45A29E;
+.kiosk .active{
+	border-bottom: 2px solid var(--active-border-color);
 }
 
 .nav-container{

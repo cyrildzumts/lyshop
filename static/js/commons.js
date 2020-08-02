@@ -332,7 +332,7 @@ var FileUpload = (function(){
 function kiosk_update(event){
     console.log("Kios update...");
     document.getElementById('main-image').src = event.target.src;
-    $(".kiosk-image").removeClass('selected').filter(event.target).addClass("selected");
+    $(".kiosk-image").removeClass('active').filter(event.target).addClass("active");
 }
 
 $(document).ready(function(){
