@@ -1,4 +1,4 @@
-var fileUpload = new FileUpload();
+var fileUpload;
 
 
 var ListFilter = (function(){
@@ -254,7 +254,7 @@ var FileUpload = (function(){
 
 $(document).ready(function(){
     var listfilter = new ListFilter();
-    
+    fileUpload = new FileUpload();
     $('.collapsible .toggle').on('click', function(event){
         var parent = $(this).parent();
         var target = $('.' + this.getAttribute('data-toggle'), parent);
