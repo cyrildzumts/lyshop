@@ -157,6 +157,7 @@ var FileUpload = (function(){
         this.file_entries = {};
         this.empty_element = $('.no-data', this.file_list_container);
         this.send_btn = $('.js-send-file-upload-btn');
+        this.clear_btn = $('.js-file-list-clear-btn');
     };
 
     FileUpload.prototype.init = function(){
@@ -168,6 +169,11 @@ var FileUpload = (function(){
         this.formData = undefined;
         this.form = undefined;
         this.clean = true;
+        //$('.file-entry', this.file_list_container).remove();
+        this.file_list_container.remove('.file-entry').append(this.empty_element);
+        this.drag_area.removeClass('non-empty');
+        this.send_btn.addClass('disabled').prop('disabled',true);
+        this.clear_btn.addClass('hidden');
     };
 
     FileUpload.prototype.isClean = function() {
@@ -217,6 +223,7 @@ var FileUpload = (function(){
         $('.no-data', that.file_list_container).remove();
         this.drag_area.addClass('non-empty');
         this.send_btn.removeClass('disabled').prop('disabled',false);
+        this.clear_btn.removeClass('hidden');
         this.clean = false;
         return this;
     };
@@ -231,6 +238,7 @@ var FileUpload = (function(){
                 this.file_list_container.append(this.empty_element);
                 this.drag_area.removeClass('non-empty');
                 this.send_btn.addClass('disabled').prop('disabled',true);
+                this.clear_btn.addClass('hidden');
             }
             this.clean = false;
         }else{
@@ -262,6 +270,13 @@ var FileUpload = (function(){
         */
     };
 
+    FileUpload.prototype.canSend = function(){
+        let formValid = typeof this.form != 'undefined';
+        let filesValid = typeof this.files != 'undefined';
+
+        return formValid && filesValid && this.files.length > 0;
+    };
+
     FileUpload.prototype.getForm = function() {
         return this.form;
     };
@@ -275,6 +290,10 @@ var FileUpload = (function(){
     }
 
     FileUpload.prototype.upload = function(){
+        if(!this.canSend()){
+            console.error("Files can not be sent. Please check your files form. Files or form are missing.");
+            return;
+        }
         if(typeof ajax === 'undefined'){
             var errorMsg = "can not upload files. ajax funtion is not defined";
             console.error(errorMsg);
