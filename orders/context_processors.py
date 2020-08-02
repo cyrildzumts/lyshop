@@ -8,7 +8,7 @@ def order_context(request):
         qs = Order.objects.none()
         recent_orders = qs
     context = {
-        'recent_orders': ,recent_orders
+        'recent_orders': recent_orders,
         'order_list': qs
     }
     return context
