@@ -120,7 +120,7 @@
             <div class="grid">
             {% load static %}
             {% for image in image_list %}
-              <div class="img-wrappe col-3">
+              <div class="img-wrapper col-2">
               <img class="img-responsive" src="{{image.get_image_url}}" alt="">
               <a class="mat-button mat-button-outlined" href="{{image.get_dashboard_url}}">{% trans "See" %}</a>
               </div>
