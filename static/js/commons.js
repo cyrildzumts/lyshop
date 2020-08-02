@@ -103,7 +103,17 @@ function onDropHandler(event){
 function onDragOverHandler(event){
     console.log("File(s) in drop area");
     event.preventDefault();
+    
 
+}
+
+function onDragStartHandler(event) {
+    $('.drag-area').addClass('on-drag');
+    
+}
+function onDragDndHandler(event) {
+    $('.drag-area').removeClass('on-drag');
+    
 }
 
 function uploadFiles(form, files) {
@@ -139,6 +149,8 @@ var FileUpload = (function(){
         this.form = undefined;
         this.formData = undefined;
         this.clean = true;
+        this.file_list_container = $('.file-list');
+        this.file_entries = {};
     };
 
     FileUpload.prototype.init = function(){
@@ -173,7 +185,26 @@ var FileUpload = (function(){
             console.warn("A file with the same name already exists.")
             return this;
         }
-        this.files.push(file)
+        var that = this;
+        this.files.push(file);
+        var li = $('<li />',{
+            id:"file-" + that.files.length,
+            'class' : 'file-entry',
+            'title': file.name,
+        });
+        var entry_text = $('<span />', {
+            text: file.name
+        });
+        var entry_remove_btn = $('<button />', {
+            class: 'mat-button mat-button-text',
+            onclick: function(){
+                that.removeFile([file.name]);
+                li.remove();
+            }
+        }).append('<i />', {
+            class: 'fas fa-times icon'
+        });
+        li.append(entry_text, entry_remove_btn).appendTo(that.file_list_container);
         this.clean = false;
         return this;
     };

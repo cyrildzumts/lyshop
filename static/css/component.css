@@ -36,6 +36,7 @@
   --mat-list-item-hover-color : #aaa;
   --mat-list-item-active-bg : #fafafa;
   --mat-list-item-active-color : #242424;
+  --on-drag-border-color : #3498db;
 
 }
 
@@ -1574,6 +1575,10 @@ input.editable{
 	font-size: 0.875em;
 	font-weight: 700;
 	width: 25em;
+}
+
+.on-drag{
+	border-color: var(--on-drag-border-color);
 }
 
 .drag-area .file-list{
