@@ -220,17 +220,16 @@ var FileUpload = (function(){
     FileUpload.prototype.removeFile = function(fileNames){
         console.log("removing files : %s", fileNames);
         var old_length = this.files.length;
-        var files = this.files.filter(f => fileNames.includes(f.name));
-        if(files.length > 0){
-            this.files = files;
+        this.files = this.files.filter(f => fileNames.includes(f.name));
+        if(this.files.length != old_length && this.files.length < old_length){
+            console.log("removed files : %s", fileNames);
+            if(this.files.length == 0){
+                this.file_list_container.append(this.empty_element);
+            }
             this.clean = false;
         }else{
-            this.file_list_container.append(this.empty_element);
-        }
-        if(old_length != this.files.length){
-            console.log("removed files : %s", fileNames);
-        }else{
             console.log("files : %s not removed", fileNames);
+            
         }
         
         return this;
