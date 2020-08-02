@@ -174,7 +174,7 @@ var FileUpload = (function(){
         this.form = undefined;
         this.clean = true;
         //$('.file-entry', this.file_list_container).remove();
-        this.file_list_container.remove('.file-entry').append(this.empty_element);
+        this.file_list_container.empty().append(this.empty_element);
         this.drag_area.removeClass('non-empty');
         this.send_btn.addClass('disabled').prop('disabled',true);
         this.clear_btn.addClass('hidden');
