@@ -376,4 +376,5 @@ $(document).ready(function(){
         
     });
     $('.js-select-image').on('click', kiosk_update);
+    $('.js-select-image').first().click();
 });
