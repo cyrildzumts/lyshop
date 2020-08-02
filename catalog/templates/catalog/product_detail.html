@@ -16,23 +16,23 @@
   <div class="container">
     <div class="col-m-12 col-4">
       <div class="container">
-        <div class="wrapper full">
+        <div class="wrapper full kiosk">
             <div class="row">
               <div class="img-wrapper">
-                <img class="img-responsive" src="{{product.images.first.get_image_url}}" alt="">
+                <img id="main-image" class="img-responsive" src="{{product.images.first.get_image_url}}" alt="">
               </div>
             </div>
 
-            <div class="row separator">
+            <div class="row">
             {% for image in image_list %}
-              <div class="img-wrapper col-3">
-                <img class="img-responsive" src="{{image.get_image_url}}" alt="">
+              <div class="img-wrapper col-3 kiosk-image">
+                <img  class="img-responsive js-select-image" src="{{image.get_image_url}}" alt="">
                 {% comment %}<a class="mat-button mat-button-outlined" href="{{image.get_absolute_url}}">{% trans "See" %}</a>
                 {% endcomment %}
               </div>
             {% endfor %}
             </div>
-         </div><!--End of mat-box-->
+         </div><!--End of wrapper-->
       </div><!--container-->
     </div><!--End of col-8-->
     <div class="col-m-12 col-4">

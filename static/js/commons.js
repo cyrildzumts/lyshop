@@ -329,6 +329,11 @@ var FileUpload = (function(){
     return FileUpload;
 })();
 
+function kiosk_update(event){
+    console.log("Kios update...");
+    document.getElementById('main-image').src = event.target.src;
+}
+
 $(document).ready(function(){
     var listfilter = new ListFilter();
     fileUpload = new FileUpload();
@@ -369,4 +374,5 @@ $(document).ready(function(){
         //return false;
         
     });
+    $('.js-select-image').on('click', kiosk_update);
 });
