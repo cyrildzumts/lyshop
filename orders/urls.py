@@ -6,7 +6,8 @@ from orders import views
 
 app_name = 'orders'
 urlpatterns = [
-    path('', views.checkout, name='checkout'),
+    path('', views.orders, name='order-home'),
+    path('checkout/', views.checkout, name='checkout'),
     path('checkout-success/<uuid:order_uuid>/', views.checkout_success, name='checkout-success'),
     path('checkout-failed/<uuid:order_uuid>/', views.checkout_failed, name='checkout-failed'),
     path('checkout-redirect-payment/<uuid:request_uuid>/', views.checkout_redirect_payment, name='checkout-redirect-payment'),
