@@ -216,7 +216,7 @@ var FileUpload = (function(){
         li.append(entry_text, entry_remove_btn).appendTo(that.file_list_container);
         $('.no-data', that.file_list_container).remove();
         this.drag_area.addClass('non-empty');
-        this.send_btn.removeClass('disabled');
+        this.send_btn.removeClass('disabled').prop('disabled',false);
         this.clean = false;
         return this;
     };
@@ -230,7 +230,7 @@ var FileUpload = (function(){
             if(this.files.length == 0){
                 this.file_list_container.append(this.empty_element);
                 this.drag_area.removeClass('non-empty');
-                this.send_btn.addClass('disabled');
+                this.send_btn.addClass('disabled').prop('disabled',true);
             }
             this.clean = false;
         }else{
