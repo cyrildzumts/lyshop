@@ -232,7 +232,7 @@ var FileUpload = (function(){
             url : $(this.form).attr('action'),
             type: 'POST',
             enctype : 'multipart/form-data',
-            data = this.formData,
+            data : this.formData,
             processData : false,
             cache : false,
             contentType : false
