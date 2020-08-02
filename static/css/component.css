@@ -1601,6 +1601,8 @@ input.editable{
 }
 .file-list .file-entry{
 	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
 	width: 100%;
 	font-size: 0.825em;
 	font-weight: 700;

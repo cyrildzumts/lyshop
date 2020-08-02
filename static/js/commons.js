@@ -108,10 +108,12 @@ function onDragOverHandler(event){
 }
 
 function onDragStartHandler(event) {
+    console.log("Drag start");
     $('.drag-area').addClass('on-drag');
     
 }
-function onDragDndHandler(event) {
+function onDragEndHandler(event) {
+    console.log("Drag end");
     $('.drag-area').removeClass('on-drag');
     
 }
