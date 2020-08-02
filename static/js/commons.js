@@ -192,7 +192,7 @@ var FileUpload = (function(){
             console.warn("FileUpload can not be updated. formData is already clean.");
             return;
         }
-        if(this.form || this.files || this.files.length == 0){
+        if(!this.form || !this.files || this.files.length == 0){
             console.warn("FileUpload can not be updated. form or files are missing.");
             return;
         }
@@ -289,7 +289,7 @@ $(document).ready(function(){
         fileUpload.setForm(this);
         fileUpload.update();
         fileUpload.upload();
-        return false;
+        //return false;
         
     });
 });
