@@ -203,7 +203,7 @@ var FileUpload = (function(){
             class: 'mat-button mat-button-text',
             type: 'button',
             onclick: function(event){
-                event.preventDefault();
+                //event.preventDefault();
                 event.stopPropagation();
                 that.removeFile([file.name]);
                 li.remove();
