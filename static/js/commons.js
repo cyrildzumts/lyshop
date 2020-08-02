@@ -220,7 +220,7 @@ var FileUpload = (function(){
     FileUpload.prototype.removeFile = function(fileNames){
         console.log("removing files : %s", fileNames);
         var old_length = this.files.length;
-        this.files = this.files.filter(f => fileNames.includes(f.name));
+        this.files = this.files.filter(f => !fileNames.includes(f.name));
         if(this.files.length != old_length && this.files.length < old_length){
             console.log("removed files : %s", fileNames);
             if(this.files.length == 0){
