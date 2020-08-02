@@ -601,11 +601,16 @@ def product_image_create(request, product_uuid=None):
             logger.info("submitted product image form is valide")
             logger.info("saving submitted product image form")
             form.save()
-            logger.info("submitted idcard form saved")
+            logger.info("submitted form saved")
+            if request.is_ajax():
+                return JsonResponse({'status': 'OK', 'message' : 'files uploaded'})
             return redirect('dashboard:product-detail', product_uuid=product_uuid)
             
         else:
-            logger.error("The idcard form is not valide. Error : %s", form.non_field_errors)
+            logger.error("The form is not valide. Error : %s", form.non_field_errors)
+            logger.error("The form is not valide. Error : %s", form.errors)
+            if request.is_ajax():
+                return JsonResponse({'status': 'NOT OK', 'message' : 'files not uploaded', 'errors' : form.errors.items()}, status=400)
     else:
         form = ProductImageForm()
     context['form'] = form
