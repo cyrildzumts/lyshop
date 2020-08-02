@@ -57,7 +57,7 @@ def order_detail(request, order_uuid=None):
 @login_required
 def checkout(request):
     cart = orders_service.get_user_cart(request.user)
-    template_name = 'orders/order.html'
+    template_name = 'orders/checkout.html'
     context = {
         'page_title' : _("Checkout") + ' - ' + settings.SITE_NAME
     }
