@@ -48,6 +48,7 @@ logger = logging.getLogger(__name__)
 
 #TODO : Add Required Login decoators
 
+MAX_IMAGE_SIZE = 2097152
 
 @login_required
 def dashboard(request):
@@ -595,7 +596,9 @@ def product_image_create(request, product_uuid=None):
     product = get_object_or_404(Product, product_uuid=product_uuid)
     if request.method == "POST":
         postdata = utils.get_postdata(request)
-        
+        files = request.FILES
+        for f in files:
+            logger.info(f"Image name : {f.name} -  Image size : {f.size} - Image type : {f.content_type}")
         form = ProductImageForm(postdata, request.FILES)
         if form.is_valid():
             logger.info("submitted product image form is valide")

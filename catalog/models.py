@@ -277,7 +277,9 @@ class ProductVariant(models.Model):
 
 
 def upload_to(instance, filename):
-    return f"products/{instance.product.id}/{instance.name}/{instance.product.id}-{instance.height}x{instance.width}-{filename}"
+    #return f"products/{instance.product.id}/{instance.name}/{instance.product.id}-{instance.height}x{instance.width}-{filename}"
+    return f"products/{instance.product.id}/{instance.product.category.code}-{instance.product.id}-{instance.height}x{instance.width}-{filename}"
+
 
 class ProductImage(models.Model):
     height = models.IntegerField(blank=True, null=True)
