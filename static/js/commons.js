@@ -97,6 +97,7 @@ function onDropHandler(event){
             console.log("... file[" + i + "].name = " + files[i].name);
         }
     }
+    $('.drag-area').removeClass('on-drag');
 }
 
 
@@ -207,7 +208,7 @@ var FileUpload = (function(){
             class: 'fas fa-times icon'
         }));
         li.append(entry_text, entry_remove_btn).appendTo(that.file_list_container);
-        that.file_list_container.remove('.no-data');
+        $('.no-data', that.file_list_container).remove();
         this.clean = false;
         return this;
     };
