@@ -628,7 +628,7 @@ def product_image_create(request, product_uuid=None):
                     forms_errors.append(forms[i].errors.as_json())
             logger.error(f" Forms Errors  - Errors = {forms_errors}")
             if request.is_ajax():
-                return JsonResponse({'status': 'NOT OK', 'message' : 'files not uploaded', 'errors' : forms_errors, status=400)
+                return JsonResponse({'status': 'NOT OK', 'message' : 'files not uploaded', 'errors' : forms_errors}, status=400)
         '''
         if form.is_valid():
             logger.info("submitted product image form is valide")
