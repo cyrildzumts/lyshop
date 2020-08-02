@@ -119,7 +119,7 @@ function uploadFiles(form, files) {
         url : $(form).attr('action'),
         type: 'POST',
         enctype : 'multipart/form-data',
-        data = formData,
+        data : formData,
         processData : false,
         cache : false,
         contentType : false
