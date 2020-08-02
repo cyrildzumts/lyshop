@@ -1,3 +1,4 @@
+var fileUpload = new FileUpload();
 
 
 var ListFilter = (function(){
@@ -76,20 +77,23 @@ var DragDrop = (function(){
 
 function onDropHandler(event){
     console.log("File(s) dropped");
-    console.log(event.target);
     event.preventDefault();
+    var files = [];
     if(event.dataTransfer.items){
         var items = event.dataTransfer.items;
         for(var i = 0; i < items.length; i++){
             if(items[i].kind === 'file'){
                 var file = items[i].getAsFile();
-                console.log("... file[" + i + "].name = " + file.name);
+                fileUpload.addFile(file);
+                console.log("...asFile file[" + i + "].name = " + file.name);
             }
         }
     }else{
         var files = event.dataTransfer.files;
+        //fileUpload.setFiles(files);
         for(var i = 0; i < files.length; i++){
             //var file = files[i]
+            fileUpload.addFile(files[i]);
             console.log("... file[" + i + "].name = " + files[i].name);
         }
     }
@@ -98,13 +102,159 @@ function onDropHandler(event){
 
 function onDragOverHandler(event){
     console.log("File(s) in drop area");
-    console.log(event.target);
     event.preventDefault();
 
 }
 
+function uploadFiles(form, files) {
+    console.log("SendForm started ...");
+    var formData = new FormData(form);
+    files.forEach(function(file, index){
+        formData.append("file_" + index, file, file.name);
+    });
+    $(form).serializeArray().forEach(function(input, index){
+        formData.append(input.name, input.value);
+    });
+    var options = {
+        url : $(form).attr('action'),
+        type: 'POST',
+        enctype : 'multipart/form-data',
+        data = formData,
+        processData : false,
+        cache : false,
+        contentType : false
+    };
+    ajax(options).then(function(response){
+
+    }, function(reason){
+
+    });
+    
+}
+
+
+var FileUpload = (function(){
+    function FileUpload(){
+        this.files = [];
+        this.form = undefined;
+        this.formData = undefined;
+        this.clean = true;
+    };
+
+    FileUpload.prototype.init = function(){
+
+    };
+
+    FileUpload.prototype.clear = function() {
+        this.files = [];
+        this.formData = undefined;
+        this.form = undefined;
+        this.clean = true;
+    };
+
+    FileUpload.prototype.isClean = function() {
+        return this.clean;
+    };
+
+    FileUpload.prototype.setForm = function(form){
+        this.form = form;
+        this.clean = false;
+        return this;
+    };
+
+    FileUpload.prototype.setFiles = function(files){
+        this.files = files;
+        this.clean = false;
+        return this;
+    };
+
+    FileUpload.prototype.addFile = function(file){
+        if(this.files.some(f => f.name == file.name)){
+            console.warn("A file with the same name already exists.")
+            return this;
+        }
+        this.files.push(file)
+        this.clean = false;
+        return this;
+    };
+
+    FileUpload.prototype.removeFile = function(fileNames){
+        var files = this.files.filter(f => fileNames.includes(f.name));
+        if(files.length > 0){
+            this.files = files;
+            this.clean = false;
+        }
+        
+        return this;
+    };
+    FileUpload.prototype.update = function(){
+        if(this.isClean()){
+            console.warn("FileUpload can not be updated. formData is already clean.");
+            return;
+        }
+        if(this.form || this.files || this.files.length == 0){
+            console.warn("FileUpload can not be updated. form or files are missing.");
+            return;
+        }
+        this.formData = new FormData(this.form);
+        var that = this;
+        this.files.forEach(function(file, index){
+            that.formData.append("file_" + index, file, file.name);
+        });
+        this.clean = true;
+        /*
+        $(form).serializeArray().forEach(function(input, index){
+            formData.append(input.name, input.value);
+        });
+        */
+    };
+
+    FileUpload.prototype.getForm = function() {
+        return this.form;
+    };
+
+    FileUpload.prototype.getFiles = function() {
+        return this.files;
+    }
+
+    FileUpload.prototype.getFormDate = function() {
+        return this.formData;
+    }
+
+    FileUpload.prototype.upload = function(){
+        if(typeof ajax === 'undefined'){
+            var errorMsg = "can not upload files. ajax funtion is not defined";
+            console.error(errorMsg);
+            throw new Error(errorMsg);
+        }
+        var that = this;
+        var options = {
+            url : $(this.form).attr('action'),
+            type: 'POST',
+            enctype : 'multipart/form-data',
+            data = this.formData,
+            processData : false,
+            cache : false,
+            contentType : false
+        };
+        ajax(options).then(function(response){
+            console.info("Files have bean uploaded.");
+            fileUpload.clear();
+
+        }, function(reason){
+            console.error("Files could not be uploaded.");
+            console.error(reason);
+            fileUpload.clear();
+        });
+
+    };
+
+    return FileUpload;
+})();
+
 $(document).ready(function(){
     var listfilter = new ListFilter();
+    
     $('.collapsible .toggle').on('click', function(event){
         var parent = $(this).parent();
         var target = $('.' + this.getAttribute('data-toggle'), parent);
@@ -129,5 +279,16 @@ $(document).ready(function(){
         var ctx = $('#' + this.getAttribute('data-context'));
         var container = $('#' + this.getAttribute('data-container'));
         listfilter.reset_filter(ctx, container);
+    });
+
+    $('#upload-file-form').on('submit', function(event){
+        console.log("submitting upload-file-form");
+        event.preventDefault();
+        event.stopPropagation();
+        console.log(this);
+        fileUpload.setForm(this);
+        fileUpload.update();
+        fileUpload.upload();
+        
     });
 });

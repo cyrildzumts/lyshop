@@ -2,15 +2,15 @@
 
 <div class="responsive">
     
-    <form id="image-form" name="product-image" action="{% url 'dashboard:product-image-create' product.product_uuid%}" enctype="multipart/form-data" method="POST">{% csrf_token %}
+    <form id="file-upload-form" name="product-image" action="{% url 'dashboard:product-image-create' product.product_uuid%}" enctype="multipart/form-data" method="POST">{% csrf_token %}
         <input type="hidden" name="user" value="{{request.user.pk}}">
         <input type="hidden" name="product" value="{{product.pk}}">
-        <div class="form-group">
+        {% comment %}<div class="form-group">
             <label for="name">{% trans "Name" %}: </label>
             <input type="text" name="name" id="name">
         </div>
+        {% endcomment %}
         <div class="drag-area" ondrop="onDropHandler(event);" ondragover="onDragOverHandler(event);">
-            <input type="file" name="image" id="image">
             <p class="hint">{% blocktrans %}Please Drag and drop the product images here{% endblocktrans %}</p>
             <p class="hint">{% blocktrans %}Accepted formats{% endblocktrans %} : <b>jpeg</b>, <b>jpg</b> and <b>png</b></p>
             <ul class="file-list" data-format="jpg, jpeg, png" data-max-size="2097152">
