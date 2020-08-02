@@ -158,11 +158,12 @@ var FileUpload = (function(){
         this.empty_element = $('.no-data', this.file_list_container);
         this.send_btn = $('.js-send-file-upload-btn');
         this.clear_btn = $('.js-file-list-clear-btn');
+        this.init();
     };
 
     FileUpload.prototype.init = function(){
         var that = this;
-        this.clear_btn.on('click', that.clear);
+        this.clear_btn.on('click', this.clear.bind(this));
     };
 
     FileUpload.prototype.clear = function() {
