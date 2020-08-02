@@ -25,7 +25,7 @@
 {% endblock HEADER_BANNER %}
 
 {% block MAIN %}
-{% if order_list %}
+{% if orders %}
 <div class="container">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
@@ -40,7 +40,7 @@
                   </tr>
           </thead>
           <tbody>
-                  {% for o in order_list  %}
+                  {% for o in orders  %}
                   <tr>
                     <td data-label="{% trans 'Amount' %}">{{o.amount}} {% trans "XAF" %}</td>
                     <td data-label="{% trans 'Status' %}">{{o.status}} </td>
@@ -55,7 +55,7 @@
           </tfoot>
 
     </table>
-    {% include "tags/pagination.html" with page_set=order_list %}
+    {% include "tags/pagination.html" with page_set=orders %}
     </div><!--End of Table Wrapper-->
   </div>
 </div>
