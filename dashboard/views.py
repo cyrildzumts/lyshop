@@ -622,7 +622,7 @@ def product_image_create(request, product_uuid=None):
                 return JsonResponse({'status': 'OK', 'message' : 'files uploaded'})
             return redirect('dashboard:product-detail', product_uuid=product_uuid)
         else:
-            logger.error("at least one image form is not valid . Error : "")
+            logger.error("at least one image form is not valid.")
             for i in range(len(forms_valid)):
                 if not forms_valid[i]:
                     forms_errors.append(forms[i].errors.as_json())
