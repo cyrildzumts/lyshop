@@ -16,7 +16,7 @@
                 </div><!--End of Banner-Content-->
                 <div class="banner--actions">
                         <a class="mat-button mat-button-text" href="{{account.get_absolute_url}}"> {% trans "Account Details" %}</a>
-                        <a class="mat-button mat-button-text" href="{{account.get_absolute_url}}"> {% trans "Orders" %}</a>
+                        <a class="mat-button mat-button-text" href="{% url 'orders:orders' %}"> {% trans "Orders" %}</a>
                         <a class="mat-button mat-button-text" href="{{account.get_absolute_url}}"> {% trans "Wishlist" %}</a>
                         
                 </div><!--End of Banner-Actions-->
@@ -34,12 +34,38 @@
 <div class="container">
    <p>{% trans "Recent Orders" %}</p>
    {% if recent_orders %}
-   <ul class="mat-list">
-        {% for order in order_list %}
-            <li><div><span>{{order.created_at}}</span> <span>{{order.amount}}</span> <span>{{order.quantity}}</span> <span>{{order.status}}</span></div></li>
-        {% endfor %}
-   </ul>
+   <div class="mat-table-wrapper">
+        <table id="order-list" class="mat-table js-filter-table">
+          <thead>
+                  <tr>
+                          <th scope="col">{% trans "Amount" %}</th>
+                          <th scope="col">{% trans "Status" %}</th>
+                          <th scope="col">{% trans "Date" %}</th>
+                          <th scope="col">{% trans "Details" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for o in recent_orders  %}
+                  <tr>
+                    <td data-label="{% trans 'Amount' %}">{{o.amount}} {% trans "XAF" %}</td>
+                    <td data-label="{% trans 'Status' %}">{{o.status}} </td>
+                    <td data-label="{% trans 'Date' %}">{{o.created_at|date:"F j, Y"}}</td>
+                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+          <tfoot>
+                  
+          </tfoot>
+
+    </table>
+    </div><!--End of Table Wrapper-->
    {% else %}
+   <div class="row">
+    <p>{% trans "You have not order any product yet." %}</p>
+    <p>{% trans "Your recent orders will be shown here." %}</p>
+   </div>
    {% endif %}
    
 </div>
