@@ -597,8 +597,11 @@ def product_image_create(request, product_uuid=None):
     if request.method == "POST":
         postdata = utils.get_postdata(request)
         files = request.FILES
-        for f in files:
-            logger.info(f"Image name : {f.name} -  Image size : {f.size} - Image type : {f.content_type}")
+        logger.debug("Looping Request.FILES ")
+        logger.debug(files)
+        logger.debug(f"Type of REQUEST.FILES : {type(files)}")
+        #for f in files:
+        #   logger.info(f"Image name : {f.name} -  Image size : {f.size} - Image type : {f.content_type}")
         form = ProductImageForm(postdata, request.FILES)
         if form.is_valid():
             logger.info("submitted product image form is valide")
