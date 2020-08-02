@@ -594,15 +594,42 @@ def product_image_create(request, product_uuid=None):
     page_title = "New Product Image" + " - " + settings.SITE_NAME
     context['page_title'] = page_title
     product = get_object_or_404(Product, product_uuid=product_uuid)
+    forms = []
+    forms_valid = []
+    forms_errors = []
     if request.method == "POST":
         postdata = utils.get_postdata(request)
-        files = request.FILES
-        logger.debug("Looping Request.FILES ")
+        files = request.FILES.copy()
+        i = 1
+        for k,v in files:
+            forms.append(ProductImageForm(data={'name': f"{product.category.code}{product.brand.code}{product.id}-{i}", 'product': postdata.get('product'), 'product_variant': postdata.get('product_variant')},
+            files={'image' : v}))
+            i = i + 1
         logger.debug(files)
         logger.debug(f"Type of REQUEST.FILES : {type(files)}")
         #for f in files:
         #   logger.info(f"Image name : {f.name} -  Image size : {f.size} - Image type : {f.content_type}")
-        form = ProductImageForm(postdata, request.FILES)
+        #form = ProductImageForm(postdata, request.FILES)
+        for f in forms:
+            forms_valid.append(f.is_valid())
+        if all(forms_valid):
+            logger.info("all image forms are valid.")
+            logger.info("Saving images ...")
+            for f in forms:
+                f.save()
+            logger.info("[OK] Saving images done.")
+            if request.is_ajax():
+                return JsonResponse({'status': 'OK', 'message' : 'files uploaded'})
+            return redirect('dashboard:product-detail', product_uuid=product_uuid)
+        else:
+            logger.error("at least one image form is not valid . Error : "")
+            for i in range(len(forms_valid)):
+                if not forms_valid[i]:
+                    forms_errors.append(forms[i].errors.as_json())
+            logger.error(f" Forms Errors  - Errors = {forms_errors}")
+            if request.is_ajax():
+                return JsonResponse({'status': 'NOT OK', 'message' : 'files not uploaded', 'errors' : forms_errors, status=400)
+        '''
         if form.is_valid():
             logger.info("submitted product image form is valide")
             logger.info("saving submitted product image form")
@@ -617,8 +644,8 @@ def product_image_create(request, product_uuid=None):
             logger.error("The form is not valide. Error : %s", form.errors)
             if request.is_ajax():
                 return JsonResponse({'status': 'NOT OK', 'message' : 'files not uploaded', 'errors' : form.errors.as_json()}, status=400)
-    else:
-        form = ProductImageForm()
+        '''
+    form = ProductImageForm()
     context['form'] = form
     context['product'] = product
     return render(request,template_name, context)
