@@ -317,7 +317,7 @@ label{
 	display: inline-block;
 	width: 100%;
 	text-align: left;
-	color: #242424;
+	/*color: #242424;*/
 	font-weight: 500;
 	letter-spacing: .2px;
 	border: none !important;
@@ -791,13 +791,13 @@ a.button{
 }
 
 .disabled{
-	color:var(--disabled-color);
-	background-color: var(--disabled-bg-color);
+	color:var(--disabled-color) !important;
+	background-color: var(--disabled-bg-color) !important;
 	cursor: default !important;
 }
 
 .disabled:hover{
-	background-color: var(--disabled-hover-bg-color)
+	background-color: var(--disabled-hover-bg-color) !important;
 }
 
 
