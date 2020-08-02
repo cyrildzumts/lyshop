@@ -601,7 +601,7 @@ def product_image_create(request, product_uuid=None):
         postdata = utils.get_postdata(request)
         files = request.FILES.copy()
         i = 1
-        for k,v in files:
+        for k,v in files.items():
             forms.append(ProductImageForm(data={'name': f"{product.category.code}{product.brand.code}{product.id}-{i}", 'product': postdata.get('product'), 'product_variant': postdata.get('product_variant')},
             files={'image' : v}))
             i = i + 1
