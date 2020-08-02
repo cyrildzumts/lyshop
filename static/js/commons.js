@@ -201,16 +201,16 @@ var FileUpload = (function(){
         });
         var entry_remove_btn = $('<button />', {
             class: 'mat-button mat-button-text',
-            type: 'button',
-            onclick: function(event){
-                //event.preventDefault();
-                event.stopPropagation();
-                that.removeFile([file.name]);
-                li.remove();
-            }
+            type: 'button'
         }).append($('<i />', {
             class: 'fas fa-times icon'
         }));
+        entry_remove_btn.on('click', function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            that.removeFile([file.name]);
+            li.remove();
+        });
         li.append(entry_text, entry_remove_btn).appendTo(that.file_list_container);
         $('.no-data', that.file_list_container).remove();
         this.clean = false;
