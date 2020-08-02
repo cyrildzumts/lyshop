@@ -161,10 +161,13 @@ var FileUpload = (function(){
     };
 
     FileUpload.prototype.init = function(){
-
+        var that = this;
+        this.clear_btn.on('click', that.clear);
     };
 
     FileUpload.prototype.clear = function() {
+        console.log("clear file list ...");
+        console.log(this);
         this.files = [];
         this.formData = undefined;
         this.form = undefined;
@@ -174,6 +177,7 @@ var FileUpload = (function(){
         this.drag_area.removeClass('non-empty');
         this.send_btn.addClass('disabled').prop('disabled',true);
         this.clear_btn.addClass('hidden');
+        console.log("[OK] cleared file list");
     };
 
     FileUpload.prototype.isClean = function() {
