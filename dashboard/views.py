@@ -610,7 +610,7 @@ def product_image_create(request, product_uuid=None):
             logger.error("The form is not valide. Error : %s", form.non_field_errors)
             logger.error("The form is not valide. Error : %s", form.errors)
             if request.is_ajax():
-                return JsonResponse({'status': 'NOT OK', 'message' : 'files not uploaded', 'errors' : json.dumps(form.errors.items())}, status=400)
+                return JsonResponse({'status': 'NOT OK', 'message' : 'files not uploaded', 'errors' : form.errors.as_json()}, status=400)
     else:
         form = ProductImageForm()
     context['form'] = form
