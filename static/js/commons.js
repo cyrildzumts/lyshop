@@ -201,7 +201,10 @@ var FileUpload = (function(){
         });
         var entry_remove_btn = $('<button />', {
             class: 'mat-button mat-button-text',
-            onclick: function(){
+            type: 'button',
+            onclick: function(event){
+                event.preventDefault();
+                event.stopPropagation();
                 that.removeFile([file.name]);
                 li.remove();
             }
