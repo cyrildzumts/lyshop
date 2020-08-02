@@ -36,7 +36,7 @@
    {% if recent_orders %}
    <ul class="mat-list">
         {% for order in order_list %}
-            <li><div><span>{{order.create_at}}</span> <span>{{order.amount}}</span> <span>{{order.quantity}}</span> <span>{{order.status}}</span></div></li>
+            <li><div><span>{{order.created_at}}</span> <span>{{order.amount}}</span> <span>{{order.quantity}}</span> <span>{{order.status}}</span></div></li>
         {% endfor %}
    </ul>
    {% else %}
