@@ -289,6 +289,7 @@ $(document).ready(function(){
         fileUpload.setForm(this);
         fileUpload.update();
         fileUpload.upload();
+        return false;
         
     });
 });
