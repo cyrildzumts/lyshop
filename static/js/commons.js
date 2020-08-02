@@ -154,6 +154,7 @@ var FileUpload = (function(){
         this.clean = true;
         this.file_list_container = $('.file-list');
         this.file_entries = {};
+        this.empty_element = $('.no-data', this.file_list_container);
     };
 
     FileUpload.prototype.init = function(){
@@ -214,10 +215,19 @@ var FileUpload = (function(){
     };
 
     FileUpload.prototype.removeFile = function(fileNames){
+        console.log("removing files : %s", fileNames);
+        var old_length = this.files.length;
         var files = this.files.filter(f => fileNames.includes(f.name));
         if(files.length > 0){
             this.files = files;
             this.clean = false;
+        }else{
+            this.file_list_container.append(this.empty_element);
+        }
+        if(old_length != this.files.length){
+            console.log("removed files : %s", fileNames);
+        }else{
+            console.log("files : %s not removed", fileNames);
         }
         
         return this;
