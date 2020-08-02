@@ -281,8 +281,8 @@ $(document).ready(function(){
         listfilter.reset_filter(ctx, container);
     });
 
-    $('#upload-file-form').on('submit', function(event){
-        console.log("submitting upload-file-form");
+    $('#file-upload-form').on('submit', function(event){
+        console.log("submitting file-upload-form");
         event.preventDefault();
         event.stopPropagation();
         console.log(this);
