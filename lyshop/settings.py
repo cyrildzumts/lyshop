@@ -147,6 +147,7 @@ TEMPLATES = [
                 'lyshop.context_processors.site_context',
                 'accounts.context_processors.account_context',
                 'catalog.context_processors.catalog_context',
+                'orders.context_processors.order_context',
             ],
         },
     },
