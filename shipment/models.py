@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 from catalog.models import Product
 from orders.models import Order, OrderItem
 from lyshop import conf
@@ -45,15 +46,12 @@ class ShippedItem(models.Model):
     shippeditem_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
 
-    class Meta:
-        verbose_name = _("ShippedItem")
-        verbose_name_plural = _("ShippedItems")
-
     def __str__(self):
         return f"ShippedItem {self.product.display_name}"
 
     def get_absolute_url(self):
         return reverse("shipment:shippedItem-detail", kwargs={"shippeditem_uuid": self.shippeditem_uuid})
+        
 
 class ShipmentStatusHistory(models.Model):
     shipment_status = models.IntegerField(default=Constants.WAITING)
