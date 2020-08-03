@@ -1,9 +1,9 @@
-from lyshop import settings
+from lyshop import settings, utils
 from django.db.models import F,Q,Count, Sum, FloatField
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from orders.models import Order, OrderItem, Address, PaymentRequest
-from shipment.models import Shipment
+from shipment import shipment_service
 from itertools import islice
 import requests
 import json
@@ -89,33 +89,17 @@ def add_shipment(order):
     if not isinstance(order, Order):
         logger.error("Type Error : order not of Order type")
         return False
-    data = {
-        'shipment_number' : 12,
-        'customer': order.user,
-        'order' : order,
-        'price' : order.shipping_price,
-        'company': "LYSHOP"
-    }
-    shipment, created = Shipment.objects.create(**data)
-    if created:
-        logger.info(f"Shipment created for order {order.pk}")
-    else:
-        logger.info(f"Shipment could not be created for order {order.pk}")
-    return created
+    return shipment_service.add_shipment(order)
 
 def is_marked_for_shipment(order):
     if not isinstance(order, Order):
         logger.error("Type Error : order not of Order type")
-        return False
-    return Shipment.objects.filter(order=order).exists()
+        raise TypeError("Type Error : order argument not of type Order.")
+    return shipment_service.shipment_for_order_exists(order)
 
 def get_order_shipment(order):
     if not isinstance(order, Order):
         logger.error("Type Error : order not of Order type")
-        return False
+        raise TypeError("Type Error : order argument not of type Order.")
     shipment = None
-    try:
-        shipment = Shipment.objects.get(order=order)
-    except Shipment.DoesNotExist as e:
-        pass
-    return shipment
+    return shipment_service.find_order_shipment(order)

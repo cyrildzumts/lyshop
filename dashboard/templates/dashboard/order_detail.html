@@ -75,7 +75,7 @@
                     </div>
                     {% else %}
                     <div class="entry">
-                        <span class="key">{% trans "Ship it" %} : </span> <span class="value"><a class="mat-button mat-button-text" href="{% url 'dashboard:order-ship-ready' order.order_uuid %}"><i class="fas fa-ship icon"></i><span>{% trans "Ship this Order" %}</span></a></span>
+                        <span class="key">{% trans "Ship it" %} : </span> <span class="value"><a class="mat-button mat-button-text" href="{% url 'dashboard:add-order-for-shipment' order.order_uuid %}"><i class="fas fa-ship icon"></i><span>{% trans "Add for Shipment" %}</span></a></span>
                     </div>
                     {% endif %}
                    

@@ -47,5 +47,5 @@ def get_all_fields_from_form(instance):
             fields.append(field)
     return fields
 
-def generate_token_16():
-    return secrets.token_urlsafe(16)
+def generate_token_10():
+    return secrets.token_urlsafe(10)

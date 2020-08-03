@@ -10,7 +10,7 @@ import uuid
 
 
 class Shipment(models.Model):
-    shipment_number = models.IntegerField(blank=True, null=True)
+    shipment_number = models.CharField(max_length=32, blank=True, null=True)
     company = models.CharField(max_length=256, blank=True, null=True)
     customer = models.ForeignKey(User, related_name='shipment', blank=True, null=True, on_delete=models.SET_NULL)
     order = models.ForeignKey(Order, related_name='order_shipment', blank=True, null=True, on_delete=models.SET_NULL)
@@ -51,7 +51,7 @@ class ShippedItem(models.Model):
 
     def get_absolute_url(self):
         return reverse("shipment:shippedItem-detail", kwargs={"shippeditem_uuid": self.shippeditem_uuid})
-        
+
 
 class ShipmentStatusHistory(models.Model):
     shipment_status = models.IntegerField(default=Constants.WAITING)
