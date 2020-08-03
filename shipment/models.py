@@ -28,6 +28,9 @@ class Shipment(models.Model):
 
     def get_absolute_url(self):
         return reverse("shipment:shipment-detail", kwargs={"shipment_uuid": self.shipment_uuid})
+
+    def get_delete_url(self):
+        return reverse("shipment:shipment-delete", kwargs={"shipment_uuid": self.shipment_uuid})
     
     def get_update_url(self):
         return reverse("shipment:shipment-update", kwargs={"shipment_uuid": self.shipment_uuid})

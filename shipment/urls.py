@@ -10,6 +10,7 @@ urlpatterns = [
     path('', views.shipment_home, name='shipment-home'),
     path('shipments/', views.shipments, name='shipments'),
     path('shipments/detail/<uuid:shipment_uuid>/', views.shipment_detail, name='shipment-detail'),
+    path('shipments/delete/<uuid:shipment_uuid>/', views.shipment_delete, name='shipment-delete'),
     path('shipments/update/<uuid:shipment_uuid>/', views.shipment_update, name='shipment-update'),
     path('shipments/shippeditem/<uuid:shippeditem_uuid>/', views.shippeditem_detail, name='shippeditem-detail'),
     path('histories/<uuid:shipment_uuid>/', views.shipment_history, name='shipment-history'),

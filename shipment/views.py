@@ -71,6 +71,13 @@ def shipment_detail(request, shipment_uuid):
 
 
 @login_required
+def shipment_delete(request, shipment_uuid):
+    Shipment.objects.filter(shipment_uuid=shipment_uuid).delete()
+    logger.info(f"Shipment {shipment_uuid} delete by user {request.user}")
+    return redirect('shipment:shipments')
+
+
+@login_required
 def shipment_update(request, shipment_uuid):
     shipment = get_object_or_404(Shipment, shipment_uuid=shipment_uuid)
 
