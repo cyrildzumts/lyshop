@@ -1,5 +1,6 @@
 {% extends "order_base.html"%}
 {% load i18n %}
+{% load shipment_status %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -32,6 +33,13 @@
                     <span>{% trans "Order" %}</span>
                 </div>
                 <div class="mat-box-content">
+                    <div class="entry info">
+                        {% if shipment %}
+                        <span class="key">{% trans "Shipping Status" %} :</span> <span class="value">{{shipment.shipment_status|tuple_key}}</span>
+                        {% else %}
+                        <span class="key">{% trans "Shipping Status" %} :</span> <span class="value">{% trans "No shipping information available" %}</span>
+                        {% endif %}
+                    </div>
                     
                     <div class="entry">
                         <span class="key">{% trans "Quantiy" %} :</span> <span class="value">{{order.quantity}} </span>
