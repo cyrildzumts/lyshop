@@ -18,6 +18,7 @@ from django.contrib import messages
 from django.db.models import F, Q, Count, Sum
 from django.utils import timezone
 from shipment.models import Shipment, ShippedItem, ShipmentStatusHistory
+from shipment import constants as Constants
 from shipment.forms import ShipmentForm
 from lyshop import utils
 import logging
@@ -94,6 +95,7 @@ def shipment_update(request, shipment_uuid):
     context = {
         'page_title' : _('Shipment Update'),
         'shipment' : shipment,
+        'SHIPMENT_STATUS': Constants.SHIPMENT_STATUS,
         'form' : form
     }
     template_name = 'shipment/shipment_update.html'

@@ -1,0 +1,72 @@
+{% extends "shipment_base.html"%}
+{% load i18n %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Shipment Update" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col col-9">
+                <div class="banner--actions">
+                    <a class="mat-button mat-button-text" href="{% url 'shipment:shipments' %}"><i class="fas fa-list icon"></i><span>{% trans "Shipments" %}</span></a>   
+                    <a class="mat-button mat-button-text" href="{{shipment.get_history_url}}"><i class="fas fa-history icon"></i><span>{% trans "Shipment History" %}</span></a>   
+                    <a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment Home" %}</span></a>
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+
+{% block MAIN %}
+
+{% if shipment  %}
+<div class="container">
+        
+        <div class="mat-box">
+            <div class="mat-box-content">
+                <form id="shipment-form" name="shipment_form" action="{{shipment.get_update_url}}" method="POST">{% csrf_token %}
+                        <div class="mat-input">
+                            <label for="company">{% trans "Company" %}</label>
+                            <input id="company" type="text" name="company" value="{{shipment.company}}">
+                        </div>
+                        <div class="mat-input">
+                            <label for="shipment-staus">{% trans "Shipment Status" %}</label>
+                            <select name="shipment_status" id="shipment-status">
+                                <option value="{{shipment.shipment_status}}" selected>{{shipment.shipment_status}}</option>
+                                {% for k,v in SHIPMENT_STATUS %}
+                                    <option value="{{v}}">{{k}}</option>
+                                {% endfor %}
+                            
+                            </select>
+                            
+                        </div>
+                        <div class="mat-input">
+                            <label for="shipped-at">{% trans "Delivered At" %}</label>
+                            <input id="shipped-at" type="date" name="shipped_at" value="{{shipment.shipped_at}}">
+                        </div>
+                        <div class="mat-input">
+                            <label for="delivered-at">{% trans "Delivered At" %}</label>
+                            <input id="delivered-at" type="date" name="delivered_at" value="{{shipment.delivered_at}}">
+                        </div>
+                        <div>
+                            <a class="mat-button mat-button-default" href="{{shipment.get_absolute_url}}"><span>{% trans "Cancel" %}</span></a>
+                            <button type="submit" class="mat-button mat-button-default"><span>{% trans "Update" %}</span></button>
+                        </div>
+                
+                </form>
+            </div>
+        </div>
+</div>
+{% else %}
+<div class="access-error">
+  <p>{% trans "Error. No Shipment found." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN %}

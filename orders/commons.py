@@ -1,6 +1,6 @@
 import timeit
 import itertools
-
+from lyshop import utils
 
 PAYMENT_PAY_AT_DELIVERY = 0
 PAYMENT_PAY_WITH_PAY = 1
@@ -63,36 +63,12 @@ PAYMENT_OPTIONS = (
     (PAY_AT_ORDER, 'Pay at order'),
 )
 
-def is_entry_key_in_tuples(key, tuples):
-    found = False
-    for k, v in tuples:
-        if k == key:
-            found = True
-            break
-    return found
-
-
-def find_element_by_key_in_tuples(key, tuples):
-    value = None
-    for k, v in tuples:
-        if k == key:
-            value = v
-            break
-    return key, value
-
-def find_element_by_value_in_tuples(value, tuples):
-    key = None
-    for k, v in tuples:
-        if v == value:
-            key = k
-            break
-    return key, value
 
 def get_order_status_name(order_status=None):
-    key, value = find_element_by_key_in_tuples(order_status, ORDER_STATUS)
+    key, value = utils.find_element_by_key_in_tuples(order_status, ORDER_STATUS)
     return key, value
 
 
 def get_payment_option_name(option=None):
-    key, value = find_element_by_key_in_tuples(option, PAYMENT_OPTIONS)
+    key, value = utils.find_element_by_key_in_tuples(option, PAYMENT_OPTIONS)
     return key, value
