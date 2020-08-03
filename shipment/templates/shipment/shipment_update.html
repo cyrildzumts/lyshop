@@ -55,7 +55,7 @@
                             <label for="delivered-at">{% trans "Delivery Date" %}</label>
                             <input id="delivered-at" type="date" name="delivered_at" value="{{shipment.delivered_at}}">
                         </div>
-                        <div>
+                        <div class="actions">
                             <a class="mat-button mat-button-default" href="{{shipment.get_absolute_url}}"><span>{% trans "Cancel" %}</span></a>
                             <button type="submit" class="mat-button mat-button-default"><span>{% trans "Update" %}</span></button>
                         </div>
