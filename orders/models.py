@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from catalog.models import ProductVariant
-from catalog import conf
+from lyshop import conf
 from orders import commons
 from lyshop import settings
 import uuid
