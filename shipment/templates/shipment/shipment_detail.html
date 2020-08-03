@@ -54,13 +54,13 @@
                         <span class="key">{% trans "Status" %} :</span> <span class="value">{{shipment.shipment_status}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Date" %} :</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span>
+                        <span class="key">{% trans "Date" %} :</span> <span class="value">{{shipment.created_at|date:"F j, Y"}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Shipped Date" %} :</span> <span class="value">{{order.shipped_at|date:"F j, Y"}}</span>
+                        <span class="key">{% trans "Shipped Date" %} :</span> <span class="value">{{shipment.shipped_at|date:"F j, Y"}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Delivered Date" %} :</span> <span class="value">{{order.delivered_at|date:"F j, Y"}}</span>
+                        <span class="key">{% trans "Delivered Date" %} :</span> <span class="value">{{shipment.delivered_at|date:"F j, Y"}}</span>
                     </div>
                     
                 </div>
