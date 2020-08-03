@@ -89,7 +89,7 @@ def shipment_update(request, shipment_uuid):
             shipment = form.save()
             ShipmentStatusHistory.objects.create(shipment_status=shipment.shipment_status, shipment_ref_id=shipment.id,shipment=shipment, changed_by=shipment.last_changed_by)
             messages.success(request, _('Shipment updated'))
-            logger.info(f"Shipment {shipement.id} updated")
+            logger.info(f"Shipment {shipment.id} updated")
             return redirect(shipment)
         else:
             messages.error(request, _('Shipment Invalid'))
