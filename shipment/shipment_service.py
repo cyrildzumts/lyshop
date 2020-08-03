@@ -25,7 +25,7 @@ def add_shipment(order):
         'company': "LYSHOP"
     }
     try:
-        shipment = Shipment.objects.create(data)
+        shipment = Shipment.objects.create(**data)
     except IntegrityError as e:
         logger.error(f"IntegretyError on creating new Shipment for order \"{order.id}\"")
         logger.exception(e)
