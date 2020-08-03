@@ -1,5 +1,6 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
+{% load shipment_status %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -71,7 +72,7 @@
                     </div>
                     {% if shipment %}
                     <div class="entry">
-                        <span class="key">{% trans "Shipment Status" %} : </span> <span class="value">{{shipment.shipment_status}}</span>
+                        <span class="key">{% trans "Shipment Status" %} : </span> <span class="value">{{shipment.shipment_status|tuple_key}}</span>
                     </div>
                     {% else %}
                     <div class="entry">
