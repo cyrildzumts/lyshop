@@ -100,6 +100,7 @@ INSTALLED_APPS = [
     'accounts',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'shipment.apps.OrdersConfig',
 ]
 
 # RESTFRAMEWORK SETTINGS
