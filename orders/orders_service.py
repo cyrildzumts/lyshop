@@ -102,3 +102,20 @@ def add_shipment(order):
     else:
         logger.info(f"Shipment could not be created for order {order.pk}")
     return created
+
+def is_marked_for_shipment(order):
+    if not isinstance(order, Order):
+        logger.error("Type Error : order not of Order type")
+        return False
+    return Shipment.objects.filter(order=order).exists()
+
+def get_order_shipment(order):
+    if not isinstance(order, Order):
+        logger.error("Type Error : order not of Order type")
+        return False
+    shipment = None
+    try:
+        shipment = Shipment.objects.get(order=order)
+    except Shipment.DoesNotExist as e:
+        pass
+    return shipment

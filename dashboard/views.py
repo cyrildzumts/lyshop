@@ -373,6 +373,8 @@ def order_detail(request, order_uuid=None):
     context = {
         'page_title': page_title,
         'order': order,
+        'marked_for_shipment' : orders_service.is_marked_for_shipment(order),
+        'shipment': orders_service.get_order_shipment(order),
         'orderItems': orderItems,
     }
     context.update(get_view_permissions(request.user))
@@ -403,6 +405,25 @@ def order_update(request, order_uuid=None):
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
+
+@login_required
+def order_ship_ready(request, order_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+ 
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    order_updated = orders_service.add_shipment(order)
+    if order_updated:
+        messages.success(request, 'Order marked for shipment')
+    else:
+        messages.error(request, 'Order could not be marked for shipment')
+    return redirect('dashboard:order-detail', order_uuid=order_uuid)
 
 @login_required
 def order_delete(request, order_uuid=None):
@@ -2697,21 +2718,3 @@ def coupon_delete(request, coupon_uuid=None):
     return redirect('dashboard:coupons')
 
 
-@login_required
-def order_ship_ready(request, order_uuid=None):
-    username = request.user.username
-    if not PermissionManager.user_can_access_dashboard(request.user):
-        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
-        raise PermissionDenied
-
-    if not PermissionManager.user_can_change_order(request.user):
-        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
-        raise PermissionDenied
- 
-    order = get_object_or_404(Order, order_uuid=order_uuid)
-    order_updated = orders_service.add_shipment(order)
-    if order_updated:
-        messages.success(request, 'Order marked for shipment')
-    else:
-        messages.error(request, 'Order could not be marked for shipment')
-    return redirect('dashboard:order-detail', order_uuid=order_uuid)

@@ -45,6 +45,7 @@ urlpatterns = [
 
     path('orders/', views.orders, name='orders'),
     path('orders/detail/<uuid:order_uuid>/', views.order_detail, name='order-detail'),
+    path('orders/order-ship-ready/<uuid:order_uuid>/', views.order_ship_ready, name='order-ship-ready'),
     #path('orders/update/<uuid:order_uuid>/', views.order_detail, name='order-update'),
     #path('orders/delete/<uuid:order_uuid>/', views.order_detail, name='order-delete'),
 

@@ -13,6 +13,7 @@
             <div class="col col-9">
                 <div class="banner--actions">
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>   
+                    
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:orders' %}">{% trans "Orders" %}</a>
                 </div><!--End of Banner-Actions-->
             </div><!--End of Responsive-->
@@ -68,6 +69,16 @@
                     <div class="entry">
                         <span class="key">{% trans "Last Edit Date" %} :</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span>
                     </div>
+                    {% if shipment %}
+                    <div class="entry">
+                        <span class="key">{% trans "Shipment Status" %} : </span> <span class="value">{{shipment.shipment_status}}</span>
+                    </div>
+                    {% else %}
+                    <div class="entry">
+                        <span class="key">{% trans "Ship it" %} : </span> <span class="value"><a class="mat-button mat-button-text" href="{% url 'dashboard:order-ship-ready' order.order_uuid %}"><i class="fas fa-ship icon"></i><span>{% trans "Ship this Order" %}</span></a></span>
+                    </div>
+                    {% endif %}
+                   
                 </div>
         </div>
 </div>
