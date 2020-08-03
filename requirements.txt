@@ -1,0 +1,13 @@
+Django
+djangorestframework
+coreapi
+Markdown
+Pygments
+django-accounts
+reportlab
+celery
+Pillow
+selenium
+psycopg2-binary
+requests
+olefile
