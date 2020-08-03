@@ -71,7 +71,12 @@ class AccessPermissions(models.Model):
             (Constants.COUPON_VIEW_PERM, 'Dashboard Can View Coupon'),
             (Constants.COUPON_CHANGE_PERM, 'Dashboard Can Change Coupon'),
             (Constants.COUPON_ADD_PERM, 'Dashboard Can Add Coupon'),
-            (Constants.COUPON_DELETE_PERM, 'Dashboard Can Delete Coupon')
+            (Constants.COUPON_DELETE_PERM, 'Dashboard Can Delete Coupon'),
+
+            (Constants.SHIPMENT_VIEW_PERM, 'Dashboard Can View Shipment'),
+            (Constants.SHIPMENT_CHANGE_PERM, 'Dashboard Can Change Shipment'),
+            (Constants.SHIPMENT_ADD_PERM, 'Dashboard Can Add Shipment'),
+            (Constants.SHIPMENT_DELETE_PERM, 'Dashboard Can Delete Shipment')
         ]
 
 

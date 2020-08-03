@@ -71,6 +71,11 @@ SERVICE_ADD_PERM = 'can_add_service'
 SERVICE_CHANGE_PERM = 'can_change_service'
 SERVICE_DELETE_PERM = 'can_delete_service'
 
+SHIPMENT_VIEW_PERM = 'can_view_shipment'
+SHIPMENT_ADD_PERM = 'can_add_shipment'
+SHIPMENT_CHANGE_PERM = 'can_change_shipment'
+SHIPMENT_DELETE_PERM = 'can_delete_shipment'
+
 ORDER_VIEW_PERM = 'can_view_order'
 ORDER_ADD_PERM = 'can_add_order'
 ORDER_CHANGE_PERM = 'can_change_order'

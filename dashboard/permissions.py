@@ -218,6 +218,25 @@ class PermissionManager :
     def user_can_view_coupon(user=None):
         return PermissionManager.user_has_perm(user=user, perm=Constants.COUPON_VIEW_PERM)
 
+    
+    ## SHIPMENT
+
+    @staticmethod
+    def user_can_change_shipment(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.SHIPMENT_CHANGE_PERM)
+    
+    @staticmethod
+    def user_can_add_shipment(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.SHIPMENT_ADD_PERM)
+    
+    @staticmethod
+    def user_can_delete_shipment(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.SHIPMENT_DELETE_PERM)
+
+    @staticmethod
+    def user_can_view_shipment(user=None):
+        return PermissionManager.user_has_perm(user=user, perm=Constants.SHIPMENT_VIEW_PERM)
+
     ## VOUCHER PERMISSION
 
     @staticmethod
@@ -317,6 +336,11 @@ def get_view_permissions(user=None):
         'can_add_coupon': PermissionManager.user_can_add_coupon(user),
         'can_delete_coupon': PermissionManager.user_can_delete_coupon(user),
         'can_change_coupon': PermissionManager.user_can_change_coupon(user),
+
+        'can_view_shipment': PermissionManager.user_can_view_shipment(user),
+        'can_add_shipment': PermissionManager.user_can_add_shipment(user),
+        'can_delete_shipment': PermissionManager.user_can_delete_shipment(user),
+        'can_change_shipment': PermissionManager.user_can_change_shipment(user),
 
         'can_view_group' : PermissionManager.user_can_view_group(user),
         'can_add_group' : PermissionManager.user_can_add_group(user),
