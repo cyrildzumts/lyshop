@@ -46,7 +46,7 @@ def order_detail(request, order_uuid=None):
     template_name = 'orders/order_detail.html'
     username = request.user.username
     page_title = _('Order Detail')
-    order = get_object_or_404(Order, order_uuid=order_uuid)
+    order = get_object_or_404(Order, user=request.user, order_uuid=order_uuid)
     orderItems = OrderItem.objects.filter(order=order)
     shipment = shipment_service.find_order_shipment(order)
     context = {

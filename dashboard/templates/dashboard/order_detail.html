@@ -34,6 +34,13 @@
                     <span>{% trans "Order" %}</span>
                 </div>
                 <div class="mat-box-content">
+                    <div class="entry info">
+                            {% if shipment %}
+                            <span class="key">{% trans "Shipping Status" %} :</span> <span class="value">{{shipment.shipment_status|tuple_key}}</span>
+                            {% else %}
+                            <span class="key">{% trans "Ship it" %} : </span> <span class="value"><a class="mat-button mat-button-text" href="{% url 'dashboard:add-order-for-shipment' order.order_uuid %}"><i class="fas fa-ship icon"></i><span>{% trans "Add for Shipment" %}</span></a></span>
+                            {% endif %}
+                    </div>
                     <div class="entry">
                         <span class="key">{% trans "Customer" %} :</span> <span class="value">{{order.user.get_full_name}}</span>
                     </div>
@@ -70,16 +77,6 @@
                     <div class="entry">
                         <span class="key">{% trans "Last Edit Date" %} :</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span>
                     </div>
-                    {% if shipment %}
-                    <div class="entry">
-                        <span class="key">{% trans "Shipment Status" %} : </span> <span class="value">{{shipment.shipment_status|tuple_key}}</span>
-                    </div>
-                    {% else %}
-                    <div class="entry">
-                        <span class="key">{% trans "Ship it" %} : </span> <span class="value"><a class="mat-button mat-button-text" href="{% url 'dashboard:add-order-for-shipment' order.order_uuid %}"><i class="fas fa-ship icon"></i><span>{% trans "Add for Shipment" %}</span></a></span>
-                    </div>
-                    {% endif %}
-                   
                 </div>
         </div>
 </div>
