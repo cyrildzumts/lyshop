@@ -11,7 +11,7 @@ import uuid
 class Shipment(models.Model):
     shipment_number = models.IntegerField(blank=True, null=True)
     company = models.CharField(max_length=256, blank=True, null=True)
-    customer = models.ForeignKey(User, related_name='shipment')
+    customer = models.ForeignKey(User, related_name='shipment', blank=True, null=True, on_delete=models.SET_NULL)
     order = models.ForeignKey(Order, related_name='order_shipment', blank=false, null=false)
     price = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
