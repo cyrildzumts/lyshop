@@ -49,7 +49,7 @@
                         <span class="key">{% trans "Customer" %} :</span> <span class="value">{{shipment.customer.get_full_name}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Order" %} :</span> <span class="value"><a class="mat-button mat-button-text" href="{{shipment.order.get_absolute_url}}">{% trans "Order" %}</a></span>
+                        <span class="key">{% trans "Order" %} :</span> <span class="value"><a class="mat-button mat-button-text" href="{{shipment.order.get_dashboard_url}}">{% trans "View Order in Dashboard" %}</a></span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Status" %} :</span> <span class="value">{{shipment.shipment_status|tuple_key}}</span>
