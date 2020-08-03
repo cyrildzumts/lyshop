@@ -34,7 +34,7 @@ def shipment_home(request):
         'page_title' : _('Shipments'),
         'recent_shipments' : queryset
     }
-    temlate_name = 'shipment/shipment_home.html'
+    template_name = 'shipment/shipment_home.html'
     return render(request, template_name, context)
 
 
@@ -53,7 +53,7 @@ def shipments(request):
         'page_title' : _('Shipments'),
         'shipment_list' : list_set
     }
-    temlate_name = 'shipment/shipment_list.html'
+    template_name = 'shipment/shipment_list.html'
 
     return render(request, template_name, context)
 
