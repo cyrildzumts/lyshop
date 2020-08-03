@@ -1,5 +1,6 @@
 {% extends "shipment_base.html"%}
 {% load i18n %}
+{% load shipment_status %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -40,7 +41,7 @@
                         <div class="mat-input">
                             <label for="shipment-staus">{% trans "Shipment Status" %}</label>
                             <select name="shipment_status" id="shipment-status">
-                                <option value="{{shipment.shipment_status}}" selected>{{shipment.shipment_status}}</option>
+                                <option value="{{shipment.shipment_status}}" selected>{{shipment.shipment_status|tuple_key}}</option>
                                 {% for k,v in SHIPMENT_STATUS %}
                                     <option value="{{v}}">{{k}}</option>
                                 {% endfor %}

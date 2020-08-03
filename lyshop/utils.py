@@ -75,12 +75,3 @@ def find_element_by_value_in_tuples(value, tuples):
             key = k
             break
     return key, value
-
-def get_order_status_name(order_status=None):
-    key, value = find_element_by_key_in_tuples(order_status, ORDER_STATUS)
-    return key, value
-
-
-def get_payment_option_name(option=None):
-    key, value = find_element_by_key_in_tuples(option, PAYMENT_OPTIONS)
-    return key, value
