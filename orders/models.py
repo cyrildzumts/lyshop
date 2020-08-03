@@ -113,6 +113,8 @@ class PaymentRequest(models.Model):
     failed_reason = models.TextField(max_length=256, blank=True, null=True)
     request_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_FIELDS = ['token', 'pay_url', 'verification_code', 'order', 'customer', 'amount', 'created_at', 'status', 'request_uuid']
+
+
     def __str__(self):
         return "Payment Request id : {0} - Amount : {1}".format(self.pk, self.amount)
     
@@ -128,4 +130,17 @@ class PaymentRequest(models.Model):
         if user and user.is_authenticated:
             queryset = PaymentRequest.objects.filter(order__user=user)
         return queryset
-    
+
+
+class OrderStatusHistory(models.Model):
+    order_status = models.IntegerField()
+    order_ref_id = models.IntegerField(blank=False, null=False)
+    order = models.ForeignKey(Order, related_name="order_status_history", blank=True, null=True, on_delete=models.SET_NULL)
+    created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+    history_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+
+    def get_absolute_url(self):
+       return reverse('orders:history-detail', kwargs={'history_uuid':self.history_uuid})
+
+    def get_dashboard_url(self):
+        return reverse('dashboard:order-history-detail', kwargs={'history_uuid':self.history_uuid})

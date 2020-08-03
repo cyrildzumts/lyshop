@@ -33,6 +33,7 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('faq/', views.faq, name='faq'),
     path('orders/', include('orders.urls')),
+    path('shipment/', include('shipment.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

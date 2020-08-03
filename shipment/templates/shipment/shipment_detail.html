@@ -1,0 +1,75 @@
+{% extends "shipment_base.html"%}
+{% load i18n %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Shipment Detail" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col col-9">
+                <div class="banner--actions">
+                    {% if  %}
+                    <a class="mat-button mat-button-text" href="{{shipment.get_update_url}}"><i class="fas fa-pen icon"></i><span>{% trans "Update Shipment" %}</span></a>   
+                    {% endif %}
+                    <a class="mat-button mat-button-text" href="{% url 'shipment:shipments' %}"><i class="fas fa-list icon"></i><span>{% trans "Shipments" %}</span></a>   
+                    <a class="mat-button mat-button-text" href="{{shipment.get_history_url}}"><i class="fas fa-history icon"></i><span>{% trans "Shipment History" %}</span></a>   
+                    <a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home' %}">{<i class="fas fa-home icon"></i><span>{% trans "Shipment Home" %}</span></a>
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+
+{% block MAIN %}
+
+{% if shipment  %}
+<div class="container">
+        <div class="mat-box">
+                <div class="title">
+                    <span>{% trans "Shipment" %}</span>
+                </div>
+                <div class="mat-box-content">
+                    <div class="entry">
+                        <span class="key">{% trans "Shipment Number" %} :</span> <span class="value">{{shipment.shipment_number}}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Shipping Price" %} :</span> <span class="value">{{shipment.price}} {% trans "XAF" %}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Company" %} :</span> <span class="value">{{shipment.company}}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Customer" %} :</span> <span class="value">{{shipment.customer.get_full_name}}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Order" %} :</span> <span class="value"><a class="mat-button mat-button-text" href="{{shipment.get_absolute_url}}">{% trans "Order" %}</a></span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Status" %} :</span> <span class="value">{{shipment.shipment_status}}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Date" %} :</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Shipped Date" %} :</span> <span class="value">{{order.shipped_at|date:"F j, Y"}}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Delivered Date" %} :</span> <span class="value">{{order.delivered_at|date:"F j, Y"}}</span>
+                    </div>
+                    
+                </div>
+        </div>
+</div>
+{% else %}
+<div class="access-error">
+  <p>{% trans "Error. No Shipment found." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN %}

@@ -3,6 +3,7 @@ from django.db.models import F,Q,Count, Sum, FloatField
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from orders.models import Order, OrderItem, Address, PaymentRequest
+from shipment.models import Shipment
 from itertools import islice
 import requests
 import json
@@ -82,3 +83,22 @@ def request_payment(data=None):
         logger.error(f"Error on sending Payment request at url {url}")
         logger.exception(e)
     return response
+
+
+def add_shipment(order):
+    if not isinstance(order, Order):
+        logger.error("Type Error : order not of Order type")
+        return False
+    data = {
+        'shipment_number' : 12,
+        'customer': order.user,
+        'order' : order,
+        'price' : order.shipping_price,
+        'company': "LYSHOP"
+    }
+    shipment, created = Shipment.objects.create(**data)
+    if created:
+        logger.info(f"Shipment created for order {order.pk}")
+    else:
+        logger.info(f"Shipment could not be created for order {order.pk}")
+    return created

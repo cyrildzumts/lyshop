@@ -31,6 +31,7 @@ from catalog.models import (
     Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage
 )
 from orders.models import Order, OrderItem, PaymentRequest
+from orders import orders_service
 from catalog.forms import (BrandForm, ProductAttributeForm, 
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
     DeleteAttributeForm, CategoriesDeleteForm
@@ -2697,29 +2698,20 @@ def coupon_delete(request, coupon_uuid=None):
 
 
 @login_required
-def coupons_delete(request):
+def order_ship_ready(request, order_uuid=None):
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
         logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    if not PermissionManager.user_can_delete_coupon(request.user):
+    if not PermissionManager.user_can_change_order(request.user):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-
-    if request.method != "POST":
-        raise SuspiciousOperation('Bad request. Expected POST request but received a GET')
-    
-    postdata = utils.get_postdata(request)
-    id_list = postdata.getlist('coupons')
-
-    if len(id_list):
-        coupon_list = list(map(int, id_list))
-        Coupon.objects.filter(id__in=coupon_list).delete()
-        messages.success(request, f"Coupon \"{coupon_list}\" deleted")
-        logger.info(f"Coupons \"{coupon_list}\" deleted by user {username}")
-        
+ 
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    order_updated = orders_service.add_shipment(order)
+    if order_updated:
+        messages.success(request, 'Order marked for shipment')
     else:
-        messages.error(request, f"Coupons could not be deleted")
-        logger.error(f"ID list invalid. Error : {id_list}")
-    return redirect('dashboard:coupons')
+        messages.error(request, 'Order could not be marked for shipment')
+    return redirect('dashboard:order-detail', order_uuid=order_uuid)

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.urls import reverse
-from catalog import conf
+from lyshop import conf
 import uuid
 import logging
 
