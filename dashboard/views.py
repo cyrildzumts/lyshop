@@ -419,7 +419,7 @@ def add_order_for_shipment(request, order_uuid=None):
  
     order = get_object_or_404(Order, order_uuid=order_uuid)
     shipment = shipment_service.add_shipment(order)
-    if shipment not None:
+    if shipment is not None:
         messages.success(request, 'Order add for shipment')
     else:
         messages.error(request, 'Order could not be added for shipment')
