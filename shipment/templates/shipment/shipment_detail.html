@@ -1,5 +1,6 @@
 {% extends "shipment_base.html"%}
 {% load i18n %}
+{% load shipment_status %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -51,7 +52,7 @@
                         <span class="key">{% trans "Order" %} :</span> <span class="value"><a class="mat-button mat-button-text" href="{{shipment.order.get_absolute_url}}">{% trans "Order" %}</a></span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Status" %} :</span> <span class="value">{{shipment.shipment_status}}</span>
+                        <span class="key">{% trans "Status" %} :</span> <span class="value">{{shipment.shipment_status|tuple_key}}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Date" %} :</span> <span class="value">{{shipment.created_at|date:"F j, Y"}}</span>

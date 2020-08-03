@@ -1,5 +1,6 @@
 {% extends "order_base.html"%}
 {% load i18n %}
+{% load shipment_status %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -45,7 +46,7 @@
                   <tr>
                     <td data-label="{% trans 'Shipping Price' %}">{{s.price}} {% trans "XAF" %}</td>
                     <td data-label="{% trans 'Customer' %}">{{s.customer.get_full_name}}</td>
-                    <td data-label="{% trans 'Status' %}">{{s.shipment_status}} </td>
+                    <td data-label="{% trans 'Status' %}">{{s.shipment_status|tuple_key}} </td>
                     <td data-label="{% trans 'Date' %}">{{s.created_at|date:"F j, Y"}}</td>
                     <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{s.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
                   </tr>

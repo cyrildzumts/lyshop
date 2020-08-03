@@ -1,5 +1,6 @@
 {% extends "shipment_base.html"%}
 {% load i18n %}
+{% load shipment_status %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -41,7 +42,7 @@
                   {% for h in history_list  %}
                   <tr>
 
-                    <td data-label="{% trans 'Status' %}">{{h.shipment_status}} </td>
+                    <td data-label="{% trans 'Status' %}">{{h.shipment_status|tuple_key}} </td>
                     <td data-label="{% trans 'Date' %}">{{h.created_at|date:"F j, Y"}}</td>
                   </tr>
                   {% endfor %}
