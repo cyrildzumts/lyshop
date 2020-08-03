@@ -87,6 +87,7 @@ def shipment_update(request, shipment_uuid):
         form = ShipmentForm(postdata, instance=shipment)
         if form.is_valid():
             shipment = form.save()
+            ShipmentStatusHistory.objects.create(shipment_status=shipment.shipment_status, shipment_ref_id=shipment.id,shipment=shipment, changed_by=request.user)
             messages.success(request, _('Shipment updated'))
             logger.info(f"Shipment {shipement.id} updated")
             return redirect(shipment)

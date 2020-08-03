@@ -32,6 +32,7 @@
         <div class="mat-box">
             <div class="mat-box-content">
                 <form id="shipment-form" name="shipment_form" action="{{shipment.get_update_url}}" method="POST">{% csrf_token %}
+                        <input type="hidden" name="last_changed_by" value="{{request.user.pk}}">
                         <div class="mat-input">
                             <label for="company">{% trans "Company" %}</label>
                             <input id="company" type="text" name="company" value="{{shipment.company}}">
