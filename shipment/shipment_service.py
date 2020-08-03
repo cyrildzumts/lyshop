@@ -54,4 +54,4 @@ def shipment_for_order_exists(order):
     if not isinstance(order, Order):
         logger.error("Type Error : order not of Order type")
         raise TypeError("Type Error : order argument not of type Order.")
-    return Shipment.objects.filter(order=order).exists():
+    return Shipment.objects.filter(order=order).exists()
