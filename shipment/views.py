@@ -76,14 +76,14 @@ def shipment_update(request, shipment_uuid):
 
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        form = ShipmentForm(instance=shipment, postdata)
+        form = ShipmentForm(postdata, instance=shipment)
         if form.is_valid():
             shipment = form.save()
             messages.success(request, _('Shipment updated'))
             logger.info(f"Shipment {shipement.id} updated")
             return redirect(shipment)
 
-    form = ShipmentForm(instance = shipment)
+    form = ShipmentForm(instance=shipment)
     context = {
         'page_title' : _('Shipment Update'),
         'shipment' : shipment,
