@@ -32,8 +32,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.utils.translation import gettext_lazy as _
 from operator import itemgetter
-from catalog import conf, catalog_service
-from lyshop import utils, settings
+from catalog import catalog_service
+from lyshop import utils, settings, conf
 import logging
 
 

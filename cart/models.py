@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from catalog.models import Product, ProductVariant
 from django.urls import reverse
-from catalog import conf
+from lyshop import conf
 import uuid
 
 # Create your models here.

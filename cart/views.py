@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models import F, Q, Count, Sum, FloatField
-from catalog import conf
+from lyshop import conf
 from catalog.models import ProductVariant, Product
 from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm, CouponForm, CartItemQuantityUpdateForm
 from cart.models import CartItem, CartModel
