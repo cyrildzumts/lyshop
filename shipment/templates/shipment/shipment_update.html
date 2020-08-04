@@ -51,11 +51,11 @@
                         </div>
                         <div class="mat-input">
                             <label for="shipped-at">{% trans "Shipping Date" %}</label>
-                            <input id="shipped-at" type="date" name="shipped_at" value="{{shipment.shipped_at.isoformat}}">
+                            <input id="shipped-at" type="date" name="shipped_at" value="{{shipment.shipped_at|date:'Y-m-d'}}">
                         </div>
                         <div class="mat-input">
                             <label for="delivered-at">{% trans "Delivery Date" %}</label>
-                            <input id="delivered-at" type="date" name="delivered_at" value="{{shipment.delivered_at.isoformat}}">
+                            <input id="delivered-at" type="date" name="delivered_at" value="{{shipment.delivered_at|date:'Y-m-d'}}">
                         </div>
                         <div class="actions">
                             <a class="mat-button mat-button-default" href="{{shipment.get_absolute_url}}"><span>{% trans "Cancel" %}</span></a>
