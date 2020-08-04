@@ -335,8 +335,9 @@ function kiosk_update(event){
     $(".kiosk-image").removeClass('active').filter(event.target).addClass("active");
 }
 
-function dateFormat(date){
-    console.log("Date Value : %s", date);
+function dateFormat(input){
+    console.log(input);
+    console.log("Date Value : %s", input.value);
 }
 
 $(document).ready(function(){
