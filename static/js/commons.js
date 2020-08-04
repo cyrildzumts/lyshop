@@ -349,14 +349,6 @@ $(document).ready(function(){
         $('input', parent).val('');
         target.toggle();
     });
-
-    $('#shipment-form').on('submit',function(event){
-        event.preventDefault();
-        event.stopPropagation();
-        $('input[type="date"]').each(dateFormat);
-        return false;
-    });
-
     $('.js-filter-btn').on('click', function(event){
         var ctx = $('#' + this.getAttribute('data-context'));
         var input_name = this.getAttribute('data-input-name');
