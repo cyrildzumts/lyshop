@@ -87,7 +87,7 @@ def shipment_update(request, shipment_uuid):
         form = ShipmentForm(postdata, instance=shipment)
         if form.is_valid():
             shipment = form.save()
-            shipment_service.update_order_status(shipment.order, shipment)
+            shipment_service.update_order_status(shipment.order, shipment, request.user)
             ShipmentStatusHistory.objects.create(shipment_status=shipment.shipment_status, shipment_ref_id=shipment.id,shipment=shipment, changed_by=shipment.last_changed_by)
             messages.success(request, _('Shipment updated'))
             logger.info(f"Shipment {shipment.id} updated")
