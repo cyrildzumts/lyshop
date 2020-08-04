@@ -83,19 +83,46 @@
                 </div>
         </div> <!--End of mat-box-->
         <div class="mat-box full">
-            <div class="title">
-                <h4>{% trans "Order Items" %}</h4>
-            </div>
             <div class="mat-box-content">
-                <ul>
-                    {% for item in order.order_items.all %}
-                    <li><div><span>{{item.product.name}}</span> <span>{{item.quantity}}</span> <span>{{item.total_price}} {% trans "XAF" %}</span></div></li>
-                    {% endfor %}
-                </ul>
+                <div class="container">
+                    <div class="col-m-12 col-9">
+                        <div class="mat-table-wrapper">
+                            <div class="row">
+                                <div class="mat-table-title">
+                                    {% trans "Order Items" %}
+                                </div>
+                            </div><!--End of Row-->
+                            <table id="item-list" class="mat-table">
+                                <thead>
+                                        <tr>
+                                                <th>{% trans "Display Name" %}</th>
+                                                <th>{% trans "Quantiy" %}</th>
+                                                <th>{% trans "Unit Price" %}</th>
+                                                <th>{% trans "Total Price" %}</th>
+                                                <th>{% trans "Details" %}</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        {% for item in order.order_items.all  %}
+                                        <tr>
+                                            <td>{{item.product.display_name}}</td>
+                                            <td>{{item.quantity}}</td>
+                                            <td><span>{{item.unit_price}}</span> <span>{% trans "XAF" %}</span></td>
+                                            <td><span>{{item.total_price}}</span> <span>{% trans "XAF" %}</span></td>
+                                            <td><a class="mat-button mat-button-default" href="{{item.product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Product Details" %}</span></a></td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                </tbody>
+
+                            </table>
+                        </div><!--End of Table Wrapper-->
+                    </div><!--End of col-->
+                </div><!--End of Container-->
                 
-            </div>
-        </div>
-</div>
+            </div><!--End of mat-box-content-->
+        </div><!--End of mat-box-->
+</div><!--End of Container-->
 {% else %}
 <div class="access-error">
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
