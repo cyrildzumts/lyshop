@@ -26,6 +26,7 @@ class Address(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, related_name='orders', blank=True, null=True, on_delete=models.SET_NULL)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+    last_changed_by = models.ForeignKey(User, related_name='edited_orders', blank=True, null=True, on_delete=models.SET_NULL)
     amount = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     shipping_price = models.DecimalField(default=0, blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     solded_price = models.DecimalField(default=0, blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
@@ -136,6 +137,7 @@ class OrderStatusHistory(models.Model):
     order_status = models.IntegerField()
     order_ref_id = models.IntegerField(blank=False, null=False)
     order = models.ForeignKey(Order, related_name="order_status_history", blank=True, null=True, on_delete=models.SET_NULL)
+    changed_by = models.ForeignKey(User, related_name='order_edit_histories', blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     history_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
