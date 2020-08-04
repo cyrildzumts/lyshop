@@ -21,7 +21,7 @@ def order_status_key(value):
 def order_status_value(key):
     k,v = Constants.get_order_status_name(key, Constants.ORDER_STATUS)
     if v is None:
-        logger.info(f"order_status_value : Could not found value \"{v}\" for key \"{key}\"")
+        logger.info(f"order_status_value : Could not found value  for key \"{key}\"")
         return key
     return v
 
@@ -29,7 +29,7 @@ def order_status_value(key):
 @register.filter
 def pay_option(value):
     k,v = Constants.get_payment_option_name(value)
-    if v is None:
-        logger.info(f"order_status_value : Could not found value \"{v}\" for key \"{key}\"")
-        return key
-    return v
+    if k is None:
+        logger.info(f"order_status_value : Could not found key  for value \"{value}\"")
+        return value
+    return k
