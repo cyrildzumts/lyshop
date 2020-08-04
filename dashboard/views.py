@@ -458,7 +458,7 @@ def order_delete(request, order_uuid=None):
 
 @login_required
 def order_history(request, order_uuid):
-    order = get_object_or_404(Order, order_uuid=shipment_uuid)
+    order = get_object_or_404(Order, order_uuid=order_uuid)
     queryset = OrderStatusHistory.objects.filter(order=order)
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, utils.PAGINATED_BY)
