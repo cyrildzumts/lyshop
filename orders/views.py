@@ -172,10 +172,11 @@ def checkout_success(request, order_uuid):
     if not queryset.exists():
         logger.error(f"checkout_success view call with invalid order uuid \"{order_uuid}\". No order found")
         raise Http404
-    queryset.update(status=commons.ORDER_PAID)
+    queryset.update(status=commons.ORDER_PAID, payment_status=commons.PAYMENT_PAID)
     payment_request = queryset.first()
     order = payment_request.order
     Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAID)
+    OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAID, order_ref_id=order.id, changed_by=request.user)
         
     context = {
         'page_title' : page_title,
@@ -194,6 +195,10 @@ def checkout_failed(request, order_uuid):
     try:
         payment_request = PaymentRequest.objects.filter(order__order_uuid=order_uuid, customer=request.user).get()
         logger.info(f"Checkout failed : found payment request with order uuid \"{order_uuid}\"")
+        order = payment_request.order
+        PaymentRequest.objects.filter(id=payment_request.id).update(payment_status=commons.PAYMENT_FAILED)
+        Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAYMENT_FAILED)
+        OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAYMENT_FAILED, order_ref_id=order.id, changed_by=request.user)
         #order = payment_request.order
     except PaymentRequest.DoesNotExist:
         logger.error(f"checkout_failed view call with invalid order uuid \"{order_uuid}\". No order found")

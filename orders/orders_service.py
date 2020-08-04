@@ -2,7 +2,7 @@ from lyshop import settings, utils
 from django.db.models import F,Q,Count, Sum, FloatField
 from cart.models import CartItem, CartModel
 from cart import cart_service
-from orders.models import Order, OrderItem, Address, PaymentRequest
+from orders.models import Order, OrderItem, Address, PaymentRequest, OrderStatusHistory
 from shipment import shipment_service
 from itertools import islice
 import requests
@@ -39,6 +39,7 @@ def create_order_from_cart(user):
     else:
         total = cart.amount + SHIPPING_PRICE
     order = Order.objects.create(user=user, coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total)
+    OrderStatusHistory.objects.create(order=order, order_status=order.status, order_ref_id=order.id, changed_by=user)
     logger.debug("order instance created")
     items_queryset = get_user_cartitems(user)
     logger.debug("got cartitems queryset")

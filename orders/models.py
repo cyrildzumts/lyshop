@@ -108,6 +108,7 @@ class PaymentRequest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(default=commons.PR_CREATED,max_length=32, blank=False, null=False)
+    payment_status = models.IntegerField(default=commons.PAYMENT_CREATED, blank=True, null=True)
     product_name = models.CharField(max_length=255 ,blank=False, null=False)
     requester_name = models.CharField(max_length=255 ,blank=False, null=False, default=settings.PAY_USERNAME)
     customer_name = models.CharField(max_length=255 ,blank=False, null=False)
