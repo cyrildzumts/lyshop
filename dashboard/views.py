@@ -126,7 +126,7 @@ def categories(request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    queryset = models.Category.objects.all()
+    queryset = models.Category.objects.all().order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
     try:
@@ -335,7 +335,7 @@ def orders(request):
         raise PermissionDenied
 
     context = {}
-    queryset = Order.objects.all()
+    queryset = Order.objects.all().order_by('-created_at')
     template_name = "dashboard/order_list.html"
     page_title = _("Dashboard Orders") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
@@ -503,7 +503,7 @@ def products(request):
         'page_title': page_title,
     }
 
-    queryset = models.Product.objects.filter(is_active=True)
+    queryset = models.Product.objects.filter(is_active=True).order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
     try:
@@ -795,7 +795,7 @@ def product_images(request, product_uuid):
 
     context = {}
     product = get_object_or_404(Product, product_uuid=product_uuid)
-    queryset = ProductImage.objects.filter(product__product_uuid=product_uuid)
+    queryset = ProductImage.objects.filter(product__product_uuid=product_uuid).order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
     try:
@@ -1223,7 +1223,7 @@ def brands(request):
     if request.method != 'GET':
         return HttpResponseBadRequest('Bad request')
 
-    queryset = models.Brand.objects.all()
+    queryset = models.Brand.objects.all().order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
     try:
@@ -1877,7 +1877,7 @@ def policy_groups(request):
         raise PermissionDenied
 
     context = {}
-    queryset = PolicyGroup.objects.all()
+    queryset = PolicyGroup.objects.all().order_by('-created_at')
     template_name = "dashboard/policy_group_list.html"
     page_title = "Policy Group - " + settings.SITE_NAME
     page = request.GET.get('page', 1)

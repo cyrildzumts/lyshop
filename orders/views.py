@@ -26,7 +26,7 @@ def orders(request):
 
     username = request.user.username
     context = {}
-    queryset = Order.objects.filter(user=request.user)
+    queryset = Order.objects.filter(user=request.user).order_by('-created_at')
     template_name = "orders/order_list.html"
     page_title = _("Dashboard Orders") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
