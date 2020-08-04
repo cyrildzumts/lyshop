@@ -1,6 +1,7 @@
 {% extends "base.html"%}
 {% load i18n %}
-
+{% load shipment_status %}
+{% load order_tag %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -40,6 +41,7 @@
                   <tr>
                           <th scope="col">{% trans "Amount" %}</th>
                           <th scope="col">{% trans "Status" %}</th>
+                          <th scope="col">{% trans "Shipment Status" %}</th>
                           <th scope="col">{% trans "Date" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
                   </tr>
@@ -48,7 +50,12 @@
                   {% for o in recent_orders  %}
                   <tr>
                     <td data-label="{% trans 'Amount' %}">{{o.amount}} {% trans "XAF" %}</td>
-                    <td data-label="{% trans 'Status' %}">{{o.status}} </td>
+                    <td data-label="{% trans 'Status' %}">{{o.status|order_status_key}} </td>
+                    {% if o.order_shipment_set.first %}
+                    <td data-label="{% trans 'Shipment Status' %}">{{o.order_shipment_set.first.shipment_status|tuple_key}} </td>
+                    {% else %}
+                    <td data-label="{% trans 'Shipment Status' %}">{% trans "No shipment information" %}</td>
+                    {% endif %}
                     <td data-label="{% trans 'Date' %}">{{o.created_at|date:"F j, Y"}}</td>
                     <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
                   </tr>
