@@ -1,6 +1,7 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
 {% load shipment_status %}
+{% load order_tag %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -31,7 +32,7 @@
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         <table id="order-list" class="mat-table js-filter-table">
-          <caption>{% trans "Shipment List" %}</caption>
+          <caption>{% trans "History" %}</caption>
           <thead>
                   <tr>
                           <th scope="col">{% trans "Status" %}</th>
@@ -42,7 +43,7 @@
                   {% for h in history_list  %}
                   <tr>
 
-                    <td data-label="{% trans 'Status' %}">{{h.order_status|tuple_key}} </td>
+                    <td data-label="{% trans 'Status' %}">{{h.order_status|order_status_key}} </td>
                     <td data-label="{% trans 'Date' %}">{{h.created_at|date:"F j, Y"}}</td>
                   </tr>
                   {% endfor %}
@@ -53,7 +54,6 @@
           </tfoot>
 
     </table>
-    {% include "tags/pagination.html" with page_set=history_list %}
     </div><!--End of Table Wrapper-->
   </div>
 </div>
