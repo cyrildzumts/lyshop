@@ -2754,3 +2754,31 @@ def coupon_delete(request, coupon_uuid=None):
     return redirect('dashboard:coupons')
 
 
+
+@login_required
+def coupons_delete(request):
+     username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_coupon(request.user):
+        logger.warning(f"PermissionDenied to user \"{username}\" for path \"{request.path}\"")
+        raise PermissionDenied
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('coupons')
+
+    if len(id_list):
+        coupon_list = list(map(int, id_list))
+        Coupon.objects.filter(id__in=coupon_list).delete()
+        messages.success(request, f"Coupons \"{coupon_list}\" deleted")
+        logger.info(f"Coupon \"{coupon_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"Coupons  could not be deleted")
+        logger.error(f"Coupon Delete : ID list invalid. Error : {id_list}")
+    return redirect('dashboard:coupons')
+
+

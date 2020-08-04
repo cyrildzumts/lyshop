@@ -29,7 +29,7 @@ urlpatterns = [
     path('coupon-delete/<uuid:coupon_uuid>/',views.coupon_delete, name='coupon-delete'),
     path('coupon-update/<uuid:coupon_uuid>/',views.coupon_update, name='coupon-update'),
     path('coupons/',views.coupons, name='coupons'),
-    #path('coupons/delete/',views.coupons_delete, name='coupons-delete'),
+    path('coupons/delete/',views.coupons_delete, name='coupons-delete'),
 
     #path('cases/', views.cases, name='cases'),
     #path('cases/detail/<issue_uuid>/', views.case_details, name='case-detail'),
