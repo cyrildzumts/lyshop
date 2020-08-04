@@ -1,0 +1,71 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% load shipment_status %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Order History" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col col-9">
+                <div class="banner--actions">
+                    <a class="mat-button mat-button-text" href="{{order.get_dashboard_url}}"><i class="fas fa-caret-left icon"></i><span>{% trans "Back to Order" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:orders' %}"><i class="fas fa-list icon"></i><span>{% trans "Orders" %}</span></a>
+                    
+                        
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+{% block MAIN %}
+{% if history_list %}
+<div class="container">
+<div class="col-m-12 col-9">
+    <div class="mat-table-wrapper">
+        <table id="order-list" class="mat-table js-filter-table">
+          <caption>{% trans "Shipment List" %}</caption>
+          <thead>
+                  <tr>
+                          <th scope="col">{% trans "Status" %}</th>
+                          <th scope="col">{% trans "Date" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for h in history_list  %}
+                  <tr>
+
+                    <td data-label="{% trans 'Status' %}">{{h.order_status|tuple_key}} </td>
+                    <td data-label="{% trans 'Date' %}">{{h.created_at|date:"F j, Y"}}</td>
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+          <tfoot>
+                  
+          </tfoot>
+
+    </table>
+    {% include "tags/pagination.html" with page_set=history_list %}
+    </div><!--End of Table Wrapper-->
+  </div>
+</div>
+
+{% else %}
+<div class="container">
+  <div class="col-m-12 col-12">
+    <p>{% trans "There is no Order history yet." %}</p>
+  </div>
+  <div class="col-m-12 col-12">
+    <p>{% trans "Order history will be displayed here." %}</p>
+  </div>
+</div>
+{% endif %}
+{% endblock MAIN %}

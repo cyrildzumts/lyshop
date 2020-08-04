@@ -47,7 +47,8 @@ urlpatterns = [
     path('orders/detail/<uuid:order_uuid>/', views.order_detail, name='order-detail'),
     path('orders/add-order-for-shipment/<uuid:order_uuid>/', views.add_order_for_shipment, name='add-order-for-shipment'),
     path('orders/update/<uuid:order_uuid>/', views.order_update, name='order-update'),
-    #path('orders/delete/<uuid:order_uuid>/', views.order_detail, name='order-delete'),
+    path('orders/history/<uuid:order_uuid>/', views.order_history, name='order-history'),
+    path('orders/history/detail/<uuid:history_uuid>/', views.order_history_detail, name='order-history-detail'),
 
     path('products/', views.products, name='products'),
     path('products/detail/<uuid:product_uuid>/', views.product_detail, name='product-detail'),

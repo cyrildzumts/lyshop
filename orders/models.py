@@ -52,6 +52,9 @@ class Order(models.Model):
     def get_update_url(self):
         return reverse("dashboard:order-update", kwargs={"order_uuid": self.order_uuid})
     
+    def get_history_url(self):
+        return reverse("dashboard:order-history", kwargs={"order_uuid": self.order_uuid})
+    
     def get_delete_url(self):
         return reverse("dashboard:order-delete", kwargs={"order_uuid": self.order_uuid})
     

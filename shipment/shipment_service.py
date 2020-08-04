@@ -1,8 +1,9 @@
 from django.db import IntegrityError
+from django.contrib.auth.models import User
 from shipment.models import Shipment, ShipmentStatusHistory, Shipment
 from shipment import constants
 from lyshop import conf, utils, settings
-from orders.models import Order
+from orders.models import Order, OrderStatusHistory
 from orders import commons
 import logging
 import uuid
@@ -67,7 +68,7 @@ def get_next_order_status(shipment_status):
     
 
 
-def update_order_status(order, shipment):
+def update_order_status(order, shipment, request_user):
     if not isinstance(order, Order):
         msg = "Type Error : order not of Order type"
         logger.error(msg)
@@ -76,17 +77,26 @@ def update_order_status(order, shipment):
         msg = "Type Error : shipment not of Shipment type"
         logger.error(msg)
         raise TypeError(msg)
+
+    if not isinstance(request_user, User):
+        msg = "Type Error : request_user not of User type"
+        logger.error(msg)
+        raise TypeError(msg)
+
     if order.id != shipment.order.id:
         msg = "Illegal request. shipment does not belongs to the order"
         logger.error(msg)
         raise ValueError(msg)
+
     status = order.status
     try:
         status = get_next_order_status(shipment.shipment_status)
     except Exception as e:
         logger.error("Error on getting next order status")
         logger.exception(e)
-    Order.objects.filter(id=order.id).update(status=status)
+
+    Order.objects.filter(id=order.id).update(status=status, last_changed_by=request_user)
+    OrderStatusHistory.objects.create(order_status=status, order_ref_id=order.id, order=order, changed_by=request_user)
 
 
 def find_order_shipment(order):

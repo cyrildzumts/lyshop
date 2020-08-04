@@ -30,7 +30,7 @@ from accounts.account_services import AccountService
 from catalog.models import (
     Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage
 )
-from orders.models import Order, OrderItem, PaymentRequest
+from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory
 from orders import orders_service
 from shipment import shipment_service
 from catalog.forms import (BrandForm, ProductAttributeForm, 
@@ -454,6 +454,37 @@ def order_delete(request, order_uuid=None):
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
+
+
+@login_required
+def order_history(request, order_uuid):
+    order = get_object_or_404(Order, order_uuid=shipment_uuid)
+    queryset = OrderStatusHistory.objects.filter(order=order)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title' : _('Order Histories'),
+        'history_list':  list_set,
+        'order' : order
+    }
+    template_name = 'dashboard/order_histories.html'
+    return render(request, template_name, context)
+
+@login_required
+def order_history_detail(request, history_uuid):
+    history = get_object_or_404(OrderStatusHistory, history_uuid=history_uuid)
+    context = {
+        'page_title' : _('Order History'),
+        'history':  history
+    }
+    template_name = 'dashboard/order_history.html'
+    return render(request, template_name, context)
 
 @login_required
 def products(request):
