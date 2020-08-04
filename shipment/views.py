@@ -18,7 +18,7 @@ from django.contrib import messages
 from django.db.models import F, Q, Count, Sum
 from django.utils import timezone
 from shipment.models import Shipment, ShippedItem, ShipmentStatusHistory
-from shipment import constants as Constants
+from shipment import shipment_service, constants as Constants
 from shipment.forms import ShipmentForm
 from lyshop import utils
 import logging
@@ -87,6 +87,7 @@ def shipment_update(request, shipment_uuid):
         form = ShipmentForm(postdata, instance=shipment)
         if form.is_valid():
             shipment = form.save()
+            shipment_service.update_order_status(shipment.order, shipment)
             ShipmentStatusHistory.objects.create(shipment_status=shipment.shipment_status, shipment_ref_id=shipment.id,shipment=shipment, changed_by=shipment.last_changed_by)
             messages.success(request, _('Shipment updated'))
             logger.info(f"Shipment {shipment.id} updated")
