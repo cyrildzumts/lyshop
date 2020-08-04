@@ -335,6 +335,10 @@ function kiosk_update(event){
     $(".kiosk-image").removeClass('active').filter(event.target).addClass("active");
 }
 
+function dateFormat(date){
+    console.log("Date Value : %s", date);
+}
+
 $(document).ready(function(){
     var listfilter = new ListFilter();
     fileUpload = new FileUpload();
@@ -343,6 +347,13 @@ $(document).ready(function(){
         var target = $('.' + this.getAttribute('data-toggle'), parent);
         $('input', parent).val('');
         target.toggle();
+    });
+
+    $('#shipment-form').on('submit',function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        $('input[type="date"]').each(i => dateFormat(i.value));
+        return false;
     });
 
     $('.js-filter-btn').on('click', function(event){
