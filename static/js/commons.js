@@ -335,7 +335,7 @@ function kiosk_update(event){
     $(".kiosk-image").removeClass('active').filter(event.target).addClass("active");
 }
 
-function dateFormat(input){
+function dateFormat(index, input){
     console.log(input);
     console.log("Date Value : %s", input.value);
 }
@@ -353,7 +353,7 @@ $(document).ready(function(){
     $('#shipment-form').on('submit',function(event){
         event.preventDefault();
         event.stopPropagation();
-        $('input[type="date"]').each(i,e => dateFormat(e));
+        $('input[type="date"]').each(dateFormat);
         return false;
     });
 
