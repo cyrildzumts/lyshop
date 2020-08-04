@@ -38,6 +38,7 @@
         <div class="wrapper full">
             <form id="add-cart-form" action="{% url 'cart:cart-add' %}" method="POST">{% csrf_token %}
             <input type="hidden" name="product" value="{{product.product_uuid}}">
+            {% if selective_attrs|length == 1 %}<input type="hidden" name="variant_uuid" value="{{selective_attrs.0.variant_uuid}}">{% endif %}
             
             <div class="product-detail-properties left">
                 
@@ -60,7 +61,7 @@
                             </div>
                             </li>
                           {% endfor %}
-                          {% if selective_attrs %}
+                          {% if selective_attrs|length > 1 %}
                           <li class="attr-wrapper">
                             <div class="attr entry">
                               <span class="key">{% trans "Option" %}</span>
