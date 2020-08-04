@@ -393,6 +393,10 @@ def order_update(request, order_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
+    if not PermissionManager.user_can_change_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
     page_title = _('Order Detail')
     
 
@@ -401,6 +405,7 @@ def order_update(request, order_uuid=None):
     context = {
         'page_title': page_title,
         'order': order,
+        'shipment': shipment_service.find_order_shipment(order),
         'orderItems': orderItems,
     }
     context.update(get_view_permissions(request.user))
