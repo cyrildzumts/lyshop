@@ -353,7 +353,7 @@ $(document).ready(function(){
     $('#shipment-form').on('submit',function(event){
         event.preventDefault();
         event.stopPropagation();
-        $('input[type="date"]').each(i => dateFormat(i));
+        $('input[type="date"]').each(i,e => dateFormat(e));
         return false;
     });
 
