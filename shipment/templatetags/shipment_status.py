@@ -15,7 +15,6 @@ def tuple_key(value):
     if k is None:
         logger.info(f"CUSTOM TEMPLATE TAG tuple_key : Could not found key  for value \"{value}\"")
         return value
-    logger.info(f"CUSTOM TEMPLATE TAG tuple_key : found key \"{k}\" for value \"{value}\"")
     return k
 
 @register.filter
@@ -24,5 +23,4 @@ def tuple_value(key):
     if v is None:
         logger.info(f"CUSTOM TEMPLATE TAG tuple_value : Could not found value \"{v}\" for key \"{key}\"")
         return key
-    logger.info(f"CUSTOM TEMPLATE TAG tuple_value : found value \"{v}\" for key \"{key}\"")
     return v
