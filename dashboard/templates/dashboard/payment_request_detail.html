@@ -1,5 +1,6 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
+{% load order_tag %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -34,6 +35,9 @@
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Status" %} :</span> <span class="value">{{payment_request.status}}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Payment Status" %} :</span> <span class="value">{{payment_request.payment_status|pay_status_key}}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Amount" %} :</span> <span class="value">{{payment_request.amount}} {% trans "XAF" %}</span>

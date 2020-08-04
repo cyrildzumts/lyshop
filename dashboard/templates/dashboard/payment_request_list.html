@@ -1,5 +1,6 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
+{% load order_tag %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -38,6 +39,7 @@
                           <th scope="col">{% trans "Customer" %}</th>
                           <th scope="col">{% trans "Amount" %}</th>
                           <th scope="col">{% trans "Status" %}</th>
+                          <th scope="col">{% trans "Payment Status" %}</th>
                           <th scope="col">{% trans "Date" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
                   </tr>
@@ -49,6 +51,7 @@
                     <td scope="row" data-label="Customer">{{r.customer.get_full_name}}</td>
                     <td data-label="Amount">{{r.amount}} {% trans "XAF" %}</td>
                     <td data-label="Status">{{r.status}}</td>
+                    <td data-label="Payment Status">{{r.payment_status|pay_status_key}}</td>
                     <td data-label="Date">{{r.created_at|date:"M j, Y"}}</td>
                     <td data-label="Details"><a class="mat-button mat-button-default" href="{{r.get_dashboard_url}}">{% trans "More" %}</a></td>
                   </tr>
