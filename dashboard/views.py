@@ -2757,7 +2757,7 @@ def coupon_delete(request, coupon_uuid=None):
 
 @login_required
 def coupons_delete(request):
-     username = request.user.username
+    username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
         logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
