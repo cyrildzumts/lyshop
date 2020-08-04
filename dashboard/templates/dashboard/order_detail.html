@@ -81,6 +81,19 @@
                         <span class="key">{% trans "Last Edit Date" %} :</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span>
                     </div>
                 </div>
+        </div> <!--End of mat-box-->
+        <div class="mat-box full">
+            <div class="title">
+                <h4>{% trans "Order Items" %}</h4>
+            </div>
+            <div class="mat-box-content">
+                <ul>
+                    {% for item in order.order_items.all %}
+                    <li><div><span>{{item.product.name}}</span> <span>{{item.quantity}}</span> <span>{{item.total_price}} {% trans "XAF" %}</span></div></li>
+                    {% endfor %}
+                </ul>
+                
+            </div>
         </div>
 </div>
 {% else %}
