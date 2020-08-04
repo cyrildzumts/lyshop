@@ -105,7 +105,7 @@
                                 <tbody>
                                         {% for item in order.order_items.all  %}
                                         <tr>
-                                            <td>{{item.product.display_name}}</td>
+                                            <td>{{item.product.display_name}} - {{item.product.attributes.all}}</td>
                                             <td>{{item.quantity}}</td>
                                             <td><span>{{item.unit_price}}</span> <span>{% trans "XAF" %}</span></td>
                                             <td><span>{{item.total_price}}</span> <span>{% trans "XAF" %}</span></td>
