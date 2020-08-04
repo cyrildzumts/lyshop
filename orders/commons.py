@@ -41,34 +41,34 @@ ORDER_CANCELED = 3
 ORDER_SHIPPED = 4
 ORDER_DELIVERED = 5
 ORDER_PICKED_UP = 6
-ORDER_NOT_PICKED_UP = 7
+ORDER_CUSTOMER_NOT_SHOWN_UP = 7
 
 
 ORDER_STATUS = (
-    (ORDER_SUBMITTED, 'Submitted'),
-    (ORDER_PROCESSING, 'Processing'),
-    (ORDER_PAID, 'Paid'),
-    (ORDER_CANCELED, 'Canceled'),
-    (ORDER_SHIPPED, 'Shipped'),
-    (ORDER_DELIVERED, 'Delivered'),
-    (ORDER_PICKED_UP, 'Picked up'),
-    (ORDER_NOT_PICKED_UP, 'Not picked  up'),
+    ('SUBMITTED', ORDER_SUBMITTED),
+    ('PROCESSING' ,ORDER_PROCESSING),
+    ('PAID',ORDER_PAID),
+    ('CANCELED', ORDER_CANCELED),
+    ('SHIPPED', ORDER_SHIPPED),
+    ('DELIVERED',ORDER_DELIVERED),
+    ('PICKED UP', ORDER_PICKED_UP),
+    ('CUSTOMER DID NOT SHOW UP', ORDER_CUSTOMER_NOT_SHOWN_UP),
 )
 
 PAY_AT_DELIVERY = 0
 PAY_AT_ORDER = 1
 
 PAYMENT_OPTIONS = (
-    (PAY_AT_DELIVERY, 'Pay at delivery'),
-    (PAY_AT_ORDER, 'Pay at order'),
+    ('PAY AT DELIVERY', PAY_AT_DELIVERY),
+    ('PAY AT ORDER',PAY_AT_ORDER),
 )
 
 
 def get_order_status_name(order_status=None):
-    key, value = utils.find_element_by_key_in_tuples(order_status, ORDER_STATUS)
+    key, value = utils.find_element_by_value_in_tuples(order_status, ORDER_STATUS)
     return key, value
 
 
 def get_payment_option_name(option=None):
-    key, value = utils.find_element_by_key_in_tuples(option, PAYMENT_OPTIONS)
+    key, value = utils.find_element_by_value_in_tuples(option, PAYMENT_OPTIONS)
     return key, value

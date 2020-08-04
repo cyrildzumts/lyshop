@@ -1,6 +1,7 @@
 {% extends "order_base.html"%}
 {% load i18n %}
 {% load shipment_status %}
+{% load order_tag %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -60,13 +61,13 @@
                         <span class="key">{% trans "Total" %} :</span> <span class="value">{{order.total}} {% trans "XAF" %}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Payment Option" %} :</span> <span class="value">{{order.payment_option}}</span>
+                        <span class="key">{% trans "Payment Option" %} :</span> <span class="value">{{order.payment_option|pay_option}}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Coupon" %} :</span> <span class="value">{{order.coupon}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Status" %} :</span> <span class="value">{{order.status}}</span>
+                        <span class="key">{% trans "Status" %} :</span> <span class="value">{{order.status|order_status_key}}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Date" %} :</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span>

@@ -1,5 +1,6 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
+{% load order_tag %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -43,7 +44,7 @@
                         <span class="key">{% trans "Date" %} :</span> <span class="value">{{order.created_at}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Status" %} :</span> <span class="value">{{order.status}}</span>
+                        <span class="key">{% trans "Status" %} :</span> <span class="value">{{order.statu|order_status_keys}}</span>
                     </div>
                 </div>
         </div>
