@@ -2,6 +2,7 @@ from lyshop import settings, utils
 from django.db.models import F,Q,Count, Sum, FloatField
 from cart.models import CartItem, CartModel
 from cart import cart_service
+from orders import commons
 from orders.models import Order, OrderItem, Address, PaymentRequest, OrderStatusHistory
 from shipment import shipment_service
 from itertools import islice
@@ -62,9 +63,11 @@ def create_order_from_cart(user):
     return order
 
 
+
 def order_clear_cart(user):
     logger.debug("Order - Clearing Cart Items")
     return cart_service.clear_cart(user)
+
 
 
 def request_payment(data=None):
@@ -86,17 +89,61 @@ def request_payment(data=None):
     return response
 
 
-def add_shipment(order):
-    if not isinstance(order, Order):
-        logger.error("Type Error : order not of Order type")
-        return False
-    return shipment_service.add_shipment(order)
-
 def is_marked_for_shipment(order):
     if not isinstance(order, Order):
         logger.error("Type Error : order not of Order type")
         raise TypeError("Type Error : order argument not of type Order.")
     return shipment_service.shipment_for_order_exists(order)
+
+
+def is_cancelable(order):
+    if not isinstance(order, Order):
+        logger.error("Type Error : order not of Order type")
+        raise TypeError("Type Error : order argument not of type Order.")
+    
+    flag = not is_marked_for_shipment(order) and (order.status == commons.ORDER_SUBMITTED or order.payment_option == commons.ORDER_PAID)
+    return flag
+
+def can_be_shipped(order):
+    '''
+    An order can be shipped only when it has a status of
+    commons.ORDER_PAID or the payment_order for the order 
+    is set to commons.PAY_AT_DELIVERY.
+    '''
+    if not isinstance(order, Order):
+        logger.error("Type Error : order not of Order type")
+        raise TypeError("Type Error : order argument not of type Order.")
+    
+    return order.status == commons.ORDER_PAID or order.payment_option == commons.PAY_AT_DELIVERY
+        
+
+
+
+
+def add_shipment(order):
+    '''
+    add_shipment this method marks an order as ready
+    for shipment.
+    An order can be added for shipment when it has not been already marked
+    for shipment and can be shipped.
+    '''
+    if not isinstance(order, Order):
+        logger.error("Type Error : order not of Order type")
+        return False
+    
+
+    if is_marked_for_shipment(order):
+        logger.error(f"Order {order.id} has already been be added for shipment.")
+        return False
+
+    elif can_be_shipped(order):
+            return shipment_service.add_shipment(order)
+    else:
+        logger.error(f"Order {order.id} can not be added for shipment. Order has not been already paid or customer did not choose to pay at delivery")
+
+    return False
+
+
 
 def get_order_shipment(order):
     if not isinstance(order, Order):

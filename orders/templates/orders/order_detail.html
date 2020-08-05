@@ -14,6 +14,7 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
+                    {% if order_is_cancelable %}<a class="mat-button mat-button-text" href="{% url 'orders:order-cancel' order.order_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Cancel Order" %}</span></a>   {% endif %}
                     <a class="mat-button mat-button-text" href="{% url 'accounts:account' %}"><i class="fas fa-home icon"></i><span>{% trans "My account" %}</span></a>   
                     <a class="mat-button mat-button-text" href="{% url 'orders:order-home' %}">{% trans "Orders" %}</a>
                 </div><!--End of Banner-Actions-->

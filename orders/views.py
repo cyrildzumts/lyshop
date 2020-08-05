@@ -55,8 +55,28 @@ def order_detail(request, order_uuid=None):
         'order': order,
         'shipment' : shipment,
         'orderItems': orderItems,
+        'order_is_cancelable' :  orders_service.is_cancelable(order)
     }
     return render(request,template_name, context)
+
+
+
+
+@login_required
+def order_cancel(request, order_uuid):
+    order = get_object_or_404(Order,user=request.user, order_uuid=order_uuid)
+        
+    if orders_service.is_cancelable(order):
+        Order.objects.filter(id=order.id).update(status=commons.ORDER_CANCELED, last_changed_by=request.user)
+        OrderStatusHistory.objects.create(order_status=commons.ORDER_CANCELED, order=order, order_ref_id=order.id, changed_by=request.user)
+        messages.success(request, "Your order has been canceled")
+        logger.info(f"Order {order.id} canceled by user {request.user.username}")
+    else:
+        messages.error(request, "Error. Your order can no more be canceled")
+        return redirect('orders:order-detail', order_uuid=order_uuid)
+    return redirect('accounts:account')
+
+
 
 @login_required
 def checkout(request):

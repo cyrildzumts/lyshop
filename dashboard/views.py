@@ -376,6 +376,7 @@ def order_detail(request, order_uuid=None):
         'order': order,
         'shipment': shipment_service.find_order_shipment(order),
         'orderItems': orderItems,
+        'order_is_cancelable' :  orders_service.is_cancelable(order)
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
