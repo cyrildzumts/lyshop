@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from catalog.models import Product
 from orders.models import Order, OrderItem
-from lyshop import conf
+from lyshop import conf, utils
 from shipment import constants as Constants
 import uuid
 # Create your models here.
 
 
 class Shipment(models.Model):
-    shipment_number = models.CharField(max_length=32, blank=True, null=True)
+    shipment_number = models.IntegerField(default=utils.get_random_ref)
     company = models.CharField(max_length=256, blank=True, null=True)
     customer = models.ForeignKey(User, related_name='shipment', blank=True, null=True, on_delete=models.SET_NULL)
     last_changed_by = models.ForeignKey(User, related_name='edited_shipments', blank=True, null=True, on_delete=models.SET_NULL)

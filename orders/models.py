@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from catalog.models import ProductVariant
 from lyshop import conf
 from orders import commons
-from lyshop import settings
+from lyshop import settings, utils
 import uuid
 
 # Create your models here.
@@ -25,6 +25,7 @@ class Address(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(User, related_name='orders', blank=True, null=True, on_delete=models.SET_NULL)
+    order_ref_number = models.IntegerField(default=utils.get_random_ref)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     last_changed_by = models.ForeignKey(User, related_name='edited_orders', blank=True, null=True, on_delete=models.SET_NULL)
     amount = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)

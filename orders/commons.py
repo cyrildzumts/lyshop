@@ -1,6 +1,7 @@
 import timeit
 import itertools
 from lyshop import utils
+import random
 
 PAYMENT_PAY_AT_DELIVERY = 0
 PAYMENT_PAY_WITH_PAY = 1
@@ -8,6 +9,7 @@ PAYMENT_PAY_TOKEN = None
 PAYMENT_PAY_USER = None
 PAYMENT_PAY_HOST = 'http://pay-atalaku.com/api/payment-request'
 PAYMENT_PAY_URL = f'{PAYMENT_PAY_HOST}/{PAYMENT_PAY_USER}/{PAYMENT_PAY_TOKEN}/'
+
 
 
 
@@ -103,6 +105,7 @@ PAYMENT_OPTIONS = (
     ('PAY AT DELIVERY', PAY_AT_DELIVERY),
     ('PAY AT ORDER', PAY_AT_ORDER),
 )
+
 
 
 def get_order_status_name(order_status=None):
