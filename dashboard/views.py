@@ -381,6 +381,32 @@ def order_detail(request, order_uuid=None):
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
+@login_required
+def order_cancel(request, order_uuid):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    order = get_object_or_404(Order,user=request.user, order_uuid=order_uuid)
+        
+    if orders_service.is_cancelable(order):
+        Order.objects.filter(id=order.id).update(status=commons.ORDER_CANCELED, last_changed_by=request.user)
+        OrderStatusHistory.objects.create(order_status=commons.ORDER_CANCELED, order=order, order_ref_id=order.id, changed_by=request.user)
+        messages.success(request, "Your order has been canceled")
+        logger.info(f"Order {order.id} canceled by user {request.user.username}")
+    else:
+        messages.error(request, "Error. Your order can no more be canceled")
+        
+    return redirect('dashboard:order-detail', order_uuid=order_uuid)
+
 
 @login_required
 def order_update(request, order_uuid=None):

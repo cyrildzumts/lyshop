@@ -14,6 +14,7 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
+                    {% if order_is_cancelable %}<a class="mat-button mat-button-text" href="{% url 'dashboard:order-cancel' order.order_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Cancel Order" %}</span></a>   {% endif %}
                     <a class="mat-button mat-button-text" href="{{order.get_update_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Update" %}</span></a>
                     <a class="mat-button mat-button-text" href="{{order.get_history_url}}"><i class="fas fa-history icon"></i><span>{% trans "Order History" %}</span></a>   
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:orders' %}"><i class="fas fa-list icon"></i><span>{% trans "Orders" %}</span></a>
@@ -31,58 +32,55 @@
 {% block MAIN_CONTENT %}
 
 {% if can_view_order  %}
+
 <div class="container">
-        <div class="mat-box">
-                <div class="title">
-                    <span>{% trans "Order" %}</span>
-                </div>
-                <div class="mat-box-content">
-                    <div class="entry info">
-                            {% if shipment %}
-                            <span class="key">{% trans "Shipping Status" %} :</span> <span class="value">{{shipment.shipment_status|tuple_key}}</span>
-                            {% else %}
-                            <span class="key">{% trans "Ship it" %} : </span> <span class="value"><a class="mat-button mat-button-text" href="{% url 'dashboard:add-order-for-shipment' order.order_uuid %}"><i class="fas fa-ship icon"></i><span>{% trans "Add for Shipment" %}</span></a></span>
-                            {% endif %}
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Customer" %} :</span> <span class="value">{{order.user.get_full_name}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Quantiy" %} :</span> <span class="value">{{order.quantity}} </span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Amount" %} :</span> <span class="value">{{order.amount}} {% trans "XAF" %}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Shipping Price" %} :</span> <span class="value">{{order.shipping_price}} {% trans "XAF" %}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Reduction" %} :</span> <span class="value">{{order.get_reduction}} {% trans "XAF" %}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Solded Price" %} :</span> <span class="value">{{order.solded_price}} {% trans "XAF" %}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Total" %} :</span> <span class="value">{{order.total}} {% trans "XAF" %}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Payment Option" %} :</span> <span class="value">{{order.payment_option|pay_option}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Coupon" %} :</span> <span class="value">{{order.coupon}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Status" %} :</span> <span class="value">{{order.status|order_status_key}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Date" %} :</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Last Edit Date" %} :</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span>
-                    </div>
-                </div>
-        </div> <!--End of mat-box-->
+    <div class="col-xs-12 col-m-6 col-3">
         <div class="mat-box full">
+            <div class="title">
+                <h4>{% trans "Order Summary Info" %}</h4>
+            </div>
+            <div class="mat-box-content">
+                <p><span>{% trans "Order Ref Number" %}</span> <span>-</span></p>
+                <p><span>{% trans "Payment Option" %}</span> <span>{{order.payment_option|pay_option}}</span></p>
+                <p><span>{% trans "Order Status" %}</span> <span>{{order.status|order_status_key}}</span></p>
+                <p><span>{% trans "Shipping Status" %}</span> <span>{% if shipment %}{{shipment.shipment_status|tuple_key}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
+                <p><span>{% trans "Order Date" %}</span> <span>{{order.created_at|date:"F j, Y"}}</span></p>
+                <p><span>{% trans "Last Update" %}</span> <span>{{order.last_edited_at|date:"F j, Y"}}</span></p>
+            </div>
+        </div><!--End mat-box-->
+    </div><!--End of col-->
+    <div class="col-xs-12 col-m-6 col-3">
+        <div class="mat-box full">
+            <div class="title">
+                <h4>{% trans "Shipping Addresses" %}</h4>
+            </div>
+            <div class="mat-box-content">
+                <p>-</p>
+                <p>-</p>
+            </div>
+        </div><!--End of mat-box-->
+    </div><!--End of col-->
+    <div class="col-xs-12 col-m-6 col-3">
+        <div class="mat-box full">
+            <div class="title">
+                <h4>{% trans "Price Info" %}</h4>
+            </div>
+            <div class="mat-box-content">
+                <p><span>{% trans "Quantity" %}</span><span>{{order.quantity}}</span></p>
+                <p><span>{% trans "Price" %}</span><span>{{order.amount}} {% trans "XAF" %}</span></p>
+                {% if order.coupon %}
+                <p><span>{% trans "Solded Price" %}</span><span>{{order.solded_price}} {% trans "XAF" %}</span></p>
+                <p><span>{% trans "Reduction" %}</span><span>{{order.get_reduction}} {% trans "XAF" %}</span></p>
+                <p><span>{% trans "Coupon" %}</span><span>{{order.coupon}}</span></p>
+                {% endif %}
+                <p><span>{% trans "Shipping Price" %}</span><span>{{order.shipping_price}} {% trans "XAF" %}</span></p>
+                <p><span>{% trans "Total" %}</span><span>{{order.total}} {% trans "XAF" %}</span></p>
+            </div>
+        </div><!--End of mat-box-->
+    </div><!--End of col-->
+</div><!--End of container-->
+<div class="container">
+    <div class="mat-box full">
             <div class="mat-box-content">
                 <div class="container">
                     <div class="col-m-12 col-9">
@@ -111,7 +109,7 @@
                                             <td>{{item.quantity}}</td>
                                             <td><span>{{item.unit_price}}</span> <span>{% trans "XAF" %}</span></td>
                                             <td><span>{{item.total_price}}</span> <span>{% trans "XAF" %}</span></td>
-                                            <td><a class="mat-button mat-button-default" href="{{item.product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Product Details" %}</span></a></td>
+                                            <td><a class="mat-button mat-button-default" href="{{item.product.product.get_absolute_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Product Details" %}</span></a></td>
                                         </tr>
                                         {% endfor %}
                                         
