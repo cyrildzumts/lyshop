@@ -191,6 +191,16 @@ class ProductAttribute(models.Model):
     def get_delete_url(self):
         return reverse("dashboard:attribute-delete", kwargs={"attribute_uuid": self.attribute_uuid})
 
+
+class ProductType(models.Model):
+    name = models.CharField(max_length=50)
+    code = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+
 class Product(models.Model):
     GENDER = (
         (GENDER_MEN, 'MEN'),
@@ -202,6 +212,7 @@ class Product(models.Model):
         (GENDER_NO_GENDER, 'NO GENDER')
     )
     name = models.CharField(max_length=32, null=False, blank=False)
+    product_type = models.ForeignKey(ProductType, related_name="products", on_delete=models.SET_NULL, blank=True, null=True)
     display_name = models.CharField(max_length=32, null=True, blank=True)
     article_number = models.IntegerField(blank=True, null=True)
     category = models.ForeignKey(Category,related_name='products', on_delete=models.SET_NULL, blank=True, null=True)
@@ -306,6 +317,10 @@ class ProductImage(models.Model):
 
     def get_delete_url(self):
         return reverse("dashboard:product-image-delete", kwargs={"image_uuid": self.image_uuid})
+
+
+
+
 
 
 @receiver(post_save, sender=ProductVariant)
