@@ -59,6 +59,7 @@
                               {% if can_view_coupon %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:coupons'%}">{% trans "Coupons" %}</a></li>{% endif %}
                               {% if can_view_product %} 
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
+                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}">{% trans "Product Type" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}">{% trans "Products Attributes" %}</a></li>
                               {% endif %}
                                {% if can_view_order %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:orders'%}">{% trans "Orders" %}</a></li>{% endif %}
