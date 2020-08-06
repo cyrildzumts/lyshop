@@ -6,7 +6,7 @@
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
                 {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Order" %}</h4>
+                    <h4> {% trans "Order" %} - {{order.order_ref_number}}</h4>
                 {% endblock HEADER_BANNER_TITLE %}
                 
         </div>
@@ -41,7 +41,7 @@
                     <h4>{% trans "Order Summary Info" %}</h4>
                 </div>
                 <div class="mat-box-content">
-                    <p><span>{% trans "Order Ref Number" %}</span> <span>-</span></p>
+                    <p><span>{% trans "Order Ref Number" %}</span> <span>{{order.order_ref_number}}</span></p>
                     <p><span>{% trans "Payment Option" %}</span> <span>{{order.payment_option|pay_option}}</span></p>
                     <p><span>{% trans "Order Status" %}</span> <span>{{order.status|order_status_key}}</span></p>
                     <p><span>{% trans "Shipping Status" %}</span> <span>{% if shipment %}{{shipment.shipment_status|tuple_key}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
