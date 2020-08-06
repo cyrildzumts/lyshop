@@ -38,12 +38,12 @@
                     <h4>{% trans "Order Summary Info" %}</h4>
                 </div>
                 <div class="mat-box-content">
-                    <p><span>{% trans "Order Ref Number" %}</span> <span>{{order.order_ref_number}}</span></p>
-                    <p><span>{% trans "Payment Option" %}</span> <span>{{order.payment_option|pay_option}}</span></p>
-                    <p><span>{% trans "Order Status" %}</span> <span>{{order.status|order_status_key}}</span></p>
-                    <p><span>{% trans "Shipping Status" %}</span> <span>{% if shipment %}{{shipment.shipment_status|tuple_key}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
-                    <p><span>{% trans "Order Date" %}</span> <span>{{order.created_at|date:"F j, Y"}}</span></p>
-                    <p><span>{% trans "Last Update" %}</span> <span>{{order.last_edited_at|date:"F j, Y"}}</span></p>
+                    <p><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
+                    <p><span class="key">{% trans "Payment Option" %}</span> <span class="value">{{order.payment_option|pay_option}}</span></p>
+                    <p><span class="key">{% trans "Order Status" %}</span> <span class="value">{{order.status|order_status_key}}</span></p>
+                    <p><span class="key">{% trans "Shipping Status" %}</span> <span class="value">{% if shipment %}{{shipment.shipment_status|tuple_key}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
+                    <p><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
+                    <p><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
                 </div>
             </div><!--End mat-box-->
         </div><!--End of wrapper-->
