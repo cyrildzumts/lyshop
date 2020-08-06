@@ -43,6 +43,7 @@ class AttributeForm(forms.Form):
 
 
 class ProductTypeForm(forms.ModelForm):
+    
     class Meta:
         model: ProductType
         fields = ['name', 'display_name','is_active', 'code']
