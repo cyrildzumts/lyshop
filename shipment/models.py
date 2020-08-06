@@ -11,7 +11,8 @@ import uuid
 
 
 class Shipment(models.Model):
-    shipment_number = models.IntegerField(default=utils.get_random_ref)
+    shipment_number = models.CharField(max_length=64, default=utils.generate_token_10, blank=True)
+    shipment_ref_number = models.IntegerField(default=utils.get_random_ref)
     company = models.CharField(max_length=256, blank=True, null=True)
     customer = models.ForeignKey(User, related_name='shipment', blank=True, null=True, on_delete=models.SET_NULL)
     last_changed_by = models.ForeignKey(User, related_name='edited_shipments', blank=True, null=True, on_delete=models.SET_NULL)
