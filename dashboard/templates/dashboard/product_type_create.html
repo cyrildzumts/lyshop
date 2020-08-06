@@ -1,0 +1,64 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% block HEADER_BANNER %}
+  <div class="row">
+        <div class="col-6">
+            <div class="title">
+                <h3>{% trans "New Product" %}</h3>
+            </div>
+        </div> 
+  </div>
+{% endblock HEADER_BANNER %}
+{% block MAIN_CONTENT %}
+
+{% if can_add_product %}
+
+
+<div class="responsive">
+
+    <div class="container">
+        
+        <div class="mat-box">
+    
+                <form class="form" name="add-product-type" action="{% url 'dashboard:product-type-create' %}" method="POST">{% csrf_token %}
+                    <input type="hidden" name="added_by" value="{{request.user.pk}}">
+                    <div class="container">
+                    
+                        <div class="form-group">
+                            <label for="name">{% trans "Name" %}</label>
+                            <input id="name" type="text"  name="name" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="display_name">{% trans "Display Name" %}</label>
+                            <input id="display_name" type="text"  name="display_name" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="code">{% trans "Brand Code" %}</label>
+                            <input id="code" type="text"  name="code" value="">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="is_active">{% trans "Is Active" %}</label>
+                            <input id="is_active" type="checkbox"  name="is_active" checked>
+                        </div>
+                    
+                    </div><!-- End of container-->
+
+                    <div class="actions row">
+                            <a class="mat-button mat-button-text js-cancel" href="{% url 'dashboard:product-types' %}">{% trans "Cancel" %}</a>
+                            <button class="mat-button mat-button-default" type="submit">{% trans "Create" %}</button>
+                    </div>
+                    
+                </form>
+            </div>
+    </div>          
+</div>
+
+
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+
+{% endblock MAIN_CONTENT %}

@@ -60,6 +60,19 @@
         </div>
 
         <div class="form-group">
+                <label for="product-type">{% trans "Product Type" %}</label>
+                <select name="product_type" id="product-type">
+                {% for p_type in product_type_list %} 
+                    {% if p_type == product.product_type %}
+                        <option value="{{p_type.pk}}" selected>{{p_type.display_name}}</option>
+                    {% else %}
+                        <option value="{{p_type.pk}}">{{p_type.display_name}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select>
+            </div>
+
+        <div class="form-group">
             <label for="sold_by">{% trans "Merchant" %}</label>
             <select name="sold_by" id="sold_by">
             {% for u in user_list %} 

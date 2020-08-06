@@ -28,14 +28,14 @@ from dashboard.forms import (AccountForm, GroupFormCreation, PolicyForm, PolicyG
 from accounts.forms import AccountCreationForm, UserCreationForm
 from accounts.account_services import AccountService
 from catalog.models import (
-    Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage
+    Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage, ProductType
 )
 from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory
 from orders import orders_service
 from shipment import shipment_service
 from catalog.forms import (BrandForm, ProductAttributeForm, 
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
-    DeleteAttributeForm, CategoriesDeleteForm
+    DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm
 )
 from cart.models import Coupon
 from cart.forms import CouponForm
@@ -316,6 +316,7 @@ def create_product(request):
     context['brand_list'] = models.Brand.objects.all()
     context['category_list'] = models.Category.objects.all()
     context['user_list'] = User.objects.all()
+    context['product_type_list'] = ProductType.objects.all()
     context['gender_list'] = models.Product.GENDER
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -609,6 +610,7 @@ def product_update(request, product_uuid=None):
     context['brand_list'] = models.Brand.objects.all()
     context['category_list'] = models.Category.objects.all()
     context['user_list'] = User.objects.all()
+    context['product_type_list'] = ProductType.objects.all()
     context['gender_list'] = models.Product.GENDER
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -2807,5 +2809,226 @@ def coupons_delete(request):
         messages.error(request, f"Coupons  could not be deleted")
         logger.error(f"Coupon Delete : ID list invalid. Error : {id_list}")
     return redirect('dashboard:coupons')
+
+
+
+
+
+@login_required
+def product_types(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'dashboard/product_type_list.html'
+    page_title = _('ProductTypes')
+    if request.method != 'GET':
+        return HttpResponseBadRequest('Bad request')
+
+    queryset = ProductType.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title': page_title,
+        'product_type_list': list_set
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def product_type_create(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_add_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/product_type_create.html'
+    page_title = _('New ProductType')
+    
+    form = None
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductTypeForm(postdata)
+        if form.is_valid():
+            product_type = form.save()
+            messages.success(request, _('New ProductType created'))
+            logger.info(f'New ProductType added by user \"{username}\"')
+            return redirect('dashboard:product-types')
+        else:
+            messages.error(request, _('ProductType not created'))
+            logger.error(f'Error on creating new ProductType. Action requested by user \"{username}\"')
+    else:
+        form = BrandForm()
+    context = {
+        'page_title': page_title,
+        'form' : form
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+@login_required
+def product_type_detail(request, type_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/product_type_detail.html'
+    page_title = _('ProductType Detail')
+    
+    if request.method != "GET":
+        raise SuspiciousOperation('Bad request')
+
+    product_type = get_object_or_404(models.ProductType, type_uuid=type_uuid)
+    product_list = Product.objects.filter(product_type=product_type)
+    context = {
+        'page_title': page_title,
+        'product_list': product_list,
+        'product_type': product_type
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+@login_required
+def product_type_update(request, type_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/product_type_update.html'
+    page_title = _('ProductType Update')
+    
+    form = None
+    username = request.user.username
+    product_type = get_object_or_404(models.ProductType, type_uuid=type_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductTypeForm(postdata, instance=product_type)
+        if form.is_valid():
+            product_type = form.save()
+            messages.success(request, _('ProductTyppe updated'))
+            logger.info(f'ProductType updated by user \"{username}\"')
+            return redirect('dashboard:product-type-detail', type_uuid=type_uuid)
+        else:
+            messages.error(request, _('ProductType not updated'))
+            logger.error(f'Error on updated ProductType. Action requested by user \"{username}\"')
+    else:
+        form = ProductTypeForm(instance=product_type)
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'product_type': product_type
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+
+@login_required
+def product_type_delete(request, type_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    product_type = get_object_or_404(models.ProductType, type_uuid=type_uuid)
+    product_type_name = product_type.name
+    product_type.delete()
+    logger.info(f'ProductType \"{product_type_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('ProductType deleted'))
+    return redirect('dashboard:product-types')
+
+
+@login_required
+def product_types_delete(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request. Expected POST request but received a GET')
+    
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('product_types')
+
+    if len(id_list):
+        product_type_list = list(map(int, id_list))
+        ProductType.objects.filter(id__in=product_type_list).delete()
+        messages.success(request, f"ProductType \"{product_type_list}\" deleted")
+        logger.info(f"ProductType\"{product_type_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"ProductType could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('dashboard:product-types')
+
+
+@login_required
+def product_type_products(request, type_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/brand_product_list.html'
+    page_title = _('Product Type Products')
+    
+    if request.method != 'GET':
+        return HttpResponseBadRequest('Bad request')
+
+    product_type = get_object_or_404(models.Brand, type_uuid=type_uuid)
+    queryset = models.Product.objects.filter(product_type=product_type)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title': page_title,
+        'product_list': list_set,
+        'product_type': product_type
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
 
 

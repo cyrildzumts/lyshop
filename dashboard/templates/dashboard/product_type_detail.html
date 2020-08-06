@@ -1,0 +1,56 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+
+{% block MAIN_CONTENT %}
+{% if can_view_product %}
+
+
+<div class="container">
+        <div class="mat-box full">
+          <div class="mat-box-title">
+            <h3> {% trans "Name" %} : {{product_type.name}} </h3>
+            <h4> {% trans "Display Name" %} : {{product_type.display_name}}</h4>
+          </div>
+          <div class="mat-box-content">
+              <div>
+                <span class="mat-button mat-button-text"><i class="fas fa-barcode icon">{% trans "Code" %} : </i>{{product_type.code}}</span>
+              </div>
+
+          </div>
+          <div class="container">
+              <ul class="actions row" role="navigation">
+                  {% if can_change_product %}<li class="list-item"><a class="mat-button mat-button-default" href="{{product_type.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>{% endif %}
+                  {% if can_add_product %}<li class="list-item"> <a class="mat-button mat-button-default" href="{% url 'dashboard:product-type-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Produt Type" %}</span></a> </li>{% endif %}
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:product-types' %}"><i class="fas fa-list icon"></i><span>{% trans "Product Types" %}</span></a> </li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+              </ul>
+          </div>
+        </div><!--End of mat-box-->
+        {% if product_list %}
+        <div class="mat-list-wrapper">
+          <div class="mat-list-title">
+            <h4>{% trans "Product Type" %}</h4>
+            <span>{{product_list.count}}</span>
+          </div>
+          <ul class="mat-list">
+            {% for p in product_list %}
+            <li class="mat-list-item"><a class="mat-button mat-button-text" href="{{p.get_absolute_url}}"><i class="fas fa-info"></i><span>{{p.name}}</span></a></li>
+            {% endfor %}
+          </ul>
+
+        </div>
+        
+        {% else %}
+        <div class="mat-box">
+          <span>{% trans "No product available for this product type" %}</span>
+        </div>
+        {% endif %}
+
+</div>
+
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN_CONTENT %}
