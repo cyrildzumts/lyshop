@@ -56,7 +56,7 @@ def generate_token_10():
 
 
 def get_random_ref():
-    return random.randrange(ORDER_REF_RAND_START, ORDER_REF_RAND_END)
+    return random.randrange(RAND_START, RAND_END)
 
 def is_entry_key_in_tuples(key, tuples):
     found = False
