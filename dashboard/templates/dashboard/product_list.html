@@ -45,6 +45,7 @@
                           <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
                           <th>{% trans "Name" %}</th>
                           <th>{% trans "Display Name" %}</th>
+                          <th>{% trans "Product Type" %}</th>
                           <th>{% trans "Price" %}</th>
                           <th>{% trans "Details" %}</th>
                           {% comment %} <th>{% trans "Delete Action" %}</th> {% endcomment %}
@@ -59,6 +60,7 @@
                   
                   <td>{{product.name}}</td>
                   <td>{{product.display_name}}</td>
+                  <td>{{product.product_type.display_name}}</td>
                   <td><span>{{product.price}}</span> <span>{% trans "XAF" %}</span></td>
                   <td><a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   {% comment %} {% if can_delete_product %}
