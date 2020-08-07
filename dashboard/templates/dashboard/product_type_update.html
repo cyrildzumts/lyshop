@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <label for="type-attributes">{% trans "Type Attributes" %}</label>
                             <select id="type-attributes" name="type_attributes" multiple>
-                                {% for attr in product_type.type_attributes %}
+                                {% for attr in product_type.type_attributes.all %}
                                     <option value="{{attr.id}}" selected>{{attr.name}}</option>
                                 {% endfor %}
                                 {% for attr in type_attributes %}
