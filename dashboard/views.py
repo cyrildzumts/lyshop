@@ -3130,7 +3130,7 @@ def product_type_attribute_detail(request, type_attribute_uuid=None):
     context = {
         'page_title': page_title,
         #'product_list': product_list,
-        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE
+        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
         'type_attribute': type_attribute
     }
     context.update(get_view_permissions(request.user))
