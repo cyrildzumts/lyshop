@@ -47,6 +47,7 @@
                         <th>{% trans "Display Name" %}</th>
                         <th>{% trans "Type" %}</th>
                         <th>{% trans "Description" %}</th>
+                        <th>{% trans "Details" %}</th>
                   </tr>
           </thead>
           <tbody>
@@ -57,6 +58,7 @@
                         <td>{{attr.display_name}}</td>
                         <td>{{attr.attribute_type}}</td>
                         <td>{{attr.description}}</td>
+                        <td><a class="mat-button mat-button-text" href="{{attr.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   
