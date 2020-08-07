@@ -13,7 +13,7 @@
           </div>
           <div class="mat-box-content">
               <div>
-                <span class="mat-button mat-button-text"><i class="fas fa-barcode icon">{% trans "Code" %} : </i>{{product_type.code}}</span>
+                <span class=""><i class="fas fa-barcode icon">{% trans "Code" %} : </i>{{product_type.code}}</span>
               </div>
 
           </div>
@@ -26,6 +26,22 @@
               </ul>
           </div>
         </div><!--End of mat-box-->
+        <div class="mat-box full">
+            <div class="mat-box-title">
+              <h3> {% trans "Type Attributes" %}</h3>
+            </div>
+            <div class="mat-box-content">
+              <ul class="mat-list">
+                {% for attr in product_type.type_attributes.all %}
+                    <li class="mat-list-item">
+                        <div class="entry">
+                            <span>{{attr.name}}</span> - <span>{{attr.display_name}}</span> - <span>{{attr.attribute_type}}</span>
+                        </div>
+                    </li>
+                {% endfor %}
+              </ul>
+            </div>
+        </div>
         {% if product_list %}
         <div class="mat-list-wrapper">
           <div class="mat-list-title">
