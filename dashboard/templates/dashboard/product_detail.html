@@ -31,9 +31,9 @@
 {% if can_view_product %}
 
 <div class="container">
-  <div class="mat-box full">
+  <div class="mat-box wrapper full">
       <div class="row title">
-        <div class="mat-box-title">
+        <div class="mat-box-title wrapper">
           <h4>{% trans "Name" %} : {{product.name}}</h4>
           <h4>{% trans "Display Name" %} : {{product.display_name}}</h4>
           <h4>{% trans "Quantity" %} : {{product.quantity}}</h4>
@@ -41,13 +41,12 @@
           <h4>{% trans "Unit Price" %} : {{product.price}} {% trans "XAF" %}</h4>
           <h4>{% trans "Views" %} : {{product.view_count}}</h4>
         </div>
-        <div class="mat-box-title">
+        <div class="mat-box-title wrapper">
           <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
           <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
           <h4>{% trans "Gender" %} : {{product.gender}}</h4>
           <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
           <h4>{% trans "Number of Variants" %} : {{product.variants.count}} {% trans "XAF" %}</h4>
-          <h4>{% trans "Views" %} : {{product.view_count}}</h4>
         </div>
       </div><!--End of title-->
       <div class="mat-box-content">
@@ -64,7 +63,7 @@
       </div><!--End of mat-box-content-->
   </div><!--End of mat-box-->
 
-  <div class="mat-box full">
+  <div class="mat-box wrapper full">
       <div class="mat-box-title">
           <h4>{% trans "Product Variants" %}</h4>
       </div><!--End of title-->
@@ -98,7 +97,7 @@
           </div><!--End of Table Wrapper-->
       </div><!--End of mat-box-content-->
   </div><!--End of mat-box-->
-  <div class="mat-box full">
+  <div class="mat-box wrapper full">
     <div class="mat-box-title">
       <h4>{% trans "Product Images" %}</h4>
     </div>
