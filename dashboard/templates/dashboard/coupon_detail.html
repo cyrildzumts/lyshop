@@ -8,42 +8,36 @@
                 {% endblock HEADER_BANNER_TITLE %}
                 
         </div>
-        <div class="container">
-
-            <div class="col col-9">
-                <div class="banner--actions">
-                    <a class="mat-button mat-button-default" href="{{coupon.get_update_url}}"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:coupon-create'%}"><i class="fas fa-plus icon"></i>{% trans "Add New Coupon" %}</a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:coupons' %}"><span class="back"></span>{% trans "Coupons" %}</a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i> <span>{% trans "Dashboard" %}</span></a>
-                    
-                        
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
     </div>
 {% endblock HEADER_BANNER %}
 {% block MAIN_CONTENT %}
 
 {% if can_view_coupon %}
 <div class="container">
-        <div class="mat-box">
-          <div class="title">
-              <h3>{% trans "Coupon" %}</h3>
-          </div>
+        <div class="mat-box full">
+          <div class="grid title">
+            <div class="mat-box">
+                <p> {% trans "Name" %} : {{coupon.name}}</p>
+                <p> {% trans "Reduction" %} : {{coupon.reduction}} % </p>
+                <p> {% trans "Status" %} : {% if coupon.is_active %}{% trans "Activated" %} {% else %}{% trans "Not activated" %}{% endif %} </p>
+                <p> {% trans "Create at" %} : {{coupon.created_at}}</p>
+            </div>
+            <div class="mat-box">
+                <p> {% trans "Expire at" %} : {{coupon.expire_at}}</p>
+                <p> {% trans "Added by" %} : {{coupon.added_by.username}}</p> 
+                <p> {% trans "Activated by" %} : {{coupon.activated_by.username}}</p>  
+                <p> {% trans "Activated at" %} : {{coupon.activated_at}}</p>
+            </div>
+          </div><!--End of title-->
           <div class="mat-box-content">
-            <p> {% trans "Name" %} : {{coupon.name}}</p>
-            <p> {% trans "Reduction" %} : {{coupon.reduction}} % </p>
-            <p> {% trans "Create at" %} : {{coupon.created_at}}</p>
-            <p> {% trans "Expire at" %} : {{coupon.expire_at}}</p>
-            <p> {% trans "Status" %} : {% if coupon.is_active %}{% trans "Activated" %} {% else %}{% trans "Not activated" %}{% endif %} </p>
-            <p> {% trans "Added by" %} : {{coupon.added_by.username}}</p> 
-            <p> {% trans "Activated by" %} : {{coupon.activated_by.username}}</p>  
-            <p> {% trans "Activated at" %} : {{coupon.activated_at}}</p>
-          </div>
-        </div>
+                <div class="banner--actions">
+                    <a class="mat-button mat-button-default" href="{{coupon.get_update_url}}"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:coupon-create'%}"><i class="fas fa-plus icon"></i>{% trans "Add New Coupon" %}</a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:coupons' %}"><span class="back"></span>{% trans "Coupons" %}</a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i> <span>{% trans "Dashboard" %}</span></a>     
+                </div><!--End of Banner-Actions-->
+          </div><!--End of mat-box-content-->
+        </div><!--End of mat-box-->
 </div>
 {% else %}
 <div class="access-error">
