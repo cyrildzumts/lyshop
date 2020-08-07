@@ -3120,17 +3120,17 @@ def product_type_attribute_detail(request, type_attribute_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     template_name = 'dashboard/product_type_attribute_detail.html'
-    page_title = _('ProductType Detail')
+    page_title = _('ProductTypeAttribute Detail')
     
     if request.method != "GET":
         raise SuspiciousOperation('Bad request')
 
-    product_type = get_object_or_404(ProductTypeAttribute, type_attribute_uuid=type_attribute_uuid)
+    type_attribute = get_object_or_404(ProductTypeAttribute, type_attribute_uuid=type_attribute_uuid)
     #product_list = Product.objects.filter(product_type=product_type)
     context = {
         'page_title': page_title,
         #'product_list': product_list,
-        'product_type': product_type
+        'type_attribute': type_attribute
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
