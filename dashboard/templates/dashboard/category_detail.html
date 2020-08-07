@@ -6,25 +6,8 @@
         <div class="full welcome-text center">
                 {% block  HEADER_BANNER_TITLE %}
                     <h4> {% trans "Category" %} - {{category.display_name}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-
-            <div class="col col-9">
-                <div class="banner--actions">
-                    {% if can_change_category %}<a class="mat-button mat-button-default" href="{{category.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>{% endif %}
-                    {% if can_add_category %}<a class="mat-button mat-button-default" href="{% url 'dashboard:category-create' %}"> <i class="fas fa-plus icon"></i> <span>{% trans "Add new Category" %}</span></a>{% endif %}
-                    {% if can_delete_category %}<a class="mat-button mat-button-default" href="{{category.get_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span> </a>{% endif %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}"> <i class="fas icon"></i><span>{% trans "Categories" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> <i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
-                    
-                        
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
+                {% endblock HEADER_BANNER_TITLE %}     
+        </div>  
     </div>
 {% endblock HEADER_BANNER %}
 
@@ -32,45 +15,65 @@
 
 {% if can_view_category %}
 
-
-
 <div class="container">
-        <div class="mat-box">
-          <div class="title">
-            <h4> {% trans "Name" %} : {{category.name}} </h4>
-            <div> {% trans "Display Name" %} : {{category.display_name}}</div>
-            <div> {% trans "Code" %} : {{category.code}}</div>
-          </div>
-          <div class="mat-box-content">
-              <ul class="mat-list" role="navigation">
-                
-                <li class="mat-list-item"> 
-                    <label for="is_active">{% trans "Activated" %} : </label>
-                    <input type="checkbox" name="is_active" id="is_active" {% if category.is_active %}checked{% endif %} disabled>
-                 </li>
-                <li class="mat-list-item"> {% trans "Created by" %}: {{category.added_by.username}} </li>
-                <li class="mat-list-item"> {% trans "Created at" %} : {{category.created_at|date:"F j, Y"}} </li>
-              </ul>
-              {% if subcategory_list  %}
-              
-              <div class="mat-list-wrapper">
-                  <div clas="mat-list-header">
-                    <div class="list-title">
-                      {% trans "Sub Categories" %}
-                    </div>
-                  </div>
-                  <ul class="mat-list">
-                    {% for c in subcategory_list %}
-                     <li class="mat-list-item"><a class="mat-button mat-button-text" href="{{c.get_dashboard_url}}">{{c.display_name}}</a></li>
-                    {% endfor %}
-                  </ul>
-              </div>
-              {%else%}
-                  <p>{% trans "There are no sub categories for this category yet" %}</p>
-              {% endif %}
-              
-          </div>
-        </div>
+  <div class="mat-box wrapper full">
+    <div class="row title">
+      <div class="mat-box-title wrapper">
+          <h4>{% trans "Name" %} : {{caterory.name}}</h4>
+          <h4>{% trans "Display Name" %} : {{caterory.display_name}}</h4>
+          <h4>{% trans "Code" %} : {{caterory.code}}</h4>
+          <h4>{% trans "Created By" %} : {{caterory.added_by.username}}</h4>
+          <h4>{% trans "Creation Date" %} : {{caterory.created_at|date:'F J, Y'}}</h4>
+      </div>
+    </div>
+    <div class="mat-box-content">
+      <div class="actions">
+        {% if can_change_category %}<a class="mat-button mat-button-default" href="{{category.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>{% endif %}
+        {% if can_add_category %}<a class="mat-button mat-button-default" href="{% url 'dashboard:category-create' %}"> <i class="fas fa-plus icon"></i> <span>{% trans "Add new Category" %}</span></a>{% endif %}
+        {% if can_delete_category %}<a class="mat-button mat-button-default" href="{{category.get_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span> </a>{% endif %}
+        <a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}"> <i class="fas icon"></i><span>{% trans "Categories" %}</span></a>
+        <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> <i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+      </div>
+    </div>
+
+  </div><!--End of mat-box-->
+  <div class="mat-box wrapper full">
+    <div class="mat-box-title">
+      <h4>{% trans "Sub Categories" %}</h4>
+    </div>
+    <div class="mat-box-content">
+      <div class="mat-table-wrapper">
+                <table id="subcategory-list" class="mat-table js-filter-table">
+                    
+                      <thead>
+                              <tr>
+                                    <th>{% trans "Display Name" %}</th>
+                                    <th>{% trans "Code" %}</th>
+                                    <th>{% trans "Action" %}</th>
+                              </tr>
+                      </thead>
+                      <tbody>
+                              {% for c in subcategory_list %}
+                              <tr>
+                                    <td>{{c.display_name}}</td>
+                                    <td>{{c.code}}</td>
+    
+                                    <td><a class="mat-button mat-button-text" href="{{c.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                              </tr>
+                              {% endfor %}
+                              
+                      </tbody>
+                      <tfoot>
+                              
+                      </tfoot>
+
+                </table>
+          </div><!--End of Table Wrapper-->
+    </div><!--End of mat-box-content-->
+
+  </div><!--End of mat-box-->
+
+
 </div>
 
 {% else %}
