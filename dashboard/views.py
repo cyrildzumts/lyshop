@@ -28,7 +28,7 @@ from dashboard.forms import (AccountForm, GroupFormCreation, PolicyForm, PolicyG
 from accounts.forms import AccountCreationForm, UserCreationForm
 from accounts.account_services import AccountService
 from catalog.models import (
-    Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage, ProductType
+    Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage, ProductType, ProductTypeAttribute
 )
 from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory
 from orders import orders_service
@@ -2874,9 +2874,10 @@ def product_type_create(request):
             messages.error(request, _('ProductType not created'))
             logger.error(f'Error on creating new ProductType. Action requested by user \"{username}\"')
     else:
-        form = BrandForm()
+        form = ProductTypeForm()
     context = {
         'page_title': page_title,
+        'type_attributes' : ProductTypeAttribute.objects.all(),
         'form' : form
     }
     context.update(get_view_permissions(request.user))
@@ -2940,7 +2941,9 @@ def product_type_update(request, type_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'product_type': product_type
+        'product_type': product_type,
+        'attributes' : ProductAttribute.objects.exclude(id__in=product_type.attributes),
+        'type_attributes' : ProductTypeAttribute.objects.exclude(id__in=product_type.type_attributes)
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)

@@ -36,7 +36,14 @@
                             <label for="code">{% trans "Product Type Code" %}</label>
                             <input id="code" type="text"  name="code" value="">
                         </div>
-                        
+                        <div class="form-group">
+                            <label for="type-attributes">{% trans "Type Attributes" %}</label>
+                            <select id="type-attributes" name="type_attributes" multiple>
+                                {% for attr in type_attributes %}
+                                    <option value="{{attr.id}}">{{attr.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="is_active">{% trans "Is Active" %}</label>
                             <input id="is_active" type="checkbox"  name="is_active" checked>

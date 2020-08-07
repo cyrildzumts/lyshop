@@ -26,6 +26,15 @@ ATTRIBUTE_TYPE_DATE   = 4
 ATTRIBUTE_TYPE_DATETIME = 5
 ATTRIBUTE_TYPE_DEFAULT = ATTRIBUTE_TYPE_STRING
 
+ATTRIBUTE_TYPE = (
+        (ATTRIBUTE_TYPE_STRING, 'STRING'),
+        (ATTRIBUTE_TYPE_INTEGER, 'INTEGER'),
+        (ATTRIBUTE_TYPE_DECIMAL, 'DECIMAL'),
+        (ATTRIBUTE_TYPE_DATE, 'DATE'),
+        (ATTRIBUTE_TYPE_DATETIME, 'DATETIME'),
+        (ATTRIBUTE_TYPE_DEFAULT, 'DEFAULT(STRING)')
+    )
+
 COMMISSION_DEFAULT = 0.03
 COMMISSION_MAX_DIGITS = 7
 COMMISSION_DECIMAL_PLACES = 5
@@ -161,14 +170,7 @@ class Brand(models.Model):
 
 
 class ProductAttribute(models.Model):
-    ATTRIBUTE_TYPE = (
-        (ATTRIBUTE_TYPE_STRING, 'STRING'),
-        (ATTRIBUTE_TYPE_INTEGER, 'INTEGER'),
-        (ATTRIBUTE_TYPE_DECIMAL, 'DECIMAL'),
-        (ATTRIBUTE_TYPE_DATE, 'DATE'),
-        (ATTRIBUTE_TYPE_DATETIME, 'DATETIME'),
-        (ATTRIBUTE_TYPE_DEFAULT, 'DEFAULT(STRING)')
-    )
+
     name = models.CharField(max_length=32, null=False, blank=False)
     value = models.CharField(max_length=32, null=False, blank=False)
     value_type = models.IntegerField(default=ATTRIBUTE_TYPE_DEFAULT ,null=False, blank=False, choices=ATTRIBUTE_TYPE)
@@ -192,11 +194,19 @@ class ProductAttribute(models.Model):
         return reverse("dashboard:attribute-delete", kwargs={"attribute_uuid": self.attribute_uuid})
 
 
+class ProductTypeAttribute(models.Model):
+
+    name = models.CharField(max_length=32, null=False, blank=False)
+    attribute_type = models.IntegerField(ATTRIBUTE_TYPE_STRING)
+    description = models.CharField(max_length=164)
+
 class ProductType(models.Model):
     name = models.CharField(max_length=50)
     display_name = models.CharField(max_length=32, null=False, blank=False)
     code = models.IntegerField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
+    attributes = models.ManyToManyField(ProductAttribute, related_name='product_types')
+    type_attributes = models.ManyToManyField(ProductTypeAttribute, related_name='product_types')
     type_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
 
