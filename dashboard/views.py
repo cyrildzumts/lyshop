@@ -2943,8 +2943,8 @@ def product_type_update(request, type_uuid=None):
         'page_title': page_title,
         'form' : form,
         'product_type': product_type,
-        'attributes' : ProductAttribute.objects.exclude(id__in=product_type.attributes),
-        'type_attributes' : ProductTypeAttribute.objects.exclude(id__in=product_type.type_attributes)
+        'attributes' : ProductAttribute.objects.exclude(id__in=product_type.attributes.all()),
+        'type_attributes' : ProductTypeAttribute.objects.exclude(id__in=product_type.type_attributes.all())
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
