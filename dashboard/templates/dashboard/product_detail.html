@@ -9,22 +9,6 @@
                 {% endblock HEADER_BANNER_TITLE %}
                 
         </div>
-        <div class="container">
-
-            <div class="col col-9">
-                <div class="banner--actions">
-                    {% if can_change_product %}
-                    <a class="mat-button mat-button-default" href="{{product.get_update_url}}"> <i class="fas fa-pen icon"></i> <span>{% trans "Edit" %}</span> </a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:product-image-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Image" %}</span></a>
-                    {% endif %}
-                    <a class="mat-button mat-button-text" href="{%url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
-                        
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
     </div>
 {% endblock HEADER_BANNER %}
 {% block MAIN_CONTENT %}
@@ -46,7 +30,7 @@
           <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
           <h4>{% trans "Gender" %} : {{product.gender}}</h4>
           <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
-          <h4>{% trans "Number of Variants" %} : {{product.variants.count}} {% trans "XAF" %}</h4>
+          <h4>{% trans "Number of Variants" %} : {{product.variants.count}}</h4>
         </div>
       </div><!--End of title-->
       <div class="mat-box-content">
@@ -55,6 +39,7 @@
                 {% if can_change_product %}<li class="list-item"><a class="mat-button mat-button-default" href="{{product.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>{% endif %}
                 {% if can_add_product %}
                 <li class="list-item"><a class="mat-button mat-button-default" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a></li>
+                <li class="list-item"><a class="mat-button mat-button-default" href="{% url 'dashboard:product-image-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Image" %}</span></a></li>
                 {% endif %}
                 <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a> </li>
                 <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
