@@ -10,11 +10,10 @@
           <div class="mat-box-title">
             <h3> {% trans "Name" %} : {{product_type.name}} </h3>
             <h4> {% trans "Display Name" %} : {{product_type.display_name}}</h4>
+            <h4> {% trans "Product Count" %} : {{product_list.count}}</h4>
+            <h4> {% trans "Type Code" %} : {{product_type.code}}</h4>
           </div>
           <div class="mat-box-content">
-              <div>
-                <span class=""><i class="fas fa-barcode icon">{% trans "Code" %} : </i>{{product_type.code}}</span>
-              </div>
 
           </div>
           <div class="container">
@@ -31,17 +30,46 @@
               <h3> {% trans "Type Attributes" %}</h3>
             </div>
             <div class="mat-box-content">
-              <ul class="mat-list">
-                {% for attr in product_type.type_attributes.all %}
-                    <li class="mat-list-item">
-                        <div class="entry">
-                            <span>{{attr.name}}</span> - <span>{{attr.display_name}}</span> - <span>{{attr.attribute_type}}</span>
+              <div class="mat-table-wrapper">
+                  <div class="row">
+                      <div class="mat-table-title">
+                          {% trans "Type Attributes" %}
+                      </div>
+                  </div><!--End of Row-->
+                  
+                    <table id="attr-list" class="mat-table js-filter-table">
+                        <div class="actions">
+                          <button id="js-delete-attrs-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i> <span>{% trans "Delete Selected Attributes" %}</span></button>
                         </div>
-                    </li>
-                {% endfor %}
-              </ul>
-            </div>
-        </div>
+                          <thead>
+                                  <tr>
+                                        
+                                        <th>{% trans "Name" %}</th>
+                                        <th>{% trans "Display Name" %}</th>
+                                        <th>{% trans "Type" %}</th>
+                                        <th>{% trans "Details" %}</th>
+                                  </tr>
+                          </thead>
+                          <tbody>
+                                  {% for attr in product_type.type_attributes.all %}
+                                  <tr>
+                                        <td>{{attr.name}}</td>
+                                        <td>{{attr.display_name}}</td>
+                                        <td>{{attr.attribute_type}}</td>
+                                        <td><a class="mat-button mat-button-text" href="{{attr.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                                  </tr>
+                                  {% endfor %}
+                                  
+                          </tbody>
+                          <tfoot>
+                                  
+                          </tfoot>
+
+                    </table>
+              </div><!--End of Table Wrapper-->
+
+            </div><!--End of mat-box-content-->
+        </div><!--End of mat-box-->
         {% if product_list %}
         <div class="mat-list-wrapper">
           <div class="mat-list-title">
