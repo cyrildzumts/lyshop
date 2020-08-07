@@ -184,15 +184,15 @@ class ProductTypeAttribute(models.Model):
     def get_delete_url(self):
         return reverse("dashboard:product-type-attribute-delete", kwargs={"type_attribute_uuid": self.type_attribute_uuid})
 
-        
+
 
 class ProductType(models.Model):
     name = models.CharField(max_length=50)
     display_name = models.CharField(max_length=32, null=False, blank=False)
     code = models.IntegerField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
-    attributes = models.ManyToManyField(ProductAttribute, related_name='product_types')
-    type_attributes = models.ManyToManyField(ProductTypeAttribute, related_name='product_types')
+    attributes = models.ManyToManyField(ProductAttribute, related_name='product_types', blank=True, null=True)
+    type_attributes = models.ManyToManyField(ProductTypeAttribute, related_name='product_types', blank=True, null=True)
     type_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
 
