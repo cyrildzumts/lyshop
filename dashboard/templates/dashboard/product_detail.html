@@ -1,4 +1,5 @@
 {% extends "dashboard_base.html"%}
+{% load static %}
 {% load i18n %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
@@ -12,7 +13,10 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
-                    {% if can_change_product %}<a class="mat-button mat-button-default" href="{{product.get_update_url}}"> <i class="fas fa-pen icon"></i> <span>{% trans "Edit" %}</span> </a>{% endif %}
+                    {% if can_change_product %}
+                    <a class="mat-button mat-button-default" href="{{product.get_update_url}}"> <i class="fas fa-pen icon"></i> <span>{% trans "Edit" %}</span> </a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:product-image-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Image" %}</span></a>
+                    {% endif %}
                     <a class="mat-button mat-button-text" href="{%url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a>
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                         
@@ -26,112 +30,96 @@
 {% block MAIN_CONTENT %}
 {% if can_view_product %}
 
-
-<div class="mat-box">
-  <div class="row">
-    <h3>{% trans "Product Details" %}</h3>
-  </div>
-  <div class="row">
-    <div class="responsive">
-        <div class="entry flex-column">
-          <div class="title">{% trans "Price" %}</div>
-          <div class="subtitle">{{product.price}} <span>{% trans "XAF" %}</span></div>
-        </div>
-    </div>
-    <div class="responsive">
-        <div class="entry flex-column">
-          <div class="title">{% trans "Views" %}</div>
-          <div class="subtitle">{{product.view_count}}</div>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="entry flex-column">
-          <div class="title">{% trans "Quantity" %}</div>
-          <div class="subtitle">{{product.quantity}}</div>
-        </div>
-    </div>
-
-    
-    <div class="responsive">
-        <div class="entry flex-column">
-          <div class="title">{% trans "Vendor" %}</div>
-          <div class="subtitle">{{product.sold_by}}</div>
-        </div>
-    </div>         
-        
-    </div> <!--End of row-->
-  </div><!--End of Container-->
-
 <div class="container">
-        <div class="mat-box">
-            <div class="title">
-              <span>{{product.display_name}}</span>
-            </div>
-            <div class="mat-box-content">
-                <div class="entry">
-                  <span class="key">{% trans "Category" %}</span><span class="value">{{product.category}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Product Type" %}</span><span class="value">{{product.product_type.display_name}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Brand" %}</span><span class="value">{{product.brand}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Gender" %}</span><span class="value">{{product.gender}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Vendor" %} : </span><span class="value">{{product.sold_by.get_full_name}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Amount" %} :</span><span class="value">{{product.price}} {% trans "XAF" %}</span>
-                </div>
-                
-                <div class="entry">
-                  <span class="key">{% trans "Added Date" %} :</span><span class="value">{{product.created_at|date:"F j, Y"}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Description" %} :</span><span class="value">{{product.description}}</span>
-                </div>               
-            </div>
+  <div class="mat-box full">
+      <div class="row title">
+        <div class="mat-box-title">
+          <h4>{% trans "Name" %} : {{product.name}}</h4>
+          <h4>{% trans "Display Name" %} : {{product.display_name}}</h4>
+          <h4>{% trans "Quantity" %} : {{product.quantity}}</h4>
+          <h4>{% trans "Vendor" %} : {{product.sold_by.username}}</h4>
+          <h4>{% trans "Unit Price" %} : {{product.price}} {% trans "XAF" %}</h4>
+          <h4>{% trans "Views" %} : {{product.view_count}}</h4>
         </div>
-
-
-        <div class="mat-box">
-            <h4>{% trans "Variants" %}</h4>
-            <div class="mat-box-content">
-              <div class="mat-list-wrapper">
-                  <div class="mat-lit-title">
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a>
-                  </div>
-                  <ul class="mat-list">
-                      {% for variant in variant_list %}
-                        <li class="matt-list-item"><a class="mat-button mat-button-text" href="{{variant.get_dashboard_url}}">{{variant.display_name}}</a></li>
-                      {% endfor %}
-                  </ul>
-              </div>
-            </div>
+        <div class="mat-box-title">
+          <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
+          <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
+          <h4>{% trans "Gender" %} : {{product.gender}}</h4>
+          <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
+          <h4>{% trans "Number of Variants" %} : {{product.variants.count}} {% trans "XAF" %}</h4>
+          <h4>{% trans "Views" %} : {{product.view_count}}</h4>
         </div>
-        <div class="mat-box">
-            <div>
-              <h4>{% trans "Images" %}</h4>
-            </div>
-            <div class="container">
-                <a class="mat-button mat-button-text" href="{% url 'dashboard:product-image-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Image" %}</span></a>
-              </div>
-            <div class="grid">
-            {% load static %}
+      </div><!--End of title-->
+      <div class="mat-box-content">
+        <div class="container">
+            <ul class="actions row" role="navigation">
+                {% if can_change_product %}<li class="list-item"><a class="mat-button mat-button-default" href="{{product.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>{% endif %}
+                {% if can_add_product %}
+                <li class="list-item"><a class="mat-button mat-button-default" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a></li>
+                {% endif %}
+                <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a> </li>
+                <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+            </ul>
+        </div>
+      </div><!--End of mat-box-content-->
+  </div><!--End of mat-box-->
+
+  <div class="mat-box full">
+      <div class="row title">
+        <div class="mat-box-title">
+          <h4>{% trans "Product Variants" %}</h4>
+      </div><!--End of title-->
+      <div class="mat-box-content">
+          <div class="mat-table-wrapper">
+                <table id="variant-list" class="mat-table js-filter-table">
+                    
+                      <thead>
+                              <tr>
+                                    <th>{% trans "Display Name" %}</th>
+                                    <th>{% trans "Quantity" %}</th>
+                                    <th>{% trans "Price" %}</th>
+                              </tr>
+                      </thead>
+                      <tbody>
+                              {% for variant in variant_list %}
+                              <tr>
+                                    <td>{{variant.display_name}}</td>
+                                    <td>{{variant.quantity}}</td>
+                                    <td>{{variant.price}} {% trans "XAF" %}</td>
+                                    <td><a class="mat-button mat-button-text" href="{{variant.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                              </tr>
+                              {% endfor %}
+                              
+                      </tbody>
+                      <tfoot>
+                              
+                      </tfoot>
+
+                </table>
+          </div><!--End of Table Wrapper-->
+      </div><!--End of mat-box-content-->
+  </div><!--End of mat-box-->
+  <div class="mat-box full">
+    <div class="mat-box-title">
+      <h4>{% trans "Product Images" %}</h4>
+    </div>
+    <div class="mat-box-content">
+        <div class="grid">
             {% for image in image_list %}
               <div class="img-wrapper col-2">
-              <img class="img-responsive" src="{{image.get_image_url}}" alt="">
-              <a class="mat-button mat-button-outlined" href="{{image.get_dashboard_url}}">{% trans "See" %}</a>
+                <img class="img-responsive" src="{{image.get_image_url}}" alt="">
+                <a class="mat-button mat-button-outlined" href="{{image.get_dashboard_url}}">{% trans "See" %}</a>
               </div>
               
             {% endfor %}
-            </div>
         </div>
-</div>
+    </div>
+  
+  </div><!--End of mat-box-->
+
+
+
+</div><!--End of container-->
 
 {% else %}
 <div class="access-error">
