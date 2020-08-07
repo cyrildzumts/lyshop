@@ -3145,8 +3145,8 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
     if not PermissionManager.user_can_change_product(request.user):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-    template_name = 'dashboard/product_type_update.html'
-    page_title = _('ProductType Update')
+    template_name = 'dashboard/product_type_attribute_update.html'
+    page_title = _('ProductTypeAttribute Update')
     
     form = None
     username = request.user.username
