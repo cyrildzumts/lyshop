@@ -40,6 +40,7 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
 from cart.models import Coupon
 from cart.forms import CouponForm
 from catalog import models
+from catalog import constants as Catalog_Constants
 from dashboard import analytics
 import json
 import logging
@@ -317,7 +318,7 @@ def create_product(request):
     context['category_list'] = models.Category.objects.all()
     context['user_list'] = User.objects.all()
     context['product_type_list'] = ProductType.objects.all()
-    context['gender_list'] = models.Product.GENDER
+    context['gender_list'] = Catalog_Constants.GENDER
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -611,7 +612,7 @@ def product_update(request, product_uuid=None):
     context['category_list'] = models.Category.objects.all()
     context['user_list'] = User.objects.all()
     context['product_type_list'] = ProductType.objects.all()
-    context['gender_list'] = models.Product.GENDER
+    context['gender_list'] = Catalog_Constants.GENDER
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -881,7 +882,7 @@ def product_variant_create(request, product_uuid=None):
         'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
     }
     context['attribute_formset'] = attribute_formset
-    context['attribute_types'] = ProductAttribute.ATTRIBUTE_TYPE
+    context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -898,7 +899,7 @@ def product_variant_detail(request, variant_uuid=None):
 
     template_name = 'dashboard/product_variant_detail.html'
     page_title = _('Product Variant Detail')
-    attr_types = [v for k,v in ProductAttribute.ATTRIBUTE_TYPE]
+    attr_types = [v for k,v in Catalog_Constants.ATTRIBUTE_TYPE]
     variant = get_object_or_404(models.ProductVariant, product_uuid=variant_uuid)
     product = variant.product
     attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm, extra=4, max_num=5)
@@ -909,7 +910,7 @@ def product_variant_detail(request, variant_uuid=None):
         'product': product,
         'variant': variant,
         'attr_types': json.dumps(attr_types),
-        'attribute_types' : ProductAttribute.ATTRIBUTE_TYPE,
+        'attribute_types' : Catalog_Constants.ATTRIBUTE_TYPE,
         'attribute_list' : attribute_list,
         'available_attribute_list' : available_attribute_list,
         'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
@@ -956,7 +957,7 @@ def product_variant_update(request, variant_uuid=None):
         'variant' : variant,
         'attributes': variant.attributes.all(),
         'attribute_formset': attribute_formset,
-        'attribute_types': ProductAttribute.ATTRIBUTE_TYPE
+        'attribute_types': Catalog_Constants.ATTRIBUTE_TYPE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -1090,7 +1091,7 @@ def attribute_create(request, variant_uuid):
         'variant' : variant
     }
     context['attribute_formset'] = attribute_formset
-    context['attribute_types'] = ProductAttribute.ATTRIBUTE_TYPE
+    context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 

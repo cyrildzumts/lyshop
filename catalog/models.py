@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from catalog import constants
 from lyshop import conf
 import uuid
 import logging
@@ -10,34 +11,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Create your models here.
-
-GENDER_MEN          = 1
-GENDER_WOMEN        = 2
-GENDER_BABY_GIRL    = 3
-GENDER_BABY_BOY     = 4
-GENDER_GIRL         = 5
-GENDER_BOY          = 6
-GENDER_NO_GENDER    = 7
-
-ATTRIBUTE_TYPE_STRING = 1
-ATTRIBUTE_TYPE_INTEGER = 2
-ATTRIBUTE_TYPE_DECIMAL = 3
-ATTRIBUTE_TYPE_DATE   = 4
-ATTRIBUTE_TYPE_DATETIME = 5
-ATTRIBUTE_TYPE_DEFAULT = ATTRIBUTE_TYPE_STRING
-
-ATTRIBUTE_TYPE = (
-        (ATTRIBUTE_TYPE_STRING, 'STRING'),
-        (ATTRIBUTE_TYPE_INTEGER, 'INTEGER'),
-        (ATTRIBUTE_TYPE_DECIMAL, 'DECIMAL'),
-        (ATTRIBUTE_TYPE_DATE, 'DATE'),
-        (ATTRIBUTE_TYPE_DATETIME, 'DATETIME'),
-        (ATTRIBUTE_TYPE_DEFAULT, 'DEFAULT(STRING)')
-    )
-
-COMMISSION_DEFAULT = 0.03
-COMMISSION_MAX_DIGITS = 7
-COMMISSION_DECIMAL_PLACES = 5
 
 
 class Policy(models.Model):
@@ -55,7 +28,7 @@ class Policy(models.Model):
     daily_limit = models.IntegerField(blank=False)
     weekly_limit = models.IntegerField(blank=False)
     monthly_limit = models.IntegerField(blank=False)
-    commission = models.DecimalField(max_digits=COMMISSION_MAX_DIGITS, decimal_places=COMMISSION_DECIMAL_PLACES, default=COMMISSION_DEFAULT)
+    commission = models.DecimalField(max_digits=constants.COMMISSION_MAX_DIGITS, decimal_places=constants.COMMISSION_DECIMAL_PLACES, default=constants.COMMISSION_DEFAULT)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     modified_by = models.ForeignKey(User, related_name="modified_policies", unique=False, null=True,blank=True, on_delete=models.SET_NULL)
@@ -173,7 +146,7 @@ class ProductAttribute(models.Model):
 
     name = models.CharField(max_length=32, null=False, blank=False)
     value = models.CharField(max_length=32, null=False, blank=False)
-    value_type = models.IntegerField(default=ATTRIBUTE_TYPE_DEFAULT ,null=False, blank=False, choices=ATTRIBUTE_TYPE)
+    value_type = models.IntegerField(default=constants.ATTRIBUTE_TYPE_DEFAULT ,null=False, blank=False, choices=constants.ATTRIBUTE_TYPE)
     display_name = models.CharField(max_length=32, null=False, blank=False)
     attribute_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
@@ -197,7 +170,7 @@ class ProductAttribute(models.Model):
 class ProductTypeAttribute(models.Model):
 
     name = models.CharField(max_length=32, null=False, blank=False)
-    attribute_type = models.IntegerField(ATTRIBUTE_TYPE_STRING)
+    attribute_type = models.IntegerField(constants.ATTRIBUTE_TYPE_STRING)
     description = models.CharField(max_length=164)
 
 class ProductType(models.Model):
@@ -226,15 +199,6 @@ class ProductType(models.Model):
 
 
 class Product(models.Model):
-    GENDER = (
-        (GENDER_MEN, 'MEN'),
-        (GENDER_WOMEN, 'WOMEN'),
-        (GENDER_BABY_GIRL, 'BABY GRILD'),
-        (GENDER_BABY_BOY, 'BABY BOY'),
-        (GENDER_GIRL, 'GIRL'),
-        (GENDER_BOY, 'BOY'),
-        (GENDER_NO_GENDER, 'NO GENDER')
-    )
     name = models.CharField(max_length=32, null=False, blank=False)
     product_type = models.ForeignKey(ProductType, related_name="products", on_delete=models.SET_NULL, blank=True, null=True)
     display_name = models.CharField(max_length=32, null=True, blank=True)
@@ -252,7 +216,7 @@ class Product(models.Model):
     description = models.TextField(blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
-    gender = models.IntegerField(blank=True, null=True, choices=GENDER)
+    gender = models.IntegerField(blank=True, null=True, choices=constants.GENDER)
     view_count = models.IntegerField(blank=True, null=True, default=0)
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 

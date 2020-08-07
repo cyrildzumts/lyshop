@@ -1,5 +1,5 @@
 from django.db.models import Count
-from catalog.models import Product, ProductAttribute, ProductVariant
+from catalog.models import Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute
 import logging
 
 logger = logging.getLogger(__name__)
