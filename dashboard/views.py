@@ -3170,7 +3170,7 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
         'page_title': page_title,
         'form' : form,
         'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
-        'type_atrribute': type_attribute
+        'type_attribute': type_attribute
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
