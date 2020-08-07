@@ -47,7 +47,7 @@ class ProductTypeAttributeForm(forms.ModelForm):
 
     class Meta:
         model = ProductTypeAttribute
-        fields = ['name', 'display_name', 'description']
+        fields = ['name', 'display_name', 'description', 'attribute_type']
 
 
 
