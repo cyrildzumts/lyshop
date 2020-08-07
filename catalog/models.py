@@ -170,8 +170,21 @@ class ProductAttribute(models.Model):
 class ProductTypeAttribute(models.Model):
 
     name = models.CharField(max_length=32, null=False, blank=False)
+    display_name = models.CharField(max_length=32, null=True, blank=True)
     attribute_type = models.IntegerField(constants.ATTRIBUTE_TYPE_STRING)
     description = models.CharField(max_length=164)
+    type_attribute_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+
+    def get_dashboard_url(self):
+        return reverse("dashboard:product-type-attribute-detail", kwargs={"type_attribute_uuid": self.type_attribute_uuid})
+
+    def get_update_url(self):
+        return reverse("dashboard:product-type-attribute-update", kwargs={"type_attribute_uuid": self.type_attribute_uuid})
+
+    def get_delete_url(self):
+        return reverse("dashboard:product-type-attribute-delete", kwargs={"type_attribute_uuid": self.type_attribute_uuid})
+
+        
 
 class ProductType(models.Model):
     name = models.CharField(max_length=50)

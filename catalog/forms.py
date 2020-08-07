@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from catalog.models import Category, Product, ProductAttribute, ProductVariant, Brand, Policy, PolicyGroup, ProductImage, ProductType
+from catalog.models import Category, Product, ProductAttribute, ProductVariant, Brand, Policy, PolicyGroup, ProductImage, ProductType, ProductTypeAttribute
 
 class CategoryForm(forms.ModelForm):
 
@@ -39,6 +39,15 @@ class AttributeForm(forms.Form):
     attribute_display_name = forms.CharField(max_length=32)
     attribute_value = forms.CharField(max_length=32)
     attribute_value_type = forms.IntegerField()
+
+
+
+
+class ProductTypeAttributeForm(forms.ModelForm):
+
+    class Meta:
+        model = ProductTypeAttribute
+        fields = ['name', 'display_name', 'description']
 
 
 

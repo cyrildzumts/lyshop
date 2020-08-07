@@ -1,0 +1,79 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Type Attributes" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col-m-12 col-9">
+                <div class="banner--actions">
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>    
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+{% block MAIN_CONTENT %}
+{% if can_view_product %}
+
+<div class="container">
+  <div class="col-m-12 col-9">
+    <div class="mat-table-wrapper">
+        <div class="row">
+            <div class="mat-table-title">
+                {% trans "Type Attributes" %}
+            </div>
+        </div><!--End of Row-->
+        <form action="{% url 'dashboard:product-type-attributes-delete' %}" method="POST">{% csrf_token %}
+        
+        <table id="attr-list" class="mat-table js-filter-table">
+        <div class="actions">
+          <button id="js-delete-attrs-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i> <span>{% trans "Delete Selected Attributes" %}</span></button>
+        </div>
+          <thead>
+                  <tr>
+                        <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></th>
+                        <th>{% trans "Name" %}</th>
+                        <th>{% trans "Display Name" %}</th>
+                        <th>{% trans "Type" %}</th>
+                        <th>{% trans "Description" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for attr in type_attribute_list %}
+                  <tr>
+                        <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="type_attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
+                        <td>{{attr.name}}</td>
+                        <td>{{attr.display_name}}</td>
+                        <td>{{attr.attribute_type}}</td>
+                        <td>{{attr.description}}</td>
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+          <tfoot>
+                  
+          </tfoot>
+
+    </table>
+    </form>
+    {% include "tags/pagination.html" with page_set=type_attribute_list %}
+    </div><!--End of Table Wrapper-->
+</div>
+</div>
+
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN_CONTENT %}

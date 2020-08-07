@@ -35,7 +35,7 @@ from orders import orders_service
 from shipment import shipment_service
 from catalog.forms import (BrandForm, ProductAttributeForm, 
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
-    DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm
+    DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm
 )
 from cart.models import Coupon
 from cart.forms import CouponForm
@@ -3035,4 +3035,188 @@ def product_type_products(request, type_uuid=None):
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
+## PRODUCT TYPE ATTRIBUTES
 
+@login_required
+def product_type_attributes(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'dashboard/product_type_attribute_list.html'
+    page_title = _('ProductType Attributes')
+    if request.method != 'GET':
+        return HttpResponseBadRequest('Bad request')
+
+    queryset = ProductTypeAttribute.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title': page_title,
+        'type_attribute_list': list_set
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def product_type_attribute_create(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_add_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/product_type_attribute_create.html'
+    page_title = _('New Product Type Attribute')
+    
+    form = None
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductTypeAttributeForm(postdata)
+        if form.is_valid():
+            attribute_type = form.save()
+            messages.success(request, _('New ProductTypeAttribute created'))
+            logger.info(f'New ProductTypeAttribute added by user \"{username}\"')
+            return redirect('dashboard:product-type-attributes')
+        else:
+            messages.error(request, _('ProductType not created'))
+            logger.error(f'Error on creating new ProductType. Action requested by user \"{username}\"')
+    else:
+        form = ProductTypeAttributeForm()
+    context = {
+        'page_title': page_title,
+        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'form' : form
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+@login_required
+def product_type_attribute_detail(request, type_attribute_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/product_type_attribute_detail.html'
+    page_title = _('ProductType Detail')
+    
+    if request.method != "GET":
+        raise SuspiciousOperation('Bad request')
+
+    product_type = get_object_or_404(ProductTypeAttribute, type_attribute_uuid=type_attribute_uuid)
+    #product_list = Product.objects.filter(product_type=product_type)
+    context = {
+        'page_title': page_title,
+        #'product_list': product_list,
+        'product_type': product_type
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+@login_required
+def product_type_attribute_update(request, type_attribute_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/product_type_update.html'
+    page_title = _('ProductType Update')
+    
+    form = None
+    username = request.user.username
+    type_attribute = get_object_or_404(ProductTypeAttribute, type_attribute_uuid=type_attribute_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductTypeAttributeForm(postdata, instance=product_type)
+        if form.is_valid():
+            type_attribute = form.save()
+            messages.success(request, _('ProductTypeAttribute updated'))
+            logger.info(f'ProductTypeAttribute updated by user \"{username}\"')
+            return redirect('dashboard:product-type-attributes')
+        else:
+            messages.error(request, _('ProductTypeAttribute not updated'))
+            logger.error(f'Error on updated ProductTypeAttribute. Action requested by user \"{username}\"')
+    else:
+        form = ProductTypeAttributeForm(instance=product_type)
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'type_atrribute': type_attribute,
+        'attributes' : ProductAttribute.objects.exclude(id__in=product_type.attributes.all())
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+
+@login_required
+def product_type_attribute_delete(request, type_attribute_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    product_type = get_object_or_404(ProductTypeAttribute, type_attribute_uuid=type_attribute_uuid)
+    product_type_name = product_type.name
+    product_type.delete()
+    logger.info(f'ProductTypeAttribute \"{product_type_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('ProductTypeAttribute deleted'))
+    return redirect('dashboard:product-type-attributes')
+
+
+@login_required
+def product_type_attributes_delete(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request. Expected POST request but received a GET')
+    
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('type_attributes')
+
+    if len(id_list):
+        type_list = list(map(int, id_list))
+        ProductTypeAttribute.objects.filter(id__in=type_list).delete()
+        messages.success(request, f"ProductTypeAttribute \"{type_list}\" deleted")
+        logger.info(f"ProductTypeAttribute \"{type_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"ProductTypeAttribute could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('dashboard:product-type-attributes')
