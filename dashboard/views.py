@@ -2874,6 +2874,7 @@ def product_type_create(request):
         else:
             messages.error(request, _('ProductType not created'))
             logger.error(f'Error on creating new ProductType. Action requested by user \"{username}\"')
+            logger.error(form.errors.items())
     else:
         form = ProductTypeForm()
     context = {
@@ -2937,6 +2938,7 @@ def product_type_update(request, type_uuid=None):
         else:
             messages.error(request, _('ProductType not updated'))
             logger.error(f'Error on updated ProductType. Action requested by user \"{username}\"')
+            logger.error(form.errors.items())
     else:
         form = ProductTypeForm(instance=product_type)
     context = {
@@ -3096,6 +3098,7 @@ def product_type_attribute_create(request):
         else:
             messages.error(request, _('ProductType not created'))
             logger.error(f'Error on creating new ProductType. Action requested by user \"{username}\"')
+            logger.error(form.errors.items())
     else:
         form = ProductTypeAttributeForm()
     context = {
@@ -3159,6 +3162,7 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
         else:
             messages.error(request, _('ProductTypeAttribute not updated'))
             logger.error(f'Error on updated ProductTypeAttribute. Action requested by user \"{username}\"')
+            logger.error(form.errors.items())
     else:
         form = ProductTypeAttributeForm(instance=product_type)
     context = {
