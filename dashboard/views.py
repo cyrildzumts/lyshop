@@ -3130,6 +3130,7 @@ def product_type_attribute_detail(request, type_attribute_uuid=None):
     context = {
         'page_title': page_title,
         #'product_list': product_list,
+        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE
         'type_attribute': type_attribute
     }
     context.update(get_view_permissions(request.user))
@@ -3153,7 +3154,7 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
     type_attribute = get_object_or_404(ProductTypeAttribute, type_attribute_uuid=type_attribute_uuid)
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        form = ProductTypeAttributeForm(postdata, instance=product_type)
+        form = ProductTypeAttributeForm(postdata, instance=type_attribute)
         if form.is_valid():
             type_attribute = form.save()
             messages.success(request, _('ProductTypeAttribute updated'))
@@ -3164,12 +3165,12 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
             logger.error(f'Error on updated ProductTypeAttribute. Action requested by user \"{username}\"')
             logger.error(form.errors.items())
     else:
-        form = ProductTypeAttributeForm(instance=product_type)
+        form = ProductTypeAttributeForm(instance=type_attribute)
     context = {
         'page_title': page_title,
         'form' : form,
-        'type_atrribute': type_attribute,
-        'attributes' : ProductAttribute.objects.exclude(id__in=product_type.attributes.all())
+        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'type_atrribute': type_attribute
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
