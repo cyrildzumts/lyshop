@@ -9,153 +9,115 @@
                 {% endblock HEADER_BANNER_TITLE %}
                 
         </div>
-        <div class="container">
-
-            <div class="col col-9">
-                <div class="banner--actions">
-          
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>
-                    {% if can_change_product %}
-                    <a class="mat-button mat-button-text" href="{{variant.get_update_url}}"><span class="fas fa-pen icon"></span><span class="">{% trans "Edit" %}</span></a>
-                    {% endif %}
-                    {% if can_delete_product %}
-                    <form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
-                        <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash icon"></span><span class="">{% trans "Delete" %}</span></button>
-                        {% comment %} <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a> {% endcomment %}
-                    </form>
-                    {% endif %}
-                    
-                        
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
     </div>
 {% endblock HEADER_BANNER %}
 {% block MAIN_CONTENT %}
 {% if can_view_product %}
 
-  <div class="mat-box row">
-    <h3>{% trans "Product Parent " %} - <a class="mat-button" href="{{product.get_dashboard_url}}">{{product.display_name}}</a></h3>
-  </div>
-
 <div class="container">
-        <div class="mat-box">
-            <div class="title">
-              <span>{{variant.display_name}}</span>
-            </div>
-            <div class="mat-box-content">
-                <div class="entry">
-                  <span class="key">{% trans "Article Number" %} </span><span class="value">{{variant.article_number}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "SKU" %}</span><span class="value">{{variant.sku}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Category" %}</span><span class="value">{{product.category.display_name}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Product Type" %}</span><span class="value">{{product.product_type.display_name}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Brand" %}</span><span class="value">{{product.brand.display_name}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Gender" %}</span><span class="value">{{product.gender}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Vendor" %}</span><span class="value">{{product.sold_by.username}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Price" %}</span><span class="value">{{variant.price}} {% trans "XAF" %}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Quantity" %}</span><span class="value">{{variant.quantity}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Added Date" %}</span><span class="value">{{variant.created_at|date:"F j, Y"}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "View Count" %}</span><span class="value">{{product.view_count}}</span>
-                </div>
-                <div class="entry">
-                  <span class="key">{% trans "Description" %}</span><span class="value">{{product.short_description}}</span>
-                </div>               
-            </div>
+  <div class="mat-box wrapper full">
+      <div class="row title">
+        <div class="mat-box-title wrapper">
+          <h4>{% trans "Name" %} : {{product.name}}</h4>
+          <h4>{% trans "Display Name" %} : {{product.display_name}}</h4>
+          <h4>{% trans "Quantity" %} : {{variant.quantity}}</h4>
+          <h4>{% trans "Vendor" %} : {{product.sold_by.username}}</h4>
+          <h4>{% trans "Unit Price" %} : {{product.price}} {% trans "XAF" %}</h4>
+          <h4>{% trans "Views" %} : {{product.view_count}}</h4>
         </div>
-        <div class="mat-box">
-            <div class="mat-list-title title">
-              <h4>{% trans "Product Info" %}</h4>
-            </div>
-            <div class="actions">
-              <span class="mat-button js-add-attr-btn js-dialog-open" data-target="#attr-dialog"><i class="fas fa-plus icon"></i> <span>{% trans "Add Attribute" %}</span></span>
-              <span class="mat-button js-reveal-btn" data-target="#variant-attrs"><i class="fas fa-pen icon"></i><span>{% trans "Edit Attribute" %}</span></span>
-            </div>
-            <div class="mat-box-content">
-              <ul id="variant-attrs" class="mat-list">
-                <form action="{% url 'dashboard:attribute-remove' variant.product_uuid %}" method="POST">{% csrf_token %}
-                
-                  {% for attr in attribute_list %}
-                  <li class="mat-list-item"><span>{{attr.display_name}}</span><i class="separator-ht"></i><span>{{attr.value}}</span> <input class="hidden js-revealable" type="checkbox" name="attributes" value="{{attr.pk}}"></li>
-                  {% empty %}
-                  <li class="mat-list-item"><span>{% trans "No attributes found" %}</span></li>
-                  {% endfor %}
-                  <div class="actions hidden js-revealable">
-                        <span class="mat-button js-dialog-close js-revealable-hide" data-target="#variant-attrs" >{% trans "Cancel" %}</span>
-                        <button class="mat-button mat-button-default" type="submit">{% trans "Remove Attributes" %}</button>
-                  </div>
-                </form>
-              </ul>
-            </div>
+        <div class="mat-box-title wrapper">
+          <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
+          <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
+          <h4>{% trans "Gender" %} : {{product.gender}}</h4>
+          <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
         </div>
-    
-</div>
-<div id="attr-dialog" class="mat-dialog dialog">
-
-  <div class="dialog-title">
-    <h4>{% trans "Add Attribute Dialog" %}</h4>
-  </div>
-  <span class="mat-button js-dialog-close dialog-close"><i class="fas fa-close"></i></span>
-  <span class="mat-button js-clear-input" data-target="#attrs-container">{% trans "Clear Form" %}</span>
-   <div class="dialog-content container">
-    <div class="mat-list-wrapper full">
-    <form action="{% url 'dashboard:attribute-add' variant.product_uuid %}" method="post"> {% csrf_token %}
-      <ul class="mat-list">
-        {% for attr in available_attribute_list %}
-          <li class="mat-list-item"><span>{{attr.display_name}}</span>-<span>{{attr.value}}</span><input type="checkbox" name="attributes" value="{{attr.pk}}"></li>
-        {% endfor %}
-      </ul>
+      </div><!--End of title-->
       <div class="actions">
-            <span class="mat-button js-dialog-close" >{% trans "Cancel" %}</span>
-            <button class="mat-button mat-button-default" type="submit">{% trans "Add Attributes" %}</button>
+          
+          {% if can_change_product %}
+          <a class="mat-button mat-button-default" href="{{variant.get_update_url}}"><span class="fas fa-pen icon"></span><span class="">{% trans "Edit" %}</span></a>
+          {% endif %}
+          {% if can_delete_product %}
+          <form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
+              <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash icon"></span><span class="">{% trans "Delete" %}</span></button>
+              {% comment %} <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a> {% endcomment %}
+          </form>
+          {% endif %}
+          <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>
+          
+              
+      </div><!--End of Banner-Actions-->
+  </div>
+  <div class="mat-box wrapper full">
+      <div class="actions">
+        <span class="mat-button js-add-attr-btn js-dialog-open" data-target="#attr-dialog"><i class="fas fa-plus icon"></i> <span>{% trans "Add Attribute" %}</span></span>
+        <span class="mat-button js-reveal-btn" data-target="#variant-attrs"><i class="fas fa-pen icon"></i><span>{% trans "Edit Attribute" %}</span></span>
       </div>
-    </form>
+      <div class="mat-box-content">
+        <ul id="variant-attrs" class="mat-list">
+          <form action="{% url 'dashboard:attribute-remove' variant.product_uuid %}" method="POST">{% csrf_token %}
+          
+            {% for attr in attribute_list %}
+            <li class="mat-list-item"><span>{{attr.display_name}}</span><i class="separator-ht"></i><span>{{attr.value}}</span> <input class="hidden js-revealable" type="checkbox" name="attributes" value="{{attr.pk}}"></li>
+            {% empty %}
+            <li class="mat-list-item"><span>{% trans "No attributes found" %}</span></li>
+            {% endfor %}
+            <div class="actions hidden js-revealable">
+                  <span class="mat-button js-dialog-close js-revealable-hide" data-target="#variant-attrs" >{% trans "Cancel" %}</span>
+                  <button class="mat-button mat-button-default" type="submit">{% trans "Remove Attributes" %}</button>
+            </div>
+          </form>
+        </ul>
+      </div><!--nd of box-content-->
+  </div><!--End of mat-box-->
+  <div id="attr-dialog" class="mat-dialog dialog">
+
+    <div class="dialog-title">
+      <h4>{% trans "Add Attribute Dialog" %}</h4>
     </div>
-    <div class="mat-box full">
-          <h4>{% trans "New Attribtute" %}</h4>
-          <div class="actions">
-            <button class="mat-button mat-button-default js-add-new-attribute" data-form="#form-add-attributes" data-target="#form-attr-container">{% trans "Add" %}</button>
-          </div>
-          <div class="mat-box-content">
-              <form id="form-add-attributes" action="{% url 'dashboard:attribute-create' variant.product_uuid %}" method="POST">{% csrf_token %}
-                  <input id="id_form-TOTAL_FORMS" type="hidden" name="form-TOTAL_FORMS" value="0">
-                  <input id="id_form-INITIAL_FORMS" type="hidden" name="form-INITIAL_FORMS" value="0">
-                  <input id="id_form-MIN_NUM_FORMS" type="hidden" name="form-MIN_NUM_FORMS" value="0">
-                  <input id="id_form-MAX_NUM_FORMS" type="hidden" name="form-MAX_NUM_FORMS" value="0">
-                  <div id="form-attr-container" class="container">
-                  
-                  </div>
-                  <div class="form-group actions">
-                      <span class="mat-button js-dialog-close" >{% trans "Cancel" %}</span>
-                      <button class="mat-button mat-button-default" type="submit">{% trans "Create" %}</button>
-                  </div>
-              </form>
-          </div><!--End of box content-->
-      </div><!--End of box-->
-    
-   </div>  
+    <span class="mat-button js-dialog-close dialog-close"><i class="fas fa-close"></i></span>
+    <span class="mat-button js-clear-input" data-target="#attrs-container">{% trans "Clear Form" %}</span>
+    <div class="dialog-content container">
+      <div class="mat-list-wrapper full">
+      <form action="{% url 'dashboard:attribute-add' variant.product_uuid %}" method="post"> {% csrf_token %}
+        <ul class="mat-list">
+          {% for attr in available_attribute_list %}
+            <li class="mat-list-item"><span>{{attr.display_name}}</span>-<span>{{attr.value}}</span><input type="checkbox" name="attributes" value="{{attr.pk}}"></li>
+          {% endfor %}
+        </ul>
+        <div class="actions">
+              <span class="mat-button js-dialog-close" >{% trans "Cancel" %}</span>
+              <button class="mat-button mat-button-default" type="submit">{% trans "Add Attributes" %}</button>
+        </div>
+      </form>
+      </div>
+      <div class="mat-box full">
+            <h4>{% trans "New Attribtute" %}</h4>
+            <div class="actions">
+              <button class="mat-button mat-button-default js-add-new-attribute" data-form="#form-add-attributes" data-target="#form-attr-container">{% trans "Add" %}</button>
+            </div>
+            <div class="mat-box-content">
+                <form id="form-add-attributes" action="{% url 'dashboard:attribute-create' variant.product_uuid %}" method="POST">{% csrf_token %}
+                    <input id="id_form-TOTAL_FORMS" type="hidden" name="form-TOTAL_FORMS" value="0">
+                    <input id="id_form-INITIAL_FORMS" type="hidden" name="form-INITIAL_FORMS" value="0">
+                    <input id="id_form-MIN_NUM_FORMS" type="hidden" name="form-MIN_NUM_FORMS" value="0">
+                    <input id="id_form-MAX_NUM_FORMS" type="hidden" name="form-MAX_NUM_FORMS" value="0">
+                    <div id="form-attr-container" class="container">
+                    
+                    </div>
+                    <div class="form-group actions">
+                        <span class="mat-button js-dialog-close" >{% trans "Cancel" %}</span>
+                        <button class="mat-button mat-button-default" type="submit">{% trans "Create" %}</button>
+                    </div>
+                </form>
+            </div><!--End of box content-->
+        </div><!--End of box-->
+      
+    </div>  
+  </div>
 </div>
+
+
 {% else %}
 <div class="access-error">
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
