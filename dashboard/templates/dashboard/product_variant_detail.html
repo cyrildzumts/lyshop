@@ -54,20 +54,21 @@
         <span class="mat-button js-reveal-btn" data-target="#variant-attrs"><i class="fas fa-pen icon"></i><span>{% trans "Edit Attribute" %}</span></span>
       </div>
       <div class="mat-box-content">
-        <ul id="variant-attrs" class="mat-list">
           <form action="{% url 'dashboard:attribute-remove' variant.product_uuid %}" method="POST">{% csrf_token %}
-          
-            {% for attr in attribute_list %}
-            <li class="mat-list-item"><span>{{attr.display_name}}</span><i class="separator-ht"></i><span>{{attr.value}}</span> <input class="hidden js-revealable" type="checkbox" name="attributes" value="{{attr.pk}}"></li>
-            {% empty %}
-            <li class="mat-list-item"><span>{% trans "No attributes found" %}</span></li>
-            {% endfor %}
-            <div class="actions hidden js-revealable">
-                  <span class="mat-button js-dialog-close js-revealable-hide" data-target="#variant-attrs" >{% trans "Cancel" %}</span>
-                  <button class="mat-button mat-button-default" type="submit">{% trans "Remove Attributes" %}</button>
-            </div>
+              <ul id="variant-attrs" class="mat-list">
+                
+                  {% for attr in attribute_list %}
+                  <li class="mat-list-item"><span>{{attr.display_name}}</span><i class="separator-ht"></i><span>{{attr.value}}</span> <input class="hidden js-revealable" type="checkbox" name="attributes" value="{{attr.pk}}"></li>
+                  {% empty %}
+                  <li class="mat-list-item"><span>{% trans "No attributes found" %}</span></li>
+                  {% endfor %}
+                  
+              </ul>
+              <div class="actions hidden js-revealable">
+                    <span class="mat-button js-dialog-close js-revealable-hide" data-target="#variant-attrs" >{% trans "Cancel" %}</span>
+                    <button class="mat-button mat-button-default" type="submit">{% trans "Remove Attributes" %}</button>
+              </div>
           </form>
-        </ul>
       </div><!--nd of box-content-->
   </div><!--End of mat-box-->
   <div id="attr-dialog" class="mat-dialog dialog">
