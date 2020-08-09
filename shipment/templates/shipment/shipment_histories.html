@@ -21,7 +21,7 @@
         <a class="mat-button mat-button-text" href="{{shipment.get_absolute_url}}"><i class="fas fa-caret-left icon"></i><span>{% trans "Back to Shipment" %}</span></a>
         <a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment Home" %}</span></a>
     </div><!--End of Banner-Actions-->
-    <div class="mat-box full">
+    <div class="mat-box wrapper full">
         <div class="grid title">
             <div class="mat-box-title wrapper">
                 <p><span class="key">{% trans "Shipment Reference Number" %} :</span> <span class="value">{{shipment.shipment_ref_number}}</span></p>

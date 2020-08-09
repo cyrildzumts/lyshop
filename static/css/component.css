@@ -2130,10 +2130,10 @@ input.editable{
 }
 
 .mat-table-wrapper{
-	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+	/*box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
 				0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-				0px 1px 3px 0px rgba(0,0,0,.12);
-	border: 1px solid #ccc;
+				0px 1px 3px 0px rgba(0,0,0,.12);*/
+	/*border: 1px solid #ccc;*/
 	border-radius: 4px;
 	padding: 0;
 	margin: 0;
@@ -2157,6 +2157,14 @@ input.editable{
 .mat-table .table-header{
 	width: 100%;
 	height: 56px;
+}
+
+table thead, .mat-table thead{
+	height: 64px;
+	background-color: #e0e0e0;
+	font-size: 1.2em;
+	font-weight: 600;
+	color: #424242;
 }
 
 .mat-table .checkbox{
