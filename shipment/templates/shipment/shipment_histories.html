@@ -5,61 +5,69 @@
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
                 {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Shipment History" %}</h4>
+                    <h4><i class="fas fa-history icon"></i> {% trans "Shipment History" %}</h4>
+                    <h4> <i class="fas fa-shipping-fast icon"></i> <span>{% trans "Shipment" %} - {{shipment.shipment_ref_number}}</span></h4>
+                    <h4> <i class="fas fa-receipt icon"></i> <span>{% trans "Order" %} - {{shipment.order.order_ref_number}}</span></h4>
                 {% endblock HEADER_BANNER_TITLE %}
                 
-        </div>
-        <div class="container">
-
-            <div class="col col-9">
-                <div class="banner--actions">
-                    <a class="mat-button mat-button-text" href="{{shipment.get_absolute_url}}"><i class="fas fa-caret-left icon"></i><span>{% trans "Back to Shipment" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment Home" %}</span></a>
-                    
-                        
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
+        </div>    
     </div>
 {% endblock HEADER_BANNER %}
 
 {% block MAIN %}
 {% if history_list %}
 <div class="container">
-<div class="col-m-12 col-9">
-    <div class="mat-table-wrapper">
+    <div class="actions">
+        <a class="mat-button mat-button-text" href="{{shipment.get_absolute_url}}"><i class="fas fa-caret-left icon"></i><span>{% trans "Back to Shipment" %}</span></a>
+        <a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment Home" %}</span></a>
+    </div><!--End of Banner-Actions-->
+    <div class="mat-box full">
+        <div class="grid title">
+            <div class="mat-box-title wrapper">
+                <p><span class="key">{% trans "Shipment Reference Number" %} :</span> <span class="value">{{shipment.shipment_ref_number}}</span></p>
+                <p><span class="key">{% trans "Shipping Price" %} :</span> <span class="value">{{shipment.price}} {% trans "XAF" %}</span></p>
+                <p><span class="key">{% trans "Company" %} :</span> <span class="value">{{shipment.company}}</span></p>
+                <p><span class="key">{% trans "Customer" %} :</span> <span class="value">{{shipment.customer.get_full_name}}</span></p>
+            
+            </div>
+            <div class="mat-box-title wrapper">
+                <p><span class="key">{% trans "Status" %} :</span> <span class="value">{{shipment.shipment_status|tuple_key}}</span></p>
+                <p><span class="key">{% trans "Date" %} :</span> <span class="value">{{shipment.created_at|date:"F j, Y"}}</span></p>
+                <p><span class="key">{% trans "Shipped Date" %} :</span> <span class="value">{{shipment.shipped_at|date:"F j, Y"}}</span></p>
+                <p><span class="key">{% trans "Delivered Date" %} :</span> <span class="value">{{shipment.delivered_at|date:"F j, Y"}}</span></p>
+            
+            </div>
+        </div>
+    </div>
+    <div class="mat-box wrapper full">
+      <div class="mat-table-wrapper">
         <table id="shipment-list" class="mat-table js-filter-table">
-          <caption>{% trans "Shipment List" %}</caption>
-          <thead>
-                  <tr>
-                          <th scope="col">{% trans "Status" %}</th>
-                          <th scope="col">{% trans "Changed By" %}</th>
-                          <th scope="col">{% trans "Date" %}</th>
-                  </tr>
-          </thead>
-          <tbody>
-                  {% for h in history_list  %}
-                  <tr>
+              <thead>
+                      <tr>
+                              <th scope="col">{% trans "Status" %}</th>
+                              <th scope="col">{% trans "Changed By" %}</th>
+                              <th scope="col">{% trans "Date" %}</th>
+                      </tr>
+              </thead>
+              <tbody>
+                      {% for h in history_list  %}
+                      <tr>
+                        <td data-label="{% trans 'Status' %}">{{h.shipment_status|tuple_key}} </td>
+                        <td data-label="{% trans 'Changed By' %}">{{h.changed_by.username}} </td>
+                        <td data-label="{% trans 'Date' %}">{{h.created_at|date:"F j, Y"}}</td>
+                      </tr>
+                      {% endfor %}
+                      
+              </tbody>
+              <tfoot>
+                      
+              </tfoot>
 
-                    <td data-label="{% trans 'Status' %}">{{h.shipment_status|tuple_key}} </td>
-                    <td data-label="{% trans 'Changed By' %}">{{h.changed_by.username}} </td>
-                    <td data-label="{% trans 'Date' %}">{{h.created_at|date:"F j, Y"}}</td>
-                  </tr>
-                  {% endfor %}
-                  
-          </tbody>
-          <tfoot>
-                  
-          </tfoot>
-
-    </table>
-    {% include "tags/pagination.html" with page_set=history_list %}
-    </div><!--End of Table Wrapper-->
-  </div>
+        </table>
+        {% include "tags/pagination.html" with page_set=history_list %}
+      </div><!--End of Table Wrapper-->
+    </div>
 </div>
-
 {% else %}
 <div class="container">
   <div class="col-m-12 col-12">
