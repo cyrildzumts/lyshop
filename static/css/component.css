@@ -2167,6 +2167,10 @@ table thead, .mat-table thead{
 	color: #424242;
 }
 
+table tbody tr, .mat-table tbody tr{
+	height: 48px;
+}
+
 .mat-table .checkbox{
 	width: 48px;
 	height: 48px;
@@ -2432,7 +2436,7 @@ table thead, .mat-table thead{
 	
 	
 	.mat-table tr{
-		/*height: 52px;*/
+		height: 48px;
 		/*flex-direction: row;*/
 		border: 1px solid #ddd;
 		padding: .35em;
