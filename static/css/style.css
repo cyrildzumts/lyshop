@@ -198,16 +198,15 @@
     width: 100%;
     font-size: 1.2em;
     font-weight: 500;
-    border: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     padding: 8px;
 
 }
 
 .docklet:hover{
 
-    background-color: #ccc;
+    background-color: #fafafa;
     color: #242424;
-    border: 1px solid #242424;
 }
 
 .docklet .link{
