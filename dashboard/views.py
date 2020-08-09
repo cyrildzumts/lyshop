@@ -433,7 +433,7 @@ def order_update(request, order_uuid=None):
 
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        form = DashboardOrderUpdateForm(postadat, instance=order)
+        form = DashboardOrderUpdateForm(postdata, instance=order)
         if form.is_valid():
             msg = f'Order {order.order_ref_number} updated'
             messages.success(request, msg)
