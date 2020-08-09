@@ -433,6 +433,7 @@ def order_update(request, order_uuid=None):
 
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
+        utils.show_dict_contents(postdata, "ORDER POSTDATA")
         form = DashboardOrderUpdateForm(postdata, instance=order)
         if form.is_valid():
             order = form.save()
