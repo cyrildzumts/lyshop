@@ -185,6 +185,7 @@
     
     position: relative;
     list-style-type: none;
+    border: 1px solid #f5f5f5;
 
 }
 .dock-left{
