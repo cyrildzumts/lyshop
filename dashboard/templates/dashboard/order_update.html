@@ -65,9 +65,9 @@
             <form action="{{order.get_update_url}}" method="POST">{% csrf_token %}
                 <input type="hidden" name="last_changed_by" value="{{request.user.id}}">
                 
-                <div class="mat-input">
+                <div class="mat-input row">
                     <label for="is-paid">{% trans "Order Paid" %}</label>
-                    <input type="checkbox" name="is_paid" id="is-paid" value="{{order.is_paid}}">
+                    <input type="checkbox" name="is_paid" id="is-paid" {% if order.is_paid %} checked {% endif %}>
                 </div>
                 <div class="mat-input">
                     <label for="status">{% trans "Status" %}</label>
