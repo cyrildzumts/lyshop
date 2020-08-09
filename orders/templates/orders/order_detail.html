@@ -31,104 +31,80 @@
 {% if order  %}
 
 <div class="container">
-    <div class="col-xs-12 col-m-6 col-3">
-        <div class="wrapper">
-            <div class="mat-box full">
-                <div class="title">
-                    <h4>{% trans "Order Summary Info" %}</h4>
-                </div>
-                <div class="mat-box-content">
-                    <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
-                    <p class="entry"><span class="key">{% trans "Payment Option" %}</span> <span class="value">{{order.payment_option|pay_option}}</span></p>
-                    <p class="entry"><span class="key">{% trans "Order Status" %}</span> <span class="value">{{order.status|order_status_key}}</span></p>
-                    <p class="entry"><span class="key">{% trans "Shipping Status" %}</span> <span class="value">{% if shipment %}{{shipment.shipment_status|tuple_key}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
-                    <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
-                    <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
-                </div>
-            </div><!--End mat-box-->
-        </div><!--End of wrapper-->
+    <div class="actions">
+        {% if order_is_cancelable %}<a class="mat-button mat-button-text" href="{% url 'orders:order-cancel' order.order_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Cancel Order" %}</span></a>   {% endif %}
+        <a class="mat-button mat-button-text" href="{% url 'accounts:account' %}"><i class="fas fa-home icon"></i><span>{% trans "My account" %}</span></a>   
+        <a class="mat-button mat-button-text" href="{% url 'orders:order-home' %}">{% trans "Orders" %}</a>
         
-    </div><!--End of col-->
-    <div class="col-xs-12 col-m-6 col-3">
-        <div class="wrapper">
-            <div class="mat-box full">
-                <div class="title">
-                    <h4>{% trans "Shipping Addresses" %}</h4>
-                </div>
-                <div class="mat-box-content">
-                    <p>-</p>
-                    <p>-</p>
-                </div>
-            </div><!--End of mat-box-->
-        </div><!--End of wrapper-->
-        
-    </div><!--End of col-->
-    <div class="col-xs-12 col-m-6 col-3">
-        <div class="wrapper">
-            <div class="mat-box full">
-                <div class="title">
-                    <h4>{% trans "Price Info" %}</h4>
-                </div>
-                <div class="mat-box-content">
-                    <p class="entry"><span class="key">{% trans "Quantity" %}</span><span class="value">{{order.quantity}}</span></p>
-                    <p class="entry"><span class="key">{% trans "Price" %}</span><span class="value">{{order.amount}} {% trans "XAF" %}</span></p>
-                    {% if order.coupon %}
-                    <p class="entry"><span class="key">{% trans "Solded Price" %}</span><span class="value">{{order.solded_price}} {% trans "XAF" %}</span></p>
-                    <p class="entry"><span class="key">{% trans "Reduction" %}</span><span class="value">{{order.get_reduction}} {% trans "XAF" %}</span></p>
-                    <p class="entry"><span class="key">{% trans "Coupon" %}</span><span class="value">{{order.coupon}}</span></p>
-                    {% endif %}
-                    <p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.shipping_price}} {% trans "XAF" %}</span></p>
-                    <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total}} {% trans "XAF" %}</span></p>
-                </div>
-            </div><!--End of mat-box-->
-        </div><!--End of wrapper-->
-        
-    </div><!--End of col-->
-</div><!--End of container-->
-<div class="container">
-    <div class="mat-box full">
-            <div class="mat-box-content">
-                <div class="container">
-                    <div class="col-m-12 col-9">
-                        <div class="mat-table-wrapper">
-                            <div class="row">
-                                <div class="mat-table-title">
-                                    {% trans "Order Items" %}
-                                </div>
-                            </div><!--End of Row-->
-                            <table id="item-list" class="mat-table">
-                                <thead>
-                                        <tr>
-                                                <th>{% trans "Display Name" %}</th>
-                                                <th>{% trans "Options" %}</th>
-                                                <th>{% trans "Quantiy" %}</th>
-                                                <th>{% trans "Unit Price" %}</th>
-                                                <th>{% trans "Total Price" %}</th>
-                                                <th>{% trans "Details" %}</th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                        {% for item in order.order_items.all  %}
-                                        <tr>
-                                            <td>{{item.product.display_name}}</td>
-                                            <td><div class="row">{% for attr in item.product.attributes.all %} <span>{{attr}}</span> {% endfor %}</div></td>
-                                            <td>{{item.quantity}}</td>
-                                            <td><span>{{item.unit_price}}</span> <span>{% trans "XAF" %}</span></td>
-                                            <td><span>{{item.total_price}}</span> <span>{% trans "XAF" %}</span></td>
-                                            <td><a class="mat-button mat-button-default" href="{{item.product.product.get_absolute_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Product Details" %}</span></a></td>
-                                        </tr>
-                                        {% endfor %}
-                                        
-                                </tbody>
+    </div><!--End of Actions-->
+    <div class="mat-box wrapper full">
+        <div class="grid title">
+            <div class="mat-box-title wrapper">
+                <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
+                <p class="entry"><span class="key">{% trans "Payment Option" %}</span> <span class="value">{{order.payment_option|pay_option}}</span></p>
+                <p class="entry"><span class="key">{% trans "Order Status" %}</span> <span class="value">{{order.status|order_status_key}}</span></p>
+                <p class="entry"><span class="key">{% trans "Shipping Status" %}</span> <span class="value">{% if shipment %}{{shipment.shipment_status|tuple_key}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
+                <p class="entry"><span class="key">{% trans "Paid Status" %}</span> <span class="value">{% if order.is_paid %} {% trans "PAID" %}{% else %}{% trans "NOT PAID" %}{% endif %}</span></p>
+            </div>
+            <div class="mat-box-title wrapper">
+                <p class="entry"><span class="key">{% trans "Quantity" %}</span><span class="value">{{order.quantity}}</span></p>
+                <p class="entry"><span class="key">{% trans "Price" %}</span><span class="value">{{order.amount}} {% trans "XAF" %}</span></p>
+                {% if order.coupon %}
+                <p class="entry"><span class="key">{% trans "Reduction" %}</span><span class="value">{{order.get_reduction}} {% trans "XAF" %}</span></p>
+                <p class="entry"><span class="key">{% trans "Coupon" %}</span><span class="value">{{order.coupon}}</span></p>
+                {% endif %}
+                <p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.shipping_price}} {% trans "XAF" %}</span></p>
+                <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total}} {% trans "XAF" %}</span></p>
+            </div>
+            <div class="mat-box-title wrapper">
+                <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
+                <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
+            </div>
+            
+        </div><!--End of title-->
+        <div class="mat-box-content">
+            
+        </div><!--End mat-box-content-->
+    </div><!--End mat-box-->
+    <div class="mat-box wrapper full">
+        <div class="grid title">
+            <div class="mat-box-title wrapper">
+                <h4> {% trans "Order Items" %}</h4>
+            </div>
+            
+        </div><!--End of title-->
+        <div class="mat-box-content">
+            <div class="mat-table-wrapper">
+                <table id="item-list" class="mat-table">
+                    <thead>
+                            <tr>
+                                    <th>{% trans "Display Name" %}</th>
+                                    <th>{% trans "Options" %}</th>
+                                    <th>{% trans "Quantiy" %}</th>
+                                    <th>{% trans "Unit Price" %}</th>
+                                    <th>{% trans "Total Price" %}</th>
+                                    <th>{% trans "Details" %}</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                            {% for item in order.order_items.all  %}
+                            <tr>
+                                <td>{{item.product.display_name}}</td>
+                                <td><div class="row">{% for attr in item.product.attributes.all %} <span>{{attr}}</span> {% endfor %}</div></td>
+                                <td>{{item.quantity}}</td>
+                                <td><span>{{item.unit_price}}</span> <span>{% trans "XAF" %}</span></td>
+                                <td><span>{{item.total_price}}</span> <span>{% trans "XAF" %}</span></td>
+                                <td><a class="mat-button mat-button-default" href="{{item.product.product.get_absolute_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Product Details" %}</span></a></td>
+                            </tr>
+                            {% endfor %}
+                            
+                    </tbody>
 
-                            </table>
-                        </div><!--End of Table Wrapper-->
-                    </div><!--End of col-->
-                </div><!--End of Container-->
-                
-            </div><!--End of mat-box-content-->
-        </div><!--End of mat-box-->
-</div><!--End of Container-->
+                </table>
+            </div><!--End of Table Wrapper-->
+        </div><!--End mat-box-content-->
+    </div><!--End mat-box-->
+</div>
 
 {% else %}
 <div class="access-error">
