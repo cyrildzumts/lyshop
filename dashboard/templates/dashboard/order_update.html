@@ -1,25 +1,15 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
+{% load shipment_status %}
 {% load order_tag %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
                 {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Order" %}</h4>
+                    <h4> {% trans "Order" %} - {{order.order_ref_number}}</h4>
                 {% endblock HEADER_BANNER_TITLE %}
                 
         </div>
-        <div class="container">
-
-            <div class="col col-9">
-                <div class="banner--actions">
-                    {% if can_view_order %}<a class="mat-button mat-button-default" href="{% url 'dashboard:orders' %}"> <i class="fas fas-plus"></i> <span>{% trans "Payments" %}</span> </a>{% endif %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>      
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
     </div>
 {% endblock HEADER_BANNER %}
 
@@ -28,27 +18,80 @@
 
 {% if can_view_order  %}
 <div class="container">
-
-        <div class="box">
-                <div class="title">
-                    <span class="success">{% trans "Order" %}</span>
+    <div class="actions">
+        {% if order_is_cancelable %}<a class="mat-button mat-button-default" href="{% url 'dashboard:order-cancel' order.order_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Cancel Order" %}</span></a>   {% endif %}
+        <a class="mat-button mat-button-default" href="{{order.get_update_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Update" %}</span></a>
+        <a class="mat-button mat-button-text" href="{{order.get_history_url}}"><i class="fas fa-history icon"></i><span>{% trans "Order History" %}</span></a>   
+        <a class="mat-button mat-button-text" href="{% url 'dashboard:orders' %}"><i class="fas fa-list icon"></i><span>{% trans "Orders" %}</span></a>
+        <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>   
+        
+    </div><!--End of Banner-Actions-->
+    <div class="mat-box wrapper full">
+        <div class="grid title">
+            <div class="mat-box-title wrapper">
+                <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
+                <p class="entry"><span class="key">{% trans "Payment Option" %}</span> <span class="value">{{order.payment_option|pay_option}}</span></p>
+                <p class="entry"><span class="key">{% trans "Order Status" %}</span> <span class="value">{{order.status|order_status_key}}</span></p>
+                <p class="entry"><span class="key">{% trans "Shipping Status" %}</span> <span class="value">{% if shipment %}{{shipment.shipment_status|tuple_key}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
+            </div>
+            <div class="mat-box-title wrapper">
+                <p class="entry"><span class="key">{% trans "Quantity" %}</span><span class="value">{{order.quantity}}</span></p>
+                <p class="entry"><span class="key">{% trans "Price" %}</span><span class="value">{{order.amount}} {% trans "XAF" %}</span></p>
+                {% if order.coupon %}
+                <p class="entry"><span class="key">{% trans "Reduction" %}</span><span class="value">{{order.get_reduction}} {% trans "XAF" %}</span></p>
+                <p class="entry"><span class="key">{% trans "Coupon" %}</span><span class="value">{{order.coupon}}</span></p>
+                {% endif %}
+                <p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.shipping_price}} {% trans "XAF" %}</span></p>
+                <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total}} {% trans "XAF" %}</span></p>
+            </div>
+            <div class="mat-box-title wrapper">
+                <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
+                <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
+            </div>
+            
+        </div><!--End of title-->
+        <div class="mat-box-content">
+            
+        </div><!--End mat-box-content-->
+    </div><!--End mat-box-->
+    <div class="mat-box wrapper full">
+        <div class="grid title">
+            <div class="mat-box-title wrapper">
+                <h4> {% trans "Update Order" %}</h4>
+            </div>
+            
+        </div><!--End of title-->
+        <div class="mat-box-content">
+            <form action="{{order.get_update_url}}" method="POST">{% csrf_token %}
+                <input type="hidden" name="last_changed_by" value="{{request.user.id}}">
+                
+                <div class="mat-input">
+                    <label for="is-paid">{% trans "Order Paid" %}</label>
+                    <input type="checkbox" name="is_paid" id="is-paid" value="{{order.is_paid}}">
                 </div>
-                <div class="box-content">
-                    <div class="entry">
-                        <span class="key">{% trans "User" %} :</span> <span class="value">{{order.user.get_full_name}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Amount" %} :</span> <span class="value">{{order.amount}} {% trans "XAF" %}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Date" %} :</span> <span class="value">{{order.created_at}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Status" %} :</span> <span class="value">{{order.statu|order_status_keys}}</span>
-                    </div>
+                <div class="mat-input">
+                    <label for="status">{% trans "Status" %}</label>
+                    <select name="status" id="status">
+                        {% for k,v in ORDER_STATUS %}
+                            {% if v == order.status %}
+                            <option value="{{v}}" selected>{{k}}</option>
+                            {% else %}
+                            <option value="{{v}}">{{k}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    
+                    </select>
                 </div>
-        </div>
+                <div class="actions">
+                    <a class="mat-button mat-button-text js-cancel" href="{{order.get_dashboard_url}}">{% trans "Cancel" %}</a>
+                    <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
+                </div>
+            
+            </form>
+        </div><!--End mat-box-content-->
+    </div><!--End mat-box-->
 </div>
+
 {% else %}
 <div class="access-error">
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>

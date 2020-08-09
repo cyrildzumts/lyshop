@@ -1,6 +1,6 @@
 
 from django import forms
-from orders.models import PaymentRequest
+from orders.models import PaymentRequest, Order
 
 
 
@@ -41,3 +41,11 @@ class BillingAddressForm(forms.Form):
 
 class PaymentOptionForm(forms.Form):
     payment_option = forms.IntegerField()
+
+
+
+class DashboardOrderUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Order
+        fields = ['last_changed_by', 'status', 'is_paid']

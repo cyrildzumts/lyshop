@@ -192,7 +192,7 @@ def checkout_success(request, order_uuid):
     if not queryset.exists():
         logger.error(f"checkout_success view call with invalid order uuid \"{order_uuid}\". No order found")
         raise Http404
-    queryset.update(status=commons.ORDER_PAID, payment_status=commons.PAYMENT_PAID)
+    queryset.update(status=commons.ORDER_PAID, payment_status=commons.PAYMENT_PAID, is_paid=True)
     payment_request = queryset.first()
     order = payment_request.order
     Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAID)

@@ -31,6 +31,7 @@ from catalog.models import (
     Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage, ProductType, ProductTypeAttribute
 )
 from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory
+from orders.forms import DashboardOrderUpdateForm
 from orders import orders_service
 from shipment import shipment_service
 from catalog.forms import (BrandForm, ProductAttributeForm, 
@@ -41,6 +42,7 @@ from cart.models import Coupon
 from cart.forms import CouponForm
 from catalog import models
 from catalog import constants as Catalog_Constants
+from orders import commons as Order_Constants
 from dashboard import analytics
 import json
 import logging
@@ -412,7 +414,7 @@ def order_cancel(request, order_uuid):
 
 @login_required
 def order_update(request, order_uuid=None):
-    template_name = 'dashboard/order_detail.html'
+    template_name = 'dashboard/order_update.html'
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
         logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
@@ -425,17 +427,31 @@ def order_update(request, order_uuid=None):
     if not PermissionManager.user_can_change_order(request.user):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-
-    page_title = _('Order Detail')
     
-
     order = get_object_or_404(Order, order_uuid=order_uuid)
-    orderItems = OrderItem.objects.filter(order=order)
+    page_title = _('Order Detail')
+
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = DashboardOrderUpdateForm(postadat, instance=order)
+        if form.is_valid():
+            msg = f'Order {order.order_ref_number} updated'
+            messages.success(request, msg)
+            logger.info(msg)
+            return redirect('dashboard:order-detail', order_uuid=order_uuid)
+        else:
+            msg = f'Order {order.order_ref_number} could not be updated'
+            messages.error(request, msg)
+            logger.info(msg)
+            logger.error(form.errors.items())
+
+    form = DashboardOrderUpdateForm(instance=order)
     context = {
         'page_title': page_title,
         'order': order,
         'shipment': shipment_service.find_order_shipment(order),
-        'orderItems': orderItems,
+        'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
+        'form': form
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
