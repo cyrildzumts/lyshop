@@ -6,6 +6,8 @@ html{
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background-color: var(--body-bg);
   color: Teal;
   font-size: 100%;
