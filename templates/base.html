@@ -32,6 +32,7 @@
 <body>
 {% block SCRIPT_VAR %}
 {% endblock SCRIPT_VAR %}
+<div class="page full">
 <header class="header">
 {% block HEADER_PANEL %}
 <div class="header--panel">
@@ -81,60 +82,25 @@
         {% endif %}
     </ul>
 </div>
-{% endblock HEADER_PANEL %}
-
-
-                
+{% endblock HEADER_PANEL %}           
 </header>
-        <div class="page full">
-                
-                <div class="page--banner">
-                        {% block HEADER_BANNER %}
-                        {% endblock HEADER_BANNER %}
-                </div>
-                {% comment %}{% block MESSAGES %}
-                {% if messages %}
-                <ul class="messages">
-                {% for message in messages %}
-                        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-                {% endfor %}
-                
-                </ul>
-                
-                {% endif %}
-                
-                {% endblock MESSAGES %}
-                {% endcomment %}
-                {% block DIALOGS %}
-                
-                {% endblock DIALOGS %}
+<div class="page--banner">
+{% block HEADER_BANNER %}
+{% endblock HEADER_BANNER %}
+</div>
+{% block DIALOGS %}
 
-                 {% block SIGNUP_DIALOG %}
-                
-                {% endblock SIGNUP_DIALOG %}
+{% endblock DIALOGS %}
 
-                <main class="container">
-                {% block MAIN %}
-                
-                {% endblock MAIN %}
-                </main>
-        </div>
+{% block SIGNUP_DIALOG %}
 
+{% endblock SIGNUP_DIALOG %}
 
- <footer class="footer column row">
-        {% block FOOTER %}
+<main class="container">
+{% block MAIN %}
 
-        {% endblock FOOTER %}
-        <div class="footer-list">
-                {% now "Y" as current_year %}
-                <ul class="flex">
-                        <li class="list-item flex"><div class="copyright">Copyright <i class="fa fa-copyright"></i><span class="copyright-year">{{current_year}}</span> </div> <div class="site">{{site_name}} - {%trans 'ONLINE SHOP' %} </div></li>
-                        <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'about' %}">{% trans "About us" %}</a></li>
-                        <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'faq' %}">{% trans "FAQ" %}</a></li>
-                </ul>
-        </div>
-</footer>
-
+{% endblock MAIN %}
+</main>
 {% block NOTIFICATIONS %}
         <div id="notifications-wrapper" class="flex-column notifications-wrapper">
                 <div class="row notifications-controls">
@@ -167,20 +133,32 @@
                 {% endif %}
         </div>
 {% endblock NOTIFICATIONS %}
+</div>
 
 
-        {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {% endcomment %}
-         
-        {% comment "" %}
+ <footer class="footer column row">
+        {% block FOOTER %}
+
+        {% endblock FOOTER %}
+        <div class="footer-list">
+                {% now "Y" as current_year %}
+                <ul class="flex">
+                        <li class="list-item flex"><div class="copyright">Copyright <i class="fa fa-copyright"></i><span class="copyright-year">{{current_year}}</span> </div> <div class="site">{{site_name}} - {%trans 'ONLINE SHOP' %} </div></li>
+                        <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'about' %}">{% trans "About us" %}</a></li>
+                        <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'faq' %}">{% trans "FAQ" %}</a></li>
+                </ul>
+        </div>
+</footer>
+
+
+{% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {% endcomment %}
         
-         <script  src="{% static "js/lib/pubsub.js" %}"></script>
-         {% endcomment %}
-        <script  src="{% static 'js/vendor/jquery-3.5.0.min.js' %}"></script>
-        <script  type="application/javascript" src="{% static 'js/lyshop.js' %}"></script>
-        <script  type="application/javascript" src="{% static 'js/commons.js' %}"></script> 
-        <script  type="application/javascript" src="{% static 'js/styling.js' %}"></script> 
-        {% block SCRIPT %}
-        {% endblock SCRIPT %}
+<script  src="{% static 'js/vendor/jquery-3.5.0.min.js' %}"></script>
+<script  type="application/javascript" src="{% static 'js/lyshop.js' %}"></script>
+<script  type="application/javascript" src="{% static 'js/commons.js' %}"></script> 
+<script  type="application/javascript" src="{% static 'js/styling.js' %}"></script> 
+{% block SCRIPT %}
+{% endblock SCRIPT %}
 </body>
 
 </html>
