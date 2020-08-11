@@ -2,11 +2,14 @@
 {% load static %} 
 {% block FILTER %}
 
-<div id="filter" class="container flex-column">
+<div id="filter" class="flex-column">
     <div class="col-m-12">
+        <div class="title">
+            <h4>{% trans "FILTER" %}</h4>
+        </div>
         <div class="filter-option">
             <div class="collapsible">
-                <button class="toggle" data-toggle="content"><span>{% trans "BRAND FILTER" %}</span></button>
+                <button class="toggle" data-toggle="content"><span>{% trans "BRAND" %}</span></button>
                 <div class="content">
                     <div class="mat-box">
                         <div class="mat-input">
@@ -34,7 +37,7 @@
     <div class="col-m-12">
         <div class="filter-option">
             <div class="collapsible">
-                <button class="toggle" data-toggle="content"><span>{% trans "PRODUCT TYPE FILTER" %}</span></button>
+                <button class="toggle" data-toggle="content"><span>{% trans "PRODUCT TYPE" %}</span></button>
                 <div class="content">
                     <div class="mat-box">
                         <div class="mat-input">
@@ -62,7 +65,7 @@
     <div class="col-m-12">
         <div class="filter-option">
             <div class="collapsible">
-                <button class="toggle" data-toggle="content"><span>{% trans "PRICE FILTER" %}</span></button>
+                <button class="toggle" data-toggle="content"><span>{% trans "PRICE" %}</span></button>
                 <div class="content">
                     <div class="mat-box">
                         <div class="mat-input">
