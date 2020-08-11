@@ -21,7 +21,7 @@ from rest_framework.authtoken.models import Token
 from accounts.forms import AccountCreationForm, UserCreationForm
 from accounts.account_services import AccountService
 from catalog.models import (
-    Product, Brand, Category, ProductAttribute, ProductVariant, ProductImage
+    Product, Brand, Category, ProductAttribute, ProductVariant, ProductImage, ProductType
 )
 from catalog.forms import (BrandForm, ProductAttributeForm, 
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm
@@ -68,7 +68,8 @@ def catalog_home(request):
     recent_products = Product.objects.all()[:conf.LATEST_QUERYSET_LIMIT]
     context = {
         'page_title' : page_title,
-        'product_list': recent_products
+        'product_list': recent_products,
+        'type_list': ProductType.objects.all()
     }
 
     return render(request, template_name, context)
@@ -98,6 +99,7 @@ def category_detail(request, category_uuid=None):
         'page_title': page_title,
         'category' : category,
         'product_list': list_set,
+        'type_list': ProductType.objects.all(),
         'subcategory_list': category.get_children()
     }
     return render(request,template_name, context)
