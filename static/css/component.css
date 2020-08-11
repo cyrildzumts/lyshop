@@ -39,6 +39,8 @@
   --mat-list-item-active-color : #242424;
   --on-drag-border-color : #3498db;
   --drag-area-non-empty : #1abc9c;
+  --active : #26c6da;
+  --active-selected: #ef5350;
 
 }
 
@@ -415,6 +417,14 @@ a.button{
 
 .kiosk .active{
 	border-bottom: 2px solid var(--active-border-color);
+}
+
+li.active{
+	border-bottom: 2px solid var(--active);
+}
+
+li.active.selected{
+	border-bottom: 2px solid var(--active-selected);
 }
 
 .nav-container{
