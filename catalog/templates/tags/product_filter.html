@@ -1,0 +1,106 @@
+{% block FILTER %}
+
+<div id="filter" class="container">
+    <div class="col-m-12 col-2">
+        <div class="filter-option">
+            <div class="collapsible">
+                <button class="toggle" data-toggle="content"><span>{% trans "BRAND FILTER" %}</span></button>
+                <div class="content">
+                    <div class="mat-box">
+                        <div class="mat-input">
+                            <label for="brand-filter">{% trans "Brand" %}</label>
+                            <input id="brand-filter" class="js-list-filter" data-target="filterable-brand" data-element="li" type="text" name="brand_filter" value="">
+                        </div>
+                        <div class="mat-box-content">
+                            <ul id="filterable-brand" class="mat-list" data-element="li" data-input-name="brands">
+                                {% for b in brand_list %}
+                                <li id="brand-item-{{b.id}}" class="" data-value="{{b.display_name}}"><div><label class="label-row label-row-left" for="brand-{{b.id}}"><input class="filter-input" type="checkbox" name="brand" id="brand-{{b.id}}" value="{{b.id}}" data-value="{{b.id}}">{{b.display_name}}</label></div></li>
+                                {% endfor %}
+                                
+                            </ul>
+                        </div>
+                        <div class="actions">
+                            <button class="mat-button mat-button-outlined js-filter-reset-btn" data-context="filterable-brand" data-container="products" ><i class="fas fa-refresh icon"></i><span>{% trans "Reset Filter" %}</span></button>
+                            <button class="mat-button mat-button-default js-filter-btn" data-container="products" data-filter-field="data-brand" data-context="filterable-brand" data-input-name="brand"><i class="fas fa-filter icon"></i><span>{% trans "Filter" %}</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-m-12 col-2">
+        <div class="filter-option">
+            <div class="collapsible">
+                <button class="toggle" data-toggle="content"><span>{% trans "PRODUCT TYPE FILTER" %}</span></button>
+                <div class="content">
+                    <div class="mat-box">
+                        <div class="mat-input">
+                            <label for="type-filter">{% trans "Product Type" %}</label>
+                            <input id="type-filter" class="js-list-filter" data-target="filterable-type" data-element="li" type="text" name="type_filter" value="">
+                        </div>
+                        <div class="mat-box-content">
+                            <ul id="filterable-type" class="mat-list" data-element="li" data-input-name="types">
+                                {% for t in type_list %}
+                                <li id="type-item-{{t.id}}" class="" data-value="{{t.display_name}}"><div><label class="label-row label-row-left" for="type-{{t.id}}"><input class="filter-input" type="checkbox" name="type" id="type-{{t.id}}" value="{{t.id}}" data-value="{{t.id}}">{{t.display_name}}</label></div></li>
+                                {% endfor %}
+                                
+                            </ul>
+                        </div>
+                        <div class="actions">
+                            <button class="mat-button mat-button-outlined js-filter-reset-btn" data-context="filterable-type" data-container="products" ><i class="fas fa-refresh icon"></i><span>{% trans "Reset Filter" %}</span></button>
+                            <button class="mat-button mat-button-default js-filter-btn" data-container="products" data-filter-field="data-type" data-context="filterable-type" data-input-name="type"><i class="fas fa-filter icon"></i><span>{% trans "Filter" %}</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-m-12 col-2">
+        <div class="filter-option">
+            <div class="collapsible">
+                <button class="toggle" data-toggle="content"><span>{% trans "PRICE FILTER" %}</span></button>
+                <div class="content">
+                    <div class="mat-box">
+                        <div class="mat-input">
+                            
+                        </div>
+                        <div class="mat-box-content">
+                            <div id="price-filter" class="mat-input">
+                                <label for="min-price-filter">{% trans "Min Price" %}</label>
+                                <input id="min-price-filter" type="text" name="min_price_filter" value="">
+                                <label for="max-price-filter">{% trans "Max Price" %}</label>
+                                <input id="max-price-filter" type="text" name="max_price_filter" value="">
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button class="mat-button mat-button-outlined js-filter-reset-btn" data-context="price-filter" data-container="products" ><i class="fas fa-refresh icon"></i><span>{% trans "Reset Filter" %}</span></button>
+                            <button class="mat-button mat-button-default js-filter-btn" data-container="products" data-filter-field="data-price" data-context="price-filter" data-input-name="brand"><i class="fas fa-filter icon"></i><span>{% trans "Filter" %}</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-m-12 col-2">
+        <div class="filter-option ">
+            <div class="collapsible">
+                <button class="toggle" data-toggle="content"><span>{% trans "SORT ORDER" %}</span></button>
+                <div class="content">
+                    <div class="mat-box">
+                        <div class="mat-box-content">
+                            <ul class="mat-list">
+                                <li>{% trans "Lower price to higher price" %}</li>
+                                <li>{% trans "Lower price to higher price" %}</li>
+                                <li>{% trans "Lower price to higher price" %}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock FILTER %}
