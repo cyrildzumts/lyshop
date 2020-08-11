@@ -424,7 +424,7 @@ li.active{
 }
 
 li.active.selected{
-	border-bottom: 2px solid var(--active-selected);
+	border-bottom: 3px solid var(--active-selected);
 }
 
 .nav-container{
