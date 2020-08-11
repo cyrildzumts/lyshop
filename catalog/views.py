@@ -98,7 +98,7 @@ def category_detail(request, category_uuid=None):
     context = {
         'page_title': page_title,
         'category' : category,
-        'parent_caterogy' : category.parent,
+        'parent_category' : category.parent,
         'product_list': list_set,
         'type_list': ProductType.objects.all(),
         'subcategory_list': category.get_children()
