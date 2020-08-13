@@ -55,6 +55,7 @@ canvas{
 	position: relative;
 	background-color: var(--filter-background-color);
 	color: var(--filter-color);
+	font-size: 0.875em;
 }
 
 .diagram-wrapper{
