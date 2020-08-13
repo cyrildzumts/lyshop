@@ -43,6 +43,7 @@
               {% comment %} <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a> {% endcomment %}
           </form>
           {% endif %}
+          <a class="mat-button mat-button-text" href="{{product.get_dashboard_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Parent Product" %}</span></a>
           <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>
           
               
