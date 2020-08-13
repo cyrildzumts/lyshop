@@ -9,11 +9,9 @@
 
 {% block MAIN_CONTENT %}
 <div class="container">
-        <div class="col-m-12 col-8">
-                <div class="wrapper">
-                        <div class="container">
-                                {% include "tags/products_snippet.html" with product_list=product_list %}
-                        </div>
+        <div class="wrapper">
+                <div id="products" class="container js-product-list">
+                        {% include "tags/products_snippet.html" with product_list=product_list %}
                 </div>
         </div>
 </div>
