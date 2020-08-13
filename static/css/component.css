@@ -1577,8 +1577,8 @@ input.editable{
 .collapsible{
 	position: relative;
     width: 100%;
-    padding: 8px 4px;
-    margin: 2px;
+    padding: 0;
+    margin: 0;
 }
 
 .collapsible .collapse-content, .collapsible .content{
