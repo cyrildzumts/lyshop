@@ -1925,7 +1925,7 @@ def policy_groups(request):
         raise PermissionDenied
 
     context = {}
-    queryset = PolicyGroup.objects.all().order_by('-created_at')
+    queryset = PolicyGroup.objects.all()
     template_name = "dashboard/policy_group_list.html"
     page_title = "Policy Group - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
