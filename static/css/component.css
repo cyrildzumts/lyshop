@@ -1893,7 +1893,8 @@ input.editable{
 	display: flex;
 	position: relative;
 	align-items: center;
-	justify-content: center;
+	justify-content: start;
+	font-size: 0.825em;
 	padding: 0;
 	margin: 8px auto;
 	/*overflow: hidden;*/
@@ -1902,6 +1903,13 @@ input.editable{
 	/*max-height: 72px;*/
 	border-bottom: 1px solid #ccc;
 	cursor: pointer;
+}
+
+.mat-list-item > input {
+	padding-left: 4px;
+	padding-right: 4px;
+	margin-left: 4px;
+	margin-right: 4px;
 }
 
 .mat-list-item:last-child{
