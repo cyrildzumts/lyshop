@@ -2355,6 +2355,10 @@ table tbody tr, .mat-table tbody tr{
 	display: block;
 }
 
+.product-item{
+	font-size: 0.75em;
+}
+
 /*
 .custom-input input:not([display=none]){
 	border: none !important;
