@@ -8,7 +8,6 @@ logger = logging.getLogger(__name__)
 def site_context(request):
     is_dashboard_allowed = False
     cart_items_count = 0
-    logger.info(f"REQUEST PATH : {request.path}")
     if request.user.is_authenticated:
         
         is_dashboard_allowed = request.user.has_perm('dashboard.can_view_dashboard')
