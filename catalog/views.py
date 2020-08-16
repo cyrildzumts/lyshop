@@ -102,7 +102,7 @@ def category_detail(request, category_uuid=None):
         'product_list': list_set,
         'type_list': ProductType.objects.all(),
         'parent_sub_category_list': Category.objects.filter(parent=category.parent),
-        'subcategory_list': category.get_children()
+        'subcategory_list': subcats
     }
     return render(request,template_name, context)
 

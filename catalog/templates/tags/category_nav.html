@@ -1,0 +1,47 @@
+{% load i18n %}
+{% load static %} 
+
+{% if root_category_list %}
+<div id="root-category-list" class="row">
+    <ul class="list-md-vertical list-horizontal">
+            {% for c in root_category_list %}
+                {% if c.id == category.id or (category.parent and c.id == category.parent.id)%}
+                <li class="active"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+                {% else %}
+                <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+                {% endif %}
+            {% endfor %}
+            
+    </ul><!--End of list-->
+</div>
+{% endif %}
+{% comment %}
+{% if parent_sub_category_list %}
+<div id="parent-subcategory-list" class="row">
+    <ul class="list-md-vertical list-horizontal">
+            {% for c in parent_sub_category_list %}
+            {% if c.id == category.id %}
+            <li class="active selected"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+            {% else %}
+            <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+            {% endif %}
+            {% endfor %}
+            
+    </ul><!--End of list-->
+</div>
+{% endif %}
+{% endcomment %}
+{% if subcategory_list %}
+<div id="subcategory-list" class="row">
+    <ul class="list-md-vertical list-horizontal">
+            {% for c in subcategory_list %}
+            {% if c.id == category.id %}
+            <li class="active current selected"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+            {% else %}
+            <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+            {% endif %}
+            {% endfor %}
+            
+    </ul><!--End of list-->
+</div>
+{% endif %}
