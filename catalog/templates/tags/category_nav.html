@@ -5,7 +5,7 @@
 <div id="root-category-list" class="row">
     <ul class="list-md-vertical list-horizontal">
             {% for c in root_category_list %}
-                {% if c.id == category.id or (category.parent and c.id == category.parent.id)%}
+                {% if c.id == category.id or (category.parent and c.id == category.parent.id) %}
                 <li class="active"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
                 {% else %}
                 <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
