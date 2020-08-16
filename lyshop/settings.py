@@ -73,6 +73,7 @@ ACCOUNTS = {
     )
 }
 
+HOME_URL = "/"
 DASHBOARD_ROOT_PATH = "/dashboard/"
 
 PAY_USERNAME = os.getenv('LYSHOP_PAY_USER')
