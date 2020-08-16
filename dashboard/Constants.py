@@ -1,7 +1,7 @@
 
 APP_PREFIX = 'dashboard.'
 
-SELLER_GROUP = "seller"
+SELLER_GROUP = "Seller"
 
 MAX_RECENT = 5
 
