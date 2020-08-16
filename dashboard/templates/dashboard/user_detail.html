@@ -82,6 +82,11 @@
                         <div class="entry">
                                 <span class="key">{% trans "Balance" %}</span> <span class="value">{{user_instance.account.balance}} {% trans "XAF" %}</span>
                         </div>
+                        {% if is_seller %}
+                        <div class="entry">
+                                <span class="key">{% trans "Number of Product" %}</span> <span class="value">{{user_instance.sold_products.count}}</span>
+                        </div>
+                        {% endif %}
                         
                 </div>
         </div>
