@@ -363,6 +363,7 @@
     max-width: 344px;
     height: auto;
     border: 1px solid #ccc;
+    background-color: #fafafa;
 }
 
 .notification-list{
@@ -381,6 +382,8 @@
     line-height: 16px;
     font-weight: 700;
 }
+
+
 
 .notification .title{
     font-size: 1.2em;
