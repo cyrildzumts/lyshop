@@ -87,6 +87,13 @@
         </div>
         {% endif %}
 </div>
+{% if is_seller %}
+<div class="container">
+        <div class="col-m-12 col-9">
+        {% include 'tags/product_list_template' with product_list=product_list %}   
+        </div>
+</div>
+{% endif %}
                 
 {% endblock MAIN_CONTENT %}
 

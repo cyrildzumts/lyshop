@@ -1,6 +1,8 @@
 
 APP_PREFIX = 'dashboard.'
 
+SELLER_GROUP = "seller"
+
 MAX_RECENT = 5
 
 DASHBOARD_VIEW_PERM = 'can_view_dashboard'

@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.core.exceptions import PermissionDenied, SuspiciousOperation
+from django.core.exceptions import PermissionDenied, SuspiciousOperation, ObjectDoesNotExist
 
 from django.contrib.auth.models import User, Group, Permission
 from django.http import Http404
@@ -1640,10 +1640,16 @@ def user_details(request, pk=None):
     context = {}
     #queryset = User.objects.select_related('account')
     user = get_object_or_404(User, pk=pk)
+    product_list = Product.objects.filter(sold_by=user, quantity__gt=0)
+    seller_group = None
+    is_seller = user.groups.filter(name=Constants.SELLER_GROUP).exists()
+
     template_name = "dashboard/user_detail.html"
     page_title = "User Details - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['user_instance'] = user
+    context['product_list'] = product_list
+    context['is_seller'] = is_seller
     context.update(get_view_permissions(request.user))
     context['can_delete'] = PermissionManager.user_can_delete_user(request.user)
     context['can_update'] = PermissionManager.user_can_change_user(request.user)
