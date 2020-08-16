@@ -73,6 +73,7 @@ ACCOUNTS = {
     )
 }
 
+DASHBOARD_ROOT_PATH = "/dashboard/"
 
 PAY_USERNAME = os.getenv('LYSHOP_PAY_USER')
 PAY_REQUEST_TOKEN = os.getenv('LYSHOP_PAY_REQUEST_TOKEN')
@@ -149,6 +150,8 @@ TEMPLATES = [
                 'accounts.context_processors.account_context',
                 'catalog.context_processors.catalog_context',
                 'orders.context_processors.order_context',
+                'dashboard.context_processors.order_context',
+
             ],
         },
     },
