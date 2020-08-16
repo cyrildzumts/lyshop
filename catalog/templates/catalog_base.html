@@ -16,48 +16,7 @@
 {% endblock HEADER_BANNER %}
 {% block MAIN %}
 {% block CATEGORIES %}
-{% if root_category_list %}
-<div id="category-list" class="row">
-    <ul class="list-md-vertical list-horizontal">
-            {% for c in root_category_list %}
-                {% if c.id == parent_category.id %}
-                <li class="active"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
-                {% else %}
-                <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
-                {% endif %}
-            {% endfor %}
-            
-    </ul><!--End of list-->
-</div>
-{% endif %}
-{% if parent_sub_category_list %}
-<div id="subcategory-list" class="row">
-    <ul class="list-md-vertical list-horizontal">
-            {% for c in parent_sub_category_list %}
-            {% if c.id == category.id %}
-            <li class="active selected"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
-            {% else %}
-            <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
-            {% endif %}
-            {% endfor %}
-            
-    </ul><!--End of list-->
-</div>
-{% endif %}
-{% if subcategory_list %}
-<div id="subcategory-list" class="row">
-    <ul class="list-md-vertical list-horizontal">
-            {% for c in subcategory_list %}
-            {% if c.id == category.id %}
-            <li class="active current selected"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
-            {% else %}
-            <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
-            {% endif %}
-            {% endfor %}
-            
-    </ul><!--End of list-->
-</div>
-{% endif %}
+{% include 'tags/category_nav.html' %}
 {% endblock CATEGORIES %}
 <div class="main container">
     <div class="col-m-12 col-2">
