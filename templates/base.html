@@ -114,7 +114,7 @@
                 <ul id="messages" class="messages notification-list" data-toggle="#notifications-wrapper">
                 {% for message in messages %}
                         <li {% if message.tags %} class="{{message.tags}}" {% endif %}>
-                                <div class="notification box">
+                                <div class="notification flex">
                                         <i class="js-close fas fa-times-circle"></i>
                                         <div>{{message}}</div>
                                 </div>
@@ -126,7 +126,7 @@
                 <ul id="notifications" class="notifications notification-list" data-toggle="#notifications-wrapper">
                 {% for notification in notifications %}
                         <li class="">
-                                <div class="notification box">
+                                <div class="notification flex">
                                         <i class="js-close fas fa-times-circle"></i>
                                         <div class="title">{{notification.title}}</div>
                                         <div class="content">{{notification.content}}</div>
