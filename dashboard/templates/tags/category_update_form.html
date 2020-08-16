@@ -35,8 +35,13 @@
             <div class="form-group">
                 <label for="parent">{% trans "Parent Category" %}</label>
                 <select name="parent" id="parent">
-                    <option selected value=""><span class="mat-button">{% trans "Select a parent Category" %}</span></option>
-                    {% for c in category_list %} <option value="{{c.pk}}"><span class="key">{{c.name}}</span></option> {% endfor %}
+                    {% for c in category_list %} 
+                        {% if c.id == category.id %}
+                        <option value="{{c.pk}}" selected><span class="key">{{c.display_name}}</span></option> 
+                        {% else %}
+                        <option value="{{c.pk}}"><span class="key">{{c.display_name}}</span></option> 
+                        {% endif %}
+                    {% endfor %}
                 </select>
             </div>
             {% endif %}
