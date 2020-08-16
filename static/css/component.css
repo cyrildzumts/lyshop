@@ -465,7 +465,7 @@ li.active.selected{
 
 .nav a, .logo a{
   display: flex;
-  color: var(--nav-link-color);
+  /*color: var(--nav-link-color);*/
   font-weight: 600;
   justify-content: center;
   align-items: center;
@@ -1764,7 +1764,7 @@ input.editable{
 }
 .mat-button-outlined{
 	border: 1px solid #1976d2;
-	color: #1976d2;
+	/*color: #1976d2;*/
 	/*border-radius: 4px;*/
 }
 
@@ -1795,7 +1795,7 @@ input.editable{
 
 .mat-button-text{
 	padding: 0 8px !important;
-	color: #1976d2;
+	/*color: #1976d2;*/
 }
 .mat-button-filter{
 	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
