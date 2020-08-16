@@ -345,7 +345,7 @@
 }
 
 .selected{
-    background-color: #fafafa;
+    /*background-color: #fafafa;*/
     color: #e64a19;
     border-bottom: 2px solid #e64a19;
 }
