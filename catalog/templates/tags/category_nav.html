@@ -15,8 +15,8 @@
     </ul><!--End of list-->
 </div>
 {% endif %}
-{% comment %}
-{% if parent_sub_category_list %}
+
+{% if parent_category %}
 <div id="parent-subcategory-list" class="row">
     <ul class="list-md-vertical list-horizontal">
             {% for c in parent_sub_category_list %}
@@ -30,7 +30,6 @@
     </ul><!--End of list-->
 </div>
 {% endif %}
-{% endcomment %}
 {% if subcategory_list %}
 <div id="subcategory-list" class="row">
     <ul class="list-md-vertical list-horizontal">
