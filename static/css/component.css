@@ -7,7 +7,7 @@
   --header-bg: #fafafa;
   --header-color: #242424;
   --header-panel-bg :#0B0C10;
-  --header-panel-color: #fff;
+  --header-panel-color: #e0e0e0;
   --banner-bg: #45A29E;
   --banner-color: #fff;
   --card-bg : transparent;
@@ -43,6 +43,8 @@
   --active-selected: #ef5350;
   --filter-background-color : #fafafa;
   --filter-color : #242424;
+  --mat-button-bg : #3498db;
+  --mat-button-color : #fafafa;
 
 }
 
@@ -1758,7 +1760,7 @@ input.editable{
 	border: 1px solid #1976d2;
 	/*border-radius: 4px;*/
 	background-color: #1976d2;
-	color: #fff;
+	/*color: #fff;*/
 }
 .mat-button-outlined{
 	border: 1px solid #1976d2;
@@ -2332,7 +2334,7 @@ table tbody tr, .mat-table tbody tr{
 	justify-content: center;
 	position: absolute;
 	/*width: 350px;*/
-	background-color: #fafafa;
+	/*background-color: #fafafa;*/
 	top: 48px;
 	left: -100%;
 }
@@ -2441,7 +2443,7 @@ table tbody tr, .mat-table tbody tr{
 		top: unset;
 		left: unset;
 		width: 100%;
-		background-color: transparent;
+		/*background-color: transparent;*/
 	}
 	.header--panel .mat-list{
 		padding: 0;
