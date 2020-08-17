@@ -7,7 +7,7 @@ import uuid
 
 class Balance(models.Model):
     name = models.CharField(max_length=64)
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, blank=True, null=True)
     balance = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     balance_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
