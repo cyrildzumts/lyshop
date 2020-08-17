@@ -38,7 +38,7 @@ class BalanceHistory(models.Model):
     
 
 class VendorPayment(models.Model):
-    seller = models.ForeignKey(User, related_name='vendorpayments', blank=False, null=False, on_delete=models.SET_NULL)
+    seller = models.ForeignKey(User, related_name='vendorpayments', blank=False, null=True, on_delete=models.SET_NULL)
     amount = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     balance_amount = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     pay_username = models.CharField(max_length=64)
@@ -68,7 +68,7 @@ class VendorPaymentHistory(models.Model):
 
 
 class SoldProduct(models.Model):
-    seller = models.ForeignKey(User, related_name='sold_products', blank=False, null=True, on_delete=models.SET_NULL)
+    seller = models.ForeignKey(User, related_name='vendor_sold_products', blank=False, null=True, on_delete=models.SET_NULL)
     customer = models.ForeignKey(User, related_name='customer_bought_products', blank=False, null=True, on_delete=models.SET_NULL)
     product = models.ForeignKey('catalog.ProductVariant', blank=False, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
