@@ -57,7 +57,8 @@
                               {% if can_view_brand %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:brands'%}">{% trans "Brands" %}</a></li>{% endif %}
                               {% if can_view_category %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}">{% trans "Categories" %}</a></li>{% endif %}
                               {% if can_view_coupon %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:coupons'%}">{% trans "Coupons" %}</a></li>{% endif %}
-                              {% if can_view_product %} 
+                              {% if can_view_product %}
+                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home'%}">{% trans "Vendor" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}">{% trans "Product Type" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes'%}">{% trans "Product Type Attributes" %}</a></li>
