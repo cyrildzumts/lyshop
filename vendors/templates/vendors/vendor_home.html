@@ -1,0 +1,95 @@
+{% extends "order_base.html"%}
+{% load i18n %}
+
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Vendor Home" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col col-9">
+                <div class="banner--actions">
+                    
+                    <a class="mat-button mat-button-text" href="{% url 'vendors:payments' %}"><i class="fas fa-list icon"></i><span>{% trans "Payments" %}</span></a>
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+{% block MAIN_CONTENT %}
+<div class="container">
+    <div class="mat-box full">
+          <div class="mat-box-title">
+            {% if balance %}
+            <h3> {% trans "Balance" %} : {{balance.balance}} {% trans "XAF" %}</h3>
+            {% else %}
+            <h3> {% trans "Balance" %} : 0 {% trans "XAF" %} </h3>
+            {% endif %}
+            
+            <h4> {% trans "Sold Products" %} : {{number_sold_products}}</h4>
+          </div>
+          <div class="mat-box-content">
+
+          </div>
+          <div class="container">
+              <ul class="actions row" role="navigation">
+                  <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:payments' %}"><i class="fas fa-list icon"></i><span>{% trans "Payments" %}</span></a></li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+              </ul>
+          </div>
+        </div><!--End of mat-box-->
+</div>
+{% if recent_sold_products %}
+<div class="container">
+<div class="col-m-12 col-9">
+    <div class="mat-table-wrapper">
+        <table id="product-list" class="mat-table js-filter-table">
+          <caption>{% trans "Recent Sold Products" %}</caption>
+          <thead>
+                  <tr>
+                          <th scope="col">{% trans "Name" %}</th>
+                          <th scope="col">{% trans "Customer" %}</th>
+                          <th scope="col">{% trans "Price" %}</th>
+                          <th scope="col">{% trans "Date" %}</th>
+                          <th scope="col">{% trans "Details" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for p in recent_sold_products %}
+                  <tr>
+                    <td data-label="{% trans 'Name' %}">{{p.product.display_name}} </td>
+                    <td data-label="{% trans 'Customer' %}">{{p.customer.get_full_name}}</td>
+                    <td data-label="{% trans 'Price' %}">{{p.price}} {% trans "XAF" %}</td>
+                    <td data-label="{% trans 'Date' %}">{{p.created_at|date:"F j, Y"}}</td>
+                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{p.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+          <tfoot>
+                  
+          </tfoot>
+
+    </table>
+    </div><!--End of Table Wrapper-->
+  </div>
+</div>
+
+{% else %}
+<div class="container">
+  <div class="col-m-12 col-12">
+    <p>{% trans "There is no sold products yet." %}</p>
+  </div>
+  <div class="col-m-12 col-12">
+    <p>{% trans "Sold products will be displayed here." %}</p>
+  </div>
+</div>
+{% endif %}
+{% endblock MAIN_CONTENT %}

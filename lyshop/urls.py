@@ -22,7 +22,6 @@ from lyshop import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('customer-usage/',views.customer_usage ,name='customer-usage'),
     path('about/', views.about, name='about'),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls', namespace='api')),
@@ -30,10 +29,12 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('catalog/', include('catalog.urls')),
     path('cart/', include('cart.urls')),
+    path('customer-usage/',views.customer_usage ,name='customer-usage'),
     path('dashboard/', include('dashboard.urls')),
     path('faq/', views.faq, name='faq'),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('orders/', include('orders.urls')),
     path('shipment/', include('shipment.urls')),
-    path('i18n/', include('django.conf.urls.i18n')),
+    path('vendors/', include('vendors.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

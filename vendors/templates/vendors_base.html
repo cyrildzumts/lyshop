@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+{% load i18n %} 
+{% block META_REDIRECT %}
+        
+{% endblock META_REDIRECT %}
+
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Vendor Page" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col-m-12 col-9">
+                <ul class="banner--actions">
+                    <li><a class="mat-button mat-button-outlined" href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                    <li><a class="mat-button mat-button-default" href="{% url 'shipment:shipments' %}">{% trans 'Shipments' %}</a></li>     
+                </ul><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+{% block MAIN %}
+
+{% endblock MAIN %}

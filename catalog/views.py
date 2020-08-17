@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -30,7 +29,7 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
 
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from django.utils.translation import gettext_lazy as _
+
 from operator import itemgetter
 from catalog import catalog_service
 from lyshop import utils, settings, conf

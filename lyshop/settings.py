@@ -73,6 +73,9 @@ ACCOUNTS = {
     )
 }
 
+VENDOR_PAYMENT_DAY = 5
+
+ACCOUNT_ROOT_PATH = "/accounts/"
 HOME_URL = "/"
 DASHBOARD_ROOT_PATH = "/dashboard/"
 
@@ -103,6 +106,7 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'shipment.apps.ShipmentConfig',
+    'vendors.apps.VendorsConfig',
 ]
 
 # RESTFRAMEWORK SETTINGS
