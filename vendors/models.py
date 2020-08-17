@@ -68,9 +68,9 @@ class VendorPaymentHistory(models.Model):
 
 
 class SoldProduct(models.Model):
-    seller = models.ForeignKey(User, related_name='sold_products', blank=False, null=False, on_delete=models.SET_NULL)
-    customer = models.ForeignKey(User, related_name='bought_products', blank=False, null=False, on_delete=models.SET_NULL)
-    product = models.ForeignKey('catalog.ProductVariant', blank=False, null=False, on_delete=models.SET_NULL)
+    seller = models.ForeignKey(User, related_name='sold_products', blank=False, null=True, on_delete=models.SET_NULL)
+    customer = models.ForeignKey(User, related_name='customer_bought_products', blank=False, null=True, on_delete=models.SET_NULL)
+    product = models.ForeignKey('catalog.ProductVariant', blank=False, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)  
 
