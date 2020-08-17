@@ -2197,7 +2197,7 @@ input.editable{
 table thead, .mat-table thead{
 	height: 64px;
 	background-color: #e0e0e0;
-	font-size: 1.2em;
+	font-size: 1em;
 	font-weight: 600;
 	color: #424242;
 }
