@@ -1,0 +1,19 @@
+
+
+{% extends "catalog_base.html"%}
+{% load i18n %}
+{% load l10n %}
+
+{% block  HEADER_BANNER_TITLE %}
+        <h4> {% trans "Prouct List" %}</h4>
+{% endblock HEADER_BANNER_TITLE %}
+
+{% block MAIN_CONTENT %}
+<div class="container">
+        <div class="wrapper">
+                <div id="products" class="container js-product-list">
+                        {% include "tags/products_snippet.html" with product_list=product_list %}
+                </div>
+        </div>
+</div>
+{% endblock MAIN_CONTENT %}
