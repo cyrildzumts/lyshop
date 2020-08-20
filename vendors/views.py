@@ -60,7 +60,7 @@ def product_list(request):
         'page_title': page_title,
     }
 
-    queryset = Product.objects.filter(is_active=True).order_by('-created_at')
+    queryset = Product.objects.filter(is_active=True, sold_by=request.user).order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
     try:
@@ -95,7 +95,7 @@ def product_variant_list(request, product_uuid):
         'page_title': page_title,
     }
 
-    queryset = ProductVariant.objects.filter(is_active=True, product__product_uuid=product_uuid).order_by('-created_at')
+    queryset = ProductVariant.objects.filter(is_active=True, product__sold_by=request.user ,product__product_uuid=product_uuid).order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
     try:
