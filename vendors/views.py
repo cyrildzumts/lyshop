@@ -93,8 +93,8 @@ def product_variant_list(request, product_uuid):
     context = {
         'page_title': page_title,
     }
-    
-    queryset = ProductVariant.objects.filter(is_active=True, product__product_uuid).order_by('-created_at')
+
+    queryset = ProductVariant.objects.filter(is_active=True, product__product_uuid=product_uuid).order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
     try:
