@@ -6,6 +6,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from catalog.models import Product, ProductVariant
+from catalog.forms import (BrandForm, ProductAttributeForm, 
+    ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
+    DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm
+)
 from accounts.models import Account
 from lyshop import settings
 from vendors import vendors_service
