@@ -24,7 +24,7 @@ def vendor_home(request):
     except ObjectDoesNotExist as e:
         logger.warn("Request User has no balance")
     
-    sold_product_list = SoldProduct.objects.filter(seller=request.user)[:5]
+    sold_product_list = SoldProduct.objects.filter(seller=request.user).select_related()[:5]
     recent_products = Product.objects.filter(sold_by=request.user)[:5]
     seller_product_queryset = ProductVariant.objects.filter(is_active=True, product__sold_by=request.user)
     product_count = seller_product_queryset.aggregate(product_count=Sum('quantity')).get('product_count', 0)
@@ -42,6 +42,81 @@ def vendor_home(request):
 
 @login_required
 def product_list(request):
+    username = request.user.username
+    '''
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    '''
+
+    template_name = 'dashboard/product_list.html'
+    page_title = _('Products')
+    context = {
+        'page_title': page_title,
+    }
+
+    queryset = Product.objects.filter(is_active=True).order_by('-created_at')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['product_list'] = list_set
+    #context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+
+@login_required
+def product_variant_list(request, product_uuid):
+    username = request.user.username
+    '''
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    '''
+
+    template_name = 'dashboard/product_list.html'
+    page_title = _('Products')
+    context = {
+        'page_title': page_title,
+    }
+    
+    queryset = ProductVariant.objects.filter(is_active=True, product__product_uuid).order_by('-created_at')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['product_list'] = list_set
+    #context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def product_detail(request, product_uuid):
+    pass
+
+
+
+@login_required
+def product_variant_detail(request, product_uuid):
     pass
 
 
@@ -50,9 +125,7 @@ def sold_product_list(request):
     pass
 
 
-@login_required
-def product_detail(request, product_uuid):
-    pass
+
 
 
 @login_required

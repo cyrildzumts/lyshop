@@ -239,6 +239,9 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("catalog:product-detail", kwargs={"product_uuid": self.product_uuid})
     
+    def get_vendor_url(self):
+        return reverse("vendors:product-detail", kwargs={"product_uuid": self.product_uuid})
+    
     def get_dashboard_url(self):
         return reverse("dashboard:product-detail", kwargs={"product_uuid": self.product_uuid})
     
@@ -276,6 +279,9 @@ class ProductVariant(models.Model):
 
     def get_absolute_url(self):
         return reverse("catalog:product-variant-detail", kwargs={"variant_uuid": self.product_uuid})
+    
+    def get_vendor_url(self):
+        return reverse("vendors:product-variant-detail", kwargs={"product_uuid": self.product_uuid})
     
     def get_dashboard_url(self):
         return reverse("dashboard:product-variant-detail", kwargs={"variant_uuid": self.product_uuid})
