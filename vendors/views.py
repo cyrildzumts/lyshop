@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import F, Q, Sum, Count
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.decorators import login_required
 from catalog.models import Product, ProductVariant
@@ -24,12 +25,17 @@ def vendor_home(request):
         logger.warn("Request User has no balance")
     
     sold_product_list = SoldProduct.objects.filter(seller=request.user)[:5]
+    recent_products = Product.objects.filter(sold_by=request.user)[:5]
+    seller_product_queryset = ProductVariant.objects.filter(is_active=True, product__sold_by=request.user)
+    product_count = seller_product_queryset.aggregate(product_count=Sum('quantity')).get('product_count', 0)
     number_sold_products = SoldProduct.objects.filter(seller=request.user).count()
     context = {
         'page_title' : page_title,
         'balance' : balance,
         'number_sold_products' : number_sold_products,
-        'recent_sold_products': sold_product_list
+        'recent_sold_products': sold_product_list,
+        'recent_products' : recent_products,
+        'product_count': product_count
     }
     return render(request, template_name, context)
 

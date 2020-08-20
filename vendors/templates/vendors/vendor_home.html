@@ -28,12 +28,13 @@
     <div class="mat-box full">
           <div class="mat-box-title">
             {% if balance %}
-            <h3> {% trans "Balance" %} : {{balance.balance}} {% trans "XAF" %}</h3>
+            <p> <span>{% trans "Balance" %}</span>  <span>{{balance.balance}} {% trans "XAF" %}</span></p>
             {% else %}
-            <h3> {% trans "Balance" %} : 0 {% trans "XAF" %} </h3>
+            <p> <span>{% trans "Balance" %}</span>   <span>0 {% trans "XAF" %}</span> </p>
             {% endif %}
             
-            <h4> {% trans "Sold Products" %} : {{number_sold_products}}</h4>
+            <p><span>{% trans "Sold Products" %}</span>  <span>{{number_sold_products}}</span></p>
+            <p><span>{% trans "Number of products" %} </span> <span>{{product_count}}</span></p>
           </div>
           <div class="mat-box-content">
 
@@ -56,8 +57,9 @@
           <caption>{% trans "Recent Sold Products" %}</caption>
           <thead>
                   <tr>
-                          <th scope="col">{% trans "Name" %}</th>
                           <th scope="col">{% trans "Customer" %}</th>
+                          <th scope="col">{% trans "Name" %}</th>
+                          <th scope="col">{% trans "Brand" %}</th>
                           <th scope="col">{% trans "Price" %}</th>
                           <th scope="col">{% trans "Date" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
@@ -66,8 +68,9 @@
           <tbody>
                   {% for p in recent_sold_products %}
                   <tr>
-                    <td data-label="{% trans 'Name' %}">{{p.product.display_name}} </td>
                     <td data-label="{% trans 'Customer' %}">{{p.customer.get_full_name}}</td>
+                    <td data-label="{% trans 'Name' %}">{{p.product.display_name}} </td>
+                    <td data-label="{% trans 'Brand' %}">{{p.product.brand.display_name}} </td>
                     <td data-label="{% trans 'Price' %}">{{p.product.price}} {% trans "XAF" %}</td>
                     <td data-label="{% trans 'Date' %}">{{p.created_at|date:"F j, Y"}}</td>
                     <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{p.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
@@ -94,4 +97,52 @@
   </div>
 </div>
 {% endif %}
+
+{% if recent_products %}
+<div class="container">
+<div class="col-m-12 col-9">
+    <div class="mat-table-wrapper">
+        <table id="product-list" class="mat-table js-filter-table">
+          <caption>{% trans "Recent Sold Products" %}</caption>
+          <thead>
+                  <tr>
+                          <th scope="col">{% trans "Name" %}</th>
+                          <th scope="col">{% trans "Brand" %}</th>
+                          <th scope="col">{% trans "Price" %}</th>
+                          <th scope="col">{% trans "Date" %}</th>
+                          <th scope="col">{% trans "Details" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for p in recent_products %}
+                  <tr>
+                    <td data-label="{% trans 'Name' %}">{{p.display_name}} </td>
+                    <td data-label="{% trans 'Brand' %}">{{p.brand.display_name}} </td>
+                    <td data-label="{% trans 'Price' %}">{{p.price}} {% trans "XAF" %}</td>
+                    <td data-label="{% trans 'Date' %}">{{p.created_at|date:"F j, Y"}}</td>
+                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{p.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+          <tfoot>
+                  
+          </tfoot>
+
+    </table>
+    </div><!--End of Table Wrapper-->
+  </div>
+</div>
+
+{% else %}
+<div class="container">
+  <div class="col-m-12 col-12">
+    <p>{% trans "There is no sold products yet." %}</p>
+  </div>
+  <div class="col-m-12 col-12">
+    <p>{% trans "Sold products will be displayed here." %}</p>
+  </div>
+</div>
+{% endif %}
+
 {% endblock MAIN %}
