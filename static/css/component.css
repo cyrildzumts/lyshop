@@ -166,7 +166,7 @@ li a{
   font-family: 'Monserrat';
   background-color: var(--banner-bg);
   color: var(--banner-color);
-  padding: 0;
+  padding: 16px 0 64px 0;
   margin-bottom: 16px;
 
 }
