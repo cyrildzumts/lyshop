@@ -10,6 +10,7 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
     DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm
 )
+from catalog import constants Catalog_Constants
 from accounts.models import Account
 from lyshop import settings
 from vendors import vendors_service
