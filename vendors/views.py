@@ -41,6 +41,10 @@ def product_list(request):
 
 
 @login_required
+def product_detail(request, product_uuid):
+    pass
+
+@login_required
 def balance_history(request, balance_uuid):
     pass
 

@@ -77,4 +77,4 @@ class SoldProduct(models.Model):
         return f"SoldProduct {self.product.name}"
 
     def get_absolute_url(self):
-        return reverse("vendors:sold-products", kwargs={"product_uuid": self.product_uuid})
+        return reverse("vendors:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
