@@ -1,9 +1,11 @@
 from lyshop import settings, utils
 from django.db.models import F,Q,Count, Sum, FloatField
+from django.contrib.auth.models import User
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from orders import commons
 from orders.models import Order, OrderItem, Address, PaymentRequest, OrderStatusHistory
+from catalog.models import Product, ProductVariant
 from shipment import shipment_service
 from itertools import islice
 import requests
@@ -69,6 +71,10 @@ def order_clear_cart(user):
     return cart_service.clear_cart(user)
 
 
+def get_sold_products(seller):
+    if  not isinstance(seller, User):
+        return None
+    return OrderItem.objects.filter(product__product__sold_by=seller, order__is_paid=True)
 
 def request_payment(data=None):
     if not settings.LYSHOP_PAY_REQUEST_URL or not settings.PAY_USERNAME or not settings.PAY_REQUEST_TOKEN:

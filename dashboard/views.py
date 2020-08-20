@@ -43,8 +43,11 @@ from cart.forms import CouponForm
 from catalog import models
 from catalog import constants as Catalog_Constants
 from orders import commons as Order_Constants
+from vendors import vendors_service
 from dashboard import analytics
+from itertools import islice
 import json
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -1654,6 +1657,35 @@ def user_details(request, pk=None):
     context['can_delete'] = PermissionManager.user_can_delete_user(request.user)
     context['can_update'] = PermissionManager.user_can_change_user(request.user)
     return render(request,template_name, context)
+
+
+
+@login_required
+def update_vendor_products(request, pk=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    if not PermissionManager.user_can_view_user(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    context = {}
+    #queryset = User.objects.select_related('account')
+    user = get_object_or_404(User, pk=pk)
+    
+    seller_group = None
+    is_seller = user.groups.filter(name=Constants.SELLER_GROUP).exists()
+    if is_seller:
+        order_item_list = orders_service.get_sold_products(seller=user)
+        flag = vendors_service.update_sold_product(user, order_item_list)
+        if flag:
+            messages.success("Updated vendor Sold products")
+            logger.info("Updated Vendor sold products")
+        else:
+            messages.error("Vendor sold products could not be updated")
+            logger.error("Vendor sold products could not be updated")
+
+    return redirect('dashboard:user-detail', pk=pk)
 
 
 @login_required
