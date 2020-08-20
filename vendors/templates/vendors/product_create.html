@@ -35,6 +35,7 @@
             <div class="form-group">
                 <label for="category">{% trans "Category" %}</label>
                 <select name="category" id="category">
+                <option value="">{% trans "Select a Category" %}</option>
                 {% for c in category_list %} <option value="{{c.pk}}">{{c.display_name}}</option> {% endfor %}
                 </select>
             </div>
@@ -42,6 +43,7 @@
             <div class="form-group">
                 <label for="gender">{% trans "Gender" %}</label>
                 <select name="gender" id="gender">
+                <option value="">{% trans "Select a Gender" %}</option>
                 {% for k,v in gender_list %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
                 </select>
             </div>
@@ -49,6 +51,7 @@
             <div class="form-group">
                 <label for="brand">{% trans "Brand" %}</label>
                 <select name="brand" id="brand">
+                <option value="">{% trans "Select a Brand" %}</option>
                 {% for brand in brand_list %} <option value="{{brand.pk}}">{{brand.display_name}}</option> {% endfor %}
                 </select>
             </div>
@@ -56,6 +59,7 @@
             <div class="form-group">
                 <label for="product-type">{% trans "Product Type" %}</label>
                 <select name="product_type" id="product-type">
+                <option value="">{% trans "Select a Product Type" %}</option>
                 {% for p_type in product_type_list %} <option value="{{p_type.pk}}">{{p_type.display_name}}</option> {% endfor %}
                 </select>
             </div>
