@@ -13,5 +13,5 @@ urlpatterns = [
     path('balance-history/details/<uuid:history_uuid>/', views.balance_history_detail, name='balance-history-detail'),
     path('payments/', views.vendor_payments, name='vendor-payments'),
     path('payments/details/<uuid:payment_uuid>/', views.payment_details, name='payment-detail'),
-    path('sold-products/', views.product_list, name='vendor-sold-products'),
+    path('sold-products/', views.product_list, name='sold-products'),
 ]
