@@ -103,7 +103,7 @@
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         <table id="product-list" class="mat-table js-filter-table">
-          <caption>{% trans "Recent Sold Products" %}</caption>
+          <caption>{% trans "Recent Added Products" %}</caption>
           <thead>
                   <tr>
                           <th scope="col">{% trans "Name" %}</th>
@@ -137,10 +137,10 @@
 {% else %}
 <div class="container">
   <div class="col-m-12 col-12">
-    <p>{% trans "There is no sold products yet." %}</p>
+    <p>{% trans "There is no recently added products yet." %}</p>
   </div>
   <div class="col-m-12 col-12">
-    <p>{% trans "Sold products will be displayed here." %}</p>
+    <p>{% trans "Recently added products will be displayed here." %}</p>
   </div>
 </div>
 {% endif %}
