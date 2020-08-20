@@ -1,0 +1,47 @@
+{% load i18n %}
+<div class="mat-table-wrapper">
+        <div class="row">
+            <div class="mat-table-title">
+                {% trans "Products" %}
+            </div>
+        </div><!--End of Row-->
+        <form action="{% url 'vendors:products-delete' %}" method="POST">{% csrf_token %}
+        <table id="product-list" class="mat-table js-filter-table">
+            <div class="actions">
+                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled>{% trans "Delete Selected" %}</button>
+            </div>
+          <thead>
+                  <tr>
+                          <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
+                          <th>{% trans "Name" %}</th>
+                          <th>{% trans "Display Name" %}</th>
+                          <th>{% trans "Product Type" %}</th>
+                          <th>{% trans "Price" %}</th>
+                          <th>{% trans "Details" %}</th>
+                          {% if is_seller %}<th>{% trans "Delete Action" %}</th>{% endif %}
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for product in product_list  %}
+                  <tr>
+                  {% if is_seller %}
+                  <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{product.pk}}"><span class="checkbox-label"></span></label></td>
+                  {% endif %}
+                  
+                  <td>{{product.name}}</td>
+                  <td>{{product.display_name}}</td>
+                  <td>{{product.product_type.display_name}}</td>
+                  <td><span>{{product.price}}</span> <span>{% trans "XAF" %}</span></td>
+                  <td><a class="mat-button mat-button-default" href="{{product.get_vendor_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                  {% if is_seller %}
+                  <td><button class="mat-button mat-button-default warning danger js-need-confirmation" type="submit"> {% trans "Delete" %}</button></td>
+                  {% endif %}
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+
+    </table>
+    </form>
+    {% include "tags/pagination.html" with page_set=product_list %}
+    </div><!--End of Table Wrapper-->

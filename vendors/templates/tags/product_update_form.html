@@ -1,0 +1,105 @@
+{% load i18n %} 
+{% load l10n %}
+<div class="responsive">
+    <div class="form-group">
+            
+    </div>
+    <form  class="form" name="product" action="{{product.get_vendor_update_url}}" method="POST">{% csrf_token %}
+        <input type="hidden" name="added_by" value="{{product.added_by.pk}}">
+        <div class="form-group">
+            <label for="name">{% trans "Product Name" %}</label>
+            <input type="text" id="name" name="name" value="{{product.name}}">
+        </div>
+        <div class="form-group">
+            <label for="display_name">{% trans "Display Name" %}</label>
+            <input type="text" id="display_name" name="display_name" value="{{product.display_name}}">
+        </div>
+        <div class="form-group">
+            <label for="price">{% trans "Price" %} </label>
+            <input type="text" id="price" name="price" value="{{product.price|unlocalize}}">
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">{% trans "Quantity" %}</label>
+            <input type="text" id="quantity" name="quantity" value="{{product.quantity}}">
+        </div>
+
+        <div class="form-group">
+            <label for="category">{% trans "Category" %}</label>
+            <select name="category" id="category">
+            <option value="{{product.category.pk}}" selected>{% trans product.category.display_name %}</option>
+            {% for c in category_list %} <option value="{{c.pk}}">{{c.name}}</option> {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">{% trans "Gender" %}</label>
+            <select name="gender" id="gender">
+            {% for k,v in gender_list %}
+                {% if k == product.gender %}
+                    <option value="{{k}}" selected>{% trans v %}</option> 
+                {% else %}
+                <option value="{{k}}">{% trans v %}</option> 
+                {% endif %}
+                
+            {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="brand">{% trans "Brand" %}</label>
+            <select name="brand" id="brand">
+            {% for brand in brand_list %} 
+                {% if brand == product.brand %}
+                    <option value="{{brand.pk}}" selected>{{brand.display_name}}</option>
+                {% else %}
+                    <option value="{{brand.pk}}">{{brand.display_name}}</option>
+                {% endif %}
+            {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+                <label for="product-type">{% trans "Product Type" %}</label>
+                <select name="product_type" id="product-type">
+                {% for p_type in product_type_list %} 
+                    {% if p_type == product.product_type %}
+                        <option value="{{p_type.pk}}" selected>{{p_type.display_name}}</option>
+                    {% else %}
+                        <option value="{{p_type.pk}}">{{p_type.display_name}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select>
+            </div>
+
+        <div class="form-group">
+            <label for="sold_by">{% trans "Merchant" %}</label>
+            <select name="sold_by" id="sold_by">
+            {% for u in user_list %} 
+                {% if u.pk == product.sold_by.pk %}
+                    <option value="{{u.pk}}" selected>{{u.username}}</option>
+                {% else %}
+                    <option value="{{u.pk}}">{{u.username}}</option>
+                {% endif %}
+            {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="short_description">{% trans "Short Description" %}</label>
+            <textarea id="short_description" name="short_description" cols="30" rows="10">{{product.short_description}}</textarea>
+            <span class="char-counter">{{product.short_description|length}}</span><span>/164</span>
+        </div>
+
+        <div class="form-group">
+            <label for="description">{% trans "Description" %}</label>
+            <textarea id="description" name="description" cols="30" rows="10">{{product.description}}</textarea>
+            <span class="char-counter">{{product.description|length}}</span><span>/600</span>
+        </div>
+        
+        <div class="form-group row">
+            <a class="mat-button mat-button-text js-cancel" href="{%url 'vendors:products'%}">{% trans "Cancel" %}</a>
+            <button class="mat-button mat-button-default" type="submit">{% trans "Update Product" %}</button>
+        </div>
+    </form>
+</div>

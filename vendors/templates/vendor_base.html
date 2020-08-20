@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+{% load i18n %} 
+{% block META_REDIRECT %}
+        
+{% endblock META_REDIRECT %}
+
+{% block HEADER_BANNER %}
+<div class="container">
+    <div class="mat-box full">
+          <div class="mat-box-title">
+            {% if balance %}
+            <p> <span>{% trans "Balance" %}</span>  <span>{{balance.balance}} {% trans "XAF" %}</span></p>
+            {% else %}
+            <p> <span>{% trans "Balance" %}</span>   <span>0 {% trans "XAF" %}</span> </p>
+            {% endif %}
+            
+            <p><span>{% trans "Sold Products" %}</span>  <span>{{number_sold_products}}</span></p>
+            <p><span>{% trans "Number of products" %} </span> <span>{{product_count}}</span></p>
+          </div>
+          <div class="mat-box-content">
+
+          </div>
+          <div class="container">
+              <ul class="actions row" role="navigation">
+                  <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a></li>
+                  <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:sold-products' %}"><i class="fas fa-list icon"></i><span>{% trans "Sold products" %}</span></a></li>
+                  <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:payments' %}"><i class="fas fa-list icon"></i><span>{% trans "Payments" %}</span></a></li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+              </ul>
+          </div>
+        </div><!--End of mat-box-->
+</div>
+{% endblock HEADER_BANNER %}
+{% block MAIN %}
+
+{% endblock MAIN %}

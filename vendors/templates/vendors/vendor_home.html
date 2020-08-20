@@ -1,4 +1,4 @@
-{% extends "vendors_base.html"%}
+{% extends "vendor_base.html"%}
 {% load i18n %}
 
 {% block HEADER_BANNER %}
@@ -44,7 +44,7 @@
                   <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a></li>
                   <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:sold-products' %}"><i class="fas fa-list icon"></i><span>{% trans "Sold products" %}</span></a></li>
                   <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:payments' %}"><i class="fas fa-list icon"></i><span>{% trans "Payments" %}</span></a></li>
-                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Home" %}</span></a></li>
               </ul>
           </div>
         </div><!--End of mat-box-->
@@ -73,7 +73,7 @@
                     <td data-label="{% trans 'Brand' %}">{{p.product.product.brand.display_name}} </td>
                     <td data-label="{% trans 'Price' %}">{{p.product.price}} {% trans "XAF" %}</td>
                     <td data-label="{% trans 'Date' %}">{{p.created_at|date:"F j, Y"}}</td>
-                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{p.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{p.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   

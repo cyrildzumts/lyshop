@@ -1,0 +1,37 @@
+{% extends "vendor_base.html"%}
+{% load i18n %}
+
+{% block MAIN %}
+{% if is_seller %}
+
+
+<div class="container">
+        <div class="mat-box full">
+          <div class="mat-box-title">
+            <h3> {% trans "Name" %} : {{type_attribute.name}} </h3>
+            <h4> {% trans "Display Name" %} : {{type_attribute.display_name}}</h4>
+          </div>
+          <div class="mat-box-content">
+            <div><span>{% trans "Type" %}</span> <span>{{type_attribute.attribute_type}}</span></div>
+            <div>
+                <span>{% trans "Description" %}</span>
+                <p>{{type_attribute.description}}</p>
+            </div>
+          </div>
+          <div class="container">
+              <ul class="actions row" role="navigation">
+                  <li class="list-item"><a class="mat-button mat-button-default" href="{{type_attribute.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>
+                  <li class="list-item"> <a class="mat-button mat-button-default" href="{% url 'vendors:product-type-attribute-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Produt Attribute Type" %}</span></a> </li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:product-type-attributes' %}"><i class="fas fa-list icon"></i><span>{% trans "Product Attribute Types" %}</span></a> </li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+              </ul>
+          </div>
+        </div><!--End of mat-box-->
+</div>
+
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN %}

@@ -138,8 +138,14 @@ class Brand(models.Model):
     def get_update_url(self):
         return reverse("dashboard:brand-update", kwargs={"brand_uuid": self.brand_uuid})
 
-    def get_delete_url(self):
-        return reverse("dashboard:brand-delete", kwargs={"brand_uuid": self.brand_uuid})
+    def get_vendor_url(self):
+        return reverse("vendors:brand-detail", kwargs={"brand_uuid": self.brand_uuid})
+
+    def get_vendor_update_url(self):
+        return reverse("vendors:brand-update", kwargs={"brand_uuid": self.brand_uuid})
+
+    def get_vendor_delete_url(self):
+        return reverse("vendors:brand-delete", kwargs={"brand_uuid": self.brand_uuid})
 
 
 class ProductAttribute(models.Model):
@@ -207,6 +213,15 @@ class ProductType(models.Model):
     
     def get_absolute_url(self):
         return reverse("dashboard:product-type-detail", kwargs={"type_uuid": self.type_uuid})
+
+    
+    def get_vendor_url(self):
+        return reverse("vendors:product-type-detail", kwargs={"type_uuid": self.type_uuid})
+
+    def get_vendor_update_url(self):
+        return reverse("vendors:product-type-update", kwargs={"type_uuid": self.type_uuid})
+    
+
     
 
 
@@ -239,8 +254,6 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("catalog:product-detail", kwargs={"product_uuid": self.product_uuid})
     
-    def get_vendor_url(self):
-        return reverse("vendors:product-detail", kwargs={"product_uuid": self.product_uuid})
     
     def get_dashboard_url(self):
         return reverse("dashboard:product-detail", kwargs={"product_uuid": self.product_uuid})
@@ -250,6 +263,15 @@ class Product(models.Model):
     
     def get_delete_url(self):
         return reverse("dashboard:product-delete", kwargs={"product_uuid": self.product_uuid})
+
+    def get_vendor_url(self):
+        return reverse("vendors:product-detail", kwargs={"product_uuid": self.product_uuid})
+    
+    def get_vendor_update_url(self):
+        return reverse("vendors:product-update", kwargs={"product_uuid": self.product_uuid})
+    
+    def get_vendor_delete_url(self):
+        return reverse("vendors:product-delete", kwargs={"product_uuid": self.product_uuid})
     
 
 class SKUModel(models.Model):
@@ -289,8 +311,15 @@ class ProductVariant(models.Model):
     def get_update_url(self):
         return reverse("dashboard:product-variant-update", kwargs={"variant_uuid": self.product_uuid})
 
+    def get_vendor_update_url(self):
+        return reverse("vendors:product-variant-update", kwargs={"variant_uuid": self.product_uuid})
+
     def get_delete_url(self):
         return reverse("dashboard:product-variant-delete", kwargs={"variant_uuid": self.product_uuid})
+
+    
+    def get_vendor_delete_url(self):
+        return reverse("vendors:product-variant-delete", kwargs={"variant_uuid": self.product_uuid})
 
 
 
@@ -326,6 +355,14 @@ class ProductImage(models.Model):
         return reverse("dashboard:product-image-delete", kwargs={"image_uuid": self.image_uuid})
 
 
+    def get_vendor_url(self):
+        return reverse("dashboard:product-image-detail", kwargs={"image_uuid": self.image_uuid})
+    
+    def get_vendor_update_url(self):
+        return reverse("dashboard:product-image-update", kwargs={"image_uuid": self.image_uuid})
+
+    def get_vendor_delete_url(self):
+        return reverse("dashboard:product-image-delete", kwargs={"image_uuid": self.image_uuid})
 
 
 

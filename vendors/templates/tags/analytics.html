@@ -1,0 +1,44 @@
+{% load static %}
+{% load i18n %}
+
+
+
+<div class="container">
+
+        <div class="col-m-12 col-6">
+            <div class="diagram-wrapper">
+                <div class="title">{% trans "Orders" %}</div>
+                <div class="diagram">
+                    <canvas id="orders-diagram" ></canvas>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-m-12 col-6">
+            <div class="diagram-wrapper">
+                <div class="title">{% trans "Orders Price" %}</div>
+                <div class="diagram">
+                    <canvas id="orders-price-diagram" ></canvas>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-m-12 col-6">
+            <div class="diagram-wrapper">
+                <div class="title">{% trans "Products" %}</div>
+                <div class="diagram">
+                    <canvas id="products-diagram" ></canvas>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-m-12 col-6">
+            <div class="diagram-wrapper">
+                <div class="title">{% trans "Logged in Users" %}</div>
+                <div class="diagram">
+                    <canvas id="users-diagram" ></canvas>
+                </div>
+            </div>
+            
+        </div>
+</div>

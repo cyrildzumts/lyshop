@@ -1,0 +1,52 @@
+{% load i18n %}
+{% load l10n %}
+{% if is_seller %}
+<div class="responsive">
+    <div class="form-group">
+            
+    </div>
+    <form class="form" name="variant" action="{{variant.get_vendor_update_url}}" method="POST">{% csrf_token %}
+        <input type="hidden" name="product" value="{{variant.product.pk}}">
+        {{ attribute_formset.management_form }}
+        <div class="mat-box">
+
+            <div class="form-group">
+                <label for="name">{% trans "Product Name" %}</label>
+                <input type="text" id="name" name="name" value="{{variant.name}}">
+            </div>
+            <div class="form-group">
+                <label for="display_name">{% trans "Display Name" %}</label>
+                <input type="text" id="display_name" name="display_name" value="{{variant.display_name}}" >
+            </div>
+            <div class="form-group">
+                <label for="price">{% trans "Price(XAF)" %} </label>
+                <input type="text" id="price" name="price" value="{{variant.price|unlocalize}}">
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">{% trans "Quantity" %}</label>
+                <input type="text" id="quantity" name="quantity" value="{{variant.quantity}}">
+            </div>
+        </div>
+        {% comment %}<div class="mat-box">
+        <span class="mat-button js-clear-input" data-target="#attrs-container">{% trans "Clear Attribute Form" %}</span>
+        <div id="attrs-container" class="container js-input-container">
+            {% for f in attribute_formset %}
+            <div class="row">
+            {{f}}
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+        {% endcomment %}
+        <div class="form-group row">
+            <a class="mat-button mat-button-text js-cancel" href="{{variant.get_vendor_url}}">{% trans "Cancel" %}</a>
+            <button class="mat-button mat-button-default" type="submit">{% trans "Add" %}</button>
+        </div>
+    </form>
+</div>
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}

@@ -4,10 +4,11 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User, Group
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from catalog.models import Product, ProductVariant
 from accounts.models import Account
 from lyshop import settings
+from vendors import vendors_service
 from vendors.models import Balance, BalanceHistory, VendorPayment, VendorPaymentHistory, SoldProduct
 import logging
 
@@ -16,6 +17,12 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 @login_required
 def vendor_home(request):
+
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
     template_name = "vendors/vendor_home.html"
     page_title = _("Vendor-Home")
 
@@ -44,17 +51,12 @@ def vendor_home(request):
 @login_required
 def product_list(request):
     username = request.user.username
-    '''
-    if not PermissionManager.user_can_access_dashboard(request.user):
-        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    if not PermissionManager.user_can_view_product(request.user):
-        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
-        raise PermissionDenied
-    '''
-
-    template_name = 'dashboard/product_list.html'
+    template_name = 'vendors/product_list.html'
     page_title = _('Products')
     context = {
         'page_title': page_title,
@@ -71,25 +73,168 @@ def product_list(request):
         list_set = None
     context['page_title'] = page_title
     context['product_list'] = list_set
-    #context.update(get_view_permissions(request.user))
+
     return render(request,template_name, context)
+
+
+@login_required
+def product_detail(request, product_uuid=None):
+    template_name = 'vendors/product_detail.html'
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    page_title = _('Product Detail')
+    
+
+    product = get_object_or_404(models.Product, product_uuid=product_uuid, sold_by=request.user)
+    images = ProductImage.objects.filter(product=product)
+    variants = models.ProductVariant.objects.filter(product=product)
+    context = {
+        'page_title': page_title,
+        'product': product,
+        'variant_list': variants,
+        'image_list': images
+    }
+    return render(request,template_name, context)
+
+@login_required
+def product_update(request, product_uuid=None):
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/product_update.html'
+    page_title = _('Product Update')
+    context = {
+        'page_title': page_title,
+    }
+    form = None
+    product = get_object_or_404(models.Product, product_uuid=product_uuid)
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductForm(postdata, instance=product)
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, _('Product updated'))
+            logger.info(f'product {product.name} updated by user \"{username}\"')
+            return redirect('vendors:product-detail', product_uuid=product_uuid)
+        else:
+            messages.error(request, _('Product not updated'))
+            logger.error(f'Error on updating product. Action requested by user \"{username}\"')
+            logger.error(form.errors)
+    else:
+        form = ProductForm(instance=product)
+    context['form'] = form
+    context['product'] = product
+    context['brand_list'] = models.Brand.objects.all()
+    context['category_list'] = models.Category.objects.all()
+    context['user_list'] = User.objects.all()
+    context['product_type_list'] = ProductType.objects.all()
+    context['gender_list'] = Catalog_Constants.GENDER
+
+    return render(request, template_name, context)
+
+@login_required
+def product_delete(request, product_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    product = get_object_or_404(models.Product, product_uuid=product_uuid)
+    p_name = product.name
+    Product.objects.filter(pk=product.pk).delete()
+    logger.info(f'Product \"{p_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('Product deleted'))
+    return redirect('vendors:products')
+
+
+@login_required
+def products_delete(request):
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('products')
+
+    if len(id_list):
+        product_id_list = list(map(int, id_list))
+        Product.objects.filter(id__in=product_id_list).delete()
+        messages.success(request, f"Products \"{id_list}\" deleted")
+        logger.info(f"Products \"{id_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"Products \"{id_list}\" could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('vendors:products')
+
+
+@login_required
+def product_create(request):
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/product_create.html'
+    page_title = _('New Product')
+    
+    context = {
+        'page_title': page_title,
+    }
+    form = None
+    
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductForm(postdata)
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, _('New Product created'))
+            logger.info(f'New product added by user \"{username}\"')
+            return redirect('vendors:products')
+        else:
+            messages.error(request, _('Product not created'))
+            logger.error(f'Error on creating new product. Action requested by user \"{username}\"')
+    else:
+        form = ProductForm()
+    context['form'] = form
+    context['brand_list'] = models.Brand.objects.all()
+    context['category_list'] = models.Category.objects.all()
+    context['user_list'] = User.objects.all()
+    context['product_type_list'] = ProductType.objects.all()
+    context['gender_list'] = Catalog_Constants.GENDER
+    return render(request, template_name, context)
 
 
 
 @login_required
 def product_variant_list(request, product_uuid):
     username = request.user.username
-    '''
-    if not PermissionManager.user_can_access_dashboard(request.user):
-        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    if not PermissionManager.user_can_view_product(request.user):
-        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
-        raise PermissionDenied
-    '''
-
-    template_name = 'dashboard/product_list.html'
+    template_name = 'vendors/product_variant_list.html'
     page_title = _('Products')
     context = {
         'page_title': page_title,
@@ -106,58 +251,95 @@ def product_variant_list(request, product_uuid):
         list_set = None
     context['page_title'] = page_title
     context['product_list'] = list_set
-    #context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 
 @login_required
 def product_detail(request, product_uuid):
-    pass
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
 
 
 
 @login_required
 def product_variant_detail(request, product_uuid):
-    pass
-
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
 
 @login_required
 def sold_product_list(request):
-    pass
-
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
 
 
 
 
 @login_required
 def sold_product_detail(request, product_uuid):
-    pass
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
 
 @login_required
 def balance_history(request, balance_uuid):
-    pass
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
 
 
 @login_required
 def balance_history_detail(request, history_uuid):
-    pass
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
 
 @login_required
 def vendor_payments(request):
-    pass
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
 
 
 @login_required
 def payment_details(request, payment_uuid):
-    pass
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
 
 
 @login_required
 def payment_history(request):
-    pass
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
 
 
 @login_required
 def request_payment(request):
-    pass
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
 

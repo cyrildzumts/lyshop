@@ -288,7 +288,7 @@ def category_products(request, category_uuid=None):
 
 
 @login_required
-def create_product(request):
+def product_create(request):
     template_name = 'dashboard/product_create.html'
     page_title = _('New Product')
     username = request.user.username
