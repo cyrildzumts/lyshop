@@ -39,9 +39,18 @@ def product_list(request):
     pass
 
 
+@login_required
+def sold_product_list(request):
+    pass
+
 
 @login_required
 def product_detail(request, product_uuid):
+    pass
+
+
+@login_required
+def sold_product_detail(request, product_uuid):
     pass
 
 @login_required
