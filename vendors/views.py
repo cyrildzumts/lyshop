@@ -146,12 +146,9 @@ def product_update(request, product_uuid=None):
 @login_required
 def product_delete(request, product_uuid=None):
     username = request.user.username
-    if not PermissionManager.user_can_access_dashboard(request.user):
-        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
-        raise PermissionDenied
-
-    if not PermissionManager.user_can_delete_product(request.user):
-        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
     if request.method != "POST":
@@ -221,8 +218,8 @@ def product_create(request):
     else:
         form = ProductForm()
     context['form'] = form
-    context['brand_list'] = models.Brand.objects.all()
-    context['category_list'] = models.Category.objects.all()
+    context['brand_list'] = Brand.objects.all()
+    context['category_list'] = Category.objects.all()
     context['user_list'] = User.objects.all()
     context['product_type_list'] = ProductType.objects.all()
     context['gender_list'] = Catalog_Constants.GENDER
