@@ -38,14 +38,16 @@ def vendor_home(request):
 def product_list(request):
     pass
 
-@login_required
-def payment_history(request):
-    pass
+
 
 @login_required
-def balance_history(request):
+def balance_history(request, balance_uuid):
     pass
 
+
+@login_required
+def balance_history_detail(request, history_uuid):
+    pass
 
 @login_required
 def vendor_payments(request):
@@ -55,6 +57,12 @@ def vendor_payments(request):
 @login_required
 def payment_details(request, payment_uuid):
     pass
+
+
+@login_required
+def payment_history(request):
+    pass
+
 
 @login_required
 def request_payment(request):

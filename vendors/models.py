@@ -36,7 +36,7 @@ class BalanceHistory(models.Model):
         return f"BalanceHistory {self.id}"
 
     def get_absolute_url(self):
-        return reverse("vendors:balance-detail", kwargs={"history_uuid": self.history_uuid})
+        return reverse("vendors:balance-history-detail", kwargs={"history_uuid": self.history_uuid})
     
 
 class VendorPayment(models.Model):
@@ -64,9 +64,6 @@ class VendorPaymentHistory(models.Model):
 
     def __str__(self):
         return f"VendorPaymentHistory {self.id}"
-
-    def get_absolute_url(self):
-        return reverse("vendors:vendor-payment-history-detail", kwargs={"history_uuid": self.history_uuid})
 
 
 class SoldProduct(models.Model):
