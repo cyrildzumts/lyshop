@@ -150,6 +150,7 @@ li a{
   background-color: var(--header-bg);
   color: var(--header-color);
   font-family: 'Montserrat';
+  font-size: 1.2em;
   height: 48px;
   padding: 0;
 }
