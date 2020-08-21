@@ -93,9 +93,9 @@ def product_detail(request, product_uuid=None):
     page_title = _('Product Detail')
     
 
-    product = get_object_or_404(models.Product, product_uuid=product_uuid, sold_by=request.user)
+    product = get_object_or_404(Product, product_uuid=product_uuid, sold_by=request.user)
     images = ProductImage.objects.filter(product=product)
-    variants = models.ProductVariant.objects.filter(product=product)
+    variants = ProductVariant.objects.filter(product=product)
     context = {
         'page_title': page_title,
         'product': product,
