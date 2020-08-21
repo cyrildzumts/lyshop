@@ -312,7 +312,7 @@ class ProductVariant(models.Model):
         return reverse("dashboard:product-variant-delete", kwargs={"variant_uuid": self.product_uuid})
 
     def get_vendor_url(self):
-        return reverse("vendors:product-variant-detail", kwargs={"product_uuid": self.product_uuid})
+        return reverse("vendors:product-variant-detail", kwargs={"variant_uuid": self.product_uuid})
 
     def get_vendor_update_url(self):
         return reverse("vendors:product-variant-update", kwargs={"variant_uuid": self.product_uuid})
