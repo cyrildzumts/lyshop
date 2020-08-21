@@ -256,15 +256,6 @@ def product_variant_list(request, product_uuid):
     return render(request,template_name, context)
 
 
-@login_required
-def product_detail(request, product_uuid):
-    username = request.user.username
-    
-    if not vendors_service.is_vendor(request.user):
-        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
-        raise PermissionDenied
-
-
 
 @login_required
 def product_variant_detail(request, product_uuid):
