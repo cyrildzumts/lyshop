@@ -5,12 +5,13 @@
 <div class="container">
     <ul class="actions">
         <li class="list-item"><a class="mat-button mat-button-default" href="{% url 'vendors:product-create' %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Product" %}</span></a></li>
+        <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:products' %}"><i class="fas fa-list icon"></i> <span>{% trans "Products" %}</span></a></li>
         
     </ul>
 </div>
 <div class="container">
     <div class="col-m-12 col-9">
-        {% include 'tags/vendor_product_list_template.html' with product_list=product_list %}   
+        {% include 'vendor_tags/product_list_template.html' with product_list=product_list %}   
     </div>
 </div>
 {% endblock MAIN %}

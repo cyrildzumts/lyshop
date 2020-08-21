@@ -302,20 +302,20 @@ class ProductVariant(models.Model):
     def get_absolute_url(self):
         return reverse("catalog:product-variant-detail", kwargs={"variant_uuid": self.product_uuid})
     
-    def get_vendor_url(self):
-        return reverse("vendors:product-variant-detail", kwargs={"product_uuid": self.product_uuid})
-    
     def get_dashboard_url(self):
         return reverse("dashboard:product-variant-detail", kwargs={"variant_uuid": self.product_uuid})
     
     def get_update_url(self):
         return reverse("dashboard:product-variant-update", kwargs={"variant_uuid": self.product_uuid})
+    
+    def get_delete_url(self):
+        return reverse("dashboard:product-variant-delete", kwargs={"variant_uuid": self.product_uuid})
+
+    def get_vendor_url(self):
+        return reverse("vendors:product-variant-detail", kwargs={"product_uuid": self.product_uuid})
 
     def get_vendor_update_url(self):
         return reverse("vendors:product-variant-update", kwargs={"variant_uuid": self.product_uuid})
-
-    def get_delete_url(self):
-        return reverse("dashboard:product-variant-delete", kwargs={"variant_uuid": self.product_uuid})
 
     
     def get_vendor_delete_url(self):
