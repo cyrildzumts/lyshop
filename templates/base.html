@@ -53,7 +53,7 @@
       {% endif %}
       
       {% if request.user.is_authenticated %}
-        {% if is_seller %}<a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"> {% trans "Vendor Panel" %}</a>{% endif %}
+        {% if is_seller %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"> {% trans "Vendor Panel" %}</a></li>{% endif %}
         {% if account %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{% trans 'My Account' %}</a></li>{% endif %}
       
         <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}">
