@@ -12,7 +12,7 @@
                 <div class="title">
                     <h3>{% trans "Brand Update" %}</h3>
                 </div>
-                <form class="form" name="add-brand" action="{{brand.get_update_url}}" method="POST">{% csrf_token %}
+                <form class="form" name="add-brand" action="{{brand.get_vendor_update_url}}" method="POST">{% csrf_token %}
                     <input type="hidden" name="added_by" value="{{brand.added_by.pk}}">
                     <div class="container">
                     

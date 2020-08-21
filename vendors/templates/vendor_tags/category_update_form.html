@@ -10,7 +10,7 @@
         <div class="title">
             <h3>{% trans "Category" %}</h3>
         </div>
-        <form class="form" name="category" action="{{category.get_update_url}}" method="POST">{% csrf_token %}
+        <form class="form" name="category" action="{{category.get_vendor_update_url}}" method="POST">{% csrf_token %}
             <input type="hidden" name="added_by" value="{{category.added_by.pk}}">
             <div class="container">
             

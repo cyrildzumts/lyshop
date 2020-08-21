@@ -10,7 +10,7 @@
                 
                 <ul class="actions">
                     <li><a class="mat-button mat-button-text" href="{{image.get_delete_url}}"> {% trans "Delete" %}</a></li>
-                    <li><a class="mat-button mat-button-text" href="{{image.product.get_dashboard_url}}"> {% trans "Back" %}</a></li>
+                    <li><a class="mat-button mat-button-text" href="{{image.product.get_vendor_url}}"> {% trans "Back" %}</a></li>
                 </ul>
             </div>
         
@@ -19,7 +19,7 @@
             <div class="mat-list-wrapper">
                 <div class="mat-list-header">
                     <div class="title">
-                        <span>{{image.product.name}}</span> <span>{{image.product.brand}}</span>
+                        <span>{{image.product.display_name}}</span> <span>{{image.product.brand.display_name}}</span>
                     </div>
                 </div>
                 

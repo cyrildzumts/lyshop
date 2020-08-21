@@ -9,9 +9,9 @@
         </div> 
   </div>
 {% endblock HEADER_BANNER %}
-{% block MAIN_CONTENT %}
+{% block MAIN %}
 
-{% if can_change_product %}
+{% if is_seller %}
 
 
 <div class="responsive">
@@ -69,4 +69,4 @@
 </div>
 {% endif %}
 
-{% endblock MAIN_CONTENT %}
+{% endblock MAIN %}
