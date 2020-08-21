@@ -156,6 +156,7 @@ TEMPLATES = [
                 'catalog.context_processors.catalog_context',
                 'orders.context_processors.order_context',
                 'dashboard.context_processors.dashboard_context',
+                'vendors.context_processors.vendor_context',
 
             ],
         },
