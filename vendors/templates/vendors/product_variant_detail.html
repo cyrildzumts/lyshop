@@ -33,7 +33,7 @@
         </div>
       </div><!--End of title-->
       <div class="actions">
-          <a class="mat-button mat-button-default" href="{{variant.get_update_url}}"><span class="fas fa-pen icon"></span><span class="">{% trans "Edit" %}</span></a>
+          <a class="mat-button mat-button-default" href="{{variant.get_vendor_update_url}}"><span class="fas fa-pen icon"></span><span class="">{% trans "Edit" %}</span></a>
 
           <form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
               <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash icon"></span><span class="">{% trans "Delete" %}</span></button>
