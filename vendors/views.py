@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import F, Q, Sum, Count
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.decorators import login_required
@@ -7,6 +7,7 @@ from django.contrib.auth.models import User, Group
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.utils import timezone
 from django.forms import formset_factory, modelformset_factory
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidden
 
 from catalog.models import Product, ProductVariant, Brand, Category, ProductTypeAttribute, ProductImage, ProductType, ProductAttribute
 from catalog.forms import (BrandForm, ProductAttributeForm, 
@@ -15,10 +16,11 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
 )
 from catalog import constants as Catalog_Constants
 from accounts.models import Account
-from lyshop import settings
+from lyshop import utils, settings
 from vendors import vendors_service
 from vendors.models import Balance, BalanceHistory, VendorPayment, VendorPaymentHistory, SoldProduct
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -512,6 +514,224 @@ def product_images(request, product_uuid):
     context['page_title'] = page_title
     context['image_list'] = list_set
     context['product'] = product
+    return render(request,template_name, context)
+
+
+
+@login_required
+def add_attributes(request, variant_uuid):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    form = None
+    username = request.user.username
+    variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid, product__sold_by=request.user)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = AddAttributeForm(postdata)
+        logger.info("Attribute formset valid checking")
+        if form.is_valid():
+            attributes = form.cleaned_data['attributes']
+            variant.attributes.add(*attributes)
+            messages.success(request, _('Attribute formset valid'))
+            logger.info(f'New attributes added by user \"{username}\"')
+            logger.info(attributes)
+        else:
+            messages.error(request, _('Attributes not added'))
+            logger.error(f'Error on adding new product variant attributes. Action requested by user \"{username}\"')
+            logger.error(form.errors)
+            
+    return redirect('vendors:product-variant-detail', variant_uuid=variant_uuid)
+
+
+@login_required
+def remove_attributes(request, variant_uuid):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    form = None
+    username = request.user.username
+    variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid, product__sold_by=request.user)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = AddAttributeForm(postdata)
+        if form.is_valid():
+            attributes = form.cleaned_data['attributes']
+            variant.attributes.remove(*attributes)
+            messages.success(request, _('Attribute removed'))
+            logger.info(f'attributes removed from product {variant.name} added by user \"{username}\"')
+        else:
+            messages.error(request, _('Attributes not removed'))
+            logger.error(f'Error on removing attributes from product variant {variant.name}. Action requested by user \"{username}\"')
+            logger.error(form.errors)
+            
+    return redirect('vendors:product-variant-detail', variant_uuid=variant_uuid)
+
+
+@login_required
+def attribute_create(request, variant_uuid):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/attribute_create.html'
+    page_title = _('New Attribute')
+    
+    form = None
+    username = request.user.username
+    variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid, product__sold_by=request.user)
+    attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        formset = attribute_formset(postdata)
+        logger.info("Attribute formset valid checking")
+        if formset.is_valid():
+            logger.info("Attribute formset valid")
+            attributes = formset.save()
+            variant.attributes.add(*attributes)
+            messages.success(request, _('Attribute formset valid'))
+            logger.info(f'New attributes added by user \"{username}\"')
+            return redirect('vendors:product-variant-detail', variant_uuid=variant_uuid)
+        else:
+            messages.error(request, _('Product variant not created'))
+            logger.error(f'Error on creating new product variant. Action requested by user \"{username}\"')
+            logger.error(formset.errors)
+            return redirect('vendors:product-variant-detail', variant_uuid=variant_uuid)
+    else:
+        form = ProductVariantForm()
+    context = {
+        'page_title': page_title,
+        'formset' : attribute_formset(),
+        'variant' : variant
+    }
+    context['attribute_formset'] = attribute_formset
+    context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
+    return render(request, template_name, context)
+
+@login_required
+def attribute_delete(request, attribute_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    attribute = get_object_or_404(ProductAttribute, attribute_uuid=attribute_uuid)
+    ProductAttribute.objects.filter(id=attribute.id).delete()
+    logger.info(f'Attribute \"{attribute.name}\" - value \"{attribute.value}\"  removed  by user \"{request.user.username}\"')
+    messages.success(request, _('Product deleted'))
+    return redirect('vendors:attributes' )
+
+
+@login_required
+def delete_attributes(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    form = None
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = DeleteAttributeForm(postdata)
+        if form.is_valid():
+            attributes = form.cleaned_data['attributes']
+            ProductAttribute.objects.filter(id__in=attributes).delete()
+            messages.success(request, _('Attribute removed'))
+            logger.info(f'attributes {attributes} removed  by user \"{username}\"')
+        else:
+            messages.error(request, _('Attributes not removed'))
+            logger.error(f'Error on removing attributes. Action requested by user \"{username}\"')
+            logger.error(form.errors)
+            
+    return redirect('vendors:attributes')
+
+
+@login_required
+def attribute_detail(request, attribute_uuid):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/attribute_detail.html'
+    page_title = _('Attribute')
+    
+    attribute = get_object_or_404(ProductAttribute, attribute_uuid=attribute_uuid)
+    context = {
+        'page_title': page_title,
+        'attribute' : attribute,
+        'product_list': attribute.products.filter(product__sold_by=request.user)
+    }
+    return render(request,template_name, context)
+
+@login_required
+def attribute_update(request, attribute_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/attribute_update.html'
+    page_title = _('Attribute Update')
+    
+    form = None
+    username = request.user.username
+    attribute = get_object_or_404(ProductAttribute, attribute_uuid=attribute_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductAttributeForm(postdata, instance=attribute)
+        if form.is_valid():
+            attribute = form.save()
+            messages.success(request, _('Attribute updated'))
+            logger.info(f'Attribute updated by user \"{username}\"')
+            return redirect(attribute.get_vendor_url())
+        else:
+            messages.error(request, _('Attribute not updated'))
+            logger.error(f'Error on updated Attribute. Action requested by user \"{username}\"')
+    else:
+        form = ProductAttributeForm(instance=attribute)
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'brand': attribute
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required
+def attributes(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/attribute_list.html'
+    page_title = _('Product Attributes')
+
+
+    queryset = ProductAttribute.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title': page_title,
+        'attribute_list': list_set
+    }
     return render(request,template_name, context)
 
 

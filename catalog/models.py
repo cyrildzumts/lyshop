@@ -166,6 +166,9 @@ class ProductAttribute(models.Model):
     def get_dashboard_url(self):
         return reverse("dashboard:attribute-detail", kwargs={"attribute_uuid": self.attribute_uuid})
 
+    def get_vendor_url(self):
+        return reverse("vendors:attribute-detail", kwargs={"attribute_uuid": self.attribute_uuid})
+
     def get_update_url(self):
         return reverse("dashboard:attribute-update", kwargs={"attribute_uuid": self.attribute_uuid})
 

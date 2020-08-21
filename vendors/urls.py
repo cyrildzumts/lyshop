@@ -20,6 +20,15 @@ urlpatterns = [
     path('products/delete/', views.products_delete, name='products-delete'),
     path('products/create/', views.product_create, name='product-create'),
 
+    path('products/attributes/', views.attributes, name='attributes'),
+    path('products/attributes/detail/<uuid:attribute_uuid>/', views.attribute_detail, name='attribute-detail'),
+    path('products/attributes/update/<uuid:attribute_uuid>/', views.attribute_update, name='attribute-update'),
+    path('products/attributes/delete/', views.delete_attributes, name='attributes-delete'),
+    path('products/attributes/delete/<uuid:attribute_uuid>/', views.attribute_delete, name='attribute-delete'),
+    path('products/attributes/create/<uuid:variant_uuid>/', views.attribute_create, name='attribute-create'),
+    path('products/attributes/add/<uuid:variant_uuid>/', views.add_attributes, name='attribute-add'),
+    path('products/attributes/remove/<uuid:variant_uuid>/', views.remove_attributes, name='attribute-remove'),
+
     path('products/product-images/<uuid:product_uuid>/', views.product_images, name='product-images'),
     path('products/product-image/detail/<uuid:image_uuid>/', views.product_image_detail, name='product-image-detail'),
     path('products/product-image/update/<uuid:image_uuid>/', views.product_image_update, name='product-image-update'),
