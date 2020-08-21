@@ -38,7 +38,7 @@ def vendor_home(request):
         logger.warn("Request User has no balance")
     
     sold_product_list = SoldProduct.objects.filter(seller=request.user).select_related()[:5]
-    recent_products = Product.objects.filter(sold_by=request.user)[:5]
+    recent_products = Product.objects.filter(sold_by=request.user).order_by('-created_at')[:5]
     seller_product_queryset = ProductVariant.objects.filter(is_active=True, product__sold_by=request.user)
     product_count = seller_product_queryset.aggregate(product_count=Sum('quantity')).get('product_count', 0)
     number_sold_products = SoldProduct.objects.filter(seller=request.user).count()
