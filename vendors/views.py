@@ -357,6 +357,166 @@ def product_variant_delete(request, variant_uuid=None):
     messages.success(request, _('Product variant deleted'))
     return redirect(product.get_vendor_url())
 
+
+@login_required
+def product_image_create(request, product_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}    
+    template_name = "vendors/product_image_create.html"
+    page_title = "New Product Image" + " - " + settings.SITE_NAME
+    context['page_title'] = page_title
+    product = get_object_or_404(Product, product_uuid=product_uuid, sold_by=request.user)
+    forms = []
+    forms_valid = []
+    forms_errors = []
+    if request.method == "POST":
+        postdata = utils.get_postdata(request)
+        files = request.FILES.copy()
+        i = 1
+        for k,v in files.items():
+            forms.append(ProductImageForm(data={'name': f"{product.category.code}{product.brand.code}{product.id}-{i}", 'product': postdata.get('product'), 'product_variant': postdata.get('product_variant')},
+            files={'image' : v}))
+            i = i + 1
+        logger.debug(files)
+        logger.debug(f"Type of REQUEST.FILES : {type(files)}")
+        #for f in files:
+        #   logger.info(f"Image name : {f.name} -  Image size : {f.size} - Image type : {f.content_type}")
+        #form = ProductImageForm(postdata, request.FILES)
+        for f in forms:
+            forms_valid.append(f.is_valid())
+        if all(forms_valid):
+            logger.info("all image forms are valid.")
+            logger.info("Saving images ...")
+            for f in forms:
+                f.save()
+            logger.info("[OK] Saving images done.")
+            if request.is_ajax():
+                return JsonResponse({'status': 'OK', 'message' : 'files uploaded'})
+            return redirect(product.get_vendor_url())
+        else:
+            logger.error("at least one image form is not valid.")
+            for i in range(len(forms_valid)):
+                if not forms_valid[i]:
+                    forms_errors.append(forms[i].errors.as_json())
+            logger.error(f" Forms Errors  - Errors = {forms_errors}")
+            if request.is_ajax():
+                return JsonResponse({'status': 'NOT OK', 'message' : 'files not uploaded', 'errors' : forms_errors}, status=400)
+        '''
+        if form.is_valid():
+            logger.info("submitted product image form is valide")
+            logger.info("saving submitted product image form")
+            form.save()
+            logger.info("submitted form saved")
+            if request.is_ajax():
+                return JsonResponse({'status': 'OK', 'message' : 'files uploaded'})
+            return redirect('dashboard:product-detail', product_uuid=product_uuid)
+            
+        else:
+            logger.error("The form is not valide. Error : %s", form.non_field_errors)
+            logger.error("The form is not valide. Error : %s", form.errors)
+            if request.is_ajax():
+                return JsonResponse({'status': 'NOT OK', 'message' : 'files not uploaded', 'errors' : form.errors.as_json()}, status=400)
+        '''
+    form = ProductImageForm()
+    context['form'] = form
+    context['product'] = product
+    return render(request,template_name, context)
+
+@login_required
+def product_image_detail(request, image_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    image = get_object_or_404(ProductImage, image_uuid=image_uuid, product__sold_by=request.user)
+
+    template_name = "vendors/product_image_detail.html"
+    page_title = "Product Image" + " - " + settings.SITE_NAME
+    context['page_title'] = page_title
+    context['image'] = image
+    return render(request,template_name, context)
+
+
+def product_image_delete(request, image_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    context = {}
+
+    image = get_object_or_404(ProductImage, image_uuid=image_uuid, product__sold_by=request.user)
+    product = image.product
+    ProductImage.objects.filter(pk=image.pk).delete()
+    return redirect(product.get_vendor_url())
+
+@login_required
+def product_image_update(request, image_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    page_title = "Edit Product Image" + ' - ' + settings.SITE_NAME
+    template_name = "vendors/product_image_update.html"
+    image = get_object_or_404(ProductImage, image_uuid=image_uuid, product__sold_by=request.user)
+    if request.method =="POST":
+        form = ProductImageForm(request.POST, request.FILES, instance=image)
+        if form.is_valid():
+            logger.info("ProductImageForm is valid")
+            form.save()
+            return redirect(image.product.get_vendor_url())
+        else:
+            logger.info("Edit image form is not valid. Errors : %s", form.errors)
+            logger.info("Form clean data : %s", form.cleaned_data)
+    elif request.method == 'GET':
+        form = ProductImageForm(instance=image)
+    context = {
+            'page_title': page_title,
+            'template_name': template_name,
+            'image'  : image,
+            'form': form
+        }
+    
+    return render(request, template_name,context )
+
+@login_required
+def product_images(request, product_uuid):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    product = get_object_or_404(Product, product_uuid=product_uuid, sold_by=request.user)
+    queryset = ProductImage.objects.filter(product=product).order_by('-created_at')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    template_name = "vendors/product_images_list.html"
+    page_title = "Product Images" + " - " + settings.SITE_NAME
+    context['page_title'] = page_title
+    context['image_list'] = list_set
+    context['product'] = product
+    return render(request,template_name, context)
+
+
+
+
 @login_required
 def sold_product_list(request):
     username = request.user.username

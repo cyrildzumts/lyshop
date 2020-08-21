@@ -20,6 +20,12 @@ urlpatterns = [
     path('products/delete/', views.products_delete, name='products-delete'),
     path('products/create/', views.product_create, name='product-create'),
 
+    path('products/product-images/<uuid:product_uuid>/', views.product_images, name='product-images'),
+    path('products/product-image/detail/<uuid:image_uuid>/', views.product_image_detail, name='product-image-detail'),
+    path('products/product-image/update/<uuid:image_uuid>/', views.product_image_update, name='product-image-update'),
+    path('products/product-image/delete/<uuid:image_uuid>/', views.product_image_delete, name='product-image-delete'),
+    path('products/product-image/create/<uuid:product_uuid>', views.product_image_create, name='product-image-create'),
+
     path('products/product-variant/detail/<uuid:variant_uuid>/', views.product_variant_detail, name='product-variant-detail'),
     path('products/product-variant/update/<uuid:variant_uuid>/', views.product_variant_update, name='product-variant-update'),
     path('products/product-variant/delete/<uuid:variant_uuid>/', views.product_variant_delete, name='product-variant-delete'),
