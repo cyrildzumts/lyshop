@@ -48,20 +48,19 @@
   </div>
     <ul class="mat-list site-panel">
         <li class="mat-list-item"><a class="mat-button mat-button-text" href="{%url 'catalog:catalog-home'%}">{% trans "Catalog" %}</a></li>
-      {% comment %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="#discover">{% trans 'Discover our services'%}</a></li>
-      {% endcomment %}
       {% if is_dashboard_allowed %}
        <li class="mat-list-item"><a class="mat-button mat-button-text" href="{%url 'dashboard:home'%}">{% trans "Dashboard" %}</a></li>
       {% endif %}
       {% if request.user.is_authenticated %}
-      {% if account %}
-      <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{% trans 'My Account' %}</a></li>
-      {% else %}
-      {% endif %}
+        {% if account %}
+        <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{% trans 'My Account' %}</a></li>
+        {% else %}
+        {% endif %}
       
       <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}">
         <div id="cart-wrapper" class="cart"><i class="fas fa-shopping-cart"></i><span id="cart-badge" class="badge">{{cart_items_count}}</span></div></a>
         </li>
+      <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{{user.username}}</a></li>
       <li class="mat-list-item"><a class="signout-btn mat-button mat-button-text signout" href="{% url 'accounts:logout' %}">{% trans 'Logout' %}</a></li>
       {% else %}
       <li class="mat-list-item"><a class="dialog-btn mat-button mat-button-text" href="{% url 'accounts:register' %}" data-tab="1" data-target="#signup-dialog">{% trans 'Create an Account' %}</a></li>
