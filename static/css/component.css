@@ -223,6 +223,7 @@ li a{
 	display: flex;
 	width: 100%;
 	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	padding: 16px;
@@ -2209,7 +2210,7 @@ table tr{
 }
 
 table tbody tr, .mat-table tbody tr{
-	height: 48px;
+	min-height: 48px;
 }
 
 .mat-table .checkbox{
@@ -2487,7 +2488,7 @@ table tbody tr, .mat-table tbody tr{
 	
 	
 	.mat-table tr{
-		height: 48px;
+		min-height: 48px;
 		/*flex-direction: row;*/
 		border: 1px solid #ddd;
 		padding: .35em;
