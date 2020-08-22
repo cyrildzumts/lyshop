@@ -2204,6 +2204,10 @@ table thead, .mat-table thead{
 	color: #424242;
 }
 
+table tr{
+	padding: .35em;
+}
+
 table tbody tr, .mat-table tbody tr{
 	height: 48px;
 }
@@ -2213,7 +2217,7 @@ table tbody tr, .mat-table tbody tr{
 	height: 48px;
 }
 
-.mat-table td, .mat-table th{
+.mat-table td, .mat-table th, table td, table th{
 	padding: 0.625em;
 	text-align: center;
 }
@@ -2386,17 +2390,18 @@ table tbody tr, .mat-table tbody tr{
 		flex-direction: column;
 
 	}
-	.mat-table thead{
+	.mat-table thead, table thead{
 		border: none;
 		width: 1px;
 		height: 1px;
+		margin: -1;
 		padding: 0;
 		clip: rect(0 0 0 0);
 		overflow: hidden;
 		position: absolute;
 	}
 
-	.mat-table tr{
+	.mat-table tr, table tr{
 		/*display: flex;*/
 		display: block;
 		/*height: 52px;*/
@@ -2421,6 +2426,9 @@ table tbody tr, .mat-table tbody tr{
 		text-transform: uppercase;
 		/*width: 25%;*/
 	}
+	table td:last-child {
+		border-bottom: 0;
+	  }
 }
 
 
