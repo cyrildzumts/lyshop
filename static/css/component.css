@@ -2341,7 +2341,7 @@ table tbody tr, .mat-table tbody tr{
 	justify-content: center;
 	position: absolute;
 	/*width: 350px;*/
-	/*background-color: #fafafa;*/
+	background-color: #fafafa;
 	top: 48px;
 	left: -100%;
 }
