@@ -49,18 +49,19 @@
                     
                       <thead>
                               <tr>
-                                    <th>{% trans "Display Name" %}</th>
-                                    <th>{% trans "Quantity" %}</th>
-                                    <th>{% trans "Price" %}</th>
+                                    <th scope="col">{% trans "Display Name" %}</th>
+                                    <th scope="col">{% trans "Quantity" %}</th>
+                                    <th scope="col">{% trans "Price" %}</th>
+                                    <th scope="col">{% trans "Detail" %}</th>
                               </tr>
                       </thead>
                       <tbody>
                               {% for variant in variant_list %}
                               <tr>
-                                    <td>{{variant.display_name}}</td>
-                                    <td>{{variant.quantity}}</td>
-                                    <td>{{variant.price}} {% trans "XAF" %}</td>
-                                    <td><a class="mat-button mat-button-text" href="{{variant.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                                    <td data-label="{% trans 'Display Name' %}">{{variant.display_name}}</td>
+                                    <td data-label="{% trans 'Quantity' %}">{{variant.quantity}}</td>
+                                    <td data-label="{% trans 'Price' %}">{{variant.price}} {% trans "XAF" %}</td>
+                                    <td data-label="{% trans 'Detail' %}"><a class="mat-button mat-button-text" href="{{variant.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                               </tr>
                               {% endfor %}
                               
