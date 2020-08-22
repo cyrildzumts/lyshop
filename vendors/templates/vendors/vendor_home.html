@@ -68,7 +68,7 @@
           <tbody>
                   {% for p in recent_sold_products %}
                   <tr>
-                    <td data-label="{% trans 'Customer' %}">{{p.customer.get_full_name}}</td>
+                    <td scope="row" data-label="{% trans 'Customer' %}">{{p.customer.get_full_name}}</td>
                     <td data-label="{% trans 'Name' %}">{{p.product.display_name}} </td>
                     <td data-label="{% trans 'Brand' %}">{{p.product.product.brand.display_name}} </td>
                     <td data-label="{% trans 'Price' %}">{{p.product.price}} {% trans "XAF" %}</td>
@@ -116,7 +116,7 @@
           <tbody>
                   {% for p in recent_products %}
                   <tr>
-                    <td data-label="{% trans 'Name' %}">{{p.display_name}} </td>
+                    <td scope="row" data-label="{% trans 'Name' %}">{{p.display_name}} </td>
                     <td data-label="{% trans 'Brand' %}">{{p.brand.display_name}} </td>
                     <td data-label="{% trans 'Price' %}">{{p.price}} {% trans "XAF" %}</td>
                     <td data-label="{% trans 'Date' %}">{{p.created_at|date:"F j, Y"}}</td>

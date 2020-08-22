@@ -43,23 +43,23 @@
           <thead>
                   
                   <tr>
-                          <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
-                          <th>{% trans "Name" %}</th>
-                          <th>{% trans "Display Name" %}</th>
-                          <th>{% trans "Code" %}</th>
-                          <th>{% trans "Details" %}</th>
-                          <th>{% trans "Delete Action" %}</th>
+                        <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
+                        <th scope="col">{% trans "Name" %}</th>
+                        <th scope="col">{% trans "Display Name" %}</th>
+                        <th scope="col">{% trans "Code" %}</th>
+                        <th scope="col">{% trans "Details" %}</th>
+                        <th scope="col">{% trans "Delete Action" %}</th>
                   </tr>
           </thead>
           <tbody>
                   {% for brand in brand_list  %}
                   <tr>
-                  <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="brands" value="{{brand.pk}}"><span class="checkbox-label"></span></label></td>
-                  <td>{{brand.name}}</td>
-                  <td>{{brand.display_name}}</td>
-                  <td>{{brand.code}}</td>
-                  <td><a class="mat-button mat-button-default" href="{{brand.get_dashboard_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
-                  {% if can_delete_brand %}<td><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:brand-delete' brand.brand_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
+                  <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="brands" value="{{brand.pk}}"><span class="checkbox-label"></span></label></td>
+                  <td data-label="{% trans 'Name' %}">{{brand.name}}</td>
+                  <td data-label="{% trans 'Display Name' %}">{{brand.display_name}}</td>
+                  <td data-label="{% trans 'Code' %}">{{brand.code}}</td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{brand.get_dashboard_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
+                  {% if can_delete_brand %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:brand-delete' brand.brand_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   

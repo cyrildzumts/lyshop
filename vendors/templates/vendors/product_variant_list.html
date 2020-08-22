@@ -39,24 +39,24 @@
           <thead>
                   <tr>
                           <!--<th><input id="filter-select-all" type="checkbox" name="allselected"></th>-->
-                          <th>{% trans "Name" %}</th>
-                          <th>{% trans "Display Name" %}</th>
-                          <th>{% trans "Product Type" %}</th>
-                          <th>{% trans "Price" %}</th>
-                          <th>{% trans "Details" %}</th>
-                          <th>{% trans "Delete Action" %}</th>
+                          <th scope="col">{% trans "Name" %}</th>
+                          <th scope="col">{% trans "Display Name" %}</th>
+                          <th scope="col">{% trans "Type" %}</th>
+                          <th scope="col">{% trans "Price" %}</th>
+                          <th scope="col">{% trans "Details" %}</th>
+                          <th scope="col">{% trans "Delete Action" %}</th>
                   </tr>
           </thead>
           <tbody>
                   {% for variant in variant_list  %}
                   <tr>
                   <!--<td class="checkbox"><input type="checkbox" name="selected-brands"></td>-->
-                  <td>{{variant.name}}</td>
-                  <td>{{variant.display_name}}</td>
-                  <td>{{product.product_type.display_name}}</td>
-                  <td><span>{{variant.price}}</span> <span>{% trans "XAF" %}</span></td>
-                  <td><a class="mat-button mat-button-default" href="{{variant.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
-                  {% if can_delete_product %}<td><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{{variant.get_delete_url}}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
+                  <td scope="row" data-label="{% trans 'Name' %}">{{variant.name}}</td>
+                  <td data-label="{% trans 'Display Name' %}">{{variant.display_name}}</td>
+                  <td data-label="{% trans 'Type' %}">{{product.product_type.display_name}}</td>
+                  <td data-label="{% trans 'Price' %}"><span>{{variant.price}}</span> <span>{% trans "XAF" %}</span></td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{variant.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                  {% if can_delete_product %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{{variant.get_delete_url}}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   

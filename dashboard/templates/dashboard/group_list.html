@@ -60,23 +60,23 @@
           <thead>
                 {% if can_delete_group %}<tr><div class="actions"><button class="js-activable mat-button mat-button-default warn"><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button></div></tr>{% endif %}
                 <tr>
-                    {% if can_delete_group %}<th><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="Select all"></th>{% endif %}
-                    <th>{% trans "Group Name" %}</th>
-                    <th>{% trans "Permissions" %}</th>
-                    <th>{% trans "Members" %}</th>
-                    <th>{% trans "Details" %}</th>
-                    <th>{% trans "Action" %}</th>
+                    {% if can_delete_group %}<th scope="col"><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="Select all"></th>{% endif %}
+                    <th scope="col">{% trans "Group Name" %}</th>
+                    <th scope="col">{% trans "Permissions" %}</th>
+                    <th scope="col">{% trans "Members" %}</th>
+                    <th scope="col">{% trans "Details" %}</th>
+                    <th scope="col">{% trans "Action" %}</th>
                 </tr>
           </thead>
           <tbody>
                   {% for g in groups  %}
                   <tr>
-                  <td class="checkbox"><input class="js-selectable" type="checkbox" name="groups" value="{{g.pk}}"></td>
-                  <td>{{g.name}}</td>
-                  <td>{{g.permissions.count}}</td>
-                  <td>{{g.user_set.count}}</td>
-                  <td><a class="mat-button mat-button-text" href="{% url 'dashboard:group-detail' g.pk %}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
-                  {% if can_delete_group %}<td><a class="mat-button mat-button-text danger js-need-confirmation" data-target="#group-delete-dialog" href="{% url 'dashboard:group-delete' g.pk %}"><i class="far fa-trash-alt icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
+                  <td scope="row" data-label="" class="checkbox"><input class="js-selectable" type="checkbox" name="groups" value="{{g.pk}}"></td>
+                  <td data-label="{% trans 'Name' %}">{{g.name}}</td>
+                  <td data-label="{% trans 'Permissions' %}">{{g.permissions.count}}</td>
+                  <td data-label="{% trans 'Members' %}">{{g.user_set.count}}</td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{% url 'dashboard:group-detail' g.pk %}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                  {% if can_delete_group %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-text danger js-need-confirmation" data-target="#group-delete-dialog" href="{% url 'dashboard:group-delete' g.pk %}"><i class="far fa-trash-alt icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   

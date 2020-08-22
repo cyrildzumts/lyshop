@@ -41,21 +41,20 @@
                   
                   <tr>
                           
-                          <th>{% trans "Name" %}</th>
-                          <th>{% trans "Display Name" %}</th>
-                          <th>{% trans "Code" %}</th>
-                          <th>{% trans "Details" %}</th>
-                          <th>{% trans "Delete Action" %}</th>
+                          <th scope="col">{% trans "Name" %}</th>
+                          <th scope="col">{% trans "Display Name" %}</th>
+                          <th scope="col">{% trans "Code" %}</th>
+                          <th scope="col">{% trans "Details" %}</th>
                   </tr>
           </thead>
           <tbody>
                   {% for type in product_type_list  %}
                   <tr>
     
-                  <td>{{type.name}}</td>
-                  <td>{{type.display_name}}</td>
-                  <td>{{type.code}}</td>
-                  <td><a class="mat-button mat-button-default" href="{{type.get_vendor_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
+                  <td scope="row" data-label="{% trans 'Name' %}">{{type.name}}</td>
+                  <td data-label="{% trans 'Display Name' %}">{{type.display_name}}</td>
+                  <td data-label="{% trans 'Code' %}">{{type.code}}</td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{type.get_vendor_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
                   
                   </tr>
                   {% endfor %}
