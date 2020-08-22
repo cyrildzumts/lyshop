@@ -72,7 +72,7 @@
                   {% for g in groups  %}
                   <tr>
                   <td scope="row" data-label="" class="checkbox"><input class="js-selectable" type="checkbox" name="groups" value="{{g.pk}}"></td>
-                  <td data-label="{% trans 'Name' %}">{{g.name}}</td>
+                  <td scope="row" data-label="{% trans 'Name' %}">{{g.name}}</td>
                   <td data-label="{% trans 'Permissions' %}">{{g.permissions.count}}</td>
                   <td data-label="{% trans 'Members' %}">{{g.user_set.count}}</td>
                   <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{% url 'dashboard:group-detail' g.pk %}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
