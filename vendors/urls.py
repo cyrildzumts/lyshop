@@ -20,6 +20,20 @@ urlpatterns = [
     path('products/delete/', views.products_delete, name='products-delete'),
     path('products/create/', views.product_create, name='product-create'),
 
+    path('product-types/', views.product_types, name='product-types'),
+    path('product-types/detail/<uuid:type_uuid>/', views.product_type_detail, name='product-type-detail'),
+    path('product-types/update/<uuid:type_uuid>/', views.product_type_update, name='product-type-update'),
+    path('product-types/delete/<uuid:type_uuid>/', views.product_type_delete, name='product-type-delete'),
+    path('product-types/delete/', views.product_types_delete, name='product-types-delete'),
+    path('product-types/create/', views.product_type_create, name='product-type-create'),
+
+    path('product-type-attributes/', views.product_type_attributes, name='product-type-attributes'),
+    path('product-type-attributes/detail/<uuid:type_attribute_uuid>/', views.product_type_attribute_detail, name='product-type-attribute-detail'),
+    path('product-type-attributes/update/<uuid:type_attribute_uuid>/', views.product_type_attribute_update, name='product-type-attribute-update'),
+    path('product-type-attributes/delete/<uuid:type_attribute_uuid>/', views.product_type_attribute_delete, name='product-type-attribute-delete'),
+    path('product-type-attributes/delete/', views.product_type_attributes_delete, name='product-type-attributes-delete'),
+    path('product-type-attributes/create/', views.product_type_attribute_create, name='product-type-attribute-create'),
+
     path('products/attributes/', views.attributes, name='attributes'),
     path('products/attributes/detail/<uuid:attribute_uuid>/', views.attribute_detail, name='attribute-detail'),
     path('products/attributes/update/<uuid:attribute_uuid>/', views.attribute_update, name='attribute-update'),

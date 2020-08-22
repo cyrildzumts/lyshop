@@ -34,6 +34,18 @@ class Coupon(models.Model):
     def get_delete_url(self):
         return reverse("dashboard:coupon-delete", kwargs={"coupon_uuid": self.coupon_uuid})
 
+    def get_vendors_url(self):
+        return reverse("vendors:coupon-detail", kwargs={"coupon_uuid": self.coupon_uuid})
+    
+    
+    def get_vendor_update_url(self):
+        return reverse("vendors:coupon-update", kwargs={"coupon_uuid": self.coupon_uuid})
+    
+    def get_vendor_delete_url(self):
+        return reverse("vendors:coupon-delete", kwargs={"coupon_uuid": self.coupon_uuid})
+    
+    
+
 class CartModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cart")
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)

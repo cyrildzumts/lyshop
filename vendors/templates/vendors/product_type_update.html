@@ -40,7 +40,7 @@
                 <div class="title">
                     <h3>{% trans "ProductType Update" %}</h3>
                 </div>
-                <form class="form" name="update-product-type" action="{{product_type.get_update_url}}" method="POST">{% csrf_token %}
+                <form class="form" name="update-product-type" action="{{product_type.get_vendor_update_url}}" method="POST">{% csrf_token %}
                     <div class="container">
                     
                         <div class="form-group">

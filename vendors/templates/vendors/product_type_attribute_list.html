@@ -24,7 +24,7 @@
 {% endblock HEADER_BANNER %}
 
 {% block MAIN %}
-{% if can_view_product %}
+{% if is_seller %}
 
 <div class="container">
   <div class="col-m-12 col-9">
@@ -42,23 +42,23 @@
         </div>
           <thead>
                   <tr>
-                        <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></th>
-                        <th>{% trans "Name" %}</th>
-                        <th>{% trans "Display Name" %}</th>
-                        <th>{% trans "Type" %}</th>
-                        <th>{% trans "Description" %}</th>
-                        <th>{% trans "Details" %}</th>
+                        <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></th>
+                        <th scope="col">{% trans "Name" %}</th>
+                        <th scope="col">{% trans "Display Name" %}</th>
+                        <th scope="col">{% trans "Type" %}</th>
+                        <th scope="col">{% trans "Description" %}</th>
+                        <th scope="col">{% trans "Details" %}</th>
                   </tr>
           </thead>
           <tbody>
                   {% for attr in type_attribute_list %}
                   <tr>
-                        <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="type_attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
-                        <td>{{attr.name}}</td>
-                        <td>{{attr.display_name}}</td>
-                        <td>{{attr.attribute_type}}</td>
-                        <td>{{attr.description}}</td>
-                        <td><a class="mat-button mat-button-text" href="{{attr.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                        <td scope="row" class="checkbox"><label><input class="js-selectable" type="checkbox" name="type_attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
+                        <td data-label="{% trans 'Name' %}">{{attr.name}}</td>
+                        <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
+                        <td data-label="{% trans 'Type' %}">{{attr.attribute_type}}</td>
+                        <td data-label="{% trans 'Description' %}">{{attr.description}}</td>
+                        <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{{attr.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   

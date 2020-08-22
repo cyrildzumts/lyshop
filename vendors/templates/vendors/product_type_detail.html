@@ -38,19 +38,19 @@
                           <thead>
                                   <tr>
                                         
-                                        <th>{% trans "Name" %}</th>
-                                        <th>{% trans "Display Name" %}</th>
-                                        <th>{% trans "Type" %}</th>
-                                        <th>{% trans "Details" %}</th>
+                                        <th scope="col">{% trans "Name" %}</th>
+                                        <th scope="col">{% trans "Display Name" %}</th>
+                                        <th scope="col">{% trans "Type" %}</th>
+                                        <th scope="col">{% trans "Details" %}</th>
                                   </tr>
                           </thead>
                           <tbody>
                                   {% for attr in product_type.type_attributes.all %}
                                   <tr>
-                                        <td>{{attr.name}}</td>
-                                        <td>{{attr.display_name}}</td>
-                                        <td>{{attr.attribute_type}}</td>
-                                        <td><a class="mat-button mat-button-text" href="{{attr.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                                        <td scope="row" data-label="{% trans 'Name' %}">{{attr.name}}</td>
+                                        <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
+                                        <td data-label="{% trans 'Type' %}">{{attr.attribute_type}}</td>
+                                        <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{{attr.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                                   </tr>
                                   {% endfor %}
                                   

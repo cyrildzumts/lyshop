@@ -16,6 +16,8 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
 )
 from catalog import constants as Catalog_Constants
 from accounts.models import Account
+from cart.models import Coupon
+from cart.forms import CouponForm
 from lyshop import utils, settings
 from vendors import vendors_service
 from vendors.models import Balance, BalanceHistory, VendorPayment, VendorPaymentHistory, SoldProduct
@@ -141,9 +143,8 @@ def product_update(request, product_uuid=None):
         form = ProductForm(instance=product)
     context['form'] = form
     context['product'] = product
-    context['brand_list'] = Brand.objects.all()
-    context['category_list'] = Category.objects.all()
-    context['user_list'] = User.objects.all()
+    context['brand_list'] = Brand.objects.filter(is_active=True)
+    context['category_list'] = Category.objects.filter(is_active=True)
     context['product_type_list'] = ProductType.objects.all()
     context['gender_list'] = Catalog_Constants.GENDER
 
@@ -224,9 +225,8 @@ def product_create(request):
     else:
         form = ProductForm()
     context['form'] = form
-    context['brand_list'] = Brand.objects.all()
-    context['category_list'] = Category.objects.all()
-    context['user_list'] = User.objects.all()
+    context['brand_list'] = Brand.objects.filter(is_active=True)
+    context['category_list'] = Category.objects.filter(is_active=True)
     context['product_type_list'] = ProductType.objects.all()
     context['gender_list'] = Catalog_Constants.GENDER
     return render(request, template_name, context)
@@ -733,6 +733,542 @@ def attributes(request):
         'attribute_list': list_set
     }
     return render(request,template_name, context)
+
+
+
+
+
+@login_required
+def coupons(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    #current_account = Account.objects.get(user=request.user)
+    queryset = Coupon.objects.filter(added_by=request.user).order_by('-created_at')
+    template_name = "vendors/coupon_list.html"
+    page_title = "Coupon - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    try:
+        request_set = paginator.page(page)
+    except PageNotAnInteger:
+        request_set = paginator.page(1)
+    except EmptyPage:
+        request_set = None
+    context['page_title'] = page_title
+    context['coupon_list'] = request_set
+    return render(request,template_name, context)
+
+
+@login_required
+def coupon_detail(request, coupon_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, added_by=request.user)
+    template_name = "vendors/coupon_detail.html"
+    page_title = "Coupon" + " - " + settings.SITE_NAME
+    context['page_title'] = page_title
+    context['coupon'] = coupon
+    return render(request,template_name, context)
+
+
+@login_required
+def coupon_create(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/coupon_create.html'
+    page_title = _('New Coupon')
+    
+    form = None
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = CouponForm(postdata)
+        if form.is_valid():
+            coupon = form.save()
+            messages.success(request, _('New Coupon created'))
+            logger.info(f'New Coupon added by user \"{username}\"')
+            return redirect(coupon.get_vendor_url())
+        else:
+            messages.error(request, _('Coupon not created'))
+            logger.error(f'Error on creating new Coupon. Action requested by user \"{username}\"')
+    else:
+        form = CouponForm()
+    context = {
+        'page_title': page_title,
+        'form' : form
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required
+def coupon_update(request, coupon_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/coupon_update.html'
+    page_title = _('Coupon Update')
+    
+    form = None
+    username = request.user.username
+    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, added_by=request.user)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        activated = postdata.get('is_active')
+        logger.debug("Coupon Postdata")
+        utils.show_dict_contents(postdata, "Coupon Postdata")
+        
+        if postdata.get('is_active') == 'on':
+            postdata['activated_by'] = request.user.pk
+            postdata['activated_at'] = timezone.now()
+            
+        form = CouponForm(postdata, instance=coupon)
+        if form.is_valid():
+            coupon = form.save()
+            messages.success(request, _('Coupon updated'))
+            logger.info(f'Coupon updated by user \"{username}\" - coupon is_active = \"{coupon.is_active}\"')
+            return redirect(coupon.get_vendor_url())
+        else:
+            messages.error(request, _('Coupon not updated'))
+            logger.error(f'Error on updated Coupon. Action requested by user \"{username}\"')
+            logger.error(form.errors)
+    else:
+        form = CouponForm(instance=coupon)
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'coupon': coupon
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required
+def coupon_delete(request, coupon_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, added_by=request.user)
+    coupon_name = coupon.name
+    coupon.delete()
+    logger.info(f'Coupon \"{coupon_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('Coupon deleted'))
+    return redirect('vendors:coupons')
+
+
+
+@login_required
+def coupons_delete(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('coupons')
+
+    if len(id_list):
+        coupon_list = list(map(int, id_list))
+        Coupon.objects.filter(id__in=coupon_list, added_by=request.user).delete()
+        messages.success(request, f"Coupons \"{coupon_list}\" deleted")
+        logger.info(f"Coupon \"{coupon_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"Coupons  could not be deleted")
+        logger.error(f"Coupon Delete : ID list invalid. Error : {id_list}")
+    return redirect('vendors:coupons')
+
+
+
+
+
+@login_required
+def product_types(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+
+    template_name = 'vendors/product_type_list.html'
+    page_title = _('ProductTypes')
+    if request.method != 'GET':
+        return HttpResponseBadRequest('Bad request')
+
+    queryset = ProductType.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title': page_title,
+        'product_type_list': list_set
+    }
+
+    return render(request,template_name, context)
+
+
+@login_required
+def product_type_create(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/product_type_create.html'
+    page_title = _('New ProductType')
+    
+    form = None
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductTypeForm(postdata)
+        if form.is_valid():
+            product_type = form.save()
+            messages.success(request, _('New ProductType created'))
+            logger.info(f'New ProductType added by user \"{username}\"')
+            return redirect('vendors:product-types')
+        else:
+            messages.error(request, _('ProductType not created'))
+            logger.error(f'Error on creating new ProductType. Action requested by user \"{username}\"')
+            logger.error(form.errors.items())
+    else:
+        form = ProductTypeForm()
+    context = {
+        'page_title': page_title,
+        'type_attributes' : ProductTypeAttribute.objects.all(),
+        'form' : form
+    }
+    return render(request, template_name, context)
+
+@login_required
+def product_type_detail(request, type_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/product_type_detail.html'
+    page_title = _('ProductType Detail')
+    
+    if request.method != "GET":
+        raise SuspiciousOperation('Bad request')
+
+    product_type = get_object_or_404(ProductType, type_uuid=type_uuid)
+    product_list = Product.objects.filter(product_type=product_type, sold_by=request.user)
+    context = {
+        'page_title': page_title,
+        'product_list': product_list,
+        'product_type': product_type
+    }
+    return render(request,template_name, context)
+
+@login_required
+def product_type_update(request, type_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/product_type_update.html'
+    page_title = _('ProductType Update')
+    
+    form = None
+    username = request.user.username
+    product_type = get_object_or_404(models.ProductType, type_uuid=type_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductTypeForm(postdata, instance=product_type)
+        if form.is_valid():
+            product_type = form.save()
+            messages.success(request, _('ProductTyppe updated'))
+            logger.info(f'ProductType updated by user \"{username}\"')
+            return redirect('vendors:product-type-detail', type_uuid=type_uuid)
+        else:
+            messages.error(request, _('ProductType not updated'))
+            logger.error(f'Error on updated ProductType. Action requested by user \"{username}\"')
+            logger.error(form.errors.items())
+    else:
+        form = ProductTypeForm(instance=product_type)
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'product_type': product_type,
+        'attributes' : ProductAttribute.objects.exclude(id__in=product_type.attributes.all()),
+        'type_attributes' : ProductTypeAttribute.objects.exclude(id__in=product_type.type_attributes.all())
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required
+def product_type_delete(request, type_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    product_type = get_object_or_404(models.ProductType, type_uuid=type_uuid)
+    product_type_name = product_type.name
+    product_type.delete()
+    logger.info(f'ProductType \"{product_type_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('ProductType deleted'))
+    return redirect('vendors:product-types')
+
+
+@login_required
+def product_types_delete(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request. Expected POST request but received a GET')
+    
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('product_types')
+
+    if len(id_list):
+        product_type_list = list(map(int, id_list))
+        ProductType.objects.filter(id__in=product_type_list).delete()
+        messages.success(request, f"ProductType \"{product_type_list}\" deleted")
+        logger.info(f"ProductType\"{product_type_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"ProductType could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('vendors:product-types')
+
+
+@login_required
+def product_type_products(request, type_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/type_product_list.html'
+    page_title = _('Product Type Products')
+    
+    if request.method != 'GET':
+        return HttpResponseBadRequest('Bad request')
+
+    product_type = get_object_or_404(ProductType, type_uuid=type_uuid)
+    queryset = Product.objects.filter(product_type=product_type, sold_by=request.user)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title': page_title,
+        'product_list': list_set,
+        'product_type': product_type
+    }
+    return render(request,template_name, context)
+
+## PRODUCT TYPE ATTRIBUTES
+
+@login_required
+def product_type_attributes(request):
+    username = request.user.username
+    iif not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+
+    template_name = 'vendors/product_type_attribute_list.html'
+    page_title = _('ProductType Attributes')
+    if request.method != 'GET':
+        return HttpResponseBadRequest('Bad request')
+
+    queryset = ProductTypeAttribute.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title': page_title,
+        'type_attribute_list': list_set
+    }
+    return render(request,template_name, context)
+
+
+@login_required
+def product_type_attribute_create(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/product_type_attribute_create.html'
+    page_title = _('New Product Type Attribute')
+    
+    form = None
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductTypeAttributeForm(postdata)
+        if form.is_valid():
+            attribute_type = form.save()
+            messages.success(request, _('New ProductTypeAttribute created'))
+            logger.info(f'New ProductTypeAttribute added by user \"{username}\"')
+            return redirect('vendors:product-type-attributes')
+        else:
+            messages.error(request, _('ProductType not created'))
+            logger.error(f'Error on creating new ProductType. Action requested by user \"{username}\"')
+            logger.error(form.errors.items())
+    else:
+        form = ProductTypeAttributeForm()
+    context = {
+        'page_title': page_title,
+        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'form' : form
+    }
+
+    return render(request, template_name, context)
+
+@login_required
+def product_type_attribute_detail(request, type_attribute_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/product_type_attribute_detail.html'
+    page_title = _('ProductTypeAttribute Detail')
+    
+    if request.method != "GET":
+        raise SuspiciousOperation('Bad request')
+
+    type_attribute = get_object_or_404(ProductTypeAttribute, type_attribute_uuid=type_attribute_uuid)
+    #product_list = Product.objects.filter(product_type=product_type)
+    context = {
+        'page_title': page_title,
+        #'product_list': product_list,
+        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'type_attribute': type_attribute
+    }
+    return render(request,template_name, context)
+
+@login_required
+def product_type_attribute_update(request, type_attribute_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/product_type_attribute_update.html'
+    page_title = _('ProductTypeAttribute Update')
+    
+    form = None
+    username = request.user.username
+    type_attribute = get_object_or_404(ProductTypeAttribute, type_attribute_uuid=type_attribute_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = ProductTypeAttributeForm(postdata, instance=type_attribute)
+        if form.is_valid():
+            type_attribute = form.save()
+            messages.success(request, _('ProductTypeAttribute updated'))
+            logger.info(f'ProductTypeAttribute updated by user \"{username}\"')
+            return redirect('vendors:product-type-attributes')
+        else:
+            messages.error(request, _('ProductTypeAttribute not updated'))
+            logger.error(f'Error on updated ProductTypeAttribute. Action requested by user \"{username}\"')
+            logger.error(form.errors.items())
+    else:
+        form = ProductTypeAttributeForm(instance=type_attribute)
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'type_attribute': type_attribute
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required
+def product_type_attribute_delete(request, type_attribute_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    product_type = get_object_or_404(ProductTypeAttribute, type_attribute_uuid=type_attribute_uuid)
+    product_type_name = product_type.name
+    product_type.delete()
+    logger.info(f'ProductTypeAttribute \"{product_type_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('ProductTypeAttribute deleted'))
+    return redirect('vendors:product-type-attributes')
+
+
+@login_required
+def product_type_attributes_delete(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request. Expected POST request but received a GET')
+    
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('type_attributes')
+
+    if len(id_list):
+        type_list = list(map(int, id_list))
+        ProductTypeAttribute.objects.filter(id__in=type_list).delete()
+        messages.success(request, f"ProductTypeAttribute \"{type_list}\" deleted")
+        logger.info(f"ProductTypeAttribute \"{type_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"ProductTypeAttribute could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('vendors:product-type-attributes')
 
 
 
