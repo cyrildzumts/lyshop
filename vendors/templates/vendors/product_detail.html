@@ -26,7 +26,7 @@
       </div><!--End of title-->
       <div class="mat-box-content">
         <div class="container">
-            <ul class="actions row" role="navigation">
+            <ul class="actions" role="navigation">
                 <li class="list-item"><a class="mat-button mat-button-default" href="{{product.get_vendor_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>
                 
                 <li class="list-item"><a class="mat-button mat-button-default" href="{% url 'vendors:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a></li>
