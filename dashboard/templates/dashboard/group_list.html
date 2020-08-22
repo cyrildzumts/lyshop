@@ -71,12 +71,12 @@
           <tbody>
                   {% for g in groups  %}
                   <tr>
-                  <td scope="row" data-label="" class="checkbox"><input class="js-selectable" type="checkbox" name="groups" value="{{g.pk}}"></td>
-                  <td scope="row" data-label="{% trans 'Name' %}">{{g.name}}</td>
-                  <td data-label="{% trans 'Permissions' %}">{{g.permissions.count}}</td>
-                  <td data-label="{% trans 'Members' %}">{{g.user_set.count}}</td>
-                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{% url 'dashboard:group-detail' g.pk %}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
-                  {% if can_delete_group %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-text danger js-need-confirmation" data-target="#group-delete-dialog" href="{% url 'dashboard:group-delete' g.pk %}"><i class="far fa-trash-alt icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
+                    <td scope="row" data-label="" class="checkbox"><input class="js-selectable" type="checkbox" name="groups" value="{{g.pk}}"></td>
+                    <td scope="row" data-label="{% trans 'Name' %}">{{g.name}}</td>
+                    <td data-label="{% trans 'Permissions' %}">{{g.permissions.count}}</td>
+                    <td data-label="{% trans 'Members' %}">{{g.user_set.count}}</td>
+                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{% url 'dashboard:group-detail' g.pk %}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                    {% if can_delete_group %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-text danger js-need-confirmation" data-target="#group-delete-dialog" href="{% url 'dashboard:group-delete' g.pk %}"><i class="far fa-trash-alt icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   
