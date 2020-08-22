@@ -65,7 +65,7 @@
                               <tr>
                                     <td scope="row" data-label="{% trans 'Display Name' %}">{{variant.display_name}}</td>
                                     <td data-label="{% trans 'Quantity' %}">{{variant.quantity}}</td>
-                                    <td data-label="{% trans 'Price' %}">{{variant.price}} {% trans "XAF" %}</td>
+                                    <td data-label="{% trans 'Price' %}"><span>{{variant.price}}</span> <span>{% trans "XAF" %}</span></td>
                                     <td data-label="{% trans 'Detail' %}"><a class="mat-button mat-button-text" href="{{variant.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                               </tr>
                               {% endfor %}
