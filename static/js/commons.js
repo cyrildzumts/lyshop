@@ -373,7 +373,7 @@ function dateFormat(index, input){
 }
 
 $(document).ready(function(){
-    notification_wrapper = $('#notification-wrapper');
+    notification_wrapper = $('#notifications-wrapper');
     messages = $('#messages', notification_wrapper);
     var listfilter = new ListFilter();
     fileUpload = new FileUpload();
