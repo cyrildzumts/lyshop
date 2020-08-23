@@ -5,12 +5,9 @@
 
 {% if is_seller %}
 
-
-<div class="responsive">
-
-    <div class="container">
+    <div class="container wrapper">
         
-        <div class="mat-box">
+        <div class="mat-box wrapper">
     
                 <form class="form" name="add-product-type-attribute" action="{{type_attribute.get_update_url}}" method="POST">{% csrf_token %}
                     <input type="hidden" name="added_by" value="{{request.user.pk}}">
@@ -50,8 +47,7 @@
                     </div>
                     
                 </form>
-            </div>
-    </div>          
+            </div>       
 </div>
 
 

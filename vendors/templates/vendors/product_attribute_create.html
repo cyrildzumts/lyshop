@@ -4,7 +4,7 @@
 {% block MAIN_CONTENT %}
 
 {% if is_seller %}
-<div class="container">
+<div class="container wrapper">
     <form id="attribute-form" class="form" name="attribute" action="{% url 'vendors:attribute-create'%}" method="POST">{% csrf_token %}
         <div id="error-login" class="error-login left">
           </div>

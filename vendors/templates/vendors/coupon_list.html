@@ -5,14 +5,14 @@
 
 {% block MAIN_CONTENT %}
 {% if is_seller %}
-<div class="container">
+<div class="container wrapper">
         <div class="actions">
             <a class="mat-button mat-button-default" href="{% url 'vendors:coupon-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "Add new Coupon" %}</span></a>
             <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Panel" %}</span></a>
                 
         </div><!--End of Banner-Actions-->
 </div><!--End of Container-->
-<div class="container">
+<div class="container wrapper">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         <div class="row">

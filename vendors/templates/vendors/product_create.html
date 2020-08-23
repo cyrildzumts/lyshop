@@ -3,7 +3,7 @@
 {% load catalog_tags %}
 {% block MAIN_CONTENT %}
 
-<div class="container">
+<div class="container wrapper">
    <div class="responsive">
     <form  class="form" name="product" action="{% url 'vendors:product-create' %}" method="POST">{% csrf_token %}
         <input type="hidden" name="added_by" value="{{request.user.pk}}">

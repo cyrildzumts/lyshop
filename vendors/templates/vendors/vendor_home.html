@@ -4,7 +4,7 @@
 {% block MAIN_CONTENT %}
 {% if is_seller %}
 
-<div class="container">
+<div class="container wrapper">
     <div class="mat-box full">
           <div class="mat-box-title">
             {% if balance %}
@@ -30,7 +30,7 @@
         </div><!--End of mat-box-->
 </div>
 {% if recent_sold_products %}
-<div class="container">
+<div class="container wrapper">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         <table id="product-list" class="mat-table js-filter-table">
@@ -68,7 +68,7 @@
 </div>
 
 {% else %}
-<div class="container">
+<div class="container wrapper">
   <div class="col-m-12 col-12">
     <p>{% trans "There is no sold products yet." %}</p>
   </div>
@@ -79,7 +79,7 @@
 {% endif %}
 
 {% if recent_products %}
-<div class="container">
+<div class="container wrapper">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         <table id="product-list" class="mat-table js-filter-table">
@@ -115,7 +115,7 @@
 </div>
 
 {% else %}
-<div class="container">
+<div class="container wrapper">
   <div class="col-m-12 col-12">
     <p>{% trans "There is no recently added products yet." %}</p>
   </div>

@@ -6,11 +6,9 @@
 {% if is_seller%}
 
 
-<div class="responsive">
-
-    <div class="container">
+    <div class="container wrapper">
         
-        <div class="mat-box">
+        <div class="mat-box wrapper full">
     
                 <form class="form" name="add-product-type" action="{% url 'vendors:product-type-create' %}" method="POST">{% csrf_token %}
                     <input type="hidden" name="added_by" value="{{request.user.pk}}">
@@ -49,8 +47,7 @@
                     </div>
                     
                 </form>
-            </div>
-    </div>          
+            </div>         
 </div>
 
 

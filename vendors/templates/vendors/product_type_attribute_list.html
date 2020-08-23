@@ -3,7 +3,7 @@
 {% load catalog_tags %}
 {% block MAIN_CONTENT %}
 {% if is_seller %}
-<div class="container">
+<div class="container wrapper">
     <div class="col-m-12 col-9">
         <div class="banner--actions">
             <a class="mat-button mat-button-text" href="{% url 'vendors:product-type-attribute-create' %}"><i class="fas fa-plus icon"></i><span>{% trans "Add Attribute Type" %}</span></a>    
@@ -12,7 +12,7 @@
     </div><!--End of Responsive-->
 
 </div><!--End of Container-->
-<div class="container">
+<div class="container wrapper">
   <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         <div class="row">

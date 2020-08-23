@@ -3,16 +3,16 @@
 {% block MAIN_CONTENT %}
 
 {% if is_seller %}
-<div class="container">
+<div class="container wrapper">
     <ul class="actions row" role="navigation">
         <li class="list-item"> <a class="mat-button mat-button-default" href="{% url 'vendors:product-type-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Produt Type" %}</span></a> </li>
         <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:product-types' %}"><i class="fas fa-list icon"></i><span>{% trans "Product Types" %}</span></a> </li>
         <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Home" %}</span></a></li>
     </ul><!--End of Actions-->
 </div><!--End of Container-->
-    <div class="container">
+<div class="container wrapper">
         
-        <div class="mat-box">
+        <div class="mat-box full">
         
                 <div class="title">
                     <h3>{% trans "ProductType Update" %}</h3>
