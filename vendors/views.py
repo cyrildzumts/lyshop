@@ -1541,7 +1541,7 @@ def sold_product_detail(request, product_uuid=None):
         'sold_product': sold_product,
         'product' : sold_product.product.product,
         'variant' : sold_product.product,
-        'attribute_list': sold_product.product.attributes.all()
+        'attribute_list': sold_product.product.attributes.all(),
         'image_list': images
     }
     return render(request,template_name, context)
