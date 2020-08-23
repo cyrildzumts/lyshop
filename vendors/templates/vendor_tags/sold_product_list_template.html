@@ -1,0 +1,42 @@
+{% load i18n %}
+{% load catalog_tags %}
+<div class="mat-table-wrapper">
+        <div class="row">
+            <div class="mat-table-title">
+                {% trans "Products" %}
+            </div>
+        </div><!--End of Row-->
+
+        <table id="product-list" class="mat-table js-filter-table">
+            
+          <thead>
+                  <tr>
+                          <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
+                          <th scope="col">{% trans "Name" %}</th>
+                          <th scope="col">{% trans "Display Name" %}</th>
+                          <th scope="col">{% trans "Gender" %}</th>
+                          <th scope="col">{% trans "Product Type" %}</th>
+                          <th scope="col">{% trans "Price" %}</th>
+                          <th scope="col">{% trans "Details" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for sold_product in product_list  %}
+                  <tr>
+                  <td scope="row" data-label="{% trans 'Name' %}">{{sold_product.product.name}}</td>
+                  <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
+                  <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_key}}</td>
+                  <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
+                  <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.product.price}}</span> <span>{% trans "XAF" %}</span></span></td>
+                  <td scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_vendor_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                  {% if is_seller %}
+                  <td scope="row" data-label="{% trans 'Action' %}"><button class="mat-button mat-button-default warning danger js-need-confirmation" type="submit"> {% trans "Delete" %}</button></td>
+                  {% endif %}
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+
+    </table>
+    {% include "tags/pagination.html" with page_set=product_list %}
+    </div><!--End of Table Wrapper-->

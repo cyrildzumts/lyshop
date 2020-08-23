@@ -11,14 +11,14 @@
                 <p> {% trans "Name" %} : {{coupon.name}}</p>
                 <p> {% trans "Reduction" %} : {{coupon.reduction}} % </p>
                 <p> {% trans "Status" %} : {% if coupon.is_active %}{% trans "Activated" %} {% else %}{% trans "Not activated" %}{% endif %} </p>
-                <p> {% trans "Create at" %} : {{coupon.created_at}}</p>
+                <p> {% trans "Create at" %} : {{coupon.created_at|date:"F j, Y"}}</p>
             </div>
             <div class="mat-box">
-                <p> {% trans "Expire at" %} : {{coupon.expire_at}}</p>
+                <p> {% trans "Expire at" %} : {{coupon.expire_at|date:"F j, Y"}}</p>
                 <p> {% trans "Added by" %} : {{coupon.added_by.username}}</p> 
                 <p> {% trans "Activated by" %} : {{coupon.activated_by.username}}</p>  
                 {% if coupon.seller %}<p> {% trans "Seller" %} : {{coupon.seller.username}}</p> {% endif %}
-                <p> {% trans "Activated at" %} : {{coupon.activated_at}}</p>
+                <p> {% trans "Activated at" %} : {{coupon.activated_at|date:"F j, Y"}}</p>
 
             </div>
           </div><!--End of title-->

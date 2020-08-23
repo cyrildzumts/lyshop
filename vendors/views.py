@@ -1502,16 +1502,50 @@ def sold_product_list(request):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
+    template_name = 'vendors/sold_product_list.html'
+    page_title = _('Products')
+    context = {
+        'page_title': page_title,
+    }
 
+    queryset = SoldProduct.objects.filter(is_active=True, seller=request.user).order_by('-created_at')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['product_list'] = list_set
+
+    return render(request,template_name, context)
 
 
 @login_required
-def sold_product_detail(request, product_uuid):
+def sold_product_detail(request, product_uuid=None):
+    template_name = 'vendors/sold_product_detail.html'
     username = request.user.username
-    
     if not vendors_service.is_vendor(request.user):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
+
+    page_title = _('Product Detail')
+    
+
+    sold_product = get_object_or_404(SoldProduct, product_uuid=product_uuid, seller=request.user)
+    images = ProductImage.objects.filter(product=sold_product.product.product)
+    context = {
+        'page_title': page_title,
+        'sold_product': sold_product,
+        'product' : sold_product.product.product,
+        'variant' : sold_product.product,
+        'attribute_list': sold_product.product.attributes.all()
+        'image_list': images
+    }
+    return render(request,template_name, context)
+
 
 @login_required
 def balance_history(request, balance_uuid):
