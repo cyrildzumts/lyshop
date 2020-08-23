@@ -1,0 +1,78 @@
+{% extends "vendor_base.html"%}
+{% load i18n %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Brand List" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col-m-12 col-9">
+                <div class="banner--actions">
+                    {% if can_add_brand %}
+                    <a class="mat-button mat-button-default" href="{% url 'vendors:brand-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "Add new Brand" %}</span></a>
+                    {% endif %}
+                    <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Panel" %}</span></a>
+                        
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+{% block MAIN %}
+{% if is_seller %}
+<div class="container">
+<div class="col-m-12 col-9">
+    <div class="mat-table-wrapper">
+        <div class="row">
+            <div class="mat-table-title">
+                {% trans "Brands" %}
+            </div>
+        </div><!--End of Row-->
+        <form action="{% url 'vendors:brands-delete' %}" method="POST">{% csrf_token %}
+        <table id="brand-list" class="mat-table js-filter-table">
+            <div class="actions">
+                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i> <span>{% trans "Delete Seleted" %}</span></button>
+            </div>
+          <thead>
+                  
+                  <tr>
+                        <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
+                        <th scope="col">{% trans "Name" %}</th>
+                        <th scope="col">{% trans "Display Name" %}</th>
+                        <th scope="col">{% trans "Code" %}</th>
+                        <th scope="col">{% trans "Details" %}</th>
+                        <th scope="col">{% trans "Delete Action" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for brand in brand_list  %}
+                  <tr>
+                  <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="brands" value="{{brand.pk}}"><span class="checkbox-label"></span></label></td>
+                  <td data-label="{% trans 'Name' %}">{{brand.name}}</td>
+                  <td data-label="{% trans 'Display Name' %}">{{brand.display_name}}</td>
+                  <td data-label="{% trans 'Code' %}">{{brand.code}}</td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{brand.get_vendor_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
+                  <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'vendors:brand-delete' brand.brand_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+        </table>
+        </form>
+    {% include "tags/pagination.html" with page_set=brand_list %}
+    </div><!--End of Table Wrapper-->
+  </div>
+</div>
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN %}

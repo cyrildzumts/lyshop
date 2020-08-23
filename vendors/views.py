@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidde
 
 from catalog.models import Product, ProductVariant, Brand, Category, ProductTypeAttribute, ProductImage, ProductType, ProductAttribute
 from catalog.forms import (BrandForm, ProductAttributeForm, 
-    ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
+    ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm, BrandForm
     DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm
 )
 from catalog import constants as Catalog_Constants
@@ -58,6 +58,223 @@ def vendor_home(request):
         'product_count': product_count
     }
     return render(request, template_name, context)
+
+
+
+
+@login_required
+def brands(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/brand_list.html'
+    page_title = _('Brands')
+    if request.method != 'GET':
+        return HttpResponseBadRequest('Bad request')
+
+    queryset = Brand.objects.all().order_by('-created_at')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title': page_title,
+        'brand_list': list_set
+    }
+    return render(request,template_name, context)
+
+@login_required
+def brand_create(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/brand_create.html'
+    page_title = _('New Brand')
+    
+    form = None
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = BrandForm(postdata)
+        if form.is_valid():
+            brand = form.save()
+            messages.success(request, _('New Brand created'))
+            logger.info(f'New Brand added by user \"{username}\"')
+            return redirect('vendors:brands')
+        else:
+            messages.error(request, _('Brand not created'))
+            logger.error(f'Error on creating new Brand. Action requested by user \"{username}\"')
+    else:
+        form = BrandForm()
+    context = {
+        'page_title': page_title,
+        'form' : form
+    }
+
+    return render(request, template_name, context)
+
+@login_required
+def brand_detail(request, brand_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/brand_detail.html'
+    page_title = _('Brand Detail')
+    
+    if request.method != "GET":
+        raise SuspiciousOperation('Bad request')
+
+    brand = get_object_or_404(Brand, brand_uuid=brand_uuid)
+    product_list = Product.objects.filter(brand=brand, sold_by=request.user)
+    context = {
+        'page_title': page_title,
+        'product_list': product_list,
+        'brand': brand
+    }
+
+    return render(request,template_name, context)
+
+@login_required
+def brand_update(request, brand_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/brand_update.html'
+    page_title = _('Brand Update')
+    
+    form = None
+    username = request.user.username
+    brand = get_object_or_404(Brand, brand_uuid=brand_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = BrandForm(postdata, instance=brand)
+        if form.is_valid():
+            brand = form.save()
+            messages.success(request, _('Brand updated'))
+            logger.info(f'Brand updated by user \"{username}\"')
+            return redirect('vendors:brand-detail', brand_uuid=brand_uuid)
+        else:
+            messages.error(request, _('Brand not updated'))
+            logger.error(f'Error on updated Brand. Action requested by user \"{username}\"')
+    else:
+        form = BrandForm(instance=brand)
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'brand': brand
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required
+def brand_delete(request, brand_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    brand = get_object_or_404(Brand, brand_uuid=brand_uuid)
+    brand_name = brand.name
+    brand.delete()
+    logger.info(f'Brand \"{brand_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('Brand deleted'))
+    return redirect('vendors:brands')
+
+
+@login_required
+def brands_delete(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request. Expected POST request but received a GET')
+    
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('brands')
+
+    if len(id_list):
+        brand_list = list(map(int, id_list))
+        Brand.objects.filter(id__in=brand_list).delete()
+        messages.success(request, f"Brands \"{brand_list}\" deleted")
+        logger.info(f"Brands\"{brand_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"Brands could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('vendors:brands')
+
+
+@login_required
+def brand_products(request, brand_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/brand_product_list.html'
+    page_title = _('Brand Products')
+    
+    if request.method != 'GET':
+        return HttpResponseBadRequest('Bad request')
+
+    brand = get_object_or_404(Brand, brand_uuid=brand_uuid)
+    queryset = Product.objects.filter(brand=brand, sold_by=request.user)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title': page_title,
+        'product_list': list_set,
+        'brand': brand
+    }
+
+    return render(request,template_name, context)
+
+
+@login_required
+def brand_product_detail(request, brand_uuid=None, product_uuid=None):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'vendors/brand_product_detail.html'
+    page_title = _('Product Detail')
+    
+
+    product = get_object_or_404(Product, brand__brand_uuid=brand_uuid, product_uuid=product_uuid, sold_by=request.user)
+    context = {
+        'page_title': page_title,
+        'product': product
+    }
+
+    return render(request,template_name, context)
+
+
+
 
 
 @login_required

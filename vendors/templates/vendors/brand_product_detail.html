@@ -1,0 +1,99 @@
+{% extends "vendor_base.html"%}
+{% load i18n %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {{product.name}}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col col-9">
+                <div class="banner--actions">
+                    <a class="mat-button mat-button-default" href="{{product.get_vendor_update_url}}"> <i class="fas fas-plus"></i> <span>{% trans "Edit" %}</span> </a>{% endif %}
+                    <a class="mat-button mat-button-text" href="{{product.brand.get_vendor_url}}"> {% trans "Back to brand" %} </a>
+                    <a class="mat-button mat-button-text" href="{%url 'vendors:products' %}"> {% trans "Products" %}</a>
+                    <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}">{% trans "Vendor Panel" %}</a>
+
+                        
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+{% block MAIN%}
+{% if is_seller %}
+
+
+<div class="mat-box">
+  <div class="row">
+    <h3>{% trans "Product Details" %}</h3>
+  </div>
+  <div class="row">
+    <div class="responsive">
+        <div class="entry flex-column">
+          <div class="title">{% trans "Price" %}</div>
+          <div class="subtitle">{{product.price}} <span>{% trans "XAF" %}</span></div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="entry flex-column">
+          <div class="title">{% trans "Number of View" %}</div>
+          <div class="subtitle">{{product.view_count}}</div>
+        </div>
+    </div>
+
+    <div class="responsive">
+        <div class="entry flex-column">
+          <div class="title">{% trans "Quantity" %}</div>
+          <div class="subtitle">{{product.quantity}}</div>
+        </div>
+    </div>
+
+    
+    <div class="responsive">
+        <div class="entry flex-column">
+          <div class="title">{% trans "Vendor" %}</div>
+          <div class="subtitle">{{product.sold_by}}</div>
+        </div>
+    </div>         
+        
+    </div> <!--End of row-->
+  </div><!--End of Container-->
+
+<div class="container">
+        <div class="mat-box">
+            <div class="title">
+              <span>{{product.name}}</span>
+            </div>
+            <div class="box-content">
+                <div class="entry">
+                  <span class="key">{% trans "Category" %}</span><span class="value">{{product.category}}</span>
+                </div>
+                <div class="entry">
+                  <span class="key">{% trans "Vendor" %} : </span><span class="value">{{product.sold_by.get_full_name}}</span>
+                </div>
+                <div class="entry">
+                  <span class="key">{% trans "Amount" %} :</span><span class="value">{{product.price}} {% trans "XAF" %}</span>
+                </div>
+                
+                <div class="entry">
+                  <span class="key">{% trans "View Count" %}</span><span class="value">{{product.view_count}}</span>
+                </div>
+                <div class="entry">
+                  <span class="key">{% trans "Description" %} :</span><span class="value">{{product.description}}</span>
+                </div>               
+            </div>
+        </div>
+</div>
+
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN_CONTENT %}

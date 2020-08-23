@@ -11,6 +11,16 @@ urlpatterns = [
     path('', views.vendor_home, name='vendor-home'),
     path('balance-history/<uuid:balance_uuid>/', views.balance_history, name='balance-history'),
     path('balance-history/details/<uuid:history_uuid>/', views.balance_history_detail, name='balance-history-detail'),
+
+    path('brands/', views.brands, name='brands'),
+    path('brands/create/', views.brand_create, name='brand-create'),
+    path('brands/update/<uuid:brand_uuid>/', views.brand_update, name='brand-update'),
+    path('brands/delete/<uuid:brand_uuid>/', views.brand_delete, name='brand-delete'),
+    path('brands/delete/', views.brands_delete, name='brands-delete'),
+    #path('brands/remove-all/', views.brand_remove_all, name='brand-remove-all'),
+    path('brands/detail/<uuid:brand_uuid>/', views.brand_detail, name='brand-detail'),
+    path('brands/products/<uuid:brand_uuid>/<uuid:product_uuid>/', views.brand_product_detail, name='brand-product'),
+
     path('payments/', views.vendor_payments, name='payments'),
     path('payments/details/<uuid:payment_uuid>/', views.payment_details, name='payment-detail'),
     path('products/', views.product_list, name='products'),
