@@ -771,8 +771,10 @@ function prevent_leaving(){
 $(document).ready(function(){
 let account = new Account();
 account.init();
+/*
 var notifications = new Notification();
 notifications.init();
+*/
 let tabs = new Tabs();
 tabs.init();
 
