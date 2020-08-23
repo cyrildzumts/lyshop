@@ -171,6 +171,9 @@ class ProductAttribute(models.Model):
 
     def get_update_url(self):
         return reverse("dashboard:attribute-update", kwargs={"attribute_uuid": self.attribute_uuid})
+    
+    def get_vendor_update_url(self):
+        return reverse("vendors:attribute-update", kwargs={"attribute_uuid": self.attribute_uuid})
 
     def get_delete_url(self):
         return reverse("dashboard:attribute-delete", kwargs={"attribute_uuid": self.attribute_uuid})
@@ -189,6 +192,12 @@ class ProductTypeAttribute(models.Model):
 
     def get_update_url(self):
         return reverse("dashboard:product-type-attribute-update", kwargs={"type_attribute_uuid": self.type_attribute_uuid})
+
+    def get_vendor_url(self):
+        return reverse("vendors:product-type-attribute-detail", kwargs={"type_attribute_uuid": self.type_attribute_uuid})
+
+    def get_vendor_update_url(self):
+        return reverse("vendors:product-type-attribute-update", kwargs={"type_attribute_uuid": self.type_attribute_uuid})
 
     def get_delete_url(self):
         return reverse("dashboard:product-type-attribute-delete", kwargs={"type_attribute_uuid": self.type_attribute_uuid})

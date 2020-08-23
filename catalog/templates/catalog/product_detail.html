@@ -1,5 +1,6 @@
 {% extends "catalog_base.html"%}
 {% load i18n %}
+{% load catalog_tags %}
 {% block  HEADER_BANNER_TITLE %}
     <h4> {{product.display_name}}</h4>
 {% endblock HEADER_BANNER_TITLE %}
@@ -48,6 +49,9 @@
                       </div>
                       <div class="brand">
                         <span class="value">{{product.brand.display_name}}</span>
+                      </div>
+                      <div class="gender">
+                        <span class="value">{{product.gender|gender_key}}</span>
                       </div>
                       <div class="price">
                         <span class="emphasis">{{product.price}} {% trans "XAF" %}</span>

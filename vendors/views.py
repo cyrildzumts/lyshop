@@ -363,7 +363,7 @@ def product_update(request, product_uuid=None):
     context['brand_list'] = Brand.objects.filter(is_active=True)
     context['category_list'] = Category.objects.filter(is_active=True)
     context['product_type_list'] = ProductType.objects.all()
-    context['gender_list'] = Catalog_Constants.GENDER
+    context['GENDER'] = Catalog_Constants.GENDER
 
     return render(request, template_name, context)
 
@@ -445,7 +445,7 @@ def product_create(request):
     context['brand_list'] = Brand.objects.filter(is_active=True)
     context['category_list'] = Category.objects.filter(is_active=True)
     context['product_type_list'] = ProductType.objects.all()
-    context['gender_list'] = Catalog_Constants.GENDER
+    context['GENDER'] = Catalog_Constants.GENDER
     return render(request, template_name, context)
 
 
@@ -487,7 +487,7 @@ def product_variant_create(request, product_uuid=None):
         'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
     }
     context['attribute_formset'] = attribute_formset
-    context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
     return render(request, template_name, context)
 
 @login_required
@@ -499,7 +499,7 @@ def product_variant_detail(request, variant_uuid=None):
 
     template_name = 'vendors/product_variant_detail.html'
     page_title = _('Product Variant Detail')
-    attr_types = [v for k,v in Catalog_Constants.ATTRIBUTE_TYPE]
+    attr_types = [k for k,v in Catalog_Constants.ATTRIBUTE_TYPE]
     variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid, product__sold_by=request.user)
     product = variant.product
     attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm, extra=4, max_num=5)
@@ -510,7 +510,7 @@ def product_variant_detail(request, variant_uuid=None):
         'product': product,
         'variant': variant,
         'attr_types': json.dumps(attr_types),
-        'attribute_types' : Catalog_Constants.ATTRIBUTE_TYPE,
+        'ATTRIBUTE_TYPE' : Catalog_Constants.ATTRIBUTE_TYPE,
         'attribute_list' : attribute_list,
         'available_attribute_list' : available_attribute_list,
         'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
@@ -553,7 +553,7 @@ def product_variant_update(request, variant_uuid=None):
         'variant' : variant,
         'attributes': variant.attributes.all(),
         'attribute_formset': attribute_formset,
-        'attribute_types': Catalog_Constants.ATTRIBUTE_TYPE
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
     }
     return render(request, template_name, context)
 
@@ -827,7 +827,7 @@ def attribute_create(request, variant_uuid):
         'variant' : variant
     }
     context['attribute_formset'] = attribute_formset
-    context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
     return render(request, template_name, context)
 
 @login_required
@@ -1377,7 +1377,7 @@ def product_type_attribute_create(request):
         form = ProductTypeAttributeForm()
     context = {
         'page_title': page_title,
-        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'form' : form
     }
 
@@ -1401,7 +1401,7 @@ def product_type_attribute_detail(request, type_attribute_uuid=None):
     context = {
         'page_title': page_title,
         #'product_list': product_list,
-        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'type_attribute': type_attribute
     }
     return render(request,template_name, context)
@@ -1436,7 +1436,7 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'type_attribute': type_attribute
     }
 

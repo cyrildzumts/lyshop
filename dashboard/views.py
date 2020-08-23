@@ -323,7 +323,7 @@ def product_create(request):
     context['category_list'] = models.Category.objects.all()
     context['user_list'] = User.objects.all()
     context['product_type_list'] = ProductType.objects.all()
-    context['gender_list'] = Catalog_Constants.GENDER
+    context['GENDER'] = Catalog_Constants.GENDER
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -633,7 +633,7 @@ def product_update(request, product_uuid=None):
     context['category_list'] = models.Category.objects.all()
     context['user_list'] = User.objects.all()
     context['product_type_list'] = ProductType.objects.all()
-    context['gender_list'] = Catalog_Constants.GENDER
+    context['GENDER'] = Catalog_Constants.GENDER
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -903,7 +903,7 @@ def product_variant_create(request, product_uuid=None):
         'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
     }
     context['attribute_formset'] = attribute_formset
-    context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -920,7 +920,7 @@ def product_variant_detail(request, variant_uuid=None):
 
     template_name = 'dashboard/product_variant_detail.html'
     page_title = _('Product Variant Detail')
-    attr_types = [v for k,v in Catalog_Constants.ATTRIBUTE_TYPE]
+    attr_types = [k for k,v in Catalog_Constants.ATTRIBUTE_TYPE]
     variant = get_object_or_404(models.ProductVariant, product_uuid=variant_uuid)
     product = variant.product
     attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm, extra=4, max_num=5)
@@ -931,7 +931,7 @@ def product_variant_detail(request, variant_uuid=None):
         'product': product,
         'variant': variant,
         'attr_types': json.dumps(attr_types),
-        'attribute_types' : Catalog_Constants.ATTRIBUTE_TYPE,
+        'ATTRIBUTE_TYPE' : Catalog_Constants.ATTRIBUTE_TYPE,
         'attribute_list' : attribute_list,
         'available_attribute_list' : available_attribute_list,
         'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())

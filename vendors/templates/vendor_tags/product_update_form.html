@@ -1,11 +1,14 @@
 {% load i18n %} 
 {% load l10n %}
+{% load catalog_tags %}
 <div class="responsive">
     <div class="form-group">
             
     </div>
     <form  class="form" name="product" action="{{product.get_vendor_update_url}}" method="POST">{% csrf_token %}
         <input type="hidden" name="added_by" value="{{product.added_by.pk}}">
+        <input type="hidden" name="sold_by" value="{{product.sold_by.pk}}">
+
         <div class="form-group">
             <label for="name">{% trans "Product Name" %}</label>
             <input type="text" id="name" name="name" value="{{product.name}}">
@@ -35,11 +38,11 @@
         <div class="form-group">
             <label for="gender">{% trans "Gender" %}</label>
             <select name="gender" id="gender">
-            {% for k,v in gender_list %}
-                {% if k == product.gender %}
-                    <option value="{{k}}" selected>{% trans v %}</option> 
+            {% for k,v in GENDER %}
+                {% if v == product.gender %}
+                    <option value="{{v}}" selected>{% trans k %}</option> 
                 {% else %}
-                <option value="{{k}}">{% trans v %}</option> 
+                <option value="{{v}}">{% trans k %}</option> 
                 {% endif %}
                 
             {% endfor %}
@@ -70,19 +73,6 @@
                     {% endif %}
                 {% endfor %}
                 </select>
-            </div>
-
-        <div class="form-group">
-            <label for="sold_by">{% trans "Merchant" %}</label>
-            <select name="sold_by" id="sold_by">
-            {% for u in user_list %} 
-                {% if u.pk == product.sold_by.pk %}
-                    <option value="{{u.pk}}" selected>{{u.username}}</option>
-                {% else %}
-                    <option value="{{u.pk}}">{{u.username}}</option>
-                {% endif %}
-            {% endfor %}
-            </select>
         </div>
 
         <div class="form-group">

@@ -1,17 +1,8 @@
-{% extends "dashboard_base.html"%}
+{% extends "vendor_base.html"%}
 {% load i18n %}
 {% load catalog_tags %}
 {% block MAIN %}
-{% if can_view_product %}
-
-{% if can_delete_product %}
-<form action="{{attribute.get_delete_url}}" method="POST">{% csrf_token %}
-
-<div class="actions">
-  <button type="submit" class="mat-button warn">{% trans "Delete" %}</button>
-</div>
-</form>
-{% endif %}
+{% if is_seller %}
 
 <div class="mat-box">
   <div>
@@ -28,9 +19,8 @@
   </div>
 </div>
 
-{% if can_change_product%}
 <div class="container">
-    <form  class="form" name="attribute" action="{{attribute.get_update_url}}" method="POST">{% csrf_token %}
+    <form  class="form" name="attribute" action="{{attribute.get_vendor_update_url}}" method="POST">{% csrf_token %}
         <div id="error-login" class="error-login left">
         </div>
         <div class="form-group">
@@ -66,11 +56,11 @@
           
           <div class="form-group row">
             <button class="mat-button mat-button-text" type="submit">{% trans "Update" %}</button>
-            <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Cancel" %}</a>
+            <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}">{% trans "Cancel" %}</a>
           </div>
     </form>
 </div>
-{% if product_list %}
+        {% if product_list %}
         <div class="mat-list-wrapper">
           <div class="mat-list-title">
             <h4>{% trans "Products" %}</h4>
@@ -78,7 +68,7 @@
           </div>
           <ul class="mat-list">
             {% for p in product_list %}
-            <li class="mat-list-item"><a class="mat-button mat-button-text" href="{{p.get_dashboard_url}}">{{p.name}}</a></li>
+            <li class="mat-list-item"><a class="mat-button mat-button-text" href="{{p.get_vendor_url}}">{{p.name}}</a></li>
             {% endfor %}
           </ul>
 
@@ -90,7 +80,6 @@
         </div>
         {% endif %}
 
-{% endif %}
 {% else %}
 <div class="access-error">
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>

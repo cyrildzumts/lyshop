@@ -1,6 +1,7 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
 {% load static %}
+{% load catalog_tags %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -28,7 +29,7 @@
         <div class="mat-box-title wrapper">
           <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
           <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
-          <h4>{% trans "Gender" %} : {{product.gender}}</h4>
+          <h4>{% trans "Gender" %} : {{product.gender|gender_key}}</h4>
           <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
         </div>
       </div><!--End of title-->
@@ -130,11 +131,11 @@
 {% block SCRIPT %}
 <script type="text/javascript">
 var types = [
-{% for k,v in attribute_types %}
+{% for k,v in ATTRIBUTE_TYPE %}
   {% if forloop.last %}
-  '{{v}}'
+  '{{k}}'
   {% else %}
-  '{{v}}',
+  '{{k}}',
   {% endif %}
 {% endfor %}
 ];
@@ -144,7 +145,7 @@ var attr_template = {
   value : '{% trans "Value" %}',
   value_type : '{% trans "Value Type" %}',
   value_types : [
-{% for k,v in attribute_types %}
+{% for k,v in ATTRIBUTE_TYPE %}
   {% if forloop.last %}
   { key :'{{k}}', value: '{{v}}' }
   {% else %}

@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load catalog_tags %}
 <div class="mat-table-wrapper">
         <div class="row">
             <div class="mat-table-title">
@@ -15,6 +16,7 @@
                           <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
                           <th scope="col">{% trans "Name" %}</th>
                           <th scope="col">{% trans "Display Name" %}</th>
+                          <th scope="col">{% trans "Gender" %}</th>
                           <th scope="col">{% trans "Product Type" %}</th>
                           <th scope="col">{% trans "Price" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
@@ -30,6 +32,7 @@
                   
                   <td data-label="{% trans 'Name' %}">{{product.name}}</td>
                   <td data-label="{% trans 'Display Name' %}">{{product.display_name}}</td>
+                  <td data-label="{% trans 'Gender' %}">{{product.gender|gender_key}}</td>
                   <td data-label="{% trans 'Type' %}">{{product.product_type.display_name}}</td>
                   <td data-label="{% trans 'Price' %}"><span>{{product.price}}</span> <span>{% trans "XAF" %}</span></td>
                   <td data-label="{% trans 'Detail' %}"><a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>

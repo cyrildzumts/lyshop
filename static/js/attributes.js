@@ -60,8 +60,8 @@ function create_attribute(index){
     }).appendTo(select_value_type);
     attr_template.value_types.forEach(function(el, index){
         $('<option/>', {
-            'value': el.key,
-            'text' : el.value
+            'value': el.value,
+            'text' : el.key
         }).appendTo(select_value_type);
     });
     var input_form_id = $('<input type="hidden">').attr({
@@ -160,7 +160,7 @@ var AttributManager = (function(){
             'maxlength': input_max_length
         });
         input_display_name.appendTo(label_display_name);
-        var label_value = $("<label/>").text(attr_template.value + " : ");
+        var label_value = $("<label/>").text(attr_template.key + " : ");
         var input_value = $('<input type="text">').attr({
             'id':`id-form-${this.total_form}-value`,
             'name': `form-${this.total_form}-value`,
@@ -180,8 +180,8 @@ var AttributManager = (function(){
         }).appendTo(select_value_type);
         attr_template.value_types.forEach(function(el, index){
             $('<option/>', {
-                'value': el.key,
-                'text' : el.value
+                'value': el.value,
+                'text' : el.key
             }).appendTo(select_value_type);
         });
         var input_form_id = $('<input type="hidden">').attr({
@@ -317,8 +317,8 @@ function create_attribute_entry(container, form){
     }).appendTo(select_value_type);
     attr_template.value_types.forEach(function(el, index){
         $('<option/>', {
-            'value': el.key,
-            'text' : el.value
+            'value': el.value,
+            'text' : el.key
         }).appendTo(select_value_type);
     });
     var input_form_id = $('<input type="hidden">').attr({

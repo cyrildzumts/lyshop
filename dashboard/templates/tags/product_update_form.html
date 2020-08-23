@@ -35,11 +35,11 @@
         <div class="form-group">
             <label for="gender">{% trans "Gender" %}</label>
             <select name="gender" id="gender">
-            {% for k,v in gender_list %}
-                {% if k == product.gender %}
-                    <option value="{{k}}" selected>{% trans v %}</option> 
+            {% for k,v in GENDER %}
+                {% if v == product.gender %}
+                    <option value="{{v}}" selected>{% trans k %}</option> 
                 {% else %}
-                <option value="{{k}}">{% trans v %}</option> 
+                <option value="{{v}}">{% trans k %}</option> 
                 {% endif %}
                 
             {% endfor %}
@@ -88,13 +88,13 @@
         <div class="form-group">
             <label for="short_description">{% trans "Short Description" %}</label>
             <textarea id="short_description" name="short_description" cols="30" rows="10">{{product.short_description}}</textarea>
-            <span class="char-counter">{{product.short_description|length}}</span><span>/164</span>
+            <div class="row"><span class="char-counter">{{product.short_description|length}}</span><span class="text-max-length">/164</span></div>
         </div>
 
         <div class="form-group">
             <label for="description">{% trans "Description" %}</label>
             <textarea id="description" name="description" cols="30" rows="10">{{product.description}}</textarea>
-            <span class="char-counter">{{product.description|length}}</span><span>/600</span>
+            <div class="row"><span class="char-counter">{{product.description|length}}</span><span class="text-max-length">/600</span></div>
         </div>
         
         <div class="form-group row">

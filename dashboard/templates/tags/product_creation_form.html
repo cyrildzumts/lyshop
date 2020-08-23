@@ -1,5 +1,5 @@
 {% load i18n %} 
-
+{% load catalog_tags %}
 <div class="responsive">
     <form  class="form" name="product" action="{% url 'dashboard:product-create' %}" method="POST">{% csrf_token %}
         <input type="hidden" name="added_by" value="{{request.user.pk}}">
@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="gender">{% trans "Gender" %}</label>
                 <select name="gender" id="gender">
-                {% for k,v in gender_list %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
+                {% for k,v in GENDER %} <option value="{{v}}">{% trans k %}</option> {% endfor %}
                 </select>
             </div>
 
@@ -65,13 +65,13 @@
             <div class="form-group">
                 <label for="short_description">{% trans "Short Description" %}</label>
                 <textarea id="short_description" name="short_description" cols="30" rows="10"></textarea>
-                <span class="char-counter">0</span><span>/164</span>
+                <div class="row"> <span class="char-counter">0</span><span class="text-max-length">/164</span></div>
             </div>
 
             <div class="form-group">
                 <label for="description">{% trans "Description" %}</label>
                 <textarea id="description" name="description" cols="30" rows="10"></textarea>
-                <span class="char-counter">0</span><span>/600</span>
+                <div class="row"> <span class="char-counter">0</span><span class="text-max-length">/600</span></div>
             </div>
         </div>
         <div class="form-group row">

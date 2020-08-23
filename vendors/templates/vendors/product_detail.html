@@ -1,6 +1,7 @@
 {% extends "vendor_base.html"%}
 {% load static %}
 {% load i18n %}
+{% load catalog_tags %}
 
 {% block MAIN %}
 {% if is_seller %}
@@ -22,7 +23,7 @@
             <div class="mat-box-title wrapper">
               <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
               <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
-              <h4>{% trans "Gender" %} : {{product.gender}}</h4>
+              <h4>{% trans "Gender" %} : {{product.gender|gender_key}}</h4>
               <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
               <h4>{% trans "Number of Variants" %} : {{product.variants.count}}</h4>
             </div>

@@ -17,8 +17,8 @@
       <div class="form-group">
         <label for="value_type">{% trans "Value Type" %}</label>
         <select name="value_type">
-        {% for k,v in attribute_types %}
-            <option value="{{k}}">{% trans v %}</option>
+        {% for k,v in ATTRIBUTE_TYPE %}
+            <option value="{{v}}">{% trans k %}</option>
         {% endfor %}
         </select>
      </div>
