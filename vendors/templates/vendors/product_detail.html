@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load catalog_tags %}
 
-{% block MAIN %}
+{% block MAIN_CONTENT %}
 {% if is_seller %}
 
 <div class="container">
@@ -107,4 +107,4 @@
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
 {% endif %}
-{% endblock MAIN %}
+{% endblock MAIN_CONTENT %}

@@ -12,6 +12,7 @@ class Coupon(models.Model):
     reduction = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='added_coupons', blank=False, null=False)
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seller_coupons', blank=True, null=True)
     activated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activated_coupons', blank=True, null=True)
     activated_at = models.DateTimeField(blank=True, null=True)
     expire_at = models.DateTimeField(blank=True, null=True)

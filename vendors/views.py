@@ -1008,6 +1008,13 @@ def coupon_create(request):
     
     form = None
     username = request.user.username
+    sellers = User.objects.none()
+    try:
+        seller_group = Group.objects.get(name=Constants.SELLER_GROUP)
+        sellers = seller_group.user_set.all()
+    except ObjectDoesNotExist as e:
+        pass
+
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         form = CouponForm(postdata)
@@ -1023,7 +1030,8 @@ def coupon_create(request):
         form = CouponForm()
     context = {
         'page_title': page_title,
-        'form' : form
+        'form' : form,
+        'sellers': sellers
     }
 
     return render(request, template_name, context)
@@ -1042,6 +1050,13 @@ def coupon_update(request, coupon_uuid=None):
     form = None
     username = request.user.username
     coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, added_by=request.user)
+    sellers = User.objects.none()
+    try:
+        seller_group = Group.objects.get(name=Constants.SELLER_GROUP)
+        sellers = seller_group.user_set.all()
+    except ObjectDoesNotExist as e:
+        pass
+
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         activated = postdata.get('is_active')
@@ -1067,7 +1082,8 @@ def coupon_update(request, coupon_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'coupon': coupon
+        'coupon': coupon,
+        'sellers': sellers
     }
 
     return render(request, template_name, context)
@@ -1084,7 +1100,7 @@ def coupon_delete(request, coupon_uuid=None):
     if request.method != "POST":
         raise SuspiciousOperation('Bad request')
 
-    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, added_by=request.user)
+    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, seller=request.user)
     coupon_name = coupon.name
     coupon.delete()
     logger.info(f'Coupon \"{coupon_name}\" deleted by user \"{request.user.username}\"')

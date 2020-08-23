@@ -1,20 +1,15 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {{product.name}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
+
+{% block MAIN_CONTENT %}
+{% if is_seller %}
+
+<div class="container">
 
             <div class="col col-9">
                 <div class="banner--actions">
-                    <a class="mat-button mat-button-default" href="{{product.get_vendor_update_url}}"> <i class="fas fas-plus"></i> <span>{% trans "Edit" %}</span> </a>{% endif %}
+              
                     <a class="mat-button mat-button-text" href="{{product.brand.get_vendor_url}}"> {% trans "Back to brand" %} </a>
-                    <a class="mat-button mat-button-text" href="{%url 'vendors:products' %}"> {% trans "Products" %}</a>
                     <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}">{% trans "Vendor Panel" %}</a>
 
                         
@@ -22,12 +17,6 @@
             </div><!--End of Responsive-->
         
         </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-{% block MAIN%}
-{% if is_seller %}
-
 
 <div class="mat-box">
   <div class="row">

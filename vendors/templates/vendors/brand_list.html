@@ -1,14 +1,10 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Brand List" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
+
+
+{% block MAIN_CONTENT %}
+{% if is_seller %}
+<div class="container">
 
             <div class="col-m-12 col-9">
                 <div class="banner--actions">
@@ -21,12 +17,6 @@
             </div><!--End of Responsive-->
         
         </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-
-{% block MAIN %}
-{% if is_seller %}
 <div class="container">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
@@ -75,4 +65,4 @@
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
 {% endif %}
-{% endblock MAIN %}
+{% endblock MAIN_CONTENT %}

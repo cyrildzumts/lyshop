@@ -1,11 +1,9 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
-{% block  HEADER_BANNER_TITLE %}
-    <h4> {% trans "Product Update" %} - {{product.name}}</h4>
-{% endblock HEADER_BANNER_TITLE %}
-{% block MAIN %}
+
+{% block MAIN_CONTENT %}
 
 <div class="container">
     {% include "vendor_tags/product_update_form.html" %}
 </div>
-{% endblock MAIN %}
+{% endblock MAIN_CONTENT %}

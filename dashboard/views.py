@@ -2750,6 +2750,12 @@ def coupon_create(request):
     
     form = None
     username = request.user.username
+    sellers = User.objects.none()
+    try:
+        seller_group = Group.objects.get(name=Constants.SELLER_GROUP)
+        sellers = seller_group.user_set.all()
+    except ObjectDoesNotExist as e:
+        pass
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         form = CouponForm(postdata)
@@ -2765,7 +2771,8 @@ def coupon_create(request):
         form = CouponForm()
     context = {
         'page_title': page_title,
-        'form' : form
+        'form' : form,
+        'sellers' : sellers
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -2787,6 +2794,12 @@ def coupon_update(request, coupon_uuid=None):
     form = None
     username = request.user.username
     coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid)
+    sellers = User.objects.none()
+    try:
+        seller_group = Group.objects.get(name=Constants.SELLER_GROUP)
+        sellers = seller_group.user_set.all()
+    except ObjectDoesNotExist as e:
+        pass
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         activated = postdata.get('is_active')
@@ -2812,7 +2825,8 @@ def coupon_update(request, coupon_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'coupon': coupon
+        'coupon': coupon,
+        'sellers': sellers
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)

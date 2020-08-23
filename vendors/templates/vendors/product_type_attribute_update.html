@@ -1,15 +1,7 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-  <div class="row">
-        <div class="col-6">
-            <div class="title">
-                <h3>{% trans "Product Type Attribute Update" %}</h3>
-            </div>
-        </div> 
-  </div>
-{% endblock HEADER_BANNER %}
-{% block MAIN %}
+
+{% block MAIN_CONTENT %}
 
 {% if is_seller %}
 
@@ -35,11 +27,11 @@
                         <div class="form-group">
                             <label for="attribute-type">{% trans "Attribute Type" %}</label>
                             <select id="attribute-type" name="attribute_type">
-                                {% for k,v in TYPE_ATTRIBUTES %}
+                                {% for k,v in ATTRIBUTE_TYPE %}
                                     {% if k == type_attribute.attribute_type %}
-                                        <option value="{{k}}" selected>{{v}}</option>
+                                        <option value="{{v}}" selected>{{k}}</option>
                                     {% else %}
-                                        <option value="{{k}}">{{v}}</option>
+                                        <option value="{{v}}">{{k}}</option>
                                     {% endif %}
                                     
                                 {% endfor %}
@@ -69,4 +61,4 @@
 </div>
 {% endif %}
 
-{% endblock MAIN %}
+{% endblock MAIN_CONTENT %}

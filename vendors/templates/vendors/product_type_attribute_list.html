@@ -1,31 +1,17 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
-
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Type Attributes" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-
-            <div class="col-m-12 col-9">
-                <div class="banner--actions">
-                    <a class="mat-button mat-button-text" href="{% url 'vendors:product-type-attribute-create' %}"><i class="fas fa-plus icon"></i><span>{% trans "Add Attribute Type" %}</span></a>    
-                    <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Home" %}</span></a>    
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-
-{% block MAIN %}
+{% load catalog_tags %}
+{% block MAIN_CONTENT %}
 {% if is_seller %}
+<div class="container">
+    <div class="col-m-12 col-9">
+        <div class="banner--actions">
+            <a class="mat-button mat-button-text" href="{% url 'vendors:product-type-attribute-create' %}"><i class="fas fa-plus icon"></i><span>{% trans "Add Attribute Type" %}</span></a>    
+            <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Home" %}</span></a>    
+        </div><!--End of Banner-Actions-->
+    </div><!--End of Responsive-->
 
+</div><!--End of Container-->
 <div class="container">
   <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
@@ -56,7 +42,7 @@
                         <td scope="row" class="checkbox"><label><input class="js-selectable" type="checkbox" name="type_attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
                         <td data-label="{% trans 'Name' %}">{{attr.name}}</td>
                         <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
-                        <td data-label="{% trans 'Type' %}">{{attr.attribute_type}}</td>
+                        <td data-label="{% trans 'Type' %}">{{attr.attribute_type|attr_type_key}}</td>
                         <td data-label="{% trans 'Description' %}">{{attr.description}}</td>
                         <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{{attr.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   </tr>
@@ -79,4 +65,4 @@
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
 {% endif %}
-{% endblock MAIN %}
+{% endblock MAIN_CONTENT %}

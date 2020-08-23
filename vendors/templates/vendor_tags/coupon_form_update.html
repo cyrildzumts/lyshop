@@ -29,6 +29,18 @@
                             <label for="is-active">{% trans "Is Active" %}</label>
                             <input id="is-active" type="checkbox"  name="is_active" {% if coupon.is_active %}checked="checked"{% endif %} >
                         </div>
+                        <div class="form-group">
+                            <label for="seller">{% trans "Seller" %}</label>
+                            <select name="seller" id="seller">
+                                {% for seller in sellers %}
+                                    {% if seller.id == coupon.seller.id %}
+                                    <option value="{{seller.id}}" selected>{{seller.username}}</option>
+                                    {% else %}
+                                    <option value="{{seller.id}}">{{seller.username}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
                     
                     </div><!-- End of container-->
 

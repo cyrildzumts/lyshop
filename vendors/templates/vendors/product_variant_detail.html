@@ -1,17 +1,9 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
+{% load catalog_tags %}
 {% load static %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Product Variant " %} - {{variant.display_name}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-    </div>
-{% endblock HEADER_BANNER %}
-{% block MAIN %}
+
+{% block MAIN_CONTENT %}
 {% if is_seller %}
 
 <div class="container">
@@ -28,7 +20,7 @@
         <div class="mat-box-title wrapper">
           <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
           <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
-          <h4>{% trans "Gender" %} : {{product.gender}}</h4>
+          <h4>{% trans "Gender" %} : {{product.gender|gender_key}}</h4>
           <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
         </div>
       </div><!--End of title-->
@@ -69,7 +61,7 @@
           </form>
       </div><!--nd of box-content-->
   </div><!--End of mat-box-->
-  <div id="attr-dialog" class="mat-dialog dialog">
+  <div id="attr-dialog" class="mat-dialog dialog full">
 
     <div class="dialog-title">
       <h4>{% trans "Add Attribute Dialog" %}</h4>
@@ -122,16 +114,16 @@
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
 {% endif %}
-{% endblock MAIN %}
+{% endblock MAIN_CONTENT %}
 
 {% block SCRIPT %}
 <script type="text/javascript">
 var types = [
-{% for k,v in attribute_types %}
+{% for k,v in ATTRIBUTE_TYPE %}
   {% if forloop.last %}
-  '{{v}}'
+  '{{k}}'
   {% else %}
-  '{{v}}',
+  '{{k}}',
   {% endif %}
 {% endfor %}
 ];
@@ -141,7 +133,7 @@ var attr_template = {
   value : '{% trans "Value" %}',
   value_type : '{% trans "Value Type" %}',
   value_types : [
-{% for k,v in attribute_types %}
+{% for k,v in ATTRIBUTE_TYPE %}
   {% if forloop.last %}
   { key :'{{k}}', value: '{{v}}' }
   {% else %}

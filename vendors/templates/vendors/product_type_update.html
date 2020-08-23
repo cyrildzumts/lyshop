@@ -1,38 +1,15 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Product Update" %}  - {{product_type.name}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-
-            <div class="col col-9">
-                <div class="banner--actions">
-                    <ul class="actions row" role="navigation">
-                        <li class="list-item"> <a class="mat-button mat-button-default" href="{% url 'vendors:product-type-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Produt Type" %}</span></a> </li>
-                        <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:product-types' %}"><i class="fas fa-list icon"></i><span>{% trans "Product Types" %}</span></a> </li>
-                        <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Home" %}</span></a></li>
-                    </ul>
-                        
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-
-{% block MAIN %}
+{% block MAIN_CONTENT %}
 
 {% if is_seller %}
-
-
-<div class="responsive">
-
+<div class="container">
+    <ul class="actions row" role="navigation">
+        <li class="list-item"> <a class="mat-button mat-button-default" href="{% url 'vendors:product-type-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Produt Type" %}</span></a> </li>
+        <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:product-types' %}"><i class="fas fa-list icon"></i><span>{% trans "Product Types" %}</span></a> </li>
+        <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Home" %}</span></a></li>
+    </ul><!--End of Actions-->
+</div><!--End of Container-->
     <div class="container">
         
         <div class="mat-box">
@@ -80,8 +57,7 @@
                     </div>
                     
                 </form>
-            </div>
-    </div>          
+            </div>         
 </div>
 
 
@@ -91,4 +67,4 @@
 </div>
 {% endif %}
 
-{% endblock MAIN %}
+{% endblock MAIN_CONTENT %}
