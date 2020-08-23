@@ -196,133 +196,6 @@ var Account = (function(){
 })();
 
 
-var CardFactory = (function(){
-    function CardFactory(options){
-        this.required_keys = ["label", "label_attr_title", "title", "date", "amount", "initials", "initials_title", "is_seller"];
-        this.default_option = options;
-        this.template = $('#list-card-template');
-        this.template_found = this.template.length > 0;
-    }
-
-    CardFactory.prototype.isOptionsValide = function(options){
-        var flag = true;
-        if(options){
-            if (Object.keys(options).length < 0){
-                flag = false;
-            }
-            else{
-                flag = this.required_keys.every(function(key, index){
-                    return options.hasOwnProperty(key);
-                });
-            }
-        }
-        else{
-            flag = false;
-        }
-        return flag;
-    };
-
-    CardFactory.prototype.createCard = function(options){
-        var card = null;
-        if(this.isOptionsValide(options)){
-            if(this.template_found){
-                var $template = this.template.clone();
-                $('.card-label', $template).attr('title', options.label_attr_title).html(options.label);
-                $('.list-card-title', $template).html(options.title);
-                $('.date', $template).html(options.date);
-                $('.amount', $template).html(options.amount);
-                $('.member-initials', $template).attr('title', options.initials_title).html(options.initials);
-                if(options.is_seller){
-                    $('.member-is-a-seller', $template).attr('title', 'Ce membre est un prestataire de services').removeClass('hide');
-                }
-                card = $template;
-                card.removeAttr('id');
-            }
-            else{
-                console.log('No card template could be found');
-            }
-            
-
-        }
-        else{
-            console.log('No valid card actions');
-        }
-        return card;
-    };
-
-    CardFactory.prototype.default_card = function(){
-        return this.createCard(this.default_option);
-    }
-
-
-    return CardFactory;
-})();
-
-var Transaction = (function(){
-    function Transaction(){
-        this.template =$("#transaction-form-wrapper.template");
-        this.init();
-        
-    }
-
-    Transaction.prototype.init = function(){
-        this.re = RegExp('^[0-9]+$');
-        var form = $('.template #transaction-form');
-        console.log("Intialization transaction Form.");
-        if(form.length == 0){
-            console.log("transaction Form not found.");
-            return;
-        }
-        regex = this.re;
-        console.log("Found transaction Form.");
-        $("#transaction-modal .modal-body").on("submit","#transaction-form", function(event){
-            var form = $(this);
-            var flag = true;
-            event.preventDefault();
-            var recipient = $("#recipient", this).val();
-            var amount = 0;
-            var amount_val = $("#amount", this).val();
-            var description = $("#description", this).val();
-            var fields = [recipient, amount_val, description];
-            var errors_fields = $("#recipient-error , #amount-error , #description-error",this);
-            
-            fields.forEach(function(field, index){
-                //console.log("Field #\n",index);
-                if(field.length > 0){
-                    $(errors_fields[index]).hide();
-                }else{
-                    //console.log("Field #", index, " is incorrect\n");
-                    $(errors_fields[index]).show();
-                    flag = false;
-                }
-            });
-            if(!regex.test(amount_val)){
-                $('#amount-error', this).html('Le montant doit être un numbre').show();
-                console.log("the field amount must be a number");
-            }
-            else{
-                amount = parseInt(amount_val);
-            }
-            if(flag){
-                console.log("Recipient : ", recipient, "Amount : ", amount, "Description : ", description);
-            }
-            
-            return flag;
-        });
-        
-    };
-
-    Transaction.prototype.create = function(){
-        var transaction = null;
-        transaction = this.template.clone().removeClass("template");
-        console.log("new transaction element created");
-        return transaction;
-    };
-
-    return Transaction;
-})();
-
-
 var CaseIssue = (function(){
     function CaseIssue(options){
         console.log("Issue construction...");
@@ -450,39 +323,6 @@ var Modal = (function(){
 })();
 
 
-var Notify = (function(){
-    function Notify(){
-        this.template = $("#notify");
-    }
-
-    Notify.prototype.init = function(){
-        $(".modal .modal-body").on("click", "#notify .close", function(event){
-            var target = $($(this).data("target"));
-            target.hide();
-            $(".modal-body", target).empty();
-        });
-
-    };
-
-    Notify.prototype.notify = function(data){
-        if(data && data.hasOwnProperty('msg')){
-            alert(data.msg);
-        }
-        else{
-            alert("Notify called with wrong parameters");
-        }
-    };
-
-    Notify.prototype.create = function(){
-
-        var template = null;
-        template = this.template.clone().removeClass("template");
-        console.log("new Notification template element created");
-        return template;
-    };
-
-    return Notify;
-})();
 
 var Notification = (function(){
     function Notification(){
@@ -710,35 +550,6 @@ var TableFilter = (function(){
     }
     return TableFilter;
 })();
-//var trans = new Transaction();
-var issue_descr = "J'ai acheter un article le 23.03.2019."
-" Jusqu'aujourd'hui je n'ai toujours pas recu la commande."
-" Je souhaite recevoir mon article dans les plus bref delai sinon j'aimerai me faire rembourser.";
-
-var options = {label: 'Reception', label_attr_title: 'Entrant', title: 'Reception venant de Cyrille', date: '04-05-2019', amount: 25000, initials: 'CN',initials_title: 'Cyrille Ngassam', is_seller: false};
-
-
-
-var notify = new Notify();
-
-
-function fetchTransaction(){
-    $.ajax({
-        url: "transactions",
-        type: 'post',
-        success : function(data){
-            notify.notify({msg: "Nouvell Transaction sur votre compte"});
-        },
-        error: function(data){
-            notify.notify({msg: "Error : Votre compte n'a pas pu etre actualisé"});
-        },
-        complete: function(data){
-            setTimeout(fetchTransaction, 60000);
-        }
-    });
-}
-
-
 
 
 var isDirty = false;
@@ -771,10 +582,7 @@ function prevent_leaving(){
 $(document).ready(function(){
 let account = new Account();
 account.init();
-/*
-var notifications = new Notification();
-notifications.init();
-*/
+
 let tabs = new Tabs();
 tabs.init();
 

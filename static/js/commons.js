@@ -27,6 +27,21 @@ function notify(message){
     console.log("Notification sent.");
 }
 
+function notify_init(wrapper, message_container){
+ 
+    if(typeof wrapper === 'undefined'){
+        return;
+    }
+
+    if(typeof message_container === 'undefined' || $('li', message_container).length == 0){
+        return;
+    }
+
+    wrapper.fadeIn().delay(fadeDelay).fadeOut('slow', function () {
+        message_container.empty();
+    });
+}
+
 var ListFilter = (function(){
     function ListFilter(){
         console.log("creating ListFilter instance");
@@ -376,6 +391,7 @@ function dateFormat(index, input){
 $(document).ready(function(){
     notification_wrapper = $('#notifications-wrapper');
     messages = $('#messages', notification_wrapper);
+    notify_init(notification_wrapper, messages);
     var listfilter = new ListFilter();
     fileUpload = new FileUpload();
     $('.collapsible .toggle').on('click', function(event){

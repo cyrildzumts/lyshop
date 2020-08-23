@@ -106,7 +106,7 @@
         <div id="notifications-wrapper" class="notifications-wrapper">
                 <div class="flex-column">
                         <div class="row notifications-controls">
-                                <button class="mat-button mat-button-default"><i class="fa"></i> <span class="button-text">{% trans "Close all" %}</span></button>
+                               <span class="title">{% trans "INFO" %}</span>
                         </div>
                         <ul id="messages" class="messages notification-list" data-toggle="#notifications-wrapper">
                         {% for message in messages %}
@@ -114,17 +114,6 @@
                                         <div class="notification flex">
                                                 <i class="js-close fas fa-times-circle icon"></i>
                                                 <span>{{message}}</span>
-                                        </div>
-                                </li>
-                        {% endfor %}
-                        </ul>
-                        <ul id="notifications" class="notifications notification-list" data-toggle="#notifications-wrapper">
-                        {% for notification in notifications %}
-                                <li class="{{notification.level}}">
-                                        <div class="notification flex">
-                                                <i class="js-close fas fa-times-circle icon"></i>
-                                                <span class="title">{{notification.title}}</span>
-                                                <span class="content">{{notification.content}}</span>
                                         </div>
                                 </li>
                         {% endfor %}
