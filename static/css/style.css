@@ -272,7 +272,7 @@
     margin : 8px auto;
 }
 
-.pagination .page{
+.pagination .pagination--page{
     border: 1px solid #ccc;
     padding: 4px 8px;
 }
