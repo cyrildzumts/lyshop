@@ -78,3 +78,9 @@ class SoldProduct(models.Model):
 
     def get_absolute_url(self):
         return reverse("vendors:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
+    
+    def get_dashboard_url(self):
+        return reverse("vendors:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
+
+    def get_vendor_url(self):
+        return reverse("vendors:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
