@@ -13,6 +13,10 @@
 
 }
 
+.display-flex{
+  display: flex;
+}
+
 .flex{
 	display: flex;
 	flex-direction: row;
