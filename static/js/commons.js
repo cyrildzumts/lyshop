@@ -1,7 +1,7 @@
 var fileUpload;
 var messages;
 var notification_wrapper;
-var fadeDelay = 5000; // 5s
+var fadeDelay = 30000; // 5s
 
 function notify(message){
     if( typeof notification_wrapper === 'undefined' || typeof messages === 'undefined'){
