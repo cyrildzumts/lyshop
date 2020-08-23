@@ -22,7 +22,7 @@ function notify(message){
     console.log("Sending notification for message : ");
     console.log(message);
     notification_wrapper.fadeIn().delay(fadeDelay).fadeOut();
-    messages.empty();
+    //messages.empty();
     console.log("Notification sent.");
 }
 
