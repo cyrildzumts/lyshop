@@ -1508,7 +1508,7 @@ def sold_product_list(request):
         'page_title': page_title,
     }
 
-    queryset = SoldProduct.objects.filter(is_active=True, seller=request.user).order_by('-created_at')
+    queryset = SoldProduct.objects.filter(seller=request.user).order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
     try:
