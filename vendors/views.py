@@ -661,16 +661,17 @@ def product_image_detail(request, image_uuid=None):
     context['image'] = image
     return render(request,template_name, context)
 
-
+@login_required
 def product_image_delete(request, image_uuid=None):
     username = request.user.username
     if not vendors_service.is_vendor(request.user):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     
+    '''
     if request.method != "POST":
         raise SuspiciousOperation('Bad request')
-
+    '''
     context = {}
 
     p_image = get_object_or_404(ProductImage, image_uuid=image_uuid, product__sold_by=request.user)
@@ -690,7 +691,7 @@ def product_image_update(request, image_uuid=None):
     page_title = "Edit Product Image" + ' - ' + settings.SITE_NAME
     template_name = "vendors/product_image_update.html"
     image = get_object_or_404(ProductImage, image_uuid=image_uuid, product__sold_by=request.user)
-    if request.method =="POST":
+    if request.method == "POST":
         form = ProductImageForm(request.POST, request.FILES, instance=image)
         if form.is_valid():
             logger.info("ProductImageForm is valid")
