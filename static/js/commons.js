@@ -17,7 +17,7 @@ function notify(message){
         'text': message.content
     });
     div.append(span).appendTo(li);
-    li.appendTo(messgaes);
+    li.appendTo(messages);
     messages.fadeIn().delay(fadeDelay).fadeOut();
     messages.empty();
 }
