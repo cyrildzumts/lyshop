@@ -1,9 +1,10 @@
 var fileUpload;
 var messages;
+var notification_wrapper;
 var fadeDelay = 5000; // 5s
 
 function notify(message){
-    if(typeof messages === 'undefined'){
+    if( typeof notification_wrapper === 'undefined' || typeof messages === 'undefined'){
         console.warn("Notify call for message %s. But There is no messages container", message);
         return;
     }
@@ -20,7 +21,7 @@ function notify(message){
     li.appendTo(messages);
     console.log("Sending notification for message : ");
     console.log(message);
-    messages.fadeIn().delay(fadeDelay).fadeOut();
+    notification_wrapper.fadeIn().delay(fadeDelay).fadeOut();
     messages.empty();
     console.log("Notification sent.");
 }
@@ -372,7 +373,8 @@ function dateFormat(index, input){
 }
 
 $(document).ready(function(){
-    messages = $('#messages');
+    notification_wrapper = $('#notification-wrapper');
+    messages = $('#messages', notification_wrapper);
     var listfilter = new ListFilter();
     fileUpload = new FileUpload();
     $('.collapsible .toggle').on('click', function(event){
