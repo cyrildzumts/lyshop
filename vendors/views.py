@@ -1106,7 +1106,7 @@ def product_type_products(request, type_uuid=None):
 @login_required
 def product_type_attributes(request):
     username = request.user.username
-    iif not vendors_service.is_vendor(request.user):
+    if not vendors_service.is_vendor(request.user):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
