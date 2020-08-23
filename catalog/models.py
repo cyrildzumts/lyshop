@@ -347,6 +347,7 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
     product_variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE, related_name='images', blank=True, null=True)
     image = models.ImageField(upload_to=upload_to, height_field='height', width_field='width')
+    is_main_image = models.BooleanField(default=True, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     image_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -368,13 +369,13 @@ class ProductImage(models.Model):
 
 
     def get_vendor_url(self):
-        return reverse("dashboard:product-image-detail", kwargs={"image_uuid": self.image_uuid})
+        return reverse("vendors:product-image-detail", kwargs={"image_uuid": self.image_uuid})
     
     def get_vendor_update_url(self):
-        return reverse("dashboard:product-image-update", kwargs={"image_uuid": self.image_uuid})
+        return reverse("vendors:product-image-update", kwargs={"image_uuid": self.image_uuid})
 
     def get_vendor_delete_url(self):
-        return reverse("dashboard:product-image-delete", kwargs={"image_uuid": self.image_uuid})
+        return reverse("vendors:product-image-delete", kwargs={"image_uuid": self.image_uuid})
 
 
 
