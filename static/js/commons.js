@@ -21,8 +21,9 @@ function notify(message){
     li.appendTo(messages);
     console.log("Sending notification for message : ");
     console.log(message);
-    notification_wrapper.fadeIn().delay(fadeDelay).fadeOut('slow', messages.empty);
-    //messages.empty();
+    notification_wrapper.fadeIn().delay(fadeDelay).fadeOut('slow', function () {
+        messages.empty();
+    });
     console.log("Notification sent.");
 }
 
