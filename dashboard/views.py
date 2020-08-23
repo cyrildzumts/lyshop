@@ -2962,7 +2962,8 @@ def product_type_detail(request, type_uuid=None):
     context = {
         'page_title': page_title,
         'product_list': product_list,
-        'product_type': product_type
+        'product_type': product_type,
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
