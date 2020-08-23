@@ -673,9 +673,10 @@ def product_image_delete(request, image_uuid=None):
 
     context = {}
 
-    image = get_object_or_404(ProductImage, image_uuid=image_uuid, product__sold_by=request.user)
+    p_image = get_object_or_404(ProductImage, image_uuid=image_uuid, product__sold_by=request.user)
     product = image.product
-    ProductImage.objects.filter(pk=image.pk).delete()
+    p_image.delete_image_file()
+    ProductImage.objects.filter(pk=p_image.pk).delete()
     return redirect(product.get_vendor_url())
 
 @login_required

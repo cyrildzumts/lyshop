@@ -771,12 +771,12 @@ def product_image_detail(request, image_uuid=None):
         raise PermissionDenied
 
     context = {}
-    image = get_object_or_404(ProductImage, image_uuid=image_uuid)
+    p_image = get_object_or_404(ProductImage, image_uuid=image_uuid)
 
     template_name = "dashboard/product_image_detail.html"
     page_title = "Product Image" + " - " + settings.SITE_NAME
     context['page_title'] = page_title
-    context['image'] = image
+    context['image'] = p_image
     return render(request,template_name, context)
 
 def product_image_delete(request, image_uuid=None):
@@ -794,9 +794,10 @@ def product_image_delete(request, image_uuid=None):
 
     context = {}
 
-    image = get_object_or_404(ProductImage, image_uuid=image_uuid)
-    product = image.product
-    ProductImage.objects.filter(pk=image.pk).delete()
+    p_image = get_object_or_404(ProductImage, image_uuid=image_uuid)
+    product = p_image.product
+    p_image.delete_image_file()
+    ProductImage.objects.filter(pk=p_image.pk).delete()
     return redirect(product.get_dashboard_url())
 
 @login_required

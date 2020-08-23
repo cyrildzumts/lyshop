@@ -352,6 +352,10 @@ class ProductImage(models.Model):
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     image_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
+
+    def delete_image_file(self):
+        self.image.delete(False)
+
     def get_image_url(self):
         return self.image.url
     
