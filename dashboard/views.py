@@ -3159,7 +3159,7 @@ def product_type_attribute_create(request):
         form = ProductTypeAttributeForm()
     context = {
         'page_title': page_title,
-        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'form' : form
     }
     context.update(get_view_permissions(request.user))
