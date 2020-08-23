@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidde
 
 from catalog.models import Product, ProductVariant, Brand, Category, ProductTypeAttribute, ProductImage, ProductType, ProductAttribute
 from catalog.forms import (BrandForm, ProductAttributeForm, 
-    ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm, BrandForm
+    ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm, BrandForm,
     DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm
 )
 from catalog import constants as Catalog_Constants
