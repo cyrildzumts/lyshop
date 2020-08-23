@@ -20,7 +20,7 @@ GENDER_OLD = (
         (GENDER_NO_GENDER, 'NO GENDER')
     )
 
-GENGER = (
+GENDER = (
     ('MEN', GENDER_MEN),
     ('WOMEN', GENDER_WOMEN),
     ('BABY GIRL', GENDER_BABY_GIRL),
@@ -66,11 +66,11 @@ def get_attribute_type_key(value):
     return utils.find_element_by_value_in_tuples(value, ATTRIBUTE_TYPE)
 
 def get_gender_key(value):
-    return utils.find_element_by_value_in_tuples(value, GENGER)
+    return utils.find_element_by_value_in_tuples(value, GENDER)
 
 
 def get_attribute_type_value(key):
     return utils.find_element_by_key_in_tuples(key, ATTRIBUTE_TYPE)
 
 def get_gender_value(key):
-    return utils.find_element_by_key_in_tuples(key, GENGER)
+    return utils.find_element_by_key_in_tuples(key, GENDER)
