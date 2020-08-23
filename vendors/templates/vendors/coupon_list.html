@@ -44,8 +44,8 @@
                   <td scope="row" class="checkbox"><label><input class="js-selectable" type="checkbox" name="coupons" value="{{coupon.pk}}"><span class="checkbox-label"></span></label></td>
                   <td data-label="{% trans 'Name' %}">{{coupon.name}}</td>
                   <td data-label="{% trans 'Reduction' %}">{{coupon.reduction}}</td>
+                  <td data-label="{% trans 'Date of Creation' %}">{{coupon.created_at|date:"F j, Y"}}</td>
                   <td data-label="{% trans 'Seller' %}">{% if coupon.seller %}{{coupon.seller.username}}{% else %}-{% endif %}</td>
-                  <td data-label="{% trans 'Date of Creation' %}">{{coupon.created_at|localtime}}</td>
                   <td data-label="{% trans 'Status' %}">{% if coupon.is_active %}
                     {% trans "Activated" %}
                   {% else %}

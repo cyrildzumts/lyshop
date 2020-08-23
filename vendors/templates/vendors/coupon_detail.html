@@ -14,6 +14,7 @@
                 <p> {% trans "Create at" %} : {{coupon.created_at|date:"F j, Y"}}</p>
             </div>
             <div class="mat-box">
+                <p> {% trans "Begin at" %} : {{coupon.begin_at|date:"F j, Y"}}</p>
                 <p> {% trans "Expire at" %} : {{coupon.expire_at|date:"F j, Y"}}</p>
                 <p> {% trans "Added by" %} : {{coupon.added_by.username}}</p> 
                 <p> {% trans "Activated by" %} : {{coupon.activated_by.username}}</p>  
