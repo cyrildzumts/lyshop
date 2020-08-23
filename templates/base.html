@@ -113,7 +113,7 @@
                         <li {% if message.tags %} class="{{message.tags}}" {% endif %}>
                                 <div class="notification flex">
                                         <i class="js-close fas fa-times-circle icon"></i>
-                                        <div>{{message}}</div>
+                                        <span>{{message}}</span>
                                 </div>
                         </li>
                 {% endfor %}
@@ -122,11 +122,11 @@
                 {% if notifications %}
                 <ul id="notifications" class="notifications notification-list" data-toggle="#notifications-wrapper">
                 {% for notification in notifications %}
-                        <li class="">
+                        <li class="{{notification.level}}">
                                 <div class="notification flex">
                                         <i class="js-close fas fa-times-circle icon"></i>
-                                        <div class="title">{{notification.title}}</div>
-                                        <div class="content">{{notification.content}}</div>
+                                        <span class="title">{{notification.title}}</span>
+                                        <span class="content">{{notification.content}}</span>
                                 </div>
                         </li>
                 {% endfor %}

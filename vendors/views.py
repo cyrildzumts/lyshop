@@ -8,7 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.utils import timezone
 from django.forms import formset_factory, modelformset_factory
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidden
-
+from django.contrib import messages
 from catalog.models import Product, ProductVariant, Brand, Category, ProductTypeAttribute, ProductImage, ProductType, ProductAttribute
 from catalog.forms import (BrandForm, ProductAttributeForm, 
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm, BrandForm,
@@ -614,7 +614,7 @@ def product_image_create(request, product_uuid=None):
                 f.save()
             logger.info("[OK] Saving images done.")
             if request.is_ajax():
-                return JsonResponse({'status': 'OK', 'message' : 'files uploaded'})
+                return JsonResponse({'status': 'OK', 'message' : _('Image(s)  uploaded')})
             return redirect(product.get_vendor_url())
         else:
             logger.error("at least one image form is not valid.")
@@ -677,6 +677,7 @@ def product_image_delete(request, image_uuid=None):
     product = image.product
     p_image.delete_image_file()
     ProductImage.objects.filter(pk=p_image.pk).delete()
+    messages.success(request, _("Image removed"))
     return redirect(product.get_vendor_url())
 
 @login_required

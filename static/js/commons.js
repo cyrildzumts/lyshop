@@ -1,5 +1,26 @@
 var fileUpload;
+var messages;
+var fadeDelay = 5000; // 5s
 
+function notify(message){
+    if(typeof messages === 'undefined'){
+        console.warn("Notify call for message %s. But There is no messages container", message);
+        return;
+    }
+    let li = $('<li />', {
+        "class" : message.level,
+    });
+    let div = $('<div />', {
+        "class" : "notification flex"
+    });
+    let span = $('<span />', {
+        'text': message.content
+    });
+    div.append(span).appendTo(li);
+    li.appendTo(messgaes);
+    messages.fadeIn().delay(fadeDelay).fadeOut();
+    messages.empty();
+}
 
 var ListFilter = (function(){
     function ListFilter(){
@@ -316,7 +337,13 @@ var FileUpload = (function(){
         };
         ajax(options).then(function(response){
             console.info("Files have bean uploaded.");
+            message = response.message;
+            msg = {
+                content : message,
+                level : response.status === 'OK'
+            }
             fileUpload.clear();
+            notify(msg);
 
         }, function(reason){
             console.error("Files could not be uploaded.");
@@ -341,6 +368,7 @@ function dateFormat(index, input){
 }
 
 $(document).ready(function(){
+    messages = $('#messages');
     var listfilter = new ListFilter();
     fileUpload = new FileUpload();
     $('.collapsible .toggle').on('click', function(event){
