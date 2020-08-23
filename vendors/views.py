@@ -675,7 +675,7 @@ def product_image_delete(request, image_uuid=None):
     context = {}
 
     p_image = get_object_or_404(ProductImage, image_uuid=image_uuid, product__sold_by=request.user)
-    product = image.product
+    product = p_image.product
     p_image.delete_image_file()
     ProductImage.objects.filter(pk=p_image.pk).delete()
     messages.success(request, _("Image removed"))
