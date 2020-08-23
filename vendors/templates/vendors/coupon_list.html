@@ -1,33 +1,17 @@
-{% extends "dashboard_base.html"%}
+{% extends "vendor_base.html"%}
 {% load i18n %}
 {% load tz %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Coupons" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
 
-            <div class="col col-9">
-                <div class="banner--actions">
-                    {% if can_add_coupon %}
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:coupon-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "Add new Coupon" %}</span></a>
-                    {% endif %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
-                        
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
 
 {% block MAIN_CONTENT %}
-{% if can_view_coupon %}
+{% if i_seller %}
+<div class="container">
+        <div class="actions">
+            <a class="mat-button mat-button-default" href="{% url 'vendors:coupon-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "Add new Coupon" %}</span></a>
+            <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Panel" %}</span></a>
+                
+        </div><!--End of Banner-Actions-->
+</div><!--End of Container-->
 <div class="container">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
@@ -36,7 +20,7 @@
                 {% trans "Coupons" %}
             </div>
         </div><!--End of Row-->
-        <form action="{% url 'dashboard:coupons-delete' %}" method="POST">{% csrf_token %}
+        <form action="{% url 'vendors:coupons-delete' %}" method="POST">{% csrf_token %}
         <table id="coupon-list" class="mat-table js-filter-table">
             <div class="actions">
                 <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button>

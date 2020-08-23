@@ -1,0 +1,15 @@
+{% extends "vendor_base.html"%}
+{% load i18n %}
+
+{% block MAIN_CONTENT %}
+    {% if is_seller %}
+        <div class="container">
+                <div class="actions">
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
+                        
+                </div><!--End of Actions-->
+        </div><!--End of Container-->
+        {% include "vendor_tags/coupon_form_update.html" %}
+    {% else %}
+    {% endif %}
+{% endblock MAIN_CONTENT %}

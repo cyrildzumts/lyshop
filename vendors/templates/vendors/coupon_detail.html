@@ -1,18 +1,9 @@
-{% extends "dashboard_base.html"%}
+{% extends "vendor_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Coupon" %} - {{coupon.name}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-    </div>
-{% endblock HEADER_BANNER %}
+
 {% block MAIN_CONTENT %}
 
-{% if can_view_coupon %}
+{% if is_seller %}
 <div class="container">
         <div class="mat-box full">
           <div class="grid title">

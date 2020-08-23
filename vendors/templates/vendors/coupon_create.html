@@ -1,0 +1,24 @@
+{% extends "vendor_base.html"%}
+{% load i18n %}
+
+{% block MAIN_CONTENT %}
+
+
+{% if is_seller %}
+
+
+<div class="container">
+        <div class="actions">
+            <a class="mat-button mat-button-outlined" href="{% url 'vendors:coupons'%}"> {% trans "Coupons" %}</a>
+            <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"> {% trans "Vendor Panel" %} </a>
+        </div><!--End of Banner-Actions-->
+</div><!--End of Container-->
+<div class="container">
+    {% include "vendor_tags/coupon_form.html" %}
+</div>
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN_CONTENT %}

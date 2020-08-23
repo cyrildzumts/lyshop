@@ -963,8 +963,7 @@ def coupons(request):
         raise PermissionDenied
 
     context = {}
-    #current_account = Account.objects.get(user=request.user)
-    queryset = Coupon.objects.filter(added_by=request.user).order_by('-created_at')
+    queryset = Coupon.objects.filter(seller=request.user).order_by('-created_at')
     template_name = "vendors/coupon_list.html"
     page_title = "Coupon - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
@@ -988,7 +987,7 @@ def coupon_detail(request, coupon_uuid=None):
         raise PermissionDenied
 
     context = {}
-    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, added_by=request.user)
+    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, seller=request.user)
     template_name = "vendors/coupon_detail.html"
     page_title = "Coupon" + " - " + settings.SITE_NAME
     context['page_title'] = page_title
@@ -1008,12 +1007,7 @@ def coupon_create(request):
     
     form = None
     username = request.user.username
-    sellers = User.objects.none()
-    try:
-        seller_group = Group.objects.get(name=Constants.SELLER_GROUP)
-        sellers = seller_group.user_set.all()
-    except ObjectDoesNotExist as e:
-        pass
+    
 
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
@@ -1030,8 +1024,7 @@ def coupon_create(request):
         form = CouponForm()
     context = {
         'page_title': page_title,
-        'form' : form,
-        'sellers': sellers
+        'form' : form
     }
 
     return render(request, template_name, context)
@@ -1049,13 +1042,8 @@ def coupon_update(request, coupon_uuid=None):
     
     form = None
     username = request.user.username
-    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, added_by=request.user)
-    sellers = User.objects.none()
-    try:
-        seller_group = Group.objects.get(name=Constants.SELLER_GROUP)
-        sellers = seller_group.user_set.all()
-    except ObjectDoesNotExist as e:
-        pass
+    coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, seller=request.user)
+    
 
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
@@ -1082,8 +1070,7 @@ def coupon_update(request, coupon_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'coupon': coupon,
-        'sellers': sellers
+        'coupon': coupon
     }
 
     return render(request, template_name, context)
@@ -1123,7 +1110,7 @@ def coupons_delete(request):
 
     if len(id_list):
         coupon_list = list(map(int, id_list))
-        Coupon.objects.filter(id__in=coupon_list, added_by=request.user).delete()
+        Coupon.objects.filter(id__in=coupon_list, seller=request.user).delete()
         messages.success(request, f"Coupons \"{coupon_list}\" deleted")
         logger.info(f"Coupon \"{coupon_list}\" deleted by user {username}")
         
