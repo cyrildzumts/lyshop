@@ -345,8 +345,9 @@ var FileUpload = (function(){
                 content : message,
                 level : response.status === 'OK'
             }
-            fileUpload.clear();
             notify(msg);
+            fileUpload.clear();
+            
 
         }, function(reason){
             console.error("Files could not be uploaded.");
