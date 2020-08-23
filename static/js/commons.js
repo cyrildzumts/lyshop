@@ -1,7 +1,7 @@
 var fileUpload;
 var messages;
 var notification_wrapper;
-var fadeDelay = 30000; // 5s
+var fadeDelay = 5000; // 5s
 
 function notify(message){
     if( typeof notification_wrapper === 'undefined' || typeof messages === 'undefined'){
@@ -21,7 +21,7 @@ function notify(message){
     li.appendTo(messages);
     console.log("Sending notification for message : ");
     console.log(message);
-    notification_wrapper.fadeIn().delay(fadeDelay).fadeOut();
+    notification_wrapper.fadeIn().delay(fadeDelay).fadeOut('slow', messages.empty);
     //messages.empty();
     console.log("Notification sent.");
 }
