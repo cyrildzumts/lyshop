@@ -3123,7 +3123,8 @@ def product_type_attributes(request):
         list_set = None
     context = {
         'page_title': page_title,
-        'type_attribute_list': list_set
+        'type_attribute_list': list_set,
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -3187,7 +3188,7 @@ def product_type_attribute_detail(request, type_attribute_uuid=None):
     context = {
         'page_title': page_title,
         #'product_list': product_list,
-        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'type_attribute': type_attribute
     }
     context.update(get_view_permissions(request.user))
@@ -3226,7 +3227,7 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'TYPE_ATTRIBUTES': Catalog_Constants.ATTRIBUTE_TYPE,
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'type_attribute': type_attribute
     }
     context.update(get_view_permissions(request.user))

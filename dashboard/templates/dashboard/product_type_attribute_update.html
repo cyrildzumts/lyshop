@@ -36,11 +36,11 @@
                         <div class="form-group">
                             <label for="attribute-type">{% trans "Attribute Type" %}</label>
                             <select id="attribute-type" name="attribute_type">
-                                {% for k,v in TYPE_ATTRIBUTES %}
-                                    {% if k == type_attribute.attribute_type %}
-                                        <option value="{{k}}" selected>{{v}}</option>
+                                {% for k,v in ATTRIBUTE_TYPE %}
+                                    {% if v == type_attribute.attribute_type %}
+                                        <option value="{{v}}" selected>{{k}}</option>
                                     {% else %}
-                                        <option value="{{k}}">{{v}}</option>
+                                        <option value="{{v}}">{{k}}</option>
                                     {% endif %}
                                     
                                 {% endfor %}
