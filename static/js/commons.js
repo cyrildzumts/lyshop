@@ -18,8 +18,11 @@ function notify(message){
     });
     div.append(span).appendTo(li);
     li.appendTo(messages);
+    console.log("Sending notification for message : ");
+    console.log(message);
     messages.fadeIn().delay(fadeDelay).fadeOut();
     messages.empty();
+    console.log("Notification sent.");
 }
 
 var ListFilter = (function(){
