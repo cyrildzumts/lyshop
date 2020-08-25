@@ -1796,10 +1796,10 @@ def update_vendor_products(request, pk=None):
     if is_seller:
         flag = vendors_service.update_sold_product(user)
         if flag:
-            messages.success("Updated vendor Sold products")
+            messages.success(request, "Updated vendor Sold products")
             logger.info("Updated Vendor sold products")
         else:
-            messages.error("Vendor sold products could not be updated")
+            messages.error(request, "Vendor sold products could not be updated")
             logger.error("Vendor sold products could not be updated")
 
     return redirect('dashboard:user-detail', pk=pk)
