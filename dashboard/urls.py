@@ -111,6 +111,12 @@ urlpatterns = [
     path('policy-groups/update/<uuid:group_uuid>/', views.policy_group_update, name='policy-group-update'),
     path('policy-groups/create/', views.policy_group_create, name='policy-group-create'),
     path('reports/', views.reports, name='reports'),
+
+    path('sold-products/', views.sold_product_list, name='sold-products'),
+    path('sold-products/details/<uuid:product_uuid>/', views.sold_product_detail, name='sold-product-detail'),
+    path('sold-products/delete/<uuid:product_uuid>/', views.sold_product_delete, name='sold-product-delete'),
+    path('sold-products/delete/', views.sold_products_delete, name='sold-products-delete'),
+
     path('tokens/', views.tokens, name='tokens'),
     path('users/', views.users, name='users'),
     path('users/create-user/', views.create_account, name='create-user'),

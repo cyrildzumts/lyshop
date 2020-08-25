@@ -1550,6 +1550,54 @@ def sold_product_detail(request, product_uuid=None):
     return render(request,template_name, context)
 
 
+
+@login_required
+def sold_product_delete(request, product_uuid=None):
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    product = get_object_or_404(SoldProduct, product_uuid=product_uuid, product__product__sold_by=request.user)
+    p_name = product.product.name
+    SoldProduct.objects.filter(pk=product.pk).delete()
+    logger.info(f'SoldProduct \"{p_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('SoldProduct deleted'))
+    return redirect('vendors:sold-products')
+
+
+
+@login_required
+def sold_products_delete(request):
+    username = request.user.username
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request. Expected POST request but received a GET')
+    
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('products')
+
+    if len(id_list):
+        product_list = list(map(int, id_list))
+        SoldProduct.objects.filter(id__in=product_list).delete()
+        messages.success(request, f"SoldProduct \"{product_list}\" deleted")
+        logger.info(f"SoldProduct\"{product_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"SoldProduct could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('vendors:sold-products')
+
+
+
 @login_required
 def balance_history(request, balance_uuid):
     username = request.user.username

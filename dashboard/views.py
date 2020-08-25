@@ -43,6 +43,7 @@ from cart.forms import CouponForm
 from catalog import models
 from catalog import constants as Catalog_Constants
 from orders import commons as Order_Constants
+from vendors.models import SoldProduct, Balance, VendorPayment, BalanceHistory
 from vendors import vendors_service
 from dashboard import analytics
 from itertools import islice
@@ -1009,6 +1010,122 @@ def product_variant_delete(request, variant_uuid=None):
 
 
 
+@login_required
+def sold_product_list(request):
+    username = request.user.username
+    
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'dashboard/sold_product_list.html'
+    page_title = _('Products')
+    context = {
+        'page_title': page_title,
+    }
+
+    queryset = SoldProduct.objects.all().order_by('-created_at')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['product_list'] = list_set
+
+    return render(request,template_name, context)
+
+
+@login_required
+def sold_product_detail(request, product_uuid=None):
+    template_name = 'vendors/sold_product_detail.html'
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    page_title = _('Product Detail')
+    
+
+    sold_product = get_object_or_404(SoldProduct, product_uuid=product_uuid)
+    images = ProductImage.objects.filter(product=sold_product.product.product)
+    context = {
+        'page_title': page_title,
+        'sold_product': sold_product,
+        'product' : sold_product.product.product,
+        'variant' : sold_product.product,
+        'attribute_list': sold_product.product.attributes.all(),
+        'image_list': images
+    }
+    return render(request,template_name, context)
+
+
+
+@login_required
+def sold_product_delete(request, product_uuid=None):
+    username = request.user.username
+    
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    product = get_object_or_404(SoldProduct, product_uuid=product_uuid)
+    p_name = product.product.name
+    SoldProduct.objects.filter(pk=product.pk).delete()
+    logger.info(f'SoldProduct \"{p_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('SoldProduct deleted'))
+    return redirect('dashboard:sold-products')
+
+
+
+@login_required
+def sold_products_delete(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request. Expected POST request but received a GET')
+    
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('products')
+
+    if len(id_list):
+        product_list = list(map(int, id_list))
+        SoldProduct.objects.filter(id__in=product_list).delete()
+        messages.success(request, f"SoldProduct \"{product_list}\" deleted")
+        logger.info(f"SoldProduct\"{product_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"SoldProduct could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('dashboard:sold-products')
+
+
 
 @login_required
 def add_attributes(request, variant_uuid):
@@ -1677,8 +1794,7 @@ def update_vendor_products(request, pk=None):
     seller_group = None
     is_seller = user.groups.filter(name=Constants.SELLER_GROUP).exists()
     if is_seller:
-        order_item_list = orders_service.get_sold_products(seller=user)
-        flag = vendors_service.update_sold_product(user, order_item_list)
+        flag = vendors_service.update_sold_product(user)
         if flag:
             messages.success("Updated vendor Sold products")
             logger.info("Updated Vendor sold products")

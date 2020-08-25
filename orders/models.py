@@ -37,6 +37,7 @@ class Order(models.Model):
     is_active = models.BooleanField(default=True, blank=True, null=True)
     is_closed = models.BooleanField(default=False, blank=True, null=True)
     is_paid = models.BooleanField(default=False, blank=True)
+    vendor_balance_updated = models.BooleanField(default=False, blank=True)
     status = models.IntegerField(default=commons.ORDER_SUBMITTED)
     payment_option = models.IntegerField(default=commons.PAY_AT_ORDER)
     coupon = models.ForeignKey("cart.Coupon", related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)

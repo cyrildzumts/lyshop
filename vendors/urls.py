@@ -73,4 +73,6 @@ urlpatterns = [
 
     path('sold-products/', views.sold_product_list, name='sold-products'),
     path('sold-products/details/<uuid:product_uuid>/', views.sold_product_detail, name='sold-product-detail'),
+    path('sold-products/delete/<uuid:product_uuid>/', views.sold_product_delete, name='sold-product-delete'),
+    path('sold-products/delete/', views.sold_products_delete, name='sold-products-delete'),
 ]

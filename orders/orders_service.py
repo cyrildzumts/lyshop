@@ -6,6 +6,7 @@ from cart import cart_service
 from orders import commons
 from orders.models import Order, OrderItem, Address, PaymentRequest, OrderStatusHistory
 from catalog.models import Product, ProductVariant
+from vendors.models import SoldProduct, Balance
 from shipment import shipment_service
 from itertools import islice
 import requests
@@ -75,6 +76,27 @@ def get_sold_products(seller):
     if  not isinstance(seller, User):
         return None
     return OrderItem.objects.filter(product__product__sold_by=seller, order__is_paid=True)
+
+
+def mark_product_sold(order):
+    if  not isinstance(order, Order):
+        return False
+    order_items = order.order_items.select_related().all()
+    sold_products = [SoldProduct(customer=order.user, seller=item.product.product.sold_by, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price) for item in order_items]
+    batch_size = 100
+    while True:
+        batch = list(islice(sold_products, batch_size))
+        if not batch:
+            break
+        SoldProduct.objects.bulk_create(batch, batch_size)
+    #TODO : Update seller balance
+    balance = 0.0
+    balance = order_items.aggregate(balance=Sum('total_price', output_field=FloatField()))
+    Balance.objects.filter(user=p.seller).update(balance=F('balance') + balance.get('balance', 0.0))
+
+    Order.objects.filter(id=order.id).update(vendor_balance_updated=True)
+    return True
+
 
 def request_payment(data=None):
     if not settings.LYSHOP_PAY_REQUEST_URL or not settings.PAY_USERNAME or not settings.PAY_REQUEST_TOKEN:

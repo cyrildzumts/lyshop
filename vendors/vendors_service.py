@@ -1,8 +1,10 @@
 from catalog.models import Product, ProductVariant
 from django.contrib.auth.models import User, Group
+from django.db.models import F,Q,Count, Sum, FloatField
 from accounts.models import Account
 from vendors.models import SoldProduct, Balance, BalanceHistory
 from orders import orders_service
+from orders.models import Order, OrderItem
 from vendors import constants as Constants
 from datetime import date as Date, datetime as DateTime
 from itertools import islice
@@ -32,10 +34,15 @@ def get_next_payment_date(user):
     return next_payment_date
 
 
-def update_sold_product(seller, order_items_queryset):
+def update_sold_product(seller):
     if not isinstance(seller, User):
         return False
 
+    order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=False)
+    order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset)
+    balance_aggregate = order_items_queryset.aggregate(balance=Sum('total_price', output_field=FloatField()))
+    balance = balance_aggregate.get('balance', 0.0)
+    Balance.objects.filter(user=p.seller).update(balance=F('balance') + balance.get('balance', 0.0))
     if order_items_queryset:
         batch_size = 100
         objs = [SoldProduct(seller=seller, customer=item.order.user, product=item.product) for item in order_items_queryset]

@@ -70,6 +70,9 @@ class SoldProduct(models.Model):
     seller = models.ForeignKey(User, related_name='vendor_sold_products', blank=False, null=True, on_delete=models.SET_NULL)
     customer = models.ForeignKey(User, related_name='customer_bought_products', blank=False, null=True, on_delete=models.SET_NULL)
     product = models.ForeignKey('catalog.ProductVariant', blank=False, null=True, on_delete=models.SET_NULL)
+    quantity = models.IntegerField(default=1)
+    unit_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    total_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)  
 
@@ -80,7 +83,13 @@ class SoldProduct(models.Model):
         return reverse("vendors:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
     
     def get_dashboard_url(self):
-        return reverse("vendors:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
+        return reverse("dashboard:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
+    
+    def get_delete_url(self):
+        return reverse("dashboard:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
 
     def get_vendor_url(self):
         return reverse("vendors:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
+
+    def get_vendor_delete_url(self):
+        return reverse("vendors:sold-product-delete", kwargs={"product_uuid": self.product_uuid})

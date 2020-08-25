@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from orders import orders_service
 from shipment import shipment_service
 from orders import commons
+from vendors.models import SoldProduct
 from orders.forms import ShippingAddressForm, BillingAddressForm, PaymentRequestForm, PaymentOptionForm
 from orders.models import Order, OrderItem, Address, PaymentRequest, OrderStatusHistory
 from lyshop import settings, utils
@@ -197,7 +198,7 @@ def checkout_success(request, order_uuid):
     order = payment_request.order
     Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAID)
     OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAID, order_ref_id=order.id, changed_by=request.user)
-        
+    flag = orders_service.mark_product_sold(order)
     context = {
         'page_title' : page_title,
         'order' : order,

@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block MAIN_CONTENT %}
-{% if is_seller %}
+{% if can_view_product %}
 
 <div class="container wrapper">
   <div class="mat-box wrapper full">
@@ -27,10 +27,11 @@
       </div><!--End of title-->
       <div class="actions">
           
-          <a class="mat-button mat-button-text" href="{{product.get_vendor_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Parent Product" %}</span></a>
-          <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}">{% trans "Vendor Home" %}</a>
-          <a class="mat-button mat-button-default" href="{{sold_product.get_vendor_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a>
-              
+          <a class="mat-button mat-button-text" href="{{product.get_dashboard_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Parent Product" %}</span></a>
+          <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+          {% if can_view_product %}
+          <a class="mat-button mat-button-default" href="{{sold_product.get_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a>
+          {% endif %}
       </div><!--End of Banner-Actions-->
   </div>
   <div class="mat-box wrapper full">

@@ -1,0 +1,15 @@
+{% extends "vendor_base.html"%}
+{% load i18n %}
+
+{% block MAIN_CONTENT %}
+<div class="container wrapper">
+    <ul class="actions">
+        <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:products' %}"><i class="fas fa-list icon"></i> <span>{% trans "Products" %}</span></a></li>
+    </ul>
+</div>
+<div class="container wrapper">
+    <div class="col-m-12 col-9">
+        {% include 'vendor_tags/sold_product_list_template.html' with product_list=product_list %}   
+    </div>
+</div>
+{% endblock MAIN_CONTENT %}

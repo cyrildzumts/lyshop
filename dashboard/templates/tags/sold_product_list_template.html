@@ -6,20 +6,25 @@
                 {% trans "Products" %}
             </div>
         </div><!--End of Row-->
-        <form action="{% url 'vendors:sold-products-delete' %}" method="POST">{% csrf_token %}
+        <form action="{% url 'dashboard:sold-products-delete' %}" method="POST">{% csrf_token %}
         <table id="product-list" class="mat-table js-filter-table">
-        <div class="actions">
+            <div class="actions">
                 <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled>{% trans "Delete Selected" %}</button>
-        </div>
+            </div>
           <thead>
                   <tr>
+                         {% if can_delete_product %}
                           <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
+                          {% endif %}
                           <th scope="col">{% trans "Name" %}</th>
                           <th scope="col">{% trans "Display Name" %}</th>
                           <th scope="col">{% trans "Gender" %}</th>
                           <th scope="col">{% trans "Product Type" %}</th>
                           <th scope="col">{% trans "Price" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
+                           {% if can_delete_product %}
+                           <th scope="col">{% trans "Action" %}</th>
+                           {% endif %}
                   </tr>
           </thead>
           <tbody>
@@ -31,9 +36,9 @@
                   <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_key}}</td>
                   <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.product.price}}</span> <span>{% trans "XAF" %}</span></span></td>
-                  <td scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_vendor_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
-                  {% if is_seller %}
-                  <td scope="row" data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_vendor_delete_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Delete" %}</span></a></td>
+                  <td scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                  {% if can_delete_product %}
+                  <td scope="row" data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_delete_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Delete" %}</span></a></td>
                   {% endif %}
                   </tr>
                   {% endfor %}
