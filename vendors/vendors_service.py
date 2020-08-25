@@ -29,7 +29,7 @@ def get_vendor_balance(user):
 def get_vendor_home_variable(user):
     if not isinstance(user, User) or not is_vendor(user):
         return {}
-    number_sold_products = SoldProduct.objects.filter(seller=user).count()
+    number_sold_products = SoldProduct.objects.filter(seller=user).aggregate(count=Sum('quantity')).get('count', 0)
     product_count  = user.sold_products.aggregate(count=Sum('quantity')).get('count', 0)
     return {'product_count' : product_count, 'number_sold_products' : number_sold_products}
 
