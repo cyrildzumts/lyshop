@@ -10,7 +10,7 @@ def vendor_context(request):
     home_variables = {}
     if show_balance:
         balance = vendors_service.get_vendor_balance(request.user)
-        home_variables = vendors_service.get_vendor_home_variable()
+        home_variables = vendors_service.get_vendor_home_variable(request.user)
 
     context = {
         'is_seller' : is_seller,
