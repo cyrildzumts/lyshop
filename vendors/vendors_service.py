@@ -35,14 +35,14 @@ def get_next_payment_date(user):
 
 
 def update_sold_product(seller):
-    if not isinstance(seller, User):
+    if not isinstance(seller, User) or not is_vendor(seller):
         return False
 
     order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=False)
     order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset)
     balance_aggregate = order_items_queryset.aggregate(balance=Sum('total_price', output_field=FloatField()))
     balance = balance_aggregate.get('balance', 0.0)
-    Balance.objects.filter(user=p.seller).update(balance=F('balance') + balance.get('balance', 0.0))
+    Balance.objects.filter(user=seller).update(balance=F('balance') + balance.get('balance', 0.0))
     if order_items_queryset:
         batch_size = 100
         objs = [SoldProduct(seller=seller, customer=item.order.user, product=item.product) for item in order_items_queryset]
