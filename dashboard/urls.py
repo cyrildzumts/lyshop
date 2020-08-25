@@ -121,6 +121,7 @@ urlpatterns = [
     path('users/', views.users, name='users'),
     path('users/create-user/', views.create_account, name='create-user'),
     path('users/detail/<int:pk>', views.user_details, name='user-detail'),
+    path('users/create-balance/<int:pk>', views.create_vendor_balance, name='create-vendor-balance'),
     path('users/update-vendor-sold-product/<int:pk>', views.update_vendor_products, name='update-vendors-products'),
     
     

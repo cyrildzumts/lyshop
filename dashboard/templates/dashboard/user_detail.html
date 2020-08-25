@@ -13,6 +13,9 @@
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}"><i class="fas fa-users icon"></i><span>{% trans "Users" %}</span></a>
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     {% if is_seller %}
+                        {% if not has_balance %}
+                        <a class="mat-button mat-button-text" href="{% url 'dashboard:create-vendor-balance' user_instance.pk %}"><i class="fas fa-fa-plus icon"></i><span>{% trans "Add Balance" %}</span></a>
+                        {% endif %}
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:update-vendors-products' user_instance.pk %}"><i class="fas fa-refresh icon"></i><span>{% trans "Update Vendor" %}</span></a>
                     {% endif %}
                         

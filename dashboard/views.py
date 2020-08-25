@@ -1806,6 +1806,25 @@ def update_vendor_products(request, pk=None):
 
 
 @login_required
+def create_vendor_balance(request, user_pk=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    if not PermissionManager.user_can_view_user(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    user = get_object_or_404(User, pk=user_pk)
+
+    if Balance.objects.filter(user=user).exists():
+        messages.warning(request, f"User {user.username} already has a Balance")
+    else:
+        Balance.objects.create(name=f'Balance {user.username}', user=user)
+        messages.success(request, f"Balance created for User {user.username}")
+    return redirect('dashboard:user-detail', pk=user.pk)
+
+@login_required
 def users_delete(request):
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
