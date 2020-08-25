@@ -1,5 +1,6 @@
 from catalog.models import Product, ProductVariant
 from django.contrib.auth.models import User, Group
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import F,Q,Count, Sum, FloatField
 from accounts.models import Account
 from vendors.models import SoldProduct, Balance, BalanceHistory
@@ -9,9 +10,24 @@ from vendors import constants as Constants
 from datetime import date as Date, datetime as DateTime
 from itertools import islice
 
+
+
 def is_vendor(user=None):
     return isinstance(user, User) and user.groups.filter(name=Constants.VENDOR_GROUP).exists()
 
+
+def get_vendor_balance(user):
+    if not isinstance(user, User) or not is_vendor(user):
+        return None
+    balance = None
+    try:
+        balance = Balance.objects.get(user=user)
+    except ObjectDoesNotExist as e:
+        pass
+    return balance
+
+
+    
 def get_next_payment_date(user):
     today = DateTime.now()
     next_payment_date = None
