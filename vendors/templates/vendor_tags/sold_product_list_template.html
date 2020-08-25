@@ -25,7 +25,7 @@
           <tbody>
                   {% for sold_product in product_list  %}
                   <tr>
-                  <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{product.pk}}"><span class="checkbox-label"></span></label></td>
+                  <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{sold_product.pk}}"><span class="checkbox-label"></span></label></td>
                   <td scope="row" data-label="{% trans 'Name' %}">{{sold_product.product.name}}</td>
                   <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_key}}</td>
