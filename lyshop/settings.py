@@ -79,6 +79,7 @@ ACCOUNT_ROOT_PATH = "/accounts/"
 HOME_URL = "/"
 DASHBOARD_ROOT_PATH = "/dashboard/"
 VENDOR_ROOT_PATH = "/vendors/"
+USER_PATH = "/users/detail/"
 
 PAY_USERNAME = os.getenv('LYSHOP_PAY_USER')
 PAY_REQUEST_TOKEN = os.getenv('LYSHOP_PAY_REQUEST_TOKEN')

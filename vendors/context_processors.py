@@ -5,7 +5,7 @@ from vendors import vendors_service
 
 def vendor_context(request):
     is_seller = request.user.is_authenticated and vendors_service.is_vendor(user=request.user)
-    show_balance = is_seller and settings.VENDOR_ROOT_PATH in request.path
+    show_balance = is_seller and settings.VENDOR_ROOT_PATH in request.path or settings.USER_PATH in request.path
     balance = None
     home_variables = {}
     if show_balance:
