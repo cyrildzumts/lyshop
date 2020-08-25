@@ -39,20 +39,21 @@ def update_sold_product(seller):
         return False
 
     order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=False)
+    if not order_queryset.exists():
+        return False
     order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset)
     balance_aggregate = order_items_queryset.aggregate(balance=Sum('total_price', output_field=FloatField()))
     balance = balance_aggregate.get('balance', 0.0)
-    Balance.objects.filter(user=seller).update(balance=F('balance') + balance.get('balance', 0.0))
-    if order_items_queryset:
-        batch_size = 100
-        objs = [SoldProduct(seller=seller, customer=item.order.user, product=item.product) for item in order_items_queryset]
-        while True:
-            batch = list(islice(objs, batch_size))
-            if not batch:
-                break
-            SoldProduct.objects.bulk_create(batch, batch_size)
-        return True
-    return False
+    Balance.objects.filter(user=seller).update(balance=F('balance') + balance)
+    Order.objects.filter(order_items__in=order_items_queryset).update(vendor_balance_updated=True)
+    batch_size = 100
+    objs = [SoldProduct(seller=seller, customer=item.order.user, product=item.product) for item in order_items_queryset]
+    while True:
+        batch = list(islice(objs, batch_size))
+        if not batch:
+            break
+        SoldProduct.objects.bulk_create(batch, batch_size)
+    return True
 
 
 def get_pending_payment(user):

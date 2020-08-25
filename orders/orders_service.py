@@ -1,5 +1,6 @@
 from lyshop import settings, utils
 from django.db.models import F,Q,Count, Sum, FloatField
+from django.db import transaction
 from django.contrib.auth.models import User
 from cart.models import CartItem, CartModel
 from cart import cart_service
@@ -79,22 +80,25 @@ def get_sold_products(seller):
 
 
 def mark_product_sold(order):
-    if  not isinstance(order, Order):
+    if  not isinstance(order, Order) or order.vendor_balance_updated:
         return False
     order_items = order.order_items.select_related().all()
     sold_products = [SoldProduct(customer=order.user, seller=item.product.product.sold_by, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price) for item in order_items]
+    
+    balance_updates = ((p.seller, p.total_price) for p in sold_products)
+    with transaction.atomic():
+        for s, total in balance_updates:
+            Balance.objects.filter(user=s).update(balance=F('balance') + total)
+        Order.objects.filter(id=order.id).update(vendor_balance_updated=True)
+    
     batch_size = 100
     while True:
         batch = list(islice(sold_products, batch_size))
         if not batch:
             break
         SoldProduct.objects.bulk_create(batch, batch_size)
-    #TODO : Update seller balance
-    balance = 0.0
-    balance = order_items.aggregate(balance=Sum('total_price', output_field=FloatField()))
-    Balance.objects.filter(user=p.seller).update(balance=F('balance') + balance.get('balance', 0.0))
 
-    Order.objects.filter(id=order.id).update(vendor_balance_updated=True)
+    
     return True
 
 
