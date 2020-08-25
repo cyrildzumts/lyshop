@@ -26,8 +26,14 @@ def get_vendor_balance(user):
         pass
     return balance
 
+def get_vendor_home_variable(user):
+    if not isinstance(user, User) or not is_vendor(user):
+        return {}
+    number_sold_products = SoldProduct.objects.filter(seller=user).count()
+    product_count  = user.sold_products.aggregate(count=Sum('quantity')).get('count', 0)
+    return {'product_count' : product_count, 'number_sold_products' : number_sold_products}
 
-    
+
 def get_next_payment_date(user):
     today = DateTime.now()
     next_payment_date = None
@@ -63,7 +69,7 @@ def update_sold_product(seller):
     Balance.objects.filter(user=seller).update(balance=F('balance') + balance)
     Order.objects.filter(order_items__in=order_items_queryset).update(vendor_balance_updated=True)
     batch_size = 100
-    objs = [SoldProduct(seller=seller, customer=item.order.user, product=item.product) for item in order_items_queryset]
+    objs = [SoldProduct(seller=seller, customer=item.order.user, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price) for item in order_items_queryset]
     while True:
         batch = list(islice(objs, batch_size))
         if not batch:
