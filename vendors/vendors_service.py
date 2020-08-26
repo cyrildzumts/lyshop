@@ -74,7 +74,7 @@ def update_sold_product(seller):
         batch = list(islice(objs, batch_size))
         if not batch:
             break
-        SoldProduct.objects.bulk_create(batch, batch_size)
+        SoldProduct.objects.bulk_create(batch, batch_size, ignore_conflicts=True)
     return True
 
 

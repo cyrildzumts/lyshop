@@ -96,7 +96,7 @@ def mark_product_sold(order):
         batch = list(islice(sold_products, batch_size))
         if not batch:
             break
-        SoldProduct.objects.bulk_create(batch, batch_size)
+        SoldProduct.objects.bulk_create(batch, batch_size, ignore_conflicts=True)
 
     
     return True
