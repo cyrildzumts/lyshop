@@ -1771,10 +1771,38 @@ def user_details(request, pk=None):
     context['user_instance'] = user
     context['product_list'] = product_list
     context['is_seller'] = is_seller
+    context['has_balance'] = user.balance is not None
     context.update(get_view_permissions(request.user))
     context['can_delete'] = PermissionManager.user_can_delete_user(request.user)
     context['can_update'] = PermissionManager.user_can_change_user(request.user)
     return render(request,template_name, context)
+
+
+@login_required
+def reset_vendor(request, pk=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    if not PermissionManager.user_can_view_user(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    context = {}
+    #queryset = User.objects.select_related('account')
+    user = get_object_or_404(User, pk=pk)
+    
+    seller_group = None
+    is_seller = vendors_service.is_vendor(user)
+    if is_seller:
+        flag = vendors_service.reset_vendor(user)
+        if flag:
+            messages.success(request, f"Vendor \"{user.usernam}\" reset")
+            logger.info(f"Vendor \"{user.usernam}\" reset")
+        else:
+            messages.error(request, f"Vendor \"{user.usernam}\" could not be reset")
+            logger.error(f"Vendor \"{user.usernam}\" could not be reset")
+
+    return redirect('dashboard:user-detail', pk=pk)
 
 
 

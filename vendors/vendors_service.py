@@ -70,20 +70,20 @@ def reset_vendor(seller):
         logger.warn(f"Reseting User balance {seller.username} not processed. The given user is not a vendor")
         return False
 
-    order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=True)
-    if not order_queryset.exists():
-        logger.warn(f"Reseting Vendor {seller.username} not processed. No valid order found")
-        return False
+    #order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=True)
+    #if not order_queryset.exists():
+    #    logger.warn(f"Reseting Vendor {seller.username} not processed. No valid order found")
+    #    return False
     
     logger.warn(f"Reseting Vendor {seller.username} started")
-    order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset)
+    order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller)
     if not order_items_queryset.exists():
         logger.warn(f"Reseting Vendor {seller.username} not processed. No valid order items found")
         return False
     Balance.objects.filter(user=seller).update(balance=0)
     BalanceHistory.objects.filter(receiver=seller).delete()
     SoldProduct.objects.filter(seller=seller).delete()
-    order_queryset.filter(order_items__in=order_items_queryset).update(vendor_balance_updated=False)
+    Order.objects.filter(order_items__in=order_items_queryset).update(vendor_balance_updated=False)
     logger.warn(f"Reseting Vendor {seller.username} finished")
     return True
 
@@ -91,15 +91,12 @@ def update_sold_product(seller):
     if not isinstance(seller, User) or not is_vendor(seller):
         return False
 
-    if not reset_vendor(seller):
-        logger.warn(f"update_sold_product(): Vendor {seller.username} not Update processed. Reset was not possible")
-        return False
-
+    reset_vendor(seller):
 
     order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=False)
     if not order_queryset.exists():
         return False
-        
+
     logger.info("update_sold_product(): found orders to update")
     order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset)
     order_items_iter = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset).iterator()
