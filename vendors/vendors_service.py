@@ -110,8 +110,7 @@ def update_sold_product(seller):
             Balance.objects.filter(user=p_seller).update(balance=F('balance') + total)
             BalanceHistory.objects.create(balance=p_seller.balance, balance_ref_id=p_seller.balance.pk, current_amount=current_balance, balance_amount=total, sender=customer, receiver=p_seller)
             current_balance += total
-        Order.objects.filter(id=order.id).update(vendor_balance_updated=True)
-    
+            
     while True:
         batch = list(islice(sold_products, batch_size))
         if not batch:
