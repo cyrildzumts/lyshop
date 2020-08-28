@@ -24,10 +24,13 @@ class Balance(models.Model):
 
 class BalanceHistory(models.Model):
     balance_ref_id = models.IntegerField(blank=False, null=False)
+    current_amount = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     balance_amount = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     sender = models.ForeignKey(User, related_name='sender_histories', blank=True, null=True, on_delete=models.SET_NULL)
     receiver = models.ForeignKey(User, related_name='receiver_histories', blank=True, null=True, on_delete=models.SET_NULL)
     balance = models.ForeignKey(Balance, related_name="balance_history", blank=True, null=True, on_delete=models.SET_NULL)
+    #sold_product = models.ForeignKey('vendors.SoldProduct', related_name="sold_product", blank=True, null=True, on_delete=models.SET_NULL)
+
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     history_uuid = models.UUIDField(default=uuid.uuid4, editable=False)    
 

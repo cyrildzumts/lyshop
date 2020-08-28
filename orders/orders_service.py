@@ -7,7 +7,7 @@ from cart import cart_service
 from orders import commons
 from orders.models import Order, OrderItem, Address, PaymentRequest, OrderStatusHistory
 from catalog.models import Product, ProductVariant
-from vendors.models import SoldProduct, Balance
+from vendors.models import SoldProduct, Balance, BalanceHistory
 from shipment import shipment_service
 from itertools import islice
 import requests
@@ -85,10 +85,12 @@ def mark_product_sold(order):
     order_items = order.order_items.select_related().all()
     sold_products = [SoldProduct(customer=order.user, seller=item.product.product.sold_by, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price) for item in order_items]
     
-    balance_updates = ((p.seller, p.total_price) for p in sold_products)
+    balance_updates = ((p.seller, p.total_price, p.customer, p.seller.balance) for p in sold_products)
     with transaction.atomic():
-        for s, total in balance_updates:
+        for s, total, customer, balance in balance_updates:
+            balance.refresh_from_db()
             Balance.objects.filter(user=s).update(balance=F('balance') + total)
+            BalanceHistory.objects.create(balance=balance, balance_ref_id=balance.pk, current_amount=balance.balance,balance_amount=total, sender=customer, receiver=s)
         Order.objects.filter(id=order.id).update(vendor_balance_updated=True)
     
     batch_size = 100

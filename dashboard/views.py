@@ -1792,7 +1792,7 @@ def update_vendor_products(request, pk=None):
     user = get_object_or_404(User, pk=pk)
     
     seller_group = None
-    is_seller = user.groups.filter(name=Constants.SELLER_GROUP).exists()
+    is_seller = vendors_service.is_vendor(user)
     if is_seller:
         flag = vendors_service.update_sold_product(user)
         if flag:

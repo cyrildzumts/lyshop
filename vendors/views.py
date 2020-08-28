@@ -1607,6 +1607,25 @@ def balance_history(request, balance_uuid):
         raise PermissionDenied
 
 
+    balance = get_object_or_404(Balance, balance_uuid=balance_uuid)
+    queryset = BalanceHistory.objects.filter(balance__balance_uuid=balance_uuid)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title' : _('Balance Histories'),
+        'history_list':  list_set,
+        'balance' : balance
+    }
+    template_name = 'vendors/balance_histories.html'
+    return render(request, template_name, context)
+
+
 @login_required
 def balance_history_detail(request, history_uuid):
     username = request.user.username

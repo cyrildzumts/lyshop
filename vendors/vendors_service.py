@@ -10,7 +10,12 @@ from vendors import constants as Constants
 from datetime import date as Date, datetime as DateTime
 from itertools import islice
 
+import json
+import logging
+import uuid
 
+
+logger = logging.getLogger(__name__)
 
 def is_vendor(user=None):
     return isinstance(user, User) and user.groups.filter(name=Constants.VENDOR_GROUP).exists()
@@ -56,7 +61,67 @@ def get_next_payment_date(user):
     return next_payment_date
 
 
+
+
+
+def reset_vendor(seller):
+    if not isinstance(seller, User) or not is_vendor(seller):
+        logger.warn(f"Reseting User balance {seller.username} not processed. The given user is not a vendor")
+        return False
+
+    order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=True)
+    if not order_queryset.exists():
+        logger.warn(f"Reseting Vendor {seller.username} not processed. No valid order found")
+        return False
+    
+    logger.warn(f"Reseting Vendor {seller.username} started")
+    order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset)
+    Balance.objects.filter(user=seller).update(balance=0)
+    BalanceHistory.objects.filter(receiver=seller).delete()
+    SoldProduct.objects.filter(seller=seller).delete()
+    order_queryset.filter(order_items__in=order_items_queryset).update(vendor_balance_updated=False)
+    logger.warn(f"Reseting Vendor {seller.username} finished")
+    return True
+
 def update_sold_product(seller):
+    if not isinstance(seller, User) or not is_vendor(seller):
+        return False
+
+    reset_vendor(seller)
+
+    order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=False)
+    if not order_queryset.exists():
+        return False
+    order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset)
+    #balance_aggregate = order_items_queryset.aggregate(balance=Sum('total_price', output_field=FloatField()))
+    #balance = balance_aggregate.get('balance', 0.0)
+    #Balance.objects.filter(user=seller).update(balance=F('balance') + balance)
+    #TODO BalanceHistory must reflect the balance changes by each customer buy
+    #BalanceHistory.objects.create(balance=seller.balance, balance_ref_id=seller.balance.pk, balance_amount=seller.balance.balance + balance, receiver=seller)
+    batch_size = 20
+    sold_products = [SoldProduct(seller=seller, customer=item.order.user, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price) for item in order_items_queryset]
+    
+    balance_updates = ((p.seller, p.total_price, p.customer) for p in sold_products)
+    current_balance = seller.balance.balance
+    with transaction.atomic():
+        for p_seller, total, customer in balance_updates:
+            
+            Balance.objects.filter(user=p_seller).update(balance=F('balance') + total)
+            BalanceHistory.objects.create(balance=p_seller.balance, balance_ref_id=p_seller.balance.pk, current_amount=current_balance, balance_amount=total, sender=customer, receiver=p_seller)
+            current_balance += total
+        Order.objects.filter(id=order.id).update(vendor_balance_updated=True)
+    
+    while True:
+        batch = list(islice(sold_products, batch_size))
+        if not batch:
+            break
+        SoldProduct.objects.bulk_create(batch, batch_size, ignore_conflicts=True)
+
+    Order.objects.filter(order_items__in=order_items_queryset).update(vendor_balance_updated=True)
+    return True
+
+
+def update_balance_history(seller):
     if not isinstance(seller, User) or not is_vendor(seller):
         return False
 
@@ -64,17 +129,17 @@ def update_sold_product(seller):
     if not order_queryset.exists():
         return False
     order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset)
-    balance_aggregate = order_items_queryset.aggregate(balance=Sum('total_price', output_field=FloatField()))
-    balance = balance_aggregate.get('balance', 0.0)
-    Balance.objects.filter(user=seller).update(balance=F('balance') + balance)
-    Order.objects.filter(order_items__in=order_items_queryset).update(vendor_balance_updated=True)
-    batch_size = 100
-    objs = [SoldProduct(seller=seller, customer=item.order.user, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price) for item in order_items_queryset]
-    while True:
-        batch = list(islice(objs, batch_size))
-        if not batch:
-            break
-        SoldProduct.objects.bulk_create(batch, batch_size, ignore_conflicts=True)
+    #balance_aggregate = order_items_queryset.aggregate(balance=Sum('total_price', output_field=FloatField()))
+    
+    batch_size = 20
+    sold_products = [SoldProduct(seller=seller, customer=item.order.user, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price) for item in order_items_queryset]
+    
+    balance_updates = ((p.seller, p.total_price, p.customer) for p in sold_products)
+    with transaction.atomic():
+        for p_seller, total, customer in balance_updates:
+            BalanceHistory.objects.create(balance=p_seller.balance, balance_ref_id=p_seller.balance.pk, balance_amount=total, sender=customer, receiver=p_seller)
+        Order.objects.filter(id=order.id).update(vendor_balance_updated=True)
+    
     return True
 
 
