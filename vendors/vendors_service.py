@@ -91,7 +91,7 @@ def update_sold_product(seller):
     if not isinstance(seller, User) or not is_vendor(seller):
         return False
 
-    reset_vendor(seller):
+    reset_vendor(seller)
 
     order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=False)
     if not order_queryset.exists():
