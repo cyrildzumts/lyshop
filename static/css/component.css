@@ -2177,18 +2177,23 @@ input.editable{
 	margin: 0;
 }
 
+.mat-table-title{
+	font-size: 0.875em;
+	font-weight: 600;
+}
+
 .mat-table{
 	width: 100%;
 	table-layout: fixed;
 	border-collapse: collapse;
 	border: 0;
-	
+	font-size: 0.875em;
 	padding: 0;
 	margin : 0;
 }
 
 .mat-table caption{
-	font-size: 1.1em;
+	font-size: 1em;
 	margin: .5em 0 .75em;
 }
 
@@ -2249,6 +2254,8 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .mat-table-wrapper .mat-table-filter{
+	font-size: 0.875em;
+	font-weight: 600;
 	border: none;
 	border-bottom: 1px solid #ccc;
 
