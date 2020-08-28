@@ -15,21 +15,32 @@
                   <tr>
                          {% if can_delete_product %}
                           <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
-                          {% endif %}
                           <th scope="col">{% trans "Name" %}</th>
                           <th scope="col">{% trans "Display Name" %}</th>
                           <th scope="col">{% trans "Gender" %}</th>
                           <th scope="col">{% trans "Product Type" %}</th>
                           <th scope="col">{% trans "Price" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
-                           {% if can_delete_product %}
-                           <th scope="col">{% trans "Action" %}</th>
-                           {% endif %}
+                          <th scope="col">{% trans "Action" %}</th>
+                          {% else %}
+                          <th scope="col">{% trans "Name" %}</th>
+                          <th scope="col">{% trans "Display Name" %}</th>
+                          <th scope="col">{% trans "Gender" %}</th>
+                          <th scope="col">{% trans "Product Type" %}</th>
+                          <th scope="col">{% trans "Price" %}</th>
+                          <th scope="col">{% trans "Details" %}</th>
+
+                          {% endif %}
+                          
+                          
+                           
+
                   </tr>
           </thead>
           <tbody>
                   {% for sold_product in product_list  %}
                   <tr>
+                  {% if can_delete_product %}
                   <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{product.pk}}"><span class="checkbox-label"></span></label></td>
                   <td scope="row" data-label="{% trans 'Name' %}">{{sold_product.product.name}}</td>
                   <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
@@ -37,8 +48,14 @@
                   <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.product.price}}</span> <span>{% trans "XAF" %}</span></span></td>
                   <td scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
-                  {% if can_delete_product %}
                   <td scope="row" data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_delete_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Delete" %}</span></a></td>
+                  {% else %}
+                  <td scope="row" data-label="{% trans 'Name' %}">{{sold_product.product.name}}</td>
+                  <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
+                  <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_key}}</td>
+                  <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
+                  <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.product.price}}</span> <span>{% trans "XAF" %}</span></span></td>
+                  <td scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   {% endif %}
                   </tr>
                   {% endfor %}

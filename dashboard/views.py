@@ -1046,7 +1046,7 @@ def sold_product_list(request):
 
 @login_required
 def sold_product_detail(request, product_uuid=None):
-    template_name = 'vendors/sold_product_detail.html'
+    template_name = 'dashboard/sold_product_detail.html'
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
         logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
