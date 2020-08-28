@@ -60,6 +60,7 @@
                               {% if can_view_product %}
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home'%}">{% trans "Vendor" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
+                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:sold-products'%}">{% trans "Sold Products" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}">{% trans "Product Type" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes'%}">{% trans "Product Type Attributes" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}">{% trans "Products Attributes" %}</a></li>
