@@ -47,6 +47,7 @@
                   <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_key}}</td>
                   <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.product.price}}</span> <span>{% trans "XAF" %}</span></span></td>
+                  <td scope="row" data-label="{% trans 'Quantity' %}">{{sold_product.quantity}}</td>
                   <td scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   <td scope="row" data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_delete_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Delete" %}</span></a></td>
                   {% else %}
@@ -55,6 +56,7 @@
                   <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_key}}</td>
                   <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.product.price}}</span> <span>{% trans "XAF" %}</span></span></td>
+                  <td scope="row" data-label="{% trans 'Quantity' %}">{{sold_product.quantity}}</td>
                   <td scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   {% endif %}
                   </tr>
