@@ -1039,6 +1039,7 @@ def sold_product_list(request):
         list_set = None
     context['page_title'] = page_title
     context['product_list'] = list_set
+    context.update(get_view_permissions(request.user))
 
     return render(request,template_name, context)
 
@@ -1068,6 +1069,7 @@ def sold_product_detail(request, product_uuid=None):
         'attribute_list': sold_product.product.attributes.all(),
         'image_list': images
     }
+    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 
