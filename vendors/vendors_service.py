@@ -77,6 +77,9 @@ def reset_vendor(seller):
     
     logger.warn(f"Reseting Vendor {seller.username} started")
     order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset)
+    if not order_items_queryset.exists():
+        logger.warn(f"Reseting Vendor {seller.username} not processed. No valid order items found")
+        return False
     Balance.objects.filter(user=seller).update(balance=0)
     BalanceHistory.objects.filter(receiver=seller).delete()
     SoldProduct.objects.filter(seller=seller).delete()
@@ -88,36 +91,49 @@ def update_sold_product(seller):
     if not isinstance(seller, User) or not is_vendor(seller):
         return False
 
-    reset_vendor(seller)
+    if not reset_vendor(seller):
+        logger.warn(f"update_sold_product(): Vendor {seller.username} not Update processed. Reset was not possible")
+        return False
+
 
     order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=False)
     if not order_queryset.exists():
         return False
+        
+    logger.info("update_sold_product(): found orders to update")
     order_items_queryset = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset)
+    order_items_iter = OrderItem.objects.filter(product__product__sold_by=seller, order__in=order_queryset).iterator()
     #balance_aggregate = order_items_queryset.aggregate(balance=Sum('total_price', output_field=FloatField()))
     #balance = balance_aggregate.get('balance', 0.0)
     #Balance.objects.filter(user=seller).update(balance=F('balance') + balance)
     #TODO BalanceHistory must reflect the balance changes by each customer buy
     #BalanceHistory.objects.create(balance=seller.balance, balance_ref_id=seller.balance.pk, balance_amount=seller.balance.balance + balance, receiver=seller)
-    batch_size = 20
-    sold_products = [SoldProduct(seller=seller, customer=item.order.user, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price) for item in order_items_queryset]
+    #batch_size = 20
+    #sold_products = [SoldProduct(seller=seller, customer=item.order.user, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price) for item in order_items_iter]
     
-    balance_updates = ((p.seller, p.total_price, p.customer) for p in sold_products)
+    logger.info(f"update_sold_product() : Starting updating vendor \"{seller.username}\" ")
+    #sold_products = []
+    balance_updates = ((p.total_price, p.order.user, item) for p in order_items_iter)
     current_balance = seller.balance.balance
     with transaction.atomic():
-        for p_seller, total, customer in balance_updates:
-            
-            Balance.objects.filter(user=p_seller).update(balance=F('balance') + total)
-            BalanceHistory.objects.create(balance=p_seller.balance, balance_ref_id=p_seller.balance.pk, current_amount=current_balance, balance_amount=total, sender=customer, receiver=p_seller)
-            current_balance += total
-            
+        for item in order_items_iter:
+            customer = item.order.user
+            SoldProduct.objects.create(seller=seller, customer=customer, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price)
+            Balance.objects.filter(user=seller).update(balance=F('balance') + item.total_price)
+            BalanceHistory.objects.create(balance=seller.balance, balance_ref_id=seller.balance.pk, current_amount=current_balance, balance_amount=item.total_price, sender=customer, receiver=seller)
+            current_balance += item.total_price
+
+    logger.info(f"update_sold_product() : Vendor \"{seller.username}\" uddated  ")
+
+    '''
     while True:
         batch = list(islice(sold_products, batch_size))
         if not batch:
             break
         SoldProduct.objects.bulk_create(batch, batch_size, ignore_conflicts=True)
-
+    '''
     Order.objects.filter(order_items__in=order_items_queryset).update(vendor_balance_updated=True)
+    logger.info(f"update_sold_product() : [OK] Finished updating Vendor \"{seller.username}\"")
     return True
 
 
