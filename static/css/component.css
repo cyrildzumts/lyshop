@@ -164,6 +164,7 @@ li a{
 .page--banner{
   min-width: 100%;
   font-family: 'Monserrat';
+  font-size: 1.25em;
   background-color: var(--banner-bg);
   color: var(--banner-color);
   padding: 16px 0 64px 0;
