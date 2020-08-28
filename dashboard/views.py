@@ -1796,11 +1796,11 @@ def reset_vendor(request, pk=None):
     if is_seller:
         flag = vendors_service.reset_vendor(user)
         if flag:
-            messages.success(request, f"Vendor \"{user.usernam}\" reset")
-            logger.info(f"Vendor \"{user.usernam}\" reset")
+            messages.success(request, f"Vendor \"{user.username}\" reset")
+            logger.info(f"Vendor \"{user.username}\" reset")
         else:
-            messages.error(request, f"Vendor \"{user.usernam}\" could not be reset")
-            logger.error(f"Vendor \"{user.usernam}\" could not be reset")
+            messages.error(request, f"Vendor \"{user.username}\" could not be reset")
+            logger.error(f"Vendor \"{user.username}\" could not be reset")
 
     return redirect('dashboard:user-detail', pk=pk)
 
