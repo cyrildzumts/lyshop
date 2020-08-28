@@ -29,7 +29,7 @@
                   <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a></li>
                   <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:sold-products' %}"><i class="fas fa-list icon"></i><span>{% trans "Sold products" %}</span></a></li>
                   <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:payments' %}"><i class="fas fa-list icon"></i><span>{% trans "Payments" %}</span></a></li>
-                  <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:balance-history' %}"><i class="fas fa-history icon"></i><span>{% trans "Balance History" %}</span></a></li>
+                  <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:balance-history' balance.balance_uuid %}"><i class="fas fa-history icon"></i><span>{% trans "Balance History" %}</span></a></li>
                   
               </ul>
           </div>
