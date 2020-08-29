@@ -1,0 +1,4529 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-30 00:15+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: cart/templates/cart/cart.html:12
+msgid "Items"
+msgstr ""
+
+#: cart/templates/cart/cart.html:12
+#: dashboard/templates/dashboard/brand_detail.html:33
+#: dashboard/templates/dashboard/brand_product_detail.html:52
+#: dashboard/templates/dashboard/order_detail.html:39
+#: dashboard/templates/dashboard/order_update.html:38
+#: dashboard/templates/dashboard/product_detail.html:23
+#: dashboard/templates/dashboard/product_detail.html:62
+#: dashboard/templates/dashboard/product_variant_detail.html:24
+#: dashboard/templates/dashboard/sold_product_detail.html:15
+#: dashboard/templates/tags/product_creation_form.html:26
+#: dashboard/templates/tags/product_update_form.html:23
+#: dashboard/templates/tags/product_variant_creation_form.html:27
+#: dashboard/templates/tags/product_variant_update_form.html:27
+#: dashboard/templates/tags/sold_product_list_template.html:23
+#: dashboard/templates/tags/sold_product_list_template.html:32
+#: dashboard/templates/tags/sold_product_list_template.html:52
+#: dashboard/templates/tags/sold_product_list_template.html:61
+#: orders/templates/orders/order_detail.html:44
+#: vendors/templates/vendor_tags/product_creation_form.html:27
+#: vendors/templates/vendor_tags/product_update_form.html:26
+#: vendors/templates/vendor_tags/product_variant_creation_form.html:27
+#: vendors/templates/vendor_tags/product_variant_update_form.html:27
+#: vendors/templates/vendor_tags/sold_product_list_template.html:22
+#: vendors/templates/vendor_tags/sold_product_list_template.html:36
+#: vendors/templates/vendors/brand_detail.html:33
+#: vendors/templates/vendors/brand_product_detail.html:41
+#: vendors/templates/vendors/product_create.html:31
+#: vendors/templates/vendors/product_detail.html:16
+#: vendors/templates/vendors/product_detail.html:59
+#: vendors/templates/vendors/product_detail.html:68
+#: vendors/templates/vendors/product_variant_detail.html:15
+#: vendors/templates/vendors/sold_product_detail.html:15
+msgid "Quantity"
+msgstr ""
+
+#: cart/templates/cart/cart.html:12
+#: dashboard/templates/dashboard/order_detail.html:73
+#: dashboard/templates/dashboard/product_detail.html:25
+#: dashboard/templates/dashboard/product_variant_detail.html:26
+#: dashboard/templates/dashboard/sold_product_detail.html:17
+#: orders/templates/orders/order_detail.html:78
+#: vendors/templates/vendors/product_detail.html:18
+#: vendors/templates/vendors/product_variant_detail.html:17
+#: vendors/templates/vendors/sold_product_detail.html:17
+msgid "Unit Price"
+msgstr ""
+
+#: cart/templates/cart/cart.html:12
+#: dashboard/templates/dashboard/dashboard.html:36
+#: dashboard/templates/dashboard/order_detail.html:74
+#: orders/templates/orders/order_detail.html:79
+msgid "Total Price"
+msgstr ""
+
+#: cart/templates/cart/cart.html:42 cart/templates/cart/cart.html:45
+#: cart/templates/cart/cart.html:73 cart/templates/cart/cart.html:74
+#: cart/templates/cart/cart.html:75 cart/templates/cart/cart.html:78
+#: catalog/templates/catalog/product_detail.html:57
+#: catalog/templates/catalog/product_variant_detail.html:55
+#: catalog/templates/tags/products_snippet.html:19
+#: dashboard/templates/dashboard/brand_detail.html:42
+#: dashboard/templates/dashboard/brand_product_detail.html:40
+#: dashboard/templates/dashboard/brand_product_detail.html:81
+#: dashboard/templates/dashboard/dashboard.html:45
+#: dashboard/templates/dashboard/order_detail.html:40
+#: dashboard/templates/dashboard/order_detail.html:42
+#: dashboard/templates/dashboard/order_detail.html:45
+#: dashboard/templates/dashboard/order_detail.html:46
+#: dashboard/templates/dashboard/order_detail.html:84
+#: dashboard/templates/dashboard/order_detail.html:85
+#: dashboard/templates/dashboard/order_list.html:54
+#: dashboard/templates/dashboard/order_update.html:39
+#: dashboard/templates/dashboard/order_update.html:41
+#: dashboard/templates/dashboard/order_update.html:44
+#: dashboard/templates/dashboard/order_update.html:45
+#: dashboard/templates/dashboard/payment_request_detail.html:43
+#: dashboard/templates/dashboard/payment_request_list.html:52
+#: dashboard/templates/dashboard/policy_detail.html:37
+#: dashboard/templates/dashboard/policy_detail.html:38
+#: dashboard/templates/dashboard/policy_detail.html:39
+#: dashboard/templates/dashboard/policy_list.html:55
+#: dashboard/templates/dashboard/policy_list.html:56
+#: dashboard/templates/dashboard/policy_list.html:57
+#: dashboard/templates/dashboard/product_detail.html:25
+#: dashboard/templates/dashboard/product_detail.html:71
+#: dashboard/templates/dashboard/product_variant_detail.html:26
+#: dashboard/templates/dashboard/product_variant_list.html:57
+#: dashboard/templates/dashboard/sold_product_detail.html:17
+#: dashboard/templates/dashboard/user_detail.html:87
+#: dashboard/templates/tags/order_report.html:6
+#: dashboard/templates/tags/order_report.html:14
+#: dashboard/templates/tags/order_report.html:18
+#: dashboard/templates/tags/order_report.html:22
+#: dashboard/templates/tags/payment_report.html:6
+#: dashboard/templates/tags/payment_report.html:14
+#: dashboard/templates/tags/payment_report.html:18
+#: dashboard/templates/tags/payment_report.html:22
+#: dashboard/templates/tags/payment_request_report.html:6
+#: dashboard/templates/tags/payment_request_report.html:14
+#: dashboard/templates/tags/payment_request_report.html:18
+#: dashboard/templates/tags/payment_request_report.html:22
+#: dashboard/templates/tags/product_list_template.html:37
+#: dashboard/templates/tags/product_report.html:6
+#: dashboard/templates/tags/product_report.html:14
+#: dashboard/templates/tags/product_report.html:18
+#: dashboard/templates/tags/product_report.html:22
+#: dashboard/templates/tags/sold_product_list_template.html:51
+#: dashboard/templates/tags/sold_product_list_template.html:60
+#: dashboard/templates/tags/voucher_report.html:6
+#: dashboard/templates/tags/voucher_report.html:14
+#: dashboard/templates/tags/voucher_report.html:18
+#: dashboard/templates/tags/voucher_report.html:22
+#: orders/templates/orders/order_detail.html:45
+#: orders/templates/orders/order_detail.html:47
+#: orders/templates/orders/order_detail.html:50
+#: orders/templates/orders/order_detail.html:51
+#: orders/templates/orders/order_detail.html:89
+#: orders/templates/orders/order_detail.html:90
+#: orders/templates/orders/order_list.html:48
+#: shipment/templates/shipment/shipment_detail.html:34
+#: shipment/templates/shipment/shipment_histories.html:28
+#: shipment/templates/shipment/shipment_home.html:47
+#: shipment/templates/shipment/shipment_list.html:47
+#: templates/accounts/account.html:15 templates/accounts/account.html:55
+#: templates/tags/payments_snippet.html:15
+#: templates/tags/payments_snippet.html:17
+#: vendors/templates/vendor_base.html:16 vendors/templates/vendor_base.html:18
+#: vendors/templates/vendor_tags/order_report.html:6
+#: vendors/templates/vendor_tags/order_report.html:14
+#: vendors/templates/vendor_tags/order_report.html:18
+#: vendors/templates/vendor_tags/order_report.html:22
+#: vendors/templates/vendor_tags/payment_report.html:6
+#: vendors/templates/vendor_tags/payment_report.html:14
+#: vendors/templates/vendor_tags/payment_report.html:18
+#: vendors/templates/vendor_tags/payment_report.html:22
+#: vendors/templates/vendor_tags/payment_request_report.html:6
+#: vendors/templates/vendor_tags/payment_request_report.html:14
+#: vendors/templates/vendor_tags/payment_request_report.html:18
+#: vendors/templates/vendor_tags/payment_request_report.html:22
+#: vendors/templates/vendor_tags/product_list_template.html:37
+#: vendors/templates/vendor_tags/product_report.html:6
+#: vendors/templates/vendor_tags/product_report.html:14
+#: vendors/templates/vendor_tags/product_report.html:18
+#: vendors/templates/vendor_tags/product_report.html:22
+#: vendors/templates/vendor_tags/sold_product_list_template.html:35
+#: vendors/templates/vendors/balance_histories.html:9
+#: vendors/templates/vendors/balance_histories.html:45
+#: vendors/templates/vendors/balance_histories.html:46
+#: vendors/templates/vendors/brand_detail.html:42
+#: vendors/templates/vendors/brand_product_detail.html:29
+#: vendors/templates/vendors/brand_product_detail.html:70
+#: vendors/templates/vendors/product_detail.html:18
+#: vendors/templates/vendors/product_detail.html:69
+#: vendors/templates/vendors/product_variant_detail.html:17
+#: vendors/templates/vendors/product_variant_list.html:40
+#: vendors/templates/vendors/sold_product_detail.html:17
+#: vendors/templates/vendors/vendor_home.html:11
+#: vendors/templates/vendors/vendor_home.html:13
+#: vendors/templates/vendors/vendor_home.html:54
+#: vendors/templates/vendors/vendor_home.html:101
+msgid "XAF"
+msgstr ""
+
+#: cart/templates/cart/cart.html:62
+msgid "Summary"
+msgstr ""
+
+#: cart/templates/cart/cart.html:67
+#: dashboard/templates/dashboard/coupon_detail.html:7
+#: dashboard/templates/dashboard/order_detail.html:43
+#: dashboard/templates/dashboard/order_update.html:42
+#: orders/templates/orders/order_detail.html:48
+msgid "Coupon"
+msgstr ""
+
+#: cart/templates/cart/cart.html:69
+#: dashboard/templates/dashboard/product_attribute_create.html:26
+#: dashboard/templates/dashboard/product_variant_detail.html:101
+#: dashboard/templates/tags/product_variant_creation_form.html:45
+#: dashboard/templates/tags/product_variant_update_form.html:45
+#: vendors/templates/vendor_tags/product_variant_creation_form.html:45
+#: vendors/templates/vendor_tags/product_variant_update_form.html:45
+#: vendors/templates/vendors/product_attribute_create.html:26
+#: vendors/templates/vendors/product_variant_detail.html:89
+msgid "Add"
+msgstr ""
+
+#: cart/templates/cart/cart.html:71
+msgid "Number of items"
+msgstr ""
+
+#: cart/templates/cart/cart.html:73 cart/templates/cart/cart.html:77
+#: dashboard/templates/dashboard/coupon_detail.html:21
+#: dashboard/templates/dashboard/coupon_list.html:49
+#: dashboard/templates/dashboard/coupon_list.html:62
+#: dashboard/templates/dashboard/order_detail.html:42
+#: dashboard/templates/dashboard/order_update.html:41
+#: dashboard/templates/tags/coupon_form.html:21
+#: dashboard/templates/tags/coupon_form_update.html:20
+#: orders/templates/orders/order_detail.html:47
+#: vendors/templates/vendor_tags/coupon_form.html:22
+#: vendors/templates/vendor_tags/coupon_form_update.html:21
+#: vendors/templates/vendors/coupon_detail.html:12
+#: vendors/templates/vendors/coupon_list.html:33
+#: vendors/templates/vendors/coupon_list.html:46
+msgid "Reduction"
+msgstr ""
+
+#: cart/templates/cart/cart.html:74 cart/templates/cart/cart.html:75
+#: cart/templates/cart/cart.html:78
+#: dashboard/templates/dashboard/order_detail.html:46
+#: dashboard/templates/dashboard/order_update.html:45
+#: orders/templates/orders/order_detail.html:51
+msgid "Total"
+msgstr ""
+
+#: cart/templates/cart/cart.html:74
+msgid "no reduction"
+msgstr ""
+
+#: cart/templates/cart/cart.html:81 cart/templates/cart_base.html:22
+#: orders/templates/order_base.html:20 orders/views.py:87
+msgid "Checkout"
+msgstr ""
+
+#: cart/templates/cart/cart.html:84
+msgid "We accept the following payment methods"
+msgstr ""
+
+#: cart/templates/cart/cart.html:86
+#: dashboard/templates/tags/payment_form.html:21
+#: orders/templates/orders/checkout_redirect_payment.html:14
+msgid "PAY"
+msgstr ""
+
+#: cart/templates/cart/cart.html:87
+msgid "CASH"
+msgstr ""
+
+#: cart/templates/cart/cart.html:91
+msgid ""
+"The price and shipping cost will be confirm when you first close your order"
+msgstr ""
+
+#: cart/templates/cart/cart.html:98
+msgid "Standard shipping cost 3000 XAF"
+msgstr ""
+
+#: cart/templates/cart/cart.html:99
+msgid ""
+"Express shipping cost 5000 XAF. Express shipping are sent as soon as "
+"possible so that the customer receives the order on the next few days."
+msgstr ""
+
+#: cart/templates/cart/cart.html:110
+msgid "Your shopping cart is empty"
+msgstr ""
+
+#: cart/templates/cart_base.html:12 cart/views.py:40
+msgid "Cart"
+msgstr ""
+
+#: cart/templates/cart_base.html:20 orders/templates/order_base.html:19
+msgid "Continue Shopping"
+msgstr ""
+
+#: catalog/templates/catalog/catalog_home.html:4
+msgid "CATALOG"
+msgstr ""
+
+#: catalog/templates/catalog/category_detail.html:8
+#: dashboard/templates/dashboard/brand_product_detail.html:75
+#: dashboard/templates/dashboard/category_detail.html:8
+#: dashboard/templates/dashboard/product_detail.html:32
+#: dashboard/templates/dashboard/product_variant_detail.html:33
+#: dashboard/templates/dashboard/sold_product_detail.html:24
+#: dashboard/templates/tags/category_creation_form.html:11
+#: dashboard/templates/tags/category_update_form.html:11
+#: dashboard/templates/tags/order_update_form.html:31
+#: dashboard/templates/tags/product_creation_form.html:31
+#: dashboard/templates/tags/product_update_form.html:28 dashboard/views.py:153
+#: dashboard/views.py:268
+#: vendors/templates/vendor_tags/category_update_form.html:11
+#: vendors/templates/vendor_tags/product_creation_form.html:32
+#: vendors/templates/vendor_tags/product_update_form.html:31
+#: vendors/templates/vendors/brand_product_detail.html:64
+#: vendors/templates/vendors/product_create.html:36
+#: vendors/templates/vendors/product_detail.html:27
+#: vendors/templates/vendors/product_variant_detail.html:24
+#: vendors/templates/vendors/sold_product_detail.html:24
+msgid "Category"
+msgstr ""
+
+#: catalog/templates/catalog/product_detail.html:71
+msgid "Option"
+msgstr ""
+
+#: catalog/templates/catalog/product_detail.html:86
+#: catalog/templates/catalog/product_variant_detail.html:81
+#: dashboard/templates/dashboard/brand_product_detail.html:88
+#: dashboard/templates/dashboard/payment_request_detail.html:55
+#: dashboard/templates/dashboard/product_type_attribute_create.html:44
+#: dashboard/templates/dashboard/product_type_attribute_detail.html:17
+#: dashboard/templates/dashboard/product_type_attribute_list.html:50
+#: dashboard/templates/dashboard/product_type_attribute_update.html:50
+#: dashboard/templates/tags/case_close_form.html:32
+#: dashboard/templates/tags/case_update_form.html:33
+#: dashboard/templates/tags/order_update_form.html:39
+#: dashboard/templates/tags/product_creation_form.html:72
+#: dashboard/templates/tags/product_update_form.html:95
+#: vendors/templates/vendor_tags/product_creation_form.html:70
+#: vendors/templates/vendor_tags/product_update_form.html:85
+#: vendors/templates/vendors/brand_product_detail.html:77
+#: vendors/templates/vendors/product_create.html:74
+#: vendors/templates/vendors/product_type_attribute_create.html:32
+#: vendors/templates/vendors/product_type_attribute_detail.html:17
+#: vendors/templates/vendors/product_type_attribute_list.html:35
+#: vendors/templates/vendors/product_type_attribute_list.html:46
+#: vendors/templates/vendors/product_type_attribute_update.html:38
+msgid "Description"
+msgstr ""
+
+#: catalog/templates/catalog/product_detail.html:96
+#: catalog/templates/catalog/product_variant_detail.html:88
+msgid "Add to Cart"
+msgstr ""
+
+#: catalog/templates/catalog/product_detail.html:111
+#: catalog/templates/catalog/product_variant_detail.html:100
+msgid "Variants"
+msgstr ""
+
+#: catalog/templates/catalog/product_image_detail.html:5
+#: dashboard/templates/dashboard/product_image.html:5
+#: dashboard/templates/dashboard/product_image_detail.html:5
+msgid "Product Image"
+msgstr ""
+
+#: catalog/templates/catalog/product_image_detail.html:15
+#: dashboard/templates/dashboard/product_image_detail.html:16
+#: vendors/templates/vendors/product_image_detail.html:13
+msgid "Back"
+msgstr ""
+
+#: catalog/templates/catalog/product_list.html:8
+msgid "Prouct List"
+msgstr ""
+
+#: catalog/templates/catalog_base.html:12 templates/base.html:50
+msgid "Catalog"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:8
+msgid "FILTER"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:12
+msgid "BRAND"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:16
+#: dashboard/templates/dashboard/product_detail.html:29
+#: dashboard/templates/dashboard/product_variant_detail.html:30
+#: dashboard/templates/dashboard/sold_product_detail.html:21
+#: dashboard/templates/tags/product_creation_form.html:45
+#: dashboard/templates/tags/product_update_form.html:50
+#: vendors/templates/vendor_tags/product_creation_form.html:48
+#: vendors/templates/vendor_tags/product_update_form.html:53
+#: vendors/templates/vendors/product_create.html:52
+#: vendors/templates/vendors/product_detail.html:24
+#: vendors/templates/vendors/product_variant_detail.html:21
+#: vendors/templates/vendors/sold_product_detail.html:21
+#: vendors/templates/vendors/vendor_home.html:42
+#: vendors/templates/vendors/vendor_home.html:53
+#: vendors/templates/vendors/vendor_home.html:90
+#: vendors/templates/vendors/vendor_home.html:100
+msgid "Brand"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:28
+#: catalog/templates/tags/product_filter.html:56
+#: catalog/templates/tags/product_filter.html:80
+#: catalog/templates/tags/product_filter.html:103
+msgid "Reset Filter"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:29
+#: catalog/templates/tags/product_filter.html:57
+#: catalog/templates/tags/product_filter.html:81
+#: catalog/templates/tags/product_filter.html:104
+#: dashboard/templates/tags/group_form.html:38
+#: dashboard/templates/tags/group_form.html:60
+#: dashboard/templates/tags/group_form.html:82
+#: dashboard/templates/tags/group_form.html:104
+#: dashboard/templates/tags/group_update_form.html:44
+#: dashboard/templates/tags/group_update_form.html:66
+#: dashboard/templates/tags/group_update_form.html:90
+#: dashboard/templates/tags/group_update_form.html:112
+msgid "Filter"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:40
+msgid "PRODUCT TYPE"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:44
+#: dashboard/templates/dashboard/product_type_detail.html:70
+#: dashboard/templates/dashboard/product_variant_list.html:44
+#: dashboard/templates/dashboard_base.html:64
+#: dashboard/templates/tags/product_creation_form.html:52
+#: dashboard/templates/tags/product_list_template.html:20
+#: dashboard/templates/tags/product_update_form.html:63
+#: dashboard/templates/tags/sold_product_list_template.html:21
+#: dashboard/templates/tags/sold_product_list_template.html:30
+#: vendors/templates/vendor_base.html:58
+#: vendors/templates/vendor_tags/product_creation_form.html:56
+#: vendors/templates/vendor_tags/product_list_template.html:20
+#: vendors/templates/vendor_tags/product_update_form.html:66
+#: vendors/templates/vendor_tags/sold_product_list_template.html:20
+#: vendors/templates/vendors/product_create.html:60
+#: vendors/templates/vendors/product_type_detail.html:70
+msgid "Product Type"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:68
+msgid "PRICE"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:73
+msgid "Min Price"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:75
+msgid "Max Price"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:92
+msgid "SORT ORDER"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:97
+msgid "Higher price to lower price"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:98
+msgid "Lower price to higher price"
+msgstr ""
+
+#: catalog/templates/tags/product_filter.html:99
+msgid "Populariy"
+msgstr ""
+
+#: catalog/templates/tags/products_snippet.html:32
+#: dashboard/templates/dashboard/attribute_list.html:60
+#: dashboard/templates/dashboard/brand_detail.html:43
+#: dashboard/templates/dashboard/brand_list.html:50
+#: dashboard/templates/dashboard/brand_list.html:61
+#: dashboard/templates/dashboard/category_detail.html:61
+#: dashboard/templates/dashboard/category_list.html:51
+#: dashboard/templates/dashboard/category_list.html:62
+#: dashboard/templates/dashboard/coupon_list.html:53
+#: dashboard/templates/dashboard/coupon_list.html:70
+#: dashboard/templates/dashboard/group_list.html:67
+#: dashboard/templates/dashboard/group_list.html:78
+#: dashboard/templates/dashboard/order_detail.html:75
+#: dashboard/templates/dashboard/order_list.html:45
+#: dashboard/templates/dashboard/order_list.html:57
+#: dashboard/templates/dashboard/payment_request_list.html:44
+#: dashboard/templates/dashboard/policy_list.html:47
+#: dashboard/templates/dashboard/product_detail.html:72
+#: dashboard/templates/dashboard/product_type_attribute_list.html:51
+#: dashboard/templates/dashboard/product_type_attribute_list.html:62
+#: dashboard/templates/dashboard/product_type_detail.html:44
+#: dashboard/templates/dashboard/product_type_detail.html:53
+#: dashboard/templates/dashboard/product_type_list.html:50
+#: dashboard/templates/dashboard/product_type_list.html:61
+#: dashboard/templates/dashboard/product_variant_list.html:46
+#: dashboard/templates/dashboard/product_variant_list.html:58
+#: dashboard/templates/dashboard/user_list.html:37
+#: dashboard/templates/dashboard/user_list.html:48
+#: dashboard/templates/tags/product_list_template.html:22
+#: dashboard/templates/tags/product_list_template.html:38
+#: dashboard/templates/tags/sold_product_list_template.html:24
+#: dashboard/templates/tags/sold_product_list_template.html:33
+#: dashboard/templates/tags/sold_product_list_template.html:53
+#: dashboard/templates/tags/sold_product_list_template.html:62
+#: orders/templates/orders/order_detail.html:80
+#: orders/templates/orders/order_list.html:41
+#: orders/templates/orders/order_list.html:51
+#: shipment/templates/shipment/shipment_home.html:41
+#: shipment/templates/shipment/shipment_home.html:51
+#: shipment/templates/shipment/shipment_list.html:41
+#: shipment/templates/shipment/shipment_list.html:51
+#: templates/accounts/account.html:48 templates/accounts/account.html:63
+#: vendors/templates/vendor_tags/product_list_template.html:22
+#: vendors/templates/vendor_tags/product_list_template.html:38
+#: vendors/templates/vendor_tags/sold_product_list_template.html:23
+#: vendors/templates/vendor_tags/sold_product_list_template.html:37
+#: vendors/templates/vendors/attribute_list.html:60
+#: vendors/templates/vendors/brand_detail.html:43
+#: vendors/templates/vendors/brand_list.html:40
+#: vendors/templates/vendors/brand_list.html:51
+#: vendors/templates/vendors/coupon_list.html:37
+#: vendors/templates/vendors/coupon_list.html:54
+#: vendors/templates/vendors/product_detail.html:70
+#: vendors/templates/vendors/product_type_attribute_list.html:36
+#: vendors/templates/vendors/product_type_attribute_list.html:47
+#: vendors/templates/vendors/product_type_detail.html:44
+#: vendors/templates/vendors/product_type_detail.html:53
+#: vendors/templates/vendors/product_type_list.html:33
+#: vendors/templates/vendors/product_type_list.html:43
+#: vendors/templates/vendors/product_variant_list.html:29
+#: vendors/templates/vendors/product_variant_list.html:41
+#: vendors/templates/vendors/vendor_home.html:45
+#: vendors/templates/vendors/vendor_home.html:56
+#: vendors/templates/vendors/vendor_home.html:93
+#: vendors/templates/vendors/vendor_home.html:103
+msgid "Details"
+msgstr ""
+
+#: catalog/views.py:66
+msgid "Catalog Home"
+msgstr ""
+
+#: catalog/views.py:136 dashboard/views.py:583 dashboard/views.py:1059
+#: dashboard/views.py:1610 vendors/views.py:265 vendors/views.py:317
+#: vendors/views.py:1537
+msgid "Product Detail"
+msgstr ""
+
+#: catalog/views.py:159 dashboard/views.py:924 vendors/views.py:501
+msgid "Product Variant Detail"
+msgstr ""
+
+#: dashboard/templates/dashboard/account_detail.html:8
+#: dashboard/templates/dashboard/attribute_detail.html:18
+#: dashboard/templates/dashboard/attribute_detail.html:37
+#: dashboard/templates/dashboard/attribute_list.html:45
+#: dashboard/templates/dashboard/attribute_list.html:56
+#: dashboard/templates/dashboard/brand_detail.html:10
+#: dashboard/templates/dashboard/brand_list.html:47
+#: dashboard/templates/dashboard/brand_list.html:58
+#: dashboard/templates/dashboard/category_detail.html:22
+#: dashboard/templates/dashboard/category_list.html:48
+#: dashboard/templates/dashboard/category_list.html:59
+#: dashboard/templates/dashboard/coupon_detail.html:20
+#: dashboard/templates/dashboard/coupon_list.html:48
+#: dashboard/templates/dashboard/coupon_list.html:61
+#: dashboard/templates/dashboard/group_list.html:75
+#: dashboard/templates/dashboard/policy_group_list.html:48
+#: dashboard/templates/dashboard/product_detail.html:21
+#: dashboard/templates/dashboard/product_type_attribute_create.html:28
+#: dashboard/templates/dashboard/product_type_attribute_detail.html:11
+#: dashboard/templates/dashboard/product_type_attribute_list.html:47
+#: dashboard/templates/dashboard/product_type_attribute_update.html:29
+#: dashboard/templates/dashboard/product_type_create.html:28
+#: dashboard/templates/dashboard/product_type_detail.html:11
+#: dashboard/templates/dashboard/product_type_detail.html:41
+#: dashboard/templates/dashboard/product_type_list.html:47
+#: dashboard/templates/dashboard/product_type_list.html:58
+#: dashboard/templates/dashboard/product_type_update.html:47
+#: dashboard/templates/dashboard/product_variant_detail.html:22
+#: dashboard/templates/dashboard/product_variant_detail.html:144
+#: dashboard/templates/dashboard/product_variant_list.html:42
+#: dashboard/templates/dashboard/sold_product_detail.html:13
+#: dashboard/templates/dashboard/user_list.html:34
+#: dashboard/templates/dashboard/user_list.html:45
+#: dashboard/templates/tags/brand_creation_form.html:17
+#: dashboard/templates/tags/brand_update_form.html:20
+#: dashboard/templates/tags/category_creation_form.html:18
+#: dashboard/templates/tags/category_update_form.html:18
+#: dashboard/templates/tags/coupon_form.html:17
+#: dashboard/templates/tags/coupon_form_update.html:16
+#: dashboard/templates/tags/group_form.html:21
+#: dashboard/templates/tags/group_update_form.html:27
+#: dashboard/templates/tags/product_list_template.html:17
+#: dashboard/templates/tags/product_list_template.html:33
+#: dashboard/templates/tags/sold_product_list_template.html:18
+#: dashboard/templates/tags/sold_product_list_template.html:27
+#: dashboard/templates/tags/sold_product_list_template.html:47
+#: dashboard/templates/tags/sold_product_list_template.html:56
+#: vendors/templates/vendor_tags/brand_creation_form.html:17
+#: vendors/templates/vendor_tags/brand_update_form.html:20
+#: vendors/templates/vendor_tags/category_update_form.html:18
+#: vendors/templates/vendor_tags/coupon_form.html:18
+#: vendors/templates/vendor_tags/coupon_form_update.html:17
+#: vendors/templates/vendor_tags/product_list_template.html:17
+#: vendors/templates/vendor_tags/product_list_template.html:33
+#: vendors/templates/vendor_tags/sold_product_list_template.html:17
+#: vendors/templates/vendor_tags/sold_product_list_template.html:31
+#: vendors/templates/vendors/attribute_detail.html:9
+#: vendors/templates/vendors/attribute_detail.html:27
+#: vendors/templates/vendors/attribute_list.html:45
+#: vendors/templates/vendors/attribute_list.html:56
+#: vendors/templates/vendors/brand_detail.html:10
+#: vendors/templates/vendors/brand_list.html:37
+#: vendors/templates/vendors/brand_list.html:48
+#: vendors/templates/vendors/coupon_detail.html:11
+#: vendors/templates/vendors/coupon_list.html:32
+#: vendors/templates/vendors/coupon_list.html:45
+#: vendors/templates/vendors/product_detail.html:14
+#: vendors/templates/vendors/product_type_attribute_create.html:16
+#: vendors/templates/vendors/product_type_attribute_detail.html:11
+#: vendors/templates/vendors/product_type_attribute_list.html:32
+#: vendors/templates/vendors/product_type_attribute_list.html:43
+#: vendors/templates/vendors/product_type_attribute_update.html:17
+#: vendors/templates/vendors/product_type_create.html:18
+#: vendors/templates/vendors/product_type_detail.html:11
+#: vendors/templates/vendors/product_type_detail.html:41
+#: vendors/templates/vendors/product_type_detail.html:50
+#: vendors/templates/vendors/product_type_list.html:30
+#: vendors/templates/vendors/product_type_list.html:40
+#: vendors/templates/vendors/product_type_update.html:24
+#: vendors/templates/vendors/product_variant_detail.html:13
+#: vendors/templates/vendors/product_variant_detail.html:132
+#: vendors/templates/vendors/product_variant_list.html:25
+#: vendors/templates/vendors/product_variant_list.html:37
+#: vendors/templates/vendors/sold_product_detail.html:13
+#: vendors/templates/vendors/vendor_home.html:41
+#: vendors/templates/vendors/vendor_home.html:52
+#: vendors/templates/vendors/vendor_home.html:89
+#: vendors/templates/vendors/vendor_home.html:99
+msgid "Name"
+msgstr ""
+
+#: dashboard/templates/dashboard/account_detail.html:9
+#: dashboard/templates/dashboard/user_detail.html:73
+#: dashboard/templates/tags/account_update_form.html:30
+#: orders/templates/orders/checkout.html:55
+#: orders/templates/orders/checkout.html:86
+#: templates/tags/registration_form.html:48
+msgid "Country"
+msgstr ""
+
+#: dashboard/templates/dashboard/account_detail.html:9
+msgid "account.country"
+msgstr ""
+
+#: dashboard/templates/dashboard/account_detail.html:10
+#: templates/accounts/account.html:14
+msgid "Current Balance"
+msgstr ""
+
+#: dashboard/templates/dashboard/account_detail.html:11
+#: dashboard/templates/dashboard/user_detail.html:76
+#: dashboard/templates/tags/account_update_form.html:18
+#: orders/templates/orders/checkout.html:52
+#: orders/templates/orders/checkout.html:83
+#: templates/tags/registration_form.html:44
+msgid "City"
+msgstr ""
+
+#: dashboard/templates/dashboard/account_detail.html:11
+msgid "account.city"
+msgstr ""
+
+#: dashboard/templates/dashboard/account_detail.html:12
+#: dashboard/templates/dashboard/user_detail.html:79
+#: dashboard/templates/tags/account_update_form.html:26
+#: templates/tags/registration_form.html:40
+msgid "Telefon"
+msgstr ""
+
+#: dashboard/templates/dashboard/account_detail.html:13
+#: dashboard/templates/dashboard/payment_request_detail.html:58
+msgid "UUID"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:11
+#: dashboard/templates/dashboard/brand_list.html:62
+#: dashboard/templates/dashboard/category_detail.html:33
+#: dashboard/templates/dashboard/category_list.html:63
+#: dashboard/templates/dashboard/coupon_detail.html:40
+#: dashboard/templates/dashboard/coupon_list.html:71
+#: dashboard/templates/dashboard/group_detail.html:16
+#: dashboard/templates/dashboard/group_list.html:43
+#: dashboard/templates/dashboard/group_list.html:79
+#: dashboard/templates/dashboard/permission_detail.html:13
+#: dashboard/templates/dashboard/permission_list.html:26
+#: dashboard/templates/dashboard/permission_list.html:63
+#: dashboard/templates/dashboard/policy_group_detail.html:17
+#: dashboard/templates/dashboard/product_image_detail.html:15
+#: dashboard/templates/dashboard/product_type_list.html:62
+#: dashboard/templates/dashboard/product_variant_detail.html:43
+#: dashboard/templates/dashboard/product_variant_list.html:59
+#: dashboard/templates/dashboard/sold_product_detail.html:33
+#: dashboard/templates/tags/product_list_template.html:40
+#: dashboard/templates/tags/sold_product_list_template.html:54
+#: shipment/templates/shipment/shipment_detail.html:24
+#: vendors/templates/vendor_tags/product_list_template.html:40
+#: vendors/templates/vendor_tags/sold_product_list_template.html:39
+#: vendors/templates/vendors/brand_list.html:52
+#: vendors/templates/vendors/coupon_detail.html:30
+#: vendors/templates/vendors/coupon_list.html:55
+#: vendors/templates/vendors/product_image_detail.html:12
+#: vendors/templates/vendors/product_variant_detail.html:31
+#: vendors/templates/vendors/product_variant_list.html:42
+#: vendors/templates/vendors/sold_product_detail.html:32
+msgid "Delete"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:21
+#: dashboard/templates/dashboard/attribute_detail.html:41
+#: dashboard/templates/dashboard/attribute_list.html:46
+#: dashboard/templates/dashboard/attribute_list.html:57
+#: dashboard/templates/dashboard/brand_detail.html:11
+#: dashboard/templates/dashboard/brand_detail.html:32
+#: dashboard/templates/dashboard/brand_list.html:48
+#: dashboard/templates/dashboard/brand_list.html:59
+#: dashboard/templates/dashboard/category_detail.html:23
+#: dashboard/templates/dashboard/category_detail.html:50
+#: dashboard/templates/dashboard/category_list.html:49
+#: dashboard/templates/dashboard/category_list.html:60
+#: dashboard/templates/dashboard/order_detail.html:70
+#: dashboard/templates/dashboard/product_detail.html:22
+#: dashboard/templates/dashboard/product_detail.html:61
+#: dashboard/templates/dashboard/product_type_attribute_create.html:32
+#: dashboard/templates/dashboard/product_type_attribute_detail.html:12
+#: dashboard/templates/dashboard/product_type_attribute_list.html:48
+#: dashboard/templates/dashboard/product_type_attribute_update.html:33
+#: dashboard/templates/dashboard/product_type_create.html:32
+#: dashboard/templates/dashboard/product_type_detail.html:12
+#: dashboard/templates/dashboard/product_type_detail.html:42
+#: dashboard/templates/dashboard/product_type_list.html:48
+#: dashboard/templates/dashboard/product_type_list.html:59
+#: dashboard/templates/dashboard/product_type_update.html:51
+#: dashboard/templates/dashboard/product_variant_detail.html:23
+#: dashboard/templates/dashboard/product_variant_detail.html:145
+#: dashboard/templates/dashboard/product_variant_list.html:43
+#: dashboard/templates/dashboard/sold_product_detail.html:14
+#: dashboard/templates/tags/brand_creation_form.html:21
+#: dashboard/templates/tags/brand_update_form.html:24
+#: dashboard/templates/tags/category_creation_form.html:22
+#: dashboard/templates/tags/category_update_form.html:22
+#: dashboard/templates/tags/product_creation_form.html:17
+#: dashboard/templates/tags/product_list_template.html:18
+#: dashboard/templates/tags/product_list_template.html:34
+#: dashboard/templates/tags/product_update_form.html:14
+#: dashboard/templates/tags/product_variant_creation_form.html:18
+#: dashboard/templates/tags/product_variant_update_form.html:18
+#: dashboard/templates/tags/sold_product_list_template.html:19
+#: dashboard/templates/tags/sold_product_list_template.html:28
+#: dashboard/templates/tags/sold_product_list_template.html:48
+#: dashboard/templates/tags/sold_product_list_template.html:57
+#: orders/templates/orders/order_detail.html:75
+#: vendors/templates/vendor_tags/brand_creation_form.html:21
+#: vendors/templates/vendor_tags/brand_update_form.html:24
+#: vendors/templates/vendor_tags/category_update_form.html:22
+#: vendors/templates/vendor_tags/product_creation_form.html:18
+#: vendors/templates/vendor_tags/product_list_template.html:18
+#: vendors/templates/vendor_tags/product_list_template.html:34
+#: vendors/templates/vendor_tags/product_update_form.html:17
+#: vendors/templates/vendor_tags/product_variant_creation_form.html:18
+#: vendors/templates/vendor_tags/product_variant_update_form.html:18
+#: vendors/templates/vendor_tags/sold_product_list_template.html:18
+#: vendors/templates/vendor_tags/sold_product_list_template.html:32
+#: vendors/templates/vendors/attribute_detail.html:12
+#: vendors/templates/vendors/attribute_detail.html:31
+#: vendors/templates/vendors/attribute_list.html:46
+#: vendors/templates/vendors/attribute_list.html:57
+#: vendors/templates/vendors/brand_detail.html:11
+#: vendors/templates/vendors/brand_detail.html:32
+#: vendors/templates/vendors/brand_list.html:38
+#: vendors/templates/vendors/brand_list.html:49
+#: vendors/templates/vendors/product_create.html:22
+#: vendors/templates/vendors/product_detail.html:15
+#: vendors/templates/vendors/product_detail.html:58
+#: vendors/templates/vendors/product_detail.html:67
+#: vendors/templates/vendors/product_type_attribute_create.html:20
+#: vendors/templates/vendors/product_type_attribute_detail.html:12
+#: vendors/templates/vendors/product_type_attribute_list.html:33
+#: vendors/templates/vendors/product_type_attribute_list.html:44
+#: vendors/templates/vendors/product_type_attribute_update.html:21
+#: vendors/templates/vendors/product_type_create.html:22
+#: vendors/templates/vendors/product_type_detail.html:12
+#: vendors/templates/vendors/product_type_detail.html:42
+#: vendors/templates/vendors/product_type_detail.html:51
+#: vendors/templates/vendors/product_type_list.html:31
+#: vendors/templates/vendors/product_type_list.html:41
+#: vendors/templates/vendors/product_type_update.html:28
+#: vendors/templates/vendors/product_variant_detail.html:14
+#: vendors/templates/vendors/product_variant_detail.html:133
+#: vendors/templates/vendors/product_variant_list.html:26
+#: vendors/templates/vendors/product_variant_list.html:38
+#: vendors/templates/vendors/sold_product_detail.html:14
+msgid "Display Name"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:24
+#: dashboard/templates/dashboard/attribute_detail.html:45
+#: dashboard/templates/dashboard/attribute_list.html:47
+#: dashboard/templates/dashboard/attribute_list.html:58
+#: dashboard/templates/dashboard/product_variant_detail.html:146
+#: vendors/templates/vendors/attribute_detail.html:15
+#: vendors/templates/vendors/attribute_detail.html:35
+#: vendors/templates/vendors/attribute_list.html:47
+#: vendors/templates/vendors/attribute_list.html:58
+#: vendors/templates/vendors/product_variant_detail.html:134
+msgid "Value"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:27
+#: dashboard/templates/dashboard/attribute_detail.html:49
+#: dashboard/templates/dashboard/attribute_list.html:48
+#: dashboard/templates/dashboard/product_variant_detail.html:147
+#: dashboard/templates/tags/attribute_form.html:18
+#: vendors/templates/vendor_tags/attribute_form.html:18
+#: vendors/templates/vendors/attribute_detail.html:18
+#: vendors/templates/vendors/attribute_detail.html:39
+#: vendors/templates/vendors/attribute_list.html:48
+#: vendors/templates/vendors/product_variant_detail.html:135
+msgid "Value Type"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:61
+#: dashboard/templates/dashboard/product_attribute_create.html:19
+#: dashboard/templates/dashboard/product_attribute_update.html:19
+#: vendors/templates/vendors/attribute_detail.html:51
+#: vendors/templates/vendors/product_attribute_create.html:19
+#: vendors/templates/vendors/product_attribute_update.html:19
+msgid "Nom du destinataire"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:62
+#: dashboard/templates/dashboard/product_attribute_create.html:20
+#: dashboard/templates/dashboard/product_attribute_update.html:20
+#: vendors/templates/vendors/attribute_detail.html:52
+#: vendors/templates/vendors/product_attribute_create.html:20
+#: vendors/templates/vendors/product_attribute_update.html:20
+msgid "Montant"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:63
+#: dashboard/templates/dashboard/product_attribute_create.html:21
+#: dashboard/templates/dashboard/product_attribute_update.html:21
+#: vendors/templates/vendors/attribute_detail.html:53
+#: vendors/templates/vendors/product_attribute_create.html:21
+#: vendors/templates/vendors/product_attribute_update.html:21
+msgid "Description du transfert"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:68
+#: dashboard/templates/dashboard/idcard_detail.html:21
+#: dashboard/templates/dashboard/order_detail.html:23
+#: dashboard/templates/dashboard/order_update.html:23
+#: dashboard/templates/dashboard/order_update.html:87
+#: dashboard/templates/dashboard/product_image.html:15
+#: dashboard/templates/dashboard/product_type_attribute_update.html:58
+#: dashboard/templates/dashboard/product_type_update.html:79
+#: dashboard/templates/tags/brand_update_form.html:41
+#: dashboard/templates/tags/case_update_form.html:43
+#: dashboard/templates/tags/category_update_form.html:58
+#: dashboard/templates/tags/coupon_form_update.html:53
+#: dashboard/templates/tags/idcard_update_form.html:53
+#: dashboard/templates/tags/order_update_form.html:46
+#: dashboard/templates/tags/policy_group_update_form.html:50
+#: dashboard/templates/tags/policy_update_form.html:48
+#: shipment/templates/shipment/shipment_update.html:62
+#: vendors/templates/vendor_tags/brand_update_form.html:41
+#: vendors/templates/vendor_tags/category_update_form.html:58
+#: vendors/templates/vendor_tags/coupon_form_update.html:43
+#: vendors/templates/vendors/attribute_detail.html:58
+#: vendors/templates/vendors/product_attribute_update.html:26
+#: vendors/templates/vendors/product_image.html:12
+#: vendors/templates/vendors/product_type_attribute_update.html:46
+#: vendors/templates/vendors/product_type_update.html:56
+msgid "Update"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:69
+#: dashboard/templates/dashboard/create_user.html:31
+#: dashboard/templates/dashboard/group_list.html:42
+#: dashboard/templates/dashboard/new_user.html:34
+#: dashboard/templates/dashboard/order_update.html:86
+#: dashboard/templates/dashboard/permission_list.html:25
+#: dashboard/templates/dashboard/product_attribute_create.html:27
+#: dashboard/templates/dashboard/product_attribute_update.html:27
+#: dashboard/templates/dashboard/product_type_attribute_create.html:51
+#: dashboard/templates/dashboard/product_type_attribute_update.html:57
+#: dashboard/templates/dashboard/product_type_create.html:55
+#: dashboard/templates/dashboard/product_type_update.html:78
+#: dashboard/templates/dashboard/product_variant_detail.html:71
+#: dashboard/templates/dashboard/product_variant_detail.html:93
+#: dashboard/templates/dashboard/product_variant_detail.html:113
+#: dashboard/templates/dashboard/token_generate.html:43
+#: dashboard/templates/tags/account_update_form.html:53
+#: dashboard/templates/tags/brand_creation_form.html:37
+#: dashboard/templates/tags/brand_update_form.html:40
+#: dashboard/templates/tags/case_close_form.html:41
+#: dashboard/templates/tags/case_update_form.html:42
+#: dashboard/templates/tags/caseissue_form.html:18
+#: dashboard/templates/tags/category_creation_form.html:46
+#: dashboard/templates/tags/category_remove_form.html:32
+#: dashboard/templates/tags/category_update_form.html:57
+#: dashboard/templates/tags/coupon_form.html:46
+#: dashboard/templates/tags/coupon_form_update.html:52
+#: dashboard/templates/tags/group_form.html:17
+#: dashboard/templates/tags/group_update_form.html:23
+#: dashboard/templates/tags/idcard_form.html:20
+#: dashboard/templates/tags/idcard_update_form.html:52
+#: dashboard/templates/tags/order_update_form.html:45
+#: dashboard/templates/tags/payment_form.html:22
+#: dashboard/templates/tags/policy_creation_form.html:34
+#: dashboard/templates/tags/policy_form.html:17
+#: dashboard/templates/tags/policy_group_add_users.html:48
+#: dashboard/templates/tags/policy_group_creation_form.html:30
+#: dashboard/templates/tags/policy_group_update_form.html:49
+#: dashboard/templates/tags/policy_remove_form.html:39
+#: dashboard/templates/tags/policy_update_form.html:47
+#: dashboard/templates/tags/product_attribute_creation_form.html:15
+#: dashboard/templates/tags/product_attribute_update_form.html:15
+#: dashboard/templates/tags/product_creation_form.html:9
+#: dashboard/templates/tags/product_creation_form.html:78
+#: dashboard/templates/tags/product_update_form.html:101
+#: dashboard/templates/tags/product_variant_creation_form.html:44
+#: dashboard/templates/tags/product_variant_update_form.html:44
+#: dashboard/templates/tags/recharge_form.html:16
+#: dashboard/templates/tags/reduction_form.html:15
+#: shipment/templates/shipment/shipment_update.html:61
+#: templates/accounts/registration/password_change.html:46
+#: templates/accounts/registration/register.html:79
+#: templates/tags/signup_dialog.html:35 templates/tags/signup_dialog.html:57
+#: vendors/templates/vendor_tags/brand_creation_form.html:37
+#: vendors/templates/vendor_tags/brand_update_form.html:40
+#: vendors/templates/vendor_tags/category_update_form.html:57
+#: vendors/templates/vendor_tags/coupon_form.html:42
+#: vendors/templates/vendor_tags/coupon_form_update.html:42
+#: vendors/templates/vendor_tags/product_attribute_creation_form.html:15
+#: vendors/templates/vendor_tags/product_attribute_update_form.html:15
+#: vendors/templates/vendor_tags/product_creation_form.html:10
+#: vendors/templates/vendor_tags/product_creation_form.html:76
+#: vendors/templates/vendor_tags/product_update_form.html:91
+#: vendors/templates/vendor_tags/product_variant_creation_form.html:44
+#: vendors/templates/vendor_tags/product_variant_update_form.html:44
+#: vendors/templates/vendor_tags/reduction_form.html:15
+#: vendors/templates/vendors/attribute_detail.html:59
+#: vendors/templates/vendors/product_attribute_create.html:27
+#: vendors/templates/vendors/product_attribute_update.html:27
+#: vendors/templates/vendors/product_create.html:14
+#: vendors/templates/vendors/product_create.html:80
+#: vendors/templates/vendors/product_type_attribute_create.html:39
+#: vendors/templates/vendors/product_type_attribute_update.html:45
+#: vendors/templates/vendors/product_type_create.html:45
+#: vendors/templates/vendors/product_type_update.html:55
+#: vendors/templates/vendors/product_variant_detail.html:59
+#: vendors/templates/vendors/product_variant_detail.html:81
+#: vendors/templates/vendors/product_variant_detail.html:101
+msgid "Cancel"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:76
+#: dashboard/templates/dashboard/brand_product_detail.html:17
+#: dashboard/templates/dashboard/product_detail.html:44
+#: dashboard/templates/dashboard/sold_product_list.html:7
+#: dashboard/templates/dashboard_base.html:62
+#: dashboard/templates/tags/analytics.html:28
+#: dashboard/templates/tags/dashboard_summary.html:12
+#: dashboard/templates/tags/product_list_template.html:6
+#: dashboard/templates/tags/sold_product_list_template.html:6
+#: dashboard/views.py:552 dashboard/views.py:1026
+#: vendors/templates/vendor_base.html:29 vendors/templates/vendor_base.html:56
+#: vendors/templates/vendor_tags/analytics.html:28
+#: vendors/templates/vendor_tags/product_list_template.html:6
+#: vendors/templates/vendor_tags/sold_product_list_template.html:6
+#: vendors/templates/vendors/attribute_detail.html:66
+#: vendors/templates/vendors/product_detail.html:41
+#: vendors/templates/vendors/product_list.html:8
+#: vendors/templates/vendors/sold_product_list.html:7
+#: vendors/templates/vendors/vendor_home.html:24 vendors/views.py:289
+#: vendors/views.py:1509
+msgid "Products"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:89
+#: vendors/templates/vendors/attribute_detail.html:79
+msgid "No product available for this attribute"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_detail.html:96
+#: dashboard/templates/dashboard/attribute_list.html:78
+#: dashboard/templates/dashboard/brand_detail.html:61
+#: dashboard/templates/dashboard/brand_list.html:75
+#: dashboard/templates/dashboard/brand_product_detail.html:96
+#: dashboard/templates/dashboard/category_detail.html:81
+#: dashboard/templates/dashboard/category_list.html:80
+#: dashboard/templates/dashboard/claim_detail.html:22
+#: dashboard/templates/dashboard/claim_list.html:32
+#: dashboard/templates/dashboard/coupon_detail.html:49
+#: dashboard/templates/dashboard/coupon_list.html:84
+#: dashboard/templates/dashboard/group_detail.html:72
+#: dashboard/templates/dashboard/group_list.html:99
+#: dashboard/templates/dashboard/idcard_detail.html:37
+#: dashboard/templates/dashboard/new_user.html:43
+#: dashboard/templates/dashboard/order_detail.html:100
+#: dashboard/templates/dashboard/order_list.html:74
+#: dashboard/templates/dashboard/order_update.html:97
+#: dashboard/templates/dashboard/payment_request_detail.html:65
+#: dashboard/templates/dashboard/payment_request_list.html:73
+#: dashboard/templates/dashboard/permission_detail.html:40
+#: dashboard/templates/dashboard/permission_list.html:83
+#: dashboard/templates/dashboard/policy_detail.html:46
+#: dashboard/templates/dashboard/policy_group_detail.html:75
+#: dashboard/templates/dashboard/policy_group_list.html:78
+#: dashboard/templates/dashboard/policy_list.html:76
+#: dashboard/templates/dashboard/product_attribute_create.html:33
+#: dashboard/templates/dashboard/product_attribute_update.html:33
+#: dashboard/templates/dashboard/product_detail.html:109
+#: dashboard/templates/dashboard/product_type_attribute_create.html:63
+#: dashboard/templates/dashboard/product_type_attribute_detail.html:34
+#: dashboard/templates/dashboard/product_type_attribute_list.html:80
+#: dashboard/templates/dashboard/product_type_attribute_update.html:69
+#: dashboard/templates/dashboard/product_type_create.html:67
+#: dashboard/templates/dashboard/product_type_detail.html:91
+#: dashboard/templates/dashboard/product_type_list.html:75
+#: dashboard/templates/dashboard/product_type_update.html:90
+#: dashboard/templates/dashboard/product_variant_detail.html:127
+#: dashboard/templates/dashboard/sold_product_detail.html:58
+#: dashboard/templates/dashboard/token_list.html:62
+#: dashboard/templates/dashboard/user_list.html:65
+#: dashboard/templates/tags/brand_creation_form.html:49
+#: dashboard/templates/tags/brand_update_form.html:52
+#: dashboard/templates/tags/case_close_form.html:50
+#: dashboard/templates/tags/case_update_form.html:51
+#: dashboard/templates/tags/category_creation_form.html:56
+#: dashboard/templates/tags/category_update_form.html:67
+#: dashboard/templates/tags/coupon_form.html:58
+#: dashboard/templates/tags/coupon_form_update.html:64
+#: dashboard/templates/tags/group_form.html:124
+#: dashboard/templates/tags/group_update_form.html:133
+#: dashboard/templates/tags/idcard_form.html:28
+#: dashboard/templates/tags/idcard_update_form.html:61
+#: dashboard/templates/tags/order_update_form.html:56
+#: dashboard/templates/tags/payment_form.html:30
+#: dashboard/templates/tags/policy_creation_form.html:44
+#: dashboard/templates/tags/policy_group_creation_form.html:41
+#: dashboard/templates/tags/policy_group_update_form.html:60
+#: dashboard/templates/tags/policy_update_form.html:58
+#: dashboard/templates/tags/product_variant_update_form.html:51
+#: dashboard/templates/tags/recharge_form.html:25
+#: vendors/templates/vendor_tags/brand_creation_form.html:49
+#: vendors/templates/vendor_tags/brand_update_form.html:52
+#: vendors/templates/vendor_tags/category_update_form.html:67
+#: vendors/templates/vendor_tags/coupon_form.html:54
+#: vendors/templates/vendor_tags/coupon_form_update.html:54
+#: vendors/templates/vendor_tags/product_variant_update_form.html:51
+#: vendors/templates/vendors/attribute_detail.html:85
+#: vendors/templates/vendors/attribute_list.html:78
+#: vendors/templates/vendors/brand_detail.html:61
+#: vendors/templates/vendors/brand_list.html:65
+#: vendors/templates/vendors/brand_product_detail.html:85
+#: vendors/templates/vendors/coupon_create.html:21
+#: vendors/templates/vendors/coupon_detail.html:39
+#: vendors/templates/vendors/coupon_list.html:68
+#: vendors/templates/vendors/product_attribute_create.html:33
+#: vendors/templates/vendors/product_attribute_update.html:33
+#: vendors/templates/vendors/product_detail.html:107
+#: vendors/templates/vendors/product_type_attribute_create.html:50
+#: vendors/templates/vendors/product_type_attribute_detail.html:34
+#: vendors/templates/vendors/product_type_attribute_list.html:65
+#: vendors/templates/vendors/product_type_attribute_update.html:56
+#: vendors/templates/vendors/product_type_create.html:56
+#: vendors/templates/vendors/product_type_detail.html:91
+#: vendors/templates/vendors/product_type_list.html:57
+#: vendors/templates/vendors/product_type_update.html:66
+#: vendors/templates/vendors/product_variant_detail.html:115
+#: vendors/templates/vendors/sold_product_detail.html:57
+msgid ""
+"The page you requested could not be found or you are not allowed to access "
+"this page."
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_list.html:8
+#: dashboard/templates/dashboard/attribute_list.html:33
+#: vendors/templates/vendors/attribute_list.html:8
+#: vendors/templates/vendors/attribute_list.html:33
+msgid "Attributes"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_list.html:16
+#: dashboard/templates/dashboard/brand_detail.html:19
+#: dashboard/templates/dashboard/brand_list.html:18
+#: dashboard/templates/dashboard/brand_product_detail.html:18
+#: dashboard/templates/dashboard/brand_update.html:15
+#: dashboard/templates/dashboard/category_create.html:15
+#: dashboard/templates/dashboard/category_detail.html:35
+#: dashboard/templates/dashboard/category_list.html:19
+#: dashboard/templates/dashboard/category_update.html:17
+#: dashboard/templates/dashboard/coupon_create.html:17
+#: dashboard/templates/dashboard/coupon_detail.html:42
+#: dashboard/templates/dashboard/coupon_list.html:19
+#: dashboard/templates/dashboard/coupon_update.html:15
+#: dashboard/templates/dashboard/group_create.html:17
+#: dashboard/templates/dashboard/group_detail.html:18
+#: dashboard/templates/dashboard/group_list.html:17
+#: dashboard/templates/dashboard/group_update.html:16
+#: dashboard/templates/dashboard/idcard_detail.html:22
+#: dashboard/templates/dashboard/new_user.html:16
+#: dashboard/templates/dashboard/order_detail.html:26
+#: dashboard/templates/dashboard/order_list.html:17
+#: dashboard/templates/dashboard/order_update.html:26
+#: dashboard/templates/dashboard/payment_request_detail.html:15
+#: dashboard/templates/dashboard/payment_request_list.html:17
+#: dashboard/templates/dashboard/permission_detail.html:15
+#: dashboard/templates/dashboard/permission_list.html:10
+#: dashboard/templates/dashboard/policy_detail.html:18
+#: dashboard/templates/dashboard/policy_group_create.html:16
+#: dashboard/templates/dashboard/policy_group_detail.html:20
+#: dashboard/templates/dashboard/policy_group_list.html:20
+#: dashboard/templates/dashboard/policy_group_update.html:17
+#: dashboard/templates/dashboard/policy_list.html:17
+#: dashboard/templates/dashboard/policy_update.html:17
+#: dashboard/templates/dashboard/product_detail.html:45
+#: dashboard/templates/dashboard/product_list.html:18
+#: dashboard/templates/dashboard/product_type_attribute_detail.html:26
+#: dashboard/templates/dashboard/product_type_attribute_list.html:18
+#: dashboard/templates/dashboard/product_type_detail.html:24
+#: dashboard/templates/dashboard/product_type_list.html:18
+#: dashboard/templates/dashboard/product_type_update.html:18
+#: dashboard/templates/dashboard/product_variant_detail.html:49
+#: dashboard/templates/dashboard/product_variant_list.html:15
+#: dashboard/templates/dashboard/reports.html:18
+#: dashboard/templates/dashboard/sold_product_detail.html:31
+#: dashboard/templates/dashboard/token_generate.html:17
+#: dashboard/templates/dashboard/token_list.html:19
+#: dashboard/templates/dashboard/user_detail.html:14
+#: dashboard/templates/dashboard/user_list.html:21
+#: dashboard/templates/dashboard_base.html:55
+#: dashboard/templates/tags/group_form.html:8
+#: dashboard/templates/tags/group_update_form.html:8
+#: dashboard/templates/tags/idcard_form.html:21 dashboard/views.py:66
+#: templates/base.html:52 vendors/templates/vendors/attribute_list.html:16
+#: vendors/templates/vendors/coupon_update.html:8
+#: vendors/templates/vendors/product_detail.html:42
+#: vendors/templates/vendors/product_type_attribute_detail.html:26
+msgid "Dashboard"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_list.html:40
+#: dashboard/templates/dashboard/product_type_attribute_list.html:42
+#: vendors/templates/vendors/attribute_list.html:40
+#: vendors/templates/vendors/product_type_attribute_list.html:27
+msgid "Delete Selected Attributes"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_list.html:44
+#: dashboard/templates/dashboard/brand_list.html:46
+#: dashboard/templates/dashboard/category_list.html:47
+#: dashboard/templates/dashboard/coupon_list.html:47
+#: dashboard/templates/dashboard/policy_list.html:42
+#: dashboard/templates/dashboard/product_type_attribute_list.html:46
+#: dashboard/templates/dashboard/product_type_list.html:46
+#: dashboard/templates/tags/product_list_template.html:16
+#: dashboard/templates/tags/sold_product_list_template.html:17
+#: vendors/templates/vendor_tags/product_list_template.html:16
+#: vendors/templates/vendor_tags/sold_product_list_template.html:16
+#: vendors/templates/vendors/attribute_list.html:44
+#: vendors/templates/vendors/brand_list.html:36
+#: vendors/templates/vendors/coupon_list.html:31
+#: vendors/templates/vendors/product_type_attribute_list.html:31
+msgid "Select all"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_list.html:49
+#: dashboard/templates/dashboard/attribute_list.html:60
+#: dashboard/templates/dashboard/brand_list.html:62
+#: dashboard/templates/dashboard/category_detail.html:52
+#: dashboard/templates/dashboard/category_list.html:52
+#: dashboard/templates/dashboard/category_list.html:63
+#: dashboard/templates/dashboard/coupon_list.html:54
+#: dashboard/templates/dashboard/coupon_list.html:71
+#: dashboard/templates/dashboard/group_list.html:68
+#: dashboard/templates/dashboard/group_list.html:79
+#: dashboard/templates/dashboard/permission_list.html:51
+#: dashboard/templates/dashboard/product_type_list.html:62
+#: dashboard/templates/tags/product_list_template.html:40
+#: dashboard/templates/tags/sold_product_list_template.html:25
+#: dashboard/templates/tags/sold_product_list_template.html:54
+#: vendors/templates/vendor_tags/product_list_template.html:23
+#: vendors/templates/vendor_tags/product_list_template.html:40
+#: vendors/templates/vendor_tags/sold_product_list_template.html:24
+#: vendors/templates/vendor_tags/sold_product_list_template.html:39
+#: vendors/templates/vendors/attribute_list.html:49
+#: vendors/templates/vendors/attribute_list.html:60
+#: vendors/templates/vendors/brand_list.html:52
+#: vendors/templates/vendors/coupon_list.html:55
+#: vendors/templates/vendors/product_variant_list.html:42
+msgid "Action"
+msgstr ""
+
+#: dashboard/templates/dashboard/attribute_list.html:59
+#: vendors/templates/vendors/attribute_list.html:59
+msgid "Value type"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_create.html:7 dashboard/views.py:1424
+#: vendors/views.py:100
+msgid "New Brand"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_detail.html:12
+#: dashboard/templates/dashboard/brand_list.html:49
+#: dashboard/templates/dashboard/brand_list.html:60
+#: dashboard/templates/dashboard/category_detail.html:24
+#: dashboard/templates/dashboard/category_detail.html:51
+#: dashboard/templates/dashboard/category_list.html:50
+#: dashboard/templates/dashboard/category_list.html:61
+#: dashboard/templates/dashboard/product_type_list.html:49
+#: dashboard/templates/dashboard/product_type_list.html:60
+#: dashboard/templates/tags/category_update_form.html:26
+#: vendors/templates/vendor_tags/category_update_form.html:26
+#: vendors/templates/vendors/brand_detail.html:12
+#: vendors/templates/vendors/brand_list.html:39
+#: vendors/templates/vendors/brand_list.html:50
+#: vendors/templates/vendors/product_type_list.html:32
+#: vendors/templates/vendors/product_type_list.html:42
+msgid "Code"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_detail.html:16
+#: dashboard/templates/dashboard/brand_product_detail.html:15
+#: dashboard/templates/dashboard/category_detail.html:31
+#: dashboard/templates/dashboard/coupon_detail.html:38
+#: dashboard/templates/dashboard/group_detail.html:15
+#: dashboard/templates/dashboard/permission_detail.html:14
+#: dashboard/templates/dashboard/policy_detail.html:15
+#: dashboard/templates/dashboard/policy_group_detail.html:16
+#: dashboard/templates/dashboard/product_detail.html:39
+#: dashboard/templates/dashboard/product_type_attribute_detail.html:23
+#: dashboard/templates/dashboard/product_type_detail.html:21
+#: dashboard/templates/dashboard/product_variant_detail.html:39
+#: vendors/templates/vendors/brand_detail.html:16
+#: vendors/templates/vendors/coupon_detail.html:28
+#: vendors/templates/vendors/product_detail.html:36
+#: vendors/templates/vendors/product_type_attribute_detail.html:23
+#: vendors/templates/vendors/product_type_detail.html:21
+#: vendors/templates/vendors/product_variant_detail.html:28
+msgid "Edit"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_detail.html:17
+#: vendors/templates/vendors/brand_detail.html:17
+msgid "Add New Group"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_detail.html:18
+#: dashboard/templates/dashboard/brand_list.html:35
+#: dashboard/templates/dashboard_base.html:57 dashboard/views.py:1393
+#: vendors/templates/vendor_base.html:52
+#: vendors/templates/vendors/brand_detail.html:18
+#: vendors/templates/vendors/brand_list.html:25 vendors/views.py:73
+msgid "Brands"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_detail.html:25 dashboard/views.py:1574
+#: vendors/templates/vendors/brand_detail.html:25 vendors/views.py:233
+msgid "Brand Products"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_detail.html:34
+#: dashboard/templates/dashboard/brand_product_detail.html:39
+#: dashboard/templates/dashboard/order_detail.html:40
+#: dashboard/templates/dashboard/order_update.html:39
+#: dashboard/templates/dashboard/product_detail.html:63
+#: dashboard/templates/dashboard/product_variant_list.html:45
+#: dashboard/templates/tags/product_creation_form.html:21
+#: dashboard/templates/tags/product_list_template.html:21
+#: dashboard/templates/tags/product_list_template.html:37
+#: dashboard/templates/tags/product_update_form.html:18
+#: dashboard/templates/tags/product_variant_creation_form.html:22
+#: dashboard/templates/tags/sold_product_list_template.html:22
+#: dashboard/templates/tags/sold_product_list_template.html:31
+#: dashboard/templates/tags/sold_product_list_template.html:51
+#: dashboard/templates/tags/sold_product_list_template.html:60
+#: orders/templates/orders/order_detail.html:45
+#: vendors/templates/vendor_tags/product_creation_form.html:22
+#: vendors/templates/vendor_tags/product_list_template.html:21
+#: vendors/templates/vendor_tags/product_list_template.html:37
+#: vendors/templates/vendor_tags/product_update_form.html:21
+#: vendors/templates/vendor_tags/product_variant_creation_form.html:22
+#: vendors/templates/vendor_tags/sold_product_list_template.html:21
+#: vendors/templates/vendor_tags/sold_product_list_template.html:35
+#: vendors/templates/vendors/brand_detail.html:34
+#: vendors/templates/vendors/brand_product_detail.html:28
+#: vendors/templates/vendors/product_create.html:26
+#: vendors/templates/vendors/product_detail.html:60
+#: vendors/templates/vendors/product_detail.html:69
+#: vendors/templates/vendors/product_variant_list.html:28
+#: vendors/templates/vendors/product_variant_list.html:40
+#: vendors/templates/vendors/vendor_home.html:43
+#: vendors/templates/vendors/vendor_home.html:54
+#: vendors/templates/vendors/vendor_home.html:91
+#: vendors/templates/vendors/vendor_home.html:101
+msgid "Price"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_list.html:7
+msgid "Brand List"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_list.html:16
+#: vendors/templates/vendors/brand_list.html:12
+msgid "Add new Brand"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_list.html:41
+#: dashboard/templates/dashboard/product_type_list.html:41
+#: vendors/templates/vendors/brand_list.html:31
+msgid "Delete Seleted"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_list.html:51
+#: dashboard/templates/dashboard/product_type_list.html:51
+#: dashboard/templates/dashboard/product_variant_list.html:47
+#: dashboard/templates/tags/product_list_template.html:23
+#: vendors/templates/vendors/brand_list.html:41
+#: vendors/templates/vendors/coupon_list.html:38
+#: vendors/templates/vendors/product_variant_list.html:30
+msgid "Delete Action"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_product_detail.html:16
+#: vendors/templates/vendors/brand_product_detail.html:12
+msgid "Back to brand"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_product_detail.html:34
+#: dashboard/templates/dashboard/order_detail.html:86
+#: orders/templates/orders/order_detail.html:91
+#: vendors/templates/vendors/brand_product_detail.html:23
+msgid "Product Details"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_product_detail.html:45
+#: vendors/templates/vendors/brand_product_detail.html:34
+msgid "Number of View"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_product_detail.html:60
+#: dashboard/templates/dashboard/brand_product_detail.html:78
+#: dashboard/templates/dashboard/coupon_detail.html:22
+#: dashboard/templates/dashboard/product_detail.html:24
+#: dashboard/templates/dashboard/product_variant_detail.html:25
+#: dashboard/templates/dashboard/sold_product_detail.html:16
+#: dashboard/templates/dashboard_base.html:61
+#: vendors/templates/vendor_base.html:50
+#: vendors/templates/vendors/brand_product_detail.html:49
+#: vendors/templates/vendors/brand_product_detail.html:67
+#: vendors/templates/vendors/product_detail.html:17
+#: vendors/templates/vendors/product_variant_detail.html:16
+#: vendors/templates/vendors/sold_product_detail.html:16
+msgid "Vendor"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_product_detail.html:81
+#: dashboard/templates/dashboard/claim_detail.html:14
+#: dashboard/templates/dashboard/claim_list.html:15
+#: dashboard/templates/dashboard/order_list.html:42
+#: dashboard/templates/dashboard/order_list.html:54
+#: dashboard/templates/dashboard/payment_request_detail.html:43
+#: dashboard/templates/dashboard/payment_request_list.html:40
+#: dashboard/templates/tags/case_close_form.html:22
+#: orders/templates/orders/order_list.html:38
+#: orders/templates/orders/order_list.html:48
+#: templates/accounts/account.html:44 templates/accounts/account.html:55
+#: vendors/templates/vendors/brand_product_detail.html:70
+msgid "Amount"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_product_detail.html:85
+#: vendors/templates/vendors/brand_product_detail.html:74
+msgid "View Count"
+msgstr ""
+
+#: dashboard/templates/dashboard/brand_update.html:7
+#: dashboard/templates/tags/brand_update_form.html:13 dashboard/views.py:1485
+#: vendors/templates/vendor_tags/brand_update_form.html:13 vendors/views.py:155
+msgid "Brand Update"
+msgstr ""
+
+#: dashboard/templates/dashboard/category_create.html:7 dashboard/views.py:87
+msgid "New Category"
+msgstr ""
+
+#: dashboard/templates/dashboard/category_create.html:16
+#: dashboard/templates/dashboard/category_detail.html:34
+#: dashboard/templates/dashboard/category_list.html:38
+#: dashboard/templates/dashboard_base.html:58
+msgid "Categories"
+msgstr ""
+
+#: dashboard/templates/dashboard/category_detail.html:25
+msgid "Created By"
+msgstr ""
+
+#: dashboard/templates/dashboard/category_detail.html:26
+msgid "Creation Date"
+msgstr ""
+
+#: dashboard/templates/dashboard/category_detail.html:32
+#: dashboard/templates/dashboard/category_list.html:17
+#: dashboard/templates/dashboard/category_update.html:16
+msgid "Add new Category"
+msgstr ""
+
+#: dashboard/templates/dashboard/category_detail.html:42
+msgid "Sub Categories"
+msgstr ""
+
+#: dashboard/templates/dashboard/category_list.html:8 dashboard/views.py:123
+msgid "Category List"
+msgstr ""
+
+#: dashboard/templates/dashboard/category_list.html:45
+#: dashboard/templates/dashboard/coupon_list.html:42
+#: dashboard/templates/dashboard/group_list.html:61
+#: dashboard/templates/dashboard/policy_group_list.html:45
+#: dashboard/templates/dashboard/policy_list.html:40
+#: dashboard/templates/tags/product_list_template.html:12
+#: dashboard/templates/tags/sold_product_list_template.html:12
+#: vendors/templates/vendor_tags/product_list_template.html:12
+#: vendors/templates/vendor_tags/sold_product_list_template.html:12
+#: vendors/templates/vendors/coupon_list.html:26
+msgid "Delete Selected"
+msgstr ""
+
+#: dashboard/templates/dashboard/category_update.html:7
+msgid "Category Update"
+msgstr ""
+
+#: dashboard/templates/dashboard/claim_detail.html:12
+msgid "Claim author"
+msgstr ""
+
+#: dashboard/templates/dashboard/claim_detail.html:13
+msgid "Claim participant"
+msgstr ""
+
+#: dashboard/templates/dashboard/claim_detail.html:15
+#: dashboard/templates/dashboard/claim_list.html:14
+#: dashboard/templates/tags/case_close_form.html:26
+#: dashboard/templates/tags/case_update_form.html:27
+msgid "Subject"
+msgstr ""
+
+#: dashboard/templates/dashboard/claim_detail.html:16
+msgid "description"
+msgstr ""
+
+#: dashboard/templates/dashboard/claim_list.html:16
+#: dashboard/templates/dashboard/order_histories.html:39
+#: dashboard/templates/dashboard/order_histories.html:47
+#: dashboard/templates/dashboard/order_list.html:44
+#: dashboard/templates/dashboard/order_list.html:56
+#: dashboard/templates/dashboard/payment_request_detail.html:46
+#: dashboard/templates/dashboard/payment_request_list.html:43
+#: orders/templates/orders/order_list.html:40
+#: orders/templates/orders/order_list.html:50
+#: shipment/templates/shipment/shipment_detail.html:41
+#: shipment/templates/shipment/shipment_histories.html:35
+#: shipment/templates/shipment/shipment_histories.html:49
+#: shipment/templates/shipment/shipment_histories.html:57
+#: shipment/templates/shipment/shipment_home.html:40
+#: shipment/templates/shipment/shipment_home.html:50
+#: shipment/templates/shipment/shipment_list.html:40
+#: shipment/templates/shipment/shipment_list.html:50
+#: templates/accounts/account.html:47 templates/accounts/account.html:62
+#: vendors/templates/vendors/balance_histories.html:38
+#: vendors/templates/vendors/balance_histories.html:47
+#: vendors/templates/vendors/vendor_home.html:44
+#: vendors/templates/vendors/vendor_home.html:55
+#: vendors/templates/vendors/vendor_home.html:92
+#: vendors/templates/vendors/vendor_home.html:102
+msgid "Date"
+msgstr ""
+
+#: dashboard/templates/dashboard/claim_list.html:18
+msgid "Closed at "
+msgstr ""
+
+#: dashboard/templates/dashboard/claim_list.html:20
+msgid "Opened"
+msgstr ""
+
+#: dashboard/templates/dashboard/claim_list.html:22
+#: dashboard/templates/dashboard/group_list.html:78
+#: dashboard/templates/dashboard/order_list.html:57
+#: dashboard/templates/dashboard/permission_list.html:50
+#: dashboard/templates/dashboard/permission_list.html:62
+#: dashboard/templates/dashboard/policy_group_list.html:60
+#: dashboard/templates/dashboard/policy_list.html:58
+#: dashboard/templates/tags/product_list_template.html:38
+#: orders/templates/orders/order_list.html:51
+#: shipment/templates/shipment/shipment_home.html:51
+#: shipment/templates/shipment/shipment_list.html:51
+#: templates/accounts/account.html:63
+#: vendors/templates/vendors/product_detail.html:61
+#: vendors/templates/vendors/product_detail.html:70
+#: vendors/templates/vendors/vendor_home.html:56
+#: vendors/templates/vendors/vendor_home.html:103
+msgid "Detail"
+msgstr ""
+
+#: dashboard/templates/dashboard/claim_list.html:25
+msgid "There is no claims now."
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_create.html:7 dashboard/views.py:2915
+#: vendors/views.py:1009
+msgid "New Coupon"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_create.html:16
+#: dashboard/templates/dashboard/coupon_detail.html:41
+#: dashboard/templates/dashboard/coupon_list.html:8
+#: dashboard/templates/dashboard/coupon_list.html:36
+#: dashboard/templates/dashboard_base.html:59
+#: vendors/templates/vendor_base.html:54
+#: vendors/templates/vendors/coupon_create.html:12
+#: vendors/templates/vendors/coupon_detail.html:31
+#: vendors/templates/vendors/coupon_list.html:20
+msgid "Coupons"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:23
+#: dashboard/templates/dashboard/coupon_list.html:52
+#: dashboard/templates/dashboard/coupon_list.html:65
+#: dashboard/templates/dashboard/order_histories.html:38
+#: dashboard/templates/dashboard/order_histories.html:46
+#: dashboard/templates/dashboard/order_list.html:43
+#: dashboard/templates/dashboard/order_list.html:55
+#: dashboard/templates/dashboard/order_update.html:73
+#: dashboard/templates/dashboard/payment_request_detail.html:37
+#: dashboard/templates/dashboard/payment_request_list.html:41
+#: orders/templates/orders/order_list.html:39
+#: orders/templates/orders/order_list.html:49
+#: shipment/templates/shipment/shipment_detail.html:40
+#: shipment/templates/shipment/shipment_histories.html:34
+#: shipment/templates/shipment/shipment_histories.html:47
+#: shipment/templates/shipment/shipment_histories.html:55
+#: shipment/templates/shipment/shipment_home.html:39
+#: shipment/templates/shipment/shipment_home.html:49
+#: shipment/templates/shipment/shipment_list.html:39
+#: shipment/templates/shipment/shipment_list.html:49
+#: templates/accounts/account.html:45 templates/accounts/account.html:56
+#: vendors/templates/vendors/coupon_detail.html:13
+#: vendors/templates/vendors/coupon_list.html:36
+#: vendors/templates/vendors/coupon_list.html:49
+msgid "Status"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:23
+#: dashboard/templates/dashboard/coupon_list.html:66
+#: vendors/templates/vendors/coupon_detail.html:13
+#: vendors/templates/vendors/coupon_list.html:50
+msgid "Activated"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:23
+#: vendors/templates/vendors/coupon_detail.html:13
+msgid "Not activated"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:24
+#: vendors/templates/vendors/coupon_detail.html:14
+msgid "Create at"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:27
+#: vendors/templates/vendors/coupon_detail.html:17
+msgid "Begin at"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:28
+#: vendors/templates/vendors/coupon_detail.html:18
+msgid "Expire at"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:29
+#: vendors/templates/vendors/coupon_detail.html:19
+msgid "Added by"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:30
+#: vendors/templates/vendors/coupon_detail.html:20
+msgid "Activated by"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:31
+#: dashboard/templates/dashboard/coupon_list.html:51
+#: dashboard/templates/dashboard/coupon_list.html:64
+#: dashboard/templates/tags/coupon_form.html:25
+#: dashboard/templates/tags/coupon_form_update.html:24
+#: vendors/templates/vendors/coupon_detail.html:21
+#: vendors/templates/vendors/coupon_list.html:35
+#: vendors/templates/vendors/coupon_list.html:48
+msgid "Seller"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:32
+#: vendors/templates/vendors/coupon_detail.html:22
+msgid "Activated at"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_detail.html:39
+#: vendors/templates/vendors/coupon_detail.html:29
+msgid "Add New Coupon"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_list.html:17
+#: vendors/templates/vendors/coupon_list.html:10
+msgid "Add new Coupon"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_list.html:50
+#: vendors/templates/vendors/coupon_list.html:34
+msgid "Date of creation"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_list.html:63
+#: vendors/templates/vendors/coupon_list.html:47
+msgid "Date of Creation"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_list.html:68
+#: vendors/templates/vendors/coupon_list.html:52
+msgid "Not Activated"
+msgstr ""
+
+#: dashboard/templates/dashboard/coupon_update.html:7 dashboard/views.py:2958
+#: vendors/views.py:1044
+msgid "Coupon Update"
+msgstr ""
+
+#: dashboard/templates/dashboard/create_user.html:22
+#: templates/accounts/registration/register.html:22
+msgid "Registration"
+msgstr ""
+
+#: dashboard/templates/dashboard/create_user.html:32
+msgid "Create User Account"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:27
+#: templates/accounts/account.html:37
+msgid "Recent Orders"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:35
+#: dashboard/templates/dashboard/payment_request_detail.html:34
+#: dashboard/templates/dashboard/payment_request_list.html:39
+#: shipment/templates/shipment/shipment_detail.html:36
+#: shipment/templates/shipment/shipment_histories.html:30
+#: shipment/templates/shipment/shipment_home.html:38
+#: shipment/templates/shipment/shipment_home.html:48
+#: shipment/templates/shipment/shipment_list.html:38
+#: shipment/templates/shipment/shipment_list.html:48
+#: vendors/templates/vendors/balance_histories.html:35
+#: vendors/templates/vendors/balance_histories.html:44
+#: vendors/templates/vendors/vendor_home.html:40
+#: vendors/templates/vendors/vendor_home.html:51
+msgid "Customer"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:37
+msgid "Date of Order"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_create.html:7
+msgid "New Group"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_create.html:16
+#: dashboard/templates/dashboard/group_detail.html:17
+#: dashboard/templates/dashboard/group_list.html:8
+#: dashboard/templates/dashboard/group_list.html:55
+#: dashboard/templates/dashboard/permission_detail.html:20
+#: dashboard/templates/dashboard/permission_list.html:48
+#: dashboard/templates/dashboard_base.html:56
+#: dashboard/templates/tags/group_form.html:9
+#: dashboard/templates/tags/group_update_form.html:9
+msgid "Groups"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_detail.html:7
+#: dashboard/templates/dashboard/policy_group_detail.html:8
+#: dashboard/templates/dashboard/policy_group_detail.html:37
+#: dashboard/templates/dashboard/policy_group_list.html:7
+#: dashboard/templates/tags/policy_group_creation_form.html:9
+msgid "Policy Group"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_detail.html:40
+#: dashboard/templates/dashboard/group_list.html:65
+#: dashboard/templates/dashboard/group_list.html:76
+#: dashboard/templates/dashboard/permission_list.html:38
+msgid "Permissions"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_detail.html:54
+#: dashboard/templates/dashboard/group_list.html:66
+#: dashboard/templates/dashboard/group_list.html:77
+#: dashboard/templates/dashboard/policy_group_detail.html:41
+#: dashboard/templates/tags/policy_group_update_form.html:39
+msgid "Members"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_list.html:16
+msgid "Add new Group"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_list.html:35
+msgid "Group Delete Confirmation"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_list.html:38
+msgid "Do you really want to delete this Group ? "
+msgstr ""
+
+#: dashboard/templates/dashboard/group_list.html:39
+#: dashboard/templates/dashboard/permission_list.html:22
+msgid "This action is irreversible."
+msgstr ""
+
+#: dashboard/templates/dashboard/group_list.html:64
+#: dashboard/templates/tags/policy_group_update_form.html:25
+msgid "Group Name"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_list.html:93
+#: dashboard/templates/dashboard/permission_list.html:76
+msgid "There is currently no Group"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_update.html:7
+msgid "Permission Group Update"
+msgstr ""
+
+#: dashboard/templates/dashboard/group_update.html:15
+#: dashboard/templates/dashboard/permission_list.html:11
+msgid "Create A Group"
+msgstr ""
+
+#: dashboard/templates/dashboard/idcard_detail.html:11
+msgid "ID number"
+msgstr ""
+
+#: dashboard/templates/dashboard/idcard_detail.html:12
+msgid "Delivery Place "
+msgstr ""
+
+#: dashboard/templates/dashboard/idcard_detail.html:13
+msgid "Delivered at "
+msgstr ""
+
+#: dashboard/templates/dashboard/idcard_detail.html:14
+msgid "Expire at "
+msgstr ""
+
+#: dashboard/templates/dashboard/idcard_detail.html:17
+msgid "Image"
+msgstr ""
+
+#: dashboard/templates/dashboard/idcard_detail.html:28
+msgid "Wrong request"
+msgstr ""
+
+#: dashboard/templates/dashboard/new_user.html:7
+#: dashboard/templates/dashboard/user_list.html:19 dashboard/views.py:2748
+msgid "New User"
+msgstr ""
+
+#: dashboard/templates/dashboard/new_user.html:35
+#: templates/accounts/registration/register.html:80
+msgid "Create My Account"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:9
+#: dashboard/templates/dashboard/order_update.html:9
+#: orders/templates/order_base.html:11
+#: shipment/templates/shipment/shipment_detail.html:9
+#: shipment/templates/shipment/shipment_detail.html:25
+#: shipment/templates/shipment/shipment_histories.html:10
+msgid "Order"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:22
+#: dashboard/templates/dashboard/order_update.html:22
+#: orders/templates/orders/order_detail.html:17
+msgid "Cancel Order"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:24
+#: dashboard/templates/dashboard/order_histories.html:9
+#: dashboard/templates/dashboard/order_list.html:36
+#: dashboard/templates/dashboard/order_update.html:24 dashboard/views.py:534
+msgid "Order History"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:25
+#: dashboard/templates/dashboard/order_histories.html:18
+#: dashboard/templates/dashboard/order_list.html:8
+#: dashboard/templates/dashboard/order_update.html:25
+#: dashboard/templates/dashboard_base.html:68
+#: dashboard/templates/tags/analytics.html:10
+#: dashboard/templates/tags/dashboard_summary.html:8
+#: orders/templates/orders/order_detail.html:19
+#: templates/accounts/account.html:20
+#: vendors/templates/vendor_tags/analytics.html:10
+msgid "Orders"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:32
+#: dashboard/templates/dashboard/order_update.html:32
+#: orders/templates/orders/order_detail.html:37
+msgid "Order Ref Number"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:33
+#: dashboard/templates/dashboard/order_update.html:33
+#: orders/templates/orders/checkout.html:14
+#: orders/templates/orders/checkout.html:96
+#: orders/templates/orders/order_detail.html:38
+msgid "Payment Option"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:34
+#: dashboard/templates/dashboard/order_update.html:34
+#: orders/templates/orders/order_detail.html:39
+msgid "Order Status"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:35
+#: dashboard/templates/dashboard/order_update.html:35
+#: orders/templates/orders/order_detail.html:40
+msgid "Shipping Status"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:35
+#: dashboard/templates/dashboard/order_update.html:35
+#: orders/templates/orders/order_detail.html:40
+msgid "No shipping information available"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:36
+#: orders/templates/orders/order_detail.html:41
+msgid "Paid Status"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:36
+#: orders/templates/orders/order_detail.html:41
+msgid "PAID"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:36
+#: orders/templates/orders/order_detail.html:41
+msgid "NOT PAID"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:45
+#: dashboard/templates/dashboard/order_update.html:44
+#: orders/templates/orders/order_detail.html:50
+#: shipment/templates/shipment/shipment_detail.html:34
+#: shipment/templates/shipment/shipment_histories.html:28
+#: shipment/templates/shipment/shipment_home.html:37
+#: shipment/templates/shipment/shipment_home.html:47
+#: shipment/templates/shipment/shipment_list.html:37
+#: shipment/templates/shipment/shipment_list.html:47
+msgid "Shipping Price"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:49
+#: dashboard/templates/dashboard/order_update.html:48
+#: orders/templates/orders/order_detail.html:54
+msgid "Order Date"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:50
+#: dashboard/templates/dashboard/order_update.html:49
+#: orders/templates/orders/order_detail.html:55
+msgid "Last Update"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:61
+#: orders/templates/orders/order_detail.html:66
+msgid "Order Items"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:71
+#: orders/templates/orders/order_detail.html:76
+msgid "Options"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_detail.html:72
+#: orders/templates/orders/order_detail.html:77
+msgid "Quantiy"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_histories.html:17
+msgid "Back to Order"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_histories.html:35
+msgid "History For Order"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_histories.html:64
+msgid "There is no Order history yet."
+msgstr ""
+
+#: dashboard/templates/dashboard/order_histories.html:67
+msgid "Order history will be displayed here."
+msgstr ""
+
+#: dashboard/templates/dashboard/order_list.html:40
+#: dashboard/templates/dashboard/user_detail.html:36
+msgid "User"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_list.html:41
+#: templates/accounts/account.html:43
+msgid "Order Reference"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_update.html:60
+msgid "Update Order"
+msgstr ""
+
+#: dashboard/templates/dashboard/order_update.html:69
+msgid "Order Paid"
+msgstr ""
+
+#: dashboard/templates/dashboard/payment_request_detail.html:8
+msgid "Payment"
+msgstr ""
+
+#: dashboard/templates/dashboard/payment_request_detail.html:14
+#: dashboard/templates/tags/payment_report.html:5
+#: vendors/templates/vendor_base.html:31
+#: vendors/templates/vendor_tags/payment_report.html:5
+#: vendors/templates/vendors/vendor_home.html:26
+msgid "Payments"
+msgstr ""
+
+#: dashboard/templates/dashboard/payment_request_detail.html:30
+#: dashboard/templates/tags/payment_request_report.html:5
+#: vendors/templates/vendor_tags/payment_request_report.html:5
+msgid "Payment Request"
+msgstr ""
+
+#: dashboard/templates/dashboard/payment_request_detail.html:40
+#: dashboard/templates/dashboard/payment_request_list.html:42
+msgid "Payment Status"
+msgstr ""
+
+#: dashboard/templates/dashboard/payment_request_detail.html:49
+msgid "Verifcation Code"
+msgstr ""
+
+#: dashboard/templates/dashboard/payment_request_detail.html:52
+msgid "URL"
+msgstr ""
+
+#: dashboard/templates/dashboard/payment_request_list.html:8
+#: dashboard/templates/dashboard_base.html:70
+msgid "Payment Requests"
+msgstr ""
+
+#: dashboard/templates/dashboard/payment_request_list.html:35
+msgid "Payment Request History"
+msgstr ""
+
+#: dashboard/templates/dashboard/payment_request_list.html:56
+#: dashboard/templates/dashboard/user_list.html:48
+msgid "More"
+msgstr ""
+
+#: dashboard/templates/dashboard/permission_detail.html:10
+msgid "Permission"
+msgstr ""
+
+#: dashboard/templates/dashboard/permission_detail.html:29
+msgid "Users members"
+msgstr ""
+
+#: dashboard/templates/dashboard/permission_list.html:18
+msgid "Permission Delete Confirmation"
+msgstr ""
+
+#: dashboard/templates/dashboard/permission_list.html:21
+msgid "Do you really want to delete this Permission ? "
+msgstr ""
+
+#: dashboard/templates/dashboard/permission_list.html:46
+msgid "Permission Name"
+msgstr ""
+
+#: dashboard/templates/dashboard/permission_list.html:47
+msgid "CodeName"
+msgstr ""
+
+#: dashboard/templates/dashboard/permission_list.html:49
+#: dashboard/templates/dashboard/user_detail.html:13
+#: dashboard/templates/dashboard/user_list.html:7
+#: dashboard/templates/dashboard/user_list.html:29
+#: dashboard/templates/dashboard_base.html:79
+#: dashboard/templates/tags/dashboard_summary.html:20
+msgid "Users"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_detail.html:7
+#: dashboard/templates/dashboard/policy_detail.html:34
+#: dashboard/templates/dashboard/policy_update.html:7
+#: dashboard/templates/tags/policy_group_creation_form.html:20
+#: dashboard/templates/tags/policy_group_update_form.html:30
+msgid "Policy"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_detail.html:16
+msgid "Add New Policy"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_detail.html:17
+#: dashboard/templates/dashboard/policy_list.html:7
+#: dashboard/templates/dashboard/policy_list.html:34
+#: dashboard/templates/dashboard/policy_update.html:16
+#: dashboard/templates/dashboard_base.html:74
+msgid "Policies"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_detail.html:37
+#: dashboard/templates/dashboard/policy_list.html:44
+#: dashboard/templates/tags/policy_creation_form.html:13
+#: dashboard/templates/tags/policy_remove_form.html:18
+#: dashboard/templates/tags/policy_update_form.html:26
+msgid "Daily Limit"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_detail.html:38
+#: dashboard/templates/dashboard/policy_list.html:45
+#: dashboard/templates/tags/policy_creation_form.html:18
+#: dashboard/templates/tags/policy_remove_form.html:23
+#: dashboard/templates/tags/policy_update_form.html:31
+msgid "Weekly Limit"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_detail.html:39
+#: dashboard/templates/dashboard/policy_list.html:46
+#: dashboard/templates/tags/policy_creation_form.html:24
+#: dashboard/templates/tags/policy_remove_form.html:29
+#: dashboard/templates/tags/policy_update_form.html:37
+msgid "Monthly Limit"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_detail.html:40
+#: dashboard/templates/dashboard/policy_group_detail.html:42
+#: dashboard/templates/dashboard/policy_list.html:43
+#: dashboard/templates/tags/policy_creation_form.html:28
+#: dashboard/templates/tags/policy_remove_form.html:33
+#: dashboard/templates/tags/policy_update_form.html:41
+msgid "Commission"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_create.html:7
+#: dashboard/templates/dashboard/policy_group_update.html:15
+msgid "New Policy Group"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_create.html:15
+#: dashboard/templates/dashboard/policy_group_detail.html:19
+#: dashboard/templates/dashboard/policy_group_list.html:39
+#: dashboard/templates/dashboard/policy_group_update.html:16
+#: dashboard/templates/dashboard_base.html:75
+msgid "Policy Groups"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_detail.html:18
+msgid "Add New Policy Group"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_detail.html:40
+#: dashboard/templates/tags/policy_group_creation_form.html:15
+msgid "Policy Group Name"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_detail.html:46
+msgid "Group Members"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_detail.html:47
+msgid "Add members"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_detail.html:62
+#: dashboard/templates/tags/case_close_form.html:42 templates/base.html:42
+msgid "Close"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_detail.html:64
+msgid "Add Members to policy group"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_list.html:16
+msgid "Add new Policy Group"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_list.html:18
+#: dashboard/templates/dashboard/policy_list.html:16
+msgid "Delete All Policies"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_list.html:49
+msgid "Number of members"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_list.html:50
+msgid "commission"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_update.html:7
+msgid "Policy Group Update"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_group_update.html:18
+msgid "Transaction Verification"
+msgstr ""
+
+#: dashboard/templates/dashboard/policy_list.html:15
+#: dashboard/templates/dashboard/policy_update.html:15
+msgid "Add new Policy"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_attribute_update.html:26
+msgid "Send Money"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_create.html:6 dashboard/views.py:294
+#: vendors/views.py:424
+msgid "New Product"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_detail.html:26
+#: dashboard/templates/dashboard/product_variant_detail.html:27
+#: dashboard/templates/dashboard/sold_product_detail.html:18
+#: vendors/templates/vendors/product_detail.html:19
+#: vendors/templates/vendors/product_variant_detail.html:18
+#: vendors/templates/vendors/sold_product_detail.html:18
+msgid "Views"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_detail.html:30
+#: dashboard/templates/dashboard/product_type_attribute_detail.html:15
+#: dashboard/templates/dashboard/product_type_attribute_list.html:49
+#: dashboard/templates/dashboard/product_type_detail.html:43
+#: dashboard/templates/dashboard/product_variant_detail.html:31
+#: dashboard/templates/dashboard/sold_product_detail.html:22
+#: dashboard/templates/tags/product_list_template.html:36
+#: dashboard/templates/tags/sold_product_list_template.html:50
+#: dashboard/templates/tags/sold_product_list_template.html:59
+#: vendors/templates/vendor_tags/product_list_template.html:36
+#: vendors/templates/vendor_tags/sold_product_list_template.html:34
+#: vendors/templates/vendors/product_detail.html:25
+#: vendors/templates/vendors/product_type_attribute_detail.html:15
+#: vendors/templates/vendors/product_type_attribute_list.html:34
+#: vendors/templates/vendors/product_type_attribute_list.html:45
+#: vendors/templates/vendors/product_type_detail.html:43
+#: vendors/templates/vendors/product_type_detail.html:52
+#: vendors/templates/vendors/product_variant_detail.html:22
+#: vendors/templates/vendors/product_variant_list.html:27
+#: vendors/templates/vendors/product_variant_list.html:39
+#: vendors/templates/vendors/sold_product_detail.html:22
+msgid "Type"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_detail.html:31
+#: dashboard/templates/dashboard/product_variant_detail.html:32
+#: dashboard/templates/dashboard/sold_product_detail.html:23
+#: dashboard/templates/tags/product_creation_form.html:38
+#: dashboard/templates/tags/product_list_template.html:19
+#: dashboard/templates/tags/product_list_template.html:35
+#: dashboard/templates/tags/product_update_form.html:36
+#: dashboard/templates/tags/sold_product_list_template.html:20
+#: dashboard/templates/tags/sold_product_list_template.html:29
+#: dashboard/templates/tags/sold_product_list_template.html:49
+#: dashboard/templates/tags/sold_product_list_template.html:58
+#: vendors/templates/vendor_tags/product_creation_form.html:40
+#: vendors/templates/vendor_tags/product_list_template.html:19
+#: vendors/templates/vendor_tags/product_list_template.html:35
+#: vendors/templates/vendor_tags/product_update_form.html:39
+#: vendors/templates/vendor_tags/sold_product_list_template.html:19
+#: vendors/templates/vendor_tags/sold_product_list_template.html:33
+#: vendors/templates/vendors/product_create.html:44
+#: vendors/templates/vendors/product_detail.html:26
+#: vendors/templates/vendors/product_variant_detail.html:23
+#: vendors/templates/vendors/sold_product_detail.html:23
+msgid "Gender"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_detail.html:33
+#: vendors/templates/vendors/product_detail.html:28
+msgid "Number of Variants"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_detail.html:41
+#: vendors/templates/vendors/product_detail.html:38
+msgid "Add Variant"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_detail.html:42
+#: dashboard/templates/tags/product_image_upload_form.html:26
+#: vendors/templates/vendor_tags/product_image_upload_form.html:26
+#: vendors/templates/vendors/product_detail.html:39
+msgid "Add Image"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_detail.html:53
+#: vendors/templates/vendors/product_detail.html:50
+msgid "Product Variants"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_detail.html:87
+#: vendors/templates/vendors/product_detail.html:85
+msgid "Product Images"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_detail.html:94
+#: vendors/templates/vendors/product_detail.html:92
+msgid "See"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_image.html:24
+#: vendors/templates/vendors/product_image.html:21
+msgid "Image Info"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_list.html:7
+msgid "Product List"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_list.html:16
+#: dashboard/templates/dashboard/product_variant_list.html:17
+#: vendors/templates/vendors/product_variant_list.html:10
+msgid "Add new Product"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_attribute_create.html:7
+#: dashboard/views.py:3324 vendors/views.py:1367
+msgid "New Product Type Attribute"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_attribute_create.html:36
+#: dashboard/templates/dashboard/product_type_attribute_update.html:37
+#: vendors/templates/vendors/product_type_attribute_create.html:24
+#: vendors/templates/vendors/product_type_attribute_update.html:25
+msgid "Attribute Type"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_attribute_create.html:52
+#: dashboard/templates/dashboard/product_type_create.html:56
+#: dashboard/templates/dashboard/product_variant_detail.html:114
+#: dashboard/templates/tags/brand_creation_form.html:38
+#: dashboard/templates/tags/category_creation_form.html:47
+#: dashboard/templates/tags/coupon_form.html:47
+#: dashboard/templates/tags/policy_creation_form.html:35
+#: dashboard/templates/tags/policy_group_creation_form.html:31
+#: vendors/templates/vendor_tags/brand_creation_form.html:38
+#: vendors/templates/vendor_tags/coupon_form.html:43
+#: vendors/templates/vendors/product_type_attribute_create.html:40
+#: vendors/templates/vendors/product_type_create.html:46
+#: vendors/templates/vendors/product_variant_detail.html:102
+msgid "Create"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_attribute_detail.html:24
+#: vendors/templates/vendors/product_type_attribute_detail.html:24
+msgid "Add New Produt Attribute Type"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_attribute_detail.html:25
+#: vendors/templates/vendors/product_type_attribute_detail.html:25
+msgid "Product Attribute Types"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_attribute_list.html:9
+#: dashboard/templates/dashboard/product_type_attribute_list.html:35
+#: dashboard/templates/dashboard/product_type_create.html:40
+#: dashboard/templates/dashboard/product_type_detail.html:30
+#: dashboard/templates/dashboard/product_type_update.html:59
+#: vendors/templates/vendors/product_type_attribute_list.html:20
+#: vendors/templates/vendors/product_type_create.html:30
+#: vendors/templates/vendors/product_type_detail.html:30
+#: vendors/templates/vendors/product_type_update.html:36
+msgid "Type Attributes"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_attribute_list.html:17
+#: vendors/templates/vendors/product_type_attribute_list.html:9
+msgid "Add Attribute Type"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_attribute_update.html:8
+msgid "Product Type Attribute Update"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_create.html:7
+msgid "New Product Type"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_create.html:36
+#: vendors/templates/vendors/product_type_create.html:26
+msgid "Product Type Code"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_create.html:48
+#: dashboard/templates/dashboard/product_type_update.html:71
+#: dashboard/templates/dashboard/user_list.html:35
+#: dashboard/templates/dashboard/user_list.html:46
+#: dashboard/templates/tags/brand_creation_form.html:30
+#: dashboard/templates/tags/brand_update_form.html:33
+#: dashboard/templates/tags/category_creation_form.html:31
+#: dashboard/templates/tags/category_remove_form.html:26
+#: dashboard/templates/tags/category_update_form.html:31
+#: dashboard/templates/tags/coupon_form.html:39
+#: dashboard/templates/tags/coupon_form_update.html:45
+#: dashboard/templates/tags/order_update_form.html:35
+#: vendors/templates/vendor_tags/brand_creation_form.html:30
+#: vendors/templates/vendor_tags/brand_update_form.html:33
+#: vendors/templates/vendor_tags/category_update_form.html:31
+#: vendors/templates/vendor_tags/coupon_form.html:34
+#: vendors/templates/vendor_tags/coupon_form_update.html:34
+#: vendors/templates/vendors/product_type_create.html:38
+#: vendors/templates/vendors/product_type_update.html:48
+msgid "Is Active"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_detail.html:13
+#: vendors/templates/vendors/product_type_detail.html:13
+msgid "Product Count"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_detail.html:14
+#: vendors/templates/vendors/product_type_detail.html:14
+msgid "Type Code"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_detail.html:22
+#: dashboard/templates/dashboard/product_type_update.html:16
+#: vendors/templates/vendors/product_type_detail.html:22
+#: vendors/templates/vendors/product_type_update.html:8
+msgid "Add New Produt Type"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_detail.html:23
+#: dashboard/templates/dashboard/product_type_list.html:35
+#: dashboard/templates/dashboard/product_type_update.html:17
+#: vendors/templates/vendors/product_type_detail.html:23
+#: vendors/templates/vendors/product_type_list.html:21
+#: vendors/templates/vendors/product_type_update.html:9
+msgid "Product Types"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_detail.html:83
+#: vendors/templates/vendors/product_type_detail.html:83
+msgid "No product available for this product type"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_list.html:7
+msgid "Product Type List"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_list.html:16
+#: vendors/templates/vendors/product_type_list.html:11
+msgid "Add new Product Type"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_update.html:7
+#: dashboard/templates/dashboard/product_update.html:4 dashboard/views.py:610
+#: vendors/views.py:340
+msgid "Product Update"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_update.html:41
+#: dashboard/views.py:3162
+#: vendors/templates/vendors/product_type_update.html:18 vendors/views.py:1223
+msgid "ProductType Update"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_type_update.html:55
+#: vendors/templates/vendors/product_type_update.html:32
+msgid "ProductType Code"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_create.html:7
+#: dashboard/views.py:878 vendors/views.py:461
+msgid "New Product Variant"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_detail.html:9
+msgid "Product Variant "
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_detail.html:48
+#: dashboard/templates/dashboard/sold_product_detail.html:30
+#: vendors/templates/vendors/product_variant_detail.html:36
+#: vendors/templates/vendors/sold_product_detail.html:30
+msgid "Parent Product"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_detail.html:56
+#: vendors/templates/vendors/product_variant_detail.html:44
+msgid "Add Attribute"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_detail.html:57
+#: vendors/templates/vendors/product_variant_detail.html:45
+msgid "Edit Attribute"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_detail.html:66
+#: dashboard/templates/dashboard/sold_product_detail.html:46
+#: vendors/templates/vendors/product_variant_detail.html:54
+#: vendors/templates/vendors/sold_product_detail.html:45
+msgid "No attributes found"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_detail.html:72
+#: vendors/templates/vendors/product_variant_detail.html:60
+msgid "Remove Attributes"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_detail.html:80
+#: vendors/templates/vendors/product_variant_detail.html:68
+msgid "Add Attribute Dialog"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_detail.html:83
+#: vendors/templates/vendors/product_variant_detail.html:71
+msgid "Clear Form"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_detail.html:94
+#: vendors/templates/vendors/product_variant_detail.html:82
+msgid "Add Attributes"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_detail.html:99
+#: vendors/templates/vendors/product_variant_detail.html:87
+msgid "New Attribtute"
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_list.html:7
+msgid "Product Parent "
+msgstr ""
+
+#: dashboard/templates/dashboard/product_variant_list.html:35
+#: vendors/templates/vendors/product_variant_list.html:18
+msgid "Variant List"
+msgstr ""
+
+#: dashboard/templates/dashboard/reports.html:12
+msgid "REPORTS"
+msgstr ""
+
+#: dashboard/templates/dashboard/reports.html:43
+msgid "There is no report now."
+msgstr ""
+
+#: dashboard/templates/dashboard/sold_product_detail.html:25
+#: vendors/templates/vendors/sold_product_detail.html:25
+msgid "Sold date"
+msgstr ""
+
+#: dashboard/templates/dashboard/sold_product_detail.html:39
+#: dashboard/views.py:1361
+#: vendors/templates/vendors/sold_product_detail.html:38 vendors/views.py:939
+msgid "Product Attributes"
+msgstr ""
+
+#: dashboard/templates/dashboard/token_generate.html:8
+msgid "Token Generator For User Account"
+msgstr ""
+
+#: dashboard/templates/dashboard/token_generate.html:34
+msgid "Token Generation For User"
+msgstr ""
+
+#: dashboard/templates/dashboard/token_generate.html:44
+msgid "Generate Token"
+msgstr ""
+
+#: dashboard/templates/dashboard/token_list.html:7
+msgid "Tokens"
+msgstr ""
+
+#: dashboard/templates/dashboard/token_list.html:16
+msgid "Add User Token"
+msgstr ""
+
+#: dashboard/templates/dashboard/token_list.html:38
+msgid "Token List"
+msgstr ""
+
+#: dashboard/templates/dashboard/token_list.html:54
+msgid "There are  no Token generated yet."
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:7
+msgid "User Information"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:17
+msgid "Add Balance"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:19
+msgid "Update Vendor"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:20
+msgid "Reset Vendor"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:40
+#: dashboard/templates/dashboard/user_list.html:33
+#: dashboard/templates/dashboard/user_list.html:44
+#: templates/accounts/registration/login.html:30
+#: templates/tags/registration_form.html:6 templates/tags/signup_dialog.html:30
+#: templates/tags/signup_dialog.html:47
+msgid "Username"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:43
+#: orders/templates/orders/checkout.html:37
+#: orders/templates/orders/checkout.html:68
+#: templates/tags/registration_form.html:14
+#: templates/tags/signup_dialog.html:49
+msgid "Lastname"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:46
+#: orders/templates/orders/checkout.html:34
+#: orders/templates/orders/checkout.html:65
+#: templates/tags/registration_form.html:10
+#: templates/tags/signup_dialog.html:48
+msgid "Firstname"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:49
+#: templates/tags/registration_form.html:27
+#: templates/tags/signup_dialog.html:52
+msgid "E-Mail"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:52
+msgid "Date joined"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:55
+msgid "Last login"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:61
+msgid "Create Access Token"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:69
+msgid "Account Information"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:82
+msgid "Account Type"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:87
+#: vendors/templates/vendor_base.html:16 vendors/templates/vendor_base.html:18
+#: vendors/templates/vendors/balance_histories.html:9
+#: vendors/templates/vendors/vendor_home.html:11
+#: vendors/templates/vendors/vendor_home.html:13
+msgid "Balance"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_detail.html:91
+msgid "Number of Unique  Product"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_list.html:36
+#: dashboard/templates/dashboard/user_list.html:47
+msgid "Date Joined"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_list.html:46
+msgid "Yes"
+msgstr ""
+
+#: dashboard/templates/dashboard/user_list.html:46
+msgid "No"
+msgstr ""
+
+#: dashboard/templates/dashboard_base.html:63
+#: vendors/templates/vendor_base.html:21 vendors/templates/vendor_base.html:57
+#: vendors/templates/vendors/vendor_home.html:16
+msgid "Sold Products"
+msgstr ""
+
+#: dashboard/templates/dashboard_base.html:65
+#: vendors/templates/vendor_base.html:59
+msgid "Product Type Attributes"
+msgstr ""
+
+#: dashboard/templates/dashboard_base.html:66
+#: vendors/templates/vendor_base.html:60
+msgid "Products Attributes"
+msgstr ""
+
+#: dashboard/templates/dashboard_base.html:72
+#: shipment/templates/shipment/shipment_detail.html:26
+#: shipment/templates/shipment/shipment_home.html:17
+#: shipment/templates/shipment/shipment_list.html:8
+#: shipment/templates/shipment/shipment_update.html:16
+#: shipment/templates/shipment_base.html:20 shipment/views.py:35
+#: shipment/views.py:54
+msgid "Shipments"
+msgstr ""
+
+#: dashboard/templates/dashboard_base.html:78
+msgid "Reports"
+msgstr ""
+
+#: dashboard/templates/dashboard_base.html:80
+msgid "Token"
+msgstr ""
+
+#: dashboard/templates/dashboard_base.html:82
+msgid "Token AUTH API"
+msgstr ""
+
+#: dashboard/templates/dashboard_base.html:83 templates/base.html:62
+#: vendors/templates/vendor_base.html:62
+msgid "Logout"
+msgstr ""
+
+#: dashboard/templates/tags/account_update_form.html:9
+msgid "Edit my account"
+msgstr ""
+
+#: dashboard/templates/tags/account_update_form.html:22
+msgid "Province"
+msgstr ""
+
+#: dashboard/templates/tags/account_update_form.html:34
+msgid "Address"
+msgstr ""
+
+#: dashboard/templates/tags/account_update_form.html:38
+msgid "Zip Code"
+msgstr ""
+
+#: dashboard/templates/tags/account_update_form.html:42
+msgid "Newsletter"
+msgstr ""
+
+#: dashboard/templates/tags/account_update_form.html:54
+msgid "Update my Account"
+msgstr ""
+
+#: dashboard/templates/tags/analytics.html:19
+#: vendors/templates/vendor_tags/analytics.html:19
+msgid "Orders Price"
+msgstr ""
+
+#: dashboard/templates/tags/analytics.html:37
+#: vendors/templates/vendor_tags/analytics.html:37
+msgid "Logged in Users"
+msgstr ""
+
+#: dashboard/templates/tags/attribute_form.html:6
+#: vendors/templates/vendor_tags/attribute_form.html:6
+msgid "Attribute Name"
+msgstr ""
+
+#: dashboard/templates/tags/attribute_form.html:10
+#: vendors/templates/vendor_tags/attribute_form.html:10
+msgid "Attribute Display Name"
+msgstr ""
+
+#: dashboard/templates/tags/attribute_form.html:14
+#: vendors/templates/vendor_tags/attribute_form.html:14
+msgid "Attribute Value"
+msgstr ""
+
+#: dashboard/templates/tags/brand_creation_form.html:25
+#: dashboard/templates/tags/brand_update_form.html:28
+#: vendors/templates/vendor_tags/brand_creation_form.html:25
+#: vendors/templates/vendor_tags/brand_update_form.html:28
+msgid "Brand Code"
+msgstr ""
+
+#: dashboard/templates/tags/case_close_form.html:8
+msgid "Close this case"
+msgstr ""
+
+#: dashboard/templates/tags/case_close_form.html:12
+#: dashboard/templates/tags/case_close_form.html:17
+msgid "Participant"
+msgstr ""
+
+#: dashboard/templates/tags/case_close_form.html:36
+#: dashboard/templates/tags/case_update_form.html:37
+msgid "Closed"
+msgstr ""
+
+#: dashboard/templates/tags/case_update_form.html:9
+#: dashboard/templates/tags/caseissue_form.html:6
+msgid "Enter the Operator name"
+msgstr ""
+
+#: dashboard/templates/tags/caseissue_form.html:12
+msgid "Enter the transaction number"
+msgstr ""
+
+#: dashboard/templates/tags/caseissue_form.html:13
+msgid "Enter the subject for the case"
+msgstr ""
+
+#: dashboard/templates/tags/caseissue_form.html:14
+msgid "Enter the description of the issue"
+msgstr ""
+
+#: dashboard/templates/tags/caseissue_form.html:17
+#: dashboard/templates/tags/idcard_form.html:19
+msgid "Send"
+msgstr ""
+
+#: dashboard/templates/tags/category_creation_form.html:26
+#: dashboard/templates/tags/category_remove_form.html:22
+msgid "Category Code"
+msgstr ""
+
+#: dashboard/templates/tags/category_creation_form.html:36
+#: dashboard/templates/tags/category_update_form.html:36
+#: vendors/templates/vendor_tags/category_update_form.html:36
+msgid "Parent Category"
+msgstr ""
+
+#: dashboard/templates/tags/category_creation_form.html:38
+msgid "Select a parent Category"
+msgstr ""
+
+#: dashboard/templates/tags/category_remove_form.html:9
+msgid "Remove Category Service"
+msgstr ""
+
+#: dashboard/templates/tags/category_remove_form.html:18
+msgid "Category Name"
+msgstr ""
+
+#: dashboard/templates/tags/category_remove_form.html:33
+#: dashboard/templates/tags/policy_remove_form.html:40
+msgid "Remove"
+msgstr ""
+
+#: dashboard/templates/tags/category_update_form.html:44
+#: vendors/templates/vendor_tags/category_update_form.html:44
+msgid "Select Parent category"
+msgstr ""
+
+#: dashboard/templates/tags/coupon_form.html:31
+#: dashboard/templates/tags/coupon_form_update.html:36
+#: vendors/templates/vendor_tags/coupon_form.html:26
+#: vendors/templates/vendor_tags/coupon_form_update.html:25
+msgid "Starting date"
+msgstr ""
+
+#: dashboard/templates/tags/coupon_form.html:35
+#: dashboard/templates/tags/coupon_form_update.html:40
+#: vendors/templates/vendor_tags/coupon_form.html:30
+#: vendors/templates/vendor_tags/coupon_form_update.html:29
+msgid "Expiration date"
+msgstr ""
+
+#: dashboard/templates/tags/dashboard_summary.html:16
+msgid "Current Month Orders"
+msgstr ""
+
+#: dashboard/templates/tags/group_form.html:18
+msgid "Create Group"
+msgstr ""
+
+#: dashboard/templates/tags/group_form.html:34
+#: dashboard/templates/tags/group_update_form.html:40
+msgid "Select Permissions to add"
+msgstr ""
+
+#: dashboard/templates/tags/group_form.html:41
+#: dashboard/templates/tags/group_form.html:63
+#: dashboard/templates/tags/group_form.html:85
+#: dashboard/templates/tags/group_form.html:107
+#: dashboard/templates/tags/group_update_form.html:47
+#: dashboard/templates/tags/group_update_form.html:69
+#: dashboard/templates/tags/group_update_form.html:93
+#: dashboard/templates/tags/group_update_form.html:115
+msgid "Enter the term to filter"
+msgstr ""
+
+#: dashboard/templates/tags/group_form.html:56
+#: dashboard/templates/tags/group_update_form.html:62
+msgid "Selected Permissions"
+msgstr ""
+
+#: dashboard/templates/tags/group_form.html:78
+#: dashboard/templates/tags/group_update_form.html:86
+msgid "Select Users to add"
+msgstr ""
+
+#: dashboard/templates/tags/group_form.html:100
+#: dashboard/templates/tags/group_update_form.html:108
+#: dashboard/templates/tags/policy_group_add_users.html:25
+msgid "Selected Users"
+msgstr ""
+
+#: dashboard/templates/tags/group_update_form.html:24
+#: dashboard/templates/tags/policy_group_add_users.html:49
+msgid "Update Group"
+msgstr ""
+
+#: dashboard/templates/tags/idcard_form.html:13
+msgid "Enter your ID Card number"
+msgstr ""
+
+#: dashboard/templates/tags/idcard_form.html:14
+msgid "Select your ID card image :"
+msgstr ""
+
+#: dashboard/templates/tags/idcard_update_form.html:18
+msgid "Update my ID Card"
+msgstr ""
+
+#: dashboard/templates/tags/idcard_update_form.html:28
+msgid "Card Number"
+msgstr ""
+
+#: dashboard/templates/tags/idcard_update_form.html:31
+msgid "Issued Date"
+msgstr ""
+
+#: dashboard/templates/tags/idcard_update_form.html:34
+msgid "Epire at "
+msgstr ""
+
+#: dashboard/templates/tags/idcard_update_form.html:37
+msgid "Delivrance place"
+msgstr ""
+
+#: dashboard/templates/tags/idcard_update_form.html:40
+msgid "ID card Picture"
+msgstr ""
+
+#: dashboard/templates/tags/idcard_update_form.html:46
+msgid "Current ID image"
+msgstr ""
+
+#: dashboard/templates/tags/order_report.html:5
+#: vendors/templates/vendor_tags/order_report.html:5
+msgid "Services"
+msgstr ""
+
+#: dashboard/templates/tags/order_report.html:9
+#: vendors/templates/vendor_tags/order_report.html:9
+msgid "Services Count"
+msgstr ""
+
+#: dashboard/templates/tags/order_report.html:13
+#: vendors/templates/vendor_tags/order_report.html:13
+msgid "Average Services"
+msgstr ""
+
+#: dashboard/templates/tags/order_report.html:17
+#: vendors/templates/vendor_tags/order_report.html:17
+msgid "Min Services"
+msgstr ""
+
+#: dashboard/templates/tags/order_report.html:21
+#: vendors/templates/vendor_tags/order_report.html:21
+msgid "Max Services"
+msgstr ""
+
+#: dashboard/templates/tags/order_update_form.html:10
+msgid "Edit Service"
+msgstr ""
+
+#: dashboard/templates/tags/order_update_form.html:19
+msgid "Service Code"
+msgstr ""
+
+#: dashboard/templates/tags/order_update_form.html:23
+msgid "Service name"
+msgstr ""
+
+#: dashboard/templates/tags/order_update_form.html:27
+msgid "Operator"
+msgstr ""
+
+#: dashboard/templates/tags/payment_form.html:10
+msgid "Enter the customer name"
+msgstr ""
+
+#: dashboard/templates/tags/payment_form.html:17
+msgid "Enter the amount to be paid"
+msgstr ""
+
+#: dashboard/templates/tags/payment_form.html:18
+msgid "Payment description"
+msgstr ""
+
+#: dashboard/templates/tags/payment_report.html:9
+#: vendors/templates/vendor_tags/payment_report.html:9
+msgid "Payments Count"
+msgstr ""
+
+#: dashboard/templates/tags/payment_report.html:13
+#: vendors/templates/vendor_tags/payment_report.html:13
+msgid "Average Payments"
+msgstr ""
+
+#: dashboard/templates/tags/payment_report.html:17
+#: vendors/templates/vendor_tags/payment_report.html:17
+msgid "Min Payments"
+msgstr ""
+
+#: dashboard/templates/tags/payment_report.html:21
+#: vendors/templates/vendor_tags/payment_report.html:21
+msgid "Max Payments"
+msgstr ""
+
+#: dashboard/templates/tags/payment_request_report.html:9
+#: vendors/templates/vendor_tags/payment_request_report.html:9
+msgid "Payment Request Count"
+msgstr ""
+
+#: dashboard/templates/tags/payment_request_report.html:13
+#: vendors/templates/vendor_tags/payment_request_report.html:13
+msgid "Average Payment Request"
+msgstr ""
+
+#: dashboard/templates/tags/payment_request_report.html:17
+#: vendors/templates/vendor_tags/payment_request_report.html:17
+msgid "Min Payment Request"
+msgstr ""
+
+#: dashboard/templates/tags/payment_request_report.html:21
+#: vendors/templates/vendor_tags/payment_request_report.html:21
+msgid "Max Payment Request"
+msgstr ""
+
+#: dashboard/templates/tags/policy_creation_form.html:7
+msgid "New Policy"
+msgstr ""
+
+#: dashboard/templates/tags/policy_form.html:10
+msgid "Enter the daily limit"
+msgstr ""
+
+#: dashboard/templates/tags/policy_form.html:11
+msgid "Enter the weekly limit"
+msgstr ""
+
+#: dashboard/templates/tags/policy_form.html:12
+msgid "Enter the monthly limit"
+msgstr ""
+
+#: dashboard/templates/tags/policy_form.html:13
+msgid "Enter the commision"
+msgstr ""
+
+#: dashboard/templates/tags/policy_form.html:16
+msgid "Create the Policy"
+msgstr ""
+
+#: dashboard/templates/tags/policy_group_add_users.html:9
+msgid "Available Users"
+msgstr ""
+
+#: dashboard/templates/tags/policy_group_add_users.html:11
+msgid "Click on a user to add it to a the group"
+msgstr ""
+
+#: dashboard/templates/tags/policy_group_add_users.html:27
+msgid "Click on a user to remove it from the group"
+msgstr ""
+
+#: dashboard/templates/tags/policy_group_update_form.html:11
+#: dashboard/views.py:2199 dashboard/views.py:2236
+msgid "Edit Policy Group"
+msgstr ""
+
+#: dashboard/templates/tags/policy_remove_form.html:9
+msgid "Removing Policy"
+msgstr ""
+
+#: dashboard/templates/tags/policy_update_form.html:11 dashboard/views.py:1950
+msgid "Edit Policy"
+msgstr ""
+
+#: dashboard/templates/tags/product_attribute_creation_form.html:10
+#: dashboard/templates/tags/product_attribute_update_form.html:10
+#: vendors/templates/vendor_tags/product_attribute_creation_form.html:10
+#: vendors/templates/vendor_tags/product_attribute_update_form.html:10
+msgid "Enter the service category"
+msgstr ""
+
+#: dashboard/templates/tags/product_attribute_creation_form.html:11
+#: dashboard/templates/tags/product_attribute_update_form.html:11
+#: vendors/templates/vendor_tags/product_attribute_creation_form.html:11
+#: vendors/templates/vendor_tags/product_attribute_update_form.html:11
+msgid "Enter the category name"
+msgstr ""
+
+#: dashboard/templates/tags/product_attribute_creation_form.html:16
+#: dashboard/templates/tags/product_attribute_update_form.html:16
+#: vendors/templates/vendor_tags/product_attribute_creation_form.html:16
+#: vendors/templates/vendor_tags/product_attribute_update_form.html:16
+msgid "Create category"
+msgstr ""
+
+#: dashboard/templates/tags/product_creation_form.html:10
+#: dashboard/templates/tags/product_creation_form.html:79
+#: vendors/templates/vendor_tags/product_creation_form.html:11
+#: vendors/templates/vendor_tags/product_creation_form.html:77
+#: vendors/templates/vendors/product_create.html:15
+#: vendors/templates/vendors/product_create.html:81
+msgid "Create Product"
+msgstr ""
+
+#: dashboard/templates/tags/product_creation_form.html:13
+#: dashboard/templates/tags/product_update_form.html:10
+#: dashboard/templates/tags/product_variant_creation_form.html:14
+#: dashboard/templates/tags/product_variant_update_form.html:14
+#: vendors/templates/vendor_tags/product_creation_form.html:14
+#: vendors/templates/vendor_tags/product_update_form.html:13
+#: vendors/templates/vendor_tags/product_variant_creation_form.html:14
+#: vendors/templates/vendor_tags/product_variant_update_form.html:14
+#: vendors/templates/vendors/product_create.html:18
+msgid "Product Name"
+msgstr ""
+
+#: dashboard/templates/tags/product_creation_form.html:59
+#: dashboard/templates/tags/product_update_form.html:76
+msgid "Merchant"
+msgstr ""
+
+#: dashboard/templates/tags/product_creation_form.html:66
+#: dashboard/templates/tags/product_update_form.html:89
+#: vendors/templates/vendor_tags/product_creation_form.html:64
+#: vendors/templates/vendor_tags/product_update_form.html:79
+#: vendors/templates/vendors/product_create.html:68
+msgid "Short Description"
+msgstr ""
+
+#: dashboard/templates/tags/product_image_upload_form.html:15
+#: vendors/templates/vendor_tags/product_image_upload_form.html:15
+msgid "Please Drag and drop the product images here"
+msgstr ""
+
+#: dashboard/templates/tags/product_image_upload_form.html:16
+#: vendors/templates/vendor_tags/product_image_upload_form.html:16
+msgid "Accepted formats"
+msgstr ""
+
+#: dashboard/templates/tags/product_image_upload_form.html:18
+#: vendors/templates/vendor_tags/product_image_upload_form.html:18
+msgid "Clear"
+msgstr ""
+
+#: dashboard/templates/tags/product_image_upload_form.html:21
+#: vendors/templates/vendor_tags/product_image_upload_form.html:21
+msgid "no images"
+msgstr ""
+
+#: dashboard/templates/tags/product_image_upload_form.html:25
+#: vendors/templates/vendor_tags/product_image_upload_form.html:25
+msgid "Back to Product"
+msgstr ""
+
+#: dashboard/templates/tags/product_report.html:5
+#: vendors/templates/vendor_tags/product_report.html:5
+msgid "Transfers"
+msgstr ""
+
+#: dashboard/templates/tags/product_report.html:9
+#: vendors/templates/vendor_tags/product_report.html:9
+msgid "Transfers Count"
+msgstr ""
+
+#: dashboard/templates/tags/product_report.html:13
+#: vendors/templates/vendor_tags/product_report.html:13
+msgid "Average Transfers"
+msgstr ""
+
+#: dashboard/templates/tags/product_report.html:17
+#: vendors/templates/vendor_tags/product_report.html:17
+msgid "Min Transfers"
+msgstr ""
+
+#: dashboard/templates/tags/product_report.html:21
+#: vendors/templates/vendor_tags/product_report.html:21
+msgid "Max Transfers"
+msgstr ""
+
+#: dashboard/templates/tags/product_update_form.html:102
+#: vendors/templates/vendor_tags/product_update_form.html:92
+msgid "Update Product"
+msgstr ""
+
+#: dashboard/templates/tags/product_variant_update_form.html:22
+#: vendors/templates/vendor_tags/product_variant_update_form.html:22
+msgid "Price(XAF)"
+msgstr ""
+
+#: dashboard/templates/tags/recharge_form.html:11
+msgid "Voucher Code"
+msgstr ""
+
+#: dashboard/templates/tags/recharge_form.html:17
+msgid "Recharge my Account"
+msgstr ""
+
+#: dashboard/templates/tags/reduction_form.html:11
+#: vendors/templates/vendor_tags/reduction_form.html:11
+msgid "Enter the percent to apply"
+msgstr ""
+
+#: dashboard/templates/tags/reduction_form.html:14
+#: vendors/templates/vendor_tags/reduction_form.html:14
+msgid "Create reduction"
+msgstr ""
+
+#: dashboard/templates/tags/voucher_report.html:5
+msgid "Voucher"
+msgstr ""
+
+#: dashboard/templates/tags/voucher_report.html:9
+msgid "Voucher Count"
+msgstr ""
+
+#: dashboard/templates/tags/voucher_report.html:13
+msgid "Average Voucher"
+msgstr ""
+
+#: dashboard/templates/tags/voucher_report.html:17
+msgid "Min Voucher"
+msgstr ""
+
+#: dashboard/templates/tags/voucher_report.html:21
+msgid "Max Voucher"
+msgstr ""
+
+#: dashboard/views.py:104
+msgid "New Category created"
+msgstr ""
+
+#: dashboard/views.py:108
+msgid "Error when creating new category"
+msgstr ""
+
+#: dashboard/views.py:178
+msgid "Edit Category"
+msgstr ""
+
+#: dashboard/views.py:193
+msgid "Category updated"
+msgstr ""
+
+#: dashboard/views.py:197
+msgid "Error when updating category"
+msgstr ""
+
+#: dashboard/views.py:314 vendors/views.py:436
+msgid "New Product created"
+msgstr ""
+
+#: dashboard/views.py:318 vendors/views.py:440
+msgid "Product not created"
+msgstr ""
+
+#: dashboard/views.py:348 orders/views.py:32
+msgid "Dashboard Orders"
+msgstr ""
+
+#: dashboard/views.py:377 dashboard/views.py:436 dashboard/views.py:496
+#: orders/views.py:49
+msgid "Order Detail"
+msgstr ""
+
+#: dashboard/views.py:523
+msgid "Order Histories"
+msgstr ""
+
+#: dashboard/views.py:622 vendors/views.py:352
+msgid "Product updated"
+msgstr ""
+
+#: dashboard/views.py:626 vendors/views.py:356
+msgid "Product not updated"
+msgstr ""
+
+#: dashboard/views.py:659 dashboard/views.py:1255 vendors/views.py:385
+#: vendors/views.py:849
+msgid "Product deleted"
+msgstr ""
+
+#: dashboard/views.py:892 vendors/views.py:474
+msgid "New Product variant created"
+msgstr ""
+
+#: dashboard/views.py:896 dashboard/views.py:971 dashboard/views.py:1223
+#: vendors/views.py:478 vendors/views.py:544 vendors/views.py:821
+msgid "Product variant not created"
+msgstr ""
+
+#: dashboard/views.py:955 vendors/views.py:528
+msgid "Product Variant Update"
+msgstr ""
+
+#: dashboard/views.py:967 vendors/views.py:540
+msgid "Product variant updated"
+msgstr ""
+
+#: dashboard/views.py:1008 vendors/views.py:576
+msgid "Product variant deleted"
+msgstr ""
+
+#: dashboard/views.py:1096 vendors/views.py:1569
+msgid "SoldProduct deleted"
+msgstr ""
+
+#: dashboard/views.py:1153 dashboard/views.py:1219 vendors/views.py:758
+#: vendors/views.py:817
+msgid "Attribute formset valid"
+msgstr ""
+
+#: dashboard/views.py:1157 vendors/views.py:762
+msgid "Attributes not added"
+msgstr ""
+
+#: dashboard/views.py:1184 dashboard/views.py:1278 vendors/views.py:785
+#: vendors/views.py:868
+msgid "Attribute removed"
+msgstr ""
+
+#: dashboard/views.py:1187 dashboard/views.py:1281 vendors/views.py:788
+#: vendors/views.py:871
+msgid "Attributes not removed"
+msgstr ""
+
+#: dashboard/views.py:1205 vendors/views.py:803
+msgid "New Attribute"
+msgstr ""
+
+#: dashboard/views.py:1300 vendors/views.py:886
+msgid "Attribute"
+msgstr ""
+
+#: dashboard/views.py:1322 vendors/views.py:904
+msgid "Attribute Update"
+msgstr ""
+
+#: dashboard/views.py:1332 vendors/views.py:914
+msgid "Attribute updated"
+msgstr ""
+
+#: dashboard/views.py:1336 vendors/views.py:918
+msgid "Attribute not updated"
+msgstr ""
+
+#: dashboard/views.py:1433 vendors/views.py:109
+msgid "New Brand created"
+msgstr ""
+
+#: dashboard/views.py:1437 vendors/views.py:113
+msgid "Brand not created"
+msgstr ""
+
+#: dashboard/views.py:1459 vendors/views.py:132
+msgid "Brand Detail"
+msgstr ""
+
+#: dashboard/views.py:1495 vendors/views.py:165
+msgid "Brand updated"
+msgstr ""
+
+#: dashboard/views.py:1499 vendors/views.py:169
+msgid "Brand not updated"
+msgstr ""
+
+#: dashboard/views.py:1530 vendors/views.py:196
+msgid "Brand deleted"
+msgstr ""
+
+#: dashboard/views.py:1637
+msgid "Dashboard Users Tokens"
+msgstr ""
+
+#: dashboard/views.py:1666
+msgid "User Token Generation"
+msgstr ""
+
+#: dashboard/views.py:1677
+msgid "Token successfully generated for user {}"
+msgstr ""
+
+#: dashboard/views.py:1681
+msgid "The submitted form is not valid"
+msgstr ""
+
+#: dashboard/views.py:1709
+msgid "Dashboard Reports"
+msgstr ""
+
+#: dashboard/views.py:1737
+msgid "Dashboard Users"
+msgstr ""
+
+#: dashboard/views.py:2068
+msgid "Create Policy"
+msgstr ""
+
+#: dashboard/views.py:2162
+msgid "Create Policy Group"
+msgstr ""
+
+#: dashboard/views.py:2763
+#, python-brace-format
+msgid "User {name} created"
+msgstr ""
+
+#: dashboard/views.py:2930 vendors/views.py:1020
+msgid "New Coupon created"
+msgstr ""
+
+#: dashboard/views.py:2934 vendors/views.py:1024
+msgid "Coupon not created"
+msgstr ""
+
+#: dashboard/views.py:2982 vendors/views.py:1064
+msgid "Coupon updated"
+msgstr ""
+
+#: dashboard/views.py:2986 vendors/views.py:1068
+msgid "Coupon not updated"
+msgstr ""
+
+#: dashboard/views.py:3019 vendors/views.py:1097
+msgid "Coupon deleted"
+msgstr ""
+
+#: dashboard/views.py:3066 vendors/views.py:1138
+msgid "ProductTypes"
+msgstr ""
+
+#: dashboard/views.py:3098 vendors/views.py:1167
+msgid "New ProductType"
+msgstr ""
+
+#: dashboard/views.py:3107 vendors/views.py:1176
+msgid "New ProductType created"
+msgstr ""
+
+#: dashboard/views.py:3111 dashboard/views.py:3337 vendors/views.py:1180
+#: vendors/views.py:1380
+msgid "ProductType not created"
+msgstr ""
+
+#: dashboard/views.py:3135 vendors/views.py:1200
+msgid "ProductType Detail"
+msgstr ""
+
+#: dashboard/views.py:3172 vendors/views.py:1233
+msgid "ProductTyppe updated"
+msgstr ""
+
+#: dashboard/views.py:3176 vendors/views.py:1237
+msgid "ProductType not updated"
+msgstr ""
+
+#: dashboard/views.py:3210 vendors/views.py:1268
+msgid "ProductType deleted"
+msgstr ""
+
+#: dashboard/views.py:3254 vendors/views.py:1306
+msgid "Product Type Products"
+msgstr ""
+
+#: dashboard/views.py:3291 vendors/views.py:1339
+msgid "ProductType Attributes"
+msgstr ""
+
+#: dashboard/views.py:3333 vendors/views.py:1376
+msgid "New ProductTypeAttribute created"
+msgstr ""
+
+#: dashboard/views.py:3361 vendors/views.py:1401
+msgid "ProductTypeAttribute Detail"
+msgstr ""
+
+#: dashboard/views.py:3388 vendors/views.py:1424
+msgid "ProductTypeAttribute Update"
+msgstr ""
+
+#: dashboard/views.py:3398 vendors/views.py:1434
+msgid "ProductTypeAttribute updated"
+msgstr ""
+
+#: dashboard/views.py:3402 vendors/views.py:1438
+msgid "ProductTypeAttribute not updated"
+msgstr ""
+
+#: dashboard/views.py:3435 vendors/views.py:1468
+msgid "ProductTypeAttribute deleted"
+msgstr ""
+
+#: lyshop/settings.py:286
+msgid "English"
+msgstr ""
+
+#: lyshop/settings.py:287
+msgid "French"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:11
+msgid "Shipping Info"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:17
+#: orders/templates/orders/checkout.html:113
+msgid "Verification"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:20
+#: orders/templates/orders/checkout.html:122
+msgid "Confirmation"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:29
+msgid "User Info"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:32
+msgid "Shipping Address"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:40
+msgid "Address Extra"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:43
+#: orders/templates/orders/checkout.html:74
+msgid "Street"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:46
+#: orders/templates/orders/checkout.html:77
+msgid "House number"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:49
+#: orders/templates/orders/checkout.html:80
+msgid "Zip"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:60
+msgid "Billing Address"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:61
+msgid "use my Shipping Address"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:71
+msgid "Address extra"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:91
+#: orders/templates/orders/checkout.html:108
+#: orders/templates/orders/checkout.html:117
+msgid "Next Step"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:99
+msgid "Pay at delivery"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:104
+msgid "Pay with Pay"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:107
+#: orders/templates/orders/checkout.html:116
+#: orders/templates/orders/checkout.html:125
+msgid "Previous Step"
+msgstr ""
+
+#: orders/templates/orders/checkout.html:126
+msgid "Validate"
+msgstr ""
+
+#: orders/templates/orders/checkout_redirect_payment.html:13
+msgid "You will be redirected to Pay for payment in an instant."
+msgstr ""
+
+#: orders/templates/orders/checkout_redirect_payment.html:14
+msgid "Click here to directly go to PAY if you don't want to wait."
+msgstr ""
+
+#: orders/templates/orders/order_detail.html:9
+msgid "Order Info"
+msgstr ""
+
+#: orders/templates/orders/order_detail.html:18
+#: orders/templates/orders/order_list.html:17
+msgid "My account"
+msgstr ""
+
+#: orders/templates/orders/order_detail.html:105
+msgid "Error. No order found."
+msgstr ""
+
+#: orders/templates/orders/order_list.html:8
+msgid "My Orders"
+msgstr ""
+
+#: orders/templates/orders/order_list.html:34
+msgid "Order List"
+msgstr ""
+
+#: orders/templates/orders/order_list.html:37
+#: orders/templates/orders/order_list.html:47
+msgid "Order Reference Number"
+msgstr ""
+
+#: orders/templates/orders/order_list.html:69
+msgid "You have bought any article yet."
+msgstr ""
+
+#: orders/templates/orders/order_list.html:72
+msgid "Your orders will be displayed here."
+msgstr ""
+
+#: orders/templates/tags/checkout_failed_content.html:5
+msgid "Your transaction has failed. "
+msgstr ""
+
+#: orders/templates/tags/checkout_failed_content.html:6
+#: orders/templates/tags/checkout_success_content.html:6
+msgid "You will be redirected to your account page in an instant."
+msgstr ""
+
+#: orders/templates/tags/checkout_failed_content.html:7
+#: orders/templates/tags/checkout_success_content.html:7
+msgid "Click here to directly go to your Account if you don't want to way."
+msgstr ""
+
+#: orders/templates/tags/checkout_failed_content.html:7
+#: orders/templates/tags/checkout_success_content.html:7
+#: templates/accounts/registration/email_validation.html:26
+msgid "My Account"
+msgstr ""
+
+#: orders/templates/tags/checkout_success_content.html:5
+msgid "Your transaction was succesfull. "
+msgstr ""
+
+#: orders/views.py:90
+msgid "Your Cart is empty"
+msgstr ""
+
+#: orders/views.py:172
+msgid "Checkout Redirect to PAY"
+msgstr ""
+
+#: orders/views.py:188
+msgid "Checkout succeed"
+msgstr ""
+
+#: orders/views.py:211
+msgid "Checkout failed"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_detail.html:8
+#: shipment/templates/shipment/shipment_histories.html:9
+#: shipment/templates/shipment_base.html:11 shipment/views.py:67
+msgid "Shipment"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_detail.html:23
+msgid "Update Shipment"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_detail.html:27
+#: shipment/templates/shipment/shipment_histories.html:8
+#: shipment/templates/shipment/shipment_update.html:17 shipment/views.py:141
+msgid "Shipment History"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_detail.html:28
+#: shipment/templates/shipment/shipment_histories.html:22
+#: shipment/templates/shipment/shipment_home.html:8
+#: shipment/templates/shipment/shipment_list.html:17
+#: shipment/templates/shipment/shipment_update.html:18
+msgid "Shipment Home"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_detail.html:33
+#: shipment/templates/shipment/shipment_histories.html:27
+msgid "Shipment Reference Number"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_detail.html:35
+#: shipment/templates/shipment/shipment_histories.html:29
+#: shipment/templates/shipment/shipment_update.html:38
+msgid "Company"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_detail.html:42
+#: shipment/templates/shipment/shipment_histories.html:36
+msgid "Shipped Date"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_detail.html:43
+#: shipment/templates/shipment/shipment_histories.html:37
+msgid "Delivered Date"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_detail.html:53
+#: shipment/templates/shipment/shipment_update.html:71
+msgid "Error. No Shipment found."
+msgstr ""
+
+#: shipment/templates/shipment/shipment_histories.html:21
+msgid "Back to Shipment"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_histories.html:48
+#: shipment/templates/shipment/shipment_histories.html:56
+msgid "Changed By"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_histories.html:74
+msgid "There is no shipments history yet."
+msgstr ""
+
+#: shipment/templates/shipment/shipment_histories.html:77
+msgid "Shipment history will be displayed here."
+msgstr ""
+
+#: shipment/templates/shipment/shipment_home.html:34
+msgid "Recent Shipments"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_home.html:69
+#: shipment/templates/shipment/shipment_list.html:69
+msgid "There is no shipments yet."
+msgstr ""
+
+#: shipment/templates/shipment/shipment_home.html:72
+#: shipment/templates/shipment/shipment_list.html:72
+msgid "Shipments will be displayed here."
+msgstr ""
+
+#: shipment/templates/shipment/shipment_list.html:34
+msgid "Shipment List"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_update.html:8 shipment/views.py:102
+msgid "Shipment Update"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_update.html:42
+#: templates/accounts/account.html:46 templates/accounts/account.html:58
+#: templates/accounts/account.html:60
+msgid "Shipment Status"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_update.html:53
+msgid "Shipping Date"
+msgstr ""
+
+#: shipment/templates/shipment/shipment_update.html:57
+msgid "Delivery Date"
+msgstr ""
+
+#: shipment/templates/shipment_base.html:19
+#: templates/accounts/registration/password_reset_form.html:13
+msgid "Home"
+msgstr ""
+
+#: shipment/views.py:92
+msgid "Shipment updated"
+msgstr ""
+
+#: shipment/views.py:96
+msgid "Shipment Invalid"
+msgstr ""
+
+#: shipment/views.py:129
+msgid "Shipment Histories"
+msgstr ""
+
+#: templates/400.html:7
+msgid "Bad Request ! "
+msgstr ""
+
+#: templates/400.html:10
+msgid "The server did not understand your request."
+msgstr ""
+
+#: templates/400.html:13 templates/403.html:13 templates/404.html:13
+#: templates/500.html:15
+msgid "Go back to Home Page"
+msgstr ""
+
+#: templates/403.html:7
+msgid "Access Forbidden ! "
+msgstr ""
+
+#: templates/403.html:10
+msgid "You are not allowed to access this page."
+msgstr ""
+
+#: templates/404.html:7
+msgid "Resource not found ! "
+msgstr ""
+
+#: templates/404.html:10
+msgid "The content you requested does not exist."
+msgstr ""
+
+#: templates/500.html:7
+msgid "Internal Server Error ! "
+msgstr ""
+
+#: templates/500.html:10
+msgid "The server has encountered an internal error."
+msgstr ""
+
+#: templates/500.html:11
+msgid "If this problem persists please contact us."
+msgstr ""
+
+#: templates/500.html:12
+msgid "Our technicians are working on the problem."
+msgstr ""
+
+#: templates/accounts/account.html:8
+msgid "Welcome"
+msgstr ""
+
+#: templates/accounts/account.html:19
+msgid "Account Details"
+msgstr ""
+
+#: templates/accounts/account.html:21
+msgid "Wishlist"
+msgstr ""
+
+#: templates/accounts/account.html:34
+msgid "Account Summary"
+msgstr ""
+
+#: templates/accounts/account.html:60
+msgid "No shipment information"
+msgstr ""
+
+#: templates/accounts/account.html:76
+msgid "You have not order any product yet."
+msgstr ""
+
+#: templates/accounts/account.html:77
+msgid "Your recent orders will be shown here."
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:5
+#: templates/accounts/registration/password_reset_email.html:5
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:7
+#: templates/accounts/registration/password_reset_email.html:7
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:11
+#: templates/accounts/registration/password_reset_email.html:11
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:13
+#: templates/accounts/registration/password_reset_email.html:13
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:15
+#: templates/accounts/registration/password_reset_email.html:15
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:24
+#, python-format
+msgid ""
+"Great !  Your email address has been verified. You can now use this site."
+"%(site_name)s."
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:25
+msgid "Go to your Account by folowing this Link "
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:28
+msgid "Soory !  Your email address could not be verified."
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:29
+msgid "Click on this link to get a new activation link "
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:30
+msgid "Send me a Validation link"
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:31
+msgid "Home Page"
+msgstr ""
+
+#: templates/accounts/registration/login.html:36
+#: templates/tags/registration_form.html:18
+#: templates/tags/signup_dialog.html:31
+msgid "Password"
+msgstr ""
+
+#: templates/accounts/registration/login.html:41
+msgid "Forgot your password ?"
+msgstr ""
+
+#: templates/accounts/registration/login.html:45 templates/base.html:65
+#: templates/tags/signup_dialog.html:34
+msgid "Login"
+msgstr ""
+
+#: templates/accounts/registration/login.html:48
+msgid "New here ? "
+msgstr ""
+
+#: templates/accounts/registration/login.html:48
+msgid "Register"
+msgstr ""
+
+#: templates/accounts/registration/password_change.html:27
+#: templates/accounts/registration/password_change.html:30
+msgid ""
+"Votre mot de passe ne doit pas trop ressembler à vos autres information "
+"personnelles."
+msgstr ""
+
+#: templates/accounts/registration/password_change.html:28
+msgid "Votre mot de passe doit contenir au moins 8 caractères."
+msgstr ""
+
+#: templates/accounts/registration/password_change.html:29
+msgid "Votre mot de passe ne peut pas être un mot de passe couramment utilisé."
+msgstr ""
+
+#: templates/accounts/registration/password_change.html:31
+msgid "Votre mot de passe ne doit pas être entièrement numerique."
+msgstr ""
+
+#: templates/accounts/registration/password_change.html:36
+msgid "Ancien mot de passe"
+msgstr ""
+
+#: templates/accounts/registration/password_change.html:39
+msgid "Nouveau mot de passe"
+msgstr ""
+
+#: templates/accounts/registration/password_change.html:42
+msgid "Confirmation du nouveau mot de passe"
+msgstr ""
+
+#: templates/accounts/registration/password_change.html:47
+msgid "Change Password"
+msgstr ""
+
+#: templates/accounts/registration/password_change_done.html:8
+msgid "MODIFICATION DE MOT DE PASSE"
+msgstr ""
+
+#: templates/accounts/registration/password_change_done.html:13
+msgid "Votre mot de passe a été modifié avec succèss"
+msgstr ""
+
+#: templates/accounts/registration/password_change_done.html:14
+msgid "Retour à la page d'acceuille"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_complete.html:6
+msgid "Mot de passe modifié"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_complete.html:11
+msgid "Confirmation de changement du mot de passe"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_complete.html:12
+#: templates/accounts/registration/password_reset_confirm.html:13
+#: templates/accounts/registration/password_reset_done.html:14
+msgid "Page d'accueille"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_complete.html:18
+msgid ""
+"Votre mot de passe a été modifié. Vous maintenant vous connecter dans votre "
+"compte"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_complete.html:20
+msgid "Me connecter"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_confirm.html:7
+msgid "Confirmation de réinitialisation de mot de passe"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_confirm.html:23
+msgid "Veuillez entrer votre nouveau mot de passe deux fois s'il vous plaît."
+msgstr ""
+
+#: templates/accounts/registration/password_reset_confirm.html:32
+msgid "Changer mon mot de passe"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_confirm.html:37
+msgid ""
+"Le lien de réinitialisation du mot de passe est invalid. Faites une nouvelle "
+"requête si vous souhaitez réinitialiser votre mot de passe"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_done.html:8
+#: templates/accounts/registration/password_reset_form.html:7
+msgid "Réinitialisation de mot de passe"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_done.html:25
+msgid ""
+"Nous vous avons envoyé un mail contenant les instructions pour reinitialiser "
+"votre mot de passe."
+msgstr ""
+
+#: templates/accounts/registration/password_reset_done.html:26
+msgid "Vous devriez le recevoir dans un instant."
+msgstr ""
+
+#: templates/accounts/registration/password_reset_done.html:27
+msgid ""
+"Si vous ne recevez aucun mail de nous, vérifez que vous avez donné la bonne "
+"addresse email, celle avec laquelle vous vous êtes enrégistré chez nous. "
+"Verifier aussi vos spams."
+msgstr ""
+
+#: templates/accounts/registration/password_reset_email.html:23
+#, python-format
+msgid ""
+"Vous recevez ce mail parce vous avez demandé de réinitialiser votre mot de "
+"passe chez %(site_name)s."
+msgstr ""
+
+#: templates/accounts/registration/password_reset_email.html:25
+msgid "Veuillez suivre ce lien et choisissez un nouveau mot de passe:"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_email.html:29
+msgid "Votre nom d'utilisateur, au cas où vous l'aurez oublié:"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_email.html:31
+msgid "Merci d'utiliser notre site!"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_email.html:33
+#, python-format
+msgid " Team  %(site_name)s "
+msgstr ""
+
+#: templates/accounts/registration/password_reset_form.html:24
+msgid "Vous avez oublié votre mot de passe ?"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_form.html:25
+msgid ""
+"Remplisser votre addresse Email dans le champs en dessous et nous vous "
+"enverrons des instructions sur comment remettre votre mot de passe à zero"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_form.html:33
+msgid "Nous ne vous demanderons jamais votre mot passe."
+msgstr ""
+
+#: templates/accounts/registration/password_reset_form.html:38
+msgid "Entrer votre addresse E-mail"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_form.html:42
+msgid "Annuler"
+msgstr ""
+
+#: templates/accounts/registration/password_reset_form.html:43
+msgid "Reinitialiser"
+msgstr ""
+
+#: templates/accounts/registration/register.html:83
+msgid "Already have an account ? "
+msgstr ""
+
+#: templates/accounts/registration/register.html:83
+msgid "Sign In"
+msgstr ""
+
+#: templates/base.html:41
+msgid "Menu"
+msgstr ""
+
+#: templates/base.html:56 vendors/templates/vendors/brand_detail.html:19
+#: vendors/templates/vendors/brand_list.html:14
+#: vendors/templates/vendors/brand_product_detail.html:13
+#: vendors/templates/vendors/brand_update.html:12
+#: vendors/templates/vendors/coupon_create.html:13
+#: vendors/templates/vendors/coupon_list.html:11
+msgid "Vendor Panel"
+msgstr ""
+
+#: templates/base.html:64
+msgid "Create an Account"
+msgstr ""
+
+#: templates/base.html:78
+msgid "Enable Grid"
+msgstr ""
+
+#: templates/base.html:109
+msgid "INFO"
+msgstr ""
+
+#: templates/base.html:134
+msgid "ONLINE SHOP"
+msgstr ""
+
+#: templates/base.html:135
+msgid "About us"
+msgstr ""
+
+#: templates/base.html:136
+msgid "FAQ"
+msgstr ""
+
+#: templates/customer_usage.html:10
+msgid "Welcome to PAY"
+msgstr ""
+
+#: templates/customer_usage.html:11
+msgid "Your Payment Solution"
+msgstr ""
+
+#: templates/customer_usage.html:14
+msgid "Advantages for individuals"
+msgstr ""
+
+#: templates/customer_usage.html:16
+msgid "Do not waste your time queuing to pay your bill."
+msgstr ""
+
+#: templates/customer_usage.html:17
+msgid "No need to move."
+msgstr ""
+
+#: templates/customer_usage.html:18
+msgid "Pay your bills from your chair."
+msgstr ""
+
+#: templates/customer_usage.html:30
+msgid ""
+"No more petite monaies problems, wherever you are, pay in a simple click"
+msgstr ""
+
+#: templates/customer_usage.html:42
+msgid "Discover PAY"
+msgstr ""
+
+#: templates/customer_usage.html:46
+msgid "Charge your PAY account and enjoy simplified payment."
+msgstr ""
+
+#: templates/customer_usage.html:55
+msgid "More..."
+msgstr ""
+
+#: templates/customer_usage.html:71 templates/home.html:86
+#: templates/home.html:115
+msgid "For individuals"
+msgstr ""
+
+#: templates/customer_usage.html:75
+msgid "As a user, just reload your account at one of our offices."
+msgstr ""
+
+#: templates/customer_usage.html:84 templates/home.html:70
+#: templates/home.html:99
+msgid "Learn more"
+msgstr ""
+
+#: templates/customer_usage.html:100
+msgid "Create your PAY account for free"
+msgstr ""
+
+#: templates/customer_usage.html:101
+msgid "with your e-mail address and a password"
+msgstr ""
+
+#: templates/customer_usage.html:114
+msgid "Charge your PAY account at one of our offices"
+msgstr ""
+
+#: templates/customer_usage.html:126
+msgid "Make your purchases or pay your bills with your PAY account"
+msgstr ""
+
+#: templates/faq_flat.html:35
+msgid "Knowledge Base"
+msgstr ""
+
+#: templates/faq_flat.html:47
+msgid "What is a Transfer ?"
+msgstr ""
+
+#: templates/faq_flat.html:51
+msgid ""
+"\n"
+"                    A Transfer is transaction where a user A sends money to "
+"a User B. \n"
+"                    The User A is debited with the amount to send while the "
+"User B Account is augmented with the received amount. \n"
+"                    This Operation is not cancelable.\n"
+"                    "
+msgstr ""
+
+#: templates/faq_flat.html:63
+msgid "What is a Payment ?"
+msgstr ""
+
+#: templates/faq_flat.html:67
+msgid ""
+"\n"
+"                    A Payment is a trade of values from one party to another "
+"for goods or services. \n"
+"                    The mean of payment is money. The user receiving the "
+"payment must have a business account.\n"
+"                    "
+msgstr ""
+
+#: templates/faq_flat.html:78
+msgid "What is a Service ?"
+msgstr ""
+
+#: templates/faq_flat.html:82
+msgid ""
+"\n"
+"                    A service is offered by one or more entities in exchange "
+"for money.\n"
+"                    A service is a transaction in which no physical good is "
+"transferred from the seller to the buyer. \n"
+"                    To offer a service the seller must have a business "
+"account.\n"
+"                    \n"
+"                    "
+msgstr ""
+
+#: templates/faq_flat.html:95
+msgid "How do I find the available services ?"
+msgstr ""
+
+#: templates/faq_flat.html:99
+msgid ""
+"\n"
+"                    From the home Page it is possible to navigate to list of "
+"available services that can be consumed by the users. \n"
+"                    On the main top bar header, click on the Available "
+"Services link.\n"
+"                    "
+msgstr ""
+
+#: templates/faq_flat.html:110
+msgid "How do I recharge my Account with credit ?"
+msgstr ""
+
+#: templates/faq_flat.html:114
+msgid ""
+"To recharge your Account Balance you can buy Voucher Code from our sell "
+"points in Douala. Once you get your Voucher Code, you log in your Account "
+"and click to \"RECHARGE MY BALANCE\" link. From there now enter your Voucher "
+"Code and validate.If the code is valid your Balance will be updated to the "
+"new amount. A confirmation message is sent your registered email."
+msgstr ""
+
+#: templates/faq_flat.html:121
+msgid ""
+"You also have the possibility to let one of our Agent to recharge your "
+"account directly."
+msgstr ""
+
+#: templates/faq_flat.html:128
+msgid "Where can I buy voucher ?"
+msgstr ""
+
+#: templates/faq_flat.html:131
+msgid "You can buy Voucher Code from our sell points in Douala."
+msgstr ""
+
+#: templates/faq_flat.html:146
+msgid "Who can make Transfer ?"
+msgstr ""
+
+#: templates/faq_flat.html:150
+msgid ""
+"Only user with private account can make Transfer. Transfer Transactions are "
+"not allowed for business Account."
+msgstr ""
+
+#: templates/home.html:7
+msgid "Welcome to "
+msgstr ""
+
+#: templates/home.html:8
+msgid "ONLINE SHOPPING MADE EASY"
+msgstr ""
+
+#: templates/home.html:12
+msgid "Are you looking for something new ?"
+msgstr ""
+
+#: templates/home.html:17
+#, python-format
+msgid "You can get it by %(site_name)s"
+msgstr ""
+
+#: templates/home.html:24 templates/home.html:57
+msgid "Discover"
+msgstr ""
+
+#: templates/home.html:34
+msgid "An ideal payment solution for everyone"
+msgstr ""
+
+#: templates/home.html:36
+msgid "You don't have time to go out ?"
+msgstr ""
+
+#: templates/home.html:41
+msgid "Wherever you are, place your order with a simple click !"
+msgstr ""
+
+#: templates/home.html:61
+msgid "Create your account."
+msgstr ""
+
+#: templates/home.html:90
+msgid "With an account, start shopping online"
+msgstr ""
+
+#: templates/home.html:110
+msgid "Usage"
+msgstr ""
+
+#: templates/home.html:116
+msgid "For Business"
+msgstr ""
+
+#: templates/home.html:132
+msgid "Create your free account"
+msgstr ""
+
+#: templates/home.html:146
+msgid "Add items to your cart"
+msgstr ""
+
+#: templates/home.html:160
+msgid "Proceed to checkout"
+msgstr ""
+
+#: templates/home.html:179
+msgid "Create your Business account for free"
+msgstr ""
+
+#: templates/home.html:194
+msgid "Choose the option that suits your business"
+msgstr ""
+
+#: templates/home.html:207
+msgid "Add your items you want to sell"
+msgstr ""
+
+#: templates/home.html:214
+msgid "Tell me More"
+msgstr ""
+
+#: templates/home.html:223
+msgid "More security"
+msgstr ""
+
+#: templates/home.html:225
+msgid ""
+"Your payments are secure. In case of non-delivery, your payment will be "
+"refunded"
+msgstr ""
+
+#: templates/home.html:230
+msgid "Customer protection"
+msgstr ""
+
+#: templates/home.html:237
+msgid "More security for your business"
+msgstr ""
+
+#: templates/home.html:239
+msgid "You can check the validity of each transaction"
+msgstr ""
+
+#: templates/home.html:243
+msgid "Protection for business"
+msgstr ""
+
+#: templates/tags/pagination.html:13
+msgid "current"
+msgstr ""
+
+#: templates/tags/payments_snippet.html:29
+msgid "You haven't made any Payments"
+msgstr ""
+
+#: templates/tags/registration_form.html:23
+msgid "Password Confirmation"
+msgstr ""
+
+#: templates/tags/registration_form.html:36
+msgid "Your address"
+msgstr ""
+
+#: templates/tags/registration_form.html:52
+msgid "Zipcode"
+msgstr ""
+
+#: templates/tags/registration_form.html:56
+msgid "Date of birth"
+msgstr ""
+
+#: templates/tags/signup_dialog.html:7
+msgid "Accedez à PAY"
+msgstr ""
+
+#: templates/tags/signup_dialog.html:13
+msgid "I have a PAY account"
+msgstr ""
+
+#: templates/tags/signup_dialog.html:16
+msgid "I want to create an PAY account"
+msgstr ""
+
+#: templates/tags/signup_dialog.html:50
+msgid "Your Password"
+msgstr ""
+
+#: templates/tags/signup_dialog.html:51
+msgid "Enter Your Password again"
+msgstr ""
+
+#: templates/tags/signup_dialog.html:53
+msgid "Phone-Number"
+msgstr ""
+
+#: templates/tags/signup_dialog.html:56
+msgid "Create My PAY Account"
+msgstr ""
+
+#: templates/tags/unauthorized.html:4
+msgid "The requested Page was not found."
+msgstr ""
+
+#: vendors/templates/vendor_base.html:22
+#: vendors/templates/vendors/vendor_home.html:17
+msgid "Number of products"
+msgstr ""
+
+#: vendors/templates/vendor_base.html:30
+#: vendors/templates/vendors/vendor_home.html:25
+msgid "Sold products"
+msgstr ""
+
+#: vendors/templates/vendor_base.html:32 vendors/templates/vendor_base.html:51
+#: vendors/templates/vendors/balance_histories.html:8
+msgid "Balance History"
+msgstr ""
+
+#: vendors/templates/vendor_tags/product_creation_form.html:34
+#: vendors/templates/vendors/product_create.html:38
+msgid "Select a Category"
+msgstr ""
+
+#: vendors/templates/vendor_tags/product_creation_form.html:42
+#: vendors/templates/vendors/product_create.html:46
+msgid "Select a Gender"
+msgstr ""
+
+#: vendors/templates/vendor_tags/product_creation_form.html:50
+#: vendors/templates/vendors/product_create.html:54
+msgid "Select a Brand"
+msgstr ""
+
+#: vendors/templates/vendor_tags/product_creation_form.html:58
+#: vendors/templates/vendors/product_create.html:62
+msgid "Select a Product Type"
+msgstr ""
+
+#: vendors/templates/vendors/balance_histories.html:21
+#: vendors/templates/vendors/product_type_attribute_list.html:10
+#: vendors/templates/vendors/product_type_detail.html:24
+#: vendors/templates/vendors/product_type_list.html:12
+#: vendors/templates/vendors/product_type_update.html:10
+#: vendors/templates/vendors/product_variant_detail.html:37
+#: vendors/templates/vendors/product_variant_list.html:9
+#: vendors/templates/vendors/sold_product_detail.html:31
+#: vendors/templates/vendors/vendor_home.html:27
+msgid "Vendor Home"
+msgstr ""
+
+#: vendors/templates/vendors/balance_histories.html:36
+#: vendors/templates/vendors/balance_histories.html:45
+msgid "Balance State"
+msgstr ""
+
+#: vendors/templates/vendors/balance_histories.html:37
+msgid "Recived Amount"
+msgstr ""
+
+#: vendors/templates/vendors/balance_histories.html:46
+msgid "Received Amount"
+msgstr ""
+
+#: vendors/templates/vendors/balance_histories.html:64
+msgid "There is no history yet."
+msgstr ""
+
+#: vendors/templates/vendors/balance_histories.html:67
+msgid "Balance history will be displayed here."
+msgstr ""
+
+#: vendors/templates/vendors/product_list.html:7
+msgid "Add Product"
+msgstr ""
+
+#: vendors/templates/vendors/vendor_home.html:37
+msgid "Recent Sold Products"
+msgstr ""
+
+#: vendors/templates/vendors/vendor_home.html:73
+msgid "There is no sold products yet."
+msgstr ""
+
+#: vendors/templates/vendors/vendor_home.html:76
+msgid "Sold products will be displayed here."
+msgstr ""
+
+#: vendors/templates/vendors/vendor_home.html:86
+msgid "Recent Added Products"
+msgstr ""
+
+#: vendors/templates/vendors/vendor_home.html:120
+msgid "There is no recently added products yet."
+msgstr ""
+
+#: vendors/templates/vendors/vendor_home.html:123
+msgid "Recently added products will be displayed here."
+msgstr ""
+
+#: vendors/views.py:39
+msgid "Vendor-Home"
+msgstr ""
+
+#: vendors/views.py:617
+msgid "Image(s)  uploaded"
+msgstr ""
+
+#: vendors/views.py:681
+msgid "Image removed"
+msgstr ""
+
+#: vendors/views.py:1621
+msgid "Balance Histories"
+msgstr ""
