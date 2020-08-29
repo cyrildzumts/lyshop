@@ -28,6 +28,7 @@
                     <a class="mat-button mat-button-default" href="{{coupon.get_vendor_update_url}}"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
                     <a class="mat-button mat-button-text" href="{% url 'vendors:coupon-create'%}"><i class="fas fa-plus icon"></i>{% trans "Add New Coupon" %}</a>
                     <a class="mat-button mat-button-text" href="{% url 'vendors:coupons' %}"><span class="back"></span>{% trans "Coupons" %}</a>
+                    <a class="mat-button mat-button-text warn" href="{{coupon.get_vendor_delete_url}}"><i class="fas fa-trash icon"></i>{% trans "Delete" %}</a>
                     
                 </div><!--End of Banner-Actions-->
           </div><!--End of mat-box-content-->
