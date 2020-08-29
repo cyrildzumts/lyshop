@@ -25,7 +25,7 @@ class Coupon(models.Model):
         return f"Coupon - {self.name} - {self.reduction}"
 
     def get_absolute_url(self):
-        return reverse("dashboard:coupon-detail", kwargs={"coupon_uuid": self.coupon_uuid})
+        return reverse("vendors:coupon-detail", kwargs={"coupon_uuid": self.coupon_uuid})
     
     def get_dashboard_url(self):
         return reverse("dashboard:coupon-detail", kwargs={"coupon_uuid": self.coupon_uuid})
@@ -36,7 +36,7 @@ class Coupon(models.Model):
     def get_delete_url(self):
         return reverse("dashboard:coupon-delete", kwargs={"coupon_uuid": self.coupon_uuid})
 
-    def get_vendors_url(self):
+    def get_vendor_url(self):
         return reverse("vendors:coupon-detail", kwargs={"coupon_uuid": self.coupon_uuid})
     
     
