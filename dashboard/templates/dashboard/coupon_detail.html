@@ -19,6 +19,7 @@
             <div class="mat-box">
                 <p> {% trans "Name" %} : {{coupon.name}}</p>
                 <p> {% trans "Reduction" %} : {{coupon.reduction}} % </p>
+                <p> {% trans "Vendor" %} : {{coupon.seller.username}}</p> 
                 <p> {% trans "Status" %} : {% if coupon.is_active %}{% trans "Activated" %} {% else %}{% trans "Not activated" %}{% endif %} </p>
                 <p> {% trans "Create at" %} : {{coupon.created_at|date:"F j, Y"}}</p>
             </div>
