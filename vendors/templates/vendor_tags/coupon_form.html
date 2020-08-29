@@ -9,7 +9,7 @@
         
         <div class="mat-box">
     
-                <form class="form" name="add-coupon" action="{% url 'vendors:coupon-create' %}" method="POST">{% csrf_token %}
+                <form class="form" name="add-coupon" onsubmit="return coupon_validation(this);" action="{% url 'vendors:coupon-create' %}" method="POST">{% csrf_token %}
                     <input type="hidden" name="added_by" value="{{request.user.pk}}">
                     <input type="hidden" name="seller" value="{{request.user.pk}}">
                     <div class="container">

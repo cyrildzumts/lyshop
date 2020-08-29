@@ -2929,7 +2929,7 @@ def coupon_create(request):
             coupon = form.save()
             messages.success(request, _('New Coupon created'))
             logger.info(f'New Coupon added by user \"{username}\"')
-            return redirect(coupon)
+            return redirect(coupon.get_dashboard_url())
         else:
             messages.error(request, _('Coupon not created'))
             logger.error(f'Error on creating new Coupon. Action requested by user \"{username}\"')
