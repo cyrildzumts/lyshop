@@ -2213,22 +2213,19 @@ msgstr ""
 #: dashboard/templates/dashboard/product_detail.html:94
 #: vendors/templates/vendors/product_detail.html:92
 msgid "See"
-msgstr ""
+msgstr "Voir"
 
 #: dashboard/templates/dashboard/product_image.html:24
 #: vendors/templates/vendors/product_image.html:21
 msgid "Image Info"
 msgstr ""
 
-#: dashboard/templates/dashboard/product_list.html:7
-msgid "Product List"
-msgstr ""
 
 #: dashboard/templates/dashboard/product_list.html:16
 #: dashboard/templates/dashboard/product_variant_list.html:17
 #: vendors/templates/vendors/product_variant_list.html:10
 msgid "Add new Product"
-msgstr ""
+msgstr "Ajouter un nouveau produit"
 
 #: dashboard/templates/dashboard/product_type_attribute_create.html:7
 #: dashboard/views.py:3324 vendors/views.py:1367
@@ -2256,7 +2253,7 @@ msgstr ""
 #: vendors/templates/vendors/product_type_create.html:46
 #: vendors/templates/vendors/product_variant_detail.html:102
 msgid "Create"
-msgstr ""
+msgstr "Créer"
 
 #: dashboard/templates/dashboard/product_type_attribute_detail.html:24
 #: vendors/templates/vendors/product_type_attribute_detail.html:24
@@ -2318,12 +2315,12 @@ msgstr ""
 #: vendors/templates/vendors/product_type_create.html:38
 #: vendors/templates/vendors/product_type_update.html:48
 msgid "Is Active"
-msgstr ""
+msgstr "Est actif"
 
 #: dashboard/templates/dashboard/product_type_detail.html:13
 #: vendors/templates/vendors/product_type_detail.html:13
 msgid "Product Count"
-msgstr ""
+msgstr "Nombre de produits"
 
 #: dashboard/templates/dashboard/product_type_detail.html:14
 #: vendors/templates/vendors/product_type_detail.html:14
@@ -2455,7 +2452,7 @@ msgstr ""
 #: dashboard/templates/dashboard/sold_product_detail.html:25
 #: vendors/templates/vendors/sold_product_detail.html:25
 msgid "Sold date"
-msgstr ""
+msgstr "Date de vente"
 
 #: dashboard/templates/dashboard/sold_product_detail.html:39
 #: dashboard/views.py:1361
@@ -2514,7 +2511,7 @@ msgstr ""
 #: templates/tags/registration_form.html:6 templates/tags/signup_dialog.html:30
 #: templates/tags/signup_dialog.html:47
 msgid "Username"
-msgstr ""
+msgstr "Nom d'utilisateur"
 
 #: dashboard/templates/dashboard/user_detail.html:43
 #: orders/templates/orders/checkout.html:37
@@ -2522,7 +2519,7 @@ msgstr ""
 #: templates/tags/registration_form.html:14
 #: templates/tags/signup_dialog.html:49
 msgid "Lastname"
-msgstr ""
+msgstr "Nom de famille"
 
 #: dashboard/templates/dashboard/user_detail.html:46
 #: orders/templates/orders/checkout.html:34
@@ -2530,21 +2527,21 @@ msgstr ""
 #: templates/tags/registration_form.html:10
 #: templates/tags/signup_dialog.html:48
 msgid "Firstname"
-msgstr ""
+msgstr "Prénom"
 
 #: dashboard/templates/dashboard/user_detail.html:49
 #: templates/tags/registration_form.html:27
 #: templates/tags/signup_dialog.html:52
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #: dashboard/templates/dashboard/user_detail.html:52
 msgid "Date joined"
-msgstr ""
+msgstr "Date d'arrivée"
 
 #: dashboard/templates/dashboard/user_detail.html:55
 msgid "Last login"
-msgstr ""
+msgstr "Dernière connexion"
 
 #: dashboard/templates/dashboard/user_detail.html:61
 msgid "Create Access Token"
@@ -2556,7 +2553,7 @@ msgstr ""
 
 #: dashboard/templates/dashboard/user_detail.html:82
 msgid "Account Type"
-msgstr ""
+msgstr "type de compte"
 
 #: dashboard/templates/dashboard/user_detail.html:87
 #: vendors/templates/vendor_base.html:16 vendors/templates/vendor_base.html:18
@@ -2564,7 +2561,7 @@ msgstr ""
 #: vendors/templates/vendors/vendor_home.html:11
 #: vendors/templates/vendors/vendor_home.html:13
 msgid "Balance"
-msgstr ""
+msgstr "Solde"
 
 #: dashboard/templates/dashboard/user_detail.html:91
 msgid "Number of Unique  Product"
@@ -2573,21 +2570,21 @@ msgstr ""
 #: dashboard/templates/dashboard/user_list.html:36
 #: dashboard/templates/dashboard/user_list.html:47
 msgid "Date Joined"
-msgstr ""
+msgstr "Date d'arrivée"
 
 #: dashboard/templates/dashboard/user_list.html:46
 msgid "Yes"
-msgstr ""
+msgstr "Oui"
 
 #: dashboard/templates/dashboard/user_list.html:46
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: dashboard/templates/dashboard_base.html:63
 #: vendors/templates/vendor_base.html:21 vendors/templates/vendor_base.html:57
 #: vendors/templates/vendors/vendor_home.html:16
 msgid "Sold Products"
-msgstr ""
+msgstr "Produits vendus"
 
 #: dashboard/templates/dashboard_base.html:65
 #: vendors/templates/vendor_base.html:59
@@ -2607,7 +2604,7 @@ msgstr ""
 #: shipment/templates/shipment_base.html:20 shipment/views.py:35
 #: shipment/views.py:54
 msgid "Shipments"
-msgstr ""
+msgstr "Envoies"
 
 #: dashboard/templates/dashboard_base.html:78
 msgid "Reports"
@@ -2632,15 +2629,15 @@ msgstr ""
 
 #: dashboard/templates/tags/account_update_form.html:22
 msgid "Province"
-msgstr ""
+msgstr "Région"
 
 #: dashboard/templates/tags/account_update_form.html:34
 msgid "Address"
-msgstr ""
+msgstr "Addresse"
 
 #: dashboard/templates/tags/account_update_form.html:38
 msgid "Zip Code"
-msgstr ""
+msgstr "Code postale"
 
 #: dashboard/templates/tags/account_update_form.html:42
 msgid "Newsletter"
@@ -2658,7 +2655,7 @@ msgstr ""
 #: dashboard/templates/tags/analytics.html:37
 #: vendors/templates/vendor_tags/analytics.html:37
 msgid "Logged in Users"
-msgstr ""
+msgstr "Utilisateurs en ligne"
 
 #: dashboard/templates/tags/attribute_form.html:6
 #: vendors/templates/vendor_tags/attribute_form.html:6
@@ -2716,7 +2713,7 @@ msgstr ""
 #: dashboard/templates/tags/caseissue_form.html:17
 #: dashboard/templates/tags/idcard_form.html:19
 msgid "Send"
-msgstr ""
+msgstr "Envoyer"
 
 #: dashboard/templates/tags/category_creation_form.html:26
 #: dashboard/templates/tags/category_remove_form.html:22
@@ -2744,7 +2741,7 @@ msgstr ""
 #: dashboard/templates/tags/category_remove_form.html:33
 #: dashboard/templates/tags/policy_remove_form.html:40
 msgid "Remove"
-msgstr ""
+msgstr "Retirer"
 
 #: dashboard/templates/tags/category_update_form.html:44
 #: vendors/templates/vendor_tags/category_update_form.html:44
@@ -2824,19 +2821,19 @@ msgstr ""
 
 #: dashboard/templates/tags/idcard_update_form.html:28
 msgid "Card Number"
-msgstr ""
+msgstr "Numéro de la carte"
 
 #: dashboard/templates/tags/idcard_update_form.html:31
 msgid "Issued Date"
-msgstr ""
+msgstr "Date de délivrance"
 
 #: dashboard/templates/tags/idcard_update_form.html:34
 msgid "Epire at "
-msgstr ""
+msgstr "Date d'expiration"
 
 #: dashboard/templates/tags/idcard_update_form.html:37
 msgid "Delivrance place"
-msgstr ""
+msgstr "Lieu de délivrance"
 
 #: dashboard/templates/tags/idcard_update_form.html:40
 msgid "ID card Picture"
@@ -3016,7 +3013,7 @@ msgstr ""
 #: vendors/templates/vendors/product_create.html:15
 #: vendors/templates/vendors/product_create.html:81
 msgid "Create Product"
-msgstr ""
+msgstr "Ajouter un produit"
 
 #: dashboard/templates/tags/product_creation_form.html:13
 #: dashboard/templates/tags/product_update_form.html:10
@@ -3028,12 +3025,12 @@ msgstr ""
 #: vendors/templates/vendor_tags/product_variant_update_form.html:14
 #: vendors/templates/vendors/product_create.html:18
 msgid "Product Name"
-msgstr ""
+msgstr "Nom du produit"
 
 #: dashboard/templates/tags/product_creation_form.html:59
 #: dashboard/templates/tags/product_update_form.html:76
 msgid "Merchant"
-msgstr ""
+msgstr "Vendeur"
 
 #: dashboard/templates/tags/product_creation_form.html:66
 #: dashboard/templates/tags/product_update_form.html:89
@@ -3041,7 +3038,7 @@ msgstr ""
 #: vendors/templates/vendor_tags/product_update_form.html:79
 #: vendors/templates/vendors/product_create.html:68
 msgid "Short Description"
-msgstr ""
+msgstr "Courte Description"
 
 #: dashboard/templates/tags/product_image_upload_form.html:15
 #: vendors/templates/vendor_tags/product_image_upload_form.html:15
@@ -3101,7 +3098,7 @@ msgstr ""
 #: dashboard/templates/tags/product_variant_update_form.html:22
 #: vendors/templates/vendor_tags/product_variant_update_form.html:22
 msgid "Price(XAF)"
-msgstr ""
+msgstr "Prix(FCFA)"
 
 #: dashboard/templates/tags/recharge_form.html:11
 msgid "Voucher Code"
@@ -3429,7 +3426,7 @@ msgstr ""
 
 #: orders/templates/orders/checkout.html:29
 msgid "User Info"
-msgstr ""
+msgstr "Information sur l'utilisateur"
 
 #: orders/templates/orders/checkout.html:32
 msgid "Shipping Address"
@@ -3474,11 +3471,11 @@ msgstr ""
 
 #: orders/templates/orders/checkout.html:99
 msgid "Pay at delivery"
-msgstr ""
+msgstr "Payez à la livraison"
 
 #: orders/templates/orders/checkout.html:104
 msgid "Pay with Pay"
-msgstr ""
+msgstr "Payez avec PAY"
 
 #: orders/templates/orders/checkout.html:107
 #: orders/templates/orders/checkout.html:116
@@ -3819,17 +3816,17 @@ msgstr ""
 
 #: templates/accounts/registration/email_validation.html:31
 msgid "Home Page"
-msgstr ""
+msgstr "Page d'accueille"
 
 #: templates/accounts/registration/login.html:36
 #: templates/tags/registration_form.html:18
 #: templates/tags/signup_dialog.html:31
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: templates/accounts/registration/login.html:41
 msgid "Forgot your password ?"
-msgstr ""
+msgstr "Mot de passe oublié ?"
 
 #: templates/accounts/registration/login.html:45 templates/base.html:65
 #: templates/tags/signup_dialog.html:34
@@ -3838,11 +3835,11 @@ msgstr ""
 
 #: templates/accounts/registration/login.html:48
 msgid "New here ? "
-msgstr ""
+msgstr "Vous êtes nouveau ?"
 
 #: templates/accounts/registration/login.html:48
 msgid "Register"
-msgstr ""
+msgstr "S'enregistrer"
 
 #: templates/accounts/registration/password_change.html:27
 #: templates/accounts/registration/password_change.html:30
