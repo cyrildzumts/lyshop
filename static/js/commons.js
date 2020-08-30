@@ -388,6 +388,17 @@ function dateFormat(index, input){
     console.log("Date Value : %s", input.value);
 }
 
+function change_language(element){
+    var form = $('#lang-form');
+    var $el = $(element);
+    if($el.hasClass('active')||$el.hasClass('selected')){
+        return;
+    }
+    var name = $('input[name="language"]', form);
+    name.val($el.data('value'));
+    form.submit();
+}
+
 $(document).ready(function(){
     notification_wrapper = $('#notifications-wrapper');
     messages = $('#messages', notification_wrapper);

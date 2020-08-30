@@ -68,8 +68,13 @@
       <li  class="mat-list-item">
         <form id="lang-form" name="localization-form" action="{% url 'set_language' %}" method="POST">{% csrf_token %}
                 <input name="next" type="hidden" value="{{redirect_to}}">
-                <input id="current-lang" type="hidden" name="language" value="">
+                <input id="current-lang" type="hidden" name="language" value="{{LANGUAGE_CODE}}">
         <ul class="row languages">
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+                <li class="mat-list-item js-lang" onclick="change_language(this);" data-value="{{language.code}}" {% if language.code == LANGUAGE_CODE %}class="language active selected"{% endif %}>{{ language.name_local }} ({{ language.code }})</li>
+        {% endfor %}
         </ul>
         </form>
       </li>
@@ -77,7 +82,7 @@
         {% block GRID %}
         <li><button class="js-grid-enable baseline-grid-btn mat-button mat-button-text">{% trans "Enable Grid" %}</button></li>
         {% endblock GRID %}
-        {% endif %}
+      {% endif %}
     </ul>
 </div>
 {% endblock HEADER_PANEL %}           
