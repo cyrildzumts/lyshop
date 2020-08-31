@@ -132,12 +132,13 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'lyshop.urls'
@@ -282,7 +283,7 @@ LOGGING = {
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-#LANGUAGE_CODE = 'fr'
+LANGUAGE_CODE = 'fr'
 LANGUAGES = (
     ('en',_('English')),
     ('fr',_('French')),
