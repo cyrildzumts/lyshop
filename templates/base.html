@@ -65,11 +65,11 @@
       <li class="mat-list-item"><a class="dialog-btn mat-button mat-button-text" href="{% url 'accounts:login' %}" data-tab="0" data-target="#signup-dialog">{% trans 'Login' %}</a></li>
       
       {% endif %}
-      <li  class="mat-list-item">
+      <li  class="">
         <form id="lang-form" name="localization-form" action="{% url 'set_language' %}" method="POST">{% csrf_token %}
                 <input name="next" type="hidden" value="{{redirect_to}}">
                 <input id="current-lang" type="hidden" name="language" value="{{LANGUAGE_CODE}}">
-        <ul class="row languages">
+        <ul class="mat-list row languages">
         {% get_available_languages as LANGUAGES %}
         {% get_language_info_list for LANGUAGES as languages %}
         {% for language in languages %}
