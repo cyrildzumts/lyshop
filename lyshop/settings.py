@@ -289,7 +289,7 @@ LANGUAGES = (
     ('fr',_('French')),
 )
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'conf/locale')
+    os.path.join(BASE_DIR, 'locale')
 ]
 TIME_ZONE = 'UTC'
 

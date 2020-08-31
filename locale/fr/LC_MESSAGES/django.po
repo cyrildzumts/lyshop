@@ -2621,7 +2621,7 @@ msgstr ""
 #: dashboard/templates/dashboard_base.html:83 templates/base.html:62
 #: vendors/templates/vendor_base.html:62
 msgid "Logout"
-msgstr ""
+msgstr "Se déconnecter"
 
 #: dashboard/templates/tags/account_update_form.html:9
 msgid "Edit my account"
