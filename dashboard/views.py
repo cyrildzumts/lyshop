@@ -2018,7 +2018,7 @@ def policies_delete(request):
 
     if len(id_list):
         instance_list = list(map(int, id_list))
-        Brand.objects.filter(id__in=instance_list).delete()
+        Policy.objects.filter(id__in=instance_list).delete()
         messages.success(request, f"Policies \"{instance_list}\" deleted")
         logger.info(f"Policies \"{instance_list}\" deleted by user {username}")
         
@@ -2076,7 +2076,7 @@ def policy_create(request):
             return redirect('dashboard:policies')
         else:
             form = PolicyForm()
-            logger.info("Edit ServiceCategoryForm is not valid. Errors : %s", form.errors)
+            logger.info("Edit PolicyForm is not valid. Errors : %s", form.errors)
     elif request.method == "GET":
         form = PolicyForm()
 

@@ -28,7 +28,7 @@ class Policy(models.Model):
     daily_limit = models.IntegerField(blank=False)
     weekly_limit = models.IntegerField(blank=False)
     monthly_limit = models.IntegerField(blank=False)
-    commission = models.DecimalField(max_digits=constants.COMMISSION_MAX_DIGITS, decimal_places=constants.COMMISSION_DECIMAL_PLACES, default=constants.COMMISSION_DEFAULT)
+    commission = models.DecimalField(max_digits=conf.COMMISSION_MAX_DIGITS, decimal_places=conf.COMMISSION_DECIMAL_PLACES, default=conf.COMMISSION_DEFAULT)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     modified_by = models.ForeignKey(User, related_name="modified_policies", unique=False, null=True,blank=True, on_delete=models.SET_NULL)
@@ -40,7 +40,7 @@ class Policy(models.Model):
         return "Policy {0}".format(self.commission)
 
     def get_absolute_url(self):
-        return reverse("payments:policy-detail", kwargs={"policy_uuid": self.policy_uuid})
+        return reverse("payment:policy-detail", kwargs={"policy_uuid": self.policy_uuid})
     
     def get_dashboard_url(self):
         return reverse("dashboard:policy-detail", kwargs={"policy_uuid": self.policy_uuid})

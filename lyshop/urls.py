@@ -34,6 +34,7 @@ urlpatterns = [
     path('faq/', views.faq, name='faq'),
     path('i18n/', include('django.conf.urls.i18n')),
     path('orders/', include('orders.urls')),
+    path('payment/', include('payment.urls')),
     path('shipment/', include('shipment.urls')),
     path('vendors/', include('vendors.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

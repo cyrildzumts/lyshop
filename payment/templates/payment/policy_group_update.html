@@ -1,4 +1,4 @@
-{% extends "dashboard_base.html"%}
+{% extends "payment_base.html"%}
 {% load i18n %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
@@ -12,10 +12,10 @@
 
             <div class="col-xs-12 col-9">
                 <div class="banner--actions">
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:policy-group-create'%}"><span class="add"></span>{% trans "New Policy Group" %}</a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:policy-groups' %}"><span class="back"></span>{% trans "Policy Groups" %}</a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><span class="home"></span>{% trans "Dashboard" %}</a>
-                    
+                    <a class="mat-button mat-button-text" href="{% url 'payment:policy-group-create'%}"><span class="add"></span>{% trans "New Policy Group" %}</a>
+                    <a class="mat-button mat-button-text" href="{% url 'payment:policy-groups' %}"><span class="back"></span>{% trans "Policy Groups" %}</a>
+                    <a class="mat-button mat-button-text" href="{% url 'payment:payment-home' %}"><span class="home"></span>{% trans "Payment" %}</a>
+                   
                         
                 </div><!--End of Banner-Actions-->
             </div><!--End of Responsive-->
@@ -27,6 +27,6 @@
 
 {% block MAIN_CONTENT %}
 
-{% include "tags/policy_group_update_form.html" %}
+{% include "payment_tags/policy_group_update_form.html" %}
 
 {% endblock MAIN_CONTENT %}

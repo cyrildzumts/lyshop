@@ -1,4 +1,4 @@
-{% extends "dashboard_base.html"%}
+{% extends "payment_base.html"%}
 {% load i18n %}
 
 {% block HEADER_BANNER %}
@@ -15,9 +15,9 @@
                 <div class="banner--actions">
                     <a class="mat-button mat-button-text" href="{{group.get_update_url}}"><i class="fas fa-pen icon"></i><span>{% trans "Edit" %}</span></a>
                     <a class="mat-button mat-button-text" href="{{group.get_delete_url}}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:policy-group-create'%}"><i class="fas fa-plus icon"></i><span>{% trans "Add New Policy Group" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:policy-groups' %}"><i class="fas icon"></i><span>{% trans "Policy Groups" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{% url 'payment:policy-group-create'%}"><i class="fas fa-plus icon"></i><span>{% trans "Add New Policy Group" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{% url 'payment:policy-groups' %}"><i class="fas icon"></i><span>{% trans "Policy Groups" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{% url 'payment:payment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     
                         
                 </div><!--End of Banner-Actions-->
@@ -64,7 +64,7 @@
               {% trans "Add Members to policy group" %}
               </div>
               <div class="dialog-content">
-              {% include "tags/policy_group_add_users.html" %}
+              {% include "payment_tags/policy_group_add_users.html" %}
               </div>
           </div>
     </div>
