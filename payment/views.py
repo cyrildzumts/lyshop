@@ -20,6 +20,10 @@ from payment.models import Payment, PaymentHistory, PaymentPolicy, PaymentPolicy
 from payment.forms import PaymentPolicyForm, PaymentPolicyGroupForm, PaymentPolicyGroupUpdateForm, PaymentPolicyGroupUpdateMembersForm
 from dashboard.permissions import PermissionManager, get_view_permissions
 from lyshop import settings, utils
+import json
+import logging
+
+logger = logging.getLogger(__name__)
 # Create your views here.
 
 
@@ -104,7 +108,7 @@ def policies(request):
     if not can_view_policy:
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-
+    logger.debug(f"Policy : User permissions : {get_view_permissions(request.user)}")
     context = {}
     queryset = PaymentPolicy.objects.all()
     template_name = "payment/policy_list.html"
