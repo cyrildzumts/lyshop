@@ -23,7 +23,24 @@ from dashboard.permissions import PermissionManager
 
 
 def payment_home(request):
-    pass
+    username = request.user.username
+    if not PermissionManager.user_can_view_payment(request.user):
+        logger.warning("Payment Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = "payment/payment_home.html"
+    page_title = _("Payment-Home")
+
+    
+    
+    recent_payments = Payment.objects.select_related().order_by('-created_at')[:5]
+
+    context = {
+        'page_title' : page_title,
+        'recent_payments' : recent_payments,
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
 
 
 
