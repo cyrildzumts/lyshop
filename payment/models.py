@@ -37,16 +37,23 @@ class PaymentPolicy(models.Model):
         return reverse("dashboard:policy-detail", kwargs={"policy_uuid": self.policy_uuid})
     
     def get_delete_url(self):
+        return reverse("payment:policy-remove", kwargs={"policy_uuid": self.policy_uuid})
+
+    def get_dashboard_delete_url(self):
         return reverse("dashboard:policy-remove", kwargs={"policy_uuid": self.policy_uuid})
+
+    def get_dashboard_update_url(self):
+        return reverse("dashboard:policy-update", kwargs={"policy_uuid": self.policy_uuid})
     
     def get_update_url(self):
-        return reverse("dashboard:policy-update", kwargs={"policy_uuid": self.policy_uuid})
+        return reverse("payment:policy-update", kwargs={"policy_uuid": self.policy_uuid})
 
 
 
 class PaymentPolicyGroup(models.Model):
     name = models.CharField(max_length=80)
     policy = models.ForeignKey(PaymentPolicy, on_delete=models.CASCADE, related_name='payment_policy_group')
+    policy_id_ref = models.IntegerField(blank=True, null=True)
     commission = models.DecimalField(max_digits=conf.COMMISSION_MAX_DIGITS, decimal_places=conf.COMMISSION_DECIMAL_PLACES, default=conf.COMMISSION_DEFAULT)
     members = models.ManyToManyField(User, through='PaymentPolicyMembership', through_fields=('group', 'user'), blank=True)
     policy_group_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -55,16 +62,16 @@ class PaymentPolicyGroup(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse("payments:policy-group", kwargs={"group_uuid": self.policy_group_uuid})
+        return reverse("payment:policy-group", kwargs={"group_uuid": self.policy_group_uuid})
     
     def get_dashboard_url(self):
         return reverse("dashboard:policy-group-detail", kwargs={"group_uuid": self.policy_group_uuid})
 
     def get_update_url(self):
-        return reverse("dashboard:policy-group-update", kwargs={"group_uuid": self.policy_group_uuid})
+        return reverse("payment:policy-group-update", kwargs={"group_uuid": self.policy_group_uuid})
     
     def get_delete_url(self):
-        return reverse("dashboard:policy-group-remove", kwargs={"group_uuid": self.policy_group_uuid})
+        return reverse("payment:policy-group-remove", kwargs={"group_uuid": self.policy_group_uuid})
 
 
 
@@ -85,7 +92,7 @@ class Payment(models.Model):
     amount = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     balance_amount = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     pay_username = models.CharField(max_length=64)
-    policy = models.ForeignKey(PaymentPolicy, blank=True, null=True)
+    policy = models.ForeignKey(PaymentPolicy, blank=True, null=True, on_delete=models.SET_NULL)
     monthly_limit = models.IntegerField(blank=False)
     commission = models.DecimalField(max_digits=conf.COMMISSION_MAX_DIGITS, decimal_places=conf.COMMISSION_DECIMAL_PLACES, default=conf.COMMISSION_DEFAULT)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
