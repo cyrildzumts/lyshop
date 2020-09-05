@@ -78,6 +78,7 @@ VENDOR_PAYMENT_DAY = 5
 ACCOUNT_ROOT_PATH = "/accounts/"
 HOME_URL = "/"
 DASHBOARD_ROOT_PATH = "/dashboard/"
+PAYMENT_ROOT_PATH = "/payment/"
 VENDOR_ROOT_PATH = "/vendors/"
 USER_PATH = "/users/detail/"
 
