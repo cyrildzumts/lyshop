@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block MAIN_CONTENT %}
-{% if is_seller %}
+{% if can_view_payment %}
 
 <div class="container wrapper">
     <div class="mat-box full">
@@ -60,5 +60,10 @@
 </div>
 {% endif %}
 
+
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
 {% endif %}
 {% endblock MAIN_CONTENT %}
