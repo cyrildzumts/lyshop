@@ -141,7 +141,7 @@ def policy_update(request, policy_uuid=None):
         raise PermissionDenied
 
     page_title = _("Edit Policy")+ ' | ' + settings.SITE_NAME
-    instance = get_object_or_404(Policy, policy_uuid=policy_uuid)
+    instance = get_object_or_404(PaymentPolicy, policy_uuid=policy_uuid)
     template_name = "payment/policy_update.html"
     if request.method =="POST":
         form = PaymentPolicyForm(request.POST, instance=instance)
@@ -268,7 +268,7 @@ def policy_create(request):
             form.save()
             return redirect('payment:policies')
         else:
-            form = PolicyForm()
+            form = PaymentPolicyForm()
             logger.info("Edit PaymentPolicyForm is not valid. Errors : %s", form.errors)
     elif request.method == "GET":
         form = PaymentPolicyForm()
@@ -369,7 +369,7 @@ def policy_group_create(request):
             'page_title':page_title,
             'template_name':template_name,
             'form': form,
-            'policies' : Policy.objects.all(),
+            'policies' : PaymentPolicy.objects.all(),
             'can_add_policy' : can_add_policy
         }
     context.update(get_view_permissions(request.user))
@@ -406,7 +406,7 @@ def policy_group_update(request, group_uuid=None):
             'template_name':template_name,
             'group' : instance,
             'form': form,
-            'policies' : Policy.objects.all(),
+            'policies' : PaymentPolicy.objects.all(),
             'can_change_policy' : can_change_policy
         }
     context.update(get_view_permissions(request.user))
