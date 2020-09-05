@@ -18,7 +18,7 @@ from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidde
 from django.contrib import messages
 from payment.models import Payment, PaymentHistory, PaymentPolicy, PaymentPolicyGroup
 from payment.forms import PaymentPolicyForm, PaymentPolicyGroupForm, PaymentPolicyGroupUpdateForm, PaymentPolicyGroupUpdateMembersForm
-from dashboard.permissions import PermissionManager
+from dashboard.permissions import PermissionManager, get_view_permissions
 # Create your views here.
 
 
