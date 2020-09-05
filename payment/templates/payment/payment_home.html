@@ -1,0 +1,64 @@
+{% extends "payment_base.html"%}
+{% load i18n %}
+
+{% block MAIN_CONTENT %}
+{% if is_seller %}
+
+<div class="container wrapper">
+    <div class="mat-box full">
+          
+          <div class="mat-box-content">
+                <h4>{% trans "Payment - Home" %}</h4>
+          </div>
+          <div class="container">
+              
+          </div>
+        </div><!--End of mat-box-->
+</div>
+{% if recent_payments %}
+<div class="container wrapper">
+<div class="col-m-12 col-9">
+    <div class="mat-table-wrapper">
+        <table id="payment-list" class="mat-table js-filter-table">
+          <caption>{% trans "Recent Payments" %}</caption>
+          <thead>
+                  <tr>
+                          <th scope="col">{% trans "Merchant" %}</th>
+                          <th scope="col">{% trans "Amount" %}</th>
+                          <th scope="col">{% trans "Date" %}</th>
+                          <th scope="col">{% trans "Details" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for p in recent_payments %}
+                  <tr>
+                    <td scope="row" data-label="{% trans 'Merchant' %}">{{p.seller.get_full_name}}</td>
+                    <td data-label="{% trans 'Amount' %}">{{p.amount}} {% trans CURRENCY %} </td>
+                    <td data-label="{% trans 'Date' %}">{{p.payment_date|date:"F j, Y"}}</td>
+                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{p.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+          <tfoot>
+                  
+          </tfoot>
+
+    </table>
+    </div><!--End of Table Wrapper-->
+  </div>
+</div>
+
+{% else %}
+<div class="container wrapper">
+  <div class="col-m-12 col-12">
+    <p>{% trans "There is no payments yet." %}</p>
+  </div>
+  <div class="col-m-12 col-12">
+    <p>{% trans "Recents payments will be displayed here." %}</p>
+  </div>
+</div>
+{% endif %}
+
+{% endif %}
+{% endblock MAIN_CONTENT %}

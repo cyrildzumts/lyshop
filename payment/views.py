@@ -22,7 +22,7 @@ from dashboard.permissions import PermissionManager
 # Create your views here.
 
 
-def pay(request):
+def payment_home(request):
     pass
 
 
