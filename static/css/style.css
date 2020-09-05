@@ -134,9 +134,11 @@
 }
 
 .entry .key{
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 0.875em;
     /*width: 50%;*/
-    padding-right: 16px;
+    margin: 4px 8px;
+
 }
 
 /*
@@ -146,9 +148,10 @@
 }
 */
 .entry .value{
-    font-weight: 400;
+    font-size: 1em;
+    font-weight: 600;
     text-align: right;
-    padding-left: 16px;
+    margin: 4px 8px;
 }
 
 .box .title{

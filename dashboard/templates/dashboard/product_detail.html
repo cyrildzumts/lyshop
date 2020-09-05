@@ -1,6 +1,8 @@
 {% extends "dashboard_base.html"%}
 {% load static %}
+{% load catalog_tags %}
 {% load i18n %}
+
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -28,7 +30,7 @@
         <div class="mat-box-title wrapper">
           <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
           <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
-          <h4>{% trans "Gender" %} : {{product.gender}}</h4>
+          <h4>{% trans "Gender" %} : {{product.gender|gender_value}}</h4>
           <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
           <h4>{% trans "Number of Variants" %} : {{product.variants.count}}</h4>
         </div>

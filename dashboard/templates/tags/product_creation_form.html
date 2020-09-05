@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="gender">{% trans "Gender" %}</label>
                 <select name="gender" id="gender">
-                {% for k,v in GENDER %} <option value="{{v}}">{% trans k %}</option> {% endfor %}
+                {% for k,v in GENDER %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
                 </select>
             </div>
 

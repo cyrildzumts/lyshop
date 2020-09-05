@@ -10,7 +10,7 @@ GENDER_BOY          = 6
 GENDER_NO_GENDER    = 7
 
 
-GENDER_OLD = (
+GENDER = (
         (GENDER_MEN, 'MEN'),
         (GENDER_WOMEN, 'WOMEN'),
         (GENDER_BABY_GIRL, 'BABY GIRL'),
@@ -20,7 +20,7 @@ GENDER_OLD = (
         (GENDER_NO_GENDER, 'NO GENDER')
     )
 
-GENDER = (
+GENDER_OLD = (
     ('MEN', GENDER_MEN),
     ('WOMEN', GENDER_WOMEN),
     ('BABY GIRL', GENDER_BABY_GIRL),

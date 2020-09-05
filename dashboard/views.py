@@ -554,7 +554,7 @@ def products(request):
         'page_title': page_title,
     }
 
-    queryset = models.Product.objects.filter(is_active=True).order_by('-created_at')
+    queryset = Product.objects.order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
     try:
@@ -1773,7 +1773,7 @@ def user_details(request, pk=None):
     context['user_instance'] = user
     context['product_list'] = product_list
     context['is_seller'] = is_seller
-    context['has_balance'] = user.balance is not None
+    context['has_balance'] = hasattr(user, 'balance') and user.balance is not None
     context.update(get_view_permissions(request.user))
     context['can_delete'] = PermissionManager.user_can_delete_user(request.user)
     context['can_update'] = PermissionManager.user_can_change_user(request.user)

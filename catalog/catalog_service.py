@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Q,Count
 from catalog.models import Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute
 import logging
 

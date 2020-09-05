@@ -141,8 +141,11 @@ def product_detail(request, product_uuid=None):
     product = get_object_or_404(Product, product_uuid=product_uuid)
     Product.objects.filter(product_uuid=product_uuid).update(view_count=F('view_count') + 1)
     images = ProductImage.objects.filter(product=product)
+    logger.debug("Getting product attributes")
     common_attrs, selective_attrs = catalog_service.get_product_attributes(product.id)
-
+    logger.debug("[OK] Getting product attributes done")
+    logger.debug(type(common_attrs))
+    logger.debug(type(selective_attrs))
     context = {
         'page_title': page_title,
         'product': product,

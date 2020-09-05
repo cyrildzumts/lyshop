@@ -36,10 +36,10 @@
             <label for="gender">{% trans "Gender" %}</label>
             <select name="gender" id="gender">
             {% for k,v in GENDER %}
-                {% if v == product.gender %}
-                    <option value="{{v}}" selected>{% trans k %}</option> 
+                {% if k == product.gender %}
+                    <option value="{{k}}" selected>{% trans v %}</option> 
                 {% else %}
-                <option value="{{v}}">{% trans k %}</option> 
+                <option value="{{k}}">{% trans v %}</option> 
                 {% endif %}
                 
             {% endfor %}
