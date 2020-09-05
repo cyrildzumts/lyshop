@@ -109,7 +109,7 @@ class Payment(models.Model):
 class PaymentHistory(models.Model):
     payment_ref_id = models.IntegerField(blank=False, null=False)
     amount = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
-    payment = models.ForeignKey(VendorPayment, related_name="payment_history", blank=True, null=True, on_delete=models.SET_NULL)
+    payment = models.ForeignKey(Payment, related_name="payment_history", blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     history_uuid = models.UUIDField(default=uuid.uuid4, editable=False)    
 
