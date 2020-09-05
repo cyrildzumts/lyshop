@@ -22,6 +22,7 @@ from dashboard.permissions import PermissionManager, get_view_permissions
 # Create your views here.
 
 
+@login_required
 def payment_home(request):
     username = request.user.username
     if not PermissionManager.user_can_view_payment(request.user):
@@ -43,6 +44,50 @@ def payment_home(request):
     return render(request, template_name, context)
 
 
+@login_required
+def payments(request):
+    username = request.user.username
+
+    can_view_payment = PermissionManager.user_can_view_payment(request.user)
+    if not can_view_payment:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    queryset = Payment.objects.all()
+    template_name = "payment/payment_list.html"
+    page_title = "Payments - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['payment_list'] = list_set
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def payment_details(request, payment_uuid=None):
+    username = request.user.username
+
+    can_view_payment = PermissionManager.user_can_view_policy(request.user)
+    if not can_view_payment:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    payment = get_object_or_404(Payment, payment_uuid=payment_uuid)
+    template_name = "payment/payment_detail.html"
+    page_title = "Payment Details - " + settings.SITE_NAME
+    context['page_title'] = page_title
+    context['payment'] = payment
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
 
 
 

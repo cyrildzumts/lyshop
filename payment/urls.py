@@ -6,6 +6,8 @@ from payment import views
 app_name = 'payment'
 urlpatterns = [
     path('', views.payment_home, name='payment-home'),
+    path('payments/', views.payments, name='payments'),
+    path('payments/detail/<uuid:payment_uuid>/', views.payment_details, name='payment-detail'),
     path('policies/', views.policies, name='policies'),
     path('policies/detail/<uuid:policy_uuid>/', views.policy_details, name='policy-detail'),
     path('policies/remove/<uuid:policy_uuid>/', views.policy_remove, name='policy-remove'),
