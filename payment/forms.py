@@ -17,20 +17,6 @@ class PaymentPolicyGroupForm(forms.ModelForm):
 
 
 
-class PaymentDateForm(forms.ModelForm):
-    
-    class Meta:
-        model = PaymentDate
-        fields = ("name", "payment_schedule",)
-
-class PaymentDateGroupForm(forms.ModelForm):
-
-    class Meta:
-        model = PaymentDateGroup
-        fields = ('name', 'schedule', 'members')
-
-
-
 class PaymentPolicyGroupUpdateForm(forms.ModelForm):
     
     class Meta:
@@ -44,14 +30,27 @@ class PaymentPolicyGroupUpdateMembersForm(forms.ModelForm):
         fields = ('members',)
 
 
+class PaymentDateForm(forms.ModelForm):
+    
+    class Meta:
+        model = PaymentDate
+        fields = ("name", "payment_schedule",)
+
+class PaymentDateGroupForm(forms.ModelForm):
+
+    class Meta:
+        model = PaymentDateGroup
+        fields = ('name', 'schedule', 'members')
+        
+
 class PaymentDateGroupUpdateForm(forms.ModelForm):
     
     class Meta:
-        model = PaymentPolicyGroup
+        model = PaymentDateGroup
         fields = ('name', 'schedule', 'members',)
 
 class PaymentDateGroupUpdateMembersForm(forms.ModelForm):
     
     class Meta:
-        model = PaymentPolicyGroup
+        model = PaymentDateGroup
         fields = ('members',)
