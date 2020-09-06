@@ -14,16 +14,16 @@
 {% endif %}
 
 <div class="mat-box">
-  <div>
+  <div class="entry">
     <span class="key">{% trans "Name" %}</span> <span class="value">{{attribute.name}}</span>
   </div>
-  <div>
+  <div class="entry">
     <span class="key">{% trans "Display Name" %}</span> <span class="value">{{attribute.display_name}}</span>
   </div>
-  <div>
+  <div class="entry">
     <span class="key">{% trans "Value" %}</span> <span class="value">{{attribute.value}}</span>
   </div>
-  <div>
+  <div class="entry">
     <span class="key">{% trans "Value Type" %}</span> <span class="value">{{attribute.value_type|attr_type_key}}</span>
   </div>
 </div>

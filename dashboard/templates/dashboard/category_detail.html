@@ -19,11 +19,21 @@
   <div class="mat-box wrapper full">
     <div class="row title">
       <div class="mat-box-title wrapper">
-          <h4>{% trans "Name" %} : {{category.name}}</h4>
-          <h4>{% trans "Display Name" %} : {{category.display_name}}</h4>
-          <h4>{% trans "Code" %} : {{category.code}}</h4>
-          <h4>{% trans "Created By" %} : {{category.added_by.username}}</h4>
-          <h4>{% trans "Creation Date" %} : {{category.created_at|date:'F j, Y'}}</h4>
+            <div class="entry">
+              <span class="key">{% trans "Name" %}</span> <span class="value">{{category.name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Display Name" %}</span> <span class="value">{{category.display_name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key"><i class="fas fa-barcode icon">{% trans "Code" %}</span> <span class="value">{{category.code}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Created By" %}</span> <span class="value">{{category.added_by.username}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans ""Creation Date"" %}</span> <span class="value">{{category.created_at|date:'F j, Y'}}</span>
+            </div>
       </div>
     </div>
     <div class="mat-box-content">
