@@ -14,7 +14,7 @@
               <span class="key">{% trans "Display Name" %}</span> <span class="value">{{brand.display_name}}</span>
             </div>
             <div class="entry">
-              <span class="key"><i class="fas fa-barcode icon">{% trans "Code" %}</span> <span class="value">{{brand.code}}</span>
+              <span class="key"><i class="fas fa-barcode icon">{% trans "Code" %}</i></span> <span class="value">{{brand.code}}</span>
             </div>
           </div>
           <div class="mat-box-content">
@@ -45,7 +45,7 @@
                               <tr>
                                     <td>{{product.display_name}}</td>
                                     <td>{{product.quantity}}</td>
-                                    <td>{{product.price}} {% trans "XAF" %}</td>
+                                    <td>{{product.price}} {% trans CURRENCY %}</td>
                                     <td><a class="mat-button mat-button-text" href="{{product.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                               </tr>
                               {% endfor %}
