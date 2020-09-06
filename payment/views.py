@@ -108,7 +108,6 @@ def policies(request):
     if not can_view_policy:
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-    logger.debug(f"Policy : User permissions : {get_view_permissions(request.user)}")
     context = {}
     queryset = PaymentPolicy.objects.all()
     template_name = "payment/policy_list.html"
@@ -466,7 +465,7 @@ def policy_group_details(request, group_uuid=None):
 
     context = {}
     group = get_object_or_404(PaymentPolicyGroup, policy_group_uuid=group_uuid)
-    template_name = "template/policy_group_detail.html"
+    template_name = "payment/policy_group_detail.html"
     page_title = "Policy Group Details - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['group'] = group
