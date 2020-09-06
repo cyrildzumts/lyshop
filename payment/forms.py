@@ -1,6 +1,6 @@
 
 from django import forms
-from payment.models import PaymentPolicy, PaymentPolicyGroup, PaymentPolicyMembership
+from payment.models import PaymentPolicy, PaymentPolicyGroup, PaymentPolicyMembership, PaymentDate, PaymentDateGroup
 
 
 class PaymentPolicyForm(forms.ModelForm):
