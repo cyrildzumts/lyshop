@@ -54,7 +54,7 @@ class PaymentPolicyGroup(models.Model):
     name = models.CharField(max_length=80)
     policy = models.ForeignKey(PaymentPolicy, on_delete=models.CASCADE, related_name='payment_policy_group')
     policy_id_ref = models.IntegerField(blank=True, null=True)
-    commission = models.DecimalField(max_digits=conf.COMMISSION_MAX_DIGITS, decimal_places=conf.COMMISSION_DECIMAL_PLACES, default=conf.COMMISSION_DEFAULT)
+    #commission = models.DecimalField(max_digits=conf.COMMISSION_MAX_DIGITS, decimal_places=conf.COMMISSION_DECIMAL_PLACES, default=conf.COMMISSION_DEFAULT)
     members = models.ManyToManyField(User, through='PaymentPolicyMembership', through_fields=('group', 'user'), blank=True)
     policy_group_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 

@@ -57,7 +57,7 @@
                   <td>{{group.name}}</td>
                   <td>{{group.members.count}}</td>
                   <td>{{group.policy.commission}}</td>
-                  <td><a class="mat-button mat-button-default" href="{{group.get_payment_url}}"> {% trans "Detail" %}</a></td>
+                  <td><a class="mat-button mat-button-default" href="{{group.get_absolute_url}}"> {% trans "Detail" %}</a></td>
                   </tr>
                   {% endfor %}
                   

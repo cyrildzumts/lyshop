@@ -13,13 +13,13 @@ class PaymentPolicyGroupForm(forms.ModelForm):
 
     class Meta:
         model = PaymentPolicyGroup
-        fields = ('name', 'policy', "commission", "members")
+        fields = ('name', 'policy', 'members')
 
 class PaymentPolicyGroupUpdateForm(forms.ModelForm):
     
     class Meta:
         model = PaymentPolicyGroup
-        fields = ('name', 'policy',"commission", 'members',)
+        fields = ('name', 'policy', 'members',)
 
 class PaymentPolicyGroupUpdateMembersForm(forms.ModelForm):
     

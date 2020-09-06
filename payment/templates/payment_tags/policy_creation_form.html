@@ -9,14 +9,14 @@
                 <form class="form " name="policy" action="{% url 'payment:policy-create' %}" method="POST">{% csrf_token %}
                     <div class="container">
                     
-                    <div class="form-group">
-                        <label for="monthly_limit">{% trans "Monthly Limit" %}</label>
-                        <input id="monthly_limit" type="text"  name="monthly_limit" value="{{policy.monthly_limit}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="commission">{% trans "Commission" %}</label>
-                        <input id="commission" type="text"  name="commission" value="{{policy.commission|unlocalize}}">
-                    </div>
+                        <div class="form-group">
+                            <label for="monthly_limit">{% trans "Monthly Limit" %}</label>
+                            <input id="monthly_limit" type="text"  name="monthly_limit" value="{{policy.monthly_limit}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="commission">{% trans "Commission" %}</label>
+                            <input id="commission" type="text"  name="commission" value="{{policy.commission|unlocalize}}">
+                        </div>
                     </div><!-- End of Container-->
 
                     <div class="actions row">

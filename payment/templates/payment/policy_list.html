@@ -51,7 +51,7 @@
                   <td class="checkbox"><input class="js-selectable" type="checkbox" name="policies" value="{{policy.pk}}"></td>
                   <td>{{policy.commission}}</td>
                   <td>{{policy.monthly_limit}} {% trans CURRENCY %}</td>
-                  <td><a class="mat-button mat-button-default" href="{{policy.get_payment_url}}"><i class="fas fa-info icon"></i> <span>{% trans "Detail" %}</span></a></td>
+                  <td><a class="mat-button mat-button-default" href="{{policy.get_absolute_url}}"><i class="fas fa-info icon"></i> <span>{% trans "Detail" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   

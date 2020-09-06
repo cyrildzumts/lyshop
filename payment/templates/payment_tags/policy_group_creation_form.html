@@ -19,6 +19,7 @@
                         <div class="form-group">
                             <label for="policy">{% trans "Policy" %}</label>
                             <select name="policy" id="policy">
+                                <option value="" selected>{% trans "Select a policy" %}</option>
                                 {% for policy in policies %}
                                 <option value="{{policy.pk}}">{{policy.commission}}</option>
                                 {% endfor %}
