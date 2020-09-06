@@ -2102,7 +2102,7 @@ input.editable{
 }
 
 .mat-dialog{
-	/*display: none;*/
+	display: none;
 	position: relative;
 	/*padding: 16px;*/
 	font-size: 1em;
