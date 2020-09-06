@@ -18,20 +18,43 @@
 <div class="container">
   <div class="mat-box wrapper full">
       <div class="row title">
+
         <div class="mat-box-title wrapper">
-          <h4>{% trans "Name" %} : {{product.name}}</h4>
-          <h4>{% trans "Display Name" %} : {{product.display_name}}</h4>
-          <h4>{% trans "Quantity" %} : {{variant.quantity}}</h4>
-          <h4>{% trans "Vendor" %} : {{product.sold_by.username}}</h4>
-          <h4>{% trans "Unit Price" %} : {{product.price}} {% trans "XAF" %}</h4>
-          <h4>{% trans "Views" %} : {{product.view_count}}</h4>
+          <div class="entry">
+            <span class="key">{% trans "Name" %}</span> <span class="value">{{product.name}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Display Name" %}</span> <span class="value">{{product.display_name}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Quantity" %}</span> <span class="value">{{variant.quantity}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Vendor" %}</span> <span class="value">{{product.sold_by.username}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{product.price}} {% trans CURRENCY %}</span>
+          </div>
+          <div class="entry">
+            <span class="key"><{% trans "Views" %}</span> <span class="value">{{product.view_count}}</span>
+          </div>
         </div>
         <div class="mat-box-title wrapper">
-          <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
-          <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
-          <h4>{% trans "Gender" %} : {{product.gender|gender_value}}</h4>
-          <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
+          <div class="entry">
+            <span class="key">{% trans "Brand" %}</span> <span class="value">{{product.brand.display_name}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Type" %}</span> <span class="value">{{product.product_type.display_name}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Gender" %}</span> <span class="value">{{product.gender|gender_value}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Category" %}</span> <span class="value">{{product.category.display_name}}</span>
+          </div>
+
         </div>
+
       </div><!--End of title-->
       <div class="actions">
           
