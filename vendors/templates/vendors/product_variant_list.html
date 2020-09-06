@@ -37,7 +37,7 @@
                   <td scope="row" data-label="{% trans 'Name' %}">{{variant.name}}</td>
                   <td data-label="{% trans 'Display Name' %}">{{variant.display_name}}</td>
                   <td data-label="{% trans 'Type' %}">{{product.product_type.display_name}}</td>
-                  <td data-label="{% trans 'Price' %}"><span>{{variant.price}}</span> <span>{% trans "XAF" %}</span></td>
+                  <td data-label="{% trans 'Price' %}"><span>{{variant.price}}</span> <span>{% trans CURRENCY %}</span></td>
                   <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{variant.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   {% if can_delete_product %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{{variant.get_delete_url}}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>

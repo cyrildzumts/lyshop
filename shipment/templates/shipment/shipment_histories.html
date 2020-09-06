@@ -25,7 +25,7 @@
         <div class="grid title">
             <div class="mat-box-title wrapper">
                 <p><span class="key">{% trans "Shipment Reference Number" %} :</span> <span class="value">{{shipment.shipment_ref_number}}</span></p>
-                <p><span class="key">{% trans "Shipping Price" %} :</span> <span class="value">{{shipment.price}} {% trans "XAF" %}</span></p>
+                <p><span class="key">{% trans "Shipping Price" %} :</span> <span class="value">{{shipment.price}} {% trans CURRENCY %}</span></p>
                 <p><span class="key">{% trans "Company" %} :</span> <span class="value">{{shipment.company}}</span></p>
                 <p><span class="key">{% trans "Customer" %} :</span> <span class="value">{{shipment.customer.get_full_name}}</span></p>
             

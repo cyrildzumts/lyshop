@@ -26,7 +26,7 @@
     <div class="responsive">
         <div class="entry flex-column">
           <div class="title">{% trans "Price" %}</div>
-          <div class="subtitle">{{product.price}} <span>{% trans "XAF" %}</span></div>
+          <div class="subtitle">{{product.price}} <span>{% trans CURRENCY %}</span></div>
         </div>
     </div>
     <div class="responsive">
@@ -67,7 +67,7 @@
                   <span class="key">{% trans "Vendor" %} : </span><span class="value">{{product.sold_by.get_full_name}}</span>
                 </div>
                 <div class="entry">
-                  <span class="key">{% trans "Amount" %} :</span><span class="value">{{product.price}} {% trans "XAF" %}</span>
+                  <span class="key">{% trans "Amount" %} :</span><span class="value">{{product.price}} {% trans CURRENCY %}</span>
                 </div>
                 
                 <div class="entry">

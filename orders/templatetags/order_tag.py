@@ -19,7 +19,7 @@ def order_status_key(value):
 
 @register.filter
 def order_status_value(key):
-    k,v = Constants.get_order_status_name(key, Constants.ORDER_STATUS)
+    k,v = Constants.get_order_status_name(key)
     if v is None:
         logger.info(f"order_status_value : Could not found value  for key \"{key}\"")
         return key
