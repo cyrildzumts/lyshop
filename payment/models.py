@@ -62,7 +62,7 @@ class PaymentPolicyGroup(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse("payment:policy-group", kwargs={"group_uuid": self.policy_group_uuid})
+        return reverse("payment:policy-group-detail", kwargs={"group_uuid": self.policy_group_uuid})
     
     def get_dashboard_url(self):
         return reverse("dashboard:policy-group-detail", kwargs={"group_uuid": self.policy_group_uuid})
