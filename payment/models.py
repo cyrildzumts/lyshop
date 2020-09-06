@@ -130,7 +130,7 @@ class PaymentDate(models.Model):
 
 
 class PaymentDateGroup(models.Model):
-    name = models.CharField(max_length=80, choices=PaymentConf.PAYMENT_DATE_NAME_CHOICES)
+    name = models.CharField(max_length=80)
     schedule = models.ForeignKey(PaymentDate, on_delete=models.CASCADE, related_name='payment_date_group')
     members = models.ManyToManyField(User, through='PaymentDateGroupMembership', through_fields=('group', 'user'), blank=True, null=True)
     group_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
