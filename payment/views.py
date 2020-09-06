@@ -426,7 +426,7 @@ def policy_group_update_members(request, group_uuid=None):
         raise PermissionDenied
 
     page_title = _("Edit Policy Group")+ ' | ' + settings.SITE_NAME
-    instance = get_object_or_404(PolicyGroup, policy_group_uuid=group_uuid)
+    instance = get_object_or_404(PaymentPolicyGroup, policy_group_uuid=group_uuid)
     template_name = "payment/policy_group_update.html"
     if request.method =="POST":
         form = PaymentPolicyGroupUpdateForm(request.POST, instance=instance)
@@ -436,7 +436,7 @@ def policy_group_update_members(request, group_uuid=None):
             new_members = form.cleaned_data.get('members')
             logger.info('new members : %s', new_members)
             for u in new_members:
-                u.policygroup_set.clear()
+                u.paymentpolicygroup_set.clear()
             
             instance.members.clear()
             form.save()
