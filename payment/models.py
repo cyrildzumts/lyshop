@@ -95,7 +95,7 @@ class Payment(models.Model):
     pay_username = models.CharField(max_length=64)
     policy = models.ForeignKey(PaymentPolicy, blank=True, null=True, on_delete=models.SET_NULL)
     monthly_limit = models.IntegerField(blank=False)
-    payment_mode = models.IntegerField(blank=False, null=False choices=PaymentConf.PAYMENT_MODE)
+    payment_mode = models.IntegerField(blank=False, null=False, choices=PaymentConf.PAYMENT_MODE)
     payment_schedule = models.IntegerField(default=PaymentConf.PAYMENT_DATE_LAST_FRIDAY ,blank=False, null=False choices=PaymentConf.PAYMENT_DATE)
     commission = models.DecimalField(max_digits=GlobalConf.COMMISSION_MAX_DIGITS, decimal_places=GlobalConf.COMMISSION_DECIMAL_PLACES, default=GlobalConf.COMMISSION_DEFAULT)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
