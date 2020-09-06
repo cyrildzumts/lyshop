@@ -44,7 +44,7 @@
             <div class="mat-list-wrapper">
               <div class="mat-list-header">
                 <div class="list-title">{% trans "Group Members" %}</div>
-                <button class="mat-button mat-button-default js-dialog-add-members" data-target="#add-group-members">{% trans "Add members" %}</div>
+                <button class="mat-button mat-button-default js-dialog-add-members js-dialog-open" data-target="#add-group-members">{% trans "Add members" %}</div>
               </div>
               
               <ul class="mat-list">
@@ -59,7 +59,7 @@
 <div class="row">
     <div class="col-xs-12 col-6">
           <div class="mat-dialog" id="add-group-members">
-              <span class="dialog-close">{% trans "Close" %}</span>
+              <span class="dialog-close js-dialog-close">{% trans "Close" %}</span>
               <div  class="dialog-title">
               {% trans "Add Members to policy group" %}
               </div>
