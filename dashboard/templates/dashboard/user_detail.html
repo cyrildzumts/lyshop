@@ -19,7 +19,7 @@
                         
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:update-vendors-products' user_instance.pk %}"><i class="fas fa-sync icon"></i><span>{% trans "Update Vendor" %}</span></a>
                     <a class="mat-button mat-button-text warn" href="{% url 'dashboard:reset-vendor' user_instance.pk %}"><i class="fas fa-unlink icon"></i><span>{% trans "Reset Vendor" %}</span></a>
-                    <a class="mat-button mat-button-text warn" href="{% url 'payment:pay-vendor' user_instance.pk %}"><i class="fas fa-file-invoice icon"></i><span>{% trans "Pay Vendor" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{% url 'payment:pay-vendor' user_instance.pk %}"><i class="fas fa-file-invoice icon"></i><span>{% trans "Pay Vendor" %}</span></a>
                     {% endif %}
                         
                 </div><!--End of Banner-Actions--> 
