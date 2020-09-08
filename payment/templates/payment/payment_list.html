@@ -25,7 +25,7 @@
           <thead>
                   <tr>
                           <th scope="col">{% trans "Merchant" %}</th>
-                          <th scope="col">{% trans "Amount" %}</th>
+                          <th scope="col">{% trans "Paid Amount" %}</th>
                           <th scope="col">{% trans "Balance Amount" %}</th>
                           <th scope="col">{% trans "Date" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
@@ -35,7 +35,7 @@
                   {% for p in payment_list %}
                   <tr>
                     <td scope="row" data-label="{% trans 'Merchant' %}">{{p.seller.get_full_name}}</td>
-                    <td data-label="{% trans 'Amount' %}">{{p.amount}} {% trans CURRENCY %} </td>
+                    <td data-label="{% trans 'Paid Amount' %}">{{p.amount}} {% trans CURRENCY %} </td>
                     <td data-label="{% trans 'Balance Amount' %}">{{p.balance_amount}} {% trans CURRENCY %} </td>
                     <td data-label="{% trans 'Date' %}">{{p.created_at|date:"F j, Y"}}</td>
                     <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{p.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
