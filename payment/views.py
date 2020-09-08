@@ -60,7 +60,7 @@ def payments(request):
         raise PermissionDenied
 
     context = {}
-    queryset = Payment.objects.order_by('-created-at').all()
+    queryset = Payment.objects.order_by('-created_at').all()
     template_name = "payment/payment_list.html"
     page_title = "Payments - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
