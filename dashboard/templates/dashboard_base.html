@@ -9,35 +9,25 @@
 
 
 {% block HEADER_PANEL %}
-  <div class="row">
-       <div class="col col-1">
-            <div class="row">
-                  <ul class="logo">
-                        <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'home' %}">{{site_name}}</a></li>
-                  </ul>
-            </div>
-              
-        </div>
-        <div class="col col-11">
-              <div class="row">
-                  <ul class="panel panel-align-rigth">
-                        <li class="entry"><a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">Dashboard</a></li>
-                        <li class="entry"><a class="mat-button mat-button-text" href="#" ><i class="far fa-bell"></i></a></li> 
-                        {% if account %}
-                              <li class="entry"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{{user.username}}</a></li>
-                        {% endif %}
-                        
-                        {% for lang in LANGUAGES %}
-                              {% if lang.0 == LANGUAGE_CODE %}
-                              <li class="entry"><span class="lang active" title="{{lang.1}}"> {{lang.0}} </span></li>
-                              {% else %}
-                              <li class="entry"><span class="lang" title="{{lang.1}}"> {{lang.0}} </span></li>
-                              {% endif %} 
-                        {% endfor %}
-                        
-                  </ul>
-              </div>
-        </div>                 
+  <div class="header--panel">
+      <div class="col col-1">
+      <div class="row">
+            <ul class="logo">
+                  <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'home' %}">{{site_name}}</a></li>
+            </ul>
+      </div>
+            
+      </div>
+      <ul class="mat-list site-panel">
+            <li class="entry"><a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">Dashboard</a></li>
+            <li class="entry"><a class="mat-button mat-button-text" href="#" ><i class="far fa-bell"></i></a></li> 
+            {% if account %}
+                  <li class="entry"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{{user.username}}</a></li>
+            {% endif %}
+            <li>
+                  {% include "tags/language.html" %}
+            </li>
+      </ul>               
   </div>
 {% endblock HEADER_PANEL %}
 {% block HEADER_BANNER %}
