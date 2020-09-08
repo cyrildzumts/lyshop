@@ -46,7 +46,7 @@
                         <span class="key">{% trans "Balance Amount" %} :</span> <span class="value">{{payment.balance_amount}} {% trans CURRENCY %}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Fee" %} :</span> <span class="value">{{payment.balance_amount - payment.amount}} {% trans CURRENCY %}</span>
+                        <span class="key">{% trans "Fee" %} :</span> <span class="value">{{fee}} {% trans CURRENCY %}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Creation Date" %} :</span> <span class="value">{{payment.created_at}}</span>

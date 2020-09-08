@@ -92,6 +92,7 @@ def payment_details(request, payment_uuid=None):
     page_title = "Payment Details - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['payment'] = payment
+    context['fee'] = payment.balance_amount - payment.amount
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
