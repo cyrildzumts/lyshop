@@ -1664,7 +1664,7 @@ def payments(request):
         raise PermissionDenied
 
     context = {}
-    queryset = Payment.objects.filter(seller=request.user).order_by('-created_at').all()
+    queryset = vendors_service.get_vendor_payments(request.user)
     template_name = "vendors/payment_list.html"
     page_title = "Payments - " + settings.SITE_NAME
     page = request.GET.get('page', 1)

@@ -9,6 +9,7 @@ from orders import orders_service
 from orders.models import Order, OrderItem
 from vendors import constants as Constants
 from datetime import date as Date, datetime as DateTime
+from payment.models import Payment
 from itertools import islice
 
 import json
@@ -65,12 +66,17 @@ def get_next_payment_date(user):
     return next_payment_date
 
 
-
+def get_vendor_payments(user):
+    if not isinstance(seller, User) or not is_vendor(seller):
+        logger.warn(f"get_vendor_payment : The given user is not a vendor")
+        return Payment.objects.none()
+    
+    return Payment.objects.filter(seller=user).order_by('-created_at')
 
 
 def reset_vendor(seller):
     if not isinstance(seller, User) or not is_vendor(seller):
-        logger.warn(f"Reseting User balance {seller.username} not processed. The given user is not a vendor")
+        logger.warn(f"Reseting User balance not processed. The given user is not a vendor")
         return False
 
     #order_queryset = Order.objects.filter(is_paid=True, vendor_balance_updated=True)
