@@ -2,7 +2,7 @@
 {% load i18n %} 
 
 <form id="lang-form" name="localization-form" action="{% url 'set_language' %}" method="POST">{% csrf_token %}  
-        <input name="next" type="hidden" value="{{redirect_to}}">
+        <input name="next" type="hidden" value="{{request.path}}">
         <input id="current-lang" type="hidden" name="language" value="{{LANGUAGE_CODE}}">
         <i class="fas fa-globe icon"></i>
         <ul class="mat-list row languages">
