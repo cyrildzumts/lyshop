@@ -66,12 +66,12 @@ def get_next_payment_date(user):
     return next_payment_date
 
 
-def get_vendor_payments(user):
+def get_vendor_payments(seller):
     if not isinstance(seller, User) or not is_vendor(seller):
         logger.warn(f"get_vendor_payment : The given user is not a vendor")
         return Payment.objects.none()
     
-    return Payment.objects.filter(seller=user).order_by('-created_at')
+    return Payment.objects.filter(seller=seller).order_by('-created_at')
 
 
 def reset_vendor(seller):
