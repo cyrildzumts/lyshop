@@ -52,13 +52,13 @@ def process_vendor_payment(user):
     is_vendor = vendors_service.is_vendor(user)
     if not is_vendor:
         logger.warn("process_vendor_payment : user is not a vendor")
-        return False
+        return None
     
     vendor_balance = vendors_service.get_vendor_balance(user)
     policy_group = user.paymentpolicygroup_set.first()
     fee, vendor_amount, succeed = get_commission(vendor_balance.balance, policy_group.policy.commision)
     if not succeed:
-        return False
+        return None
     fee_user = None
     try:
         fee_user = User.objects.select_related('balance').get(username=settings.LYSHOP_FEE_USER)
@@ -82,4 +82,4 @@ def process_vendor_payment(user):
     }
     #WIP
 
-    return True
+    return payment

@@ -19,6 +19,7 @@ from django.contrib import messages
 from payment.models import Payment, PaymentHistory, PaymentPolicy, PaymentPolicyGroup
 from payment.forms import PaymentPolicyForm, PaymentPolicyGroupForm, PaymentPolicyGroupUpdateForm, PaymentPolicyGroupUpdateMembersForm
 from dashboard.permissions import PermissionManager, get_view_permissions
+from payment import payment_service
 from lyshop import settings, utils
 import json
 import logging
@@ -95,6 +96,22 @@ def payment_details(request, payment_uuid=None):
     return render(request,template_name, context)
 
 
+@login_required
+def pay_vendor(requets, vendor_pk):
+    username = request.user.username
+
+    can_view_payment = PermissionManager.user_can_view_policy(request.user)
+    if not can_view_payment:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    vendor = get_object_or_404(User, pk=vendor_pk)
+    payment = payment_service.process_vendor_payment(vendor)
+    if payment:
+        messages.success(request, f"Payment for vendor {vendor.username} processed")
+    else:
+        messages.warning(request, f"Payment for vendor {vendor.username} not processed")
+    
+    return redirect('dashboard:users')
 
 @login_required
 def policies(request):
