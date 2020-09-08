@@ -1765,7 +1765,8 @@ def user_details(request, pk=None):
     user = get_object_or_404(User, pk=pk)
     product_list = Product.objects.filter(sold_by=user, quantity__gt=0)
     seller_group = None
-    is_seller = user.groups.filter(name=Constants.SELLER_GROUP).exists()
+    is_seller = vendors_service.is_vendor(user)
+    can_have_balance = vendors_service.can_have_balance(user)
 
     template_name = "dashboard/user_detail.html"
     page_title = "User Details - " + settings.SITE_NAME
@@ -1773,6 +1774,7 @@ def user_details(request, pk=None):
     context['user_instance'] = user
     context['product_list'] = product_list
     context['is_seller'] = is_seller
+    context['can_have_balance'] = can_have_balance
     context['has_balance'] = hasattr(user, 'balance') and user.balance is not None
     context.update(get_view_permissions(request.user))
     context['can_delete'] = PermissionManager.user_can_delete_user(request.user)
