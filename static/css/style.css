@@ -357,6 +357,12 @@
     border-bottom: 2px solid #e64a19;
 }
 
+#lang-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .icon{
     padding-left: 4px;
     padding-right: 4px;

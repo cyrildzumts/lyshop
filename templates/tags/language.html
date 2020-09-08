@@ -1,8 +1,7 @@
 
 {% load i18n %} 
 
-<form id="lang-form" name="localization-form" action="{% url 'set_language' %}" method="POST">{% csrf_token %}
-    <div class="row">   
+<form id="lang-form" name="localization-form" action="{% url 'set_language' %}" method="POST">{% csrf_token %}  
         <input name="next" type="hidden" value="{{redirect_to}}">
         <input id="current-lang" type="hidden" name="language" value="{{LANGUAGE_CODE}}">
         <i class="fas fa-globe icon"></i>
@@ -13,5 +12,4 @@
                 <li class="mat-list-item js-lang {% if language.code == LANGUAGE_CODE %}language active selected{% endif %}" onclick="change_language(this);" data-value="{{language.code}}" {% if language.code == LANGUAGE_CODE %}class="language active selected"{% endif %}>{{ language.code }}</li>
         {% endfor %}
         </ul>
-    </div>
 </form>
