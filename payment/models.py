@@ -107,6 +107,9 @@ class Payment(models.Model):
 
     def get_absolute_url(self):
         return reverse("payment:payment-detail", kwargs={"payment_uuid": self.payment_uuid})
+
+    def get_vendor_url(self):
+        return reverse("vendors:payment-detail", kwargs={"payment_uuid": self.payment_uuid})
     
     def get_dashboard_url(self):
         return reverse("dashboard:payment-detail", kwargs={"payment_uuid": self.payment_uuid})

@@ -1634,14 +1634,6 @@ def balance_history_detail(request, history_uuid):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-@login_required
-def vendor_payments(request):
-    username = request.user.username
-    
-    if not vendors_service.is_vendor(request.user):
-        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
-        raise PermissionDenied
-
 
 @login_required
 def payment_details(request, payment_uuid):
@@ -1650,6 +1642,43 @@ def payment_details(request, payment_uuid):
     if not vendors_service.is_vendor(request.user):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
+
+    context = {}
+    payment = get_object_or_404(Payment, payment_uuid=payment_uuid)
+    template_name = "vendors/payment_detail.html"
+    page_title = "Payment Details - " + settings.SITE_NAME
+    context['page_title'] = page_title
+    context['payment'] = payment
+    context['fee'] = payment.balance_amount - payment.amount
+    return render(request,template_name, context)
+
+
+
+
+@login_required
+def payments(request):
+    username = request.user.username
+
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    queryset = Payment.objects.order_by('-created_at').all()
+    template_name = "vendors/payment_list.html"
+    page_title = "Payments - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['payment_list'] = list_set
+    return render(request,template_name, context)
+
 
 
 @login_required
