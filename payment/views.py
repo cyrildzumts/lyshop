@@ -20,6 +20,7 @@ from payment.models import Payment, PaymentHistory, PaymentPolicy, PaymentPolicy
 from payment.forms import PaymentPolicyForm, PaymentPolicyGroupForm, PaymentPolicyGroupUpdateForm, PaymentPolicyGroupUpdateMembersForm
 from dashboard.permissions import PermissionManager, get_view_permissions
 from payment import payment_service
+from payment.models import Payment
 from lyshop import settings, utils
 import json
 import logging
