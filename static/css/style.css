@@ -87,8 +87,8 @@
 }
 
 .box{
-    display: flex;
-    flex-wrap: wrap;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
     padding:16px 8px;
     margin: 16px 4px;
     text-align: center;
@@ -118,6 +118,7 @@
     font-size: 1em;
     /*text-align: center;*/
     padding-bottom: 16px;
+    min-height: 48px;
 }
 
 .box .entry{
