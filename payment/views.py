@@ -97,7 +97,7 @@ def payment_details(request, payment_uuid=None):
 
 
 @login_required
-def pay_vendor(requets, vendor_pk):
+def pay_vendor(request, vendor_pk):
     username = request.user.username
 
     can_view_payment = PermissionManager.user_can_view_policy(request.user)
