@@ -19,12 +19,12 @@
             
       </div>
       <ul class="mat-list site-panel">
-            <li class="entry"><a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">Dashboard</a></li>
-            <li class="entry"><a class="mat-button mat-button-text" href="#" ><i class="far fa-bell"></i></a></li> 
+            <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">Dashboard</a></li>
+            <li class="mat-list-item"><a class="mat-button mat-button-text" href="#" ><i class="far fa-bell"></i></a></li> 
             {% if account %}
-                  <li class="entry"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{{user.username}}</a></li>
+                  <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{{user.username}}</a></li>
             {% endif %}
-            <li>
+            <li class="mat-list-item">
                   {% include "tags/language.html" %}
             </li>
       </ul>               
