@@ -21,6 +21,7 @@ from cart.forms import CouponForm
 from lyshop import utils, settings
 from vendors import vendors_service
 from vendors.models import Balance, BalanceHistory, VendorPayment, VendorPaymentHistory, SoldProduct
+from payment.models import Payment
 import logging
 import json
 
