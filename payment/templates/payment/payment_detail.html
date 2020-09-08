@@ -33,45 +33,45 @@
 
                     <div class="box">
                         <div class="entry">
-                            <span class="key">{% trans "Merchant" %} :</span> <span class="value">{{payment.seller.get_full_name}}</span>
+                            <span class="key">{% trans "Merchant" %} </span> <span class="value">{{payment.seller.get_full_name}}</span>
                         </div>
                         
                         <div class="entry">
-                            <span class="key">{% trans "Payment Mode" %} :</span> <span class="value">{{payment.payment_mode|payment_mode_value}}</span>
+                            <span class="key">{% trans "Payment Mode" %} </span> <span class="value">{{payment.payment_mode|payment_mode_value}}</span>
                         </div>
                         <div class="entry">
-                            <span class="key">{% trans "Paid Amount" %} :</span> <span class="value">{{payment.amount}} {% trans CURRENCY %}</span>
+                            <span class="key">{% trans "Paid Amount" %} </span> <span class="value">{{payment.amount}} {% trans CURRENCY %}</span>
                         </div>
                         <div class="entry">
-                            <span class="key">{% trans "Balance Amount" %} :</span> <span class="value">{{payment.balance_amount}} {% trans CURRENCY %}</span>
+                            <span class="key">{% trans "Balance Amount" %} </span> <span class="value">{{payment.balance_amount}} {% trans CURRENCY %}</span>
                         </div>
                         <div class="entry">
-                            <span class="key">{% trans "Fee" %} :</span> <span class="value">{{fee}} {% trans CURRENCY %}</span>
+                            <span class="key">{% trans "Fee" %} </span> <span class="value">{{fee}} {% trans CURRENCY %}</span>
                         </div>
                         
                         <div class="entry">
-                            <span class="key">{% trans "Commission" %} :</span> <span class="value">{{payment.commission}}</span>
+                            <span class="key">{% trans "Commission" %} </span> <span class="value">{{payment.commission}}</span>
                         </div>
                     </div>
                     <div class="box">
                         <div class="entry">
-                            <span class="key">{% trans "Pay Username" %} :</span> <span class="value">{{payment.pay_username}}</span>
+                            <span class="key">{% trans "Pay Username" %} </span> <span class="value">{{payment.pay_username}}</span>
                         </div>
                         <div class="entry">
-                            <span class="key">{% trans "Monthly Limit" %} :</span> <span class="value">{{payment.monthly_limit}} {% trans CURRENCY %}</span>
+                            <span class="key">{% trans "Monthly Limit" %} </span> <span class="value">{{payment.monthly_limit}} {% trans CURRENCY %}</span>
                         </div>
                         <div class="entry">
-                            <span class="key">{% trans "Creation Date" %} :</span> <span class="value">{{payment.created_at}}</span>
+                            <span class="key">{% trans "Creation Date" %} </span> <span class="value">{{payment.created_at}}</span>
                         </div>
                         <div class="entry">
-                            <span class="key">{% trans "Payment Date" %} :</span> <span class="value">{{payment.payment_date}}</span>
+                            <span class="key">{% trans "Payment Date" %} </span> <span class="value">{{payment.payment_date}}</span>
                         </div>
                         <div class="entry">
-                            <span class="key">{% trans "Schedule" %} :</span> <span class="value">{{payment.payment_schedule|payment_date_value}}</span>
+                            <span class="key">{% trans "Schedule" %} </span> <span class="value">{{payment.payment_schedule|payment_date_value}}</span>
                         </div>
 
                         <div class="entry">
-                            <span class="key">{% trans "UUID" %} :</span> <span class="value">{{payment.payment_uuid}}</span>
+                            <span class="key">{% trans "UUID" %} </span> <span class="value">{{payment.payment_uuid}}</span>
                         </div>
                     </div>
                 </div>
