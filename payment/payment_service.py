@@ -15,12 +15,12 @@ import uuid
 logger = logging.getLogger(__name__)
 
 
-def get_commission(amount, commision):
+def get_commission(amount, commission):
         fee = 0
         vendor_amount = 0
         succeed = False
-        if isinstance(amount, numbers.Number) and isinstance(commision, numbers.Number):
-            fee = round(amount * commision, 2)
+        if isinstance(amount, numbers.Number) and isinstance(commission, numbers.Number):
+            fee = round(amount * commission, 2)
             vendor_amount = amount - fee
             succeed = True
         else:
