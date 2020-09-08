@@ -56,7 +56,7 @@ def process_vendor_payment(user):
     
     vendor_balance = vendors_service.get_vendor_balance(user)
     policy_group = user.paymentpolicygroup_set.first()
-    fee, vendor_amount, succeed = get_commission(vendor_balance.balance, policy_group.policy.commision)
+    fee, vendor_amount, succeed = get_commission(vendor_balance.balance, policy_group.policy.commission)
     if not succeed:
         return None
     fee_user = None
