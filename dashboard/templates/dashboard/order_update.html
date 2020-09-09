@@ -28,13 +28,13 @@
     </div><!--End of Banner-Actions-->
     <div class="mat-box wrapper full">
         <div class="grid title">
-            <div class="box col-m-12">
+            <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
                 <p class="entry"><span class="key">{% trans "Payment Option" %}</span> <span class="value">{{order.payment_option|pay_option}}</span></p>
                 <p class="entry"><span class="key">{% trans "Order Status" %}</span> <span class="value">{{order.status|order_status_key}}</span></p>
                 <p class="entry"><span class="key">{% trans "Shipping Status" %}</span> <span class="value">{% if shipment %}{{shipment.shipment_status|tuple_key}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
             </div>
-            <div class="box col-m-12">
+            <div class="box">
                 <p class="entry"><span class="key">{% trans "Quantity" %}</span><span class="value">{{order.quantity}}</span></p>
                 <p class="entry"><span class="key">{% trans "Price" %}</span><span class="value">{{order.amount}} {% trans "XAF" %}</span></p>
                 {% if order.coupon %}
@@ -44,7 +44,7 @@
                 <p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.shipping_price}} {% trans "XAF" %}</span></p>
                 <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total}} {% trans "XAF" %}</span></p>
             </div>
-            <div class="box col-m-12">
+            <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
                 <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
             </div>

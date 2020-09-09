@@ -207,6 +207,7 @@
 .col-xs-11 { width: 91.666%; }
 .col-xs-12 { width: 100%; }
 .hidden-xs {display: none;}
+.box{ width: 100%;}
 
 }
   
@@ -228,6 +229,7 @@
   .col-m-11 { width: 91.666%; }
   .col-m-12 { width: 100%; }
   .hidden-m {display: none;}
+  .box{ width: 100%;}
 
 }
 

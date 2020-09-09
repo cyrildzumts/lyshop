@@ -30,7 +30,7 @@
                     <span class="success">{% trans "Payment Request" %}</span>
                 </div>
                 <div class="mat-box-content row">
-                    <div class="box col-m-12">
+                    <div class="box">
                         <div class="entry">
                             <span class="key">{% trans "Customer" %} </span> <span class="value">{{payment_request.customer.get_full_name}}</span>
                         </div>
@@ -47,7 +47,7 @@
                             <span class="key">{% trans "Date" %} </span> <span class="value">{{payment_request.created_at}}</span>
                         </div>
                     </div>
-                    <div class="box col-m-12">
+                    <div class="box">
                         <div class="entry">
                             <span class="key">{% trans "Verifcation Code" %} </span> <span class="value">{{payment_request.verification_code}}</span>
                         </div>
