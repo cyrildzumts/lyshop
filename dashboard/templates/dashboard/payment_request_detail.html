@@ -41,7 +41,7 @@
                             <span class="key">{% trans "Payment Status" %} </span> <span class="value">{{payment_request.payment_status|pay_status_key}}</span>
                         </div>
                         <div class="entry">
-                            <span class="key">{% trans "Amount" %} </span> <span class="value">{{payment_request.amount}} {% trans "XAF" %}</span>
+                            <span class="key">{% trans "Amount" %} </span> <span class="value">{{payment_request.amount}} {% trans CURRENCY %}</span>
                         </div>
                         <div class="entry">
                             <span class="key">{% trans "Date" %} </span> <span class="value">{{payment_request.created_at}}</span>
