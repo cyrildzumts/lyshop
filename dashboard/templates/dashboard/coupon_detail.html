@@ -15,8 +15,8 @@
 {% if can_view_coupon %}
 <div class="container">
         <div class="mat-box full">
-          <div class="grid title">
-            <div class="mat-box">
+          <div class="grid">
+            <div class="box">
                 <div class="entry">
                   <span class="key">{% trans "Name" %}</span> <span class="value">{{coupon.name}}</span>
                 </div>
@@ -34,7 +34,7 @@
                 </div>
 
             </div>
-            <div class="mat-box">
+            <div class="box">
                 <div class="entry">
                   <span class="key">{% trans "Begin at" %}</span> <span class="value">{{coupon.begin_at|date:"F j, Y"}}</span>
                 </div>
