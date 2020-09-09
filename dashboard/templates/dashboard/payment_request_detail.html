@@ -25,37 +25,41 @@
 
 {% if can_view_payment  %}
 <div class="container">
-        <div class="box">
+        <div class="mat-box">
                 <div class="title">
                     <span class="success">{% trans "Payment Request" %}</span>
                 </div>
-                <div class="box-content">
-                    <div class="entry">
-                        <span class="key">{% trans "Customer" %} :</span> <span class="value">{{payment_request.customer.get_full_name}}</span>
+                <div class="mat-box-content row">
+                    <div class="box">
+                        <div class="entry">
+                            <span class="key">{% trans "Customer" %} </span> <span class="value">{{payment_request.customer.get_full_name}}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Status" %} </span> <span class="value">{{payment_request.status}}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Payment Status" %} </span> <span class="value">{{payment_request.payment_status|pay_status_key}}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Amount" %} </span> <span class="value">{{payment_request.amount}} {% trans "XAF" %}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Date" %} </span> <span class="value">{{payment_request.created_at}}</span>
+                        </div>
                     </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Status" %} :</span> <span class="value">{{payment_request.status}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Payment Status" %} :</span> <span class="value">{{payment_request.payment_status|pay_status_key}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Amount" %} :</span> <span class="value">{{payment_request.amount}} {% trans "XAF" %}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Date" %} :</span> <span class="value">{{payment_request.created_at}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Verifcation Code" %} :</span> <span class="value">{{payment_request.verification_code}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "URL" %} :</span> <span class="value">{{payment_request.pay_url}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Description" %} :</span> <span class="value">{{payment_request.description}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "UUID" %} :</span> <span class="value">{{payment_request.request_uuid}}</span>
+                    <div class="box">
+                        <div class="entry">
+                            <span class="key">{% trans "Verifcation Code" %} </span> <span class="value">{{payment_request.verification_code}}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "URL" %} </span> <span class="value">{{payment_request.pay_url}}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Description" %} </span> <span class="value">{{payment_request.description}}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "REQUEST ID" %} </span> <span class="value">{{payment_request.request_uuid}}</span>
+                        </div>
                     </div>
                 </div>
         </div>
