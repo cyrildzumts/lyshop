@@ -51,12 +51,7 @@
                                 <div class="entry">
                                         <span class="key">{% trans "E-Mail" %}</span> <span class="value">{{user_instance.email}}</span>
                                 </div>
-                                <div class="entry">
-                                        <span class="key">{% trans "Date joined" %}</span> <span class="value">{{user_instance.date_joined|date:"F j, Y"}}</span>
-                                </div>
-                                <div class="entry">
-                                        <span class="key">{% trans "Last login" %}</span> <span class="value">{{user_instance.last_login|date:"F j, Y"}}</span>
-                                </div>
+                                
                         </div>
                         
                         {% if user_instance.account %}
@@ -86,6 +81,12 @@
                                         <span class="key">{% trans "Product sold" %}</span> <span class="value">{{user_instance.sold_products.count}}</span>
                                 </div>
                                 {% endif %}
+                                <div class="entry">
+                                        <span class="key">{% trans "Date joined" %}</span> <span class="value">{{user_instance.date_joined|date:"F j, Y"}}</span>
+                                </div>
+                                <div class="entry">
+                                        <span class="key">{% trans "Last login" %}</span> <span class="value">{{user_instance.last_login|date:"F j, Y"}}</span>
+                                </div>
                         </div>
 
                         <div class="box">
