@@ -7,37 +7,61 @@
 {% if is_seller %}
 
 <div class="container wrapper">
-  <div class="mat-box wrapper full">
-      <div class="row title">
-        <div class="mat-box-title wrapper">
-          <h4>{% trans "Name" %} : {{product.name}}</h4>
-          <h4>{% trans "Display Name" %} : {{product.display_name}}</h4>
-          <h4>{% trans "Quantity" %} : {{variant.quantity}}</h4>
-          <h4>{% trans "Vendor" %} : {{product.sold_by.username}}</h4>
-          <h4>{% trans "Unit Price" %} : {{product.price}} {% trans CURRENCY %}</h4>
-          <h4>{% trans "Views" %} : {{product.view_count}}</h4>
-        </div>
-        <div class="mat-box-title wrapper">
-          <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
-          <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
-          <h4>{% trans "Gender" %} : {{product.gender|gender_key}}</h4>
-          <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
-        </div>
-      </div><!--End of title-->
-      <div class="actions">
-          <a class="mat-button mat-button-default" href="{{variant.get_vendor_update_url}}"><span class="fas fa-pen icon"></span><span class="">{% trans "Edit" %}</span></a>
-
-          <form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
-              <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash icon"></span><span class="">{% trans "Delete" %}</span></button>
-              {% comment %} <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a> {% endcomment %}
-          </form>
-
-          <a class="mat-button mat-button-text" href="{{product.get_vendor_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Parent Product" %}</span></a>
-          <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}">{% trans "Vendor Home" %}</a>
-          
+    <div class="mat-box wrapper full">
+        <div class="mat-box-content row">
+          <div class="col-12 col-m-12 col-xs-12 title">
+              <span>{% trans "Product Information" %}</span>
+          </div>
+          <div class="box">
+            <div class="entry">
+              <span class="key">{% trans "Name" %}</span> <span class="value">{{product.name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Display Name" %}</span> <span class="value">{{product.display_name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Brand" %}</span> <span class="value">{{product.brand.display_name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Gender" %}</span> <span class="value">{{product.gender|gender_value}}</span>
+            </div>
+            
+            
+          </div>
+          <div class="box">
               
-      </div><!--End of Banner-Actions-->
-  </div>
+              <div class="entry">
+                <span class="key">{% trans "Quantity" %}</span> <span class="value">{{variant.quantity}}</span>
+              </div>
+              
+              <div class="entry">
+                <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{variant.price}} {% trans CURRENCY %}</span>
+              </div>
+          </div>
+          <div class="box">
+            
+            <div class="entry">
+              <span class="key">{% trans "Views" %}</span> <span class="value">{{product.view_count}}</span>
+            </div>
+          </div>
+          <div class="container wrapper">
+              <ul class="actions row" role="navigation">
+                  <li class="list-item"><a class="mat-button mat-button-default" href="{{variant.get_vendor_update_url}}"><span class="fas fa-pen icon"></span><span class="">{% trans "Edit" %}</span></a></li>
+                  <li class="list-item"><a class="mat-button mat-button-text" href="{{product.get_vendor_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Parent Product" %}</span></a></li>
+                  <li class="list-item">
+                      <form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
+                          <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash icon"></span><span class="">{% trans "Delete" %}</span></button>
+                          {% comment %} <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a> {% endcomment %}
+                      </form>
+                  </li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a> </li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Panel" %}</span></a></li>
+              </ul>
+          </div>
+        </div><!--End of mat-box-content-->
+        
+    </div><!--End of mat-box-->
+
   <div class="mat-box wrapper full">
       <div class="actions">
         <span class="mat-button js-add-attr-btn js-dialog-open" data-target="#attr-dialog"><i class="fas fa-plus icon"></i> <span>{% trans "Add Attribute" %}</span></span>

@@ -8,41 +8,61 @@
 
 <div class="container wrapper">
   <div class="mat-box wrapper full">
-      <div class="grid title">
-        <div class="col-m-12 col-4">
-          <div class="mat-box-title wrapper">
-            <h4>{% trans "Name" %} : {{product.name}}</h4>
-            <h4>{% trans "Display Name" %} : {{product.display_name}}</h4>
-            <h4>{% trans "Quantity" %} : {{product.quantity}}</h4>
-            <h4>{% trans "Vendor" %} : {{product.sold_by.username}}</h4>
-            <h4>{% trans "Unit Price" %} : {{product.price}} {% trans CURRENCY %}</h4>
-            <h4>{% trans "Views" %} : {{product.view_count}}</h4>
-          </div>
+      <div class="mat-box-content row">
+        <div class="col-12 col-m-12 col-xs-12 title">
+            <span>{% trans "Product Information" %}</span>
         </div>
-        <div class="col-m-12 col-4">
-            <div class="mat-box-title wrapper">
-              <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
-              <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
-              <h4>{% trans "Gender" %} : {{product.gender|gender_key}}</h4>
-              <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
-              <h4>{% trans "Number of Variants" %} : {{product.variants.count}}</h4>
+        <div class="box">
+          <div class="entry">
+            <span class="key">{% trans "Name" %}</span> <span class="value">{{product.name}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Display Name" %}</span> <span class="value">{{product.display_name}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Brand" %}</span> <span class="value">{{product.brand.display_name}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Gender" %}</span> <span class="value">{{product.gender|gender_value}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Type" %}</span> <span class="value">{{product.product_type.display_name}}</span>
+          </div>
+          
+        </div>
+        <div class="box">
+            <div class="entry">
+                <span class="key">{% trans "Category" %}</span> <span class="value">{{product.category.display_name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Quantity" %}</span> <span class="value">{{product.quantity}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Vendor" %}</span> <span class="value">{{product.sold_by.username}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{product.price}} {% trans CURRENCY %}</span>
             </div>
         </div>
-        
-      </div><!--End of title-->
-      <div class="mat-box-content">
-        <div class="container">
-            <ul class="actions" role="navigation">
+        <div class="box">
+          <div class="entry">
+            <span class="key">{% trans "Number of Variants" %}</span> <span class="value">{{product.variants.count}}</span>
+          </div>
+          <div class="entry">
+            <span class="key">{% trans "Views" %}</span> <span class="value">{{product.view_count}}</span>
+          </div>
+        </div>
+        <div class="container wrapper">
+            <ul class="actions row" role="navigation">
                 <li class="list-item"><a class="mat-button mat-button-default" href="{{product.get_vendor_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>
-                
                 <li class="list-item"><a class="mat-button mat-button-default" href="{% url 'vendors:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a></li>
                 <li class="list-item"><a class="mat-button mat-button-default" href="{% url 'vendors:product-image-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Image" %}</span></a></li>
-                
                 <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a> </li>
-                <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+                <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Panel" %}</span></a></li>
             </ul>
         </div>
       </div><!--End of mat-box-content-->
+      
   </div><!--End of mat-box-->
 
   <div class="mat-box wrapper full">
