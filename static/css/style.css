@@ -132,11 +132,11 @@
     display: inline-block;
     /*min-width: 250px;*/
     text-align: left;
+    font-size: 0.875em;
 }
 
 .entry .key{
     font-weight: 400;
-    font-size: 0.875em;
     /*width: 50%;*/
     margin: 4px 8px;
 
@@ -149,7 +149,6 @@
 }
 */
 .entry .value{
-    font-size: 1em;
     font-weight: 600;
     text-align: right;
     margin: 4px 8px;
@@ -157,7 +156,7 @@
 
 .box .title{
     width: 100%;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: bold;
     
 }
