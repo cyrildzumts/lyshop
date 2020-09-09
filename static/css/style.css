@@ -89,8 +89,8 @@
 .box{
     /*display: flex;*/
     /*flex-wrap: wrap;*/
-    padding:16px 8px;
-    margin: 16px 4px;
+    /*padding:16px 8px;*/
+    margin: 16px 1px;
     text-align: center;
     border: 1px solid #ccc;
 }
