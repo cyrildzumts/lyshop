@@ -1,0 +1,89 @@
+{% extends "payment_base.html"%}
+{% load i18n %}
+{% load payment_tags %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+            {% block  HEADER_BANNER_TITLE %}
+                <h4> {% trans "Payment" %}</h4>
+            {% endblock HEADER_BANNER_TITLE %}
+        </div>
+        <div class="container">
+            <div class="col col-9">
+                <div class="banner--actions">
+                    
+                    <a class="mat-button mat-button-text" href="{% url 'payment:payment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Payment" %}</span></a>
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+{% block MAIN_CONTENT %}
+
+{% if can_view_payment  %}
+<div class="container">
+        <form action="{{payment.get_update_url}}" id="payment-update">{% csrf_token %}
+            <input id="changed-by" type="hidden" name="changed_by" value="{{request.user.pk}}">
+            
+        </form>
+        <div class="mat-box">
+                <div class="mat-box-title">
+                    <span class="title">{% trans "Payment Information" %}</span>
+                </div>
+                <div class="mat-box-content row">
+
+                    <div class="box">
+                        <div class="entry">
+                            <span class="key">{% trans "Merchant" %} </span> <span class="value">{{payment.seller.get_full_name}}</span>
+                        </div>
+                        
+                        <div class="entry">
+                            <span class="key">{% trans "Payment Mode" %} </span> <span class="value">{{payment.payment_mode|payment_mode_value}}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Paid Amount" %} </span> <span class="value">{{payment.amount}} {% trans CURRENCY %}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Balance Amount" %} </span> <span class="value">{{payment.balance_amount}} {% trans CURRENCY %}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Fee" %} </span> <span class="value">{{fee}} {% trans CURRENCY %}</span>
+                        </div>
+                        
+                        <div class="entry">
+                            <span class="key">{% trans "Commission" %} </span> <span class="value">{{payment.commission}}</span>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="entry">
+                            <span class="key">{% trans "Pay Username" %} </span> <span class="value">{{payment.pay_username}}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Monthly Limit" %} </span> <span class="value">{{payment.monthly_limit}} {% trans CURRENCY %}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Creation Date" %} </span> <span class="value">{{payment.created_at}}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Payment Date" %} </span> <span class="value">{{payment.payment_date}}</span>
+                        </div>
+                        <div class="entry">
+                            <span class="key">{% trans "Schedule" %} </span> <span class="value">{{payment.payment_schedule|payment_date_value}}</span>
+                        </div>
+
+                        <div class="entry">
+                            <span class="key">{% trans "PAYMENT ID" %} </span> <span class="value">{{payment.payment_uuid}}</span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+</div>
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN_CONTENT %}

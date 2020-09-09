@@ -29,19 +29,18 @@
     </div><!--End of Banner-Actions-->
     <div class="mat-box full">
         <div class="grid title">
-            <div class="mat-box-title wrapper">
+            <div class="box">
                 <p class="entry"><span class="key">{% trans "Shipment Reference Number" %} </span> <span class="value">{{shipment.shipment_ref_number}}</span></p>
                 <p class="entry"><span class="key">{% trans "Shipping Price" %} </span> <span class="value">{{shipment.price}} {% trans CURRENCY %}</span></p>
                 <p class="entry"><span class="key">{% trans "Company" %} </span> <span class="value">{{shipment.company}}</span></p>
                 <p class="entry"><span class="key">{% trans "Customer" %} </span> <span class="value">{{shipment.customer.get_full_name}}</span></p>
-            
             </div>
-            <div class="mat-box-title wrapper">
+            <div class="box">
                 <p class="entry"><span class="key">{% trans "Status" %} </span> <span class="value">{{shipment.shipment_status|tuple_key}}</span></p>
                 <p class="entry"><span class="key">{% trans "Date" %} </span> <span class="value">{{shipment.created_at|date:"F j, Y"}}</span></p>
                 <p class="entry"><span class="key">{% trans "Shipped Date" %} </span> <span class="value">{{shipment.shipped_at|date:"F j, Y"}}</span></p>
                 <p class="entry"><span class="key">{% trans "Delivered Date" %} </span> <span class="value">{{shipment.delivered_at|date:"F j, Y"}}</span></p>
-            
+                <p class="entry"><span class="key">{% trans "SHIPMENT ID" %} </span> <span class="value">{{shipment.shipment_uuid}}</span></p>
             </div>
         </div>
     

@@ -81,17 +81,19 @@ def payments(request):
 def payment_details(request, payment_uuid=None):
     username = request.user.username
 
-    can_view_payment = PermissionManager.user_can_view_policy(request.user)
+    can_view_payment = PermissionManager.user_can_view_payment(request.user)
     if not can_view_payment:
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
     context = {}
     payment = get_object_or_404(Payment, payment_uuid=payment_uuid)
+    can_be_updated = payment_service.payment_can_be_updated(payment)
     template_name = "payment/payment_detail.html"
     page_title = "Payment Details - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['payment'] = payment
+    context['can_be_updated'] = can_be_updated
     context['fee'] = payment.balance_amount - payment.amount
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)

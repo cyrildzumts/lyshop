@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, Group
 from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
 from payment.models import Payment, PaymentHistory, PaymentPolicy, PaymentPolicyGroup
+from payment import conf as PaymentConf
 from vendors import vendors_service
 from vendors.models import Balance, BalanceHistory
 from lyshop import settings
@@ -29,6 +30,14 @@ def get_commission(amount, commission):
         #logger.info(f"Commission : {commision} - Fee : {fee} - Amount : {amount} - Vendor Amount : {vendor_amount}")
         
         return (fee, vendor_amount, succeed)
+
+
+def payment_can_be_updated(payment):
+    if not isinstance(payment, Payment):
+        logger.warn(f"payment_can_be_updated : The paramnt payment is not of the type Payment")
+        return False
+    
+    return payment.payment_mode == PaymentConf.PAYMENT_PAY
 
 
 def request_payment(data=None):
