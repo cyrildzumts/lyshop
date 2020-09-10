@@ -17,61 +17,57 @@
 
 <div class="container">
   <div class="mat-box wrapper full">
-      <div class="row title">
-
-        <div class="mat-box-title wrapper">
-          <div class="entry">
-            <span class="key">{% trans "Name" %}</span> <span class="value">{{product.name}}</span>
+      <div class="mat-box-content row">
+          <div class="col-12 col-m-12 col-xs-12 title">
+              <span>{% trans "Product Variant Information" %}</span>
           </div>
-          <div class="entry">
-            <span class="key">{% trans "Display Name" %}</span> <span class="value">{{product.display_name}}</span>
+          <div class="box">
+            <div class="entry">
+              <span class="key">{% trans "Name" %}</span> <span class="value">{{product.name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Display Name" %}</span> <span class="value">{{product.display_name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Brand" %}</span> <span class="value">{{product.brand.display_name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Gender" %}</span> <span class="value">{{product.gender|gender_value}}</span>
+            </div>
+            
+            
           </div>
-          <div class="entry">
-            <span class="key">{% trans "Quantity" %}</span> <span class="value">{{variant.quantity}}</span>
-          </div>
-          <div class="entry">
-            <span class="key">{% trans "Vendor" %}</span> <span class="value">{{product.sold_by.username}}</span>
-          </div>
-          <div class="entry">
-            <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{product.price}} {% trans CURRENCY %}</span>
-          </div>
-          <div class="entry">
-            <span class="key">{% trans "Views" %}</span> <span class="value">{{product.view_count}}</span>
-          </div>
-        </div>
-        <div class="mat-box-title wrapper">
-          <div class="entry">
-            <span class="key">{% trans "Brand" %}</span> <span class="value">{{product.brand.display_name}}</span>
-          </div>
-          <div class="entry">
-            <span class="key">{% trans "Type" %}</span> <span class="value">{{product.product_type.display_name}}</span>
-          </div>
-          <div class="entry">
-            <span class="key">{% trans "Gender" %}</span> <span class="value">{{product.gender|gender_value}}</span>
-          </div>
-          <div class="entry">
-            <span class="key">{% trans "Category" %}</span> <span class="value">{{product.category.display_name}}</span>
-          </div>
-
-        </div>
-
-      </div><!--End of title-->
-      <div class="actions">
-          
-          {% if can_change_product %}
-          <a class="mat-button mat-button-default" href="{{variant.get_update_url}}"><span class="fas fa-pen icon"></span><span class="">{% trans "Edit" %}</span></a>
-          {% endif %}
-          {% if can_delete_product %}
-          <form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
-              <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash icon"></span><span class="">{% trans "Delete" %}</span></button>
-              {% comment %} <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a> {% endcomment %}
-          </form>
-          {% endif %}
-          <a class="mat-button mat-button-text" href="{{product.get_dashboard_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Parent Product" %}</span></a>
-          <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a>
-          
+          <div class="box">
               
-      </div><!--End of Banner-Actions-->
+              <div class="entry">
+                <span class="key">{% trans "Quantity" %}</span> <span class="value">{{variant.quantity}}</span>
+              </div>
+              
+              <div class="entry">
+                <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{variant.price}} {% trans CURRENCY %}</span>
+              </div>
+          </div>
+          <div class="box">
+            
+            <div class="entry">
+              <span class="key">{% trans "Views" %}</span> <span class="value">{{product.view_count}}</span>
+            </div>
+          </div>
+          <div class="container wrapper">
+              <ul class="actions row" role="navigation">
+                  <li class="list-item"><a class="mat-button mat-button-default" href="{{variant.get_update_url}}"><span class="fas fa-pen icon"></span><span class="">{% trans "Edit" %}</span></a></li>
+                  <li class="list-item"><a class="mat-button mat-button-text" href="{{product.get_dashboard_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Parent Product" %}</span></a></li>
+                  <li class="list-item">
+                      <form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
+                          <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash icon"></span><span class="">{% trans "Delete" %}</span></button>
+                          {% comment %} <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a> {% endcomment %}
+                      </form>
+                  </li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a> </li>
+                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a></li>
+              </ul>
+          </div>
+        </div><!--End of mat-box-content-->
   </div>
   <div class="mat-box wrapper full">
       <div class="actions">
