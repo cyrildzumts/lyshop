@@ -74,7 +74,7 @@
         <span class="mat-button js-add-attr-btn js-dialog-open" data-target="#attr-dialog"><i class="fas fa-plus icon"></i> <span>{% trans "Add Attribute" %}</span></span>
         <span class="mat-button js-reveal-btn" data-target="#variant-attrs"><i class="fas fa-pen icon"></i><span>{% trans "Edit Attribute" %}</span></span>
       </div>
-      <div class="mat-box-content">
+      <div class="mat-box-content row">
           <form class="row" action="{% url 'dashboard:attribute-remove' variant.product_uuid %}" method="POST">{% csrf_token %}
               <ul id="variant-attrs" class="box">
                 
