@@ -6,10 +6,16 @@
 
 <div class="container wrapper">
         <div class="mat-box full">
-          <div class="mat-box-title">
-            <h3> {% trans "Name" %} : {{brand.name}} </h3>
-            <h4> {% trans "Display Name" %} : {{brand.display_name}}</h4>
-            <h4><span><i class="fas fa-barcode icon">{% trans "Code" %} : </i>{{brand.code}}</span></h4>
+          <div class="box">
+            <div class="entry">
+              <span class="key">{% trans "Name" %}</span> <span class="value">{{brand.name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Display Name" %}</span> <span class="value">{{brand.display_name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key"><i class="fas fa-barcode icon">{% trans "Code" %}</i></span> <span class="value">{{brand.code}}</span>
+            </div>
           </div>
           <div class="mat-box-content">
             <ul class="actions row" role="navigation">
