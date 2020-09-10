@@ -23,18 +23,22 @@
                 <div class="entry">
                   <span class="key">{% trans "Reduction" %}</span> <span class="value">{{coupon.reduction}}</span>
                 </div>
-                <div class="entry">
-                  <span class="key">{% trans "Vendor" %} </span> <span class="value">{{coupon.seller.username}}</span>
-                </div>
+                
                 <div class="entry">
                   <span class="key">{% trans "Status" %}</span> <span class="value">{% if coupon.is_active %}{% trans "Activated" %} {% else %}{% trans "Not activated" %}{% endif %}</span>
                 </div>
+                 {% if coupon.seller %}
+                <div class="entry">
+                  <span class="key">{% trans "Merchant" %}</span> <span class="value">{{coupon.seller.username}}</span>
+                </div>
+                {% endif %}
+                
+            </div>
+            
+            <div class="box">
                 <div class="entry">
                   <span class="key">{% trans "Create at" %}</span> <span class="value">{{coupon.created_at|date:"F j, Y"}}</span>
                 </div>
-
-            </div>
-            <div class="box">
                 <div class="entry">
                   <span class="key">{% trans "Begin at" %}</span> <span class="value">{{coupon.begin_at|date:"F j, Y"}}</span>
                 </div>
@@ -42,21 +46,17 @@
                   <span class="key">{% trans "Expire at" %}</span> <span class="value">{{coupon.expire_at|date:"F j, Y"}}</span>
                 </div>
                 <div class="entry">
+                  <span class="key">{% trans "Activated at" %}</span> <span class="value">{{coupon.activated_at|date:"F j, Y"}}</span>
+                </div>
+            </div>
+            <div class="box">
+               
+                <div class="entry">
                   <span class="key">{% trans "Added by" %}</span> <span class="value">{{coupon.added_by.username}}</span>
                 </div>
                 <div class="entry">
                   <span class="key">{% trans "Activated by" %}</span> <span class="value">{{coupon.activated_by.username}}</span>
                 </div>
-                {% if coupon.seller %}
-                <div class="entry">
-                  <span class="key">{% trans "Seller" %}</span> <span class="value">{{coupon.seller.username}}</span>
-                </div>
-                {% endif %}
-                <div class="entry">
-                  <span class="key">{% trans "Activated at" %}</span> <span class="value">{{coupon.activated_at|date:"F j, Y"}}</span>
-                </div>
-
-
             </div>
           </div><!--End of title-->
           <div class="mat-box-content">
