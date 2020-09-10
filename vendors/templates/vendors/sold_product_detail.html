@@ -8,41 +8,59 @@
 
 <div class="container wrapper">
   <div class="mat-box wrapper full">
-      <div class="row title">
-        <div class="mat-box-title wrapper">
-          <h4>{% trans "Name" %} : {{product.name}}</h4>
-          <h4>{% trans "Display Name" %} : {{product.display_name}}</h4>
-          <h4>{% trans "Quantity" %} : {{variant.quantity}}</h4>
-          <h4>{% trans "Vendor" %} : {{product.sold_by.username}}</h4>
-          <h4>{% trans "Unit Price" %} : {{product.price}} {% trans CURRENCY %}</h4>
-          <h4>{% trans "Views" %} : {{product.view_count}}</h4>
-        </div>
-        <div class="mat-box-title wrapper">
-          <h4>{% trans "Brand" %} : {{product.brand.display_name}}</h4>
-          <h4>{% trans "Type" %} : {{product.product_type.display_name}}</h4>
-          <h4>{% trans "Gender" %} : {{product.gender|gender_key}}</h4>
-          <h4>{% trans "Category" %} : {{product.category.display_name}}</h4>
-          <h4>{% trans "Sold date" %} : {{sold_product.created_at|date:"F j, Y"}}</h4>
-        </div>
-      </div><!--End of title-->
+      <div class="grid">
+          <div class="col-12 col-m-12 col-xs-12 title">
+              <span>{% trans "Product Variant Information" %}</span>
+          </div>
+          <div class="box">
+            <div class="entry">
+              <span class="key">{% trans "Name" %}</span> <span class="value">{{product.name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Display Name" %}</span> <span class="value">{{product.display_name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Brand" %}</span> <span class="value">{{product.brand.display_name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Gender" %}</span> <span class="value">{{product.gender|gender_value}}</span>
+            </div>
+          </div>
+          <div class="box">
+              <div class="entry">
+                <span class="key">{% trans "Quantity" %}</span> <span class="value">{{variant.quantity}}</span>
+              </div>
+              
+              <div class="entry">
+                <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{variant.price}} {% trans CURRENCY %}</span>
+              </div>
+          </div>
+          <div class="box">
+            <div class="entry">
+              <span class="key">{% trans "Views" %}</span> <span class="value">{{product.view_count}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Sold Date" %}</span> <span class="value">{{sold_product.created_at|date:"F j, Y"}}</span>
+            </div>
+          </div>
+        
+      </div><!--End of grid-->
       <div class="actions">
           
           <a class="mat-button mat-button-text" href="{{product.get_vendor_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Parent Product" %}</span></a>
-          <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}">{% trans "Vendor Home" %}</a>
-          <a class="mat-button mat-button-default" href="{{sold_product.get_vendor_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a>
-              
+          <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}">{% trans "Vendor Home" %}</a>  
       </div><!--End of Banner-Actions-->
   </div>
   <div class="mat-box wrapper full">
       <div class="title">
         <h4>{% trans "Product Attributes" %}</h4>
       </div>
-      <div class="mat-box-content">
-              <ul id="variant-attrs" class="mat-list">
+      <div class="mat-box-content row">
+              <ul id="variant-attrs" class="mat-list box">
                   {% for attr in attribute_list %}
-                  <li class="mat-list-item"><span>{{attr.display_name}}</span><i class="separator-ht"></i><span>{{attr.value}}</span> <input class="hidden js-revealable" type="checkbox" name="attributes" value="{{attr.pk}}"></li>
+                  <li class="mat-list-item entry"><span class="key">{{attr.display_name}}</span><span class="value">{{attr.value}}</span></li>
                   {% empty %}
-                  <li class="mat-list-item"><span>{% trans "No attributes found" %}</span></li>
+                  <li class="mat-list-item entry"><span class="key">{% trans "No attributes found" %}</span></li>
                   {% endfor %}
                   
               </ul>
