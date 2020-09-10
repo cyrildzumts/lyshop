@@ -34,15 +34,13 @@
 {% if token_list %}
     <div class="col-m-12 col-9">
         <div class="mat-list-wrapper">
-            <div class="mat-list-header">
+            <div class="mat-list-header col-xs-12 col-m-12 col-12">
                 <span class="title">{% trans "Token List" %}</span>
             </div>
-            <ul class="mat-list">
+            <ul class="box">
                 {% for token in token_list %}
-                <li class="mat-list-item">
-                        <div class="entry">
-                            <span>{{token.key}}</span> <i class="separator-ht"></i> <span class="emphasis">{{token.user.username}}</span>
-                        </div>
+                <li class="mat-list-item entry">
+                        <span class="key">{{token.user.username}}</span><span class="value"> Token {{token.key}}</span>
                 </li>
                 {% endfor %}
             </ul>
