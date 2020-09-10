@@ -75,13 +75,13 @@
         <span class="mat-button js-reveal-btn" data-target="#variant-attrs"><i class="fas fa-pen icon"></i><span>{% trans "Edit Attribute" %}</span></span>
       </div>
       <div class="mat-box-content">
-          <form action="{% url 'dashboard:attribute-remove' variant.product_uuid %}" method="POST">{% csrf_token %}
-              <ul id="variant-attrs" class="mat-list">
+          <form class="row" action="{% url 'dashboard:attribute-remove' variant.product_uuid %}" method="POST">{% csrf_token %}
+              <ul id="variant-attrs" class="box">
                 
                   {% for attr in attribute_list %}
-                  <li class="mat-list-item"><span>{{attr.display_name}}</span><i class="separator-ht"></i><span>{{attr.value}}</span> <input class="hidden js-revealable" type="checkbox" name="attributes" value="{{attr.pk}}"></li>
+                  <li class="mat-list-item entry"><span class="key">{{attr.display_name}}</span><span class="value">{{attr.value}}</span> <input class="hidden js-revealable" type="checkbox" name="attributes" value="{{attr.pk}}"></li>
                   {% empty %}
-                  <li class="mat-list-item"><span>{% trans "No attributes found" %}</span></li>
+                  <li class="mat-list-item entry"><span>--</span></li>
                   {% endfor %}
                   
               </ul>
@@ -101,10 +101,10 @@
     <span class="mat-button js-clear-input" data-target="#attrs-container">{% trans "Clear Form" %}</span>
     <div class="dialog-content container">
       <div class="mat-list-wrapper full">
-      <form action="{% url 'dashboard:attribute-add' variant.product_uuid %}" method="post"> {% csrf_token %}
-        <ul class="mat-list">
+      <form class="row" action="{% url 'dashboard:attribute-add' variant.product_uuid %}" method="post"> {% csrf_token %}
+        <ul class="box">
           {% for attr in available_attribute_list %}
-            <li class="mat-list-item"><span>{{attr.display_name}}</span>-<span>{{attr.value}}</span><input type="checkbox" name="attributes" value="{{attr.pk}}"></li>
+            <li class="mat-list-item entry"><span class="key">{{attr.display_name}}</span><span class="value">{{attr.value}}</span><input type="checkbox" name="attributes" value="{{attr.pk}}"></li>
           {% endfor %}
         </ul>
         <div class="actions">

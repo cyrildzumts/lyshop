@@ -59,7 +59,7 @@
         <h4>{% trans "Product Attributes" %}</h4>
       </div>
       <div class="mat-box-content">
-              <ul id="variant-attrs" class="mat-list">
+              <ul id="variant-attrs" class="box">
                   {% for attr in attribute_list %}
                   <li class="mat-list-item entry"><span class="key">{{attr.display_name}}</span><span class="value">{{attr.value}}</span> </li>
                   {% empty %}
