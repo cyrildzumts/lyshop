@@ -50,7 +50,7 @@ function input_check_max_limit(input){
     var max_len_reached = len >= max_len;
     console.log("Max length : %s - current length : %s", max_len, len)
     $input.toggleClass("warning", max_len_reached);
-    target.toggleClass("warning", max_len_reached);
+    target.toggleClass("warning", max_len_reached).text(len);
 }
 
 
