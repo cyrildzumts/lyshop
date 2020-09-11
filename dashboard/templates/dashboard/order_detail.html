@@ -50,10 +50,11 @@
                 <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
                 <p class="entry"><span class="key">{% trans "TOTAL" %}</span><span class="value">{{order.total}} {% trans CURRENCY %}</span></p>
             </div>
+            {% if order.description %}
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Description" %}</span> <span class="value">{{order.description}}</span></p>
-                
             </div>
+            {% endif %}
             
         </div><!--End of title-->
         <div class="mat-box-content">
