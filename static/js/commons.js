@@ -42,6 +42,16 @@ function notify_init(wrapper, message_container){
     });
 }
 
+function input_check_max_limit(input){
+    var $input = $(input);
+    var max_len = parseInt($input.data('max-length'));
+    var target = $($input.data('target'));
+    var max_len_reached = $input.val().length >= max_len;
+    $input.toggleClass("warning", max_len_reached);
+    target.toggleClass("warning", max_len_reached);
+}
+
+
 var ListFilter = (function(){
     function ListFilter(){
         console.log("creating ListFilter instance");
@@ -460,4 +470,9 @@ $(document).ready(function(){
     });
     $('.js-select-image').on('click', kiosk_update);
     $('.js-select-image').first().click();
+    $(".limited-input").on("keyup", function(event){
+        event.stopPropagation();
+        console.log("limited input keyup");
+        input_check_max_limit(this);
+    });
 });
