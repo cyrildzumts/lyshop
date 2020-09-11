@@ -47,7 +47,7 @@ function input_check_max_limit(input){
     var max_len = parseInt($input.data('max-length'));
     var len = $input.val().length;
     var target = $($input.data('target'));
-    var max_len_reached = len >= max_len;
+    var max_len_reached = len > max_len;
     $input.toggleClass("warning", max_len_reached);
     target.toggleClass("danger", max_len_reached).text(len);
 }
