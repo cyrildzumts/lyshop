@@ -85,16 +85,26 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="short_description">{% trans "Short Description" %}</label>
-            <textarea id="short_description" name="short_description" cols="30" rows="10">{{product.short_description}}</textarea>
-            <div class="row"><span class="char-counter">{{product.short_description|length}}</span><span class="text-max-length">/164</span></div>
+        <div class="flex flex-column">
+            <div class="form-group">
+                <label for="short_description">{% trans "Short Description" %}</label>
+                <textarea id="short_description" class="limited-input" name="short_description" cols="30" rows="10" data-target="#short-description-counter" data-max-length="{{SHORT_DESCRIPTION_MAX_SIZE}}">
+                {{product.short_description}}
+                </textarea>
+            </div>
+            
+            <div class="row"> <span id="short-description-counter" class="char-counter">{{product.short_description|length}}</span><span class="text-max-length">/ {{SHORT_DESCRIPTION_MAX_SIZE}}</span></div>
         </div>
 
-        <div class="form-group">
-            <label for="description">{% trans "Description" %}</label>
-            <textarea id="description" name="description" cols="30" rows="10">{{product.description}}</textarea>
-            <div class="row"><span class="char-counter">{{product.description|length}}</span><span class="text-max-length">/600</span></div>
+        <div class="flex flex-column">
+            <div class="form-group">
+                <label for="description">{% trans "Description" %}</label>
+                <textarea id="description" class="limited-input" name="description" cols="30" rows="10" data-target="#description-counter" data-max-length="{{DESCRIPTION_MAX_SIZE}}">
+                {{product.description}}
+                </textarea>
+            </div>
+            
+            <div class="row"> <span id="description-counter" class="char-counter">{{product.description|length}}</span><span class="text-max-length">/ {{DESCRIPTION_MAX_SIZE}}</span></div>
         </div>
         
         <div class="form-group row">

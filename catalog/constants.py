@@ -1,6 +1,10 @@
 
 from lyshop import utils
 
+
+SHORT_DESCRIPTION_MAX_SIZE = 164
+DESCRIPTION_MAX_SIZE = 300
+
 GENDER_MEN          = 1
 GENDER_WOMEN        = 2
 GENDER_BABY_GIRL    = 3
