@@ -285,6 +285,11 @@ class Product(models.Model):
     
     def get_vendor_delete_url(self):
         return reverse("vendors:product-delete", kwargs={"product_uuid": self.product_uuid})
+
+    
+    @property
+    def get_promotion_price(self):
+        return self.promotion_price or 0
     
 
 class SKUModel(models.Model):
@@ -337,7 +342,7 @@ class ProductVariant(models.Model):
 
     @property
     def get_promotion_price(self):
-        return self.promotion_price or self.product.promotion_price
+        return self.promotion_price or self.product.promotion_price or 0
 
 
 

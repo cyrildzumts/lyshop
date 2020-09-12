@@ -36,7 +36,7 @@
                   <td scope="row" data-label="{% trans 'Gender' %}">{{product.gender|gender_key}}</td>
                   <td scope="row" data-label="{% trans 'Type' %}">{{product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{product.price}}</span> <span>{% trans CURRENCY %}</span></span></td>
-                  <td scope="row" data-label="{% trans 'Promotion Price' %}"><span><span>{{product.promotion_price}}</span> <span>{% trans CURRENCY %}</span></span></td>
+                  <td scope="row" data-label="{% trans 'Promotion Price' %}"><span><span>{{product.get_promotion_price}}</span> <span>{% trans CURRENCY %}</span></span></td>
                   <td scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{product.get_vendor_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   {% if is_seller %}
                   <td scope="row" data-label="{% trans 'Action' %}"><button class="mat-button mat-button-default warning danger js-need-confirmation" type="submit"> {% trans "Delete" %}</button></td>
