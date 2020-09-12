@@ -336,7 +336,7 @@ class ProductVariant(models.Model):
         return reverse("vendors:product-variant-delete", kwargs={"variant_uuid": self.product_uuid})
 
     @property
-    def promotion_price(self):
+    def get_promotion_price(self):
         logger.debug("promotion property called")
         return self.promotion_price or self.product.promotion_price
 
