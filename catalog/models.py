@@ -335,6 +335,11 @@ class ProductVariant(models.Model):
     def get_vendor_delete_url(self):
         return reverse("vendors:product-variant-delete", kwargs={"variant_uuid": self.product_uuid})
 
+    @property
+    def promotion_price(self):
+        logger.debug("promotion property called")
+        return self.promotion_price or self.product.promotion_price
+
 
 
 def upload_to(instance, filename):
