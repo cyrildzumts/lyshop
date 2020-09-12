@@ -9,7 +9,7 @@
             <ul class="mat-list">
                 <li class="mat-list-item">
                     <div class="list-header row">
-                        <span class="col-4">{% trans "Items" %}</span><span class="col-2">{% trans "Quantity" %}</span><span class="col-1">{% trans "Unit Price" %}</span><span class="col-1">{% trans "Total Price" %}</span><span class="col-1"></span>
+                        <span class="col-4">{% trans "Items" %}</span><span class="col-2">{% trans "Quantity" %}</span><span class="col-1">{% trans "Unit Price" %}</span><span class="col-1">{% trans "Promotion Price" %}</span><span class="col-1">{% trans "Total Price" %}</span><span class="col-1"></span>
                     </div>
                 </li>
                 
@@ -41,6 +41,11 @@
                             <div class="col-1">
                                 <div class="price"><span>{{item.unit_price}}</span><span class="">{% trans CURRENCY %}</span></div>
                             </div>
+                            
+                            <div class="col-1">
+                                <div class="price"><span>{{item.promotion_price}}</span><span>{% trans CURRENCY %}</span></div>
+                            </div>
+                            
                             <div class="col-1">
                                 <div class="price"><span id="item-total-price-{{item.id}}">{{item.total_price}}</span><span class="">{% trans CURRENCY %}</span></div>
                             </div>
