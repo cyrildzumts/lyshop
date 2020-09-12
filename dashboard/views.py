@@ -637,6 +637,8 @@ def product_update(request, product_uuid=None):
     context['user_list'] = User.objects.all()
     context['product_type_list'] = ProductType.objects.all()
     context['GENDER'] = Catalog_Constants.GENDER
+    context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
+    context['SHORT_DESCRIPTION_MAX_SIZE'] = Catalog_Constants.SHORT_DESCRIPTION_MAX_SIZE
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
