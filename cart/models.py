@@ -126,14 +126,12 @@ class CartItem(models.Model):
         
     @property
     def is_promoted(self):
-        return self.product.promotion_price is not None
+        return self.product.get_promotion_price is not None
 
     
     @property
     def promotion_price(self):
-        if self.is_promoted:
-            return self.product.promotion_price
-        return 0
+        return self.product.get_promotion_price
 
     @property
     def total_promotion_price(self):
