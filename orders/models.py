@@ -104,7 +104,7 @@ class OrderItem(models.Model):
 
     @property
     def total_promoton_price(self):
-        if self.was_promoted():
+        if self.was_promoted:
             return  self.quantity * self.promotion_price
         return 0
 

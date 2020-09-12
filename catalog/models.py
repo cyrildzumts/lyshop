@@ -337,7 +337,6 @@ class ProductVariant(models.Model):
 
     @property
     def get_promotion_price(self):
-        logger.debug("promotion property called")
         return self.promotion_price or self.product.promotion_price
 
 
