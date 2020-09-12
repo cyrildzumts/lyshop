@@ -73,7 +73,9 @@ class OrderItem(models.Model):
     product = models.ForeignKey(ProductVariant, related_name='order_items', on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     unit_price = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    promotion_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     total_price = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    total_promotion_price = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     is_active = models.BooleanField(default=True, blank=True, null=True)
     item_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -95,6 +97,16 @@ class OrderItem(models.Model):
     @property
     def name(self):
         return self.product.name
+    
+    @property
+    def was_promoted(self):
+        return self.promotion_price is not None
+
+    @property
+    def total_promoton_price(self):
+        if self.was_promoted():
+            return  self.quantity * self.promotion_price
+        return 0
 
 
 class PaymentRequest(models.Model):

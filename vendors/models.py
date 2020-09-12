@@ -75,6 +75,7 @@ class SoldProduct(models.Model):
     product = models.ForeignKey('catalog.ProductVariant', blank=False, null=True, on_delete=models.SET_NULL)
     quantity = models.IntegerField(default=1)
     unit_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    promotion_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     total_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)  
@@ -96,3 +97,14 @@ class SoldProduct(models.Model):
 
     def get_vendor_delete_url(self):
         return reverse("vendors:sold-product-delete", kwargs={"product_uuid": self.product_uuid})
+    
+
+    @property
+    def was_promoted(self):
+        return self.promotion_price is not None
+
+    @property
+    def total_promoton_price(self):
+        if self.was_promoted():
+            return  self.quantity * self.promotion_price
+        return 0

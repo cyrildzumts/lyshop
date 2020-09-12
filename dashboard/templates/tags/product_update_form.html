@@ -16,9 +16,12 @@
         </div>
         <div class="form-group">
             <label for="price">{% trans "Price" %} </label>
-            <input type="text" id="price" name="price" value="{{product.price|unlocalize}}">
+            <input type="text" id="price" name="price" value="{{product.price}}">
         </div>
-
+        <div class="form-group">
+            <label for="promotion-price">{% trans "Promotion Price" %} </label>
+            <input type="text" id="pomotion-price" name="promotion_price" value="{{product.promotion_price}}">
+        </div>
         <div class="form-group">
             <label for="quantity">{% trans "Quantity" %}</label>
             <input type="text" id="quantity" name="quantity" value="{{product.quantity}}">

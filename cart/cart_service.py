@@ -74,8 +74,8 @@ def add_to_cart(cart, product_variant):
             return cart_item, cart
         else:
             return None, cart
-
-    cart_item = CartItem.objects.create(cart=cart, product=product_variant, quantity=1, unit_price=product_variant.price, total_price=product_variant.price)
+    total = product_variant.price
+    cart_item = CartItem.objects.create(cart=cart, product=product_variant, quantity=1, unit_price=product_variant.price,promotion_price=product_variant.promotion_price, total_price=total)
     solded_price = 0
     if cart.coupon:
         solded_price = get_cart_solded_price(cart.amount + cart_item.total_price, cart.coupon.reduction)

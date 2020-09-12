@@ -19,6 +19,7 @@
                           <th scope="col">{% trans "Gender" %}</th>
                           <th scope="col">{% trans "Product Type" %}</th>
                           <th scope="col">{% trans "Price" %}</th>
+                          <th scope="col">{% trans "Promotion Price" %}</th>
                           <th scope="col">{% trans "Quantity" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
                           <th scope="col">{% trans "Action" %}</th>
@@ -32,7 +33,8 @@
                   <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_key}}</td>
                   <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
-                  <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.product.price}}</span> <span>{% trans "XAF" %}</span></span></td>
+                  <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.price}}</span> <span>{% trans CURRENCY %}</span></span></td>
+                  <td scope="row" data-label="{% trans 'Promotion Price' %}"><span><span>{{sold_product.promotion_price}}</span> <span>{% trans CURRENCY %}</span></span></td>
                   <td scope="row" data-label="{% trans 'Quantity' %}">{{sold_product.quantity}}</td>
                   <th scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_vendor_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   {% if is_seller %}

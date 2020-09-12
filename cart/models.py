@@ -115,6 +115,32 @@ class CartItem(models.Model):
     def name(self):
         return self.product.name
     
+
+    @property
+    def is_quantity_available(self):
+        return self.quantity <= self.product.quantity
+
+    @property
+    def is_product_available(self):
+        return self.product.quantity > 0 and self.product.is_active
+        
+    @property
+    def is_promoted(self):
+        return self.product.promotion_price is not None
+
+    
+    @property
+    def promotion_price(self):
+        if self.is_promoted():
+            return self.product.promotion_price
+        return 0
+
+    @property
+    def total_promotion_price(self):
+        return self.promotion_price() * self.quantity
+    
+
+    
     @property
     def brand(self):
         return self.product.product.brand

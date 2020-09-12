@@ -52,7 +52,7 @@ def create_order_from_cart(user):
     logger.debug("preparing orderitems from CartItems")
     orderitems = None
     try:
-        orderitems = (OrderItem(order=order, product=item.product, quantity=item.quantity, unit_price=item.unit_price,total_price=item.total_price) for item in items_queryset)
+        orderitems = (OrderItem(order=order, product=item.product, quantity=item.quantity,promotion_price=item.promotion_price, unit_price=item.unit_price,total_price=item.total_price) for item in items_queryset)
     except Exception as e:
         logger.error("error on preparing orderitems from CartItems")
         logger.exception(e)
@@ -83,7 +83,7 @@ def mark_product_sold(order):
     if  not isinstance(order, Order) or order.vendor_balance_updated:
         return False
     order_items = order.order_items.select_related().all()
-    sold_products = [SoldProduct(customer=order.user, seller=item.product.product.sold_by, product=item.product, quantity=item.quantity, unit_price=item.unit_price, total_price=item.total_price) for item in order_items]
+    sold_products = [SoldProduct(customer=order.user, seller=item.product.product.sold_by, product=item.product, quantity=item.quantity, promotion_price=item.promotion_price, unit_price=item.unit_price, total_price=item.total_price) for item in order_items]
     
     balance_updates = ((p.seller, p.total_price, p.customer, p.seller.balance) for p in sold_products)
     with transaction.atomic():
