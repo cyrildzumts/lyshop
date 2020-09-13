@@ -170,6 +170,7 @@ $(document).ready(function(){
     $('.js-cart-update-item-quantity,.js-cart-delete-item').on('click', function(){
         var item = $(this);
         var obj = {};
+        console.log("Cart item licked");
         obj['action'] = item.data('action');
         obj['target'] = $('#' + item.data('target'));
         obj['update'] = $('#' + item.data('update'));
