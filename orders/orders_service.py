@@ -72,7 +72,7 @@ def create_order_from_cart(user):
 
 
 
-def cancel_order(order request_user=None):
+def cancel_order(order, request_user=None):
     if  not isinstance(order, Order):
         return False
     

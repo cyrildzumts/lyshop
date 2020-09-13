@@ -64,7 +64,7 @@ def order_detail(request, order_uuid=None):
 @login_required
 def cancel_order(request, order_uuid):
     order = get_object_or_404(Order, order_uuid=order_uuid, user=request.user)
-    canceled = orders_service.cancel_order(order)
+    canceled = orders_service.cancel_order(order, request.user)
     if canceled:
         messages.success(request, "Order canceled")
     else:
@@ -79,7 +79,7 @@ def order_cancel(request, order_uuid):
         
     if orders_service.is_cancelable(order):
         #Order.objects.filter(id=order.id).update(status=commons.ORDER_CANCELED, last_changed_by=request.user)
-        orders_service.cancel_order(order)
+        orders_service.cancel_order(order, request.user)
         OrderStatusHistory.objects.create(order_status=commons.ORDER_CANCELED, order=order, order_ref_id=order.id, changed_by=request.user)
         messages.success(request, "Your order has been canceled")
         logger.info(f"Order {order.id} canceled by user {request.user.username}")
