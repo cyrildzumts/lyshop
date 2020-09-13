@@ -37,18 +37,18 @@
             </div>
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Quantity" %}</span><span class="value">{{order.quantity}}</span></p>
-                <p class="entry"><span class="key">{% trans "Price" %}</span><span class="value">{{order.amount}} {% trans CURRENCY %}</span></p>
+                <p class="entry"><span class="key">{% trans "Price" %}</span><span class="value">{{order.amount|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
                 {% if order.coupon %}
-                <p class="entry"><span class="key">{% trans "Reduction" %}</span><span class="value">{{order.get_reduction}} {% trans CURRENCY %}</span></p>
+                <p class="entry"><span class="key">{% trans "Reduction" %}</span><span class="value">{{order.get_reduction|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
                 <p class="entry"><span class="key">{% trans "Coupon" %}</span><span class="value">{{order.coupon}}</span></p>
                 {% endif %}
-                <p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.shipping_price}} {% trans CURRENCY %}</span></p>
+                <p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.shipping_price|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
                 
             </div>
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
                 <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
-                <p class="entry"><span class="key">{% trans "TOTAL" %}</span><span class="value">{{order.total}} {% trans CURRENCY %}</span></p>
+                <p class="entry"><span class="key">{% trans "TOTAL" %}</span><span class="value">{{order.total|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
             </div>
             {% if order.description %}
             <div class="box">
@@ -89,9 +89,9 @@
                                 <td><div class="row">{% for attr in item.product.attributes.all %} <span>{{attr}}</span> {% endfor %}</div></td>
                                 <td>{{item.quantity}}</td>
                                 
-                                <td><span>{{item.unit_price}}</span> <span>{% trans CURRENCY %}</span></td>
-                                <td><span>{{item.promotion_price}}</span> <span>{% trans CURRENCY %}</span></td>
-                                <td><span>{{item.total_price}}</span> <span>{% trans CURRENCY %}</span></td>
+                                <td><span>{{item.unit_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                                <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                                <td><span>{{item.active_total_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td><a class="mat-button mat-button-default" href="{{item.product.product.get_absolute_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Product Details" %}</span></a></td>
                             </tr>
                             {% endfor %}

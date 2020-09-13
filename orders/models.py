@@ -107,6 +107,10 @@ class OrderItem(models.Model):
         if self.was_promoted:
             return  self.quantity * self.promotion_price
         return 0
+    
+    @property
+    def active_total_price(self):
+        return (self.promotion_price or self.unit_price) * self.quantity
 
 
 class PaymentRequest(models.Model):
