@@ -157,15 +157,14 @@
 
 .cart-item-entry .key{
     font-weight: 400;
-    /*width: 50%;*/
-    margin: 4px 8px;
+    margin-right: 4px;
 
 }
 
 .cart-item-entry .value{
     font-weight: 600;
     text-align: right;
-    margin: 4px 8px;
+    margin-right: 4px;
 }
 
 .box .title{
