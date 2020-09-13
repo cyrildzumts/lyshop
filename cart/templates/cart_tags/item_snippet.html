@@ -10,13 +10,20 @@
     </div>
     <div class="cart-item-content col-11">
         <div class="row">
-            <div class="col-12 col-m-12">{{item.brand.display_name}} {{item.display_name}}</div>
+            <div class="col-12 col-m-12"><div class="entry"><span class="key"></span><div class="value">{{item.brand.display_name}} {{item.display_name}}</div></div></div>
             <div class="col-12 col-m-12">
-                {% if item.is_promoted %}
-                <span class="sale-price"><span>{{item.item_price}}</span><span class="currency">{% trans CURRENCY %}</span></span> <span class="old-price"><span>{{item.original_price}}</span><span class="currency">{% trans CURRENCY %}</span></span>
-                {% else %}
-                <span class=""><span>{{item.item_price}}</span><span class="currency">{% trans CURRENCY %}</span></span>
-                {% endif %}
+                <div class="entry">
+                    <span class="key">
+                    </span>
+                    <div class="value">
+                        {% if item.is_promoted %}
+                        <span class="sale-price"><span>{{item.item_price}}</span><span class="currency">{% trans CURRENCY %}</span></span> <span class="old-price"><span>{{item.original_price}}</span><span class="currency">{% trans CURRENCY %}</span></span>
+                        {% else %}
+                        <span class=""><span>{{item.item_price}}</span><span class="currency">{% trans CURRENCY %}</span></span>
+                        {% endif %}
+                    </div>
+                </div>
+                
             </div>
         </div>
         <div class="row">
