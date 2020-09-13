@@ -32,10 +32,13 @@
               </div>
               
               <div class="entry">
-                <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{sold_product.price|floatformat:"-2"}} {% trans CURRENCY %}</span>
+                <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{sold_product.unit_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
               </div>
               <div class="entry">
-                <span class="key">{% trans "Promotion Price" %}</span> <span class="value">{{sold_product.promotion_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
+                <span class="key">{% trans "End Price" %}</span> <span class="value">{{sold_product.price|floatformat:"-2"}} {% trans CURRENCY %}</span>
+              </div>
+              <div class="entry">
+                <span class="key">{% trans "Total" %}</span> <span class="value">{{sold_product.active_total_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
               </div>
           </div>
           <div class="box">

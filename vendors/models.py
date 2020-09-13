@@ -111,8 +111,8 @@ class SoldProduct(models.Model):
 
     @property
     def price(self):
-        return self.unit_price
+        return  self.promotion_price or self.unit_price
 
     @property
-    def total_price(self):
-        return self.unit_price * self.quantity
+    def active_total_price(self):
+        return self.price * self.quantity
