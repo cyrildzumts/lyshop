@@ -52,7 +52,7 @@
                     <td scope="row" data-label="{% trans 'Customer' %}">{{p.customer.get_full_name}}</td>
                     <td data-label="{% trans 'Name' %}">{{p.product.display_name}} </td>
                     <td data-label="{% trans 'Brand' %}">{{p.product.product.brand.display_name}} </td>
-                    <td data-label="{% trans 'Price' %}">{{p.price|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                    <td data-label="{% trans 'Price' %}">{{p.unit_price|floatformat:"-2"}} {% trans CURRENCY %}</td>
                     <td data-label="{% trans 'Promotion Price' %}">{{p.promotion_price|floatformat:"-2"}} {% trans CURRENCY %}</td>
                     <td data-label="{% trans 'Date' %}">{{p.created_at|date:"F j, Y"}}</td>
                     <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{p.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
