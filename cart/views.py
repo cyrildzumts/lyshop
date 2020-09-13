@@ -411,7 +411,7 @@ def ajax_cart_item_update(request, item_uuid=None, action=None):
         context['status'] = True
         if requested_quantity > 0:
             context['item_quantity'] = item.quantity
-            context['item_total'] = item.total_price
+            context['item_total'] = item.item_total_price
             context['removed'] = False
         else:
             context['removed'] = True

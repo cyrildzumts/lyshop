@@ -104,7 +104,7 @@ def update_cart(cart, cart_item=None, quantity=1):
 
     if quantity <= cart_item.product.quantity:
         item_old_quantity = cart_item.quantity
-        item_old_total_price = cart_item.total_price
+        item_old_total_price = cart_item.item_total_price
         updated_rows = CartItem.objects.filter(id=cart_item.id, is_active=True).update(quantity=quantity, total_price=F('unit_price') * quantity)
         cart_item.refresh_from_db()
         cart_quantity = cart.quantity - item_old_quantity + quantity
@@ -128,7 +128,7 @@ def update_cart(cart, cart_item=None, quantity=1):
 def remove_from_cart(cart, cart_item=None):
     logger.info(f"Removing Cart Item \"{cart_item}\" from Cart \"{cart}\"")
     item_quantity = cart_item.quantity
-    item_total_price = cart_item.total_price
+    item_total_price = cart_item.item_total_price
     old_card_quantity = cart.quantity
     deleted_count, delete_items = CartItem.objects.filter(id=cart_item.id, cart=cart).delete()
     if deleted_count:
