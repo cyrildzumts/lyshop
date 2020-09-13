@@ -17,8 +17,8 @@ def refresh_cart(cart):
         if  cart_exist:
             annotation = cartitems.annotate(
                 active_price=Case(
-                    When(produc__promotion_price__isnull=False, then='product__promotion_price'),
-                    When(produc__product__promotion_price__isnull=False, then='product__product__promotion_price'),
+                    When(product__promotion_price__isnull=False, then='product__promotion_price'),
+                    When(product__product__promotion_price__isnull=False, then='product__product__promotion_price'),
                     default='unit_price',
                     output_field=FloatField()
                 )
