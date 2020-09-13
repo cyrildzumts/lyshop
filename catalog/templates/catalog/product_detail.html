@@ -52,11 +52,11 @@
                       </div>
                       {% if product.is_promoted %}
                       <div class="price">
-                        <span class="sale-price">{{product.promotion_price}} {% trans CURRENCY %}</span> <span class="old-price">{{product.price}} {% trans CURRENCY %}</span>
+                        <span class="sale-price">{{product.active_price}} {% trans CURRENCY %}</span> <span class="old-price">{{product.price}} {% trans CURRENCY %}</span>
                       </div>
                       {% else %}
                       <div class="price">
-                        <span class="emphasis">{{product.price}} {% trans CURRENCY %}</span>
+                        <span class="emphasis">{{product.active_price}} {% trans CURRENCY %}</span>
                       </div>
                       {% endif %}
                       
