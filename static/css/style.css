@@ -135,11 +135,20 @@
     border-bottom: none;
 }
 
-.entry .key, .entry .value, .cart-item-entry .key, .cart-item-entry .value{
+.entry .key, .entry .value{
     display: inline-block;
     /*min-width: 250px;*/
     text-align: left;
     font-size: 0.875em;
+}
+
+.cart-item-entry .key, .cart-item-entry .value{
+    display: inline-block;
+    /*min-width: 250px;*/
+    text-align: left;
+    font-size: 0.875em;
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
 .entry .key{
@@ -156,15 +165,14 @@
 }
 
 .cart-item-entry .key{
-    font-weight: 400;
-    margin-right: 4px;
+    font-weight: 500;
+
 
 }
 
 .cart-item-entry .value{
-    font-weight: 600;
+    font-weight: 700;
     text-align: right;
-    margin-right: 4px;
 }
 
 .box .title{
