@@ -18,9 +18,9 @@
                                 <div class="cart-item-entry">
                                     <div class="value">
                                         {% if item.is_promoted %}
-                                        <span class="sale-price"><span>{{item.item_price}}</span><span class="currency">{% trans CURRENCY %}</span></span> <span class="old-price"><span>{{item.original_price}}</span><span class="currency">{% trans CURRENCY %}</span></span>
+                                        <span class="sale-price"><span>{{item.item_price|floatformat:"-2"}}</span><span class="currency">{% trans CURRENCY %}</span></span> <span class="old-price"><span>{{item.original_price|floatformat:"-2"}}</span><span class="currency">{% trans CURRENCY %}</span></span>
                                         {% else %}
-                                        <span class="price"><span>{{item.item_price}}</span><span class="currency">{% trans CURRENCY %}</span></span>
+                                        <span class="price"><span>{{item.item_price|floatformat:"-2"}}</span><span class="currency">{% trans CURRENCY %}</span></span>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-m-12">
-                            <div class="cart-item-entry"> <span class="key">{% trans "Total" %}</span><span class="value"><span id="item-total-price-{{item.id}}">{{item.item_total_price}}</span><span class="currency">{% trans CURRENCY %}</span></span></div>
+                            <div class="cart-item-entry"> <span class="key">{% trans "Total" %}</span><span class="value"><span id="item-total-price-{{item.id}}">{{item.item_total_price|floatformat:"-2"}}</span><span class="currency">{% trans CURRENCY %}</span></span></div>
                         </div>
                     </div>
                     <div class="row">

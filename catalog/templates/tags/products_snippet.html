@@ -18,11 +18,11 @@
 
                                                 {% if p.is_promoted %}
                                                 <div class="price">
-                                                        <span class="sale-price">{{p.active_price}} {% trans CURRENCY %}</span> <span class="old-price">{{p.price}} {% trans CURRENCY %}</span>
+                                                        <span class="sale-price">{{p.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span> <span class="old-price">{{p.price|floatformat:"-2"}} {% trans CURRENCY %}</span>
                                                 </div>
                                                 {% else %}
                                                 <div class="price">
-                                                        <span class="emphasis">{{p.active_price}} {% trans CURRENCY %}</span>
+                                                        <span class="emphasis">{{p.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
                                                 </div>
                                                 {% endif %}
                                         </div>

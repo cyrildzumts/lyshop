@@ -73,7 +73,7 @@
                         <div class="box">
                                 {% if user_instance.balance %}
                                 <div class="entry">
-                                        <span class="key">{% trans "Balance" %}</span> <span class="value">{{user_instance.balance.balance}} {% trans CURRENCY %}</span>
+                                        <span class="key">{% trans "Balance" %}</span> <span class="value">{{user_instance.balance.balance|floatformat:"-2"}} {% trans CURRENCY %}</span>
                                 </div>
                                 {% endif %}
                                 {% if is_seller %}

@@ -13,7 +13,7 @@
     <div class="mat-box full">
           <div class="mat-box-title">
             {% if balance %}
-            <p> <span>{% trans "Balance" %}</span>  <span>{{balance.balance}} {% trans CURRENCY %}</span></p>
+            <p> <span>{% trans "Balance" %}</span>  <span>{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
             {% else %}
             <p> <span>{% trans "Balance" %}</span>   <span>0 {% trans CURRENCY %}</span> </p>
             {% endif %}

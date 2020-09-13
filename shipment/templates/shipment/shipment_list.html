@@ -44,7 +44,7 @@
           <tbody>
                   {% for s in shipment_list  %}
                   <tr>
-                    <td data-label="{% trans 'Shipping Price' %}">{{s.price}} {% trans CURRENCY %}</td>
+                    <td data-label="{% trans 'Shipping Price' %}">{{s.price|floatformat:"-2"}} {% trans CURRENCY %}</td>
                     <td data-label="{% trans 'Customer' %}">{{s.customer.get_full_name}}</td>
                     <td data-label="{% trans 'Status' %}">{{s.shipment_status|tuple_key}} </td>
                     <td data-label="{% trans 'Date' %}">{{s.created_at|date:"F j, Y"}}</td>

@@ -51,10 +51,10 @@
               <span class="key">{% trans "Vendor" %}</span> <span class="value">{{product.sold_by.username}}</span>
             </div>
             <div class="entry">
-              <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{product.price}} {% trans CURRENCY %}</span>
+              <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{product.price|floatformat:"-2"}} {% trans CURRENCY %}</span>
             </div>
             <div class="entry">
-                <span class="key">{% trans "Promotion Price" %}</span> <span class="value">{{product.get_promotion_price}} {% trans CURRENCY %}</span>
+                <span class="key">{% trans "Promotion Price" %}</span> <span class="value">{{product.get_promotion_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
               </div>
         </div>
         <div class="box">
