@@ -13,8 +13,6 @@
             <div class="col-12 col-m-12"><div class="cart-item-entry"><span class="key"></span><div class="value">{{item.brand.display_name}} {{item.display_name}}</div></div></div>
             <div class="col-12 col-m-12">
                 <div class="cart-item-entry">
-                    <span class="key">
-                    </span>
                     <div class="value">
                         {% if item.is_promoted %}
                         <span class="sale-price"><span>{{item.item_price}}</span><span class="currency">{% trans CURRENCY %}</span></span> <span class="old-price"><span>{{item.original_price}}</span><span class="currency">{% trans CURRENCY %}</span></span>
