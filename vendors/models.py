@@ -108,3 +108,11 @@ class SoldProduct(models.Model):
         if self.was_promoted():
             return  self.quantity * self.promotion_price
         return 0
+
+    @property
+    def price(self):
+        return self.unit_price
+
+    @property
+    def total_price(self):
+        return self.unit_price * self.quantity
