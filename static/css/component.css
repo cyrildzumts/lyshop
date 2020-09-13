@@ -1929,11 +1929,6 @@ input.editable{
 	margin: 0 !important;
 }
 
-.mat-list-item:hover{
-	/*background-color: var(--mat-list-item-hover-bg);*/
-	color: var(--mat-list-item-hover-color);
-}
-
 .mat-list-item.active{
 	background-color: var(--mat-list-item-active-bg);
 	color: var(--mat-list-item-active-color);
