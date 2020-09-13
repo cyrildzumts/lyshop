@@ -98,6 +98,9 @@ function update_cart_item(item, to_update, plus_or_minus){
         console.log(response);
         if(response['removed']){
             to_update.parent.fadeOut('slow').remove()
+        }else if(parseInt(response['cart_total']) == 0){
+            document.location.reload();
+            return ;
         }else{
             to_update.target.val(response['item_quantity']);
             to_update.update.html(response['item_total'].replace('.', ','));
