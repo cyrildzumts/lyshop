@@ -126,16 +126,31 @@ class CartItem(models.Model):
         
     @property
     def is_promoted(self):
-        return self.product.get_promotion_price is not None
+        return self.product.is_promoted
 
     
     @property
     def promotion_price(self):
-        return self.product.get_promotion_price or 0
+        return self.product.get_promotion_price
 
     @property
     def total_promotion_price(self):
         return self.promotion_price * self.quantity
+
+    
+    @property
+    def original_price(self):
+        return self.product.price
+
+    
+    @property
+    def item_price(self):
+        return self.product.promotion_price or self.product.product.promotion_price or self.product.price
+
+
+    @property
+    def item_total_price(self):
+        return self.item_price * self.quantity 
     
 
     

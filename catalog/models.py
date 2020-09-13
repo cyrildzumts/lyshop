@@ -291,6 +291,10 @@ class Product(models.Model):
     def get_promotion_price(self):
         return self.promotion_price or 0
     
+    @property
+    def is_promoted(self):
+        return self.promotion_price is not None
+    
 
 class SKUModel(models.Model):
     sku = models.CharField(max_length=32,blank=False, null=False)
@@ -342,7 +346,11 @@ class ProductVariant(models.Model):
 
     @property
     def get_promotion_price(self):
-        return self.promotion_price or self.product.promotion_price or 0
+        return self.promotion_price or self.product.promotion_price
+
+    @property
+    def is_promoted(self):
+        return self.promotion_price is not None or self.product.is_promoted
 
 
 
