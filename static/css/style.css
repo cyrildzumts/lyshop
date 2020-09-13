@@ -375,6 +375,19 @@
     border-bottom: 2px solid #e64a19;
 }
 
+.cart-item{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.cart-item-remove{
+    position: absolute;
+    right: 110px;
+    top: 20px;
+}
 #lang-form{
     display: flex;
     align-items: center;
