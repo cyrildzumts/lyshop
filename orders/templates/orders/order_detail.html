@@ -48,7 +48,7 @@
                 <p class="entry"><span class="key">{% trans "Coupon" %}</span><span class="value">{{order.coupon}}</span></p>
                 {% endif %}
                 <p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.shipping_price|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
-                <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
+                <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total_price|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
             </div>
             <div class="mat-box-title wrapper">
                 <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>

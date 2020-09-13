@@ -30,7 +30,7 @@ class Order(models.Model):
     last_changed_by = models.ForeignKey(User, related_name='edited_orders', blank=True, null=True, on_delete=models.SET_NULL)
     amount = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     shipping_price = models.DecimalField(default=0, blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
-    solded_price = models.DecimalField(default=0, blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    solded_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     total = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     quantity = models.IntegerField(default=0, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
@@ -67,6 +67,10 @@ class Order(models.Model):
         if self.coupon:
             r = float(self.amount) * (self.coupon.reduction / 100.0) 
         return r
+
+    @property
+    def total_price(self):
+        return (self.solded_price or self.amount) + self.shipping_price
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='order_items', on_delete=models.CASCADE)

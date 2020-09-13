@@ -48,7 +48,7 @@
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
                 <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
-                <p class="entry"><span class="key">{% trans "TOTAL" %}</span><span class="value">{{order.total|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
+                <p class="entry"><span class="key">{% trans "TOTAL" %}</span><span class="value">{{order.total_price|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
             </div>
             {% if order.description %}
             <div class="box">
