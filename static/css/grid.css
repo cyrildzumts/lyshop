@@ -98,11 +98,11 @@
 	width: 100%;
 }
 
-.row-left{
+.row-left, .flex-left{
   justify-content: flex-start !important;
 }
 
-.row-right{
+.row-right, .flex-right{
   justify-content: flex-end !important;
 }
 
