@@ -118,7 +118,6 @@
     font-size: 1em;
     /*text-align: center;*/
     padding: 8px 4px;
-    min-height: 48px;
 }
 
 .cart-item-entry{
@@ -126,8 +125,7 @@
     align-items: center;
     font-size: 1em;
     /*text-align: center;*/
-    padding: 8px 4px;
-    min-height: 48px;
+    padding: 4px 4px;
 }
 
 .box .entry{
@@ -144,14 +142,27 @@
     font-size: 0.875em;
 }
 
-.entry .key, .cart-item-entry .key{
+.entry .key{
     font-weight: 400;
     /*width: 50%;*/
     margin: 4px 8px;
 
 }
 
-.entry .value, .cart-item-entry .value{
+.entry .value{
+    font-weight: 600;
+    text-align: right;
+    margin: 4px 8px;
+}
+
+.cart-item-entry .key{
+    font-weight: 400;
+    /*width: 50%;*/
+    margin: 4px 8px;
+
+}
+
+.cart-item-entry .value{
     font-weight: 600;
     text-align: right;
     margin: 4px 8px;
