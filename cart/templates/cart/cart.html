@@ -7,11 +7,7 @@
     <div class="col-m-12 col-8">
         <div class="mat-list-wrapper">
             <ul class="mat-list">
-                <li class="mat-list-item">
-                    <div class="list-header row">
-                        <span class="col-4">{% trans "Items" %}</span><span class="col-2">{% trans "Quantity" %}</span><span class="col-2">{% trans "Unit Price" %}</span><span class="col-1">{% trans "Total Price" %}</span><span class="col-1"></span>
-                    </div>
-                </li>
+                
                 
                 {% for item in item_list %}
                 <li class="mat-list-item" id="item-{{item.id}}">
