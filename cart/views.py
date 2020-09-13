@@ -32,12 +32,11 @@ def cart(request):
     template_name = 'cart/cart.html'
     if request.method == 'POST':
         pass
-    cart, cartitems_exist = cart_service.refresh_cart(cart)
+    #cart, cartitems_exist = cart_service.refresh_cart(cart)
     context = {
         'cart': cart,
-        'cartitems_exist' : cartitems_exist,
         'item_list' : CartItem.objects.filter(cart=cart),
-        'page_title' : _("Cart") + ' - ' + settings.SITE_NAME
+        'page_title' : settings.SITE_NAME + " " + _("Cart")
     }
 
     return render(request, template_name, context)
