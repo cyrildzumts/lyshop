@@ -79,11 +79,11 @@ def cancel_order(order, request_user=None):
     if not is_cancelable(order):
         return False
     items_queryset = order.order_items.select_related().all()
-    product_update_list = items_queryset.values_list('product', 'quantity')
+    product_update_list = tuple(items_queryset.values_list('product', 'quantity'))
     Order.objects.filter(pk=order.pk).update(is_closed=True, is_active=False, status=commons.ORDER_CANCELED, last_changed_by=request_user)
     ##TODO Send the money back to the user
     for pk, quantity in product_update_list:
-        ProductVariant.objects.filter(pk=p).update(quantity=F('quantity') + quantity, is_active=True)
+        ProductVariant.objects.filter(pk=pk).update(quantity=F('quantity') + quantity, is_active=True)
     
     return True
 
