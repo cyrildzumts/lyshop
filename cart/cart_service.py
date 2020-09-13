@@ -17,7 +17,6 @@ def refresh_cart(cart):
         cart_exist = cartitems.exists()
         if  cart_exist:
             aggregation = cartitems.aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('unit_price'), output_field=FloatField()))
-            logger.debug("Cart Items agregation ready")
             CartModel.objects.filter(id=cart.id).update(quantity=aggregation['count'], amount=aggregation['total'])
             logger.debug("Cart updated")
             cart.refresh_from_db()
@@ -75,11 +74,11 @@ def add_to_cart(cart, product_variant):
         else:
             return None, cart
     total = product_variant.price
-    cart_item = CartItem.objects.create(cart=cart, product=product_variant, quantity=1, unit_price=product_variant.price,promotion_price=product_variant.promotion_price, total_price=total)
+    cart_item = CartItem.objects.create(cart=cart, product=product_variant, quantity=1, unit_price=product_variant.price, total_price=total)
     solded_price = 0
     if cart.coupon:
-        solded_price = get_cart_solded_price(cart.amount + cart_item.total_price, cart.coupon.reduction)
-    CartModel.objects.filter(pk=cart.pk).update(quantity=F('quantity') + 1, amount=F('amount') + cart_item.total_price, solded_price=solded_price)
+        solded_price = get_cart_solded_price(cart.amount + cart_item.item_total_price, cart.coupon.reduction)
+    CartModel.objects.filter(pk=cart.pk).update(quantity=F('quantity') + 1, amount=F('amount') + cart_item.item_total_price, solded_price=solded_price)
     logger.info('Product added into the cart')
     return cart_item, cart
 
@@ -109,7 +108,7 @@ def update_cart(cart, cart_item=None, quantity=1):
         updated_rows = CartItem.objects.filter(id=cart_item.id, is_active=True).update(quantity=quantity, total_price=F('unit_price') * quantity)
         cart_item.refresh_from_db()
         cart_quantity = cart.quantity - item_old_quantity + quantity
-        cart_amount = cart.amount - item_old_total_price + cart_item.total_price
+        cart_amount = cart.amount - item_old_total_price + cart_item.item_total_price
         cart_solded_price = 0
         if cart.coupon:
             cart_solded_price = get_cart_solded_price(float(cart_amount), cart.coupon.reduction)
@@ -141,7 +140,7 @@ def remove_from_cart(cart, cart_item=None):
             solded_price = cart.amount
             if cart.coupon:
                 solded_price = float(cart.amount) - cart.get_reduction()
-            CartModel.objects.filter(pk=cart.pk).update(quantity=F('quantity') - cart_item.quantity, amount=F('amount')-cart_item.total_price, solded_price=solded_price)
+            CartModel.objects.filter(pk=cart.pk).update(quantity=F('quantity') - cart_item.quantity, amount=F('amount')-cart_item.item_total_price, solded_price=solded_price)
             logger.info(f"Updated Cart \"{cart}\"")
     return deleted_count, delete_items
 
