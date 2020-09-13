@@ -1908,7 +1908,6 @@ input.editable{
 	min-height: 48px;
 	/*max-height: 72px;*/
 	border-bottom: 1px solid #ccc;
-	cursor: pointer;
 }
 
 .mat-list-item > input {
