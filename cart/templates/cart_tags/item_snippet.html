@@ -27,16 +27,20 @@
             </div>
         </div>
         <div class="row">
-            <div class="cart-item-entry"> <span class="key">{% trans "Total" %}</span><span class="value"><span id="item-total-price-{{item.id}}">{{item.item_total_price}}</span><span class="currency">{% trans CURRENCY %}</span></span></div>
+            <div class="col-12 col-m-12">
+                <div class="cart-item-entry"> <span class="key">{% trans "Total" %}</span><span class="value"><span id="item-total-price-{{item.id}}">{{item.item_total_price}}</span><span class="currency">{% trans CURRENCY %}</span></span></div>
+            </div>
         </div>
         <div class="row">
-            <div class="cart-item-entry">
-                <span class="key">{% trans "Quantity" %}</span>
-                <div class="value">
-                    <div class="custom-input">
-                        <span class="fas fa-minus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="decrement" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span> 
-                        <input class="js-cart-item-quantity" data-total="item-total-price-{{item.id}}" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" type="text" name="quantity" id="item-quantity-{{item.id}}" value="{{item.quantity}}" autocomplete="off">
-                        <span class="fas fa-plus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="increment" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span>
+            <div class="col-12 col-m-12">
+                <div class="cart-item-entry">
+                    <span class="key">{% trans "Quantity" %}</span>
+                    <div class="value">
+                        <div class="custom-input">
+                            <span class="fas fa-minus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="decrement" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span> 
+                            <input class="js-cart-item-quantity" data-total="item-total-price-{{item.id}}" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" type="text" name="quantity" id="item-quantity-{{item.id}}" value="{{item.quantity}}" autocomplete="off">
+                            <span class="fas fa-plus js-cart-update-item-quantity" data-parent="item-{{item.id}}" data-item="{{item.item_uuid}}" data-action="increment" data-update="item-total-price-{{item.id}}" data-target="item-quantity-{{item.id}}"></span>
+                        </div>
                     </div>
                 </div>
             </div>
