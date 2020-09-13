@@ -145,7 +145,7 @@ class CartItem(models.Model):
     
     @property
     def item_price(self):
-        return self.product.promotion_price or self.product.product.promotion_price or self.product.price
+        return self.product.active_price
 
 
     @property

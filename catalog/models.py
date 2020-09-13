@@ -290,6 +290,10 @@ class Product(models.Model):
     @property
     def get_promotion_price(self):
         return self.promotion_price or 0
+
+    @property
+    def active_price(self):
+        return self.promotion_price or self.price
     
     @property
     def is_promoted(self):
@@ -347,6 +351,10 @@ class ProductVariant(models.Model):
     @property
     def get_promotion_price(self):
         return self.promotion_price or self.product.promotion_price
+
+    @property
+    def active_price(self):
+        return self.promotion_price or self.product.promotion_price or self.price
 
     @property
     def is_promoted(self):
