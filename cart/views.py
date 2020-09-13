@@ -35,8 +35,9 @@ def cart(request):
     cart, cartitems_exist = cart_service.refresh_cart(cart)
     context = {
         'cart': cart,
+        'cartitems_exist' : cartitems_exist,
         'item_list' : CartItem.objects.filter(cart=cart),
-        'page_title' : settings.SITE_NAME + ' ' + 'Cart'
+        'page_title' : settings.SITE_NAME + ' ' + 'Cart',
     }
 
     return render(request, template_name, context)
