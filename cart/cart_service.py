@@ -1,4 +1,4 @@
-from django.db.models import F,Q,Count, Sum, FloatField
+from django.db.models import F,Q,Count, Sum, FloatField, When, Case
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from cart.models import CartItem, CartModel, Coupon
@@ -12,15 +12,20 @@ logger = logging.getLogger(__name__)
 def refresh_cart(cart):
     cart_exist = False
     if cart:
-        logger.debug("refreshing Cart")
         cartitems = CartItem.objects.filter(cart=cart)
         cart_exist = cartitems.exists()
         if  cart_exist:
-            aggregation = cartitems.aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('unit_price'), output_field=FloatField()))
+            annotation = cartitems.annotate(
+                active_price=Case(
+                    When(produc__promotion_price__isnull=False, then='product__promotion_price'),
+                    When(produc__product__promotion_price__isnull=False, then='product__product__promotion_price'),
+                    default='unit_price',
+                    output_field=FloatField()
+                )
+            )
+            aggregation = annotation.values_list('quantity', 'active_price').aggregate(count=Sum('quantity'), total=Sum(F('quantity')*F('active_price'), output_field=FloatField()))
             CartModel.objects.filter(id=cart.id).update(quantity=aggregation['count'], amount=aggregation['total'])
-            logger.debug("Cart updated")
             cart.refresh_from_db()
-            logger.debug("Cart refreshed from db")
         else:
             logger.debug(f"No Cartitems found for user {cart.user.username}")
             CartModel.objects.filter(id=cart.id).update(quantity=0, amount=0)

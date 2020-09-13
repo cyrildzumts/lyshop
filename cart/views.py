@@ -32,7 +32,7 @@ def cart(request):
     template_name = 'cart/cart.html'
     if request.method == 'POST':
         pass
-    #cart, cartitems_exist = cart_service.refresh_cart(cart)
+    cart, cartitems_exist = cart_service.refresh_cart(cart)
     context = {
         'cart': cart,
         'item_list' : CartItem.objects.filter(cart=cart),
