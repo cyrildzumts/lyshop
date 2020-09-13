@@ -61,6 +61,16 @@ def order_detail(request, order_uuid=None):
     return render(request,template_name, context)
 
 
+@login_required
+def cancel_order(request, order_uuid):
+    order = get_object_or_404(Order, order_uuid=order_uuid, user=request.user)
+    canceled = orders_service.cancel_order(order)
+    if canceled:
+        messages.success(request, "Order canceled")
+    else:
+        messages.error(request, "Order could not be canceled")
+
+    return redirect(order)
 
 
 @login_required
@@ -68,14 +78,15 @@ def order_cancel(request, order_uuid):
     order = get_object_or_404(Order,user=request.user, order_uuid=order_uuid)
         
     if orders_service.is_cancelable(order):
-        Order.objects.filter(id=order.id).update(status=commons.ORDER_CANCELED, last_changed_by=request.user)
+        #Order.objects.filter(id=order.id).update(status=commons.ORDER_CANCELED, last_changed_by=request.user)
+        orders_service.cancel_order(order)
         OrderStatusHistory.objects.create(order_status=commons.ORDER_CANCELED, order=order, order_ref_id=order.id, changed_by=request.user)
         messages.success(request, "Your order has been canceled")
         logger.info(f"Order {order.id} canceled by user {request.user.username}")
     else:
         messages.error(request, "Error. Your order can no more be canceled")
-        return redirect('orders:order-detail', order_uuid=order_uuid)
-    return redirect('accounts:account')
+    
+    return redirect(order)
 
 
 
@@ -220,6 +231,7 @@ def checkout_failed(request, order_uuid):
         PaymentRequest.objects.filter(id=payment_request.id).update(payment_status=commons.PAYMENT_FAILED)
         Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAYMENT_FAILED)
         OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAYMENT_FAILED, order_ref_id=order.id, changed_by=request.user)
+        orders_service.cancel_order(order)
         #order = payment_request.order
     except PaymentRequest.DoesNotExist:
         logger.error(f"checkout_failed view call with invalid order uuid \"{order_uuid}\". No order found")
@@ -231,3 +243,5 @@ def checkout_failed(request, order_uuid):
         'payment_request': payment_request
     }
     return render(request, template_name, context)
+
+

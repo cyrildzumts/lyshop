@@ -51,20 +51,41 @@ def create_order_from_cart(user):
     batch_size = 10
     logger.debug("preparing orderitems from CartItems")
     orderitems = None
+    product_update_list = items_queryset.values_list('product', 'product__quantity', 'quantity')
     try:
-        orderitems = (OrderItem(order=order, product=item.product, quantity=item.quantity,promotion_price=item.promotion_price, unit_price=item.unit_price,total_price=item.total_price) for item in items_queryset)
+        orderitems = (OrderItem(order=order, product=item.product, quantity=item.quantity,promotion_price=item.promotion_price, unit_price=item.original_price,total_price=item.item_total_price) for item in items_queryset)
     except Exception as e:
         logger.error("error on preparing orderitems from CartItems")
         logger.exception(e)
     logger.debug("orderitems prepared from CartItems")
+
     if orderitems:
         while True:
             batch = list(islice(orderitems, batch_size))
             if not batch:
                 break
             OrderItem.objects.bulk_create(batch, batch_size)
+    for pk, available_quantity, quantity in product_update_list:
+        ProductVariant.objects.filter(pk=p).update(quantity=F('quantity') - quantity, is_active=(available_quantity > quantity))
     logger.debug("Order created from Cart")
     return order
+
+
+
+def cancel_order(order request_user=None):
+    if  not isinstance(order, Order):
+        return False
+    
+    if not is_cancelable(order):
+        return False
+    items_queryset = order.order_items.select_related().all()
+    product_update_list = items_queryset.values_list('product', 'quantity')
+    Order.objects.filter(pk=order.pk).update(is_closed=True, is_active=False, status=commons.ORDER_CANCELED, last_changed_by=request_user)
+    ##TODO Send the money back to the user
+    for pk, quantity in product_update_list:
+        ProductVariant.objects.filter(pk=p).update(quantity=F('quantity') + quantity, is_active=True)
+    
+    return True
 
 
 
@@ -138,6 +159,9 @@ def is_cancelable(order):
     flag = not is_marked_for_shipment(order) and (order.status == commons.ORDER_SUBMITTED or order.payment_option == commons.ORDER_PAID)
     flag = flag and not order.status == commons.ORDER_CANCELED
     return flag
+
+
+
 
 def can_be_shipped(order):
     '''
