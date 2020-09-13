@@ -15,9 +15,16 @@
                         <div class="mat-box-content">
                                 <div class="product-details">
                                         <div class="col-m-12">
-                                                <div class="product-price left">
-                                                        <span class="">{{p.price}}</span>   <span>{% trans CURRENCY %}</span>
+
+                                                {% if p.is_promoted %}
+                                                <div class="price">
+                                                        <span class="sale-price">{{p.promotion_price}} {% trans CURRENCY %}</span> <span class="old-price">{{p.price}} {% trans CURRENCY %}</span>
                                                 </div>
+                                                {% else %}
+                                                <div class="price">
+                                                        <span class="emphasis">{{p.price}} {% trans CURRENCY %}</span>
+                                                </div>
+                                                {% endif %}
                                         </div>
                                         <div class="col-m-12">
                                                 <div class="product-title left">
