@@ -406,9 +406,10 @@
 
 .cart-item-remove{
     position: absolute;
-    right: 110px;
-    top: 20px;
+    right: 2%;
+    top: 1%;
 }
+
 #lang-form{
     display: flex;
     align-items: center;
