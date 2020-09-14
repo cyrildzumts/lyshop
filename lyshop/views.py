@@ -74,6 +74,3 @@ def customer_usage(request):
     }
     return render(request, template_name,context)
 
-
-@login_required
-def settings_addresses(request):
