@@ -9,7 +9,7 @@
         <input type="hidden" name="last_changed_by" value="{{request.user.pk}}">
         
         <div class="mat-box">
-            <div class="form-group row">
+            <div class="actions">
                 <a class="mat-button mat-button-text js-cancel" href="{%url 'addressbook:addressbook'%}">{% trans "Cancel" %}</a>
                 <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
             </div>
@@ -62,7 +62,7 @@
 
             
         </div>
-        <div class="form-group row">
+        <div class="actions">
             <a class="mat-button mat-button-text js-cancel" href="{%url 'addressbook:addressbook'%}">{% trans "Cancel" %}</a>
             <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
         </div>
