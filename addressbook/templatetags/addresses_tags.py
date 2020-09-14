@@ -19,7 +19,7 @@ def address_type_key(value):
 
 @register.filter
 def address_type_value(key):
-    k,v = utils.find_element_by_key_in_tuples(key, Constants.SHIPMENT_STATUS)
+    k,v = utils.find_element_by_key_in_tuples(key, Constants.ADDRESS_TYPES)
     if v is None:
         logger.info(f"address_type_value : Could not found value  for key \"{key}\"")
         return key
