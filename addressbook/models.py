@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from addressbook import constants as Addressbook_Constants
 from django.shortcuts import reverse
-
+import uuid
 
 # Create your models here.
 class Address(models.Model):
