@@ -35,7 +35,7 @@
             <div class="entry">
                 <span class="key">{% trans "Address is used for" %}</span><span class="value">{{address.address_type|address_type_value}}</span>
             </div>
-            <div class="entry">
+            <div class="actions">
                 <a href="{{address.get_update_url}}" class="mat-button mat-button-default"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
                 <a href="{{address.get_delete_url}}" class="mat-button mat-button-default warn"><i class="fas fa-trash icon"></i>{% trans "Delete" %}</a>
             </div>
