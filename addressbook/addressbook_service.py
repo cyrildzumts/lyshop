@@ -1,6 +1,8 @@
 
-
+from django.contrib.auth.models import User
 from addressbook.models import Address
+from addressbook import constants as Addressbook_Constants
+from lyshop import utils, conf
 import logging
 import uuid
 
@@ -27,8 +29,47 @@ def toggle_address_active(address, requester, state):
     return True
 
 
+def use_address_for_billing(address):
+    if  not isinstance(address, Address):
+        return False
+
+    Address.objects.filter(pk=address.pk).update(address_type=Addressbook_Constants.ADDRESS_FOR_BILLING)
+    return True
+
+
+def use_address_for_shipping(address):
+    if  not isinstance(address, Address):
+        return False
+
+    Address.objects.filter(pk=address.pk).update(address_type=Addressbook_Constants.ADDRESS_FOR_SHIPPING)
+    return True
+
+
+def use_address_for_billing_and_shipping(address):
+    if  not isinstance(address, Address):
+        return False
+
+    Address.objects.filter(pk=address.pk).update(address_type=Addressbook_Constants.ADDRESS_FOR_BILLING_AND_SHIPPING)
+    return True
+
+
+def set_address_type(address, address_type):
+    if  not isinstance(address, Address):
+        return False
+
+    if  not isinstance(address_type, int):
+        return False
+    
+    k,v = utils.find_element_by_key_in_tuples(address_type, Addressbook_Constants.ADDRESS_TYPES)
+    if v is None:
+        return False
+
+    Address.objects.filter(pk=address.pk).update(address_type=address_type)
+    return True
+
 def delete_address(address):
     if  not isinstance(address, Address):
         return False
+
     Address.objects.filter(pk=address.pk).delete()
     return True

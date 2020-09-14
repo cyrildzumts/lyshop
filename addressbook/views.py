@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import user
+from django.contrib.auth.models import User
+from addressbook import constants as Addressbook_Constants
 from addressbook.models import Address
 from addressbook.forms import AddressForm
 from lyshop import settings, utils
@@ -96,6 +97,7 @@ def address_update(request, address_uuid=None):
         form = AddressForm(instance=obj)
     context['form'] = form
     context['address'] = obj
+    context['ADDRESS_TYPES'] = Addressbook_Constants.ADDRESS_TYPES
     return render(request, template_name, context)
 
 @login_required
@@ -161,4 +163,5 @@ def address_create(request):
     else:
         form = AddressForm()
     context['form'] = form
+    context['ADDRESS_TYPES'] = Addressbook_Constants.ADDRESS_TYPES
     return render(request, template_name, context)

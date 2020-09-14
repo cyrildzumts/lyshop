@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import user
+from django.contrib.auth.models import User
+from addressbook import constants as Addressbook_Constants
 from django.shortcuts import reverse
 
 
@@ -11,7 +12,7 @@ class Address(models.Model):
     lastname = models.CharField(max_length=64, blank=True, null=True)
     country = models.CharField(max_length=32)
     postal_code = models.IntegerField(blank=True, null=True)
-    address_type = models.IntegerField(blank=True, null=True)
+    address_type = models.IntegerField(default=Addressbook_Constants.ADDRESS_FOR_BILLING_AND_SHIPPING, blank=True, null=True, choices=Addressbook_Constants.ADDRESS_TYPES)
     address_extra = models.CharField(max_length=64, blank=True, null=True)
     street = models.CharField(max_length=64, blank=True, null=True)
     house_number = models.IntegerField(blank=True, null=True)
