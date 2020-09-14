@@ -10,7 +10,7 @@ from shipment import shipment_service
 from orders import commons
 from vendors.models import SoldProduct
 from orders.forms import ShippingAddressForm, BillingAddressForm, PaymentRequestForm, PaymentOptionForm
-from orders.models import Order, OrderItem, Address, PaymentRequest, OrderStatusHistory
+from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory
 from lyshop import settings, utils
 from http import HTTPStatus
 import json

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from orders import commons
-from orders.models import Order, OrderItem, Address, PaymentRequest, OrderStatusHistory
+from orders.models import Order, OrderItem,PaymentRequest, OrderStatusHistory
 from catalog.models import Product, ProductVariant
 from vendors.models import SoldProduct, Balance, BalanceHistory
 from shipment import shipment_service
