@@ -112,6 +112,7 @@ INSTALLED_APPS = [
     'shipment.apps.ShipmentConfig',
     'vendors.apps.VendorsConfig',
     'payment.apps.PaymentConfig',
+    'addressbook.apps.AddressbookConfig',
 ]
 
 # RESTFRAMEWORK SETTINGS

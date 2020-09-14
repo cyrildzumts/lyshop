@@ -1,5 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect
+from django.contrib.auth.models import user
 from django.contrib import auth
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.contrib.auth.decorators import login_required
 # from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from lyshop import settings
@@ -70,3 +73,7 @@ def customer_usage(request):
         'page_title': page_title
     }
     return render(request, template_name,context)
+
+
+@login_required
+def settings_addresses(request):

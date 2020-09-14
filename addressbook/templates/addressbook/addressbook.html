@@ -1,0 +1,51 @@
+{% extends "addressbook_base.html"%}
+{% load i18n %}
+{% load addresses_tag %}
+
+
+{% block MAIN %}
+<div class="container">
+    <div class="grid">
+        {% for address in address_list %}
+        <div class="box">
+            <div class="entry">
+                <span class="key">{% trans "Firstname" %}</span><span class="value">{{address.firstname}}</span>
+            </div>
+            <div class="entry">
+                <span class="key">{% trans "Lastname" %}</span><span class="value">{{address.lastname}}</span>
+            </div>
+            <div class="entry">
+                <span class="key">{% trans "Country" %}</span><span class="value">{{address.country}}</span>
+            </div>
+            <div class="entry">
+                <span class="key">{% trans "City" %}</span><span class="value">{{address.city}}</span>
+            </div>
+            <div class="entry">
+                <span class="key">{% trans "Postal Code" %}</span><span class="value">{{address.postal_code}}</span>
+            </div>
+            <div class="entry">
+                <span class="key">{% trans "Address Extra" %}</span><span class="value">{{address.address_extra}}</span>
+            </div>
+            <div class="entry">
+                <span class="key">{% trans "Street" %}</span><span class="value">{{address.street}}</span>
+            </div>
+            <div class="entry">
+                <span class="key">{% trans "House Number" %}</span><span class="value">{{address.firstname}}</span>
+            </div>
+            <div class="entry">
+                <span class="key">{% trans "Address is used for" %}</span><span class="value">{{address.address_type|address_type_value}}</span>
+            </div>
+            <div class="entry">
+                <a href="{{address.get_update_url}}" class="mat-button mat-button-default"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
+            </div>
+            <div class="entry">
+                <a href="{{address.get_delete_url}}" class="mat-button mat-button-default warn"><i class="fas fa-trash icon"></i>{% trans "Delete" %}</a>
+            </div>
+    
+        </div>
+        
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock MAIN %}

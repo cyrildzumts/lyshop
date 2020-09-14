@@ -10,19 +10,6 @@ import uuid
 
 # Create your models here.
 
-
-class Address(models.Model):
-    user = models.ForeignKey(User, related_name='addresses', blank=True, null=True, on_delete=models.SET_NULL)
-    city = models.CharField(max_length=32)
-    country = models.CharField(max_length=32)
-    postal_code = models.IntegerField(blank=True, null=True)
-    address_extra = models.CharField(max_length=32, blank=True, null=True)
-    street = models.CharField(max_length=32, blank=True, null=True)
-    house_number = models.IntegerField(blank=True, null=True)
-    address_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-
-
-
 class Order(models.Model):
     user = models.ForeignKey(User, related_name='orders', blank=True, null=True, on_delete=models.SET_NULL)
     order_ref_number = models.IntegerField(default=utils.get_random_ref)
