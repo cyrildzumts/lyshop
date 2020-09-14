@@ -4,7 +4,7 @@
 {% block MAIN %}
 
 <div class="container wrapper">
-    <form  class="form" name="product" action="{% url 'vendors:product-create' %}" method="POST">{% csrf_token %}
+    <form  class="form" name="product" action="{% url 'addressbook:address-create' %}" method="POST">{% csrf_token %}
         <input type="hidden" name="user" value="{{request.user.pk}}">
         <input type="hidden" name="last_changed_by" value="{{request.user.pk}}">
         
