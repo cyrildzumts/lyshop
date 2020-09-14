@@ -1,5 +1,4 @@
 from django.shortcuts import render, HttpResponseRedirect
-from django.contrib.auth.models import user
 from django.contrib import auth
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
