@@ -22,7 +22,9 @@
         </div>
         <form  action="{% url 'orders:checkout' %}" method="POST">{% csrf_token %}
         <input type="hidden" name="user" value="{{request.user.pk}}">
-        
+        {% if address_list %}
+         <input type="hidden" name="pk" value="{{address_list.first.pk}}">
+        {% endif %}
         <div class="tab-container">
             <div id="step-1" class="tab-content">
                 <div class="title">

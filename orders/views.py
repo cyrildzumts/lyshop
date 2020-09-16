@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 from orders import orders_service
+from addressbook.forms import AddressModelForm
+from addressbook import addressbook_service
 from shipment import shipment_service
 from orders import commons
 from vendors.models import SoldProduct
@@ -95,13 +97,20 @@ def checkout(request):
     cart = orders_service.get_user_cart(request.user)
     template_name = 'orders/checkout.html'
     context = {
-        'page_title' : _("Checkout") + ' - ' + settings.SITE_NAME
+        'page_title' : _("Checkout") + ' - ' + settings.SITE_NAME,
+        'address_list': addressbook_service.get_addresses(request.user)
     }
     if not cart or (cart.quantity == 0 or cart.amount == 0.0):
         messages.error(request, _("Your Cart is empty"))
         return redirect('catalog:catalog-home')
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
+        addressForm = AddressModelForm(postdata)
+        if addressForm.is_valid():
+            logger.info("AddressModelForm is Valid")
+            address = addressForm.save(commit=False)
+        else:
+            logger.info("AddressModelForm is not Valid")
         shipping_address_form = ShippingAddressForm(postdata)
         shipping_address_form_is_valid = shipping_address_form.is_valid()
         payment_option_form = PaymentOptionForm(postdata)

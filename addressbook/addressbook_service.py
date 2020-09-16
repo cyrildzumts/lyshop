@@ -2,6 +2,7 @@
 from django.contrib.auth.models import User
 from addressbook.models import Address
 from addressbook import constants as Addressbook_Constants
+from addressbook.forms import AddressModelForm
 from lyshop import utils, conf
 import logging
 import uuid
@@ -14,6 +15,9 @@ def get_addresses(user):
         return None
     return Address.objects.filter(user=user)
 
+
+def get_address_from_form():
+    pass
 
 def toggle_address_active(address, requester, state):
     if  not isinstance(requester, User):
