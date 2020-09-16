@@ -108,7 +108,8 @@ def checkout(request):
         addressForm = AddressModelForm(postdata)
         if addressForm.is_valid():
             logger.info("AddressModelForm is Valid")
-            address = addressForm.save(commit=False)
+            address = addressbook_service.get_address(addressForm.cleaned_data['address'])
+            logger.debug(address)
         else:
             logger.info("AddressModelForm is not Valid")
         shipping_address_form = ShippingAddressForm(postdata)

@@ -1,5 +1,6 @@
 
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from addressbook.models import Address
 from addressbook import constants as Addressbook_Constants
 from addressbook.forms import AddressModelForm
@@ -16,8 +17,12 @@ def get_addresses(user):
     return Address.objects.filter(user=user)
 
 
-def get_address_from_form():
-    pass
+def get_address(address_id):
+    try:
+        address = Address.objects.get(pk=address_id)
+    except ObjectDoesNotExist as e:
+        address = None
+    return address
 
 def toggle_address_active(address, requester, state):
     if  not isinstance(requester, User):

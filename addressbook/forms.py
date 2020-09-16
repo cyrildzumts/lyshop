@@ -9,8 +9,5 @@ class AddressForm(forms.ModelForm):
         fields = Address.FORM_FIELDS
 
 
-class AddressModelForm(forms.ModelForm):
-
-    class Meta:
-        model = Address
-        fields = ['pk']
+class AddressModelForm(forms.Form):
+    address = forms.IntegerField()
