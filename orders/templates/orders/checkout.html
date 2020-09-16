@@ -29,14 +29,25 @@
                     <span>{% trans "User Info" %}</span>
                 </div>
                 <div class="box">
+                        {% if address_list %}
                         <div class="mat-input">
-                            <label for="address">{% trans "Select an Address" %}</label>
+                            <label for="address">{% trans "Shipping Address" %}</label>
                             <select name="address" id="address">
+                                <option >{% trans "Please, Select an address" %}</option>
                                 {% for addr in address_list %}
                                 <option value="{{addr.pk}}">{{addr}}</option>
                                 {% endfor %}
                             </select>
                         </div>
+                        {% else %}
+                        <div>
+                            <h3>{% trans "Add an Addres" %}</h3>
+                            <div class="container">
+                                {% include "addressbook_tags/address_form.html" %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        
                 </div>
 
                 

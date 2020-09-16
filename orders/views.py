@@ -6,8 +6,9 @@ from django.contrib import messages
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 from orders import orders_service
-from addressbook.forms import AddressModelForm
+from addressbook.forms import AddressModelForm, AddressForm
 from addressbook import addressbook_service
+from addressbook import constants as Addressbook_Constants
 from shipment import shipment_service
 from orders import commons
 from vendors.models import SoldProduct
@@ -96,9 +97,11 @@ def order_cancel(request, order_uuid):
 def checkout(request):
     cart = orders_service.get_user_cart(request.user)
     template_name = 'orders/checkout.html'
+    address_list = addressbook_service.get_addresses(request.user)
     context = {
         'page_title' : _("Checkout") + ' - ' + settings.SITE_NAME,
-        'address_list': addressbook_service.get_addresses(request.user)
+        'address_list': addressbook_service.get_addresses(request.user),
+        'ADDRESS_TYPES' : Addressbook_Constants.ADDRESS_TYPES,
     }
     address = None
     if not cart or (cart.quantity == 0 or cart.amount == 0.0):
@@ -106,13 +109,22 @@ def checkout(request):
         return redirect('catalog:catalog-home')
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        addressForm = AddressModelForm(postdata)
-        if addressForm.is_valid():
-            logger.info("AddressModelForm is Valid")
-            address = addressbook_service.get_address(addressForm.cleaned_data['address'])
-            logger.debug(address)
+        if address_list.exists():
+            addressForm = AddressModelForm(postdata)
+            if addressForm.is_valid():
+                logger.info("AddressModelForm is Valid")
+                address = addressbook_service.get_address(addressForm.cleaned_data['address'])
+                logger.debug(address)
+            else:
+                logger.info("AddressModelForm is not Valid")
         else:
-            logger.info("AddressModelForm is not Valid")
+            addressForm = AddressForm(postdata)
+            if addressForm.is_valid():
+                logger.info("AddressForm is Valid")
+                address = addressForm.save()
+            else:
+                logger.info("AddressForm is not Valid")
+
         
         payment_option_form = PaymentOptionForm(postdata)
         payment_option_form_is_valid = payment_option_form.is_valid()

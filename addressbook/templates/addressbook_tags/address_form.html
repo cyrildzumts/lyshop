@@ -1,0 +1,51 @@
+{% load i18n %}
+{% load addresses_tags %}
+
+<div class="mat-box">
+    <div class="actions">
+        <a class="mat-button mat-button-text js-cancel" href="{%url 'addressbook:addressbook'%}">{% trans "Cancel" %}</a>
+        <button class="mat-button mat-button-default" type="submit">{% trans "Create" %}</button>
+    </div>
+    <div class="form-group">
+        <label for="firstname">{% trans "Firstame" %}</label>
+        <input type="text" id="firstname" name="firstname" >
+    </div>
+    <div class="form-group">
+        <label for="lastname">{% trans "Lastname" %}</label>
+        <input type="text" id="lastname" name="lastname" >
+    </div>
+    <div class="form-group">
+        <label for="country">{% trans "Country" %} </label>
+        <input type="text" id="country" name="country" >
+    </div>
+    <div class="form-group">
+        <label for="city">{% trans "City" %} </label>
+        <input type="text" id="city" name="city" >
+    </div>
+
+    <div class="form-group">
+        <label for="postal-code">{% trans "Postal code" %}</label>
+        <input type="text" id="postal-code" name="postal_code" >
+    </div>
+    <div class="form-group">
+        <label for="address-extra">{% trans "Address Extra" %}</label>
+        <input type="text" id="address-extra" name="address_extra" >
+    </div>
+    <div class="form-group">
+        <label for="street">{% trans "Street" %}</label>
+        <input type="text" id="street" name="street" >
+    </div>
+    <div class="form-group">
+        <label for="house-number">{% trans "House Number" %}</label>
+        <input type="text" id="house-number" name="house_number" >
+    </div>
+
+    <div class="form-group">
+        <label for="address-type">{% trans "Use this address as" %}</label>
+        <select name="address_type" id="address-type">
+        <option value="">{% trans "Select an Address Type" %}</option>
+        {% for k,v in ADDRESS_TYPES %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
+        </select>
+    </div>
+</div>
+
