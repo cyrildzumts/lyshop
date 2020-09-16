@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from catalog.models import ProductVariant
+from addressbook.models import Address
 from lyshop import conf
 from orders import commons
 from lyshop import settings, utils
@@ -20,6 +21,7 @@ class Order(models.Model):
     solded_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     total = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     quantity = models.IntegerField(default=0, blank=True, null=True)
+    address = models.ForeignKey('addressbook.Address', blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     is_active = models.BooleanField(default=True, blank=True, null=True)
     is_closed = models.BooleanField(default=False, blank=True, null=True)

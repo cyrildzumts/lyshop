@@ -100,6 +100,7 @@ def checkout(request):
         'page_title' : _("Checkout") + ' - ' + settings.SITE_NAME,
         'address_list': addressbook_service.get_addresses(request.user)
     }
+    address = None
     if not cart or (cart.quantity == 0 or cart.amount == 0.0):
         messages.error(request, _("Your Cart is empty"))
         return redirect('catalog:catalog-home')
@@ -112,18 +113,16 @@ def checkout(request):
             logger.debug(address)
         else:
             logger.info("AddressModelForm is not Valid")
-        shipping_address_form = ShippingAddressForm(postdata)
-        shipping_address_form_is_valid = shipping_address_form.is_valid()
+        
         payment_option_form = PaymentOptionForm(postdata)
         payment_option_form_is_valid = payment_option_form.is_valid()
-        use_shipping_addr_as_billing_addr = False
-        if shipping_address_form_is_valid and payment_option_form_is_valid:
+        if  payment_option_form_is_valid:
             logger.debug("Order Form is valid")
-            use_shipping_addr_as_billing_addr = shipping_address_form.cleaned_data.get('billing_shipping')
+            
             payment_option = payment_option_form.cleaned_data.get('payment_option')
             logger.debug(f"Selected Payment Option : {payment_option}")
             if payment_option == commons.PAYMENT_PAY_WITH_PAY:
-                order = orders_service.create_order_from_cart(user=request.user)
+                order = orders_service.create_order_from_cart(user=request.user, address=address)
                 logger.debug("Order ready. Now preparing payment data")
 
                 try:
@@ -169,16 +168,8 @@ def checkout(request):
                 else:
                     logger.debug("request payment failed")
                 
-            if not use_shipping_addr_as_billing_addr:
-                logger.debug("User is using a different address for billing")
-                billing_addr_form = BillingAddressForm(postdata)
-                if billing_addr_form.is_valid():
-                    logger.debug("User submitted billing address")
 
         else:
-            if not shipping_address_form_is_valid:
-                logger.error("Order Form is not valid. Error on ShipingAddressForm")
-                logger.error(shipping_address_form.errors)
             if not payment_option_form_is_valid:
                 logger.error("Order Form is not valid. Error on PaymentOptionForm")
                 logger.error(payment_option_form.errors)

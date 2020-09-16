@@ -35,7 +35,7 @@ def refresh_order(order):
     
     return order
 
-def create_order_from_cart(user):
+def create_order_from_cart(user, address=None):
     logger.debug("creating order from Cart")
     cart = get_user_cart(user)
     total = 0
@@ -43,7 +43,7 @@ def create_order_from_cart(user):
         total = cart.solded_price + SHIPPING_PRICE
     else:
         total = cart.amount + SHIPPING_PRICE
-    order = Order.objects.create(user=user, coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total)
+    order = Order.objects.create(user=user, address=address ,coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total)
     OrderStatusHistory.objects.create(order=order, order_status=order.status, order_ref_id=order.id, changed_by=user)
     logger.debug("order instance created")
     items_queryset = get_user_cartitems(user)
