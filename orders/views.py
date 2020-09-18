@@ -95,6 +95,7 @@ def order_cancel(request, order_uuid):
 
 @login_required
 def checkout(request):
+    #TODO Refactore this viewsmove business logic to order_service
     cart = orders_service.get_user_cart(request.user)
     template_name = 'orders/checkout.html'
     address_list = addressbook_service.get_addresses(request.user)
@@ -151,7 +152,7 @@ def checkout(request):
                     }
                     logger.debug("Sending request payment")
                 except Exception as e:
-                    logger.error("Eror on prepayring payment data")
+                    logger.error("Error on prepayring payment data")
                     logger.exception(e)
                     raise e
                 
