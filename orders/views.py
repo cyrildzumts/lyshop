@@ -43,6 +43,7 @@ def orders(request):
         list_set = None
     context['page_title'] = page_title
     context['orders'] = list_set
+    context['ORDER_STATUS'] = commons.ORDER_STATUS
     return render(request,template_name, context)
 
 @login_required
