@@ -273,43 +273,39 @@ var CaseIssue = (function(){
 
 var Modal = (function(){
     function Modal(options){
+        this.modal = {};
         this.init();
-        if(options ){
-            this.transaction_factory = options.transaction_factory;
-            this.factories = options.factories;
-        }
-        
-
     }
 
 
     Modal.prototype.init = function(){
         that = this;
-        var trigger = $(".open-modal").click(function(event){
-            var target = $($(this).data('target'));
+        var modals = $(".js-open-modal").click(function(event){
+            var target = $("#" + $(this).data('target'));
+            that.modal = target;
             //console.log("opening modal ...");
-            var options = {template: $(this).data('template'), modal: $(this).data('target'), factory:$(this).data('factory')};
-            that.create(options);
             target.show();
         });
 
-        $("body .modal").on("click", ".close-modal", function(event){
-            //console.log("Close modal clicked");
-            var target = $($(this).data('target'));
+        var modals = $(".js-close-modal").click(function(event){
+            var target = $("#" + $(this).data('target'));
+            that.modal = undefined;
+            //console.log("opening modal ...");
             target.hide();
-            $(".modal-content .modal-body", target).empty();
-
         });
+
         if(window){
             $(window).click(function(event){
                 var target = $(event.target);
-                if(target.hasClass("modal")){
+                if(target == that.modal){
                     //console.log("Closing current modal");
                     target.hide();
-                    $(".modal-content .modal-body", target).empty();
+                    that.modal = undefined;
                 }
             });
         }
+
+        console.log("Modal initialized");
     }
 
     Modal.prototype.create = function(options){
@@ -589,6 +585,7 @@ tabs.init();
 
 var filter = new TableFilter();
 filter.init();
+var modal = new Modal({});
 
 //$(window).on('beforeunload', onbeforeunload);
 window.addEventListener('beforeunload', askConfirmation);
