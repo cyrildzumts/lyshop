@@ -32,23 +32,37 @@
     <div class="mat-table-wrapper">
         <div class="table-filter">
           <div class="row">
-            <div class="form-group-filter">
-              <label for="status">{% trans "status" %}</label>
-              <select id="status" name="status" id="status">
-              <option value="">{% trans "status filter" %}</option>
-              {% for k,v in ORDER_STATUS %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
-              </select>
+            <div class="col-m-4 col-3">
+              <div class="form-group-filter">
+                <label for="status">{% trans "status" %}</label>
+                <select id="status" name="status" id="status">
+                <option value="">{% trans "status filter" %}</option>
+                {% for k,v in ORDER_STATUS %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
+                </select>
+              </div>
             </div>
-            <div class="date-filter">
-                <div class="form-group-filter">
-                    <label for="start-date">{% trans "start date" %}</label>
-                    <input type="date" name="start_date" id="start-date">
-                </div>
-                <div class="form-group-filter">
-                    <label for="end-date">{% trans "end date" %}</label>
-                    <input type="date" name="end_date" id="end-date">
-                </div>
+            <div class="col-m-4 col-3">
+              <div class="date-filter row">
+                  <div class="form-group-filter">
+                      <label for="start-date">{% trans "start date" %}</label>
+                      <input type="date" name="start_date" id="start-date">
+                  </div>
+                  <div class="form-group-filter">
+                      <label for="end-date">{% trans "end date" %}</label>
+                      <input type="date" name="end_date" id="end-date">
+                  </div>
+              </div>
             </div>
+            <div class="col-m-4 col-3">
+              <div class="row">
+                <p>{% trans "Amount filter" %}</p>
+              </div>
+            </div>
+            <div class="col-m-4 col-3">
+            
+            </div>
+            
+            
             
           </div>
         </div>
