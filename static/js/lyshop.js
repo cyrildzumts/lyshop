@@ -281,10 +281,21 @@ var Modal = (function(){
     Modal.prototype.init = function(){
         that = this;
         var modals = $(".js-open-modal").click(function(event){
-            var target = $("#" + $(this).data('target'));
-            that.modal = target;
-            //console.log("opening modal ...");
-            target.show();
+            var modal = $("#" + $(this).data('target'));
+            that.modal = modal;
+            console.log("opening modal ...");
+            modal.show();
+            if(window){
+                $(window).click(function(eventModal){
+                    console.log("Click on window", eventModal.target);
+                    var modaltarget = eventModal.target;
+                    if(modaltarget == modal.get()){
+                        console.log("Closing current modal");
+                        that.target.hide();
+                        that.modal = undefined;
+                    }
+                });
+            }
         });
 
         var modals = $(".js-close-modal").click(function(event){
@@ -294,16 +305,7 @@ var Modal = (function(){
             target.hide();
         });
 
-        if(window){
-            $(window).click(function(event){
-                var target = $(event.target);
-                if(target == that.modal){
-                    //console.log("Closing current modal");
-                    target.hide();
-                    that.modal = undefined;
-                }
-            });
-        }
+        
 
         console.log("Modal initialized");
     }
