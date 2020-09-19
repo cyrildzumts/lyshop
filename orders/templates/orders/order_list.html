@@ -38,15 +38,18 @@
                 <span id="status-filter" class="filter"></span>
                 <div id="status-modal" class="modal">
                     <div class="modal-content">
-                          <span class="js-close-modal close-modal" data-target="status-modal" >{% trans "status" %}</span>
-                          <div class="form-group-filter">
-                            <label for="status">{% trans "status" %}</label>
-                            <select id="status" name="status" id="status">
-                            <option value="">{% trans "status filter" %}</option>
-                            {% for k,v in ORDER_STATUS %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
-                            </select>
-                          </div>
-                    </div>
+                        <div class="box">
+                            <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
+                            <div class="form-group-filter">
+                              <label for="status">{% trans "status" %}</label>
+                              <select id="status" name="status" id="status">
+                              <option value="">{% trans "status filter" %}</option>
+                              {% for k,v in ORDER_STATUS %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
+                              </select>
+                            </div>
+                        </div><!--End of Box-->
+                          
+                    </div><!--End of Modal-Content -->
                 </div><!--End of Modal-->
               </div><!--End of Container-->
               
