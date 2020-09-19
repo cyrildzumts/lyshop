@@ -289,7 +289,9 @@ var Modal = (function(){
                 $(window).click(function(eventModal){
                     console.log("Click on window", eventModal.target);
                     var modaltarget = eventModal.target;
-                    if(modaltarget == modal.get()){
+                    var modalDOM = modal.get();
+                    console.log("Saved modal : ", modalDOM);
+                    if(modaltarget == modalDOM){
                         console.log("Closing current modal");
                         that.target.hide();
                         that.modal = undefined;
