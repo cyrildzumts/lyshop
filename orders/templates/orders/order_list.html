@@ -33,13 +33,23 @@
         <div class="table-filter">
           <div class="row">
             <div class="col-m-4 col-3">
-              <div class="form-group-filter">
-                <label for="status">{% trans "status" %}</label>
-                <select id="status" name="status" id="status">
-                <option value="">{% trans "status filter" %}</option>
-                {% for k,v in ORDER_STATUS %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
-                </select>
-              </div>
+              <div class="container">
+                <span class="js-open-modal" data-target="status-modal" >{% trans "status" %}</span>
+                <span id="status-filter" class="filter"></span>
+                <div id="status-modal" class="modal">
+                    <div class="modal-content">
+                          <span class="js-close-modal close-modal" data-target="status-modal" >{% trans "status" %}</span>
+                          <div class="form-group-filter">
+                            <label for="status">{% trans "status" %}</label>
+                            <select id="status" name="status" id="status">
+                            <option value="">{% trans "status filter" %}</option>
+                            {% for k,v in ORDER_STATUS %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
+                            </select>
+                          </div>
+                    </div>
+                </div><!--End of Modal-->
+              </div><!--End of Container-->
+              
             </div>
             <div class="col-m-4 col-3">
               <div class="date-filter row">
