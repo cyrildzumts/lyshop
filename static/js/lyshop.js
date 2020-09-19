@@ -283,17 +283,11 @@ var Modal = (function(){
         var modals = $(".js-open-modal").click(function(event){
             var modal = $("#" + $(this).data('target'));
             that.modal = modal;
-            console.log("opening modal ...");
             modal.show();
             if(window){
                 $(window).click(function(eventModal){
-                    console.log("Click on window", eventModal.target);
-                    var modaltarget = eventModal.target;
-                    var modalDOM = modal.get();
-                    console.log("Saved modal : ", modalDOM);
-                    if(modaltarget == modalDOM){
-                        console.log("Closing current modal");
-                        that.target.hide();
+                    if(eventModal.target == modal.get(0)){
+                        modal.hide();
                         that.modal = undefined;
                     }
                 });
@@ -301,7 +295,7 @@ var Modal = (function(){
         });
 
         var modals = $(".js-close-modal").click(function(event){
-            var target = $("#" + $(this).data('target'));
+            var target = $("#" + $(event.target).data('target'));
             that.modal = undefined;
             //console.log("opening modal ...");
             target.hide();
