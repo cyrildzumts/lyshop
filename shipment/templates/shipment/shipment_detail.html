@@ -36,7 +36,7 @@
                 <p class="entry"><span class="key">{% trans "Customer" %} </span> <span class="value">{{shipment.customer.get_full_name}}</span></p>
             </div>
             <div class="box">
-                <p class="entry"><span class="key">{% trans "Status" %} </span> <span class="value">{{shipment.shipment_status|tuple_key}}</span></p>
+                <p class="entry"><span class="key">{% trans "Status" %} </span> <span class="value">{{shipment.shipment_status|shipment_status_value}}</span></p>
                 <p class="entry"><span class="key">{% trans "Date" %} </span> <span class="value">{{shipment.created_at|date:"F j, Y"}}</span></p>
                 <p class="entry"><span class="key">{% trans "Shipped Date" %} </span> <span class="value">{{shipment.shipped_at|date:"F j, Y"}}</span></p>
                 <p class="entry"><span class="key">{% trans "Delivered Date" %} </span> <span class="value">{{shipment.delivered_at|date:"F j, Y"}}</span></p>

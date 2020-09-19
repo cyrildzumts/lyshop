@@ -31,7 +31,7 @@
             
             </div>
             <div class="mat-box-title wrapper">
-                <p><span class="key">{% trans "Status" %} :</span> <span class="value">{{shipment.shipment_status|tuple_key}}</span></p>
+                <p><span class="key">{% trans "Status" %} :</span> <span class="value">{{shipment.shipment_status|shipment_status_value}}</span></p>
                 <p><span class="key">{% trans "Date" %} :</span> <span class="value">{{shipment.created_at|date:"F j, Y"}}</span></p>
                 <p><span class="key">{% trans "Shipped Date" %} :</span> <span class="value">{{shipment.shipped_at|date:"F j, Y"}}</span></p>
                 <p><span class="key">{% trans "Delivered Date" %} :</span> <span class="value">{{shipment.delivered_at|date:"F j, Y"}}</span></p>
@@ -52,7 +52,7 @@
               <tbody>
                       {% for h in history_list  %}
                       <tr>
-                        <td data-label="{% trans 'Status' %}">{{h.shipment_status|tuple_key}} </td>
+                        <td data-label="{% trans 'Status' %}">{{h.shipment_status|shipment_status_value}} </td>
                         <td data-label="{% trans 'Changed By' %}">{{h.changed_by.username}} </td>
                         <td data-label="{% trans 'Date' %}">{{h.created_at|date:"F j, Y"}}</td>
                       </tr>

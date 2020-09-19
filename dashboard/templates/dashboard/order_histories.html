@@ -43,7 +43,7 @@
                   {% for h in history_list  %}
                   <tr>
 
-                    <td data-label="{% trans 'Status' %}">{{h.order_status|order_status_key}} </td>
+                    <td data-label="{% trans 'Status' %}">{{h.order_status|order_status_value}} </td>
                     <td data-label="{% trans 'Date' %}">{{h.created_at|date:"F j, Y"}}</td>
                   </tr>
                   {% endfor %}

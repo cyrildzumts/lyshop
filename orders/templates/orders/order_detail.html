@@ -36,8 +36,8 @@
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
                 <p class="entry"><span class="key">{% trans "Payment Option" %}</span> <span class="value">{{order.payment_option|pay_option}}</span></p>
-                <p class="entry"><span class="key">{% trans "Order Status" %}</span> <span class="value">{{order.status|order_status_key}}</span></p>
-                <p class="entry"><span class="key">{% trans "Shipping Status" %}</span> <span class="value">{% if shipment %}{{shipment.shipment_status|tuple_key}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
+                <p class="entry"><span class="key">{% trans "Order Status" %}</span> <span class="value">{{order.status|order_status_value}}</span></p>
+                <p class="entry"><span class="key">{% trans "Shipping Status" %}</span> <span class="value">{% if shipment %}{{shipment.shipment_status|shipment_status_value}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
                 <p class="entry"><span class="key">{% trans "Paid Status" %}</span> <span class="value">{% if order.is_paid %} {% trans "PAID" %}{% else %}{% trans "NOT PAID" %}{% endif %}</span></p>
             </div>
             <div class="box">
