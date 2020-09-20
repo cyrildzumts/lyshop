@@ -1625,6 +1625,57 @@ input.editable{
 	border-bottom: var(--btn-border);
 }
 
+.chips{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 32px;
+	color: #232F34;
+	background-color: #232F341E;
+	
+	font-size: 1em;
+	font-weight: 500;
+	border-radius: 2em;
+	padding-left: 12px;
+	padding-right: 12px;
+
+}
+
+.chips-outlined{
+	border: 1px solid #232F34;
+}
+
+.filter-chips{
+
+}
+
+.chips.enabled{
+	color: #232F34;
+	background-color: #232F343E;
+}
+
+.chips.disabled{
+	color: #232F345A;
+	background-color: #232F341A;
+	font-weight: 500;
+}
+
+.chips.selected{
+	color: #232F34;
+	background-color: #232F345E;
+}
+
+.chips.activated{
+	color: #232F34;
+	background-color: #232F346E;
+	font-weight: 600;
+}
+
+.chips:hover{
+	color: #232F34;
+	background-color: #232F341E;
+}
+
 .bordered{
 	border: 1px solid #201c29;
 }

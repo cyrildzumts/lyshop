@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col-m-4 col-3">
               <div class="container">
-                <span class="js-open-modal open-modal" data-target="status-modal" >{% trans "status" %}</span>
+                <span class="js-open-modal open-modal chips" data-target="status-modal" >{% trans "status" %}</span>
                 <span id="status-filter" class="filter"></span>
                 <div id="status-modal" class="modal">
                   <div class="modal-dialog modal-dialog-centered">
@@ -46,11 +46,8 @@
                           <div class="box">
                               <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
                               <div class="form-group-filter">
-                                <label for="status">{% trans "status" %}</label>
-                                <select id="status" name="status" id="status">
-                                <option value="">{% trans "status filter" %}</option>
-                                {% for k,v in ORDER_STATUS %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
-                                </select>
+                                <span class="label">{% trans "Select a status" %}</span>
+                                {% for k, v in ORDER_STATUS %} <span class="chips js-status-filter" data-selected="0" data-status="{{k}}">{% trans v %}</span> {% endfor %}
                               </div>
                           </div><!--End of Box-->
                         </div>
