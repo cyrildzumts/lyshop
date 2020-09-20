@@ -127,6 +127,7 @@ var Modal = (function(){
             that.modal = undefined;
             //console.log("opening modal ...");
             target.hide();
+            $('input', target).val("");
         });
 
         
