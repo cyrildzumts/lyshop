@@ -2271,6 +2271,12 @@ input.editable{
 	margin: 0;
 }
 
+.table-filter{
+	width: 100%;
+	padding: 8px 16px;
+	margin: 4px auto;
+}
+
 .mat-table-title{
 	font-size: 0.875em;
 	font-weight: 600;
