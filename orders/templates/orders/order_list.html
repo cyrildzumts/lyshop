@@ -32,21 +32,11 @@
     <div class="mat-table-wrapper">
         <div class="table-filter">
           <div class="row">
-            <div class="col-m-4 col-3">
               {% include "tags/status_filter.html" with STATUS=ORDER_STATUS %}
-            </div>
-            <div class="col-m-4 col-3">
               {% include "tags/amount_filter.html" %}
-            </div>
             <div class="col-m-4 col-3">
               
             </div>
-            <div class="col-m-4 col-3">
-            
-            </div>
-            
-            
-            
           </div>
         </div>
         <table id="order-list" class="mat-table js-filter-table">
@@ -62,7 +52,7 @@
           </thead>
           <tbody>
                   {% for o in orders  %}
-                  <tr>
+                  <tr class="filterable" data-filter-status="{{o.status}}" data-filter-amount="{{o.amount|floatformat:'-2'}}" data-filter-date="{{o.created_at}}"">
                     <td data-label="{% trans 'Order Reference Number' %}">{{o.order_ref_number}}</td>
                     <td data-label="{% trans 'Amount' %}">{{o.amount|floatformat:"-2"}} {% trans CURRENCY %}</td>
                     <td data-label="{% trans 'Status' %}">{{o.status|order_status_value}} </td>
