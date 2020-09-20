@@ -402,8 +402,6 @@ function prevent_leaving(){
 }
 
 $(document).ready(function(){
-let account = new Account();
-account.init();
 
 let tabs = new Tabs();
 tabs.init();
