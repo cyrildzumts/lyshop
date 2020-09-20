@@ -32,7 +32,7 @@ def orders(request):
     context = {}
     queryset = Order.objects.filter(user=request.user).order_by('-created_at')
     template_name = "orders/order_list.html"
-    page_title = _("Dashboard Orders") + " - " + settings.SITE_NAME
+    page_title = _("My Orders") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, utils.PAGINATED_BY)
     try:
@@ -44,6 +44,7 @@ def orders(request):
     context['page_title'] = page_title
     context['orders'] = list_set
     context['ORDER_STATUS'] = commons.ORDER_STATUS
+    context['PAYMENT_OPTIONS'] = commons.PAYMENT_OPTIONS
     return render(request,template_name, context)
 
 @login_required

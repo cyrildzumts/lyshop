@@ -34,6 +34,7 @@
               <div class="grid">
                   <i class="fas fa-filter icon"></i>
                   {% include "tags/status_filter.html" with STATUS=ORDER_STATUS %}
+                  {% include "tags/payment_option_filter.html" with PAYMENT_OPTIONS=PAYMENT_OPTIONS %}
                   {% include "tags/amount_filter.html" %}
                   {% include "tags/date_filter.html" %}
                 <div class="col-m-4 col-3">
@@ -47,6 +48,7 @@
                           <th scope="col">{% trans "Order Reference Number" %}</th>
                           <th scope="col">{% trans "Amount" %}</th>
                           <th scope="col">{% trans "Status" %}</th>
+                          <th scope="col">{% trans "Payment Option" %}</th>
                           <th scope="col">{% trans "Date" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
                   </tr>
@@ -57,6 +59,7 @@
                     <td data-label="{% trans 'Order Reference Number' %}">{{o.order_ref_number}}</td>
                     <td data-label="{% trans 'Amount' %}">{{o.amount|floatformat:"-2"}} {% trans CURRENCY %}</td>
                     <td data-label="{% trans 'Status' %}">{{o.status|order_status_value}} </td>
+                    <td data-label="{% trans 'Payment Option' %}">{{o.payment_option|payment_option_value}} </td>
                     <td data-label="{% trans 'Date' %}">{{o.created_at|date:"F j, Y"}}</td>
                     <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
                   </tr>

@@ -114,5 +114,5 @@ def get_order_status_name(order_status=None):
 
 
 def get_payment_option_name(option=None):
-    key, value = utils.find_element_by_value_in_tuples(option, PAYMENT_OPTIONS)
+    key, value = utils.find_element_by_key_in_tuples(option, PAYMENT_OPTIONS)
     return key, value
