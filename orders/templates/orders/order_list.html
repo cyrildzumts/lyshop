@@ -52,7 +52,7 @@
           </thead>
           <tbody>
                   {% for o in orders  %}
-                  <tr class="filterable" data-filter-status="{{o.status}}" data-filter-amount="{{o.amount|floatformat:'-2'}}" data-filter-date="{{o.created_at}|date:'F j, Y'}">
+                  <tr class="filterable" data-filter-status="{{o.status}}" data-filter-amount="{{o.amount|floatformat:'-2'}}" data-filter-date="{{o.created_at}|date:'F j, Y'}}">
                     <td data-label="{% trans 'Order Reference Number' %}">{{o.order_ref_number}}</td>
                     <td data-label="{% trans 'Amount' %}">{{o.amount|floatformat:"-2"}} {% trans CURRENCY %}</td>
                     <td data-label="{% trans 'Status' %}">{{o.status|order_status_value}} </td>
