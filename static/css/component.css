@@ -1647,23 +1647,23 @@ input.editable{
 
 }
 
-.chips.enabled{
+.chips-enabled{
 	color: #232F34;
 	background-color: #232F343E;
 }
 
-.chips.disabled{
+.chips-disabled{
 	color: #232F345A;
 	background-color: #232F341A;
 	font-weight: 500;
 }
 
-.chips.selected{
+.chips-selected{
 	color: #232F34;
 	background-color: #232F345E;
 }
 
-.chips.activated{
+.chips-activated{
 	color: #232F34;
 	background-color: #232F346E;
 	font-weight: 600;
