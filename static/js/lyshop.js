@@ -99,178 +99,6 @@ var Slider = (function(){
 })();
 
 
-var Account = (function(){
-    function Account(){
-        this.is_logged = false;
-    };
-
-    Account.prototype.init = function(){
-        $(".dialog-btn").click(function(event){
-            var target = $(this).data('target');
-            $(target).toggle();
-         });
-         $(".close").click(function(event){
-            var target = $(this).data('target');
-            $(target).hide();
-         });
-         var lang_form = $("#lang-form");
-         var input = $("#current-lang");
-         lang_form.submit(function(event){
-            //event.preventDefault();
-            console.log("lang-form submitted");
-            return true;
-         });
-         $(".js-lang").click(function(event){
-            var span = $(this);
-            if(!span.hasClass("active")){
-                console.log("span content [lang] : ");
-                console.log(span.text());
-                input.val(span.text());
-                lang_form.submit();
-            }
-         });
-         var login_form = $("#login-form");
-         var transaction_form = $('#transaction-form');
-         if(login_form.length == 0){
-             console.log("no Login form found in this page");
-             return;
-         }
-         else{
-            console.log("Login form found in this page");
-            login_form.submit(function(event){
-                //event.preventDefault();
-                var flag = false;
-                console.log("Login received");
-                var username = $('input[name="username"]', login_form).val();
-                var password = $('input[name="password"]', login_form).val();
-                var error_div = $("#error-login", login_form);
-                var error_msg = "";
-                if((username.length > 0) && (password.length > 0)){
-                    
-                    error_div.hide();
-                    console.log("form : username = ", username);
-                    console.log("form : password = ", password);
-                    flag = true;
-                }
-                else{
-                    error_msg = "Votre nom d'utilisateur ou votre mot est incoreecte. Veuillez verifier ces informations et essayez à nouveau."
-                    console.log("form error : username or password is empty.");
-                    error_div.html(error_msg).show();
-                }
-                return flag;
-             });
-         }
-        if(transaction_form.length != 0){
-            transaction_form.submit(function(event){
-                //event.preventDefault();
-                var flag = false;
-                var error_div = $("#error-login", login_form);
-                var error_msg = "";
-                var recipient =  $('input[name="recipient"]', transaction_form).val();
-                var amount =  $('input[name="amount"]', transaction_form).val();
-                var details =  $('input[name="details"]', transaction_form).val();
-                if((recipient.length > 0) && (details.length > 0) ){
-                    if(parseInt(amount) > 0 ){
-                        flag = true;
-                        error_div.hide();
-                    }
-                    else{
-                        flag = false;
-                        error_msg = "Verifier les informations saisies."
-                        error_div.html(error_msg).show();
-                    }
-                    
-                }
-
-                return flag;
-            });
-        }
-         
-         
-        
-
-         
-    };
-
-    return Account;
-})();
-
-
-var CaseIssue = (function(){
-    function CaseIssue(options){
-        console.log("Issue construction...");
-        this.template = $("#case-form-wrapper.template");
-        if(options && options.selector){
-            this.form_selector = options.selector;
-        }
-        else{
-            this.form_selector = "#case-form";
-        }
-        console.log("Issue constructed ...");
-        this.init();
-
-    }
-
-    CaseIssue.prototype.init = function(){
-        if(this.form_selector){
-            this.form = $(this.form_selector);
-            if(this.form.length == 0){
-                console.log("No Case Issue form found on this page");
-                return;
-            }
-            var form = this.form;
-            $(".modal .modal-body").on("submit", "#case-form",function(event){
-            event.preventDefault();
-            var flag = true;
-            
-            var $reporter = $("#reporter", this);
-            var $participant = $("#participant", this);
-            var $reference = $("#reference", this);
-            var $description = $("#case-description", this);
-
-            var reporter = $reporter.val();
-            var participant = $participant.val();
-            var reference = $reference.val();
-            var description = $description.val();
-            var fields = [participant, reference, description];
-            var errors_fields = $("#participant-error , #reference-error , #case-description-error",this);
-            
-            fields.forEach(function(field, index){
-                //console.log("Field #\n",index);
-                if(field.length > 0){
-                    $(errors_fields[index]).hide();
-                }else{
-                    //console.log("Field #", index, " is incorrect\n");
-                    $(errors_fields[index]).show();
-                    flag = false;
-                }
-            });
-            if(flag){
-                console.log("Reporter : ", reporter, " - Participant : ", participant, " - Ref : ", reference, " - Description : ", description);
-            }
-            else{
-                console.log("The issue form contains invalid fields");
-            }
-            return flag;
-            });
-        }
-        else{
-            return;
-        }
-
-    };
-
-    CaseIssue.prototype.create = function(){
-        var issue = null;
-        issue = this.template.clone().removeClass("template");
-        console.log("new CaseIssue element created");
-        return issue;
-    };
-
-    return CaseIssue;
-})();
-
-
 var Modal = (function(){
     function Modal(options){
         this.modal = {};
@@ -580,33 +408,15 @@ account.init();
 let tabs = new Tabs();
 tabs.init();
 
-
-var filter = new TableFilter();
-filter.init();
 var modal = new Modal({});
 
 //$(window).on('beforeunload', onbeforeunload);
 window.addEventListener('beforeunload', askConfirmation);
 
 
-$('.js-table-update').on('click', function(event){
-    console.log("Updating the Table");
-});
-$('.js-table-next').on('click', function(event){
-    console.log("Displaying the next %s row of the Table", filter.rowStep);
-    filter.next();
-    
-});
-
-$('.js-table-previous').on('click', function(event){
-    console.log("Displaying the next %s row of the Table", filter.rowStep);
-    filter.previous();
-    
-});
 let slider = new Slider();
 slider.init();
 
-    var list = $('.list-cards');
     var collapsible = new Collapsible();
     collapsible.init();
     
@@ -645,6 +455,11 @@ slider.init();
     $('.js-dialog-open').on('click', function(){
         var target = $($(this).data('target'));
         target.show();
+    });
+
+    $("#amount-filter-input").on('keyup', function(event){
+        var input = $(this);
+        $(input.data('update').text(input.val()));
     });
 
     $('.js-dialog-close').on('click', function(){
