@@ -466,6 +466,19 @@ slider.init();
         $(input.data('update')).text(input.val());
     });
 
+    $('.js-list-filter').on('click', function(){
+        var inputs_container = $('#inputs');
+        var el = $(this);
+        var input = $('<input/>', {
+            id: el.data('name') + "-" + el.data('value'),
+            type: 'text',
+            name : el.data('name'),
+            value: el.data('value'),
+        });
+        el.addClass('selected');
+        inputs_container.append(input);
+    });
+
     $('.js-dialog-close').on('click', function(){
         var target = $($(this).data('target'));
         target.hide();

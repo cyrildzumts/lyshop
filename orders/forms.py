@@ -49,3 +49,11 @@ class DashboardOrderUpdateForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['last_changed_by', 'status', 'is_paid']
+
+
+
+class OrderFilterOption(forms.Form):
+    order_status = forms.IntegerField(required=False)
+    payment_option = forms.IntegerField(required=False)
+    amount = forms.IntegerField(required=False)
+    date = forms.DateTimeField(required=True)

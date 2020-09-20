@@ -12,7 +12,7 @@ from addressbook import constants as Addressbook_Constants
 from shipment import shipment_service
 from orders import commons
 from vendors.models import SoldProduct
-from orders.forms import ShippingAddressForm, BillingAddressForm, PaymentRequestForm, PaymentOptionForm
+from orders.forms import ShippingAddressForm, BillingAddressForm, PaymentRequestForm, PaymentOptionForm, OrderFilterOption
 from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory
 from lyshop import settings, utils
 from http import HTTPStatus
@@ -30,9 +30,17 @@ def orders(request):
 
     username = request.user.username
     context = {}
-    queryset = Order.objects.filter(user=request.user).order_by('-created_at')
+    
     template_name = "orders/order_list.html"
     page_title = _("My Orders") + " - " + settings.SITE_NAME
+    postdata = utils.get_postdata(request)
+    filter_options = OrderFilterOption(utils.get_postdata(request))
+    status_list = postdata.getlist('order_status')
+
+    if len(status_list):
+        status_list = list(map(int, status_list))
+    logger.debug(f"Filter Status option : {status_list}")
+    queryset = Order.objects.filter(user=request.user).order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, utils.PAGINATED_BY)
     try:

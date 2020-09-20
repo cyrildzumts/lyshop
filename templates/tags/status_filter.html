@@ -1,11 +1,14 @@
 
 {% load i18n %}
  <div class="modal-container">
+    <div class="hidden" id="inputs">
+    </div>
     <div class="chips" title="{% trans 'Filter the list by status field' %}">
         <i class="fas fa-info icon"></i>
         <span class="js-open-modal open-modal" data-target="status-modal" >{% trans "status" %}</span>
         <span id="status-filter" class="filter"></span>
     </div>
+
     
     <div id="status-modal" class="modal">
         <div class="modal-dialog modal-dialog-centered">
@@ -20,7 +23,7 @@
                         <span class="label">{% trans "Select a status" %}</span>
                         <div class="status">
                             <div class="row">
-                            {% for k, v in STATUS %} <span class="chips js-status-filter" data-selected="0" data-status="{{k}}">{% trans v %}</span> {% endfor %}
+                            {% for k, v in STATUS %} <span class="chips js-status-filter js-list-filter" data-name="order_status" data-selected="0" data-value="{{k}}">{% trans v %}</span> {% endfor %}
                             </div>
                         </div>
                     </div>
