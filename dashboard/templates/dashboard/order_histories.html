@@ -6,7 +6,7 @@
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
                 {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Order History" %}</h4>
+                    <h4> {% trans "History For Order" %} - {{order.order_ref_number}}</h4>
                 {% endblock HEADER_BANNER_TITLE %}
                 
         </div>
@@ -32,7 +32,6 @@
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         <table id="order-list" class="mat-table js-filter-table">
-          <caption>{% trans "History For Order" %} - {{order.order_ref_number}}</caption>
           <thead>
                   <tr>
                           <th scope="col">{% trans "Status" %}</th>

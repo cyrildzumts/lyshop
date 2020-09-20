@@ -358,6 +358,8 @@ def orders(request):
         list_set = None
     context['page_title'] = page_title
     context['orders'] = list_set
+    context['ORDER_STATUS'] = Order_Constants.ORDER_STATUS
+    context['PAYMENT_OPTIONS'] = Order_Constants.PAYMENT_OPTIONS
     context.update(get_view_permissions(request.user))
     context['can_delete_order'] = PermissionManager.user_can_delete_order(request.user)
     context['can_update_order'] = PermissionManager.user_can_change_order(request.user)
@@ -525,6 +527,8 @@ def order_history(request, order_uuid):
         'page_title' : _('Order Histories'),
         'history_list':  list_set,
         'order' : order
+        'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
+        'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
     }
     template_name = 'dashboard/order_histories.html'
     return render(request, template_name, context)
@@ -534,7 +538,9 @@ def order_history_detail(request, history_uuid):
     history = get_object_or_404(OrderStatusHistory, history_uuid=history_uuid)
     context = {
         'page_title' : _('Order History'),
-        'history':  history
+        'history':  history,
+        'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
+        'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
     }
     template_name = 'dashboard/order_history.html'
     return render(request, template_name, context)
