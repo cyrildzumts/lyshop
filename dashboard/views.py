@@ -388,6 +388,8 @@ def order_detail(request, order_uuid=None):
         'order': order,
         'shipment': shipment_service.find_order_shipment(order),
         'orderItems': orderItems,
+        'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
+        'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
         'order_is_cancelable' :  orders_service.is_cancelable(order)
     }
     context.update(get_view_permissions(request.user))
@@ -461,6 +463,7 @@ def order_update(request, order_uuid=None):
         'order': order,
         'shipment': shipment_service.find_order_shipment(order),
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
+        'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
         'form': form
     }
     context.update(get_view_permissions(request.user))
@@ -526,7 +529,7 @@ def order_history(request, order_uuid):
     context = {
         'page_title' : _('Order Histories'),
         'history_list':  list_set,
-        'order' : order
+        'order' : order,
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
     }
