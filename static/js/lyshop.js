@@ -457,7 +457,7 @@ slider.init();
 
     $("#amount-filter-input").on('keyup', function(event){
         var input = $(this);
-        $(input.data('update').text(input.val()));
+        $(input.data('update')).text(input.val());
     });
 
     $('.js-dialog-close').on('click', function(){
