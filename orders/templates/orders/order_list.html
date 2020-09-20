@@ -30,17 +30,19 @@
 <div class="container">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
-        <div class="table-filter">
-          <div class="row">
-              {% include "tags/status_filter.html" with STATUS=ORDER_STATUS %}
-              {% include "tags/amount_filter.html" %}
-            <div class="col-m-4 col-3">
-              
-            </div>
-          </div>
-        </div>
+        
         <table id="order-list" class="mat-table js-filter-table">
-          <caption>{% trans "Order List" %}</caption>
+          <caption>
+            <div class="table-filter">
+              <div class="row">
+                  {% include "tags/status_filter.html" with STATUS=ORDER_STATUS %}
+                  {% include "tags/amount_filter.html" %}
+                <div class="col-m-4 col-3">
+                  
+                </div>
+              </div>
+            </div>
+          </caption>
           <thead>
                   <tr>
                           <th scope="col">{% trans "Order Reference Number" %}</th>
