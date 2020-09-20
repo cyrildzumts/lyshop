@@ -1900,13 +1900,14 @@ input.editable{
 	cursor: pointer;
 	min-width: 64px;
 	width: fit-content;
+	width: -moz-fit-content;
 	min-height: 32px !important;
 	text-align: center;
 	text-transform: uppercase;
 	text-decoration: none;
 	font-size: 0.75em;
 	font-weight: 500;
-	font-family: 'Monserrat' sans-serif;
+	font-family: 'Monserrat', sans-serif;
 	padding: 0 16px;
 	margin: 8px;
 	border: none;
