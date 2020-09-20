@@ -117,6 +117,9 @@ var Modal = (function(){
                     if(eventModal.target == modal.get(0)){
                         modal.hide();
                         that.modal = undefined;
+                        var inputs = $('input.input-filter', modal);
+                        inputs.val("");
+                        $(inputs.data('update')).text("");
                     }
                 });
             }
@@ -127,7 +130,9 @@ var Modal = (function(){
             that.modal = undefined;
             //console.log("opening modal ...");
             target.hide();
-            $('input', target).val("");
+            var inputs = $('input.input-filter', target);
+            inputs.val("");
+            $(inputs.data('update')).text("");
         });
 
         
