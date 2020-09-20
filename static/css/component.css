@@ -1860,15 +1860,30 @@ input.editable{
 	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
 				0px 1px 1px 0px rgba(0, 0, 0, 0.14),
 				0px 1px 3px 0px rgba(0,0,0,.12);
-	border: 1px solid #1976d2;
+	/*border: 1px solid #1976d2;*/
 	/*border-radius: 4px;*/
-	background-color: #1976d2;
-	/*color: #fff;*/
+	color: #242424;
+	background-color: #2424241E;
+}
+
+.mat-button-default:hover{
+
+	/*border: 1px solid #1976d2;*/
+	/*border-radius: 4px;*/
+	color: #242424;
+	background-color: #2424243E;
 }
 .mat-button-outlined{
-	border: 1px solid #1976d2;
-	/*color: #1976d2;*/
+	border: 1px solid #242424;
+
+	color: #242424
 	/*border-radius: 4px;*/
+}
+
+.mat-button-outlined:hover{
+
+	color: #202020;
+	background-color: #2020203E;
 }
 
 .mat-button-default *{
@@ -1890,22 +1905,31 @@ input.editable{
 	text-decoration: none;
 	font-size: 0.75em;
 	font-weight: 500;
-	font-family: 'Monserrat';
+	font-family: 'Monserrat' sans-serif;
 	padding: 0 16px;
 	margin: 8px;
 	border: none;
 }
 
+a.mat-button{
+	text-decoration: none;
+}
+
 .mat-button-text{
 	padding: 0 8px !important;
-	/*color: #1976d2;*/
+	color: #242424;
+}
+
+.mat-button-text:hover{
+	color: #202020;
 }
 .mat-button-filter{
 	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
 				0px 1px 1px 0px rgba(0, 0, 0, 0.14),
 				0px 1px 3px 0px rgba(0,0,0,.12);
-	border: 1px solid #1976d2;
-	color: #1976d2;
+	border: 1px solid #242424;
+	color: #242424;
+	background-color: #2424241E;
 	/*border-radius: 20px;*/
 }
 
