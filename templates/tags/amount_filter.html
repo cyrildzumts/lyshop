@@ -1,0 +1,41 @@
+
+{% load i18n %}
+ <div class="container modal-container">
+    <div id="amount-filter" class="chips">
+        <span class="js-open-modal open-modal" data-target="amount-modal" >{% trans "amount" %}</span>
+        
+        <span id="selected-filter" class="filter"></span>
+    </div>
+    
+    <div id="amount-modal" class="modal">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="title">{% trans "Amount Filter" %}</span><span class="js-close-modal close-modal" data-target="amount-modal" ><i class="fas fa-close"></i></span>
+            </div>
+            <div class="modal-body">
+                <div class="mat-box">
+                    <div class="form-group">
+                        <label for="amount">{% trans "Enter an amount" %}</label>
+                        <input id="amount" type="text" name="amount">
+                    </div>
+                </div><!--End of Box-->
+                <div class="mat-box">
+                    <span class="label">{% trans "Select the Filter" %}</span>
+                    <div class="actions">
+                        <span id="greater-than-equal" class="action-filter chips" data-target=""><i class="fas fa-greater-than-equal icon"></i><span class="filter-value"></span></span>
+                        <span id="greater-than" class="action-filter chips" data-target=""><i class="fas fa-greater-than icon"></i><span class="filter-value"></span></span>
+                        <span id="less-than-equal" class="action-filter chips"><i class="fas fa-less-than-equal icon"></i><span class="filter-value"></span></span>
+                        <span id="less-than" class="action-filter chips"><i class="fas fa-less-than icon"></i><span class="filter-value"></span></span>
+                        <span id="equal-to" class="action-filter chips"><i class="fas fa-equals icon"></i><span class="filter-value"></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer actions">
+                <span class="js-close-modal close-modal mat-button mat-button-text" data-target="amount-modal" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
+                <button class="mat-button mat-button-default js-close-modal close-modal" data-target="amount-modal">{% trans "Use this Filter" %}</button>
+            </div>
+        </div><!--End of Modal-Content -->
+        </div><!--End of Modal-Dialog -->
+    </div><!--End of Modal-->
+</div><!--End of Container-->

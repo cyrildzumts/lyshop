@@ -1596,10 +1596,7 @@ input.editable{
 }
 
 .close-modal{
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
+	font-weight: bold !important;
 }
 
 .close-modal:hover, .close-modal:focus{

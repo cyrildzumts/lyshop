@@ -33,57 +33,13 @@
         <div class="table-filter">
           <div class="row">
             <div class="col-m-4 col-3">
-              <div class="container">
-                <span class="js-open-modal open-modal chips" data-target="status-modal" >{% trans "status" %}</span>
-                <span id="status-filter" class="filter"></span>
-                <div id="status-modal" class="modal">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                          <span class="title">{% trans "Status Filter" %}</span><span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
-                        </div>
-                        <div class="modal-body">
-                          <div class="box">
-                              <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
-                              <div class="form-group-filter">
-                                <span class="label">{% trans "Select a status" %}</span>
-                                <div class="mat-box">
-                                  <div class="row">
-                                  {% for k, v in ORDER_STATUS %} <span class="chips js-status-filter" data-selected="0" data-status="{{k}}">{% trans v %}</span> {% endfor %}
-                                  </div>
-                                </div>
-                                
-                              </div>
-                          </div><!--End of Box-->
-                        </div>
-                        <div class="modal-footer actions">
-                          <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
-                          <button class="mat-button mat-button-default js-close-modal close-modal" data-target="status-modal">{% trans "use this Filter" %}</button>
-                        </div>
-                        
-                          
-                    </div><!--End of Modal-Content -->
-                  </div><!--End of Modal-Dialog -->
-                </div><!--End of Modal-->
-              </div><!--End of Container-->
+              {% include "tags/status_filter.html" with STATUS=ORDER_STATUS %}
+            </div>
+            <div class="col-m-4 col-3">
+              {% include "tags/amount_filter.html" %}
+            </div>
+            <div class="col-m-4 col-3">
               
-            </div>
-            <div class="col-m-4 col-3">
-              <div class="date-filter row">
-                  <div class="form-group-filter">
-                      <label for="start-date">{% trans "start date" %}</label>
-                      <input type="date" name="start_date" id="start-date">
-                  </div>
-                  <div class="form-group-filter">
-                      <label for="end-date">{% trans "end date" %}</label>
-                      <input type="date" name="end_date" id="end-date">
-                  </div>
-              </div>
-            </div>
-            <div class="col-m-4 col-3">
-              <div class="row">
-                <p>{% trans "Amount filter" %}</p>
-              </div>
             </div>
             <div class="col-m-4 col-3">
             
