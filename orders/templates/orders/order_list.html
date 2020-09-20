@@ -30,10 +30,7 @@
 <div class="container">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
-        
-        <table id="order-list" class="mat-table js-filter-table">
-          <caption>
-            <div class="table-filter">
+        <div class="table-filter">
               <div class="row">
                   {% include "tags/status_filter.html" with STATUS=ORDER_STATUS %}
                   {% include "tags/amount_filter.html" %}
@@ -42,7 +39,7 @@
                 </div>
               </div>
             </div>
-          </caption>
+        <table id="order-list" class="mat-table js-filter-table">
           <thead>
                   <tr>
                           <th scope="col">{% trans "Order Reference Number" %}</th>
