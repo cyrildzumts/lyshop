@@ -1638,6 +1638,7 @@ input.editable{
 	border-radius: 2em;
 	padding-left: 12px;
 	padding-right: 12px;
+	margin: 0.2em;
 
 }
 
@@ -1673,7 +1674,8 @@ input.editable{
 
 .chips:hover{
 	color: #232F34;
-	background-color: #232F341E;
+	background-color: #232F342E;
+	cursor: pointer;
 }
 
 .bordered{
