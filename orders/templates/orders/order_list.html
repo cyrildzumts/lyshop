@@ -47,7 +47,12 @@
                               <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
                               <div class="form-group-filter">
                                 <span class="label">{% trans "Select a status" %}</span>
-                                {% for k, v in ORDER_STATUS %} <span class="chips js-status-filter" data-selected="0" data-status="{{k}}">{% trans v %}</span> {% endfor %}
+                                <div class="mat-box">
+                                  <div class="row">
+                                  {% for k, v in ORDER_STATUS %} <span class="chips js-status-filter" data-selected="0" data-status="{{k}}">{% trans v %}</span> {% endfor %}
+                                  </div>
+                                </div>
+                                
                               </div>
                           </div><!--End of Box-->
                         </div>
