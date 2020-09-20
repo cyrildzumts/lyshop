@@ -38,16 +38,26 @@
                 <span id="status-filter" class="filter"></span>
                 <div id="status-modal" class="modal">
                     <div class="modal-content">
-                        <div class="box">
-                            <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
-                            <div class="form-group-filter">
-                              <label for="status">{% trans "status" %}</label>
-                              <select id="status" name="status" id="status">
-                              <option value="">{% trans "status filter" %}</option>
-                              {% for k,v in ORDER_STATUS %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
-                              </select>
-                            </div>
-                        </div><!--End of Box-->
+                        <div class="modal-header">
+                          <span class="title">{% trans "Status Filter" %}</span><span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
+                        </div>
+                        <div class="modal-body">
+                          <div class="box">
+                              <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
+                              <div class="form-group-filter">
+                                <label for="status">{% trans "status" %}</label>
+                                <select id="status" name="status" id="status">
+                                <option value="">{% trans "status filter" %}</option>
+                                {% for k,v in ORDER_STATUS %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
+                                </select>
+                              </div>
+                          </div><!--End of Box-->
+                        </div>
+                        <div class="modal-footer actions">
+                          <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
+                          <button class="mat-button mat-button-default js-close-modal close-modal" data-target="status-modal">{% trans "use this Filter" %}</button>
+                        </div>
+                        
                           
                     </div><!--End of Modal-Content -->
                 </div><!--End of Modal-->
