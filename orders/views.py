@@ -36,11 +36,15 @@ def orders(request):
     postdata = utils.get_postdata(request)
     filter_options = OrderFilterOption(utils.get_postdata(request))
     status_list = postdata.getlist('order_status')
-
-    if len(status_list):
+    status_not_empty = len(status_list)
+    if status_not_empty:
         status_list = list(map(int, status_list))
-    logger.debug(f"Filter Status option : {status_list}")
-    queryset = Order.objects.filter(user=request.user).order_by('-created_at')
+        logger.debug(f"Filter Status option : {status_list}")
+        queryset = Order.objects.filter(user=request.user, status__in=status_list).order_by('-created_at')
+    else:
+        queryset = Order.objects.filter(user=request.user).order_by('-created_at')
+    
+    
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, utils.PAGINATED_BY)
     try:
@@ -53,6 +57,7 @@ def orders(request):
     context['orders'] = list_set
     context['ORDER_STATUS'] = commons.ORDER_STATUS
     context['PAYMENT_OPTIONS'] = commons.PAYMENT_OPTIONS
+    context['SELECTED_ORDER_STATUS'] = status_list
     return render(request,template_name, context)
 
 @login_required

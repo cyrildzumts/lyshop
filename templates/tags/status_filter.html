@@ -23,7 +23,9 @@
                         <span class="label">{% trans "Select a status" %}</span>
                         <div class="status">
                             <div class="row">
-                            {% for k, v in STATUS %} <span class="chips js-status-filter js-list-filter" data-name="order_status" data-selected="0" data-value="{{k}}">{% trans v %}</span> {% endfor %}
+                            {% for k, v in STATUS %} 
+                                <span {% if k in SELECTED_ORDER_STATUS %} class="chips js-status-filter js-list-filter chips-selected"{% else %} class="chips js-status-filter js-list-filter"{% endif %}  data-name="order_status" data-selected="0" data-value="{{k}}">{% trans v %}</span> 
+                            {% endfor %}
                             </div>
                         </div>
                     </div>
