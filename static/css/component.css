@@ -1899,6 +1899,7 @@ input.editable{
 	justify-content: center;
 	cursor: pointer;
 	min-width: 64px;
+	width: fit-content;
 	min-height: 32px !important;
 	text-align: center;
 	text-transform: uppercase;
