@@ -37,7 +37,7 @@ function toggle_order_status(value){
     });
     if(status_list.length == 0){
         order_status_container.append(option);
-        added = True;
+        added = true;
     }else{
         order_status_container.each(function(){
             if(this.value == value){
