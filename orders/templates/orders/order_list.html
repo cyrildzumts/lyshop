@@ -26,7 +26,6 @@
 {% endblock HEADER_BANNER %}
 
 {% block MAIN %}
-{% if orders %}
 <form action="" method="GET">{% comment %}{% csrf_token %}
 {% endcomment %}
 
@@ -63,6 +62,8 @@
                     <td data-label="{% trans 'Date' %}">{{o.created_at|date:"F j, Y"}}</td>
                     <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
                   </tr>
+                  {% empty %}
+                  <tr>{% trans "No data available" %}</tr>
                   {% endfor %}
                   
           </tbody>
@@ -76,14 +77,5 @@
   </div>
 </div>
 </form>
-{% else %}
-<div class="container">
-  <div class="col-m-12 col-12">
-    <p>{% trans "You have bought any article yet." %}</p>
-  </div>
-  <div class="col-m-12 col-12">
-    <p>{% trans "Your orders will be displayed here." %}</p>
-  </div>
-</div>
-{% endif %}
+
 {% endblock MAIN %}
