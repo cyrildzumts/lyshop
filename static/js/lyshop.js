@@ -31,11 +31,13 @@ function toggle_order_status(value){
         value: value,
         selected : true
     });
+    var added = false;
     var status_list = order_status_container.filter(function(index, el){
         return el.value == value;
     });
     if(status_list.length == 0){
         order_status_container.append(option);
+        added = True;
     }else{
         order_status_container.each(function(){
             if(this.value == value){
@@ -504,7 +506,8 @@ slider.init();
     });
 
     $('.js-list-filter').on('click', function(){
-        toggle_order_status($(this).data('value'));
+        var added = toggle_order_status($(this).data('value'));
+        $(this).toggleClass("chips-selected", added);
     });
 
     $('.js-dialog-close').on('click', function(){
