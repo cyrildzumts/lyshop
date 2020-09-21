@@ -504,17 +504,7 @@ slider.init();
     });
 
     $('.js-list-filter').on('click', function(){
-        //var inputs_container = $('#order-status');
-        var el = $(this);
-        var option = $('<option/>', {
-            //id: el.data('name') + "-" + el.data('value'),
-            //type: 'text',
-            //name : el.data('name'),
-            value: el.data('value'),
-            selected : true
-        });
-        el.addClass('chips-selected');
-        order_status_container.append(option);
+        toggle_order_status($(this).data('value'));
     });
 
     $('.js-dialog-close').on('click', function(){
