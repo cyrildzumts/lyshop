@@ -1,4 +1,5 @@
 var order_status_container;
+var order_status = [];
 
 /**
  * 
@@ -22,6 +23,28 @@ function ajax(options){
 }
 
 
+function toggle_order_status(value){
+    var option = $('<option/>', {
+        //id: el.data('name') + "-" + el.data('value'),
+        //type: 'text',
+        //name : el.data('name'),
+        value: el.data('value'),
+        selected : true
+    });
+    var status_list = order_status_container.filter(function(index, el){
+        return el.value == value;
+    });
+    if(status_list.length == 0){
+        order_status_container.append(option);
+    }else{
+        order_status_container.each(function(){
+            if(this.value == value){
+                $(this).remove();
+            }
+        });
+    }
+    
+}
 
 var Tabs = (function(){
     function Tabs(){
