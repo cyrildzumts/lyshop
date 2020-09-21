@@ -41,6 +41,7 @@ function toggle_order_status(value){
     }else{
         order_status_container.each(function(){
             if(this.value == value){
+                console.log("remove option ", this);
                 $(this).remove();
             }
         });
