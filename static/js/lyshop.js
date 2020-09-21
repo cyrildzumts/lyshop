@@ -25,9 +25,6 @@ function ajax(options){
 
 function toggle_order_status(value){
     var option = $('<option/>', {
-        //id: el.data('name') + "-" + el.data('value'),
-        //type: 'text',
-        //name : el.data('name'),
         value: value,
         selected : true
     });
