@@ -467,13 +467,14 @@ slider.init();
     });
 
     $('.js-list-filter').on('click', function(){
-        var inputs_container = $('#inputs');
+        var inputs_container = $('#order-status');
         var el = $(this);
-        var input = $('<input/>', {
-            id: el.data('name') + "-" + el.data('value'),
-            type: 'text',
-            name : el.data('name'),
+        var option = $('<option/>', {
+            //id: el.data('name') + "-" + el.data('value'),
+            //type: 'text',
+            //name : el.data('name'),
             value: el.data('value'),
+            selected : true
         });
         el.addClass('selected');
         inputs_container.append(input);
