@@ -27,7 +27,8 @@
 
 {% block MAIN %}
 {% if orders %}
-<form action="" method="GET">{% csrf_token %}
+<form action="" method="GET">{% comment %}{% csrf_token %}
+{% endcomment %}
 
 <div class="container">
 <div class="col-m-12 col-9">
