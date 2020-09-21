@@ -34,12 +34,13 @@ def orders(request):
     template_name = "orders/order_list.html"
     page_title = _("My Orders") + " - " + settings.SITE_NAME
     postdata = utils.get_postdata(request)
-    filter_options = OrderFilterOption(request.GET.copy())
-    is_filter_valid = filter_options.is_valid()
-    logger.debug(f"Filter is valid ? : {is_filter_valid}")
-    logger.debug(f"Cleaned Data : {filter_options.cleaned_data}")
-    logger.debug(f"Error Data : {filter_options.errors}")
-    status_list = filter_options.get('order_status')
+    getdata = request.GET.copy()
+    #filter_options = OrderFilterOption(request.GET.copy())
+    #is_filter_valid = filter_options.is_valid()
+    #logger.debug(f"Filter is valid ? : {is_filter_valid}")
+    #logger.debug(f"Cleaned Data : {filter_options.cleaned_data}")
+    #logger.debug(f"Error Data : {filter_options.errors}")
+    status_list = getdata.get('order_status')
     logger.debug(f"Filter Status option (befor mapping to int) : {status_list}")
     status_not_empty = len(status_list)
     if status_not_empty:
