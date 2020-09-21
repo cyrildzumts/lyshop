@@ -33,6 +33,7 @@ function toggle_order_status(value){
     });
     var added = false;
     var status_list = order_status_container.filter(function(index, el){
+        console.log("Filter options : ", el);
         return el.value == value;
     });
     if(status_list.length == 0){
