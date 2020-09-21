@@ -28,7 +28,7 @@ function toggle_order_status(value){
         //id: el.data('name') + "-" + el.data('value'),
         //type: 'text',
         //name : el.data('name'),
-        value: el.data('value'),
+        value: value,
         selected : true
     });
     var status_list = order_status_container.filter(function(index, el){
