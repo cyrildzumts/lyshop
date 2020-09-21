@@ -1,3 +1,5 @@
+var order_status_container;
+
 /**
  * 
  * @param {*} options is a JSON defining the following data :
@@ -465,9 +467,8 @@ slider.init();
         var input = $(this);
         $(input.data('update')).text(input.val());
     });
-
-    $('.js-list-filter').on('click', function(){
-        var inputs_container = $('#order-status');
+     order_status_container = $('#order-status');
+    $('.js-list-filter.chips-selected').each(function(){
         var el = $(this);
         var option = $('<option/>', {
             //id: el.data('name') + "-" + el.data('value'),
@@ -476,8 +477,21 @@ slider.init();
             value: el.data('value'),
             selected : true
         });
-        el.addClass('selected');
-        inputs_container.append(option);
+        order_status_container.append(option);
+    });
+
+    $('.js-list-filter').on('click', function(){
+        //var inputs_container = $('#order-status');
+        var el = $(this);
+        var option = $('<option/>', {
+            //id: el.data('name') + "-" + el.data('value'),
+            //type: 'text',
+            //name : el.data('name'),
+            value: el.data('value'),
+            selected : true
+        });
+        el.addClass('chips-selected');
+        order_status_container.append(option);
     });
 
     $('.js-dialog-close').on('click', function(){
