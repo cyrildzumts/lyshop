@@ -1,6 +1,7 @@
 
 from django import forms
 from orders.models import PaymentRequest, Order
+from core.forms import ListField
 
 
 
@@ -53,7 +54,8 @@ class DashboardOrderUpdateForm(forms.ModelForm):
 
 
 class OrderFilterOption(forms.Form):
-    order_status = forms.IntegerField(required=False)
+    order_status = ListField(coerce=int, required=False)
+    #order_status = forms.IntegerField(required=False)
     payment_option = forms.IntegerField(required=False)
     amount = forms.IntegerField(required=False)
-    date = forms.DateTimeField(required=True)
+    date = forms.DateTimeField(required=False)
