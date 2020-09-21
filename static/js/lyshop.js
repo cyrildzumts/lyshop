@@ -32,7 +32,7 @@ function toggle_order_status(value){
         selected : true
     });
     var added = false;
-    var status_list = order_status_container.filter(function(index, el){
+    var status_list = $('option', order_status_container).filter(function(index, el){
         console.log("Filter options : ", el);
         return el.value == value;
     });
@@ -40,7 +40,7 @@ function toggle_order_status(value){
         order_status_container.append(option);
         added = true;
     }else{
-        order_status_container.each(function(){
+        $('option', order_status_container).each(function(){
             if(this.value == value){
                 console.log("remove option ", this);
                 $(this).remove();
