@@ -477,7 +477,7 @@ slider.init();
             selected : true
         });
         el.addClass('selected');
-        inputs_container.append(input);
+        inputs_container.append(option);
     });
 
     $('.js-dialog-close').on('click', function(){
