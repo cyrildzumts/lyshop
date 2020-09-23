@@ -1,4 +1,5 @@
 var order_status_container;
+var order_payment_option_container;
 var order_status = [];
 
 /**
@@ -23,28 +24,74 @@ function ajax(options){
 }
 
 
-function toggle_order_status(value){
-    var option = $('<option/>', {
-        value: value,
-        selected : true
-    });
+function toggle_order_status(element){
+    var value = element.data('value');
     var added = false;
     var status_list = $('option', order_status_container).filter(function(index, el){
-        console.log("Filter options : ", el);
         return el.value == value;
     });
     if(status_list.length == 0){
-        order_status_container.append(option);
+        order_status_container.append($('<option/>', {
+            value: value,
+            selected : true
+        }));
         added = true;
     }else{
         $('option', order_status_container).each(function(){
             if(this.value == value){
-                console.log("remove option ", this);
                 $(this).remove();
             }
         });
     }
+    return added;
+}
+
+function toggle_playment_option(element){
+    var value = element.data('value');
+
+    var added = false;
+    var payment_option_list = $('option', order_payment_option_container).filter(function(index, el){
+        return el.value == value;
+    });
+    if(payment_option_list.length == 0){
+        order_payment_option_container.append($('<option/>', {
+            value: value,
+            selected : true
+        }));
+        added = true;
+    }else{
+        $('option', payment_option_list).each(function(){
+            if(this.value == value){
+                $(this).remove();
+            }
+        });
+    }
+    return added;
     
+}
+
+function toggle_amount_option(element){
+    var input = $('#filter-action');
+    var filter_action = element.data('filter-action');
+    if(input.val() == filter_action){
+        element.removeClass('chips-selected').siblings().removeClass('chips-selected');;
+        input.val('');
+    }else{
+        input.val(filter_action);
+        element.addClass('chips-selected').siblings().removeClass('chips-selected');
+    }
+}
+
+function toggle_date_filter(element){
+    var input = $('#filter-action');
+    var filter_action = element.data('filter-action');
+    if(input.val() == filter_action){
+        element.removeClass('chips-selected').siblings().removeClass('chips-selected');;
+        input.val('');
+    }else{
+        input.val(filter_action);
+        element.addClass('chips-selected').siblings().removeClass('chips-selected');
+    }
 }
 
 var Tabs = (function(){
@@ -505,8 +552,20 @@ slider.init();
     });
 
     $('.js-list-filter').on('click', function(){
-        var added = toggle_order_status($(this).data('value'));
-        $(this).toggleClass("chips-selected", added);
+        var element = $(this);
+        var name = element.data('name');
+        if(name == 'order_status'){
+            var added = toggle_order_status(element);
+            element.toggleClass("chips-selected", added);
+        }else if(name == 'payment_method_filter'){
+            toggle_playment_option(element);
+            element.toggleClass("chips-selected", added);
+        }else if(name == 'amount_filter'){
+            toggle_amount_option(element);
+        }else if(name == 'date_filter'){
+            toggle_date_filter(element);
+        }
+        
     });
 
     $('.js-dialog-close').on('click', function(){

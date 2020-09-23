@@ -20,7 +20,7 @@
                         <span class="label">{% trans "Select a payment method" %}</span>
                         <div class="payment-method">
                             <div class="row">
-                            {% for k, v in PAYMENT_OPTIONS %} <span class="chips js-payment-method-filter" data-selected="0" data-status="{{k}}">{% trans v %}</span> {% endfor %}
+                            {% for k, v in PAYMENT_OPTIONS %} <span class="chips js-payment-method-filter js-list-filter" data-name="payment_method_filter" data-selected="0" data-status="{{k}}">{% trans v %}</span> {% endfor %}
                             </div>
                         </div>
                     </div>
