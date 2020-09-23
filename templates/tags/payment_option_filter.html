@@ -1,6 +1,9 @@
 
 {% load i18n %}
  <div class="modal-container">
+    <div class="hidden" id="inputs">
+        <select name="payment_method" id="payment-method" multiple></select>
+    </div>
     <div class="chips" title="{% trans 'Filter the list by payment_option field' %}">
         <i class="fas fa-info icon"></i>
         <span class="js-open-modal open-modal" data-target="payment-method-modal" >{% trans "payment method" %}</span>
@@ -20,7 +23,9 @@
                         <span class="label">{% trans "Select a payment method" %}</span>
                         <div class="payment-method">
                             <div class="row">
-                            {% for k, v in PAYMENT_OPTIONS %} <span class="chips js-payment-method-filter js-list-filter" data-name="payment_method_filter" data-selected="0" data-status="{{k}}">{% trans v %}</span> {% endfor %}
+                            {% for k, v in PAYMENT_OPTIONS %} 
+                            
+                            <span {% if k in SELECTED_PAYMENT_METHODS %} class="chips js-list-filter chips-selected"{% else %} class="chips js-list-filter"{% endif %} data-container="payment-method" data-name="payment_method_filter" data-selected="0" data-status="{{k}}">{% trans v %}</span> {% endfor %}
                             </div>
                         </div>
                     </div>
