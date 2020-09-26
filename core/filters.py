@@ -97,7 +97,7 @@ FILTER_FIELD_PREFIX                 = 'ff_'
 FILTER_FIELD_TYPE                   = ''
 
 def get_query(key, queryDict):
-    if not key not queryDict or not isinstance(queryDict, QueryDict) or not isinstance(key, str):
+    if not key or not queryDict or not isinstance(queryDict, QueryDict) or not isinstance(key, str):
         logger.warn("get_query: error key or queryDict")
         return None
     q = {}
