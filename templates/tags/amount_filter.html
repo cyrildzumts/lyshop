@@ -2,7 +2,7 @@
 {% load i18n %}
  <div class="modal-container">
     <div class="hidden" id="inputs">
-        <input name="filter_action" id="filter-action">
+        <input name="filter_lookup" id="filter-action">
     </div>
     <div id="amount-filter" class="chips" title="{% trans 'Filter the list by Amount field' %}">
         <i class="fas fa-coins icon"></i>
@@ -21,7 +21,7 @@
                 <div class="mat-box">
                     <div class="form-group">
                         <label for="amount-filter-input">{% trans "Enter an amount" %}({% trans CURRENCY %})</label>
-                        <input id="amount-filter-input" class="input-filter" type="text" name="amount" data-update=".action-filter .filter-value">
+                        <input id="amount-filter-input" class="input-filter" type="text" name="filter_field_amount" data-update=".action-filter .filter-value">
                     </div>
                 </div><!--End of Box-->
                 <div class="mat-box">
