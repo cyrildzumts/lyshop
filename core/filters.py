@@ -138,7 +138,7 @@ def model_has_field(model, field_name):
         return False
     
     for field in model._meta.get_fields():
-        if field.get_attname() == field:
+        if field.name == field_name:
             return True
     
     return False
@@ -172,14 +172,17 @@ def field_filter(model, queryDict):
             continue
         match = FIELD_PATTERN.match(key)
         if not match:
-             continue
+            logger.debug("field not matched")
+            continue
         field_name = match.group(FIELD_PATTERN_GROUP_FIELD_NAME)
         if not model_has_field(model, field_name):
+            logger.debug(f"Model has no field {field_name}")
             continue
         field_type = INTERNAL_TYPE_MAPPING [model._meta.get_field(field_name).get_internal_type()]
         values = queryDict.getlist(key)
         values_len = len(values)
         if values_len == 0:
+            logger.debug("no values found")
             continue
         if values_len > 1:
             values = list(map(field_type, queryDict.getlist(key)))
