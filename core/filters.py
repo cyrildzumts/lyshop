@@ -189,8 +189,11 @@ def field_filter(model, queryDict):
         if values_len == 1:
             values = field_type(values[0])
 
-        fl_value = queryDict.get(FILTER_FIELD_LOOKUP_PREFIX + field_name)
-        fl_value = int(fl_value)
+        fl_value = queryDict.get(FILTER_FIELD_LOOKUP_PREFIX + field_name, '')
+        if fl_value == '':
+            fl_value = FILTER_INTEGER_EQ
+        else:
+            fl_value = int(fl_value)
         q[field_name + FILTER_FIELD_LOOKUP[fl_value]] = values
 
     logger.debug(f'field_filter: {q}')
