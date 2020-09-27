@@ -120,7 +120,7 @@ def extract_integer_filter(queryDict):
     for key in queryDict:
         if not isinstance(key, str):
             continue
-        if key.startwith(FILTER_FIELD_PREFIX):
+        if key.startswith(FILTER_FIELD_PREFIX):
             query_search.update(get_query(key, queryDict))
     return query_search
     
