@@ -103,8 +103,8 @@ def get_query(key, queryDict):
     q = {}
     v = queryDict.getlist(key)
     field_name = key[len(FILTER_FIELD_LOOKUP_PREFIX):None]
-    fl_key = FILTER_FIELD_LOOKUP_PREFIX + name
-    fl_value = queryDict.get(FILTER_FIELD_LOOKUP_PREFIX + name)
+    fl_key = FILTER_FIELD_LOOKUP_PREFIX + field_name
+    fl_value = queryDict.get(FILTER_FIELD_LOOKUP_PREFIX + field_name)
     q[field_name + FILTER_FIELD_LOOKUP[fl_value]] = v
     logger.debug(f"get_query(): {q}")
     return q
