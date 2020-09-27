@@ -178,8 +178,13 @@ def field_filter(model, queryDict):
             continue
         field_type = INTERNAL_TYPE_MAPPING [model._meta.get_field(field_name).get_internal_type()]
         values = queryDict.getlist(key)
-        if field_type == int:
+        values_len = len(values)
+        if values_len == 0:
+            continue
+        if values_len > 1:
             values = list(map(field_type, queryDict.getlist(key)))
+        if values_len == 1:
+            values = field_type(values[0])
 
         fl_value = queryDict.get(FILTER_FIELD_LOOKUP_PREFIX + field_name)
         fl_value = int(fl_value)
