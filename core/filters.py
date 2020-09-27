@@ -2,7 +2,11 @@
 from django.db import models
 from django.db.models import Q, F
 from django.http import QueryDict
+import numbers
+import datetime
+import uuid
 import logging
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -92,9 +96,27 @@ FILTER_FIELD_LOOKUP = {
 
 }
 
+INTERNAL_TYPE_MAPPING = {
+    'CharField' : str,
+    'IntegerField': int,
+    'Boolean' : bool,
+    'FloatField' : float,
+    'DateField' : datetime.date,
+    'DateTimeField' : datetime.datetime,
+    'DecimalField': float,
+    'UUIDField' : uuid.UUID,
+    'TextField' : str,
+    'ForeignKey' : int,
+}
+
 FILTER_FIELD_LOOKUP_PREFIX          = "fl_"
 FILTER_FIELD_PREFIX                 = 'ff_'
 FILTER_FIELD_TYPE                   = ''
+
+INTEGER_PATTERN_REGEX               =  re.compile(r'^[0-9]+$')
+FIELD_PATTERN                       = re.compile(r'(?P<prefix>ff_)(?P<field_name>\w+)')
+FIELD_PATTERN_GROUP_PREFIX          = "prefix"
+FIELD_PATTERN_GROUP_FIELD_NAME      = "field_name"
 
 def get_query(key, queryDict):
     if not key or not queryDict or not isinstance(queryDict, QueryDict) or not isinstance(key, str):
@@ -111,6 +133,15 @@ def get_query(key, queryDict):
     return q
 
 
+def model_has_field(model, field_name):
+    if type(models.Model) != type(model):
+        return False
+    
+    for field in model._meta.get_fields():
+        if field.get_attname() == field:
+            return True
+    
+    return False
 
 
 def extract_integer_filter(queryDict):
@@ -129,7 +160,33 @@ def extract_integer_filter(queryDict):
 def field_filter(model, queryDict):
     if type(models.Model) != type(model):
         return None
+
+    if not queryDict or not isinstance(queryDict, QueryDict):
+        logger.warn("field_filter: error on queryDict")
+        return None
     
-    filter_params = extract_integer_filter(queryDict)
+    q = {}
+
+    for key in queryDict:
+        if not isinstance(key, str):
+            continue
+        match = FIELD_PATTERN.match(key)
+        if not match:
+             continue
+        field_name = match.group(FIELD_PATTERN_GROUP_FIELD_NAME)
+        if not model_has_field(model, field_name):
+            continue
+        field_type = INTERNAL_TYPE_MAPPING [model._meta.get_field(field_name).get_internal_type()]
+        values = queryDict.getlist(key)
+        if field_type == int:
+            values = list(map(field_type, queryDict.getlist(key)))
+
+        fl_value = queryDict.get(FILTER_FIELD_LOOKUP_PREFIX + field_name)
+        fl_value = int(fl_value)
+        q[field_name + FILTER_FIELD_LOOKUP[fl_value]] = values
+
+    logger.debug(f'field_filter: {q}')
+    #return model.objects.filter(**q)
+
     
     
