@@ -79,7 +79,7 @@ FILTER_FIELD_LOOKUP = {
     FILTER_STRING_ICONTAINS         : '__icontains',
     FILTER_DATE_BEFORE              : '__date__lt',
     FILTER_DATE_AFTER               : '__date__gt',
-    FILTER_DATE_IN_RANGE            : '__date__range',
+    FILTER_DATE_RANGE               : '__date__range',
     FILTER_DATE_YEAR                : '__year',
     FILTER_DATE_YEAR_AFTER          : '__year__gte',
     FILTER_DATE_YEAR_BEFORE         : '__year__lte',
