@@ -39,7 +39,7 @@ def model_has_field(model, field_name):
     return False
 
 def get_internal_type(model, field_name):
-
+    pass
 
 def integer_field_filter(field_name, field_values, filter_lookup):
     return {}
