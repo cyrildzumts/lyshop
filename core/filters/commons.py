@@ -1,14 +1,7 @@
-
-from django.db import models
-from django.db.models import Q, F
-from django.http import QueryDict
 import numbers
 import datetime
 import uuid
-import logging
 import re
-
-logger = logging.getLogger(__name__)
 
 FILTER_INTEGER_GT                   = 0
 FILTER_INTEGER_GTE                  = 1
@@ -113,91 +106,7 @@ FILTER_FIELD_LOOKUP_PREFIX          = "fl_"
 FILTER_FIELD_PREFIX                 = 'ff_'
 FILTER_FIELD_TYPE                   = ''
 
-INTEGER_PATTERN_REGEX               =  re.compile(r'^[0-9]+$')
-FIELD_PATTERN                       = re.compile(r'(?P<prefix>ff_)(?P<field_name>\w+)')
-FIELD_PATTERN_GROUP_PREFIX          = "prefix"
-FIELD_PATTERN_GROUP_FIELD_NAME      = "field_name"
-
-def get_query(key, queryDict):
-    if not key or not queryDict or not isinstance(queryDict, QueryDict) or not isinstance(key, str):
-        logger.warn("get_query: error key or queryDict")
-        return None
-    q = {}
-    v = queryDict.getlist(key)
-    field_name = key[len(FILTER_FIELD_LOOKUP_PREFIX):None]
-    fl_key = FILTER_FIELD_LOOKUP_PREFIX + field_name
-    fl_value = queryDict.get(FILTER_FIELD_LOOKUP_PREFIX + field_name)
-    fl_value = int(fl_value)
-    q[field_name + FILTER_FIELD_LOOKUP[fl_value]] = v
-    logger.debug(f"get_query(): {q}")
-    return q
-
-
-def model_has_field(model, field_name):
-    if type(models.Model) != type(model):
-        return False
-    
-    for field in model._meta.get_fields():
-        if field.name == field_name:
-            return True
-    
-    return False
-
-
-def extract_integer_filter(queryDict):
-    if not queryDict or not isinstance(queryDict, QueryDict):
-        logger.warn("extract_integer_filter: error on queryDict")
-        return None
-    query_search = {}
-    for key in queryDict:
-        if not isinstance(key, str):
-            continue
-        if key.startswith(FILTER_FIELD_PREFIX):
-            query_search.update(get_query(key, queryDict))
-    return query_search
-    
-
-def field_filter(model, queryDict):
-    if type(models.Model) != type(model):
-        return None
-
-    if not queryDict or not isinstance(queryDict, QueryDict):
-        logger.warn("field_filter: error on queryDict")
-        return None
-    
-    q = {}
-
-    for key in queryDict:
-        if not isinstance(key, str):
-            continue
-        match = FIELD_PATTERN.match(key)
-        if not match:
-            logger.debug("field not matched")
-            continue
-        field_name = match.group(FIELD_PATTERN_GROUP_FIELD_NAME)
-        if not model_has_field(model, field_name):
-            logger.debug(f"Model has no field {field_name}")
-            continue
-        field_type = INTERNAL_TYPE_MAPPING [model._meta.get_field(field_name).get_internal_type()]
-        values = queryDict.getlist(key)
-        values_len = len(values)
-        if values_len == 0:
-            logger.debug("no values found")
-            continue
-        if values_len > 1:
-            values = list(map(field_type, queryDict.getlist(key)))
-        if values_len == 1:
-            values = field_type(values[0])
-
-        fl_value = queryDict.get(FILTER_FIELD_LOOKUP_PREFIX + field_name, '')
-        if fl_value == '':
-            fl_value = FILTER_INTEGER_EQ
-        else:
-            fl_value = int(fl_value)
-        q[field_name + FILTER_FIELD_LOOKUP[fl_value]] = values
-
-    logger.debug(f'field_filter: {q}')
-    #return model.objects.filter(**q)
-
-    
-    
+GROUP_PREFIX                        = "prefix"
+GROUP_FIELD_NAME                    = "field_name"
+INTEGER_PATTERN_REGEX               = re.compile(r'^[0-9]+$')
+FIELD_PATTERN                       = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>\w+)')
