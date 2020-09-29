@@ -36,7 +36,7 @@ def model_has_field(model, field_name):
     found = getattr(model, field_name, None)
     end = time.time() - start
     print(f"field check getattr: {end:.6f} seconds")
-    return False
+    return found
 
 def get_internal_type(model, field_name):
     pass
