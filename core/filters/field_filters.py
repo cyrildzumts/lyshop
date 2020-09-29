@@ -17,7 +17,7 @@ def model_has_field(model, field_name):
             break
 
     end = time.time() - start
-    print("field check for loop in get_fields() : %.2f seconds", end)
+    print(f"field check for loop in get_fields() : {end:.2f} seconds")
     start = time.time()
     try:
         f = model._meta.get_field(field_name)
@@ -25,17 +25,17 @@ def model_has_field(model, field_name):
     except FieldDoesNotExist as identifier:
         found = False
     end = time.time() - start
-    print("field check get_field(): %.2f seconds", end)
+    print(f"field check get_field(): {end:.2f} seconds")
 
     start = time.time()
-    found = hasattr(Product, field_name)
+    found = hasattr(model, field_name)
     end = time.time() - start
-    print("field check hasattr: %.2f seconds", end)
+    print(f"field check hasattr: {end:.2f} seconds")
 
     start = time.time()
-    found = getattr(Product, field_name, None)
+    found = getattr(model, field_name, None)
     end = time.time() - start
-    print("field check getattr: %.2f seconds", end)
+    print(f"field check getattr: {end:.2f} seconds")
     return False
 
 def get_internal_type(model, field_name):
