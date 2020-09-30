@@ -40,6 +40,8 @@ def orders(request):
         queryset = Order.objects.filter(user=request.user).order_by('-created_at')
     else:
         queryset = queryset.filter(user=request.user).order_by('-created_at')
+    
+    logger.debug(f"selected_filters : {selected_filters}")
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, utils.PAGINATED_BY)
     try:
