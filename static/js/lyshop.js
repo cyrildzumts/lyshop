@@ -74,6 +74,8 @@ function toggle_amount_option(element){
     var input = $('#amount-filter');
     var filter_action = element.data('value');
     var added = false;
+    console.log("updating amount filter");
+    console.log("Filter action : %s", filter_action);
     if(input.val() == filter_action){
         //element.removeClass('chips-selected').siblings().removeClass('chips-selected');
         input.val('');
@@ -82,6 +84,8 @@ function toggle_amount_option(element){
         added = true;
         //element.addClass('chips-selected').siblings().removeClass('chips-selected');
     }
+    console.log("#amount-filter : %s", input.val());
+    console.log("#amount-input  : %s", $('#amount-input').val())
     $(".amount-filter-chips .chips").removeClass('chips-selected');
     return added;
 }
@@ -541,7 +545,7 @@ slider.init();
     $("#amount-filter-input").on('keyup', function(event){
         var input = $(this);
         $(input.data('update')).text(input.val());
-        $("#" + input.data('target')).text(input.val());
+        $("#" + input.data('target')).val(input.val());
     });
      order_status_container = $('#order-status');
      order_payment_option_container = $('#payment-option');
