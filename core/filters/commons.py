@@ -119,4 +119,4 @@ RANGE_MIN_PREFIX                    = "min"
 RANGE_FILTER                        = "range"
 INTEGER_PATTERN_REGEX               = re.compile(r'^[0-9]+$')
 #FIELD_PATTERN                       = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>[0-9a-zA-Z]+|[0-9a-zA-Z]+_[0-9a-zA-Z]+)(?:__(?P<{RANGE_FILTER}>{RANGE_MIN_PEFIX}|{RANGE_MAX_PREFIX}))?')
-FIELD_PATTERN = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>(?:(?:[a-z][0-9a-zA-Z]*(?:_[0-9a-zA-Z]+)*)))(?:(?:__)(?P<{RANGE_FILTER}{RANGE_MIN_PREFIX}{RANGE_MAX_PREFIX}))?')
+FIELD_PATTERN = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>(?:(?:[a-z][0-9a-zA-Z]*(?:_[0-9a-zA-Z]+)*)))(?:(?:__)(?P<{RANGE_FILTER}>{RANGE_MIN_PREFIX}{RANGE_MAX_PREFIX}))?')
