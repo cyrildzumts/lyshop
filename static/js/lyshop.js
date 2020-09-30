@@ -558,7 +558,7 @@ slider.init();
         if(name == 'order-status'){
             var added = toggle_order_status(element);
             element.toggleClass("chips-selected", added);
-        }else if(name == 'payment-method'){
+        }else if(name == 'payment-option'){
             toggle_playment_option(element);
             element.toggleClass("chips-selected", added);
         }else if(name == 'amount_filter'){
