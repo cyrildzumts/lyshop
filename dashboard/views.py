@@ -346,12 +346,12 @@ def orders(request):
         raise PermissionDenied
 
     context = {}
-    queryset = Order.objects.all().order_by('-created_at')
-    queryset, selected_filters = filters.field_filter(Order, request.GET.copy()).order_by('-created_at')
+    #queryset = Order.objects.all().order_by('-created_at')
+    queryset, selected_filters = filters.field_filter(Order, request.GET.copy())
+    queryset = queryset.order_by('-created_at')
     template_name = "dashboard/order_list.html"
     page_title = _("Dashboard Orders") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
-    queryDict = request.GET.copy()
     paginator = Paginator(queryset, utils.PAGINATED_BY)
     try:
         list_set = paginator.page(page)

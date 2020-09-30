@@ -35,8 +35,8 @@ def orders(request):
     template_name = "orders/order_list.html"
     page_title = _("My Orders") + " - " + settings.SITE_NAME
    
-    queryset, selected_filters = filters.field_filter(Order, request.GET.copy()).filter(user=request.user).order_by('-created_at')
-    
+    queryset, selected_filters = filters.field_filter(Order, request.GET.copy())
+    queryset = queryset.filter(user=request.user).order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, utils.PAGINATED_BY)
     try:
