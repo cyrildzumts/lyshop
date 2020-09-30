@@ -541,6 +541,7 @@ slider.init();
     $("#amount-filter-input").on('keyup', function(event){
         var input = $(this);
         $(input.data('update')).text(input.val());
+        $("#" + input.data('target')).text(input.val());
     });
      order_status_container = $('#order-status');
      order_payment_option_container = $('#payment-option');
