@@ -549,23 +549,23 @@ slider.init();
             value: el.data('value'),
             selected : true
         });
-        $('#' + $(this).data('container')).append(option);
+        $('#' + el.data('container')).append(option);
     });
 
     $('.js-list-filter').on('click', function(){
         var element = $(this);
         var name = element.data('name');
+        var added = false;
         if(name == 'order-status'){
-            var added = toggle_order_status(element);
-            element.toggleClass("chips-selected", added);
+            added = toggle_order_status(element);
         }else if(name == 'payment-option'){
-            var added = toggle_playment_option(element);
-            element.toggleClass("chips-selected", added);
+            added = toggle_playment_option(element);
         }else if(name == 'amount_filter'){
-            var added = toggle_amount_option(element);
+            added = toggle_amount_option(element);
         }else if(name == 'date_filter'){
-            var added = toggle_date_filter(element);
+            added = toggle_date_filter(element);
         }
+        element.toggleClass("chips-selected", added);
         
     });
 
