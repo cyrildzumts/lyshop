@@ -60,7 +60,7 @@ function toggle_playment_option(element){
         }));
         added = true;
     }else{
-        $('option', payment_option_list).each(function(){
+        $('option', order_payment_option_container).each(function(){
             if(this.value == value){
                 $(this).remove();
             }
