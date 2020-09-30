@@ -52,7 +52,6 @@ def orders(request):
     context['orders'] = list_set
     context['ORDER_STATUS'] = commons.ORDER_STATUS
     context['PAYMENT_OPTIONS'] = commons.PAYMENT_OPTIONS
-    context['SELECTED_ORDER_STATUS'] = status_list
     context['SELECTED_FILTERS'] = selected_filters
     return render(request,template_name, context)
 
