@@ -29,6 +29,7 @@ FILTER_DATE_DAY                     = 20
 FILTER_DATE_DAY_BEFORE              = 21
 FILTER_DATE_DAY_AFTER               = 22
 FILTER_DATE_DATE                    = 23
+FILTER_RANGE                        = 24
 
 
 FILTER_DATE_OPTIONS = (
@@ -49,8 +50,8 @@ FILTER_DATE_OPTIONS = (
 FILTER_INTEGER_OPTIONS = (
     (FILTER_INTEGER_GT, 'FILTER VALUE GREATER THAN'),
     (FILTER_INTEGER_GTE, 'FILTER VALUE GREATER THAN OR EQUAL'),
-    (FILTER_INTEGER_LT, 'FILTER VALUE LOWER THAN'),
-    (FILTER_INTEGER_LTE, 'FILTER VALUE LOWER THAN OR EQUAL'),
+    (FILTER_INTEGER_LT, 'FILTER VALUE LESS THAN'),
+    (FILTER_INTEGER_LTE, 'FILTER VALUE LESS THAN OR EQUAL'),
     (FILTER_INTEGER_EQ,  'FILTER VALUE EQUAL'),
     (FILTER_INTEGER_NEQ, 'FILTER VALUE NOT EQUAL'),
     (FILTER_INTEGER_RANGE, 'FILTER VALUE IN RANGE'),
@@ -61,6 +62,10 @@ FILTER_STRING_OPTIONS = (
     (FILTER_STRING_IEXACT, 'FILTER STRING CONTENT IGNORE CASE EQUAL'),
     (FILTER_STRING_CONTAINS, 'FILTER STRING CONTENT CONTAINS'),
     (FILTER_STRING_ICONTAINS, 'FILTER STRING CONTENT CONTAINS IGNORE CASE'),
+)
+
+FILTER_RANGE_OPTIONS = (
+    (FILTER_RANGE, "FILTER VALUE IN RANGE"),
 )
 
 FILTER_FIELD_LOOKUP = {
@@ -74,9 +79,9 @@ FILTER_FIELD_LOOKUP = {
     FILTER_STRING_IEXACT            : '__iexact',
     FILTER_STRING_CONTAINS          : '__contains',
     FILTER_STRING_ICONTAINS         : '__icontains',
-    FILTER_DATE_BEFORE              : '__date__lt',
-    FILTER_DATE_AFTER               : '__date__gt',
-    FILTER_DATE_RANGE               : '__date__range',
+    FILTER_DATE_BEFORE              : '__lt',
+    FILTER_DATE_AFTER               : '__gt',
+    FILTER_DATE_RANGE               : '__range',
     FILTER_DATE_YEAR                : '__year',
     FILTER_DATE_YEAR_AFTER          : '__year__gte',
     FILTER_DATE_YEAR_BEFORE         : '__year__lte',
@@ -86,6 +91,7 @@ FILTER_FIELD_LOOKUP = {
     FILTER_DATE_DAY                 : '__day',
     FILTER_DATE_DAY_AFTER           : '__day__gte',
     FILTER_DATE_DAY_BEFORE          : '__day__lte',
+    FILTER_RANGE                    : '__range',
 
 }
 
@@ -108,5 +114,9 @@ FILTER_FIELD_TYPE                   = ''
 
 GROUP_PREFIX                        = "prefix"
 GROUP_FIELD_NAME                    = "field_name"
+RANGE_MAX_PREFIX                    = "max"
+RANGE_MIN_PREFIX                    = "min"
+RANGE_FILTER                        = "range"
 INTEGER_PATTERN_REGEX               = re.compile(r'^[0-9]+$')
-FIELD_PATTERN                       = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>\w+)')
+#FIELD_PATTERN                       = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>[0-9a-zA-Z]+|[0-9a-zA-Z]+_[0-9a-zA-Z]+)(?:__(?P<{RANGE_FILTER}>{RANGE_MIN_PEFIX}|{RANGE_MAX_PREFIX}))?')
+FIELD_PATTERN = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>(?:(?:[a-z][0-9a-zA-Z]*(?:_[0-9a-zA-Z]+)*)))(?:(?:__)(?P<{RANGE_FILTER}{RANGE_MIN_PREFIX}{RANGE_MAX_PREFIX}))?')
