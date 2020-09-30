@@ -555,10 +555,10 @@ slider.init();
     $('.js-list-filter').on('click', function(){
         var element = $(this);
         var name = element.data('name');
-        if(name == 'order_status'){
+        if(name == 'order-status'){
             var added = toggle_order_status(element);
             element.toggleClass("chips-selected", added);
-        }else if(name == 'payment_method_filter'){
+        }else if(name == 'payment-method'){
             toggle_playment_option(element);
             element.toggleClass("chips-selected", added);
         }else if(name == 'amount_filter'){
