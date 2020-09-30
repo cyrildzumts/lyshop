@@ -42,6 +42,7 @@ from cart.models import Coupon
 from cart.forms import CouponForm
 from catalog import models
 from catalog import constants as Catalog_Constants
+from core.filters import filters
 from orders import commons as Order_Constants
 from vendors.models import SoldProduct, Balance, VendorPayment, BalanceHistory
 from vendors import vendors_service
@@ -346,9 +347,11 @@ def orders(request):
 
     context = {}
     queryset = Order.objects.all().order_by('-created_at')
+    queryset, selected_filters = filters.field_filter(Order, request.GET.copy()).order_by('-created_at')
     template_name = "dashboard/order_list.html"
     page_title = _("Dashboard Orders") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
+    queryDict = request.GET.copy()
     paginator = Paginator(queryset, utils.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
@@ -360,6 +363,7 @@ def orders(request):
     context['orders'] = list_set
     context['ORDER_STATUS'] = Order_Constants.ORDER_STATUS
     context['PAYMENT_OPTIONS'] = Order_Constants.PAYMENT_OPTIONS
+    context['SELECTED_FILTERS'] = selected_filters
     context.update(get_view_permissions(request.user))
     context['can_delete_order'] = PermissionManager.user_can_delete_order(request.user)
     context['can_update_order'] = PermissionManager.user_can_change_order(request.user)

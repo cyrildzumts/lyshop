@@ -10,6 +10,7 @@ from addressbook.forms import AddressModelForm, AddressForm
 from addressbook import addressbook_service
 from addressbook import constants as Addressbook_Constants
 from shipment import shipment_service
+from core.filters import filters
 from orders import commons
 from vendors.models import SoldProduct
 from orders.forms import ShippingAddressForm, BillingAddressForm, PaymentRequestForm, PaymentOptionForm, OrderFilterOption
@@ -33,23 +34,8 @@ def orders(request):
     
     template_name = "orders/order_list.html"
     page_title = _("My Orders") + " - " + settings.SITE_NAME
-    postdata = utils.get_postdata(request)
-    getdata = request.GET.copy()
-    #filter_options = OrderFilterOption(request.GET.copy())
-    #is_filter_valid = filter_options.is_valid()
-    #logger.debug(f"Filter is valid ? : {is_filter_valid}")
-    #logger.debug(f"Cleaned Data : {filter_options.cleaned_data}")
-    #logger.debug(f"Error Data : {filter_options.errors}")
-    status_list = getdata.getlist('order_status',[])
-    logger.debug(f"Filter Status option (befor mapping to int) : {status_list}")
-    status_not_empty = len(status_list) != 0
-    if status_not_empty:
-        status_list = list(map(int, status_list))
-        logger.debug(f"Filter Status option : {status_list}")
-        queryset = Order.objects.filter(user=request.user, status__in=status_list).order_by('-created_at')
-    else:
-        queryset = Order.objects.filter(user=request.user).order_by('-created_at')
-    
+   
+    queryset, selected_filters = filters.field_filter(Order, request.GET.copy()).filter(user=request.user).order_by('-created_at')
     
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, utils.PAGINATED_BY)
@@ -64,6 +50,7 @@ def orders(request):
     context['ORDER_STATUS'] = commons.ORDER_STATUS
     context['PAYMENT_OPTIONS'] = commons.PAYMENT_OPTIONS
     context['SELECTED_ORDER_STATUS'] = status_list
+    context['SELECTED_FILTERS'] = selected_filters
     return render(request,template_name, context)
 
 @login_required

@@ -38,6 +38,7 @@ def field_filter(model, queryDict):
         return None
     
     q = {}
+    selected_values = {}
 
     for key in queryDict:
         if not isinstance(key, str):
@@ -60,18 +61,19 @@ def field_filter(model, queryDict):
             continue
         if values_len > 1:
             values = list(map(field_type, values))
-        if values_len == 1:
-            values = field_type(values[0])
 
         fl_value = queryDict.get(commons.FILTER_FIELD_LOOKUP_PREFIX + field_name, '')
         if fl_value == '':
             fl_value = commons.FILTER_INTEGER_EQ
         else:
             fl_value = int(fl_value)
+        
+        if values_len == 1 and fl_value != commons.FILTER_INTEGER_RANGE :
+            values = values[0]
         q[field_name + commons.FILTER_FIELD_LOOKUP[fl_value]] = values
+        selected_values[field_name] = values
 
-    logger.debug(f'field_filter: {q}')
-    return model.objects.filter(**q)
+    return model.objects.filter(**q), selected_values
 
     
     

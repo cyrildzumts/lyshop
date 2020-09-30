@@ -2,9 +2,10 @@
 {% load i18n %}
  <div class="modal-container">
     <div class="hidden" id="inputs">
-        <select name="order_status" id="order-status" multiple></select>
+        <input type="hidden" name="fl_status" value="6">
+        <select name="ff_status" id="order-status" multiple></select>
     </div>
-    <div {% if SELECTED_ORDER_STATUS %}class="chips chips-selected"{% else %}class="chips"{% endif %}  title="{% trans 'Filter the list by status field' %}">
+    <div {% if SELECTED_FILTERS.status %}class="chips chips-selected"{% else %}class="chips"{% endif %}  title="{% trans 'Filter the list by status field' %}">
         <i class="fas fa-info icon"></i>
         <span class="js-open-modal open-modal" data-target="status-modal" >{% trans "status" %}</span>
         <span id="status-filter" class="filter"></span>
@@ -25,7 +26,7 @@
                         <div class="status">
                             <div class="row">
                             {% for k, v in STATUS %} 
-                                <span {% if k in SELECTED_ORDER_STATUS %} class="chips js-list-filter chips-selected"{% else %} class="chips js-list-filter"{% endif %}  data-name="order_status" data-container="order-status" data-selected="0" data-value="{{k}}">{% trans v %}</span> 
+                                <span {% if k in SELECTED_FILTERS.status %} class="chips js-list-filter chips-selected"{% else %} class="chips js-list-filter"{% endif %}  data-name="order_status" data-container="order-status" data-selected="0" data-value="{{k}}">{% trans v %}</span> 
                             {% endfor %}
                             </div>
                         </div>
