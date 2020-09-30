@@ -54,7 +54,7 @@ def field_filter(model, queryDict):
             continue
 
         field_type = INTERNAL_TYPE_MAPPING [attr.field.get_internal_type()]
-        values = filter( lambda k: k != '',queryDict.getlist(key))
+        values = list(filter( lambda k: k != '',queryDict.getlist(key)))
 
         values_len = len(values)
         if values_len == 0:
