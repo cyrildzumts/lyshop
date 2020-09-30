@@ -1,17 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %} 
 {% block MAIN %}
-    <div  class="row">
-        <div class="error-40x box">
+    <div  class="mat-box">
             <div class="title">
-                {% trans "Resource not found ! " %} :  404  Oups !
+                {% trans "Resource not found ! " %}
             </div>
-            <div class="box-content content">
-                    <p> {% trans "The content you requested does not exist." %}</p>
+            <div class="mat-box-content">
+                    <p> {% trans "The content you requested could not be found." %}</p>
             </div>
             <div class="actions">
                 <a class="mat-button mat-button-default" href="{% url 'home' %}">{% trans "Go back to Home Page" %} </a>
             </div>
-        </div>
     </div> 
   {% endblock MAIN %}
