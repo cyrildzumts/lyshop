@@ -1,7 +1,7 @@
 
 from django.db import models
 from django.db.models import Q, F
-from django.http import QueryDict
+from django.http.request import QueryDict
 from core.filters import commons
 from core.filters import field_filters
 import numbers
