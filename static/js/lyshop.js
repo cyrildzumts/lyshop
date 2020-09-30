@@ -71,15 +71,19 @@ function toggle_playment_option(element){
 }
 
 function toggle_amount_option(element){
-    var input = $('#filter-action');
-    var filter_action = element.data('filter-action');
+    var input = $('#amount-filter');
+    var filter_action = element.data('value');
+    var added = false;
     if(input.val() == filter_action){
-        element.removeClass('chips-selected').siblings().removeClass('chips-selected');;
+        //element.removeClass('chips-selected').siblings().removeClass('chips-selected');
         input.val('');
     }else{
         input.val(filter_action);
-        element.addClass('chips-selected').siblings().removeClass('chips-selected');
+        added = true;
+        //element.addClass('chips-selected').siblings().removeClass('chips-selected');
     }
+    $(".amount-filter-chips .chips").removeClass('chips-selected');
+    return added;
 }
 
 function toggle_date_filter(element){
@@ -558,8 +562,10 @@ slider.init();
         var added = false;
         if(name == 'order-status'){
             added = toggle_order_status(element);
+            
         }else if(name == 'payment-option'){
             added = toggle_playment_option(element);
+            
         }else if(name == 'amount_filter'){
             added = toggle_amount_option(element);
         }else if(name == 'date_filter'){
