@@ -539,7 +539,7 @@ slider.init();
         $(input.data('update')).text(input.val());
     });
      order_status_container = $('#order-status');
-     order_payment_option_container = $('#payment-method');
+     order_payment_option_container = $('#payment-option');
     $('.js-list-filter.chips-selected').each(function(){
         var el = $(this);
         var option = $('<option/>', {
