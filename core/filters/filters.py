@@ -31,11 +31,11 @@ INTERNAL_TYPE_MAPPING = {
     
 def field_filter(model, queryDict):
     if type(models.Model) != type(model):
-        return None
+        return None, {}
 
     if not queryDict or not isinstance(queryDict, QueryDict):
-        logger.warn("field_filter: error on queryDict")
-        return None
+        logger.warn(f"field_filter: error on queryDict : type of queryDict : \"{type(queryDict)}\"")
+        return None, {}
     
     q = {}
     selected_values = {}

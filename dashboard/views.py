@@ -348,7 +348,10 @@ def orders(request):
     context = {}
     #queryset = Order.objects.all().order_by('-created_at')
     queryset, selected_filters = filters.field_filter(Order, request.GET.copy())
-    queryset = queryset.order_by('-created_at')
+    if queryset is None:
+        queryset = Order.objects.filter(user=qrequest.user).order_by('-created_at')
+    else:
+        queryset = queryset.filter(user=request.user).order_by('-created_at')
     template_name = "dashboard/order_list.html"
     page_title = _("Dashboard Orders") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)

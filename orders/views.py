@@ -36,7 +36,10 @@ def orders(request):
     page_title = _("My Orders") + " - " + settings.SITE_NAME
    
     queryset, selected_filters = filters.field_filter(Order, request.GET.copy())
-    queryset = queryset.filter(user=request.user).order_by('-created_at')
+    if queryset is None:
+        queryset = Order.objects.filter(user=qrequest.user).order_by('-created_at')
+    else:
+        queryset = queryset.filter(user=request.user).order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, utils.PAGINATED_BY)
     try:
