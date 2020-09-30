@@ -566,9 +566,9 @@ slider.init();
         }else if(name == 'payment-option'){
             added = toggle_playment_option(element);
             
-        }else if(name == 'amount_filter'){
+        }else if(name == 'amount'){
             added = toggle_amount_option(element);
-        }else if(name == 'date_filter'){
+        }else if(name == 'created_at'){
             added = toggle_date_filter(element);
         }
         element.toggleClass("chips-selected", added);
