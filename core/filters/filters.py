@@ -59,8 +59,7 @@ def field_filter(model, queryDict):
         if values_len == 0:
             logger.debug("no values found")
             continue
-        if values_len > 1:
-            values = list(map(field_type, values))
+        values = list(map(field_type, values))
 
         fl_value = queryDict.get(commons.FILTER_FIELD_LOOKUP_PREFIX + field_name, '')
         if fl_value == '':
