@@ -33,7 +33,7 @@
                   
                   <td scope="row" data-label="{% trans 'Name' %}">{{product.name}}</td>
                   <td scope="row" data-label="{% trans 'Display Name' %}">{{product.display_name}}</td>
-                  <td scope="row" data-label="{% trans 'Gender' %}">{{product.gender|gender_key}}</td>
+                  <td scope="row" data-label="{% trans 'Gender' %}">{{product.gender|gender_value}}</td>
                   <td scope="row" data-label="{% trans 'Type' %}">{{product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
                   <td scope="row" data-label="{% trans 'Promotion Price' %}"><span><span>{{product.get_promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
