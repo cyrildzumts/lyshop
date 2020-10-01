@@ -2309,7 +2309,7 @@ a.mat-button{
 }
 
 .mat-table{
-	min-width: 100%;
+	width: 100%;
 	table-layout: fixed;
 	border-collapse: collapse;
 	border: 0;
