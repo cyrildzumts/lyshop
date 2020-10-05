@@ -47,6 +47,9 @@ class Filter():
         self.model = model
         self.queryset = None
         self.filter_ready = False
+    
+    def __str__(self):
+        return f"Filter for model {model} - queryDict : {queryDict}"
 
     def get_field_filter(self, field_name):
         attr = getattr(self.model, field_name, None)
