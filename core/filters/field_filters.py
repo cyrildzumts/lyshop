@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.exceptions import FieldDoesNotExist
 from django.db.models import Q, F
-from filters import commons
+from core.filters import commons
 import time
 import numbers
 import datetime
