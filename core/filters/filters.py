@@ -71,8 +71,8 @@ class Filter():
                 logger.debug("field not matched")
                 continue
             field_name = match.group(commons.GROUP_FIELD_NAME)
-            values = list(filter( lambda k: k != '',queryDict.getlist(key)))
-            f_action = queryDict.get(commons.FILTER_FIELD_LOOKUP_PREFIX + field_name, '')
+            values = list(filter( lambda k: k != '', self.queryDict.getlist(key)))
+            f_action = self.queryDict.get(commons.FILTER_FIELD_LOOKUP_PREFIX + field_name, '')
             if f_action == '':
                 f_action = commons.FILTER_INTEGER_EQ
             else:
