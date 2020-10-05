@@ -45,7 +45,8 @@ class Filter():
 
         self.filters = []
         self.model = model
-        self.queryset = queryDict
+        self.queryDict = queryDict
+        self.queryset = None
         self.filter_ready = False
     
     def __str__(self):
