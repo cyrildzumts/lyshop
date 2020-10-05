@@ -45,7 +45,7 @@ class Filter():
 
         self.filters = []
         self.model = model
-        self.queryset = None
+        self.queryset = queryDict
         self.filter_ready = False
     
     def __str__(self):
@@ -63,7 +63,7 @@ class Filter():
     def prepare_filters(self):
         q = {}
         selected_values = {}
-        for key in queryDict:
+        for key in self.queryDict:
             if not isinstance(key, str):
                 continue
             match = commons.FIELD_PATTERN.match(key)
