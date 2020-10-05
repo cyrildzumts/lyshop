@@ -52,10 +52,10 @@ class Filter():
     def __str__(self):
         return f"Filter for model {self.model} - queryDict : {self.queryDict}"
     
-    '''
-    def __rep__(self):
+    
+    def __repr__(self):
         return f"Filter for model {self.model} - queryDict : {self.queryDict}"
-    '''
+    
 
     def get_field_filter(self, field_name):
         attr = getattr(self.model, field_name, None)
