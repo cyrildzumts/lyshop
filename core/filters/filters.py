@@ -14,18 +14,94 @@ logger = logging.getLogger(__name__)
 
 
 
-INTERNAL_TYPE_MAPPING = {
-    'CharField' : str,
-    'IntegerField': int,
-    'Boolean' : bool,
-    'FloatField' : float,
-    'DateField' : datetime.date,
-    'DateTimeField' : datetime.datetime,
-    'DecimalField': float,
+FILTER_TYPE_MAPPING = {
+    'CharField' : field_filters.StringFieldFilter,
+    'IntegerField': field_filters.IntegerFieldFilter,
+    'Boolean' : field_filters.BooleanFieldFilter,
+    'FloatField' : field_filters.FloatFieldFilter,
+    'DateField' : field_filters.DateFieldFilter,
+    'DateTimeField' : field_filters.DateTimeFieldFilter,
+    'DecimalField': field_filters.DecimalFieldFilter,
     'UUIDField' : uuid.UUID,
-    'TextField' : str,
-    'ForeignKey' : int,
+    'TextField' : field_filters.StringFieldFilter,
+    'ForeignKey' : field_filters.IntegerFieldFilter,
 }
+
+
+
+class Filter():
+
+    def __init__(self, model, queryDict):
+
+        if type(models.Model) != type(model):
+            msg = f"Filter : model must be of the type of {type(models.Model)}. Current type is {type(model)}"
+            logger.warn(msg)
+            raise TypeError(msg)
+
+        if not isinstance(queryDict, QueryDict):
+            msg = f"Filter : queryDict must be of the type {type(QueryDict())}. Current type is {type(queryDict)}"
+            logger.warn(msg)
+            raise TypeError(msg)
+
+        self.filters = []
+        self.model = model
+        self.queryset = None
+        self.filter_ready = False
+
+    def get_field_filter(self, field_name):
+        attr = getattr(self.model, field_name, None)
+        if attr is None:
+            logger.debug(f"Model has no field {field_name}")
+            return None
+
+        return FILTER_TYPE_MAPPING.get(attr.field.get_internal_type(), None)
+
+    
+    def prepare_filters(self):
+        q = {}
+        selected_values = {}
+        for key in queryDict:
+            if not isinstance(key, str):
+                continue
+            match = commons.FIELD_PATTERN.match(key)
+            if not match:
+                logger.debug("field not matched")
+                continue
+            field_name = match.group(commons.GROUP_FIELD_NAME)
+            values = list(filter( lambda k: k != '',queryDict.getlist(key)))
+            f_action = queryDict.get(commons.FILTER_FIELD_LOOKUP_PREFIX + field_name, '')
+            if f_action == '':
+                f_action = commons.FILTER_INTEGER_EQ
+            else:
+                f_action = int(f_action)
+            
+            f_action = commons.FILTER_FIELD_LOOKUP.get(f_action, commons.FILTER_INTEGER_EQ)
+            
+            FILTER_CLASS = self.get_field_filter(field_name)
+
+            if FILTER_CLASS is None:
+                logger.debug(f"No Filter class found for field {field_name}")
+                continue
+            self.add_filter(FILTER_CLASS(self.model, field_name, values, f_action))
+
+    
+    def add_filter(self, f_filter):
+        if type(f_filter) != type(field_filters.FieldFilter) :
+            raise TypeError("f_filter is not of the type field_filters.FieldFilter")
+        self.filters.append(f_filter)
+    
+    def remove_filter(self, f_filter):
+        if type(f_filter) != type(field_filters.FieldFilter) :
+            raise TypeError("f_filter is not of the type field_filters.FieldFilter")
+        self.filters.remove(f_filter)
+    
+    def apply_filter(self):
+        self.prepare_filters()
+        query_objects = Q()
+        for f in self.filters:
+            query_objects &= f.get_query()
+        
+        return self.model.objects.filter(query_objects)
 
 
     

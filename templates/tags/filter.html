@@ -1,0 +1,38 @@
+{% load i18n %}
+<div id="filter" class="mat-box">
+    <div class="mat-box-title">
+        <span>{{MODEL_NAME}} - {% trans "FILTER" %}</span>
+    </div>
+    <div class="mat-box-content">
+        {% for field in fields %}
+            <div class="box">
+                <div class="form-group">
+                    <label for="{{field.name}}">{{field.name}}</label>
+                    <input type="text" name="ff__{{field.name}}">
+                </div>
+                <div class="form-group">
+                    {% for k, v in STATUS %} 
+                            <span {% if k in SELECTED_FILTERS.status %} class="chips js-list-filter chips-selected"{% else %} class="chips js-list-filter"{% endif %}  data-name="order-status" data-container="order-status" data-selected="0" data-value="{{k}}">{% trans v %}</span> 
+                        {% endfor %}
+                    <label for="fo-{{field.name}}">{% trans "Filter Option" %}</label>
+                    <select name="fo__{{field.name}}" id="fo-{{field.name}}">
+                        
+                    </select>
+                </div>
+                
+                {% if field.range %}
+                <div class="form-group">
+                    <label for="{{field.name}}">{% trans "Use Range Filter" %}</label>
+                    <input type="checkbox" name="range__{{field.name}}">
+                </div>
+                <div id="{{field.name}}-range" class="form-group hidden">
+                    <label for="range-start">{% trans "Range Start" %}</label>
+                    <input type="text" name="{{field.name}}__start">
+                    <label for="range-end">{% trans "Range End" %}</label>
+                    <input type="text" name="{{field.name}}__end">
+                </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -20,22 +20,21 @@
             <div class="modal-body">
                 <div class="mat-box">
                     <div class="form-group">
-                        <label for="begin-date-filter-input">{% trans "Enter a begin date" %}</label>
-                        <input id="begin-date-filter-input" class="input-filter" type="date" name="begin-date-filter-input" data-update=".action-filter .filter-value">
+                        <label for="begin-date-input">{% trans "Enter a begin date" %}</label>
+                        <input id="start-date-input" class="input-filter" type="date" name="ff_created_at__start" data-update=".action-filter .filter-value">
                     </div>
                     <div class="form-group">
-                        <label for="end-date-filter-input">{% trans "Enter a end date" %}</label>
-                        <input id="end-date-filter-input" class="input-filter" type="date" name="end-date-filter-input" data-update=".action-filter .filter-value">
+                        <label for="end-date-input">{% trans "Enter a end date" %}</label>
+                        <input id="end-date-input" class="input-filter" type="date" name="ff_created_at__end" data-update=".action-filter .filter-value">
                     </div>
                 </div><!--End of Box-->
                 <div class="mat-box">
                     <span class="label">{% trans "Select the Filter" %}</span>
                     <div class="actions">
-                        <span id="greater-than-equal" class="action-filter js-list-filter chips" data-name="created_at" data-filter-action="gte" title="{% trans 'Date after or equal to the chosen date' %}" data-target=""><i class="fas fa-greater-than-equal icon"></i><span class="filter-value"></span></span>
-                        <span id="greater-than" class="action-filter js-list-filter chips" data-name="created_at" data-filter-action="gt" title="{% trans 'Date after the chosen date' %}" data-target=""><i class="fas fa-greater-than icon"></i><span class="filter-value"></span></span>
-                        <span id="less-than-equal" class="action-filter js-list-filter chips" data-name="created_at" data-filter-action="lte" title="{% trans 'Date before or equal to the chosen date' %}"><i class="fas fa-less-than-equal icon"></i><span class="filter-value"></span></span>
-                        <span id="less-than" class="action-filter js-list-filter chips" data-name="created_at" data-filter-action="lt" title="{% trans 'Date before the chosen date' %}"><i class="fas fa-less-than icon"></i><span class="filter-value"></span></span>
-                        <span id="equal-to" class="action-filter js-list-filter chips" data-name="created_at" data-filter-action="gte"><i class="fas fa-equals icon"></i><span class="filter-value"></span></span>
+                        
+                        <span id="greater-than" class="action-filter js-list-filter chips" data-name="created_at" data-value="12" title="{% trans 'Date after the chosen date' %}" data-target=""><i class="fas fa-greater-than icon"></i><span class="filter-value"></span></span>
+                        <span id="less-than" class="action-filter js-list-filter chips" data-name="created_at" data-value="11" title="{% trans 'Date before the chosen date' %}"><i class="fas fa-less-than icon"></i><span class="filter-value"></span></span>
+                        <span id="equal-to" class="action-filter js-list-filter chips" data-name="created_at" data-value="4"><i class="fas fa-equals icon"></i><span class="filter-value"></span></span>
                     </div>
                 </div>
             </div>
