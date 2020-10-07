@@ -127,4 +127,4 @@ RANGE_FILTER_PATTERN                = re.compile(r'(?P<START>\d+)-{1,2}(?P<END>\
 #FIELD_PATTERN                       = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>[0-9a-zA-Z]+|[0-9a-zA-Z]+_[0-9a-zA-Z]+)(?:__(?P<{RANGE_FILTER}>{RANGE_MIN_PEFIX}|{RANGE_MAX_PREFIX}))?')
 FIELD_PATTERN = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{FIELD_NAME}>(?:(?:[a-z][0-9a-zA-Z]*(?:_[0-9a-zA-Z]+)*)))(?:(?:__)(?P<{RANGE_FILTER}>{RANGE_START_PREFIX}-{RANGE_END_PREFIX}))?')
 # fieldname is valid; field_name is valid ; field_name_extra is valid, fieldname__max is valid, fieldname_min is valid.
-FILTER_PATTERN = re.compiler(rf'(?P<{FIELD_NAME}>(?:(?:[a-z][0-9a-zA-Z]*(?:_[0-9a-zA-Z]+)*)))(?:(?:__)(?P<{GROUP_SUFFIX}>{MAX_VALUE}|{MIN_VALUE}))?')
+FILTER_PATTERN = re.compile(rf'(?P<{FIELD_NAME}>(?:(?:[a-z][0-9a-zA-Z]*(?:_[0-9a-zA-Z]+)*)))(?:(?:__)(?P<{GROUP_SUFFIX}>{MAX_VALUE}|{MIN_VALUE}))?')
