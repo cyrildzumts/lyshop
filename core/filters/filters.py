@@ -72,26 +72,18 @@ class Filter():
         for key in self.queryDict:
             if not isinstance(key, str):
                 continue
-            match = commons.FIELD_PATTERN.match(key)
+            #match = commons.FIELD_PATTERN.match(key)
+            match = commons.FILTER_PATTERN.match(key)
             if not match:
                 logger.debug("field not matched")
                 continue
-            field_name = match.group(commons.GROUP_FIELD_NAME)
-            values = list(filter( lambda k: k != '', self.queryDict.getlist(key)))
-            f_action = self.queryDict.get(commons.FILTER_FIELD_LOOKUP_PREFIX + field_name, '')
-            if f_action == '':
-                f_action = commons.FILTER_INTEGER_EQ
-            else:
-                f_action = int(f_action)
-            
-            f_action = commons.FILTER_FIELD_LOOKUP.get(f_action, commons.FILTER_INTEGER_EQ)
-            
+            field_name = match.group(commons.FIELD_NAME)
             FILTER_CLASS = self.get_field_filter(field_name)
 
             if FILTER_CLASS is None:
                 logger.debug(f"No Filter class found for field {field_name}")
                 continue
-            self.add_filter(FILTER_CLASS(self.model, field_name, values, f_action))
+            self.add_filter(FILTER_CLASS(model=self.model, field_name=field_name, key=key, value=self.queryDict.get(key)))
 
     
     def add_filter(self, f_filter):

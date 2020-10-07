@@ -50,20 +50,63 @@ def uuid_field_filter(field_name, field_values, filter_lookup):
 
 class FieldFilter():
 
-    def __init__(self, model, field_name, values, action):
+    def __init__(self, model, field_name=None, values=None, action=None, key=None, value=None):
         
         if type(models.Model) != type(model):
             raise TypeError(f"Filter : model must be of the type of django.db.models.Model. Current type is {type(model)}")
-
+        self.field_name_lookup = field_name
+        self.key = key
+        self.value = value
         self.model = model
         self.field = getattr(self.model, field_name).field
         self.field_type = commons.INTERNAL_TYPE_MAPPING[self.field.get_internal_type()]
         self.action = action
-        self.values = list(map(self.field_type, values))
+        self.q = {}
+        self.values = None
 
 
     def get_query(self):
         raise NotImplementedError("This method is not implemented for this filter yet")
+
+    def prepare_filter(self):
+        match = commons.FILTER_PATTERN.match(self.key)
+        max_min = False
+        if not match:
+            logger.debug("field not matched")
+            raise KeyError(f"Key {self.key} does not match any fieldname")
+
+        if match.group(commons.MAX_VALUE):
+            f_action = commons.FILTER_INTEGER_LTE
+            max_min = True
+        
+        if match.group(commons.MIN_VALUE):
+            f_action = commons.FILTER_INTEGER_GTE
+            max_min = True
+        if max_min:
+            values = self.field_type(self.value)
+            self.field_name_lookup += commons.FILTER_FIELD_LOOKUP.get(f_action)
+        else:
+            value = self.value
+            if commons.VALUES_IN_FILTER_PATTERN.match(self.value):
+                values = self.value.split(';')
+                values_len = len(values)
+                if values_len > 1 :
+                    f_action = commons.FILTER_IN
+                    values = list(map(self.field_type, values))
+                elif values_len == 1:
+                    f_action = commons.FILTER_INTEGER_EQ
+                    values = list(map(self.field_type, values))[0]     
+
+            elif commons.RANGE_FILTER_PATTERN.match(self.value):
+                values = list(map(self.field_type, self.value.split('-')))
+                f_action = commons.FILTER_RANGE
+                values = (values[0], values[1])
+            
+        self.field_name_lookup += commons.FILTER_FIELD_LOOKUP.get(f_action)
+        self.values = values
+        self.q[self.field_name_lookup] =  self.values
+        return self.q
+
 
 
 
@@ -83,22 +126,14 @@ class BooleanFieldFilter(FieldFilter):
 
 class IntegerFieldFilter(FieldFilter):
 
-    def __init__(self, range_start=None, range_end=None, **kwargs):
+    def __init__(self,  **kwargs):
         super().__init__(**kwargs)
-        self.range_start = range_start
-        self.range_end = range_end
+
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query")
-        if self.range_start and self.range_end:
-            q = {
-                self.field.name + commons.FILTER_FIELD_LOOKUP[commons.FILTER_RANGE]: (self.range_start, self.range_end)
-            }
-        else:
-            q = {
-                self.field.name + commons.FILTER_FIELD_LOOKUP[self.action]: self.values
-            }
-        return Q(**q)
+        
+        return Q(**self.prepare_filter())
 
 
 class FloatFieldFilter(FieldFilter):
@@ -108,15 +143,8 @@ class FloatFieldFilter(FieldFilter):
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query")
-        if self.range_start and self.range_end:
-            q = {
-                self.field.name + commons.FILTER_FIELD_LOOKUP[commons.FILTER_RANGE]: (self.range_start, self.range_end)
-            }
-        else:
-            q = {
-                self.field.name + commons.FILTER_FIELD_LOOKUP[self.action]: self.values
-            }
-        return Q(**q)
+        
+        return Q(**self.prepare_filter())
 
 
 class DecimalFieldFilter(FieldFilter):
@@ -126,15 +154,8 @@ class DecimalFieldFilter(FieldFilter):
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query")
-        if self.range_start and self.range_end:
-            q = {
-                self.field.name + commons.FILTER_FIELD_LOOKUP[commons.FILTER_RANGE]: (self.range_start, self.range_end)
-            }
-        else:
-            q = {
-                self.field.name + commons.FILTER_FIELD_LOOKUP[self.action]: self.values
-            }
-        return Q(**q)
+        
+        return Q(**self.prepare_filter())
 
 
 class DateFieldFilter(FieldFilter):
@@ -144,15 +165,8 @@ class DateFieldFilter(FieldFilter):
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query")
-        if self.range_start and self.range_end:
-            q = {
-                self.field.name + commons.FILTER_FIELD_LOOKUP[commons.FILTER_RANGE]: (self.range_start, self.range_end)
-            }
-        else:
-            q = {
-                self.field.name + commons.FILTER_FIELD_LOOKUP[self.action]: self.values
-            }
-        return Q(**q)
+        
+        return Q(**self.prepare_filter())
 
 
 class DateTimeFieldFilter(FieldFilter):
@@ -162,15 +176,8 @@ class DateTimeFieldFilter(FieldFilter):
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query")
-        if self.range_start and self.range_end:
-            q = {
-                self.field.name + commons.FILTER_FIELD_LOOKUP[commons.FILTER_RANGE]: (self.range_start, self.range_end)
-            }
-        else:
-            q = {
-                self.field.name + commons.FILTER_FIELD_LOOKUP[self.action]: self.values
-            }
-        return Q(**q)
+        
+        return Q(**self.prepare_filter())
 
 
 
@@ -191,6 +198,8 @@ class UUIDFieldFilter(FieldFilter):
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query")
+        
+        return Q(**self.prepare_filter())
 
 
 

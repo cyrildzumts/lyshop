@@ -9,7 +9,7 @@ FILTER_INTEGER_LT                   = 2
 FILTER_INTEGER_LTE                  = 3
 FILTER_INTEGER_EQ                   = 4
 FILTER_INTEGER_NEQ                  = 5
-FILTER_INTEGER_RANGE                = 6
+FILTER_IN                           = 6
 
 FILTER_STRING_EXACT                 = 7
 FILTER_STRING_IEXACT                = 8
@@ -54,7 +54,7 @@ FILTER_INTEGER_OPTIONS = (
     (FILTER_INTEGER_LTE, 'FILTER VALUE LESS THAN OR EQUAL'),
     (FILTER_INTEGER_EQ,  'FILTER VALUE EQUAL'),
     (FILTER_INTEGER_NEQ, 'FILTER VALUE NOT EQUAL'),
-    (FILTER_INTEGER_RANGE, 'FILTER VALUE IN RANGE'),
+    (FILTER_IN, 'FILTER VALUE IN RANGE'),
 )
 
 FILTER_STRING_OPTIONS = (
@@ -74,7 +74,7 @@ FILTER_FIELD_LOOKUP = {
     FILTER_INTEGER_LT               : '__lt',
     FILTER_INTEGER_LTE              : '__lte',
     FILTER_INTEGER_EQ               : '',
-    FILTER_INTEGER_RANGE            : '__in',
+    FILTER_IN                       : '__in',
     FILTER_STRING_EXACT             : '__exact',
     FILTER_STRING_IEXACT            : '__iexact',
     FILTER_STRING_CONTAINS          : '__contains',
@@ -108,15 +108,23 @@ INTERNAL_TYPE_MAPPING = {
     'ForeignKey' : int,
 }
 
-FILTER_FIELD_LOOKUP_PREFIX          = "fl_"
-FILTER_FIELD_PREFIX                 = 'ff_'
+FILTER_FIELD_LOOKUP_PREFIX          = "fl__"
+FILTER_FIELD_PREFIX                 = 'ff__'
 FILTER_FIELD_TYPE                   = ''
 
 GROUP_PREFIX                        = "prefix"
-GROUP_FIELD_NAME                    = "field_name"
-RANGE_MAX_PREFIX                    = "max"
-RANGE_MIN_PREFIX                    = "min"
+GROUP_SUFFIX                        = "suffix"
+FIELD_NAME                          = "field_name"
+RANGE_END_PREFIX                    = "max"
+RANGE_START_PREFIX                  = "min"
+
+MAX_VALUE                           = "max"
+MIN_VALUE                           = "min"
 RANGE_FILTER                        = "range"
 INTEGER_PATTERN_REGEX               = re.compile(r'^[0-9]+$')
+VALUES_IN_FILTER_PATTERN            = re.compile(r'^\d+([,;]\d+)*$')
+RANGE_FILTER_PATTERN                = re.compile(r'(?P<START>\d+)-{1,2}(?P<END>\d+)')
 #FIELD_PATTERN                       = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>[0-9a-zA-Z]+|[0-9a-zA-Z]+_[0-9a-zA-Z]+)(?:__(?P<{RANGE_FILTER}>{RANGE_MIN_PEFIX}|{RANGE_MAX_PREFIX}))?')
-FIELD_PATTERN = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>(?:(?:[a-z][0-9a-zA-Z]*(?:_[0-9a-zA-Z]+)*)))(?:(?:__)(?P<{RANGE_FILTER}>{RANGE_MIN_PREFIX}{RANGE_MAX_PREFIX}))?')
+FIELD_PATTERN = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{FIELD_NAME}>(?:(?:[a-z][0-9a-zA-Z]*(?:_[0-9a-zA-Z]+)*)))(?:(?:__)(?P<{RANGE_FILTER}>{RANGE_START_PREFIX}-{RANGE_END_PREFIX}))?')
+# fieldname is valid; field_name is valid ; field_name_extra is valid, fieldname__max is valid, fieldname_min is valid.
+FILTER_PATTERN = re.compiler(rf'(?P<{FIELD_NAME}>(?:(?:[a-z][0-9a-zA-Z]*(?:_[0-9a-zA-Z]+)*)))(?:(?:__)(?P<{GROUP_SUFFIX}>{MAX_VALUE}|{MIN_VALUE}))?')
