@@ -56,7 +56,7 @@ class FieldFilter():
             raise TypeError(f"Filter : model must be of the type of django.db.models.Model. Current type is {type(model)}")
         self.field_name_lookup = field_name
         self.key = key
-        self.validate(value)
+        ##self.validate(value)
         self.value = value
         self.model = model
         self.field = getattr(self.model, field_name).field
@@ -146,7 +146,7 @@ class IntegerFieldFilter(FieldFilter):
         super().__init__(**kwargs)
 
     def validate(self, value):
-        if not commons.INTEGER_PATTERN_REGEX.match(value) and not commons.VALUES_IN_FILTER_PATTERN.match(value):
+        if not commons.INTEGER_PATTERN_REGEX.match(value) and not commons.INTEGER_LIST_FILTER_PATTERN.match(value) and not commons.INTEGER_RANGE_FILTER_PATTERN.match(value):
             raise ValueError(f"Value {value} does not represent an integer values")
 
 
