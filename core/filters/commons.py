@@ -108,6 +108,9 @@ INTERNAL_TYPE_MAPPING = {
     'ForeignKey' : int,
 }
 
+
+QUERY_VALUE_SEPARATOR               = ","
+QUERY_RANGE_SEPARATOR               = "-"
 FILTER_FIELD_LOOKUP_PREFIX          = "fl__"
 FILTER_FIELD_PREFIX                 = 'ff__'
 FILTER_FIELD_TYPE                   = ''

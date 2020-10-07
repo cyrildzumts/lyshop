@@ -94,7 +94,7 @@ class FieldFilter():
         else:
             value = self.value
             if commons.VALUES_IN_FILTER_PATTERN.match(self.value):
-                values = self.value.split(';')
+                values = self.value.split(commons.QUERY_VALUE_SEPARATOR)
                 values_len = len(values)
                 if values_len > 1 :
                     f_action = commons.FILTER_IN
@@ -104,7 +104,7 @@ class FieldFilter():
                     values = list(map(self.field_type, values))[0]     
 
             elif commons.RANGE_FILTER_PATTERN.match(self.value):
-                values = list(map(self.field_type, self.value.split('-')))
+                values = list(map(self.field_type, self.value.split(commons.QUERY_RANGE_SEPARATOR)))
                 f_action = commons.FILTER_RANGE
                 values = (values[0], values[1])
             
