@@ -146,7 +146,7 @@ class IntegerFieldFilter(FieldFilter):
         super().__init__(**kwargs)
 
     def validate(self, value):
-        if not commons.INTEGER_PATTERN_REGEX.match(value):
+        if not commons.INTEGER_PATTERN_REGEX.match(value) and not commons.VALUES_IN_FILTER_PATTERN.match(value):
             raise ValueError(f"Value {value} does not represent an integer values")
 
 
