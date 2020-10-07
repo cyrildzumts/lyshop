@@ -87,12 +87,12 @@ class Filter():
 
     
     def add_filter(self, f_filter):
-        if not issubclass(f_filter.__class__, field_filters.FieldFilter.__class__) :
+        if not issubclass(type(f_filter), field_filters.FieldFilter) :
             raise TypeError(f"f_filter is not of the type field_filters.FieldFilter. Current Type is {type(f_filter)}")
         self.filters.append(f_filter)
     
     def remove_filter(self, f_filter):
-        if not issubclass(f_filter, field_filters.FieldFilter.__class__) :
+        if not issubclass(type(f_filter), field_filters.FieldFilter.__class__) :
             raise TypeError(f"f_filter is not of the type field_filters.FieldFilter. Current Type is {type(f_filter)}")
         self.filters.remove(f_filter)
     
