@@ -56,6 +56,7 @@ class FieldFilter():
             raise TypeError(f"Filter : model must be of the type of django.db.models.Model. Current type is {type(model)}")
         self.field_name_lookup = field_name
         self.key = key
+        self.validate(value)
         self.value = value
         self.model = model
         self.field = getattr(self.model, field_name).field
@@ -63,6 +64,11 @@ class FieldFilter():
         self.action = action
         self.q = {}
         self.values = None
+        
+
+    
+    def validate(self, values):
+        raise NotImplementedError("validate() method is not implemented for this filter yet")
 
 
     def get_query(self):
@@ -134,6 +140,11 @@ class IntegerFieldFilter(FieldFilter):
 
     def __init__(self,  **kwargs):
         super().__init__(**kwargs)
+
+    def validate(self, value):
+        if not commons.VALUES_IN_FILTER_PATTERN.match(value):
+            raise ValueError(f"Value {value} does not represent integer values")
+
 
     
     def get_query(self):

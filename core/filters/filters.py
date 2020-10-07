@@ -83,7 +83,12 @@ class Filter():
             if FILTER_CLASS is None:
                 logger.debug(f"No Filter class found for field {field_name}")
                 continue
-            self.add_filter(FILTER_CLASS(model=self.model, field_name=field_name, key=key, value=self.queryDict.get(key)))
+            try:
+                self.add_filter(FILTER_CLASS(model=self.model, field_name=field_name, key=key, value=self.queryDict.get(key)))
+            except Exception as e:
+                logger.warn(f"Exception thrown when adding filter. Ignoring fieldname {field_name}", e)
+                
+            
 
     
     def add_filter(self, f_filter):
