@@ -136,14 +136,18 @@ class BooleanFieldFilter(FieldFilter):
         }
         return Q(**q)
 
+    def validate(self, value):
+        if not commons.BOOLEAN_PATTERN_REGEX.match(value):
+            raise ValueError(f"Value {value} does not represent a decimal values")
+
 class IntegerFieldFilter(FieldFilter):
 
     def __init__(self,  **kwargs):
         super().__init__(**kwargs)
 
     def validate(self, value):
-        if not commons.VALUES_IN_FILTER_PATTERN.match(value):
-            raise ValueError(f"Value {value} does not represent integer values")
+        if not commons.INTEGER_PATTERN_REGEX.match(value):
+            raise ValueError(f"Value {value} does not represent an integer values")
 
 
     
@@ -163,11 +167,20 @@ class FloatFieldFilter(FieldFilter):
         
         return Q(**self.prepare_filter())
 
+    def validate(self, value):
+        if not commons.DECIMAL_PATTERN_REGEX.match(value):
+            raise ValueError(f"Value {value} does not represent a decimal values")
+
 
 class DecimalFieldFilter(FieldFilter):
 
     def __init__(self, range_start=None, range_end=None, **kwargs):
         super().__init__(**kwargs)
+
+    
+    def validate(self, value):
+        if not commons.DECIMAL_PATTERN_REGEX.match(value):
+            raise ValueError(f"Value {value} does not represent a decimal values")
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query")
@@ -185,6 +198,10 @@ class DateFieldFilter(FieldFilter):
         
         return Q(**self.prepare_filter())
 
+    def validate(self, value):
+        if not commons.DATE_PATTERN_REGEX.match(value):
+            raise ValueError(f"Value {value} does not represent an Date values")
+
 
 class DateTimeFieldFilter(FieldFilter):
 
@@ -196,6 +213,10 @@ class DateTimeFieldFilter(FieldFilter):
         
         return Q(**self.prepare_filter())
 
+    def validate(self, value):
+        if not commons.DATETIME_PATTERN_REGEX.match(value):
+            raise ValueError(f"Value {value} does not represent an DateTime values")
+
 
 
 class StringFieldFilter(FieldFilter):
@@ -205,6 +226,9 @@ class StringFieldFilter(FieldFilter):
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query")
+
+    def validate(self, value):
+        return
 
 
 class UUIDFieldFilter(FieldFilter):
@@ -217,6 +241,11 @@ class UUIDFieldFilter(FieldFilter):
         logger.debug(f"{self.__class__.__name__} : get_query")
         
         return Q(**self.prepare_filter())
+
+    
+    def validate(self, value):
+        if not commons.UUID_PATTERN_REGEX.match(value):
+            raise ValueError(f"Value {value} does not represent an UUID values")
 
 
 
