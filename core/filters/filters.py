@@ -88,12 +88,12 @@ class Filter():
     
     def add_filter(self, f_filter):
         if type(f_filter) != type(field_filters.FieldFilter) :
-            raise TypeError("f_filter is not of the type field_filters.FieldFilter")
+            raise TypeError(f"f_filter is not of the type field_filters.FieldFilter. Current Type is {type(f_filter)}")
         self.filters.append(f_filter)
     
     def remove_filter(self, f_filter):
         if type(f_filter) != type(field_filters.FieldFilter) :
-            raise TypeError("f_filter is not of the type field_filters.FieldFilter")
+            raise TypeError("f_filter is not of the type field_filters.FieldFilter. Current Type is {type(f_filter)}"")
         self.filters.remove(f_filter)
     
     def apply_filter(self):
