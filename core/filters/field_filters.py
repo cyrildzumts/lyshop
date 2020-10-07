@@ -74,12 +74,18 @@ class FieldFilter():
         if not match:
             logger.debug("field not matched")
             raise KeyError(f"Key {self.key} does not match any fieldname")
-
-        if match.group(commons.MAX_VALUE):
+        
+        try:
+            suffix = match.group(commons.GROUP_SUFFIX)
+        except IndexError as e:
+            logger.warn(f"No suffix {commons.GROUP_SUFFIX} matched on the fieldname")
+            suffix = ""
+        
+        if commons.MAX_VALUE == suffix:
             f_action = commons.FILTER_INTEGER_LTE
             max_min = True
         
-        if match.group(commons.MIN_VALUE):
+        if commons.MIN_VALUE == suffix:
             f_action = commons.FILTER_INTEGER_GTE
             max_min = True
         if max_min:
