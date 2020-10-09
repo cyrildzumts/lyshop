@@ -98,7 +98,7 @@ FILTER_FIELD_LOOKUP = {
 INTERNAL_TYPE_MAPPING = {
     'CharField' : str,
     'IntegerField': int,
-    'Boolean' : bool,
+    'BooleanField' : bool,
     'FloatField' : float,
     'DateField' : datetime.date,
     'DateTimeField' : datetime.datetime,
