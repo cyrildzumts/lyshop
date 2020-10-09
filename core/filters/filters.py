@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 FILTER_TYPE_MAPPING = {
     'CharField' : field_filters.StringFieldFilter,
     'IntegerField': field_filters.IntegerFieldFilter,
-    'Boolean' : field_filters.BooleanFieldFilter,
+    'BooleanField' : field_filters.BooleanFieldFilter,
     'FloatField' : field_filters.FloatFieldFilter,
     'DateField' : field_filters.DateFieldFilter,
     'DateTimeField' : field_filters.DateTimeFieldFilter,
