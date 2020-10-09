@@ -56,7 +56,7 @@ class FieldFilter():
             raise TypeError(f"Filter : model must be of the type of django.db.models.Model. Current type is {type(model)}")
         self.field_name_lookup = field_name
         self.key = key
-        ##self.validate(value)
+        self.validate(value)
         self.value = value
         self.model = model
         self.field = getattr(self.model, field_name).field
@@ -120,10 +120,6 @@ class FieldFilter():
         return self.q
 
 
-
-
-
-
 class BooleanFieldFilter(FieldFilter):
 
     def __init__(self,  **kwargs):
@@ -138,7 +134,7 @@ class BooleanFieldFilter(FieldFilter):
 
     def validate(self, value):
         if not commons.BOOLEAN_PATTERN_REGEX.match(value):
-            raise ValueError(f"Value {value} does not represent a decimal values")
+            raise ValueError(f"Value {value} does not represent boolean values")
 
 class IntegerFieldFilter(FieldFilter):
 
@@ -147,7 +143,7 @@ class IntegerFieldFilter(FieldFilter):
 
     def validate(self, value):
         if not commons.INTEGER_PATTERN_REGEX.match(value) and not commons.INTEGER_LIST_FILTER_PATTERN.match(value) and not commons.INTEGER_RANGE_FILTER_PATTERN.match(value):
-            raise ValueError(f"Value {value} does not represent an integer values")
+            raise ValueError(f"Value {value} does not represent integer values")
 
 
     
@@ -168,8 +164,8 @@ class FloatFieldFilter(FieldFilter):
         return Q(**self.prepare_filter())
 
     def validate(self, value):
-        if not commons.DECIMAL_PATTERN_REGEX.match(value):
-            raise ValueError(f"Value {value} does not represent a decimal values")
+        if not commons.DECIMAL_PATTERN_REGEX.match(value) and not commons.DECIMAL_LIST_PATTERN.match(value) and not commons.DECIMAL_RANGE_FILTER_PATTERN.match(value):
+            raise ValueError(f"Value {value} does not represent float values")
 
 
 class DecimalFieldFilter(FieldFilter):
@@ -179,8 +175,8 @@ class DecimalFieldFilter(FieldFilter):
 
     
     def validate(self, value):
-        if not commons.DECIMAL_PATTERN_REGEX.match(value):
-            raise ValueError(f"Value {value} does not represent a decimal values")
+        if not commons.DECIMAL_PATTERN_REGEX.match(value) and not commons.DECIMAL_LIST_PATTERN.match(value) and not commons.DECIMAL_RANGE_FILTER_PATTERN.match(value):
+            raise ValueError(f"Value {value} does not represent decimal values")
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query")

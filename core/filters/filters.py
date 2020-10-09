@@ -72,7 +72,6 @@ class Filter():
         for key in self.queryDict:
             if not isinstance(key, str):
                 continue
-            #match = commons.FIELD_PATTERN.match(key)
             match = commons.FILTER_PATTERN.match(key)
             if not match:
                 logger.debug("field not matched")
@@ -135,7 +134,7 @@ def field_filter(model, queryDict):
             logger.debug(f"Model has no field {field_name}")
             continue
 
-        field_type = INTERNAL_TYPE_MAPPING [attr.field.get_internal_type()]
+        field_type = commons.INTERNAL_TYPE_MAPPING [attr.field.get_internal_type()]
         values = list(filter( lambda k: k != '',queryDict.getlist(key)))
 
         values_len = len(values)

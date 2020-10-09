@@ -127,13 +127,16 @@ RANGE_FILTER                        = "range"
 INTEGER_PATTERN_REGEX               = re.compile(r'^[0-9]+$')
 INTEGER_LIST_FILTER_PATTERN         = re.compile(r'^\d+([,;]\d+)*$')
 INTEGER_RANGE_FILTER_PATTERN        = re.compile(r'(?P<START>\d+)-{1,2}(?P<END>\d+)')
-UUID_PATTERN_REGEX                  = re.compile(r'^$')
+UUID_PATTERN_REGEX                  = re.compile(r'^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$')
 DATE_PATTERN_REGEX                  = re.compile(r'^$')
 DATETIME_PATTERN_REGEX              = re.compile(r'^$')
 BOOLEAN_PATTERN_REGEX               = re.compile(r'^(?i)(true|false|on|off|1|0|yes|no)$')
-DECIMAL_PATTERN_REGEX               = re.compile(r'^\d+([.,]\d+)?$')
+DECIMAL_PATTERN_REGEX               = re.compile(r'^\d+([.]\d+)?$')
+DECIMAL_LIST_PATTERN                = re.compile(r'^(\d+([.]\d+)?)+(,(\d+([.]\d+)?))*$')
+
 VALUES_IN_FILTER_PATTERN            = re.compile(r'^\d+([,;]\d+)*$')
 RANGE_FILTER_PATTERN                = re.compile(r'(?P<START>\d+)-{1,2}(?P<END>\d+)')
+DECIMAL_RANGE_FILTER_PATTERN        = re.compile(r'^(?P<START>(?:\d+(?:[.]\d+)?))-{1,2}(?P<END>(?:\d+(?:[.]\d+)?))$')
 #FIELD_PATTERN                       = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{GROUP_FIELD_NAME}>[0-9a-zA-Z]+|[0-9a-zA-Z]+_[0-9a-zA-Z]+)(?:__(?P<{RANGE_FILTER}>{RANGE_MIN_PEFIX}|{RANGE_MAX_PREFIX}))?')
 FIELD_PATTERN = re.compile(rf'(?P<{GROUP_PREFIX}>{FILTER_FIELD_PREFIX})(?P<{FIELD_NAME}>(?:(?:[a-z][0-9a-zA-Z]*(?:_[0-9a-zA-Z]+)*)))(?:(?:__)(?P<{RANGE_FILTER}>{RANGE_START_PREFIX}-{RANGE_END_PREFIX}))?')
 # fieldname is valid; field_name is valid ; field_name_extra is valid, fieldname__max is valid, fieldname_min is valid.
