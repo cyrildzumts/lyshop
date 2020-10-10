@@ -127,7 +127,7 @@ class BooleanFieldFilter(FieldFilter):
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query : {self.q} - value  : \"{self.value}\"")
-        return Q(**self.q)
+        return Q(**self.prepare_filter())
 
     def validate(self, value):
         if not commons.BOOLEAN_PATTERN_REGEX.match(value):
