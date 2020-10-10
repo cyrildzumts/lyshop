@@ -4,6 +4,7 @@ var order_payment_option_container;
 var order_status = [];
 
 function clean_form_before_submit(form){
+    console.log("disabling empty fields");
     $('.filter-input', form).each(function(){
         this.disabled = this.value == "";
     });
