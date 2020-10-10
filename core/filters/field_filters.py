@@ -134,9 +134,11 @@ class BooleanFieldFilter(FieldFilter):
             raise ValueError(f"Value {value} does not represent boolean values")
     
     def prepare_filter(self):
+        logger.debug(f"{self.__class__.__name__} : Boolean prepare_filter : {self.q} - value  : \"{self.value}\"")
         value = self.value
         match = commons.BOOLEAN_PATTERN_REGEX.match(self.value)
         if not match:
+            logger.debug(f"{self.__class__.__name__} : valueError : value  : \"{self.value}\"")
             raise ValueError()
 
         self.values = value
