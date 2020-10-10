@@ -18,6 +18,7 @@ function clean_form_before_submit(form){
 function filter_singular_init(field_id, chips_class){
     var input = $(field_id);
     var selected_chips = $(chips_class);
+    var values = ""
     selected_chips.each(function(index, element){
         var chips = $(this);
         if(index < selected_chips.length - 1){
