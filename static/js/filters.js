@@ -146,7 +146,7 @@ $(document).ready(function(){
                 value : page
             });
             input.appendTo(filter_form);
-            console.log('form serialize : \"%s\"', $('.filter-input').not('value=""').serialize());
+            console.log('form serialize : \"%s\"', $('.filter-input').not('[value=""]').serialize());
             console.log("Added page input to filter form", input);
             filter_form.submit();
         }
