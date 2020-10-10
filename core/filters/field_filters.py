@@ -126,7 +126,7 @@ class BooleanFieldFilter(FieldFilter):
         super().__init__(**kwargs)
     
     def get_query(self):
-        logger.debug(f"{self.__class__.__name__} : get_query")
+        logger.debug(f"{self.__class__.__name__} : get_query : {self.q} - value  : \"{self.value}\"")
         return Q(**self.q)
 
     def validate(self, value):
