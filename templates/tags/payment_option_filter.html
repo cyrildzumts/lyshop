@@ -2,8 +2,7 @@
 {% load i18n %}
  <div class="modal-container">
     <div class="hidden" id="inputs">
-        <input type="hidden" name="fl_payment_option" value="6">
-        <select name="ff_payment_option" id="payment-option" multiple></select>
+        <select class="filter-input-select" name="payment_option" id="payment-option" multiple></select>
     </div>
     <div {% if SELECTED_FILTERS.payment_option %}class="chips chips-selected"{% else %}class="chips"{% endif %} title="{% trans 'Filter the list by payment_option field' %}">
         <i class="fas fa-info icon"></i>

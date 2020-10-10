@@ -2,8 +2,7 @@
 {% load i18n %}
  <div class="modal-container">
     <div class="hidden" id="inputs">
-        <input type="hidden" name="fl_status" value="6">
-        <select name="ff_status" id="order-status" multiple></select>
+        <select class="filter-input-select" name="status" id="order-status" multiple></select>
     </div>
     <div {% if SELECTED_FILTERS.status %}class="chips chips-selected"{% else %}class="chips"{% endif %}  title="{% trans 'Filter the list by status field' %}">
         <i class="fas fa-info icon"></i>

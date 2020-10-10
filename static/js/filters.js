@@ -8,6 +8,11 @@ function clean_form_before_submit(form){
     $('.filter-input', form).each(function(){
         this.disabled = this.value == "";
     });
+    $('.filter-input-select', form).each(function(){
+        var select = $(this);
+        
+        this.disabled = $('option', select).length == 0;
+    });
 
 }
 
