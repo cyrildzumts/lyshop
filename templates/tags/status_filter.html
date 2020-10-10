@@ -2,7 +2,7 @@
 {% load i18n %}
  <div class="modal-container">
     <div class="hidden" id="inputs">
-        <select class="filter-input-select" name="status" id="order-status" multiple></select>
+        <input id="order-status-input" class="filter-input" type="text" name="status" >
     </div>
     <div {% if SELECTED_FILTERS.status %}class="chips chips-selected"{% else %}class="chips"{% endif %}  title="{% trans 'Filter the list by status field' %}">
         <i class="fas fa-info icon"></i>
@@ -25,7 +25,7 @@
                         <div class="status">
                             <div class="row">
                             {% for k, v in STATUS %} 
-                                <span {% if k in SELECTED_FILTERS.status %} class="chips js-list-filter chips-selected"{% else %} class="chips js-list-filter"{% endif %}  data-name="order-status" data-container="order-status" data-selected="0" data-value="{{k}}">{% trans v %}</span> 
+                                <span {% if k in SELECTED_FILTERS.status %} class="chips order-status-chips js-list-filter chips-selected"{% else %} class="chips js-list-filter"{% endif %}  data-name="order-status" data-container="order-status" data-selected="0" data-value="{{k}}">{% trans v %}</span> 
                             {% endfor %}
                             </div>
                         </div>

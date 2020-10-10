@@ -15,51 +15,71 @@ function clean_form_before_submit(form){
 
 }
 
+function filter_singular_init(field_id, chips_class){
+    var input = $(field_id);
+    var selected_chips = $(chips_class);
+    selected_chips.each(function(index, element){
+        var chips = $(this);
+        if(index < selected_chips.length - 1){
+            values += chips.data('value') + ",";
+        }else{
+            values += chips.data('value');
+        }
+    });
+    input.val(values);
+}
+
+function initialize_filters(){
+    filter_singular_init('#order-status-input', '.order-status-chips.chips-selected');
+    filter_singular_init('#order-payment-option-input', '.order-payment-option-chips.chips-selected');
+}
 
 function toggle_order_status(element){
     var value = element.data('value');
     var added = false;
-    var status_list = $('option', order_status_container).filter(function(index, el){
-        return el.value == value;
-    });
-    if(status_list.length == 0){
-        order_status_container.append($('<option/>', {
-            value: value,
-            selected : true
-        }));
-        added = true;
-    }else{
-        $('option', order_status_container).each(function(){
-            if(this.value == value){
-                $(this).remove();
+    var status_input = $('#order-status-input');
+    var current_value = status_input.val();
+    var values = ""
+    element.toggleClass('chips-selected', !element.hasClass('chips-selected'));
+    var selected_chips = $('.order-status-chips.chips-selected');
+    selected_chips.each(function(index, element){
+        var chips = $(this);
+        if(value != chips.data('value')){
+            if(index < selected_chips.length - 1){
+                values += chips.data('value') + ",";
+            }else{
+                values += chips.data('value');
             }
-        });
-    }
+            added = true;
+
+        }
+    });
+    status_input.val(values);
     return added;
 }
 
 function toggle_playment_option(element){
     var value = element.data('value');
-
     var added = false;
-    var payment_option_list = $('option', order_payment_option_container).filter(function(index, el){
-        return el.value == value;
-    });
-    if(payment_option_list.length == 0){
-        order_payment_option_container.append($('<option/>', {
-            value: value,
-            selected : true
-        }));
-        added = true;
-    }else{
-        $('option', order_payment_option_container).each(function(){
-            if(this.value == value){
-                $(this).remove();
+    var input = $('#order-payment-option-input');
+    var current_value = input.val();
+    var values = ""
+    element.toggleClass('chips-selected', !element.hasClass('chips-selected'));
+    var selected_chips = $('.order-payment-option-chips.chips-selected');
+    selected_chips.each(function(index, element){
+        var chips = $(this);
+        if(value != chips.data('value')){
+            if(index < selected_chips.length - 1){
+                values += chips.data('value') + ",";
+            }else{
+                values += chips.data('value');
             }
-        });
-    }
+            added = true;
+
+        }
+    });
+    input.val(values);
     return added;
-    
 }
 
 
@@ -122,19 +142,7 @@ $(document).ready(function(){
         $(input.data('update')).text(input.val());
         $("#" + input.data('target')).val(input.val());
     });
-     order_status_container = $('#order-status');
-     order_payment_option_container = $('#payment-option');
-    $('.js-list-filter.chips-selected').each(function(){
-        var el = $(this);
-        var option = $('<option/>', {
-            //id: el.data('name') + "-" + el.data('value'),
-            //type: 'text',
-            //name : el.data('name'),
-            value: el.data('value'),
-            selected : true
-        });
-        $('#' + el.data('container')).append(option);
-    });
+    initialize_filters();
 
     $('.js-list-filter').on('click', function(){
         var element = $(this);
@@ -148,10 +156,12 @@ $(document).ready(function(){
             
         }else if(name == 'amount'){
             added = toggle_amount_option(element);
+            element.toggleClass("chips-selected", added);
         }else if(name == 'created_at'){
             added = toggle_date_filter(element);
+            element.toggleClass("chips-selected", added);
         }
-        element.toggleClass("chips-selected", added);
+        
         
     });
     console.log("Filter module ready");
