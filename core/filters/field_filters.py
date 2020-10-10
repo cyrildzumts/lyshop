@@ -143,6 +143,7 @@ class BooleanFieldFilter(FieldFilter):
 
         self.values = value
         self.q[self.field_name_lookup] = match.group('TRUE') is not None
+        logger.debug(f"{self.__class__.__name__} : Boolean prepare_filter End : {self.q} - value  : \"{self.value}\"")
         return self.q
 
 
