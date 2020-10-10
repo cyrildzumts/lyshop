@@ -109,6 +109,7 @@ function date_filter(){
 
 $(document).ready(function(){
     $('#filter-form').on('submit', function(event){
+        console.log("Filter form submition");
         clean_form_before_submit(this);
     });
 
