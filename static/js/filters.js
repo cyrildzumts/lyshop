@@ -149,5 +149,5 @@ $(document).ready(function(){
         element.toggleClass("chips-selected", added);
         
     });
-
+    console.log("Filter module ready");
 });
