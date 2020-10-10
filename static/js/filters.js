@@ -45,15 +45,12 @@ function toggle_order_status(element){
     var selected_chips = $('.order-status-chips.chips-selected');
     selected_chips.each(function(index, element){
         var chips = $(this);
-        if(value != chips.data('value')){
-            if(index < selected_chips.length - 1){
-                values += chips.data('value') + ",";
-            }else{
-                values += chips.data('value');
-            }
-            added = true;
-
+        if(index < selected_chips.length - 1){
+            values += chips.data('value') + ",";
+        }else{
+            values += chips.data('value');
         }
+        added = true;
     });
     console.log("Order status values : %s", values);
     status_input.val(values);
@@ -70,15 +67,12 @@ function toggle_playment_option(element){
     var selected_chips = $('.order-payment-option-chips.chips-selected');
     selected_chips.each(function(index, element){
         var chips = $(this);
-        if(value != chips.data('value')){
-            if(index < selected_chips.length - 1){
-                values += chips.data('value') + ",";
-            }else{
-                values += chips.data('value');
-            }
-            added = true;
-
+        if(index < selected_chips.length - 1){
+            values += chips.data('value') + ",";
+        }else{
+            values += chips.data('value');
         }
+        added = true;
     });
     input.val(values);
     return added;
