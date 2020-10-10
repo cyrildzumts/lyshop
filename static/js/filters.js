@@ -55,6 +55,7 @@ function toggle_order_status(element){
 
         }
     });
+    console.log("Order status values : %s", values);
     status_input.val(values);
     return added;
 }
