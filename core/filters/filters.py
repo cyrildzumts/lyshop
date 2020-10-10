@@ -107,7 +107,7 @@ class Filter():
         query_objects = Q()
         for f in self.filters:
             query_objects &= f.get_query()
-            self.selected_values[f.field_name_lookup] = f.values
+            self.selected_values[f.field.name] = f.values
         
         return self.model.objects.filter(query_objects)
 
