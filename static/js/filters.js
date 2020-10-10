@@ -139,12 +139,14 @@ $(document).ready(function(){
         if(filter_form.length != 0){
             event.preventDefault();
             event.stopPropagation();
+            
             var page = $(event.target).data('page');
             var input = $('<input />', {
                 name : 'page',
                 value : page
             });
             input.appendTo(filter_form);
+            console.log("Added page input to filter form", input);
             filter_form.submit();
         }
         
