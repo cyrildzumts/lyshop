@@ -1,7 +1,8 @@
+/*
 var order_status_container;
 var order_payment_option_container;
 var order_status = [];
-
+*/
 /**
  * 
  * @param {*} options is a JSON defining the following data :
@@ -23,7 +24,7 @@ function ajax(options){
     });
 }
 
-
+/*
 function toggle_order_status(element){
     var value = element.data('value');
     var added = false;
@@ -101,7 +102,7 @@ function toggle_date_filter(element){
         element.addClass('chips-selected').siblings().removeClass('chips-selected');
     }
 }
-
+*/
 var Tabs = (function(){
     function Tabs(){
         this.currentTab     = 0;
@@ -542,44 +543,7 @@ slider.init();
         target.show();
     });
 
-    $("#amount-filter-input").on('keyup', function(event){
-        var input = $(this);
-        $(input.data('update')).text(input.val());
-        $("#" + input.data('target')).val(input.val());
-    });
-     order_status_container = $('#order-status');
-     order_payment_option_container = $('#payment-option');
-    $('.js-list-filter.chips-selected').each(function(){
-        var el = $(this);
-        var option = $('<option/>', {
-            //id: el.data('name') + "-" + el.data('value'),
-            //type: 'text',
-            //name : el.data('name'),
-            value: el.data('value'),
-            selected : true
-        });
-        $('#' + el.data('container')).append(option);
-    });
-
-    $('.js-list-filter').on('click', function(){
-        var element = $(this);
-        var name = element.data('name');
-        var added = false;
-        if(name == 'order-status'){
-            added = toggle_order_status(element);
-            
-        }else if(name == 'payment-option'){
-            added = toggle_playment_option(element);
-            
-        }else if(name == 'amount'){
-            added = toggle_amount_option(element);
-        }else if(name == 'created_at'){
-            added = toggle_date_filter(element);
-        }
-        element.toggleClass("chips-selected", added);
-        
-    });
-
+    
     $('.js-dialog-close').on('click', function(){
         var target = $($(this).data('target'));
         target.hide();
