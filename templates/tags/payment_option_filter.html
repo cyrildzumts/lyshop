@@ -25,7 +25,7 @@
                             <div class="row">
                             {% for k, v in PAYMENT_OPTIONS %} 
                             
-                            <span {% if k in SELECTED_FILTERS.payment_option %} class="chips js-list-filter order-payment-option-chips chips-selected"{% else %} class="chips js-list-filter"{% endif %} data-container="payment-option" data-name="payment-option" data-selected="0" data-value="{{k}}">{% trans v %}</span> {% endfor %}
+                            <span {% if k in SELECTED_FILTERS.payment_option %} class="chips js-list-filter order-payment-option-chips chips-selected"{% else %} class="chips js-list-filter order-payment-option-chips"{% endif %} data-container="payment-option" data-name="payment-option" data-selected="0" data-value="{{k}}">{% trans v %}</span> {% endfor %}
                             </div>
                         </div>
                     </div>
