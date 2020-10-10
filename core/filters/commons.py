@@ -130,7 +130,7 @@ INTEGER_RANGE_FILTER_PATTERN        = re.compile(r'(?P<START>\d+)-{1,2}(?P<END>\
 UUID_PATTERN_REGEX                  = re.compile(r'^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$')
 DATE_PATTERN_REGEX                  = re.compile(r'^$')
 DATETIME_PATTERN_REGEX              = re.compile(r'^$')
-BOOLEAN_PATTERN_REGEX               = re.compile(r'^(?i)(true|false|on|off|1|0|yes|no)$')
+BOOLEAN_PATTERN_REGEX               = re.compile(r'^(?i)(?P<TRUE>true|on|yes|1)|(?P<FALSE>false|off|no|0)$')
 DECIMAL_PATTERN_REGEX               = re.compile(r'^\d+([.]\d+)?$')
 DECIMAL_LIST_PATTERN                = re.compile(r'^(\d+([.]\d+)?)+(,(\d+([.]\d+)?))*$')
 

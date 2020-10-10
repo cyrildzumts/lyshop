@@ -127,14 +127,22 @@ class BooleanFieldFilter(FieldFilter):
     
     def get_query(self):
         logger.debug(f"{self.__class__.__name__} : get_query")
-        q = {
-            self.field.name + commons.FILTER_FIELD_LOOKUP[self.action]: self.values
-        }
-        return Q(**q)
+        return Q(**self.q)
 
     def validate(self, value):
         if not commons.BOOLEAN_PATTERN_REGEX.match(value):
             raise ValueError(f"Value {value} does not represent boolean values")
+    
+    def prepare_filter(self):
+        value = self.value
+        match = commons.BOOLEAN_PATTERN_REGEX.match(self.value)
+        if not match:
+            raise ValueError()
+
+        self.values = value
+        self.q[self.field_name_lookup] = match.group('TRUE') is not None
+        return self.q
+
 
 class IntegerFieldFilter(FieldFilter):
 
