@@ -4,7 +4,7 @@
     <div class="hidden" id="inputs">
         <input id="order-status-input" class="filter-input" type="text" name="status" >
     </div>
-    <div {% if "status" in SELECTED_FILTERS and  SELECTED_FILTERS.status|length  %} class="chips chips-selected" {% else %}class="chips" {% endif %}  title="{% trans 'Filter the list by status field' %}">
+    <div {% if "status" in SELECTED_FILTERS  %} class="chips chips-selected" {% else %}class="chips" {% endif %}  title="{% trans 'Filter the list by status field' %}">
         <i class="fas fa-info icon"></i>
         <span class="js-open-modal open-modal" data-target="status-modal" >{% trans "status" %}</span>
         <span id="status-filter" class="filter"></span>
