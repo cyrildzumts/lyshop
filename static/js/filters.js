@@ -2,6 +2,7 @@
 var order_status_container;
 var order_payment_option_container;
 var order_status = [];
+var filter_form;
 
 function clean_form_before_submit(form){
     console.log("disabling empty fields");
@@ -128,9 +129,26 @@ function date_filter(){
 }
 
 $(document).ready(function(){
+    filter_form = $('#filter-form');
     $('#filter-form').on('submit', function(event){
         console.log("Filter form submition");
         clean_form_before_submit(this);
+    });
+    $('.js-pagination').on('click', function(event){
+        
+        if(filter_form.length != 0){
+            event.preventDefault();
+            event.stopPropagation();
+            var page = $(event.target).data('page');
+            var input = $('<input />', {
+                name : 'page',
+                value : page
+            });
+            input.appendTo(filter_form);
+            filter_form.submit();
+        }
+        
+
     });
 
     $("#amount-filter-input").on('keyup', function(event){
