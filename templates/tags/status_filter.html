@@ -25,7 +25,7 @@
                         <div class="status">
                             <div class="row">
                             {% for k, v in STATUS %} 
-                                <span {% if k in SELECTED_FILTERS.status or k == SELECTED_FILTERS.status %} class="chips order-status-chips js-list-filter chips-selected"{% else %} class="chips js-list-filter order-status-chips"{% endif %}  data-name="order-status" data-container="order-status" data-selected="0" data-value="{{k}}">{% trans v %}</span> 
+                                <span {% if (k in SELECTED_FILTERS.status) or (k == SELECTED_FILTERS.status) %} class="chips order-status-chips js-list-filter chips-selected"{% else %} class="chips js-list-filter order-status-chips"{% endif %}  data-name="order-status" data-container="order-status" data-selected="0" data-value="{{k}}">{% trans v %}</span> 
                             {% endfor %}
                             </div>
                         </div>
