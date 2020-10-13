@@ -113,6 +113,7 @@ INSTALLED_APPS = [
     'vendors.apps.VendorsConfig',
     'payment.apps.PaymentConfig',
     'addressbook.apps.AddressbookConfig',
+    'core.apps.CoreConfig',
 ]
 
 # RESTFRAMEWORK SETTINGS
