@@ -123,6 +123,7 @@ class FieldFilter():
 class BooleanFieldFilter(FieldFilter):
 
     def __init__(self,  **kwargs):
+        self.template_name = "tags/boolean_field.html"
         super().__init__(**kwargs)
     
     def get_query(self):
@@ -150,6 +151,7 @@ class BooleanFieldFilter(FieldFilter):
 class IntegerFieldFilter(FieldFilter):
 
     def __init__(self,  **kwargs):
+        self.template_name = "tags/integer_field.html"
         super().__init__(**kwargs)
 
     def validate(self, value):
@@ -167,6 +169,7 @@ class IntegerFieldFilter(FieldFilter):
 class FloatFieldFilter(FieldFilter):
 
     def __init__(self, range_start=None, range_end=None, **kwargs):
+        self.template_name = "tags/decimal_field.html"
         super().__init__(**kwargs)
     
     def get_query(self):
@@ -182,6 +185,7 @@ class FloatFieldFilter(FieldFilter):
 class DecimalFieldFilter(FieldFilter):
 
     def __init__(self, range_start=None, range_end=None, **kwargs):
+        self.template_name = "tags/decimal_field.html"
         super().__init__(**kwargs)
 
     
@@ -198,6 +202,7 @@ class DecimalFieldFilter(FieldFilter):
 class DateFieldFilter(FieldFilter):
 
     def __init__(self, range_start=None, range_end=None, option=None, **kwargs):
+        self.template_name = "tags/date_field.html"
         super().__init__(**kwargs)
     
     def get_query(self):
@@ -213,6 +218,7 @@ class DateFieldFilter(FieldFilter):
 class DateTimeFieldFilter(FieldFilter):
 
     def __init__(self, range_start=None, range_end=None, option=None, **kwargs):
+        self.template_name = "tags/datetieme_field.html"
         super().__init__(**kwargs)
     
     def get_query(self):
@@ -229,6 +235,7 @@ class DateTimeFieldFilter(FieldFilter):
 class StringFieldFilter(FieldFilter):
 
     def __init__(self, **kwargs):
+        self.template_name = "tags/char_field.html"
         super().__init__(**kwargs)
     
     def get_query(self):
@@ -241,6 +248,7 @@ class StringFieldFilter(FieldFilter):
 class UUIDFieldFilter(FieldFilter):
 
     def __init__(self, **kwargs):
+        self.template_name = "tags/uuid_field.html"
         super().__init__(**kwargs)
 
     
