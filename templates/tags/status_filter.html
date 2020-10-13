@@ -19,7 +19,7 @@
             </div>
             <div class="modal-body">
 
-                {% include "tags/integer_field.html" SELECTION=STATUS SELECTED_VALUE=SELECTED_FILTERS.status field_name="status" %}
+                {% include "tags/integer_field.html" with SELECTION=STATUS SELECTED_VALUE=SELECTED_FILTERS.status field_name="status" %}
 
                 <div class="mat-box">
                     <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
