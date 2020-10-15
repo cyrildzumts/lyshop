@@ -15,7 +15,7 @@
                 <span class="title">{% trans "Amount Filter" %}</span><span class="js-close-modal close-modal" data-target="amount-modal" ><i class="fas fa-close"></i></span>
             </div>
             <div class="modal-body">
-                {% include "tags/integer_field.html" with RANGE=True field_name=field_name %}
+                {% include "tags/integer_field.html" with RANGE=True FILTER=SELECTED_FILTERS.amount field_name=field_name  %}
                 {% comment %}<div class="mat-box">
                     <div class="form-group">
                         <label for="amount-filter-input">{% trans "Enter an amount" %}({% trans CURRENCY %})</label>
