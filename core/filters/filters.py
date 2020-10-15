@@ -44,7 +44,7 @@ class Filter():
             raise TypeError(msg)
 
         self.filters = []
-        self.selected_values = {}
+        self.selected_filters = {}
         self.model = model
         self.queryDict = queryDict
         self.queryset = None
@@ -107,7 +107,7 @@ class Filter():
         query_objects = Q()
         for f in self.filters:
             query_objects &= f.get_query()
-            self.selected_values[f.field.name] = f.values
+            self.selected_filters.update(f.filter_dict)
         
         return self.model.objects.filter(query_objects)
 

@@ -41,7 +41,7 @@ def orders(request):
     else:
         queryset = queryset.filter(user=request.user).order_by('-created_at')
     
-    logger.debug(f"selected_filters : {field_filter.selected_values}")
+    logger.debug(f"selected_filters : {field_filter.selected_filters}")
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, utils.PAGINATED_BY)
     try:
@@ -54,7 +54,7 @@ def orders(request):
     context['orders'] = list_set
     context['ORDER_STATUS'] = commons.ORDER_STATUS
     context['PAYMENT_OPTIONS'] = commons.PAYMENT_OPTIONS
-    context['SELECTED_FILTERS'] = field_filter.selected_values
+    context['SELECTED_FILTERS'] = field_filter.selected_filters
     return render(request,template_name, context)
 
 @login_required

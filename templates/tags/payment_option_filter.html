@@ -15,7 +15,7 @@
                 <span class="title">{% trans "Payment Method Filter" %}</span><span class="js-close-modal close-modal" data-target="payment-method-modal" ><i class="fas fa-close"></i></span>
             </div>
             <div class="modal-body">
-                {% include "tags/integer_field.html" with SELECTION=PAYMENT_OPTIONS SELECTED_VALUE=SELECTED_FILTERS.payment_option field_name=field_name %}
+                {% include "tags/integer_field.html" with SELECTION=PAYMENT_OPTIONS FILTER=SELECTED_FILTERS.payment_option field_name=field_name %}
                 {% comment %}<div class="mat-box">
                     <span class="js-close-modal close-modal" data-target="payment-method-modal" ><i class="fas fa-close"></i></span>
                     <div class="form-group-filter">

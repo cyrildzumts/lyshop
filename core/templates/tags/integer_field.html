@@ -5,7 +5,7 @@
         <h4>{% trans "Filter" %} {{field_name}}</h4>
     </div>
     <div class="hidden" id="inputs">
-        <input id="{{field_name}}-id" class="filter-input" type="text" name="{{field_name}}" >
+        <input id="{{field_name}}-id" class="filter-input" type="text" name="{{FILTER.field_name}}" value="{{FILTER.value}}">
     </div>
     {% if SELECTION %}
     <div class="box">
@@ -15,11 +15,11 @@
         
         <div class="row">
         {% for k, v in SELECTION %} 
-            <span {% if k in SELECTED_VALUE or k == SELECTED_VALUE %} class="chips js-list-filter chips-selected"{% else %} class="chips js-list-filter"{% endif %} data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}"  data-value="{{k}}">{% trans v %}</span> 
+            <span {% if k in FILTER.selection or k == FILTER.selection %} class="chips js-list-filter chips-selected"{% else %} class="chips js-list-filter"{% endif %} data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}"  data-value="{{k}}">{% trans v %}</span> 
         {% endfor %}
         </div>
     </div>
-    {% elif RANGE %}
+    {% elif FILTER.range %}
     <div class="box">
         <div class="title">
             <span class="label">{% trans "Select a range" %}</span>
@@ -27,11 +27,11 @@
         <div class="box-content">
             <div class="form-group">
                 <label for="start">{% trans "Min" %}</label>
-                <input id="{{field_name}}-start" class="filter-input-start js-range-filter js-range-start no-submit" data-range-next="{{field_name}}-end" data-type="range-start" data-target="{{field_name}}-id" type="text" name="{{field_name}}-start" >
+                <input id="{{field_name}}-start" class="filter-input-start js-range-filter js-range-start no-submit" data-range-next="{{field_name}}-end" data-type="range-start" data-target="{{field_name}}-id" type="text" name="{{field_name}}-start" value="{{FILTER.range_start}}">
             </div>
             <div class="form-group">
                 <label for="{{field_name}}-end">{% trans "Max" %}</label>
-                <input id="{{field_name}}-end" class="filter-input-end js-range-filter js-range-end no-submit" data-range-next="{{field_name}}-start" data-type="range-end" data-target="{{field_name}}-id" type="text" name="{{field_name}}-end" >
+                <input id="{{field_name}}-end" class="filter-input-end js-range-filter js-range-end no-submit" data-range-next="{{field_name}}-start" data-type="range-end" data-target="{{field_name}}-id" type="text" name="{{field_name}}-end" value="{{FILTER.range_end}}">
             </div>
         
         </div>
@@ -44,7 +44,7 @@
             <div class="box-content">
                 <div class="form-group">
                     <label for="{{field_name}}-value"></label>
-                    <input id="{{field_name}}-value" class="filter-input-value  js-value-filter field-filter-input no-submit" data-type="value" data-target="{{field_name}}-id" type="text" name="{{field_name}}-value" >
+                    <input id="{{field_name}}-value" class="filter-input-value  js-value-filter field-filter-input no-submit" data-type="value" data-target="{{field_name}}-id" type="text" name="{{field_name}}-value" value="{{FILTER.selection}}">
                 </div>   
             </div>
         </div>

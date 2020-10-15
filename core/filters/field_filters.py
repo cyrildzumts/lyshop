@@ -64,6 +64,12 @@ class FieldFilter():
         self.action = action
         self.q = {}
         self.values = None
+        self.filter_dict = {
+            self.field.name : {
+                'value' : value,
+                'field_name' : self.field.name,
+            }
+        }
         
 
     
@@ -99,20 +105,45 @@ class FieldFilter():
             self.field_name_lookup += commons.FILTER_FIELD_LOOKUP.get(f_action)
         else:
             value = self.value
-            if commons.VALUES_IN_FILTER_PATTERN.match(self.value):
+            match = commons.VALUES_IN_FILTER_PATTERN.match(self.value)
+            if match:
+                
                 values = self.value.split(commons.QUERY_VALUE_SEPARATOR)
                 values_len = len(values)
                 if values_len > 1 :
                     f_action = commons.FILTER_IN
                     values = list(map(self.field_type, values))
+                    
                 elif values_len == 1:
                     f_action = commons.FILTER_INTEGER_EQ
                     values = list(map(self.field_type, values))[0]     
+                self.filter_dict[self.field.name]['selection'] = values
+            
+            else :
+                match = commons.RANGE_FILTER_PATTERN.match(self.value)
+                if match:
+                    range_start = match.group('START')
+                    range_end = match.group('END')
+                    if range_end is None and range_start is None:
+                        raise ValueError("Range filter : no value submitted")
+                    if range_start is not None and range_end is None:
+                        range_start = self.field_type(range_start)
+                        values = range_start
+                        f_action = commons.FILTER_INTEGER_GTE
+                        
+                    elif range_end is not None and range_start is None:
+                        range_end = self.field_type(range_end)
+                        values = range_end
+                        f_action = commons.FILTER_INTEGER_LTE
 
-            elif commons.RANGE_FILTER_PATTERN.match(self.value):
-                values = list(map(self.field_type, self.value.split(commons.QUERY_RANGE_SEPARATOR)))
-                f_action = commons.FILTER_RANGE
-                values = (values[0], values[1])
+                    else:
+                        range_start = self.field_type(range_start)
+                        range_end = self.field_type(range_end)
+                        f_action = commons.FILTER_RANGE
+                        values = (range_start, range_end)
+                    self.filter_dict[self.field.name]['range'] = self.value
+                    self.filter_dict[self.field.name]['range_start'] = range_start or ""
+                    self.filter_dict[self.field.name]['range_end'] = range_end or ""
             
         self.field_name_lookup += commons.FILTER_FIELD_LOOKUP.get(f_action)
         self.values = values
