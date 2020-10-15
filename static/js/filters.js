@@ -76,7 +76,7 @@ function install_integer_filter(){
     $('.js-list-filter').on('click', function(){
         integer_field_filter($(this));
     });
-    $('.js-range-filter,.js-value-filter').on('keyup,change', function(){
+    $('.js-range-filter,.js-value-filter').on('keyup', function(){
         console.log("Range input changed");
         integer_field_filter($(this));
     });
