@@ -53,13 +53,13 @@ function integer_field_filter(element){
         });
         
 
-    }else if(filter_type == "range-start"){
+    }else if(filter_type == "range-start" || filter_type == "range-end"){
         var start;
         var end;
-        if(element.hasClass('filter-input-start')){
+        if(filter_type == 'range-start'){
             start = element.val();
             end = $('#' + element.data('range-next')).val();
-        }else if(element.hasClass('filter-input-end')){
+        }else if(filter_type == 'range-end'){
             end = element.val();
             start = $('#' + element.data('range-next')).val();
         }
