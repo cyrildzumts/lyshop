@@ -35,9 +35,9 @@
         <div class="table-filter">
               <div class="grid">
                   <i class="fas fa-filter icon"></i>
-                  {% include "tags/status_filter.html" with STATUS=ORDER_STATUS %}
-                  {% include "tags/payment_option_filter.html" with PAYMENT_OPTIONS=PAYMENT_OPTIONS %}
-                  {% include "tags/amount_filter.html" %}
+                  {% include "tags/status_filter.html" with STATUS=ORDER_STATUS field_name="status" %}
+                  {% include "tags/payment_option_filter.html" with PAYMENT_OPTIONS=PAYMENT_OPTIONS field_name="payment_option" %}
+                  {% include "tags/amount_filter.html" with  field_name="amount" %}
               </div>
         </div>
         <table id="order-list" class="mat-table js-filter-table">
