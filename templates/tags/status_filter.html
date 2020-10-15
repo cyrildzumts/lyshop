@@ -1,9 +1,6 @@
 
 {% load i18n %}
  <div class="modal-container">
-    <div class="hidden" id="inputs">
-        <input id="order-status-input" class="filter-input" type="text" name="status" >
-    </div>
     <div {% if "status" in SELECTED_FILTERS  %} class="chips chips-selected" {% else %}class="chips" {% endif %}  title="{% trans 'Filter the list by status field' %}">
         <i class="fas fa-info icon"></i>
         <span class="js-open-modal open-modal" data-target="status-modal" >{% trans "status" %}</span>
@@ -20,8 +17,7 @@
             <div class="modal-body">
 
                 {% include "tags/integer_field.html" with SELECTION=STATUS SELECTED_VALUE=SELECTED_FILTERS.status field_name="status" %}
-
-                <div class="mat-box">
+                {% comment %}<div class="mat-box">
                     <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
                     <div class="form-group-filter">
                         <span class="label">{% trans "Select a status" %}</span>
@@ -34,6 +30,7 @@
                         </div>
                     </div>
                 </div><!--End of Box-->
+                {% endcomment %}
             </div>
             <div class="modal-footer actions">
                 <span class="js-close-modal close-modal mat-button mat-button-text" data-target="status-modal" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
