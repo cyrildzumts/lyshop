@@ -106,9 +106,11 @@ class Filter():
         
         query_objects = Q()
         for f in self.filters:
-            query_objects &= f.get_query()
-            self.selected_filters.update(f.filter_dict)
-        
+            try:
+                query_objects &= f.get_query()
+                self.selected_filters.update(f.filter_dict)
+            except Exception as e:
+                pass
         return self.model.objects.filter(query_objects)
 
 

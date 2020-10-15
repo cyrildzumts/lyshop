@@ -64,6 +64,7 @@ function integer_field_filter(element){
             start = $('#' + element.data('range-next')).val();
         }
         values = start + '-' + end;
+        
 
     }else if (filter_type == "value"){
         values = element.val();
