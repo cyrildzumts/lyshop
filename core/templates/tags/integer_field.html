@@ -1,6 +1,9 @@
 {% load i18n %}
 
-<div class="integer-filter field-filter">
+<div class="integer-filter field-filter mat-box">
+    <div class="mat-box-title">
+        <h4>{% trans "Filter" %} {{field_name}}</h4>
+    </div>
     <div class="hidden" id="inputs">
         <input id="{{field_name}}-id" class="filter-input" type="text" name="{{field_name}}" >
     </div>
@@ -12,7 +15,7 @@
         
         <div class="row">
         {% for k, v in SELECTION %} 
-            <span {% if k in SELECTED_VALUE or k == SELECTED_VALUE %} class="chips js-list-filter chips-selected"{% else %} class="chips js-list-filter"{% endif %} data-target="{{field_name}}-id" data-name="{{field_name}}" data-selected="0" data-value="{{k}}">{% trans v %}</span> 
+            <span {% if k in SELECTED_VALUE or k == SELECTED_VALUE %} class="chips js-list-filter chips-selected"{% else %} class="chips js-list-filter"{% endif %} data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}"  data-value="{{k}}">{% trans v %}</span> 
         {% endfor %}
         </div>
     </div>
@@ -23,12 +26,12 @@
         </div>
         <div class="box-content">
             <div class="form-group">
-                <label for="start"></label>
-                <input id="{{field_name}}-start" class="filter-input-start no-submit" data-target="{{field_name}}-id" type="text" name="{{field_name}}-start" >
+                <label for="start">{% trans "Min" %}</label>
+                <input id="{{field_name}}-start" class="filter-input-start js-range-filter js-range-start no-submit" data-range-next="{{field_name}}-end" data-type="range-start" data-target="{{field_name}}-id" type="text" name="{{field_name}}-start" >
             </div>
             <div class="form-group">
-                <label for="{{field_name}}-end"></label>
-                <input id="{{field_name}}-end" class="filter-input-end no-submit" data-target="{{field_name}}-id" type="text" name="{{field_name}}-end" >
+                <label for="{{field_name}}-end">{% trans "Max" %}</label>
+                <input id="{{field_name}}-end" class="filter-input-end js-range-filter js-range-end no-submit" data-range-next="{{field_name}}-start" data-type="range-end" data-target="{{field_name}}-id" type="text" name="{{field_name}}-end" >
             </div>
         
         </div>
@@ -41,7 +44,7 @@
             <div class="box-content">
                 <div class="form-group">
                     <label for="{{field_name}}-value"></label>
-                    <input id="{{field_name}}-value" class="filter-input-value field-filter-input no-submit" data-target="{{field_name}}-id" type="text" name="{{field_name}}-value" >
+                    <input id="{{field_name}}-value" class="filter-input-value  js-value-filter field-filter-input no-submit" data-type="value" data-target="{{field_name}}-id" type="text" name="{{field_name}}-value" >
                 </div>   
             </div>
         </div>

@@ -9,11 +9,9 @@ function clean_form_before_submit(form){
     $('.filter-input', form).each(function(){
         this.disabled = this.value == "";
     });
-    $('.filter-input-select', form).each(function(){
-        var select = $(this);
-        this.disabled = $('option', select).length == 0;
+    $('.no-submit', form).each(function(){
+        this.disabled = true;
     });
-
 }
 
 function filter_singular_init(field_id, chips_class){
@@ -34,6 +32,58 @@ function filter_singular_init(field_id, chips_class){
 function initialize_filters(){
     filter_singular_init('#order-status-input', '.order-status-chips.chips-selected');
     filter_singular_init('#order-payment-option-input', '.order-payment-option-chips.chips-selected');
+}
+
+
+function integer_field_filter(element){
+    var values = "";
+    var input_target = $('#' + element.data('target'));
+    var filter_type = element.data('type');
+    var parent = element.parent();
+    if (filter_type == "selection"){
+        
+        var selected_chips = $('.chips-selected', parent);
+        selected_chips.each(function(index, element){
+            var chips = $(this);
+            if(index < selected_chips.length - 1){
+                values += chips.data('value') + ",";
+            }else{
+                values += chips.data('value');
+            }
+        });
+        element.toggleClass('chips-selected', !element.hasClass('chips-selected'));
+
+    }else if(filter_type == "range-start"){
+        var start;
+        var end;
+        if(element.hasClass('filter-input-start')){
+            start = element.val();
+            end = $('#' + element.data('range-next')).val();
+        }else if(element.hasClass('filter-input-end')){
+            end = element.val();
+            start = $('#' + element.data('range-next')).val();
+        }
+        values = start + '-' + end;
+
+    }else if (filter_type == "value"){
+        values = element.val();
+    }
+    input_target.val(values);
+
+}
+
+function install_integer_filter(){
+    $('.js-list-filter').on('click', function(){
+        integer_field_filter($(this));
+    });
+    $('.js-range-filter, .js-value-filter').on('keyup,change', function(){
+        integer_field_filter($(this));
+    });
+    /*
+    $('.js-value-filter').on('keyup,change', function(){
+        integer_field_filter($(this));
+    });
+    */
 }
 
 function toggle_order_status(element){
@@ -112,15 +162,7 @@ function toggle_date_filter(element){
     }
 }
 
-function order_amount_filter(){
 
-}
-function order_status_filter(){
-    
-}
-function order_payment_option_filter(){
-
-}
 function integer_filter(){
     
 }
@@ -160,7 +202,8 @@ $(document).ready(function(){
         $("#" + input.data('target')).val(input.val());
     });
     initialize_filters();
-
+    install_integer_filter();
+    /*
     $('.js-list-filter').on('click', function(){
         var element = $(this);
         var name = element.data('name');
@@ -181,5 +224,6 @@ $(document).ready(function(){
         
         
     });
+    */
     console.log("Filter module ready");
 });
