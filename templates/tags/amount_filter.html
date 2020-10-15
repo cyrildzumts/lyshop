@@ -1,7 +1,7 @@
 
 {% load i18n %}
  <div class="modal-container">
-    <div id="filter-amount" class="chips {% if field_name in SELECTED_FILTERS %} chips-selected % endif %}" title="{% trans 'Filter the list by Amount field' %}">
+    <div id="filter-amount" class="chips {% if field_name in SELECTED_FILTERS %} chips-selected {% endif %}" title="{% trans 'Filter the list by Amount field' %}">
         <i class="fas fa-coins icon"></i>
         <span class="js-open-modal open-modal" data-target="amount-modal" >{% trans "amount" %}</span>
         
