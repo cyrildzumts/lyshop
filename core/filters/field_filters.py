@@ -122,6 +122,7 @@ class FieldFilter():
             else :
                 match = commons.RANGE_FILTER_PATTERN.match(self.value)
                 if match:
+                    logger.info(f"RANGE FILTER {match.groups()}")
                     range_start = match.group('START')
                     range_end = match.group('END')
                     if range_end is None and range_start is None:
