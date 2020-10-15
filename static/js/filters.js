@@ -41,7 +41,7 @@ function integer_field_filter(element){
     var filter_type = element.data('type');
     var parent = element.parent();
     if (filter_type == "selection"){
-        
+        element.toggleClass('chips-selected', !element.hasClass('chips-selected'));
         var selected_chips = $('.chips-selected', parent);
         selected_chips.each(function(index, element){
             var chips = $(this);
@@ -51,7 +51,7 @@ function integer_field_filter(element){
                 values += chips.data('value');
             }
         });
-        element.toggleClass('chips-selected', !element.hasClass('chips-selected'));
+        
 
     }else if(filter_type == "range-start"){
         var start;
