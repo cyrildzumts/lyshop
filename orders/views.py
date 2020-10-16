@@ -38,10 +38,11 @@ def orders(request):
     field_filter = filters.Filter(Order, queryDict)
     queryset = field_filter.apply_filter()
     selected_filters = field_filter.selected_filters
+    '''
     for k in Order.FILTERABLE_FIELDS:
         if k not in selected_filters and k in queryDict:
             del request.GET[k]
-
+    '''
     if queryset is None:
         queryset = Order.objects.filter(user=request.user).order_by('-created_at')
     else:
