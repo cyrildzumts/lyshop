@@ -58,6 +58,7 @@ def orders(request):
     context['ORDER_STATUS'] = commons.ORDER_STATUS
     context['PAYMENT_OPTIONS'] = commons.PAYMENT_OPTIONS
     context['SELECTED_FILTERS'] = selected_filters
+    context['FILTER_CONIFG'] = Order.FILTER_CONFIG
     return render(request,template_name, context)
 
 @login_required

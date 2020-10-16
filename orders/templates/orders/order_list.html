@@ -32,6 +32,19 @@
 <div class="container">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
+        {% if FILTER_CONFIG %}
+
+            <div class="table-filter">
+                <div class="title">Draft Filter</div>
+                <div class="grid">
+                    <i class="fas fa-filter icon"></i>
+                    {% for field in FILTER_CONFIG.fields %}
+                        {% include "core/filter.html" with template_name=FILTER_CONFIG[field].template_name FIELD_FILTER=FILTER_CONFIG[field] field_name=field %}
+                    
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
         <div class="table-filter">
               <div class="grid">
                   <i class="fas fa-filter icon"></i>

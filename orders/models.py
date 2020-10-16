@@ -33,6 +33,14 @@ class Order(models.Model):
     order_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_FIELDS = ['user', 'amount', 'quantity', 'created_at', 'status', 'coupon', 'payment_option', 'total', 'shipping_price', 'is_closed', 'solded_price', 'order_uuid']
     FILTERABLE_FIELDS = ['amount', 'payment_option', 'status', 'created_at']
+    FILTER_CONFIG = {
+        'model' : 'Order',
+        'fields' : FILTERABLE_FIELDS,
+        'amount' : {'field_name': 'amount','template_name' : 'tags/decimal_field.html', 'range': True},
+        'created_at' : {'field_name': 'created_at','template_name' : 'tags/decimal_field.html', 'range': True},
+        'payment_option' : {'field_name': 'payment_option','template_name' : 'tags/integer_field.html', 'selection' : True, 'selection_options' : commons.PAYMENT_OPTIONS},
+        'status' : {'field_name': 'status','template_name' : 'tags/integer_field.html', 'selection' : True, 'selection_options' : commons.ORDER_STATUS},
+    }
 
 
     def __str__(self):
