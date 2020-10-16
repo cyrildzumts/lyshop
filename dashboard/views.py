@@ -347,7 +347,11 @@ def orders(request):
 
     context = {}
     #queryset = Order.objects.all().order_by('-created_at')
-    queryset, selected_filters = filters.field_filter(Order, request.GET.copy())
+    #queryset, selected_filters = filters.field_filter(Order, request.GET.copy())
+    queryDict = request.GET.copy()
+    field_filter = filters.Filter(Order, queryDict)
+    queryset = field_filter.apply_filter()
+    selected_filters = field_filter.selected_filters
     if queryset is None:
         queryset = Order.objects.order_by('-created_at')
     else:
@@ -367,6 +371,7 @@ def orders(request):
     context['ORDER_STATUS'] = Order_Constants.ORDER_STATUS
     context['PAYMENT_OPTIONS'] = Order_Constants.PAYMENT_OPTIONS
     context['SELECTED_FILTERS'] = selected_filters
+    context['FILTER_CONFIG'] = Order.FILTER_CONFIG
     context.update(get_view_permissions(request.user))
     context['can_delete_order'] = PermissionManager.user_can_delete_order(request.user)
     context['can_update_order'] = PermissionManager.user_can_change_order(request.user)

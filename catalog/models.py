@@ -260,6 +260,15 @@ class Product(models.Model):
     gender = models.IntegerField(blank=True, null=True, choices=constants.GENDER)
     view_count = models.IntegerField(blank=True, null=True, default=0)
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FILTERABLE_FIELDS = ['price', 'product_type', 'brand', 'gender']
+    FILTER_CONFIG = {
+        'model' : 'Product',
+        'fields' : FILTERABLE_FIELDS,
+        'price' : {'field_name': 'price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
+        'brand' : {'field_name': 'brand','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : Brand.objects.all()},
+        'product_type' : {'field_name': 'product_type','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : ProductType.objects.all()},
+        'gender' : {'field_name': 'genre','template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'queryset':False, 'selection_options' : constants.GENDER},
+    }
 
     def __str__(self):
         return self.name

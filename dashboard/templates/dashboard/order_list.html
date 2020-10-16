@@ -33,21 +33,15 @@
 <div class="container">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
-        <div class="table-filter">
-              <div class="grid">
-                  <i class="fas fa-filter icon"></i>
-                  {% include "tags/status_filter.html" with STATUS=ORDER_STATUS %}
-                  {% include "tags/payment_option_filter.html" with PAYMENT_OPTIONS=PAYMENT_OPTIONS %}
-                  {% include "tags/amount_filter.html" %}
-                  {% include "tags/date_filter.html" %}
-              </div>
-        </div>
+        {% if FILTER_CONFIG %}
+            {% include "tags/order_filter.html" %}
+        {% endif %}
         <table id="order-list" class="mat-table js-filter-table">
           <thead>
                   <tr>
                           <!--<th><input id="filter-select-all" type="checkbox" name="allselected"></th>-->
-                          <th scope="col">{% trans "User" %}</th>
-                          <th scope="col">{% trans "Order Reference" %}</th>
+                          <th scope="col">{% trans "Customer" %}</th>
+                          <th scope="col">{% trans "Reference Number" %}</th>
                           <th scope="col">{% trans "Amount" %}</th>
                           <th scope="col">{% trans "Status" %}</th>
                           <th scope="col">{% trans "Payment Option" %}</th>
@@ -59,8 +53,8 @@
                   {% for o in orders  %}
                   <tr>
                     <!--<td class="checkbox"><input type="checkbox" name="selected-service"></td>-->
-                    <td scope="row" data-label="User">{{o.user.get_full_name}}</td>
-                    <td scope="row" data-label="Order Reference">{{o.order_ref_number}}</td>
+                    <td scope="row" data-label="Customer">{{o.user.get_full_name}}</td>
+                    <td scope="row" data-label="Reference Number">{{o.order_ref_number}}</td>
                     <td data-label="{% trans 'Amount' %}">{{o.amount|floatformat:"-2"}} {% trans CURRENCY %}</td>
                     <td data-label="{% trans 'Status' %}">{{o.status|order_status_value}} </td>
                     <td data-label="{% trans 'Payment Option' %}">{{o.payment_option|payment_option_value}} </td>
