@@ -40,7 +40,7 @@
                 <div class="grid">
                     <i class="fas fa-filter icon"></i>
                     {% for field in FILTER_CONFIG.fields %}
-                        {% include "core/filter.html" with template_name=FILTER_CONFIG|access_dict:field |access_dict:'template_name' FIELD_FILTER=FILTER_CONFIG|access_dict:field] field_name=field %}
+                        {% include "core/filter.html" with template_name=FILTER_CONFIG|access_dict:field|access_dict:'template_name' FIELD_FILTER=FILTER_CONFIG|access_dict:field] field_name=field %}
                     
                     {% endfor %}
                 </div>
