@@ -1,6 +1,7 @@
 {% extends "order_base.html"%}
 {% load i18n %}
 {% load order_tag %}
+{% load core_tags %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -33,13 +34,13 @@
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         {% if FILTER_CONFIG %}
-
+            
             <div class="table-filter">
                 <div class="title">Draft Filter</div>
                 <div class="grid">
                     <i class="fas fa-filter icon"></i>
                     {% for field in FILTER_CONFIG.fields %}
-                        {% include "core/filter.html" with template_name=FILTER_CONFIG[field].template_name FIELD_FILTER=FILTER_CONFIG[field] field_name=field %}
+                        {% include "core/filter.html" with template_name=FILTER_CONFIG|access_dict:field |access_dict:'template_name' FIELD_FILTER=FILTER_CONFIG|access_dict:field] field_name=field %}
                     
                     {% endfor %}
                 </div>
