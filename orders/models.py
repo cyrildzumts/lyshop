@@ -32,7 +32,7 @@ class Order(models.Model):
     coupon = models.ForeignKey("cart.Coupon", related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
     order_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_FIELDS = ['user', 'amount', 'quantity', 'created_at', 'status', 'coupon', 'payment_option', 'total', 'shipping_price', 'is_closed', 'solded_price', 'order_uuid']
-    FILTERABLE_FIELDS = ['amount', 'payment_option', 'status', 'created_at']
+    FILTERABLE_FIELDS = ['amount','created_at', 'payment_option', 'status']
     FILTER_CONFIG = {
         'model' : 'Order',
         'fields' : FILTERABLE_FIELDS,
