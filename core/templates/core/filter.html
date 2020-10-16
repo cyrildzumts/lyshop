@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load core_tags %}
  <div class="modal-container">
     <div {% if field_name in SELECTED_FILTERS  %} class="chips chips-selected" {% else %}class="chips" {% endif %}  title="{{field_name}}">
         <i class="fas fa-info icon"></i>
