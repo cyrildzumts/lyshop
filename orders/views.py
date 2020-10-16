@@ -34,8 +34,14 @@ def orders(request):
     
     template_name = "orders/order_list.html"
     page_title = _("My Orders") + " - " + settings.SITE_NAME
-    field_filter = filters.Filter(Order, request.GET.copy())
+    queryDict = request.GET.copy()
+    field_filter = filters.Filter(Order, queryDict)
     queryset = field_filter.apply_filter()
+    selected_filters = field_filter.selected_filters
+    for k in Order.FILTERABLE_FIELDS:
+        if k not in selected_filters and k in queryDict:
+            del request.GET[k]
+
     if queryset is None:
         queryset = Order.objects.filter(user=request.user).order_by('-created_at')
     else:
@@ -54,7 +60,7 @@ def orders(request):
     context['orders'] = list_set
     context['ORDER_STATUS'] = commons.ORDER_STATUS
     context['PAYMENT_OPTIONS'] = commons.PAYMENT_OPTIONS
-    context['SELECTED_FILTERS'] = field_filter.selected_filters
+    context['SELECTED_FILTERS'] = selected_filters
     return render(request,template_name, context)
 
 @login_required

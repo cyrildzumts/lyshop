@@ -8,6 +8,7 @@ var new_user_chart;
 var analytics_label = 'Orders';
 var analytics_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var chart_type = 'bar';
+var UPDATE_RATE = 15000;
 var default_scales = {
     xAxes: [
         {
@@ -236,5 +237,5 @@ product_chart = new Chart(ctx_products, products_conf);
 order_price_chart = new Chart(ctx_orders_prices, orders_price_conf);
 new_user_chart = new Chart(ctx_new_users, new_users_conf);
 dashboardUpdate();
-dashboardIntervalHandle = setInterval(dashboardUpdate,30000); // 1000*60*1 = 1min
+dashboardIntervalHandle = setInterval(dashboardUpdate, UPDATE_RATE); // 1000*60*1 = 1min
 });
