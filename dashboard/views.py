@@ -577,7 +577,11 @@ def products(request):
         'page_title': page_title,
     }
 
-    queryset = Product.objects.order_by('-created_at')
+    #queryset = Product.objects.order_by('-created_at')
+    queryDict = request.GET.copy()
+    field_filter = filters.Filter(Order, queryDict)
+    queryset = field_filter.apply_filter()
+    selected_filters = field_filter.selected_filters
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 10)
     try:
@@ -588,6 +592,8 @@ def products(request):
         list_set = None
     context['page_title'] = page_title
     context['product_list'] = list_set
+    context['SELECTED_FILTERS'] = selected_filters
+    context['FILTER_CONFIG'] = Product.FILTER_CONFIG
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 

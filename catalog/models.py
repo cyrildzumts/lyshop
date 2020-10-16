@@ -260,7 +260,7 @@ class Product(models.Model):
     gender = models.IntegerField(blank=True, null=True, choices=constants.GENDER)
     view_count = models.IntegerField(blank=True, null=True, default=0)
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-    FILTERABLE_FIELDS = ['price', 'product_type', 'brand', 'gender']
+    FILTERABLE_FIELDS = ['brand', 'gender', 'price', 'product_type' ]
     FILTER_CONFIG = {
         'model' : 'Product',
         'fields' : FILTERABLE_FIELDS,
