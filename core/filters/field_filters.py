@@ -10,7 +10,7 @@ import logging
 import re
 
 logger = logging.getLogger(__name__)
-
+DATE_FORMAT = '%Y-%m-%d'
 
 def model_has_field(model, field_name):
     if type(models.Model) != type(model):
@@ -243,7 +243,7 @@ class DateFieldFilter(FieldFilter):
         return Q(**self.prepare_filter())
 
     def validate(self, value):
-        if not commons.DATE_PATTERN_REGEX.match(value):
+        if not commons.DATE_PATTERN_REGEX.match(value) and not commons.DATE_RANGE_FILTER_PATTERN.match(value):
             raise ValueError(f"Value {value} does not represent an Date values")
 
 
@@ -259,8 +259,47 @@ class DateTimeFieldFilter(FieldFilter):
         return Q(**self.prepare_filter())
 
     def validate(self, value):
-        if not commons.DATETIME_PATTERN_REGEX.match(value):
+        if not commons.DATETIME_PATTERN_REGEX.match(value) and not commons.DATETIME_RANGE_FILTER_PATTERN.match(value) :
             raise ValueError(f"Value {value} does not represent an DateTime values")
+
+    def prepare_filter(self):
+        match = commons.FILTER_PATTERN.match(self.key)
+        max_min = False
+        if not match:
+            logger.debug("field not matched")
+            raise KeyError(f"Key {self.key} does not match any fieldname")
+        
+        value = self.value
+        match = commons.DATETIME_RANGE_FILTER_PATTERN.match(self.value)
+        if match:
+            logger.info(f"RANGE FILTER {match.groups()}")
+            range_start = match.group('START')
+            range_end = match.group('END')
+            if range_end is None and range_start is None:
+                raise ValueError("Range filter : no value submitted")
+            if range_start is not None and range_end is None:
+                range_start = self.field_type.strftime(range_start, DATE_FORMAT)
+                values = range_start
+                f_action = commons.FILTER_INTEGER_GTE
+                
+            elif range_end is not None and range_start is None:
+                range_end = self.field_type.strftime(range_end, DATE_FORMAT)
+                values = range_end
+                f_action = commons.FILTER_INTEGER_LTE
+
+            else:
+                range_start = self.field_type.strftime(range_start, DATE_FORMAT)
+                range_end = self.field_type.strftime(range_end, DATE_FORMAT)
+                f_action = commons.FILTER_RANGE
+                values = (range_start, range_end)
+            self.filter_dict[self.field.name]['range'] = self.value
+            self.filter_dict[self.field.name]['range_start'] = match.group('START') or ""
+            self.filter_dict[self.field.name]['range_end'] = match.group('END') or ""
+            
+        self.field_name_lookup += commons.FILTER_FIELD_LOOKUP.get(f_action)
+        self.values = values
+        self.q[self.field_name_lookup] =  self.values
+        return self.q
 
 
 
