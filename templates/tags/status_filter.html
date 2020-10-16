@@ -16,7 +16,7 @@
             </div>
             <div class="modal-body">
 
-                {% include "tags/integer_field.html" with SELECTION=STATUS FILTER=SELECTED_FILTERS.status field_name=field_name %}
+                {% include "tags/integer_field.html" with SELECTION=True RANGE=False SELECTION_OPTIONS=STATUS FILTER=SELECTED_FILTERS.status field_name=field_name %}
                 {% comment %}<div class="mat-box">
                     <span class="js-close-modal close-modal" data-target="status-modal" ><i class="fas fa-close"></i></span>
                     <div class="form-group-filter">

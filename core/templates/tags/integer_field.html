@@ -14,7 +14,7 @@
         </div>
         
         <div class="row">
-        {% for k, v in SELECTION %} 
+        {% for k, v in SELECTION_OPTIONS %} 
             <span  class="chips js-list-filter {% if k in FILTER.selection or k == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}"  data-value="{{k}}">{% trans v %}</span> 
         {% endfor %}
         </div>

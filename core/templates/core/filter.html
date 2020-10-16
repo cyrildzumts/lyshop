@@ -2,7 +2,6 @@
 {% load core_tags %}
  <div class="modal-container">
     <div {% if field_name in SELECTED_FILTERS  %} class="chips chips-selected" {% else %}class="chips" {% endif %}  title="{{field_name}}">
-        <i class="fas fa-info icon"></i>
         <span class="js-open-modal open-modal" data-target="{{field_name}}-modal" >{% trans field_name %}</span>
         <span id="{{field_name}}-filter" class="filter"></span>
     </div>
@@ -15,7 +14,7 @@
                 <span class="title">{% trans "Filter" %}</span><span class="js-close-modal close-modal" data-target="{{field_name}}-modal" ><i class="fas fa-close"></i></span>
             </div>
             <div class="modal-body">
-                {% include template_name with SELECTION=FIELD_FILTER.selection.selection_options RANGE=FIELD_FILTER.range FILTER=SELECTED_FILTERS|access_dict:field_name  %}
+                {% include template_name with SELECTION=FIELD_FILTER.selection SELECTION_OPTIONS=FIELD_FILTER.selection_options RANGE=FIELD_FILTER.range FILTER=SELECTED_FILTERS|access_dict:field_name  %}
             </div>
             <div class="modal-footer actions">
                 <span class="js-close-modal close-modal mat-button mat-button-text" data-target="{{field_name}}-modal" ><i class="fas fa-close"></i>{% trans "Close" %}</span>

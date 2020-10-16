@@ -36,10 +36,10 @@ class Order(models.Model):
     FILTER_CONFIG = {
         'model' : 'Order',
         'fields' : FILTERABLE_FIELDS,
-        'amount' : {'field_name': 'amount','template_name' : 'tags/decimal_field.html', 'range': True},
-        'created_at' : {'field_name': 'created_at','template_name' : 'tags/decimal_field.html', 'range': True},
-        'payment_option' : {'field_name': 'payment_option','template_name' : 'tags/integer_field.html', 'selection' : True, 'selection_options' : commons.PAYMENT_OPTIONS},
-        'status' : {'field_name': 'status','template_name' : 'tags/integer_field.html', 'selection' : True, 'selection_options' : commons.ORDER_STATUS},
+        'amount' : {'field_name': 'amount','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
+        'created_at' : {'field_name': 'created_at','template_name' : 'tags/datetime_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
+        'payment_option' : {'field_name': 'payment_option','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'selection_options' : commons.PAYMENT_OPTIONS},
+        'status' : {'field_name': 'status','template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'selection_options' : commons.ORDER_STATUS},
     }
 
 
