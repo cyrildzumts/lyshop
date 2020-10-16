@@ -281,17 +281,17 @@ class DateTimeFieldFilter(FieldFilter):
             if range_start is not None and range_end is None:
                 range_start = self.field_type.strptime(range_start, DATE_FORMAT)
                 values = range_start
-                f_action = commons.FILTER_INTEGER_GTE
+                f_action = commons.FILTER_DATE_AFTER
                 
             elif range_end is not None and range_start is None:
                 range_end = self.field_type.strptime(range_end, DATE_FORMAT)
                 values = range_end
-                f_action = commons.FILTER_INTEGER_LTE
+                f_action = commons.FILTER_DATE_BEFORE
 
             else:
                 range_start = self.field_type.strptime(range_start, DATE_FORMAT)
                 range_end = self.field_type.strptime(range_end, DATE_FORMAT)
-                f_action = commons.FILTER_RANGE
+                f_action = commons.FILTER_DATE_RANGE
                 values = (range_start, range_end)
             self.filter_dict[self.field.name]['range'] = self.value
             self.filter_dict[self.field.name]['range_start'] = match.group('START') or ""
