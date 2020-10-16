@@ -39,7 +39,7 @@
         <table id="order-list" class="mat-table js-filter-table">
           <thead>
                   <tr>
-                          <th scope="col">{% trans "Order Reference Number" %}</th>
+                          <th scope="col">{% trans "Reference Number" %}</th>
                           <th scope="col">{% trans "Amount" %}</th>
                           <th scope="col">{% trans "Status" %}</th>
                           <th scope="col">{% trans "Payment Option" %}</th>
@@ -50,7 +50,7 @@
           <tbody>
                   {% for o in orders  %}
                   <tr class="filterable" data-filter-status="{{o.status}}" data-filter-amount="{{o.amount|floatformat:'-2'}}" data-filter-date="{{o.created_at|date:'F j, Y'}}">
-                    <td data-label="{% trans 'Order Reference Number' %}">{{o.order_ref_number}}</td>
+                    <td data-label="{% trans 'Reference Number' %}">{{o.order_ref_number}}</td>
                     <td data-label="{% trans 'Amount' %}">{{o.amount|floatformat:"-2"}} {% trans CURRENCY %}</td>
                     <td data-label="{% trans 'Status' %}">{{o.status|order_status_value}} </td>
                     <td data-label="{% trans 'Payment Option' %}">{{o.payment_option|payment_option_value}} </td>
