@@ -275,21 +275,22 @@ class DateTimeFieldFilter(FieldFilter):
             logger.info(f"RANGE FILTER {match.groups()}")
             range_start = match.group('START')
             range_end = match.group('END')
+            logger.info(f"Datetime Filter range-start : \"{range_start}\" -  range-end : \"{range_end}\"")
             if range_end is None and range_start is None:
                 raise ValueError("Range filter : no value submitted")
             if range_start is not None and range_end is None:
-                range_start = self.field_type.strftime(range_start, DATE_FORMAT)
+                range_start = self.field_type.strptime(range_start, DATE_FORMAT)
                 values = range_start
                 f_action = commons.FILTER_INTEGER_GTE
                 
             elif range_end is not None and range_start is None:
-                range_end = self.field_type.strftime(range_end, DATE_FORMAT)
+                range_end = self.field_type.strptime(range_end, DATE_FORMAT)
                 values = range_end
                 f_action = commons.FILTER_INTEGER_LTE
 
             else:
-                range_start = self.field_type.strftime(range_start, DATE_FORMAT)
-                range_end = self.field_type.strftime(range_end, DATE_FORMAT)
+                range_start = self.field_type.strptime(range_start, DATE_FORMAT)
+                range_end = self.field_type.strptime(range_end, DATE_FORMAT)
                 f_action = commons.FILTER_RANGE
                 values = (range_start, range_end)
             self.filter_dict[self.field.name]['range'] = self.value
