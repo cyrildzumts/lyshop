@@ -177,6 +177,7 @@ $(document).ready(function(){
     filter_form = $('#filter-form');
     $('#filter-form').on('submit', function(event){
         console.log("Filter form submition");
+        $('input[name="csrfmiddlewaretoken"]').prop('disabled', true);
         clean_form_before_submit(this);
     });
     $('.js-pagination').on('click', function(event){
