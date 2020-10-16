@@ -27,7 +27,7 @@
 {% endblock HEADER_BANNER %}
 
 {% block MAIN %}
-<form id="filter-form" action="" method="GET">{% comment %}{% csrf_token %}
+<form id="filter-form" action="{% url 'orders:orders' %}" method="GET">{% comment %}{% csrf_token %}
 {% endcomment %}
 
 <div class="container">
@@ -46,7 +46,7 @@
                 </div>
             </div>
         {% endif %}
-        <div class="table-filter">
+        {% comment %}<div class="table-filter">
               <div class="grid">
                   <i class="fas fa-filter icon"></i>
                   {% include "tags/status_filter.html" with STATUS=ORDER_STATUS SELECTED_FILTERS=SELECTED_FILTERS field_name="status" %}
@@ -54,6 +54,7 @@
                   {% include "tags/amount_filter.html" with field_name="amount" %}
               </div>
         </div>
+        {% endcomment %}
         <table id="order-list" class="mat-table js-filter-table">
           <thead>
                   <tr>
