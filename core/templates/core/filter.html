@@ -14,7 +14,7 @@
                 <span class="title">{% trans "Filter" %}</span><span class="js-close-modal close-modal" data-target="{{field_name}}-modal" ><i class="fas fa-close"></i></span>
             </div>
             <div class="modal-body">
-                {% include template_name with SELECTION=FIELD_FILTER.selection.selection_options RANGE=FIELD_FILTER.range FILTER=SELECTED_FILTERS[field_name]  %}
+                {% include template_name with SELECTION=FIELD_FILTER.selection.selection_options RANGE=FIELD_FILTER.range FILTER=SELECTED_FILTERS|access_dict:field_name  %}
             </div>
             <div class="modal-footer actions">
                 <span class="js-close-modal close-modal mat-button mat-button-text" data-target="{{field_name}}-modal" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
