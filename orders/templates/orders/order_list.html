@@ -34,27 +34,8 @@
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         {% if FILTER_CONFIG %}
-            
-            <div class="table-filter">
-                <div class="title">Draft Filter</div>
-                <div class="grid">
-                    <i class="fas fa-filter icon"></i>
-                    {% for field in FILTER_CONFIG.fields %}
-                        {% include "core/filter.html" with template_name=FILTER_CONFIG|access_dict:field|access_dict:'template_name' FIELD_FILTER=FILTER_CONFIG|access_dict:field field_name=field %}
-                    
-                    {% endfor %}
-                </div>
-            </div>
+            {% include "tags/order_filter.html" %}
         {% endif %}
-        {% comment %}<div class="table-filter">
-              <div class="grid">
-                  <i class="fas fa-filter icon"></i>
-                  {% include "tags/status_filter.html" with STATUS=ORDER_STATUS SELECTED_FILTERS=SELECTED_FILTERS field_name="status" %}
-                  {% include "tags/payment_option_filter.html" with PAYMENT_OPTIONS=PAYMENT_OPTIONS field_name="payment_option" %}
-                  {% include "tags/amount_filter.html" with field_name="amount" %}
-              </div>
-        </div>
-        {% endcomment %}
         <table id="order-list" class="mat-table js-filter-table">
           <thead>
                   <tr>
