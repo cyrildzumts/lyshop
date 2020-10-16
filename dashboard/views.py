@@ -579,7 +579,7 @@ def products(request):
 
     #queryset = Product.objects.order_by('-created_at')
     queryDict = request.GET.copy()
-    field_filter = filters.Filter(Order, queryDict)
+    field_filter = filters.Filter(Product, queryDict)
     queryset = field_filter.apply_filter()
     selected_filters = field_filter.selected_filters
     page = request.GET.get('page', 1)
