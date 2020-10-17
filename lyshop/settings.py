@@ -114,6 +114,7 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'addressbook.apps.AddressbookConfig',
     'core.apps.CoreConfig',
+    'inventory.apps.InventoryConfig',
 ]
 
 # RESTFRAMEWORK SETTINGS
