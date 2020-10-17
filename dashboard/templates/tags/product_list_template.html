@@ -9,15 +9,16 @@
             <div class="mat-table-title">
                 {% trans "Products" %}
             </div>
+            <div class="actions">
+                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled>{% trans "Delete Selected" %}</button>
+            </div>
         </div><!--End of Row-->
         {% if FILTER_CONFIG %}
             {% include "core/core_filter.html" %}
         {% endif %}
         <form action="{% url 'dashboard:products-delete' %}" method="POST">{% csrf_token %}
         <table id="product-list" class="mat-table js-filter-table">
-            <div class="actions">
-                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled>{% trans "Delete Selected" %}</button>
-            </div>
+            
           <thead>
                   <tr>
                           <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
