@@ -1663,6 +1663,7 @@ input.editable{
 .chips-selected{
 	color: #232F34;
 	background-color: #232F345E;
+	font-weight: 700;
 }
 
 .chips-activated{
