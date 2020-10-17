@@ -265,7 +265,7 @@ class Product(models.Model):
         'model' : 'Product',
         'fields' : FILTERABLE_FIELDS,
         'created_at' : {'field_name': 'created_at','template_name' : 'tags/datetime_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
-        'category' : {'field_name': 'category','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : Category.objects.all()},
+        'category' : {'field_name': 'category','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : Category.objects.filter(parent__isnull=False)},
         'quantity' : {'field_name': 'quantity','template_name' : 'tags/integer_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
         'price' : {'field_name': 'price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
         'promotion_price' : {'field_name': 'promotion_price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
