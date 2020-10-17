@@ -260,12 +260,11 @@ class Product(models.Model):
     gender = models.IntegerField(blank=True, null=True, choices=constants.GENDER)
     view_count = models.IntegerField(blank=True, null=True, default=0)
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-    FILTERABLE_FIELDS = ['brand', 'created_at', 'category','gender', 'price', 'product_type', 'promotion_price', 'quantity' ]
+    FILTERABLE_FIELDS = ['brand', 'created_at','gender', 'price', 'product_type', 'promotion_price', 'quantity' ]
     FILTER_CONFIG = {
         'model' : 'Product',
         'fields' : FILTERABLE_FIELDS,
         'created_at' : {'field_name': 'created_at','template_name' : 'tags/datetime_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
-        'category' : {'field_name': 'category','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : Category.objects.filter(parent__isnull=False)},
         'quantity' : {'field_name': 'quantity','template_name' : 'tags/integer_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
         'price' : {'field_name': 'price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
         'promotion_price' : {'field_name': 'promotion_price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
