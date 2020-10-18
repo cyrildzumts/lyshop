@@ -67,8 +67,8 @@ def create_order_from_cart(user, address=None):
                 break
             OrderItem.objects.bulk_create(batch, batch_size)
     for pk, available_quantity, quantity in product_update_list:
-        ProductVariant.objects.filter(pk=p).update(quantity=F('quantity') - quantity, is_active=(available_quantity > quantity))
-        Product.objects.filter(variants__in=[p]).update(quantity=F('quantity') - quantity, is_active=(F('quantity') > quantity))
+        ProductVariant.objects.filter(pk=pk).update(quantity=F('quantity') - quantity, is_active=(available_quantity > quantity))
+        Product.objects.filter(variants__in=[pk]).update(quantity=F('quantity') - quantity, is_active=(F('quantity') > quantity))
     logger.debug("Order created from Cart")
     return order
 

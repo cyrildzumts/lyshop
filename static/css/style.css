@@ -128,7 +128,7 @@
     padding: 4px 4px;
 }
 
-.box .entry{
+.box .entry, .mat-box .entry{
     border-bottom: 1px solid #ccc;
 }
 .entry:last-child{
