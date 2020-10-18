@@ -1131,6 +1131,7 @@ button, input, select, textarea{
   justify-content: center;
   height: 8rem;
   flex-shrink: 0;
+  font-size: 0.75rem;
 }
 
 .divider {
