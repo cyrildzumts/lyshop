@@ -121,6 +121,7 @@ def checkout(request):
         'ADDRESS_TYPES' : Addressbook_Constants.ADDRESS_TYPES,
     }
     address = None
+    country = ''
     if not cart or (cart.quantity == 0 or cart.amount == 0.0):
         messages.error(request, _("Your Cart is empty"))
         return redirect('catalog:catalog-home')
@@ -131,6 +132,7 @@ def checkout(request):
             if addressForm.is_valid():
                 logger.info("AddressModelForm is Valid")
                 address = addressbook_service.get_address(addressForm.cleaned_data['address'])
+                country = address.country
                 logger.debug(address)
             else:
                 logger.info("AddressModelForm is not Valid")
@@ -139,6 +141,7 @@ def checkout(request):
             if addressForm.is_valid():
                 logger.info("AddressForm is Valid")
                 address = addressForm.save()
+                country = address.country
             else:
                 logger.info("AddressForm is not Valid")
 
@@ -161,7 +164,7 @@ def checkout(request):
                         'customer_name': request.user.get_full_name(),
                         'quantity': cart.quantity,
                         'description': settings.PAY_REQUEST_DESCRIPTION,
-                        'country' : shipping_address_form.cleaned_data.get('shipping_country'),
+                        'country' : country,
                         'redirect_success_url': request.build_absolute_uri(reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})),
                         'redirect_failed_url': request.build_absolute_uri(reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})),
                         'product_name' : 'LYSHOP'
