@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 
 SHIPPING_PRICE = 3000
 EXPRESS_SHIPPING_PRICE = 5000
+# Create Pricing Model in Shipment to simplify shipment pricing tracking
 
 def get_user_cart(user):
     return cart_service.get_cart(user)
@@ -67,6 +68,7 @@ def create_order_from_cart(user, address=None):
             OrderItem.objects.bulk_create(batch, batch_size)
     for pk, available_quantity, quantity in product_update_list:
         ProductVariant.objects.filter(pk=p).update(quantity=F('quantity') - quantity, is_active=(available_quantity > quantity))
+        Product.objects.filter(variants__in=[p]).update(quantity=F('quantity') - quantity, is_active=(F('quantity') > quantity))
     logger.debug("Order created from Cart")
     return order
 
@@ -84,6 +86,7 @@ def cancel_order(order, request_user=None):
     ##TODO Send the money back to the user
     for pk, quantity in product_update_list:
         ProductVariant.objects.filter(pk=pk).update(quantity=F('quantity') + quantity, is_active=True)
+        Product.objects.filter(variants__in=[pk]).update(quantity=F('quantity') + quantity, is_active=True)
     
     return True
 

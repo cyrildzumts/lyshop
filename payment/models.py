@@ -86,7 +86,32 @@ class PaymentPolicyMembership(models.Model):
     #added_by = models.ForeignKey(User, related_name="added_membership", unique=False, null=True,blank=True, on_delete=models.SET_NULL)
 
 
+'''
+class Refund(models.Model):
+    customer = models.ForeignKey(User, related_name='refunds', blank=False, null=True, on_delete=models.SET_NULL)
+    amount = models.DecimalField(blank=False, null=False, max_digits=GlobalConf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GlobalConf.PRODUCT_PRICE_DECIMAL_PLACES)
+    balance_amount = models.DecimalField(blank=False, null=False, max_digits=GlobalConf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GlobalConf.PRODUCT_PRICE_DECIMAL_PLACES)
+    pay_username = models.CharField(max_length=64, blank=True, null=True)
+    mobile_number = models.CharField(max_length=64, blank=True, null=True)
+    bank_name = models.CharField(max_length=64, blank=True, null=True)
+    bank_account_number = models.CharField(max_length=64, blank=True, null=True)
+    order_id = models.IntegerField(blank=False, null=False)
+    refund_mode = models.IntegerField( default=PaymentConf.PAYMENT_PAY, blank=False, null=False, choices=PaymentConf.PAYMENT_MODE)
+    refund_schedule = models.IntegerField(default=PaymentConf.PAYMENT_DATE_LAST_FRIDAY ,blank=False, null=False, choices=PaymentConf.PAYMENT_DATE)
+    
+    created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+    refund_date = models.DateTimeField(blank=True, null=True)
+    refund_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
+    def __str__(self):
+        return f"Refund {seller.username} - {amount}"
+
+    def get_absolute_url(self):
+        return reverse("payment:refund-detail", kwargs={"refund_uuid": self.refund_uuid})
+    
+    def get_dashboard_url(self):
+        return reverse("dashboard:refund-detail", kwargs={"refund_uuid": self.refund_uuid})
+'''
 
 class Payment(models.Model):
     seller = models.ForeignKey(User, related_name='payments', blank=False, null=True, on_delete=models.SET_NULL)

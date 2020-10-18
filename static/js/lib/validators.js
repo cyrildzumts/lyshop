@@ -1,3 +1,7 @@
+function search_form_validation(form){
+    return $("input[name='q']").val() != "";
+}
+
 function coupon_validation(form){
     if (typeof form == 'undefined'){
         console.warn('no coupon form found. Validation not possible');

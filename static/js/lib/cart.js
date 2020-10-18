@@ -6,7 +6,6 @@ function add_to_cart(product){
         url : '/cart/ajax-add-to-cart/',
         data : {product:product.id, quantity:product.quantity, csrfmiddlewaretoken: csrfmiddlewaretoken.val()}
     }
-    console.log('Adding product %s into user cart', product.name);
     add_promise = ajax(option).then(function(response){
         console.log("Product %s added into cart", product.name);
         console.log(response);
