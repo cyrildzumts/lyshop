@@ -73,10 +73,10 @@
                     <label for="status">{% trans "Status" %}</label>
                     <select name="status" id="status">
                         {% for k,v in ORDER_STATUS %}
-                            {% if v == order.status %}
-                            <option value="{{v}}" selected>{{k}}</option>
+                            {% if k == order.status %}
+                            <option value="{{k}}" selected>{% trans v %}</option>
                             {% else %}
-                            <option value="{{v}}">{{k}}</option>
+                            <option value="{{k}}">{% trans v %}</option>
                             {% endif %}
                         {% endfor %}
                     
