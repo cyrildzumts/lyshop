@@ -43,7 +43,11 @@
                             <select name="shipment_status" id="shipment-status">
                                 <option value="{{shipment.shipment_status}}" selected>{{shipment.shipment_status|shipment_status_value}}</option>
                                 {% for k,v in SHIPMENT_STATUS %}
-                                    <option value="{{v}}">{{k}}</option>
+                                    {% if k == shipment.shipment_status %}
+                                    <option value="{{k}}" selected>{% trans v %}</option>
+                                    {% else %}
+                                    <option value="{{k}}">{% trans v %}</option>
+                                    {% endif %}
                                 {% endfor %}
                             
                             </select>
