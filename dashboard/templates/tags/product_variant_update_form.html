@@ -20,11 +20,11 @@
             </div>
             <div class="form-group">
                 <label for="price">{% trans "Price" %} </label>
-                <input type="text" id="price" name="price" value="{{variant.price}}">
+                <input type="text" id="price" name="price" value="{{variant.price|floatformat:'-2'}}">
             </div>
             <div class="form-group">
                 <label for="promotion-price">{% trans "Promotion Price" %} </label>
-                <input type="text" id="pomotion-price" name="promotion_price" value="{{variant.promotion_price}}">
+                <input type="text" id="pomotion-price" name="promotion_price" value="{{variant.promotion_price|floatformat:'-2'}}">
             </div>
             <div class="form-group">
                 <label for="quantity">{% trans "Quantity" %}</label>

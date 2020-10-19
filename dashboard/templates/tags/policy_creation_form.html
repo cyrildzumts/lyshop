@@ -11,22 +11,22 @@
                     
                     <div class="form-group">
                         <label for="daily_limit">{% trans "Daily Limit" %}</label>
-                        <input id="daily_limit" type="text"  name="daily_limit" value="{{policy.daily_limit}}">
+                        <input id="daily_limit" type="text"  name="daily_limit" value="{{policy.daily_limit|floatformat:'-2'}}">
                     </div>
 
                     <div class="form-group">
                         <label for="weekly_limit">{% trans "Weekly Limit" %}</label>
-                        <input id="weekly_limit" type="text"  name="weekly_limit" value="{{policy.weekly_limit}}">
+                        <input id="weekly_limit" type="text"  name="weekly_limit" value="{{policy.weekly_limit|floatformat:'-2'}}">
                     </div>
 
 
                     <div class="form-group">
                         <label for="monthly_limit">{% trans "Monthly Limit" %}</label>
-                        <input id="monthly_limit" type="text"  name="monthly_limit" value="{{policy.monthly_limit}}">
+                        <input id="monthly_limit" type="text"  name="monthly_limit" value="{{policy.monthly_limit|floatformat:'-2'}}">
                     </div>
                     <div class="form-group">
                         <label for="commission">{% trans "Commission" %}</label>
-                        <input id="commission" type="text"  name="commission" value="{{policy.commission|unlocalize}}">
+                        <input id="commission" type="text"  name="commission" value="{{policy.commission|floatformat:'-2'}}">
                     </div>
                     </div><!-- End of Container-->
 
