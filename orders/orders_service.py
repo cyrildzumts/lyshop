@@ -169,7 +169,7 @@ def can_be_shipped(order):
         logger.error("Type Error : order not of Order type")
         raise TypeError("Type Error : order argument not of type Order.")
     
-    return order.status == commons.ORDER_PAID or order.payment_option == commons.PAY_AT_DELIVERY
+    return order.status == commons.ORDER_READY_FOR_SHIPMENT
         
 
 
