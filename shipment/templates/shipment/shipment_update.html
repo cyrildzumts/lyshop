@@ -41,7 +41,6 @@
                         <div class="mat-input">
                             <label for="shipment-staus">{% trans "Shipment Status" %}</label>
                             <select name="shipment_status" id="shipment-status">
-                                <option value="{{shipment.shipment_status}}" selected>{{shipment.shipment_status|shipment_status_value}}</option>
                                 {% for k,v in SHIPMENT_STATUS %}
                                     {% if k == shipment.shipment_status %}
                                     <option value="{{k}}" selected>{% trans v %}</option>
