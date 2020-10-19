@@ -59,14 +59,12 @@
                 <div class="title">
                     <span>{% trans "Payment Option" %}</span>
                 </div>
-                <div class="row">
-                    <label ><input type="radio" name="payment_option" value="0">  <span>{% trans "Pay at delivery" %}</span></label>
-                    
-                </div>
-                <div class="row">
-                    
-                    <label > <input type="radio" name="payment_option" value="1" checked><span>{% trans "Pay with Pay" %}</span></label>
-                </div>
+                {% for k,v in PAYMENT_OPTIONS %}
+                    <div class="row">
+                        <label ><input type="radio" name="payment_option" value="{{k}}">  <span>{% trans v %}</span></label>
+                    </div>
+                
+                {% endfor %}
                 <div class="actions">
                     <button class="mat-button mat-button-outlined" data-next-tab-index="0" title="{% trans 'Previous Step' %}"><i class="fas fa-chevron-left"></i></button>
                     <button class="mat-button mat-button-outlined" data-next-tab-index="2" title="{% trans 'Next Step' %}"><i class="fas fa-chevron-right"></i></button>

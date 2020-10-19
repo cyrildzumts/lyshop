@@ -119,6 +119,7 @@ def checkout(request):
         'page_title' : _("Checkout") + ' - ' + settings.SITE_NAME,
         'address_list': addressbook_service.get_addresses(request.user),
         'ADDRESS_TYPES' : Addressbook_Constants.ADDRESS_TYPES,
+        'PAYMENT_OPTIONS': commons.PAYMENT_OPTIONS,
     }
     address = None
     country = ''
