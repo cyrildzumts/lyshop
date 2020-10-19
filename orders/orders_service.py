@@ -109,7 +109,7 @@ def mark_product_sold(order):
     order_items = order.order_items.select_related().all()
     #sold_products = [SoldProduct(customer=order.user, seller=item.product.product.sold_by, product=item.product, quantity=item.quantity, promotion_price=item.promotion_price, unit_price=item.unit_price, total_price=item.total_price) for item in order_items]
     sold_products_data = [{'customer':order.user, 'seller':item.product.product.sold_by, 'product':item.product, 'quantity': item.quantity, 'promotion_price':item.promotion_price, 'unit_price':item.unit_price, 'total_price':item.total_price} for item in order_items]
-    balance_updates = ((p.seller, p.total_price, p.customer, p.seller.balance) for p in sold_products)
+    balance_updates = ((p.seller, p.total_price, p.customer, p.seller.balance) for p in sold_products_data)
     with transaction.atomic():
         for s, total, customer, balance in balance_updates:
             balance.refresh_from_db()
