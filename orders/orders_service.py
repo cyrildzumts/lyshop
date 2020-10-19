@@ -107,8 +107,8 @@ def mark_product_sold(order):
     if  not isinstance(order, Order) or order.vendor_balance_updated:
         return False
     order_items = order.order_items.select_related().all()
-    sold_products = [SoldProduct(customer=order.user, seller=item.product.product.sold_by, product=item.product, quantity=item.quantity, promotion_price=item.promotion_price, unit_price=item.unit_price, total_price=item.total_price) for item in order_items]
-    
+    #sold_products = [SoldProduct(customer=order.user, seller=item.product.product.sold_by, product=item.product, quantity=item.quantity, promotion_price=item.promotion_price, unit_price=item.unit_price, total_price=item.total_price) for item in order_items]
+    sold_products_data = [{'customer':order.user, 'seller':item.product.product.sold_by, 'product':item.product, 'quantity': item.quantity, 'promotion_price':item.promotion_price, 'unit_price':item.unit_price, 'total_price':item.total_price} for item in order_items]
     balance_updates = ((p.seller, p.total_price, p.customer, p.seller.balance) for p in sold_products)
     with transaction.atomic():
         for s, total, customer, balance in balance_updates:
@@ -117,14 +117,7 @@ def mark_product_sold(order):
             BalanceHistory.objects.create(balance=balance, balance_ref_id=balance.pk, current_amount=balance.balance,balance_amount=total, sender=customer, receiver=s)
         Order.objects.filter(id=order.id).update(vendor_balance_updated=True)
     
-    batch_size = 100
-    while True:
-        batch = list(islice(sold_products, batch_size))
-        if not batch:
-            break
-        SoldProduct.objects.bulk_create(batch, batch_size, ignore_conflicts=True)
-
-    
+    SoldProduct.objects.bulk_create([SoldProduct(**data) for data in sold_products_data])
     return True
 
 
