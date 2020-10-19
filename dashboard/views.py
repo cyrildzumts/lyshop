@@ -402,7 +402,8 @@ def order_detail(request, order_uuid=None):
         'orderItems': orderItems,
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
-        'order_is_cancelable' :  orders_service.is_cancelable(order)
+        'order_is_cancelable' :  orders_service.is_cancelable(order),
+        'order_can_be_shipped' :  orders_service.can_be_shipped(order)
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -476,6 +477,7 @@ def order_update(request, order_uuid=None):
         'shipment': shipment_service.find_order_shipment(order),
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
+        'order_can_be_shipped' :  orders_service.can_be_shipped(order),
         'form': form
     }
     context.update(get_view_permissions(request.user))
