@@ -154,7 +154,7 @@ def checkout(request):
             
             payment_option = payment_option_form.cleaned_data.get('payment_option')
             logger.debug(f"Selected Payment Option : {payment_option}")
-            if payment_option == commons.PAYMENT_PAY_WITH_PAY:
+            if payment_option == commons.PAY_WITH_PAY:
                 order = orders_service.create_order_from_cart(user=request.user, address=address)
                 logger.debug("Order ready. Now preparing payment data")
 
