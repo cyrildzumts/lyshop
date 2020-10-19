@@ -152,7 +152,7 @@ def is_cancelable(order):
         logger.error("Type Error : order not of Order type")
         raise TypeError("Type Error : order argument not of type Order.")
     
-    flag = not is_marked_for_shipment(order) and (order.status == commons.ORDER_SUBMITTED or order.payment_option == commons.ORDER_PAID)
+    flag = not is_marked_for_shipment(order) and (order.status == commons.ORDER_SUBMITTED or order.status == commons.ORDER_PAID)
     flag = flag and not order.status == commons.ORDER_CANCELED
     return flag
 
