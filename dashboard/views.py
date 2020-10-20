@@ -681,7 +681,7 @@ def highlight_create(request):
             highlight = form.save()
             messages.success(request, _('New Highlight created'))
             logger.info(f'New highlight added by user \"{username}\"')
-            return redirect('dashboard:highlight-detail', highlight_uuid=highlight_uuid)
+            return redirect(highlight.get_absolute_url())
         else:
             messages.error(request, _('Highlight not created'))
             logger.error(f'Error on creating new highlight. Action requested by user \"{username}\"')
