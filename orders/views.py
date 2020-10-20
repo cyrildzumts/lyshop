@@ -200,7 +200,15 @@ def checkout(request):
                     
                 else:
                     logger.debug("request payment failed")
-                
+                    
+            elif payment_option == commons.PAY_BEFORE_DELIVERY:
+                pass
+
+            elif payment_option == commons.PAY_BY_SMS:
+                pass 
+
+            elif payment_option == commons.PAY_AT_DELIVERY:
+                pass
 
         else:
             if not payment_option_form_is_valid:
