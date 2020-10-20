@@ -43,7 +43,7 @@ urlpatterns = [
     path('groups/',views.groups, name='groups'),
     path('groups/delete/',views.groups_delete, name='groups-delete'),
 
-    path('highlights/', views.products, name='highlights'),
+    path('highlights/', views.highlights, name='highlights'),
     path('highlights/detail/<uuid:highlight_uuid>/', views.highlight_detail, name='highlight-detail'),
     path('highlights/update/<uuid:highlight_uuid>/', views.highlight_update, name='highlight-update'),
     path('highlights/delete/<uuid:highlight_uuid>/', views.highlight_delete, name='highlight-delete'),
