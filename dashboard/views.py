@@ -743,7 +743,7 @@ def highlight_update(request, highlight_uuid=None):
         form = HighlightForm(postdata, instance=highlight)
         if form.is_valid():
             highlight = form.save()
-            messages.success(request, _('Product updated'))
+            messages.success(request, _('Highlight updated'))
             logger.info(f'highlight {highlight.name} updated by user \"{username}\"')
             return redirect('dashboard:highlight-detail', highlight_uuid=highlight_uuid)
         else:

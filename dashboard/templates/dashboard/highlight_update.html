@@ -28,7 +28,7 @@
                 <p class="entry"><span class="key">{% trans "Name" %}</span> <span class="value">{{highlight.name}}</span></p>
                 <p class="entry"><span class="key">{% trans "Display Name" %}</span> <span class="value">{{highlight.display_name}}</span></p>
                 <p class="entry"><span class="key">{% trans "Active" %}</span> <span class="value">{{highlight.is_active|yesno}}</span></p>
-                <p class="entry"><span class="key">{% trans "Gender" %}</span> <span class="value">{{highlight.gender}}</span></p>
+                <p class="entry"><span class="key">{% trans "Gender" %}</span> <span class="value">{{highlight.gender|gender_value}}</span></p>
                 <p class="entry"><span class="key">{% trans "Created" %}</span> <span class="value">{{highlight.created_at|date:"F j, Y"}}</span></p>
                 <p class="entry"><span class="key">{% trans "Description" %}</span> <span class="value">{{highlight.description}}</span></p>
             </div>
