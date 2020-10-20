@@ -684,7 +684,7 @@ def highlight_create(request):
             return redirect('dashboard:highlight-detail', highlight_uuid=highlight_uuid)
         else:
             messages.error(request, _('Highlight not created'))
-            logger.error(f'Error on creating new highlight. Action requested by user \"{username}\"')
+            logger.error(f'Error on creating new highlight. Action requested by user \"{username}\"', form.errors.items())
     else:
         form = ProductForm()
     context['form'] = form
