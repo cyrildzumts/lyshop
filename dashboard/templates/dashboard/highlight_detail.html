@@ -60,7 +60,7 @@
                     <tbody>
                             {% for item in highlighted_products  %}
                             <tr>
-                                <td>{{item.product.display_name}}</td>
+                                <td>{{item.display_name}}</td>
                                 <td>{{item.quantity}}</td>
                                 
                                 <td><span>{{item.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
