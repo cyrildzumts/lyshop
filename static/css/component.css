@@ -2322,6 +2322,27 @@ a.mat-button{
 	margin : 0;
 }
 
+.mat-table.scrollable{
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+.mat-table.scrollable thead tr{
+	display: block;
+}
+
+.mat-table.scrollable thead{
+	background-color: #242424;
+	color: #FAFAFA;
+}
+
+.mat-table.scrollable tbody{
+	display: block;
+	overflow: auto;
+	height: 30em;
+	width: 100%;
+}
+
 .mat-table caption{
 	font-size: 1em;
 	margin: .5em 0 .75em;
@@ -2354,7 +2375,9 @@ table tbody tr, .mat-table tbody tr{
 
 .mat-table td, .mat-table th, table td, table th{
 	padding: 0.625em;
-	text-align: center;
+	text-align: left;
+	letter-spacing: 0.1em;
+	
 }
 
 .mat-table td:last-child{
@@ -2363,12 +2386,16 @@ table tbody tr, .mat-table tbody tr{
 
 .mat-table th{
 	font-size: 0.85em;
-	letter-spacing: 0.1em;
 	text-transform: uppercase;
 	/*height: 56px;*/
-	/*text-align: left;*/
-	/*padding: 6px 16px;*/
+	text-align: left;
 }
+
+.mat-table td{
+	font-size: 0.85em;
+}
+
+
 .mat-table-filter {
 	display: flex;
 	position: relative;
