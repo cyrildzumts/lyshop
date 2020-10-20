@@ -30,10 +30,10 @@
 {% block MAIN %}
 
 <div class="container">
-  <div class="grid" id="highlighted-products">
+  <div class="grid flex-center scrollable-h" id="highlighted-products">
       {% include "tags/home_products.html" with product_list=highlighted_products%}
   </div>
-  <div class="grid" id="favorite-products">
+  <div class="grid flex-center scrollable-h" id="favorite-products">
      {% include "tags/home_products.html" with product_list=favorites %}
   </div>
 

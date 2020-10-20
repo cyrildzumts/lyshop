@@ -1701,6 +1701,13 @@ input.editable{
 	padding: 10px 5px;
 }
 
+.scrollable-h{
+
+	min-width: 100%;
+	overflow-x: auto;
+	padding: 4px 16px;
+}
+
 .drag-area{
 	width: 100%;
 	min-height: 22em;
