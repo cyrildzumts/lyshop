@@ -2,7 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
-from catalog.models import Product
+from catalog.models import Highlight
+from catalog import constants as Catalog_Constants
 # from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from lyshop import settings
@@ -37,7 +38,8 @@ def home(request):
     page_title = settings.SITE_NAME
     context = {
         'page_title': page_title,
-        'user_is_authenticated' : request.user.is_authenticated
+        'user_is_authenticated' : request.user.is_authenticated,
+        'highlighted_products' : Highlight.objects.filter(gender=Catalog_Constants.GENDER_MEN)
     }
     return render(request, template_name,context)
 
