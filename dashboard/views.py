@@ -616,7 +616,7 @@ def highlight_add_products(request, highlight_uuid):
 
     if len(id_list):
         id_list = list(map(int, id_list))
-        highlight.products.add(Highlight.objects.filter(pk__in=id_list))
+        highlight.products.add(*id_list)
         messages.success(request, f"Products \"{id_list}\" added to highlight {highlight.display_name}")
         logger.info(f"Products \"{id_list}\" added to highlight {highlight.display_name} by user {username}")
         
