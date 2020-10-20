@@ -623,7 +623,7 @@ def highlight_add_products(request, highlight_uuid):
     else:
         messages.error(request, f"ID list invalid. Error : {id_list}")
         logger.error(f"ID list invalid. Error : {id_list}")
-    return redirect('dashboard:highlights')
+    return redirect(highlight.get_absolute_url())
 
 @login_required
 def highlights(request):
@@ -713,7 +713,8 @@ def highlight_detail(request, highlight_uuid=None):
     highlight = get_object_or_404(Highlight, highlight_uuid=highlight_uuid)
     context = {
         'page_title': page_title,
-        'products': highlight.products.all(),
+        'highlighted_products': highlight.products.all(),
+        'products': Product.objects.filter(quantity__gt=0),
         'highlight': highlight
     }
     context.update(get_view_permissions(request.user))
