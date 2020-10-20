@@ -108,4 +108,4 @@ class HighlightForm(forms.ModelForm):
 
     class Meta:
         model = Highlight
-        fields = ['name', 'gender', 'products', 'is_active', 'description']
+        fields = ['name', 'display_name', 'gender', 'products', 'is_active', 'description']
