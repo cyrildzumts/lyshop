@@ -31,6 +31,7 @@
 
 <div class="container">
   <div class="grid flex-center scrollable-h" id="highlighted-products">
+      <div class="label">{% trans "Highlights" %}</div>
       {% include "tags/home_products.html" with product_list=highlighted_products%}
   </div>
   <div class="grid flex-center scrollable-h" id="favorite-products">
