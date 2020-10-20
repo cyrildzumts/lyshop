@@ -88,7 +88,7 @@
                 <form action="{% url 'dashboard:highlight-add-products' highlight.highlight_uuid %}" method="POST">{% csrf_token %}
                 <table id="item-list" class="mat-table scrollable">
                     <thead>
-                            <tr><div class="actions"><button class="js-activable mat-button mat-button-default warn"><i class="fas fa-plus icon"></i><span>{% trans "Add Selection" %}</span></button></div></tr>
+                            <tr><th><div class="actions"><button class="js-activable mat-button mat-button-default warn"><i class="fas fa-plus icon"></i><span>{% trans "Add Selection" %}</span></button></div></th></tr>
                             <tr>
                                     <th>{% trans "Display Name" %}</th>
                                     <th>{% trans "Quantiy" %}</th>
