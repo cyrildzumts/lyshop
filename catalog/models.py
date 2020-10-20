@@ -253,12 +253,13 @@ class Product(models.Model):
     sold_by = models.ForeignKey(User,on_delete=models.SET_NULL, related_name='sold_products', blank=True, null=True)
     viewed_by = models.ManyToManyField(User, related_name='viewed_products', blank=True)
     bought_by = models.ManyToManyField(User, related_name='bought_products', blank=True)
-    short_description = models.CharField(max_length=164)
+    short_description = models.CharField(max_length=constants.SHORT_DESCRIPTION_MAX_SIZE)
     description = models.TextField(blank=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     gender = models.IntegerField(blank=True, null=True, choices=constants.GENDER)
     view_count = models.IntegerField(blank=True, null=True, default=0)
+    related_products = models.ManyToManyField('self')
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     FILTERABLE_FIELDS = ['brand', 'created_at','gender', 'price', 'product_type', 'promotion_price', 'quantity' ]
     FILTER_CONFIG = {
@@ -440,3 +441,43 @@ def generate_product_sku(sender, instance, created, **kwargs):
         else :
             logger.debug("[ FAILED ] SKU not saved in new ProductVariant : instance not found in the database")
         
+
+
+class RelatedProduct(models.Model):
+    name = models.CharField(max_length=32, null=False, blank=False)
+    product = models.ForeignKey(Product, related_name='related_product')
+    related_products = models.ManyToManyField(Product)
+
+
+class Highlight(models.Model):
+    name = models.CharField(max_length=32, null=False, blank=False)
+    display_name = models.CharField(max_length=32, null=False, blank=False)
+    gender = models.IntegerField(default=constants.GENDER_WOMEN, choices=constants.GENDER)
+    products = models.ManyToManyField(Product)
+    is_active = models.BooleanField(default=False, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+    last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+    description = models.CharField(max_length=constants.DESCRIPTION_MAX_SIZE, blank=True, null=True)
+    highlight_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+
+    def get_absolute_url(self):
+        return reverse("dashboard:highlight-detail", kwargs={"highlight_uuid": self.highlight_uuid})
+    
+    
+    def get_dashboard_url(self):
+        return reverse("dashboard:highlight-detail", kwargs={"highlight_uuid": self.highlight_uuid})
+    
+    def get_update_url(self):
+        return reverse("dashboard:highlight-update", kwargs={"highlight_uuid": self.highlight_uuid})
+    
+    def get_delete_url(self):
+        return reverse("dashboard:highlight-delete", kwargs={"highlight_uuid": self.highlight_uuid})
+
+    def get_vendor_url(self):
+        return reverse("vendors:highlight-detail", kwargs={"highlight_uuid": self.highlight_uuid})
+    
+    def get_vendor_update_url(self):
+        return reverse("vendors:highlight-update", kwargs={"highlight_uuid": self.highlight_uuid})
+    
+    def get_vendor_delete_url(self):
+        return reverse("vendors:highlight-delete", kwargs={"highlight_uuid": self.highlight_uuid})

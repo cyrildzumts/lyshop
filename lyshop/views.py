@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
+from catalog.models import Product
 # from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from lyshop import settings

@@ -1,0 +1,110 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Highlight" %} - {{highlight.display_name}}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+    </div>
+{% endblock HEADER_BANNER %}
+
+
+{% block MAIN_CONTENT %}
+
+{% if can_view_product  %}
+<div class="container">
+    <div class="actions">
+        <a class="mat-button mat-button-default" href="{{highlight.get_update_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Update" %}</span></a>
+        <a class="mat-button mat-button-text" href="{% url 'dashboard:highlights' %}"><i class="fas fa-list icon"></i><span>{% trans "Highlights" %}</span></a>
+        <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>   
+    </div><!--End of Banner-Actions-->
+    <div class="mat-box wrapper full">
+        <div class="grid">
+            <div class="box">
+                <p class="entry"><span class="key">{% trans "Name" %}</span> <span class="value">{{highlight.name}}</span></p>
+                <p class="entry"><span class="key">{% trans "Display Name" %}</span> <span class="value">{{highlight.display_name}}</span></p>
+                <p class="entry"><span class="key">{% trans "Active" %}</span> <span class="value">{{highlight.is_active|yesno}}</span></p>
+                <p class="entry"><span class="key">{% trans "Gender" %}</span> <span class="value">{{highlight.gender}}</span></p>
+                <p class="entry"><span class="key">{% trans "Created" %}</span> <span class="value">{{highlight.created_at|date:"F j, Y"}}</span></p>
+                <p class="entry"><span class="key">{% trans "Description" %}</span> <span class="value">{{highlight.description}}</span></p>
+            </div>
+            
+        </div><!--End of title-->
+        <div class="mat-box-content">
+            
+        </div><!--End mat-box-content-->
+    </div><!--End mat-box-->
+    <div class="mat-box wrapper full">
+        <div class="grid title">
+            <div class="mat-box-title wrapper">
+                <h4> {% trans "Highlight Update" %}</h4>
+            </div>
+            
+        </div><!--End of title-->
+        <div class="mat-box-content">
+            <form action="{{highlight.get_update_url}}" method="POST">{% csrf_token %}
+                <input type="hidden" name="last_changed_by" value="{{request.user.id}}">
+                
+                <div class="mat-input">
+                    <label for="name">{% trans "Name" %}</label>
+                    <input type="text" name="name" value="{{highlight.name}}">
+                </div>
+                <div class="mat-input">
+                    <label for="display-name">{% trans "Display Name" %}</label>
+                    <input type="text" name="display_name" value="{{highlight.display_name}}">
+                </div>
+                <div class="mat-input row">
+                    <label for="is-active">{% trans "Active" %}</label>
+                    <input type="checkbox" name="is_active" id="is-active" {% if highlight.is_active %} checked {% endif %}>
+                </div>
+                <div class="mat-input">
+                    <label for="gender">{% trans "Gender" %}</label>
+                    <select name="gender" id="gender">
+                        {% for k,v in GENDER %}
+                            {% if k == highlight.gender %}
+                            <option value="{{k}}" selected>{% trans v %}</option>
+                            {% else %}
+                            <option value="{{k}}">{% trans v %}</option>
+                            {% endif %}
+                        {% endfor %}
+                    
+                    </select>
+                </div>
+                <div class="mat-input">
+                    <label for="products">{% trans "Products" %}</label>
+                    <select name="products" id="products" multiple>
+                        {% for p in products %}
+                            <option value="{{p.pk}}" selected>{% trans p.display_name %}</option>
+                        {% endfor %}
+                    
+                    </select>
+                </div>
+
+                <div class="flex flex-column">
+                    <div class="form-group">
+                        <label for="description">{% trans "Description" %}</label>
+                        <textarea id="description" class="limited-input" name="description" cols="30" rows="10" data-target="#description-counter" data-max-length="{{DESCRIPTION_MAX_SIZE}}">{{highlight.description}}</textarea>
+                    </div>
+                    
+                    <div class="row"> <span id="description-counter" class="char-counter">{{highlight.description|length}}</span><span class="text-max-length"> / {{DESCRIPTION_MAX_SIZE}}</span></div>
+                </div>
+                <div class="actions">
+                    <a class="mat-button mat-button-text js-cancel" href="{{highlight.get_dashboard_url}}">{% trans "Cancel" %}</a>
+                    <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
+                </div>
+            
+            </form>
+        </div><!--End mat-box-content-->
+    </div><!--End mat-box-->
+</div>
+
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN_CONTENT %}

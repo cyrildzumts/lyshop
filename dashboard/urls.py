@@ -43,6 +43,14 @@ urlpatterns = [
     path('groups/',views.groups, name='groups'),
     path('groups/delete/',views.groups_delete, name='groups-delete'),
 
+    path('highlights/', views.products, name='highlights'),
+    path('highlights/detail/<uuid:highlight_uuid>/', views.highlight_detail, name='highlight-detail'),
+    path('highlights/update/<uuid:highlight_uuid>/', views.highlight_update, name='highlight-update'),
+    path('highlights/delete/<uuid:highlight_uuid>/', views.highlight_delete, name='highlight-delete'),
+    path('highlights/delete/', views.highlights_delete, name='highlights-delete'),
+    path('highlights/create/', views.highlight_create, name='highlight-create'),
+    path('highlights/add-products/<uuid:highlight_uuid>/', views.highlight_add_products, name='highlight-add-products'),
+
     path('orders/', views.orders, name='orders'),
     path('orders/detail/<uuid:order_uuid>/', views.order_detail, name='order-detail'),
     path('orders/cancel/<uuid:order_uuid>/', views.order_cancel, name='order-cancel'),

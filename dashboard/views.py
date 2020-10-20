@@ -28,7 +28,8 @@ from dashboard.forms import (AccountForm, GroupFormCreation, PolicyForm, PolicyG
 from accounts.forms import AccountCreationForm, UserCreationForm
 from accounts.account_services import AccountService
 from catalog.models import (
-    Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage, ProductType, ProductTypeAttribute
+    Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage, ProductType, ProductTypeAttribute,
+    Highlight
 )
 from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory
 from orders.forms import DashboardOrderUpdateForm
@@ -36,7 +37,7 @@ from orders import orders_service
 from shipment import shipment_service
 from catalog.forms import (BrandForm, ProductAttributeForm, 
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
-    DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm
+    DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm, HighlightForm
 )
 from cart.models import Coupon
 from cart.forms import CouponForm
@@ -561,6 +562,274 @@ def order_history_detail(request, history_uuid):
     }
     template_name = 'dashboard/order_history.html'
     return render(request, template_name, context)
+
+
+@login_required
+def add_products_highlight(request, highlight_uuid):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_add_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    form = None
+    username = request.user.username
+    highlight = get_object_or_404(Highlight, highlight_uuid=highlight_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = AddAttributeForm(postdata)
+        logger.info("Attribute formset valid checking")
+        if form.is_valid():
+            attributes = form.cleaned_data['attributes']
+            variant.attributes.add(*attributes)
+            messages.success(request, _('Attribute formset valid'))
+            logger.info(f'New attributes added by user \"{username}\"')
+            logger.info(attributes)
+        else:
+            messages.error(request, _('Attributes not added'))
+            logger.error(f'Error on adding new product variant attributes. Action requested by user \"{username}\"')
+            logger.error(form.errors)
+            
+    return redirect('dashboard:product-variant-detail', variant_uuid=variant_uuid)
+
+
+@login_required
+def highlight_add_products(request, highlight_uuid):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    highlight = get_object_or_404(Highlight, highlight_uuid=highlight_uuid)
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('products')
+
+    if len(id_list):
+        id_list = list(map(int, id_list))
+        highlight.products.add(id_list)
+        messages.success(request, f"Products \"{id_list}\" added to highlight {highlight.display_name}")
+        logger.info(f"Products \"{id_list}\" added to highlight {highlight.display_name} by user {username}")
+        
+    else:
+        messages.error(request, f"ID list invalid. Error : {id_list}")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('dashboard:highlights')
+
+@login_required
+def highlights(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'dashboard/highlight_list.html'
+    page_title = _('Highlights')
+    context = {}
+
+    queryset = Highlight.objects.order_by('-created_at')
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 10)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['highlight_list'] = list_set
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def highlight_create(request):
+    template_name = 'dashboard/highlight_create.html'
+    page_title = _('New Highlight')
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_add_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    context = {
+        'page_title': page_title,
+    }
+    form = None
+    
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = HighlightForm(postdata)
+        if form.is_valid():
+            highlight = form.save()
+            messages.success(request, _('New Highlight created'))
+            logger.info(f'New highlight added by user \"{username}\"')
+            return redirect('dashboard:highlight-detail', highlight_uuid=highlight_uuid)
+        else:
+            messages.error(request, _('Highlight not created'))
+            logger.error(f'Error on creating new highlight. Action requested by user \"{username}\"')
+    else:
+        form = ProductForm()
+    context['form'] = form
+    context['GENDER'] = Catalog_Constants.GENDER
+    context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+
+@login_required
+def highlight_detail(request, highlight_uuid=None):
+    template_name = 'dashboard/highlight_detail.html'
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    page_title = _('Highlight Detail')
+    
+
+    highlight = get_object_or_404(Highlight, highlight_uuid=highlight_uuid)
+    context = {
+        'page_title': page_title,
+        'products': highlight.products.all(),
+        'highlight': highlight
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def highlight_update(request, highlight_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'dashboard/highlight_update.html'
+    page_title = _('Highlight Update')
+    context = {
+        'page_title': page_title,
+    }
+    form = None
+    highlight = get_object_or_404(Highlight, highlight_uuid=highlight_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = HighlightForm(postdata, instance=highlight)
+        if form.is_valid():
+            highlight = form.save()
+            messages.success(request, _('Product updated'))
+            logger.info(f'highlight {highlight.name} updated by user \"{username}\"')
+            return redirect('dashboard:highlight-detail', highlight_uuid=highlight_uuid)
+        else:
+            messages.error(request, _('highlight not updated'))
+            logger.error(f'Error on updating highlight. Action requested by user \"{username}\"')
+            logger.error(form.errors)
+    else:
+        form = HighlightForm(instance=highlight)
+    context['form'] = form
+    context['highlight'] = highlight
+    context['products'] = highlight.products.all()
+    context['GENDER'] = Catalog_Constants.GENDER
+    context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
+
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+@login_required
+def highlight_delete(request, highlight_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    highlight = get_object_or_404(Highlight, highlight_uuid=highlight_uuid)
+    Highlight.objects.filter(pk=highlight.pk).delete()
+    logger.info(f'Highlight \"{highlight.name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('Highlight deleted'))
+    return redirect('dashboard:highlights')
+
+
+@login_required
+def highlight_clear(request, highlight_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    highlight = get_object_or_404(Highlight, highlight_uuid=highlight_uuid)
+    highlight.products.clear()
+    logger.info(f'Highlight \"{highlight.name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('Highlight deleted'))
+    return redirect('dashboard:highlight-detail', highlight_uuid=highlight_uuid)
+
+
+@login_required
+def highlights_delete(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('highlights')
+
+    if len(id_list):
+        highlight_list = list(map(int, id_list))
+        Highlight.objects.filter(id__in=highlight_list).delete()
+        messages.success(request, f"Highlights \"{id_list}\" deleted")
+        logger.info(f"Highlights \"{id_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"Highlight \"{id_list}\" could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('dashboard:highlights')
+
 
 @login_required
 def products(request):

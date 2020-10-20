@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from catalog.models import Category, Product, ProductAttribute, ProductVariant, Brand, Policy, PolicyGroup, ProductImage, ProductType, ProductTypeAttribute
+from catalog.models import Category, Product, ProductAttribute, ProductVariant, Brand, Policy, PolicyGroup, ProductImage, ProductType, ProductTypeAttribute, Highlight
 
 class CategoryForm(forms.ModelForm):
 
@@ -102,3 +102,10 @@ class ProductImageForm(forms.ModelForm):
 
 class CategoriesDeleteForm(forms.Form):
     categories = forms.TypedMultipleChoiceField(coerce=int)
+
+
+class HighlightForm(forms.Form):
+
+    class Meta:
+        model = Highlight
+        fields = ['name', 'gender', 'products', 'is_active', 'description']
