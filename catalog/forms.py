@@ -104,7 +104,7 @@ class CategoriesDeleteForm(forms.Form):
     categories = forms.TypedMultipleChoiceField(coerce=int)
 
 
-class HighlightForm(forms.Form):
+class HighlightForm(forms.ModelForm):
 
     class Meta:
         model = Highlight
