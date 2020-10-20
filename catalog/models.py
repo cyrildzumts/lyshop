@@ -445,7 +445,7 @@ def generate_product_sku(sender, instance, created, **kwargs):
 
 class RelatedProduct(models.Model):
     name = models.CharField(max_length=32, null=False, blank=False)
-    product = models.ForeignKey(Product, related_name='related_product')
+    product = models.ForeignKey(Product, related_name='related_product', on_delete=models.CASCADE)
     related_products = models.ManyToManyField(Product)
 
 
