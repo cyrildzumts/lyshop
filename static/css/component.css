@@ -2356,7 +2356,7 @@ table tbody tr, .mat-table tbody tr{
 .mat-table td, .mat-table th, table td, table th{
 	padding: 0.625em;
 	text-align: left;
-	letter-spacing: 0.1em;
+	letter-spacing: 0.15em;
 	
 }
 
