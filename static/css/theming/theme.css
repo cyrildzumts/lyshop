@@ -25,6 +25,7 @@ body{
 .mat-button-default{
     background-color: var(--primary-color);
     color: var(--third-color);
+    font-weight: 700;
 }
 
 .mat-table{
