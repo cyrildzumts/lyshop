@@ -3,6 +3,13 @@
     --secondary-color: #FF0D00;
     --third-color : #c4b8b7;
     --fourth-color : #FFFFFF;
+    --body-bg : #FFFFFF;
+    --body-color: #242424;
+}
+
+body{
+    background-color: var(--body-bg);
+    color: var(--body-color);
 }
 
 .header{
@@ -12,9 +19,21 @@
 
 .header a{
     color: var(--fourth-color) !important;
+    font-weight: 700;
 }
 
 .mat-button-default{
     background-color: var(--primary-color);
     color: var(--third-color);
+}
+
+.mat-table{
+    background-color: var(--third-color);
+
+}
+
+.mat-table thead{
+    background-color: var(--primary-color);
+    color: var(--fourth-color);
+    font-weight: 700;
 }

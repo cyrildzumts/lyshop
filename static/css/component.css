@@ -2327,10 +2327,6 @@ a.mat-button{
 	display: block;
 }
 
-.mat-table.scrollable thead{
-	background-color: #242424;
-	color: #FAFAFA;
-}
 
 .mat-table.scrollable tbody{
 	display: block;
