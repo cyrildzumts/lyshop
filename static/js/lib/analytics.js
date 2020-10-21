@@ -79,7 +79,8 @@ var products_conf = {
         labels : [],
         datasets : [{
             label: '',
-            data: []
+            data: [],
+            backgroundColor : "#D2AE00"
         }],
     },
     options:{
