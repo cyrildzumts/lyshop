@@ -33,7 +33,8 @@ var orders_conf = {
         labels : [],
         datasets : [{
             label: '',
-            data: []
+            data: [],
+            backgroundColor: '#0A0A0A'
         }],
     },
     options:{
@@ -46,7 +47,8 @@ var orders_price_conf = {
         labels : [],
         datasets : [{
             label: '',
-            data: []
+            data: [],
+            backgroundColor: '#0A0A0A'
         }],
     },
     options:{
