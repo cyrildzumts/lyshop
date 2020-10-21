@@ -1,0 +1,41 @@
+
+body{
+    background-color: var(--body-bg);
+    color: var(--body-color);
+}
+
+.header{
+    background-color: var(--primary-color);
+    color: var(--fourth-color);
+}
+
+.header a{
+    color: var(--fourth-color) !important;
+    font-weight: 700;
+}
+
+.page--banner{
+    background-color: var(--third-color);
+    color: var(--primary-color);
+}
+
+.footer{
+    background-color: var(--primary-color);
+    color: var(--fourth-color);
+}
+.mat-button-default{
+    background-color: var(--primary-color);
+    color: var(--third-color);
+    font-weight: 700;
+}
+
+.mat-table{
+    background-color: var(--fourth-color);
+
+}
+
+.mat-table thead{
+    background-color: var(--primary-color);
+    color: var(--fourth-color);
+    font-weight: 700;
+}
