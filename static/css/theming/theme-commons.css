@@ -51,3 +51,11 @@ li.active{
 li.active.selected{
 	border-bottom: 3px solid var(--secondary-color);
 }
+
+.logo{
+    color: var(--secondary-color) !important;
+}
+
+.logo a, .logo .mat-button{
+    color: var(--secondary-color) !important;
+}
