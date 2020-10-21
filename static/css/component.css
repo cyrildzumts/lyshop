@@ -147,8 +147,6 @@ li a{
   top: 0;
   left: 0;
   z-index: 1000;
-  background-color: var(--header-bg);
-  color: var(--header-color);
   font-family: 'Montserrat';
   font-size: 1.2em;
   height: 48px;
@@ -165,8 +163,6 @@ li a{
   min-width: 100%;
   font-family: 'Monserrat';
   font-size: 1.25em;
-  background-color: var(--banner-bg);
-  color: var(--banner-color);
   padding: 16px 0 64px 0;
   margin-bottom: 16px;
 
@@ -398,8 +394,6 @@ a.button{
   width: 100%;
   padding: 0;
   margin: 0;
-  background-color: var(--header-panel-bg);
-  color: var(--header-panel-color);
   font-weight: 400;
 }
 
@@ -1106,8 +1100,6 @@ button, input, select, textarea{
 	font-size: 0.75em;
 }
 .register-btn{
-	background-color: #242424 !important;
-	color: #fafafa !important;
 	font-weight: 600 !important;
 }
 .header {
@@ -1873,8 +1865,6 @@ input.editable{
 				0px 1px 3px 0px rgba(0,0,0,.12);
 	/*border: 1px solid #1976d2;*/
 	/*border-radius: 4px;*/
-	color: #242424;
-	background-color: #2424241E;
 }
 
 .mat-button-default:hover{
@@ -2014,7 +2004,6 @@ a.mat-button{
 	position: relative;
 	width: 100%;
 	height: 64px;
-	background-color: #fafafa;
 	z-index: 10;
 	align-items: center;
 	justify-content: center;
