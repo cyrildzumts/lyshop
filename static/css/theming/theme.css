@@ -27,6 +27,10 @@ body{
     color: var(--primary-color);
 }
 
+.footer{
+    background-color: var(--primary-color);
+    color: var(--fourth-color);
+}
 .mat-button-default{
     background-color: var(--primary-color);
     color: var(--third-color);
