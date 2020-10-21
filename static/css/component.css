@@ -2053,10 +2053,6 @@ a.mat-button{
 	margin: 0 !important;
 }
 
-.mat-list-item.active{
-	background-color: var(--mat-list-item-active-bg);
-	color: var(--mat-list-item-active-color);
-}
 
 .mat-list-item .entry{
 	display: flex;
