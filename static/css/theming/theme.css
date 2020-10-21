@@ -22,6 +22,11 @@ body{
     font-weight: 700;
 }
 
+.page--banner{
+    background-color: var(--third-color);
+    color: var(--primary-color);
+}
+
 .mat-button-default{
     background-color: var(--primary-color);
     color: var(--third-color);
