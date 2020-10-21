@@ -40,3 +40,14 @@ body{
     font-weight: 700;
 }
 
+.kiosk .active{
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+li.active{
+	border-bottom: 2px solid var(--secondary-color);
+}
+
+li.active.selected{
+	border-bottom: 3px solid var(--secondary-color);
+}

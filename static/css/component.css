@@ -423,17 +423,8 @@ a.button{
 }
 */
 
-.kiosk .active{
-	border-bottom: 2px solid var(--active-border-color);
-}
 
-li.active{
-	border-bottom: 2px solid var(--active);
-}
 
-li.active.selected{
-	border-bottom: 3px solid var(--active-selected);
-}
 
 .nav-container{
 	width: 100%;
