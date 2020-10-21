@@ -178,6 +178,7 @@ li a{
 	/*height: 400px;*/
 	padding : 16px 0;
 	margin-bottom: 16px;
+	letter-spacing: 0.15em;
 }
 
 .banner--title{
@@ -1116,6 +1117,7 @@ button, input, select, textarea{
   height: 25rem;
   flex-shrink: 0;
   font-size: 0.75rem;
+  letter-spacing: 0.15em;
 }
 
 .divider {
