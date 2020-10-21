@@ -1871,8 +1871,8 @@ input.editable{
 
 	/*border: 1px solid #1976d2;*/
 	/*border-radius: 4px;*/
-	color: #242424;
-	background-color: #2424243E;
+	/*color: #242424;*/
+	/*background-color: #2424243E;*/
 }
 .mat-button-outlined{
 	border: 1px solid #242424;
@@ -2500,7 +2500,6 @@ table tbody tr, .mat-table tbody tr{
 	justify-content: center;
 	position: absolute;
 	/*width: 350px;*/
-	background-color: #fafafa;
 	top: 48px;
 	left: -100%;
 }
