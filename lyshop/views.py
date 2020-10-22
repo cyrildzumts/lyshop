@@ -36,7 +36,7 @@ def home(request):
     """
     template_name = "home.html"
     page_title = settings.SITE_NAME
-    highlights = Highlight.objects.all()
+    highlights = Highlight.objects.filter(is_active=True)
     context = {
         'page_title': page_title,
         'user_is_authenticated' : request.user.is_authenticated,
