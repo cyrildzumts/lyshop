@@ -36,12 +36,11 @@ def home(request):
     """
     template_name = "home.html"
     page_title = settings.SITE_NAME
-    highlight = Highlight.objects.filter(gender=Catalog_Constants.GENDER_MEN).first()
+    highlights = Highlight.objects.all()
     context = {
         'page_title': page_title,
         'user_is_authenticated' : request.user.is_authenticated,
-        'highlighted_products' : highlight.products.all()
-    }
+        'highlights' : highlights
     return render(request, template_name,context)
 
 

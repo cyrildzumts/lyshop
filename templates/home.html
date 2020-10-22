@@ -30,10 +30,13 @@
 {% block MAIN %}
 
 <div class="container">
-  <div class="grid flex-center scrollable-h" id="highlighted-products">
-      <div class="label">{% trans "Highlights" %}</div>
-      {% include "tags/home_products.html" with product_list=highlighted_products%}
-  </div>
+  {% for h in highlights %}
+      <div class="grid flex-center scrollable-h" id="highlighted-products">
+          <div class="label">{% trans h.display_name %}</div>
+          {% include "tags/home_products.html" with product_list=h.products.all %}
+      </div>
+  {% endfor %}
+  
   <div class="grid flex-center scrollable-h" id="favorite-products">
      {% include "tags/home_products.html" with product_list=favorites %}
   </div>
