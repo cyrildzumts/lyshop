@@ -64,9 +64,10 @@ li.active.selected{
 
 
 .highlight{
-	background-color: var(--light-color) !important;;
+    background-color: var(--light-color) !important;
+    color: var(--primary-color) !important;;
 }
 
 .highlight .label{
-	color: var(--secondary-color) !important;
+	color: var(--primary-color) !important;
 }
