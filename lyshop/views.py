@@ -41,6 +41,7 @@ def home(request):
         'page_title': page_title,
         'user_is_authenticated' : request.user.is_authenticated,
         'highlights' : highlights
+    }
     return render(request, template_name,context)
 
 
