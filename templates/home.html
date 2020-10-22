@@ -31,7 +31,7 @@
 
 <div class="container">
   {% for h in highlights %}
-      <div class="grid flex-center scrollable-h" id="highlighted-products">
+      <div class="grid flex-center scrollable-h highlight" id="highlighted-products">
           <div class="label">{% trans h.display_name %}</div>
           {% include "tags/home_products.html" with product_list=h.products.all %}
       </div>

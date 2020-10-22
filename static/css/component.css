@@ -2408,7 +2408,7 @@ table tbody tr, .mat-table tbody tr{
 	padding: 8px 16px;
 }
 
- .controls{
+.controls{
 	padding: 8px 16px;
 }
 
@@ -2489,6 +2489,21 @@ table tbody tr, .mat-table tbody tr{
 	/*width: 350px;*/
 	top: 48px;
 	left: -100%;
+}
+
+.highlight{
+	position: relative;
+	width: 100%;
+	overflow-x: auto;
+}
+
+.highlight .label{
+	position: absolute;
+	top: 0.5em;
+	left: 0.5em;
+	padding: 2em;
+	font-size: 0.875em;
+	font-weight: 600;
 }
 
 .menu-close{
