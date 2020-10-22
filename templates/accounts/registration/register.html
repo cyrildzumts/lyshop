@@ -17,13 +17,14 @@
 {% block MAIN %}
 
 <div class="padded-wrapper-top">
-  <div class="grid">
-    <div class="title">
-      {%trans 'Registration'%}
+    <div class="row flex-center">
+        <div class="title">
+          {%trans 'Registration'%}
+        </div>
     </div>
 
-    <form class="signup-form " action="{% url 'accounts:register'%}" method="POST">{% csrf_token %}
-      <div class="grid">
+    <form class="signup-form full" action="{% url 'accounts:register'%}" method="POST">{% csrf_token %}
+      <div class="row flex-center">
           <div class="mat-box">
             {% include "tags/form_snippet.html" with form=user_form %}
           </div>
@@ -39,8 +40,5 @@
           <span class="register-hint">{% trans "Already have an account ? " %}</span><a class="mat-button mat-button-default register-btn" href="{% url 'accounts:login' %}">{% trans "Sign In" %}</a>
       </div>
     </form>
-  </div>
 </div>
-
-
 {% endblock MAIN %}
