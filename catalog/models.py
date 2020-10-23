@@ -454,7 +454,7 @@ class Highlight(models.Model):
     display_name = models.CharField(max_length=32, null=False, blank=False)
     gender = models.IntegerField(default=constants.GENDER_WOMEN, choices=constants.GENDER)
     products = models.ManyToManyField(Product, blank=True)
-    is_active = models.BooleanField(default=False, blank=True, null=True)
+    is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     description = models.CharField(max_length=constants.DESCRIPTION_MAX_SIZE, blank=True, null=True)
