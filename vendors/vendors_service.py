@@ -167,3 +167,13 @@ def update_balance_history(seller):
 
 def get_pending_payment(user):
     pass
+
+
+def update_product(order, product, data):
+    if isinstance(order, Order) and isinstance(product, ProductVariant) and isinstance(data, dict):
+        if "change_by" in data:
+            logger.info(f"Updating SoldProduct with data \"{data}\"")
+            return SoldProduct.objects.filter(order=order, product=product).update(**data)
+        else:
+            logger.warn(f"SoldProduct for order {order.order_ref_number} not updated. User requesting the change is missing")
+    return 0

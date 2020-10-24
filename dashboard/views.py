@@ -23,7 +23,7 @@ from dashboard import Constants
 from rest_framework.authtoken.models import Token
 from lyshop import utils, settings
 from dashboard.forms import (AccountForm, GroupFormCreation, PolicyForm, PolicyGroupForm, 
-    PolicyGroupUpdateForm, PolicyGroupUpdateMembersForm, TokenForm
+    PolicyGroupUpdateForm, PolicyGroupUpdateMembersForm, TokenForm, OrderSoldItemForm
 )
 from accounts.forms import AccountCreationForm, UserCreationForm
 from accounts.account_services import AccountService
@@ -483,6 +483,56 @@ def order_update(request, order_uuid=None):
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
+
+##TODO
+'''
+@login_required
+def order_update_items(request, order_uuid=None):
+    template_name = 'dashboard/order_update_items.html'
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    product_count = order.order_items.count()
+    page_title = _('Order Items Update')
+    OrderSoldItemFormSet = formset_factory(OrderSoldItemForm, extra=product_count, max_num=product_count)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        formset = OrderSoldItemFormSet(postdata)
+        if formset.is_valid():
+            
+            msg = f'Order {order.order_ref_number} updated'
+            messages.success(request, msg)
+            logger.info(msg)
+            return redirect('dashboard:order-detail', order_uuid=order_uuid)
+        else:
+            msg = f'Order {order.order_ref_number} could not be updated'
+            messages.error(request, msg)
+            logger.info(msg)
+            logger.error(form.errors.items())
+
+    context = {
+        'page_title': page_title,
+        'order': order,
+        'shipment': shipment_service.find_order_shipment(order),
+        'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
+        'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
+        'order_can_be_shipped' :  orders_service.can_be_shipped(order),
+        'formset': OrderSoldItemFormSet()
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+'''
 
 @login_required
 def add_order_for_shipment(request, order_uuid=None):

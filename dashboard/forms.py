@@ -53,3 +53,10 @@ class GroupFormCreation(forms.ModelForm):
     class Meta:
         model = Group
         fields = ['name', 'permissions']
+
+
+class OrderSoldItemForm(forms.Form):
+    product = forms.IntegerField(required=False)
+    quantity = forms.IntegerField(required=False)
+    status = forms.IntegerField(required=False)
+    changed_by = forms.IntegerField()

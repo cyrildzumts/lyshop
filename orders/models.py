@@ -73,6 +73,8 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='order_items', on_delete=models.CASCADE)
+    last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+    changed_by = models.ForeignKey(User, related_name='changed_orderitems', blank=True, null=True, on_delete=models.SET_NULL)
     product = models.ForeignKey(ProductVariant, related_name='order_items', on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     unit_price = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)

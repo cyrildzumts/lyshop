@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Q
 from django.shortcuts import reverse
 from django.contrib.auth.models import User, Group
+from vendors import constants as Vendor_Constants
 from lyshop import conf
 import uuid
 
@@ -70,10 +71,15 @@ class VendorPaymentHistory(models.Model):
 
 
 class SoldProduct(models.Model):
+    order = models.ForeignKey('orders.Order', blank=False, null=True, on_delete=models.SET_NULL)
+    order_ref = models.IntegerField(blank=True, null=True)
     seller = models.ForeignKey(User, related_name='vendor_sold_products', blank=False, null=True, on_delete=models.SET_NULL)
     customer = models.ForeignKey(User, related_name='customer_bought_products', blank=False, null=True, on_delete=models.SET_NULL)
+    last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+    changed_by = models.ForeignKey(User, related_name='updated_soldproducts', blank=True, null=True, on_delete=models.SET_NULL)
     product = models.ForeignKey('catalog.ProductVariant', blank=False, null=True, on_delete=models.SET_NULL)
     quantity = models.IntegerField(default=1)
+    status = models.IntegerField(default=Vendor_Constants.SOLD_PRODUCT_NOT_SENT, choices=Vendor_Constants.SOLD_PRODUCT_STATUS)
     unit_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     promotion_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     total_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
