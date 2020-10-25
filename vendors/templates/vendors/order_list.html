@@ -24,7 +24,7 @@
 
 
 {% block MAIN_CONTENT %}
-
+{% if is_seller %}
 <div class="container">
     <div class="mat-box wrapper full">
         <div class="grid title">
@@ -74,4 +74,9 @@
         </div><!--End mat-box-content-->
     </div><!--End mat-box-->
 </div>
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
 {% endblock MAIN_CONTENT %}
