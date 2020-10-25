@@ -75,13 +75,13 @@
               <ul id="variant-attrs" class="box">
                 
                   {% for attr in attribute_list %}
-                  <li class="mat-list-item entry"><span class="key">{{attr.display_name}}</span><span class="value">{{attr.value}}</span> <input class="hidden js-revealable" type="checkbox" name="attributes" value="{{attr.pk}}"></li>
+                  <li class="mat-list-item entry"><span class="key">{{attr.display_name}}</span><span class="value">{{attr.value}}</span> <input class="variant-attr-input" class="hidden js-revealable" data-target="attr-remove" type="checkbox" name="attributes" value="{{attr.pk}}"></li>
                   {% empty %}
                   <li class="mat-list-item entry"><span class="key">--</span></li>
                   {% endfor %}
                   
               </ul>
-              <div class="actions hidden js-revealable">
+              <div id="attr-remove" class="actions hidden js-revealable">
                     <span class="mat-button js-dialog-close js-revealable-hide" data-target="#variant-attrs" >{% trans "Cancel" %}</span>
                     <button class="mat-button mat-button-default" type="submit">{% trans "Remove Attributes" %}</button>
               </div>
