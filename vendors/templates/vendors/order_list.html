@@ -47,6 +47,7 @@
                                     <th>{% trans "Promotion Price" %}</th>
                                     <th>{% trans "Total Price" %}</th>
                                     <th>{% trans "Ordered Date" %}</th>
+                                    <th>{% trans "Action" %}</th>
 
 
                             </tr>
@@ -63,6 +64,7 @@
                                 <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td><span>{{item.active_total_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td>{{item.created_at|date:'Y m d H:i::s'}}</td>
+                                <td><a class="mat-button mat-button-default" href="{{item.get_vendor_update_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Update" %}</span></a></td>
                             </tr>
                             {% endfor %}
                             

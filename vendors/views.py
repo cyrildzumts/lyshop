@@ -1738,10 +1738,10 @@ def orders(request):
     }
     return render(request,template_name, context)
 
-'''
+'
 @login_required
 def order_item(request, order_uuid=None, item_uuid=None):
-    template_name = 'dashboard/order_item.html'
+    template_name = 'vendors/order_item.html'
     username = request.user.username
     
     if not vendors_service.is_vendor(request.user):
@@ -1760,15 +1760,12 @@ def order_item(request, order_uuid=None, item_uuid=None):
         'shipment': shipment_service.find_order_shipment(order),
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
-        'order_is_cancelable' :  orders_service.is_cancelable(order),
-        'order_can_be_shipped' :  orders_service.can_be_shipped(order)
     }
-    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 @login_required
 def order_item_update(request, order_uuid=None, item_uuid=None):
-    template_name = 'dashboard/order_item_update.html'
+    template_name = 'vendors/order_item_update.html'
     username = request.user.username
     
     if not vendors_service.is_vendor(request.user):
@@ -1777,7 +1774,6 @@ def order_item_update(request, order_uuid=None, item_uuid=None):
     
     order = get_object_or_404(Order, order_uuid=order_uuid)
     item = get_object_or_404(OrderItem, item_uuid=item_uuid)
-    product_count = order.order_items.count()
     page_title = _('Order Item Update')
 
     if request.method == 'POST':
@@ -1788,7 +1784,7 @@ def order_item_update(request, order_uuid=None, item_uuid=None):
             msg = f'Order Item {item} updated'
             messages.success(request, msg)
             logger.info(msg)
-            return redirect('dashboard:order-detail', order_uuid=order_uuid)
+            return redirect(item.get_vendor_url())
         else:
             msg = f'Order Item {item} could not be updated'
             messages.error(request, msg)
@@ -1802,10 +1798,6 @@ def order_item_update(request, order_uuid=None, item_uuid=None):
         'shipment': shipment_service.find_order_shipment(order),
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
-        'order_can_be_shipped' :  orders_service.can_be_shipped(order),
         'form': OrderItemUpdateForm(instance=item)
     }
-    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
-
-'''

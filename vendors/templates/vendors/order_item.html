@@ -1,0 +1,101 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% load catalog_tags %}
+{% load shipment_status %}
+{% load order_tag %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Order" %} - {{order.order_ref_number}}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+    </div>
+{% endblock HEADER_BANNER %}
+
+
+{% block MAIN_CONTENT %}
+
+{% if is_seller  %}
+<div class="container">
+    <div class="actions">
+        
+        <a class="mat-button mat-button-default" href="{{item.get_vendor_update_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Update" %}</span></a>
+        
+        <a class="mat-button mat-button-text" href="{% url 'vendors:orders' %}"><i class="fas fa-list icon"></i><span>{% trans "Orders" %}</span></a>
+        <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Panel" %}</span></a>   
+        
+    </div><!--End of Banner-Actions-->
+    <div class="mat-box wrapper full">
+        <div class="grid">
+            <div class="box">
+                <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
+        
+                <p class="entry"><span class="key">{% trans "Order Status" %}</span> <span class="value">{{order.status|order_status_value}}</span></p>
+                <p class="entry"><span class="key">{% trans "Shipping Status" %}</span> <span class="value">{% if shipment %}{{shipment.shipment_status|shipment_status_value}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
+                <p class="entry"><span class="key">{% trans "Is Paid" %}</span> <span class="value"> {% trans  order.is_paid|yesno %} </span></p>
+            </div>
+
+            <div class="box">
+                <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
+                <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
+            </div>
+           
+            
+        </div><!--End of title-->
+        <div class="mat-box-content">
+            
+        </div><!--End mat-box-content-->
+    </div><!--End mat-box-->
+    <div class="mat-box wrapper full">
+        <div class="grid title">
+            <div class="mat-box-title wrapper">
+                <h4> {% trans "Order Item" %}</h4>
+            </div>
+            <div class="img-wrapper col-xs-12 col-2">
+                <img class="img-responsive" src="{{item.image}}" alt="">
+            </div>
+            
+        </div><!--End of title-->
+        <div class="mat-box-content">
+            <div class="row">
+                <div class="box">
+                    <div class="entry">
+                    <span class="key">{% trans "Name" %}</span> <span class="value">{{item.name}}</span>
+                    </div>
+                    <div class="entry">
+                    <span class="key">{% trans "Display Name" %}</span> <span class="value">{{item.display_name}}</span>
+                    </div>
+                    <div class="entry">
+                    <span class="key">{% trans "Brand" %}</span> <span class="value">{{item.brand.display_name}}</span>
+                    </div>
+                    <div class="entry">
+                    <span class="key">{% trans "Gender" %}</span> <span class="value">{{item.gender|gender_value}}</span>
+                    </div>
+                    
+                    
+                </div>
+                <div class="box">
+                    <div class="entry">
+                        <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{item.unit_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Promotion Price" %}</span> <span class="value">{{item.promotion_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Quantity" %}</span> <span class="value">{{item.quantity}}</span>
+                    </div>
+                </div>
+            </div><!--End of Table Wrapper-->
+        </div><!--End mat-box-content-->
+        
+    </div><!--End mat-box-->
+</div>
+
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN_CONTENT %}

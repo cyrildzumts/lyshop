@@ -29,6 +29,8 @@ urlpatterns = [
     path('coupons/delete/',views.coupons_delete, name='coupons-delete'),
 
     path('orders/', views.orders, name='orders'),
+    path('orders/order-item/<uuid:order_uuid>/<uuid:item_uuid>/', views.order_item, name='order-item'),
+    path('orders/order-item/update/<uuid:order_uuid>/<uuid:item_uuid>/', views.order_item_update, name='order-item-update'),
 
     path('payments/', views.payments, name='payments'),
     path('payments/details/<uuid:payment_uuid>/', views.payment_details, name='payment-detail'),
