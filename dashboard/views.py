@@ -517,7 +517,7 @@ def order_item(request, order_uuid=None, item_uuid=None):
     return render(request,template_name, context)
 
 @login_required
-def order_update_item(request, order_uuid=None, item_uuid=None):
+def order_item_update(request, order_uuid=None, item_uuid=None):
     template_name = 'dashboard/order_item_update.html'
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
