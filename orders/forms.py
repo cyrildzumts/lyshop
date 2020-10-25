@@ -65,4 +65,4 @@ class OrderItemUpdateForm(forms.ModelForm):
 
     class Meta:
         model = OrderItem
-        fields = ['change_by', 'quantity']
+        fields = ['changed_by', 'quantity']
