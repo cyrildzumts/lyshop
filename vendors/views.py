@@ -1723,10 +1723,18 @@ def orders(request):
 
     page_title = _('Order Item')
     order_items = OrderItem.objects.filter(product__product__sold_by=request.user)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(order_items, utils.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
 
     context = {
         'page_title': page_title,
-        'order_items' : order_items
+        'order_items' : list_set
     }
     return render(request,template_name, context)
 

@@ -38,6 +38,7 @@
                 <table id="item-list" class="mat-table">
                     <thead>
                             <tr>
+                                    <th></th>
                                     <th>{% trans "Order Reference" %}</th>
                                     <th>{% trans "Display Name" %}</th>
                                     <th>{% trans "Options" %}</th>
@@ -51,6 +52,7 @@
                     <tbody>
                             {% for item in order_items  %}
                             <tr>
+                                <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{item.image}}" alt="{{item.display_name}}"></div></td>
                                 <td>{{item.order.order_ref_number}}</td>
                                 <td>{{item.product.display_name}}</td>
                                 <td><div class="row">{% for attr in item.product.attributes.all %} <span>{{attr}}</span> {% endfor %}</div></td>
@@ -64,6 +66,7 @@
                     </tbody>
 
                 </table>
+                {% include "tags/pagination.html" with page_set=order_items %}
             </div><!--End of Table Wrapper-->
         </div><!--End mat-box-content-->
     </div><!--End mat-box-->

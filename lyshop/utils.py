@@ -6,7 +6,7 @@ import random
 
 logger = logging.getLogger(__name__)
 
-PAGINATED_BY = 10
+PAGINATED_BY = 50
 RAND_START = 0
 RAND_END = 1000000
 
