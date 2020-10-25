@@ -469,7 +469,9 @@ a.button{
 }
 /*  */
 
-
+.ft-middle{
+	font-size: 0.85em;
+}
 .main{
   font-family: 'Montserrat';
   font-size: 1.25em;
