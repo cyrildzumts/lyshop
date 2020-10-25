@@ -141,8 +141,6 @@
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
 {% endif %}
-{% endblock MAIN_CONTENT %}
-
 <script type="text/javascript">
 var types = [
 {% for k,v in ATTRIBUTE_TYPE %}
@@ -169,3 +167,5 @@ var attr_template = {
 ]
 };
 </script>
+{% endblock MAIN_CONTENT %}
+
