@@ -1,6 +1,6 @@
 
 from django import forms
-from orders.models import PaymentRequest, Order
+from orders.models import PaymentRequest, Order, OrderItem
 from core.forms import ListField, IntergerListField
 
 
@@ -59,3 +59,10 @@ class OrderFilterOption(forms.Form):
     payment_option = forms.IntegerField(required=False)
     amount = forms.IntegerField(required=False)
     date = forms.DateTimeField(required=False)
+
+
+class OrderItemUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = OrderItem
+        fields = ['change_by', 'quantity']

@@ -60,3 +60,9 @@ class OrderSoldItemForm(forms.Form):
     quantity = forms.IntegerField(required=False)
     status = forms.IntegerField(required=False)
     changed_by = forms.IntegerField()
+
+class OrderItemForm(forms.Form):
+    product = forms.IntegerField(required=False)
+    quantity = forms.IntegerField(required=False)
+    status = forms.IntegerField(required=False)
+    changed_by = forms.IntegerField()

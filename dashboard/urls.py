@@ -53,6 +53,8 @@ urlpatterns = [
 
     path('orders/', views.orders, name='orders'),
     path('orders/detail/<uuid:order_uuid>/', views.order_detail, name='order-detail'),
+    path('orders/order-item/<uuid:order_uuid>/<uuid:item_uuid>/', views.order_item, name='order-item'),
+    path('orders/order-item/update/<uuid:order_uuid>/<uuid:item_uuid>/', views.order_item_update, name='order-item-update'),
     path('orders/cancel/<uuid:order_uuid>/', views.order_cancel, name='order-cancel'),
     path('orders/add-order-for-shipment/<uuid:order_uuid>/', views.add_order_for_shipment, name='add-order-for-shipment'),
     path('orders/update/<uuid:order_uuid>/', views.order_update, name='order-update'),
