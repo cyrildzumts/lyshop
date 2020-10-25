@@ -62,7 +62,7 @@
                                 <td><span>{{item.unit_price}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td><span>{{item.active_total_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
-                                <td>{{item.created_at}}</td>
+                                <td>{{item.created_at|date:'Y m d H:i::s'}}</td>
                             </tr>
                             {% endfor %}
                             
