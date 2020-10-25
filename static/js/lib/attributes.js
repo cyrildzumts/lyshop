@@ -337,6 +337,7 @@ function create_attribute_entry(container, form){
 $(document).ready(function(){
 
     $('.js-add-new-attribute').on('click', function(){
+        console.log("Add new attr cicked");
         var target = $($(this).data('target'));
         var form_container = $($(this).data('form'));
         create_attribute_entry(target, form_container);
