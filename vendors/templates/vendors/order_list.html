@@ -46,6 +46,8 @@
                                     <th>{% trans "Unit Price" %}</th>
                                     <th>{% trans "Promotion Price" %}</th>
                                     <th>{% trans "Total Price" %}</th>
+                                    <th>{% trans "Ordered Date" %}</th>
+
 
                             </tr>
                     </thead>
@@ -60,6 +62,7 @@
                                 <td><span>{{item.unit_price}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td><span>{{item.active_total_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                                <td>{{item.created_at}}</td>
                             </tr>
                             {% endfor %}
                             

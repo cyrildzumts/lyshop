@@ -1722,7 +1722,7 @@ def orders(request):
         raise PermissionDenied
 
     page_title = _('Order Item')
-    order_items = OrderItem.objects.filter(product__product__sold_by=request.user)
+    order_items = OrderItem.objects.filter(product__product__sold_by=request.user).order_by('-created_at')
     page = request.GET.get('page', 1)
     paginator = Paginator(order_items, utils.PAGINATED_BY)
     try:
