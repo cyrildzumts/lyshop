@@ -1726,7 +1726,7 @@ def orders(request):
 
     context = {
         'page_title': page_title,
-        'order_items' : item
+        'order_items' : order_items
     }
     return render(request,template_name, context)
 
