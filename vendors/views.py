@@ -1738,7 +1738,6 @@ def orders(request):
     }
     return render(request,template_name, context)
 
-'
 @login_required
 def order_item(request, order_uuid=None, item_uuid=None):
     template_name = 'vendors/order_item.html'
