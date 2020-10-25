@@ -22,6 +22,7 @@ from orders.models import Order, OrderItem
 from core.filters import filters
 from lyshop import utils, settings
 from vendors import vendors_service
+from shipment import shipment_service
 from vendors.models import Balance, BalanceHistory, VendorPayment, VendorPaymentHistory, SoldProduct
 from payment.models import Payment
 import logging
