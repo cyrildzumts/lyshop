@@ -28,6 +28,8 @@ urlpatterns = [
     path('coupons/',views.coupons, name='coupons'),
     path('coupons/delete/',views.coupons_delete, name='coupons-delete'),
 
+    path('orders/', views.orders, name='orders'),
+
     path('payments/', views.payments, name='payments'),
     path('payments/details/<uuid:payment_uuid>/', views.payment_details, name='payment-detail'),
     path('products/', views.product_list, name='products'),

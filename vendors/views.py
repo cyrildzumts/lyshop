@@ -18,6 +18,7 @@ from catalog import constants as Catalog_Constants
 from accounts.models import Account
 from cart.models import Coupon
 from cart.forms import CouponForm
+from orders.models import OrderItem
 from core.filters import filters
 from lyshop import utils, settings
 from vendors import vendors_service
@@ -1710,3 +1711,93 @@ def request_payment(request):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
+
+@login_required
+def orders(request):
+    template_name = 'vendors/order_list.html'
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    page_title = _('Order Item')
+    order_items = OrderItem.objects.filter(product__product__sold_by=request.user)
+
+    context = {
+        'page_title': page_title,
+        'order_items' : item
+    }
+    return render(request,template_name, context)
+
+'''
+@login_required
+def order_item(request, order_uuid=None, item_uuid=None):
+    template_name = 'dashboard/order_item.html'
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    page_title = _('Order Item')
+    
+
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    item = get_object_or_404(OrderItem, item_uuid=item_uuid)
+    context = {
+        'page_title': page_title,
+        'order': order,
+        'item' : item,
+        'shipment': shipment_service.find_order_shipment(order),
+        'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
+        'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
+        'order_is_cancelable' :  orders_service.is_cancelable(order),
+        'order_can_be_shipped' :  orders_service.can_be_shipped(order)
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+@login_required
+def order_item_update(request, order_uuid=None, item_uuid=None):
+    template_name = 'dashboard/order_item_update.html'
+    username = request.user.username
+    
+    if not vendors_service.is_vendor(request.user):
+        logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    item = get_object_or_404(OrderItem, item_uuid=item_uuid)
+    product_count = order.order_items.count()
+    page_title = _('Order Item Update')
+
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        form = OrderItemUpdateForm(postdata,instance=item)
+        if form.is_valid():
+            form.save()
+            msg = f'Order Item {item} updated'
+            messages.success(request, msg)
+            logger.info(msg)
+            return redirect('dashboard:order-detail', order_uuid=order_uuid)
+        else:
+            msg = f'Order Item {item} could not be updated'
+            messages.error(request, msg)
+            logger.info(msg)
+            logger.error(form.errors.items())
+
+    context = {
+        'page_title': page_title,
+        'order': order,
+        'item' : item,
+        'shipment': shipment_service.find_order_shipment(order),
+        'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
+        'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
+        'order_can_be_shipped' :  orders_service.can_be_shipped(order),
+        'form': OrderItemUpdateForm(instance=item)
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+'''

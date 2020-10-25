@@ -1,0 +1,71 @@
+{% extends "order_base.html"%}
+{% load i18n %}
+{% load order_tag %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Orders" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col col-9">
+                <div class="banner--actions">
+                    <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}">{% trans "Orders" %}</a>
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+
+{% block MAIN %}
+
+<div class="container">
+    <div class="mat-box wrapper full">
+        <div class="grid title">
+            <div class="mat-box-title wrapper">
+                <h4> {% trans "Order Items" %}</h4>
+            </div>
+            
+        </div><!--End of title-->
+        <div class="mat-box-content">
+            <div class="mat-table-wrapper">
+                <table id="item-list" class="mat-table">
+                    <thead>
+                            <tr>
+                                    <th>{% trans "Order Reference" %}</th>
+                                    <th>{% trans "Display Name" %}</th>
+                                    <th>{% trans "Options" %}</th>
+                                    <th>{% trans "Quantiy" %}</th>
+                                    <th>{% trans "Unit Price" %}</th>
+                                    <th>{% trans "Promotion Price" %}</th>
+                                    <th>{% trans "Total Price" %}</th>
+
+                            </tr>
+                    </thead>
+                    <tbody>
+                            {% for item in order_items  %}
+                            <tr>
+                                <td>{{item.order.order_ref_number}}</td>
+                                <td>{{item.product.display_name}}</td>
+                                <td><div class="row">{% for attr in item.product.attributes.all %} <span>{{attr}}</span> {% endfor %}</div></td>
+                                <td>{{item.quantity}}</td>
+                                <td><span>{{item.unit_price}}</span> <span>{% trans CURRENCY %}</span></td>
+                                <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                                <td><span>{{item.active_total_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                            </tr>
+                            {% endfor %}
+                            
+                    </tbody>
+
+                </table>
+            </div><!--End of Table Wrapper-->
+        </div><!--End mat-box-content-->
+    </div><!--End mat-box-->
+</div>
+{% endblock MAIN %}
