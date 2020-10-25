@@ -18,6 +18,7 @@ from catalog import constants as Catalog_Constants
 from accounts.models import Account
 from cart.models import Coupon
 from cart.forms import CouponForm
+from orders.forms import OrderItemUpdateForm
 from orders.models import Order, OrderItem
 from orders import commons as Order_Constants
 from core.filters import filters
