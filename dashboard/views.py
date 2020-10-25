@@ -507,7 +507,6 @@ def order_item(request, order_uuid=None, item_uuid=None):
         'order': order,
         'item' : item,
         'shipment': shipment_service.find_order_shipment(order),
-        'orderItems': orderItems,
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
         'order_is_cancelable' :  orders_service.is_cancelable(order),
