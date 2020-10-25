@@ -96,19 +96,19 @@ class OrderItem(models.Model):
             return self.product.product.images.first().get_image_url()
     
     def get_absolute_url(self):
-        return reverse("orders:order-item", kwargs={"item_uuid": self.item_uuid})
+        return reverse("orders:order-item", kwargs={"order_uuid": self.order.order_uuid, "item_uuid": self.item_uuid})
     
     def get_dashboard_url(self):
-        return reverse("dashboard:order-item", kwargs={"item_uuid": self.item_uuid})
+        return reverse("dashboard:order-item", kwargs={"order_uuid": self.order.order_uuid, "item_uuid": self.item_uuid})
     
     def get_update_url(self):
-        return reverse("dashboard:order-item-update", kwargs={"item_uuid": self.item_uuid})
+        return reverse("dashboard:order-item-update", kwargs={"order_uuid": self.order.order_uuid, "item_uuid": self.item_uuid})
 
     def get_vendor_url(self):
-        return reverse("vendors:order-item", kwargs={"item_uuid": self.item_uuid})
+        return reverse("vendors:order-item", kwargs={"order_uuid": self.order.order_uuid, "item_uuid": self.item_uuid})
     
     def get_vendor_update_url(self):
-        return reverse("vendors:order-item-update", kwargs={"item_uuid": self.item_uuid})
+        return reverse("vendors:order-item-update", kwargs={"order_uuid": self.order.order_uuid, "item_uuid": self.item_uuid})
 
     @property
     def image(self):
