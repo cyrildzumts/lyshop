@@ -60,8 +60,8 @@ function create_attribute(index){
     }).appendTo(select_value_type);
     attr_template.value_types.forEach(function(el, index){
         $('<option/>', {
-            'value': el.value,
-            'text' : el.key
+            'value': el.key,
+            'text' : el.value
         }).appendTo(select_value_type);
     });
     var input_form_id = $('<input type="hidden">').attr({
@@ -180,8 +180,8 @@ var AttributManager = (function(){
         }).appendTo(select_value_type);
         attr_template.value_types.forEach(function(el, index){
             $('<option/>', {
-                'value': el.value,
-                'text' : el.key
+                'value': el.key,
+                'text' : el.value
             }).appendTo(select_value_type);
         });
         var input_form_id = $('<input type="hidden">').attr({
@@ -317,8 +317,8 @@ function create_attribute_entry(container, form){
     }).appendTo(select_value_type);
     attr_template.value_types.forEach(function(el, index){
         $('<option/>', {
-            'value': el.value,
-            'text' : el.key
+            'value': el.key,
+            'text' : el.value
         }).appendTo(select_value_type);
     });
     var input_form_id = $('<input type="hidden">').attr({
