@@ -21,9 +21,9 @@
 <div class="container">
     <div class="actions">
         
-        <a class="mat-button mat-button-default" href="{{order.get_vendor_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Order Item" %}</span></a>
+        <a class="mat-button mat-button-default" href="{{item.get_vendor_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Order Item" %}</span></a>
         <a class="mat-button mat-button-text" href="{% url 'vendors:orders' %}"><i class="fas fa-list icon"></i><span>{% trans "Orders" %}</span></a>
-        <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>   
+        <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Panel" %}</span></a>   
         
     </div><!--End of Banner-Actions-->
     
@@ -72,7 +72,7 @@
             </div><!--End of Table Wrapper-->
         </div><!--End mat-box-content-->
         <div class="actions">
-            <a class="mat-button mat-button-text js-cancel" href="{{order.get_vendor_url}}">{% trans "Cancel" %}</a>
+            <a class="mat-button mat-button-text js-cancel" href="{{item.get_vendor_url}}">{% trans "Cancel" %}</a>
             <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
         </div>
     </div><!--End mat-box-->
