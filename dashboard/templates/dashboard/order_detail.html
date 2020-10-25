@@ -93,7 +93,7 @@
                                 <td><span>{{item.unit_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td><span>{{item.active_total_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
-                                <td><a class="mat-button mat-button-default" href="{{item.product.product.get_absolute_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Product Details" %}</span></a></td>
+                                <td><a class="mat-button mat-button-default" href="{{item.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Order Item" %}</span></a></td>
                             </tr>
                             {% endfor %}
                             
