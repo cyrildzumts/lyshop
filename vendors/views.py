@@ -19,6 +19,7 @@ from accounts.models import Account
 from cart.models import Coupon
 from cart.forms import CouponForm
 from orders.models import Order, OrderItem
+from orders import commons as Order_Constants
 from core.filters import filters
 from lyshop import utils, settings
 from vendors import vendors_service
