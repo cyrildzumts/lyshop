@@ -43,6 +43,7 @@
                           <th scope="col">{% trans "Customer" %}</th>
                           <th scope="col">{% trans "Reference Number" %}</th>
                           <th scope="col">{% trans "Amount" %}</th>
+                          <th scope="col">{% trans "Quantity" %}</th>
                           <th scope="col">{% trans "Status" %}</th>
                           <th scope="col">{% trans "Payment Option" %}</th>
                           <th scope="col">{% trans "Date" %}</th>
@@ -56,6 +57,7 @@
                     <td scope="row" data-label="Customer">{{o.user.get_full_name}}</td>
                     <td scope="row" data-label="Reference Number">{{o.order_ref_number}}</td>
                     <td data-label="{% trans 'Amount' %}">{{o.amount|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                    <td data-label="{% trans 'Quantity' %}">{{o.quantity}} </td>
                     <td data-label="{% trans 'Status' %}">{{o.status|order_status_value}} </td>
                     <td data-label="{% trans 'Payment Option' %}">{{o.payment_option|payment_option_value}} </td>
                     <td data-label="{% trans 'Date' %}">{{o.created_at|date:"F j, Y"}}</td>
