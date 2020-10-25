@@ -75,7 +75,7 @@
             
         </div><!--End of title-->
         <div class="mat-box-content">
-            <div class="grid">
+            <div class="row">
                 <div class="box">
                     <div class="entry">
                     <span class="key">{% trans "Name" %}</span> <span class="value">{{item.name}}</span>
@@ -93,16 +93,14 @@
                     
                 </div>
                 <div class="box">
-                    
-                    <div class="entry">
-                        <span class="key">{% trans "Quantity" %}</span> <span class="value"><input type="text" name="quantity" id="quantity" value="{{item.quantity}}"></span>
-                    </div>
-                    
                     <div class="entry">
                         <span class="key">{% trans "Unit Price" %}</span> <span class="value">{{item.unit_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Promotion Price" %}</span> <span class="value">{{item.promotion_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
+                    </div>
+                    <div class="entry">
+                        <span class="key">{% trans "Quantity" %}</span> <span class="value"><input type="text" name="quantity" id="quantity" value="{{item.quantity}}"></span>
                     </div>
                 </div>
             </div><!--End of Table Wrapper-->
