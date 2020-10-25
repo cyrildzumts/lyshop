@@ -303,7 +303,7 @@ label{
 	left: 0;
 	text-align: left;
 	max-width: 100%;
-	color: #CCC;
+	color: var(--label-color);
 	font-weight: 600;
 	padding: 0 !important;
 	margin-bottom: 0;
@@ -322,7 +322,7 @@ label{
 	letter-spacing: .2px;
 	border: none !important;
 	border-radius: none;
-	border-bottom: 2px solid #CCC !important;
+	border-bottom: 2px solid var(--primary-color) !important;
 	padding: 8px 0 !important;
 	border-radius: 0 !important;
 
