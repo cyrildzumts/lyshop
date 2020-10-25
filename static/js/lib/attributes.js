@@ -341,7 +341,11 @@ $(document).ready(function(){
         var form_container = $($(this).data('form'));
         create_attribute_entry(target, form_container);
     });
-    $('.variant-attr').on('change', function(){
-        $('#' + $(this).data('target')).toggle('hidden', this.checked);
+    $('.variant-attr-input').on('change', function(){
+        var target = '#' + $(this).data('target');
+        var len = $('variant-attr-input').filter(function(){
+            return this.checked;
+        }).length;
+        $(target).toggle('hidden', len == 0)
     });
 });
