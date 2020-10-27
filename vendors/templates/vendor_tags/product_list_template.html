@@ -19,6 +19,7 @@
           <thead>
                   <tr>
                           <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
+                          <th scope="col"></th>
                           <th scope="col">{% trans "Name" %}</th>
                           <th scope="col">{% trans "Display Name" %}</th>
                           <th scope="col">{% trans "Gender" %}</th>
@@ -36,7 +37,7 @@
                   {% if is_seller %}
                   <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{product.pk}}"><span class="checkbox-label"></span></label></td>
                   {% endif %}
-                  
+                  <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{product.image}}" alt="{{product.display_name}}"></div></td>
                   <td scope="row" data-label="{% trans 'Name' %}">{{product.name}}</td>
                   <td scope="row" data-label="{% trans 'Display Name' %}">{{product.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Gender' %}">{{product.gender|gender_value}}</td>

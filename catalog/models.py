@@ -312,6 +312,11 @@ class Product(models.Model):
     def is_promoted(self):
         return self.promotion_price is not None
     
+     @property
+    def image(self):
+        if self.images.exists():
+            return self.images.first().get_image_url()
+    
 
 class SKUModel(models.Model):
     sku = models.CharField(max_length=32,blank=False, null=False)
@@ -372,6 +377,13 @@ class ProductVariant(models.Model):
     @property
     def is_promoted(self):
         return self.promotion_price is not None or self.product.is_promoted
+
+     @property
+    def image(self):
+        if self.images.exists():
+            return self.images.first().get_image_url()
+       
+        return self.product.image
 
 
 

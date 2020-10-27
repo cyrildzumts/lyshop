@@ -72,6 +72,7 @@
                 <table id="item-list" class="mat-table">
                     <thead>
                             <tr>
+                                    <th></th>
                                     <th>{% trans "Display Name" %}</th>
                                     <th>{% trans "Options" %}</th>
                                     <th>{% trans "Quantiy" %}</th>
@@ -84,6 +85,7 @@
                     <tbody>
                             {% for item in order.order_items.all  %}
                             <tr>
+                                <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{item.image}}" alt="{{item.display_name}}"></div></td>
                                 <td>{{item.product.display_name}}</td>
                                 <td><div class="row">{% for attr in item.product.attributes.all %} <span>{{attr}}</span> {% endfor %}</div></td>
                                 <td>{{item.quantity}}</td>
