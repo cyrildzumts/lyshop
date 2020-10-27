@@ -312,7 +312,7 @@ class Product(models.Model):
     def is_promoted(self):
         return self.promotion_price is not None
     
-     @property
+    @property
     def image(self):
         if self.images.exists():
             return self.images.first().get_image_url()
