@@ -378,7 +378,7 @@ class ProductVariant(models.Model):
     def is_promoted(self):
         return self.promotion_price is not None or self.product.is_promoted
 
-     @property
+    @property
     def image(self):
         if self.images.exists():
             return self.images.first().get_image_url()
