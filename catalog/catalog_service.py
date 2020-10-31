@@ -38,7 +38,7 @@ def clean_grouped_attrs(attrs):
         selective = len(v['value']) > 1
         v['selective'] = selective
         if not selective:
-            value = v['value'][0]['value']
+            value = v['value'][0]
             v['value'].clear()
             v['value'] = value
 
@@ -70,7 +70,7 @@ def group_attrs(attrs):
     for attr in attrs:
         name = attr['name']
         if name not in grouped_attrs:
-            grouped_attrs[name] = {'display_name' : attr['display_name'], 'value': [{'variant': attr['variant'], 'value': attr['value']}]}
+            grouped_attrs[name] = {'display_name' : attr['display_name'], 'variant': attr['variant'], 'value': [{'variant': attr['variant'], 'value': attr['value']}]}
         else:
             value = {'variant': attr['variant'], 'value': attr['value']}
             entry = grouped_attrs[name]
