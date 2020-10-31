@@ -87,6 +87,10 @@ def product_attributes(product_id):
         for attr in v.attributes.values('id', 'name', 'display_name', 'value'):
             attr['variant'] = v.product_uuid
             attrs.append(attr)
+    if len(attrs):
+        logger.info("Attrs available")
+    else: 
+        logger.info("Attrs not available")
     return group_attrs(attrs)
     
 
