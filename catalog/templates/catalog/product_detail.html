@@ -39,8 +39,11 @@
         <div class="wrapper full">
             <form id="add-cart-form" action="{% url 'cart:cart-add' %}" method="POST">{% csrf_token %}
             <input type="hidden" name="product" value="{{product.product_uuid}}">
-            {% if selective_attrs|length == 1 %}<input type="hidden" name="variant_uuid" value="{{selective_attrs.0.variant_uuid}}">{% endif %}
-            {% if not product_attrs.has_selective %}<input type="hidden" name="variant_uuid" value="{{product_attrs.variant}}">{% endif %}
+            {% if not product_attrs.has_selective %}
+                <input id="variant" type="hidden" name="variant_uuid" value="{{product_attrs.variant}}">
+            {% else %}
+                <input id="variant" type="hidden" name="variant_uuid">
+            {% endif %}
             
             <div class="product-detail-properties left">
                 
@@ -66,8 +69,10 @@
                         <li class="attr-wrapper">
                           {% if attr.selective %}
                             <div class="entry">
-                            
-                            <span class="key">{% trans attr.display_name %}</span>
+                              <span class="key">{% trans attr.display_name %}</span>
+                            <div class="row value">
+                              {% for e in attr.value %} <span class="js-attr-select chips" data-value="{{e.variant}}" data-target="variant">{{e.value}}</span> {% endfor %}
+                            </div>
                             <select name="variant_uuid" id="selective-attr-2">
                               {% for e in attr.value %} <option value="{{e.variant}}">{{e.value}}</option> {% endfor %}
                             </select>
@@ -81,42 +86,14 @@
                           {% endif %}
                         </li>
                         {% endfor %}
+                        <li class="attr-wrapper">
+                          <div class="attr description entry">
+                              <span class="key">{% trans "Description" %}</span>
+                              <p class="value">{{product.description}}</p>
+                          </div>
+                        </li>
                       
                       </ul>
-                      
-                      <ul class="mat-list">
-                          {% for attr in common_attrs %}
-                            <li class="attr-wrapper">
-                            <div class="attr entry">
-                              <span class="key">{% trans attr.display_name %}</span><span class="value">{{attr.value}}</span>
-                              <input type="hidden" name="attr" value="{{attr.id}}">
-                            </div>
-                            </li>
-                          {% endfor %}
-                          {% if selective_attrs|length > 1 %}
-                          <li class="attr-wrapper">
-                            <div class="attr entry">
-                              <span class="key">{% trans "Option" %}</span>
-                              <select id="selective-attr" name="variant_uuid" class="value" >
-                                  <option value=""></option>
-                              {% for attr in selective_attrs %}
-                                  {% for attribute in attr.attrs %}
-                                  <option value="{{attr.variant_uuid}}">{{attribute}}</option>
-                                  {% endfor %}
-                                
-                              {% endfor %}
-                              </select>
-                            </div>
-                          </li>
-                          {% endif %}
-                          <li class="attr-wrapper">
-                            <div class="attr description entry">
-                                <span class="key">{% trans "Description" %}</span>
-                                <p class="value">{{product.description}}</p>
-                            </div>
-                          </li>
-                      </ul>
-                
                 </div>
                 <div class="actions">
                   <button type="submit" class="mat-button mat-button-default js-add-to-cart">
