@@ -142,12 +142,15 @@ def product_detail(request, product_uuid=None):
     Product.objects.filter(product_uuid=product_uuid).update(view_count=F('view_count') + 1)
     images = ProductImage.objects.filter(product=product)
     common_attrs, selective_attrs = catalog_service.get_product_attributes(product.id)
+    product_attrs = catalog_service.product_attributes(product.id)
+    utils.show_dict_contents(product_attrs, f"Product Attributes for {product.display_name}")
     context = {
         'page_title': page_title,
         'product': product,
         'image_list': images,
         'common_attrs' : common_attrs,
-        'selective_attrs' : selective_attrs
+        'selective_attrs' : selective_attrs,
+        'product_attrs': product_attrs
     }
     return render(request,template_name, context)
 

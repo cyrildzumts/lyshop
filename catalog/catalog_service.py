@@ -22,6 +22,76 @@ def get_product_attributes(product_id):
 
     return common_attrs, selective_attrs
 
+
+def clean_grouped_attrs(attrs):
+    if not isinstance(attrs, list):
+        logger.warn("clean_grouped_attrs : attrs not of the type list")
+        return {}
+    cleaned_attrs = attrs
+    for k,v in cleaned_attrs.items():
+        selective = len(v['value']) > 1
+        v['selective'] = selective
+        if not selective:
+            value = v['value'][0]['value']
+            v['value'].clear()
+            v['value'] = value
+
+    return clean_grouped_attrs
+
+def group_attrs(attrs):
+    '''
+    This method regroups products into an iterable
+    attrs is a list of ProductAttribute represented as dict.
+    example : 
+    a product has the following variants attributes:
+    {id, name, display_name, value, variant}
+    id = attribute id, name = attribute name ... variant = the variant uuid that has this attribute for a defined product
+    with a list of attributes as follow :
+        {id=1, name="size", display_name="Size", value=30, variant=uuid_value_1}
+        {id=2, name="size", display_name="Size", value=31, variant=uuid_value_2}
+        {id=3, name="size", display_name="Size", value=32, variant=uuid_value_3}
+        ...
+        {id=4, name="color", display_name="Color", value="red", variant=uuid_value_4}
+    
+    calling group_attrs with these attributes will produce the following result :
+        {size = {display_name=Size, value=[{variant=uuid_value_1, value=30},{variant=uuid_value_2, value=31},{variant=uuid_value_3, value=32}], selective=true}}
+        {color = {display_name=Color, value="red", selective=false}
+    '''
+    if not isinstance(attrs, list):
+        logger.warn("group_attrs : attrs not of the type list")
+        return {}
+    grouped_attrs = {}
+    for attr in attrs:
+        name = attr['name']
+        if name not in grouped_attrs:
+            grouped_attrs[name] = {'display_name' : attr['display_name'], 'value': [{'variant': attr['variant'], 'value': attr['value']}]}
+        else:
+            value = {'variant': attr['variant'], 'value': attr['value']}
+            entry = grouped_attrs[name]
+            if value not in entry['value']:
+                entry['value'].append(value)
+    return clean_grouped_attrs(grouped_attrs)
+
+
+
+
+## TODO  product_attributes need to be cached
+def product_attributes(product_id):
+    if not isinstance(product_id, int):
+        logger.warn("product_attributes : product_id not of the type int")
+        return {}
+    variants = ProductVariant.objects.filter(product=product_id)
+    attr_dict = {}
+    attrs = []
+    for v in variants:
+        for attr in v.attributes.values('id', 'name', 'display_name', 'value'):
+            attr['variant'] = v.product_uuid
+            attrs.append(attr)
+    return group_attrs(attrs)
+    
+
+
+
 def get_product_variant_attrs(product_id):
     """
     This method returns a tuple that contains two queryset :
