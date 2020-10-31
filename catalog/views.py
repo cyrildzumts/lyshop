@@ -150,7 +150,9 @@ def product_detail(request, product_uuid=None):
         'image_list': images,
         'common_attrs' : common_attrs,
         'selective_attrs' : selective_attrs,
-        'product_attrs': product_attrs
+        'product_attrs': product_attrs,
+        'has_selective' : product_attrs['has_selective'],
+        'variant' : product_attrs['variant']
     }
     return render(request,template_name, context)
 
