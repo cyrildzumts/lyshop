@@ -62,11 +62,12 @@
 
                       <ul class="mat-list bordered">
                       <li class="mat-list-item active">Debug Product Attribute</li>
-                        {% for key, attr in product_attrs.items %}
+                        {% for attr in product_attrs.items %}
                         <li>
                           {% if attr.value.selective %}
                             <div class="entry">
-                            <span class="key">{{attr.value.display_name}}</span>
+                            
+                            <span class="key"> selective - {{attr.value.display_name}}</span>
                             <select name="variant_uuid" id="">
                               {% for e in attr.value.value %} <option value="{{e.variant}}">{{e.value}}</option> {% endfor %}
                             </select>
@@ -74,7 +75,7 @@
                           
                           {% else %}
                             <div class="entry">
-                              <span class="key">{{attr.value.display_name}}</span>
+                              <span class="key"> non-selective - {{attr.value.display_name}}</span>
                               <span class="value">{{e.value}}</span>
                             </div>
                           {% endif %}
