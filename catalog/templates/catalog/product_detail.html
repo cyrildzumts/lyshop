@@ -40,7 +40,7 @@
             <form id="add-cart-form" action="{% url 'cart:cart-add' %}" method="POST">{% csrf_token %}
             <input type="hidden" name="product" value="{{product.product_uuid}}">
             {% if selective_attrs|length == 1 %}<input type="hidden" name="variant_uuid" value="{{selective_attrs.0.variant_uuid}}">{% endif %}
-            {% if not has_selective %}<input type="hidden" name="variant_uuid" value="{{variant}}">{% endif %}
+            {% if not product_attrs.has_selective %}<input type="hidden" name="variant_uuid" value="{{product_attrs.variant}}">{% endif %}
             
             <div class="product-detail-properties left">
                 
