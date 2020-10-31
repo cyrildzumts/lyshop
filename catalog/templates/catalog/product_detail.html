@@ -60,9 +60,9 @@
                       </div>
                       {% endif %}
 
-                      <ul class="mat-list">
+                      <ul class="mat-list bordered">
                       <li class="mat-list-item active">Debug Product Attribute</li>
-                        {% for attr in product_attrs %}
+                        {% for key, attr in product_attrs.items %}
                         <li>
                           {% if attr.value.selective %}
                             <div class="entry">
