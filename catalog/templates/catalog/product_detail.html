@@ -60,15 +60,14 @@
                       </div>
                       {% endif %}
 
-                      <ul class="mat-list bordered">
-                      <li class="mat-list-item active">Debug Product Attribute</li>
+                      <ul class="mat-list">
                         {% for k, attr in product_attrs.items %}
-                        <li>
+                        <li class="attr-wrapper">
                           {% if attr.selective %}
                             <div class="entry">
                             
                             <span class="key">{% trans attr.display_name %}</span>
-                            <select name="variant_uuid" id="">
+                            <select name="variant_uuid" id="selective-attr-2">
                               {% for e in attr.value %} <option value="{{e.variant}}">{{e.value}}</option> {% endfor %}
                             </select>
                             </div>
