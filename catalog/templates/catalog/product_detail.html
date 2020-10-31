@@ -59,6 +59,29 @@
                         <span class="emphasis">{{product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
                       </div>
                       {% endif %}
+
+                      <ul class="mat-list">
+                      <li class="mat-list-item active">Debug Product Attribute</li>
+                        {% for attr in product_attrs %}
+                        <li>
+                          {% if attr.value.selective %}
+                            <div class="entry">
+                            <span class="key">{{attr.value.display_name}}</span>
+                            <select name="variant_uuid" id="">
+                              {% for e in attr.value.value %} <option value="{{e.variant}}">{{e.value}}</option> {% endfor %}
+                            </select>
+                            </div>
+                          
+                          {% else %}
+                            <div class="entry">
+                              <span class="key">{{attr.value.display_name}}</span>
+                              <span class="value">{{e.value}}</span>
+                            </div>
+                          {% endif %}
+                        </li>
+                        {% endfor %}
+                      
+                      </ul>
                       
                       <ul class="mat-list">
                           {% for attr in common_attrs %}
