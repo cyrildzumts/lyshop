@@ -23,6 +23,12 @@ def get_product_attributes(product_id):
     return common_attrs, selective_attrs
 
 
+def contain_attr(value, value_list):
+    for e in value_list:
+        if 'value' in e and e['value'] == value:
+            return True
+    return False
+
 def clean_grouped_attrs(attrs):
     if not isinstance(attrs, dict):
         logger.warn("clean_grouped_attrs : attrs not of the type dict")
@@ -68,7 +74,7 @@ def group_attrs(attrs):
         else:
             value = {'variant': attr['variant'], 'value': attr['value']}
             entry = grouped_attrs[name]
-            if value not in entry['value']:
+            if not contain_attr(value['value'], entry['value']):
                 entry['value'].append(value)
     return clean_grouped_attrs(grouped_attrs)
 
