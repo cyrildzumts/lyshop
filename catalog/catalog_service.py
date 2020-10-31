@@ -24,8 +24,8 @@ def get_product_attributes(product_id):
 
 
 def clean_grouped_attrs(attrs):
-    if not isinstance(attrs, list):
-        logger.warn("clean_grouped_attrs : attrs not of the type list")
+    if not isinstance(attrs, dict):
+        logger.warn("clean_grouped_attrs : attrs not of the type dict")
         return {}
     cleaned_attrs = attrs
     for k,v in cleaned_attrs.items():
