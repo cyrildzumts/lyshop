@@ -45,11 +45,15 @@ def clean_grouped_attrs(attrs):
             variant = value['variant']
             v['value'].clear()
             v['value'] = value
+    p_attrs = {
+        'attrs' : cleaned_attrs,
+        'has_selective' : has_selective
+    }
     cleaned_attrs['has_selective'] = has_selective
     if not has_selective:
-        cleaned_attrs['variant'] = variant
+        p_attrs['variant'] = variant
     
-    return cleaned_attrs
+    return p_attrs
 
 def group_attrs(attrs):
     '''
