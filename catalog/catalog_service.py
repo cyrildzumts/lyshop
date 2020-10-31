@@ -34,14 +34,21 @@ def clean_grouped_attrs(attrs):
         logger.warn("clean_grouped_attrs : attrs not of the type dict")
         return {}
     cleaned_attrs = attrs
+    has_selective = False
+    variant = None
     for k,v in cleaned_attrs.items():
         selective = len(v['value']) > 1
+        has_selective = selective
         v['selective'] = selective
         if not selective:
             value = v['value'][0]
+            variant = value['variant']
             v['value'].clear()
             v['value'] = value
-
+    cleaned_attrs['has_selective'] = has_selective
+    if not has_selective:
+        cleaned_attrs['variant'] = variant
+    
     return cleaned_attrs
 
 def group_attrs(attrs):
