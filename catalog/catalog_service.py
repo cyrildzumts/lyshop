@@ -49,7 +49,6 @@ def clean_grouped_attrs(attrs):
         'attrs' : cleaned_attrs,
         'has_selective' : has_selective
     }
-    cleaned_attrs['has_selective'] = has_selective
     if not has_selective:
         p_attrs['variant'] = variant
     
