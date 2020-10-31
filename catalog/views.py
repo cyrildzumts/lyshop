@@ -154,6 +154,7 @@ def product_detail(request, product_uuid=None):
         'has_selective' : product_attrs['has_selective'],
         'variant' : product_attrs['variant']
     }
+    utils.show_dict_contents(context, f"Context for {product.display_name}")
     return render(request,template_name, context)
 
 
