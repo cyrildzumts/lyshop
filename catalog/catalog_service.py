@@ -36,7 +36,7 @@ def clean_grouped_attrs(attrs):
             v['value'].clear()
             v['value'] = value
 
-    return clean_grouped_attrs
+    return cleaned_attrs
 
 def group_attrs(attrs):
     '''
