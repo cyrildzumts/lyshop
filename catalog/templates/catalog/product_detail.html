@@ -67,7 +67,7 @@
                           {% if attr.selective %}
                             <div class="entry">
                             
-                            <span class="key"> selective - {{attr.value.display_name}}</span>
+                            <span class="key"> selective - {{attr.display_name}}</span>
                             <select name="variant_uuid" id="">
                               {% for e in attr.value %} <option value="{{e.variant}}">{{e.value}}</option> {% endfor %}
                             </select>
@@ -76,7 +76,7 @@
                           {% else %}
                             <div class="entry">
                               <span class="key"> non-selective - {{attr.display_name}}</span>
-                              <span class="value">{{e.value}}</span>
+                              <span class="value">{{attr.value}}</span>
                             </div>
                           {% endif %}
                         </li>
