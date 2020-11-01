@@ -69,7 +69,7 @@ def catalog_home(request):
     context = {
         'page_title' : page_title,
         'product_list': recent_products,
-        'type_list': ProductType.objects.all()
+        'type_list': ProductType.objects.all(),
         'GENDER' : Constants.GENDER
     }
 
