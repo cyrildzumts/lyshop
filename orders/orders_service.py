@@ -206,3 +206,9 @@ def get_order_shipment(order):
         raise TypeError("Type Error : order argument not of type Order.")
     shipment = None
     return shipment_service.find_order_shipment(order)
+
+## TODO
+def refund_order(order):
+    if not isinstance(order, Order):
+        logger.error("Type Error : order not of Order type")
+        raise TypeError("Type Error : order argument not of type Order.")
