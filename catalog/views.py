@@ -32,7 +32,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from operator import itemgetter
-from catalog import catalog_servic, constants as Constants
+from catalog import catalog_service, constants as Constants
 from lyshop import utils, settings, conf
 import logging
 
