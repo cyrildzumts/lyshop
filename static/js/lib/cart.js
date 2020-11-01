@@ -195,7 +195,7 @@ $(document).ready(function(){
     $('.js-attr-select').on('click', function(event){
         var element = $(this);
         var input = $('#' + element.data('target'));
-        input.value(element.data('value'));
+        input.val(element.data('value'));
         element.toggleClass('chips-selected', !element.hasClass('chips-selected')).siblings().removeClass('chips-selected');
     });
 });
