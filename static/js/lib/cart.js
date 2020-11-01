@@ -192,4 +192,10 @@ $(document).ready(function(){
         update_cart_item_quantity(item.data('item'), item.val(), item);
     });
     $('.js-add-coupon').on('click', add_to_coupon);
+    $('.js-attr-select').on('click', function(event){
+        var element = $(this);
+        var input = $('#' + element.data('target'));
+        input.value(element.data('value'));
+        element.toggleClass('chips-selected', !element.hasClass('chips-selected')).siblings().removeClass('chips-selected');
+    });
 });
