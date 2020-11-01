@@ -63,3 +63,12 @@ def pay_status_key(value):
         logger.info(f"pay_status_key: Could not found key  for value \"{value}\"")
         return value
     return k
+
+
+@register.filters
+def pay_status_value(key):
+    k,v = utils.find_element_by_key_in_tuples(key, Constants.PAYMENT_STATUS)
+    if v is None:
+        logger.info(f"pay_status_value: Could not found value  for key \"{key}\"")
+        return key
+    return v
