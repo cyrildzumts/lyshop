@@ -19,7 +19,7 @@
                         <div class="mat-box-content">
                             <ul id="filterable-brand" class="mat-list" data-element="li" data-input-name="brands">
                                 {% for b in brand_list %}
-                                <li id="brand-item-{{b.id}}" class="chips" data-value="{{b.display_name}}"><div><label class="label-row label-row-left" for="brand-{{b.id}}"><input class="filter-input" type="checkbox" name="brand" id="brand-{{b.id}}" value="{{b.id}}" data-value="{{b.id}}">{{b.display_name}}</label></div></li>
+                                <li id="brand-item-{{b.id}}"  data-value="{{b.display_name}}"><div class="chips"><label class="label-row label-row-left" for="brand-{{b.id}}"><input class="filter-input" type="checkbox" name="brand" id="brand-{{b.id}}" value="{{b.id}}" data-value="{{b.id}}">{{b.display_name}}</label></div></li>
                                 {% endfor %}
                                 
                             </ul>
@@ -27,6 +27,31 @@
                         <div class="actions">
                             <button class="mat-button mat-button-outlined js-filter-reset-btn" data-context="filterable-brand" data-container="products" ><i class="fas fa-refresh icon"></i><span>{% trans "Reset Filter" %}</span></button>
                             <button class="mat-button mat-button-default js-filter-btn" data-container="products" data-filter-field="data-brand" data-context="filterable-brand" data-input-name="brand"><i class="fas fa-filter icon"></i><span>{% trans "Filter" %}</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-m-12">
+        <div class="filter-option">
+            <div class="collapsible">
+                <button class="toggle" data-toggle="content"><span>{% trans "Product For" %}</span></button>
+                <div class="content">
+                    <div class="mat-box">
+                        
+                        <div class="mat-box-content">
+                            <ul id="filterable-gender" class="mat-list" data-element="li" data-input-name="gender">
+                                {% for k,v in GENDER %}
+                                <li id="gender-item-{{k}}" class="chips" data-value="{{v}}"><div><label class="label-row label-row-left" for="gender-{{k}}"><input class="filter-input" type="checkbox" name="gender" id="gender-{{k}}" value="{{k}}" data-value="{{k}}">{{v}}</label></div></li>
+                                {% endfor %}
+                                
+                            </ul>
+                        </div>
+                        <div class="actions">
+                            <button class="mat-button mat-button-outlined js-filter-reset-btn" data-context="filterable-gender" data-container="products" ><i class="fas fa-refresh icon"></i><span>{% trans "Reset Filter" %}</span></button>
+                            <button class="mat-button mat-button-default js-filter-btn" data-container="products" data-filter-field="data-gender" data-context="filterable-gender" data-input-name="gender"><i class="fas fa-filter icon"></i><span>{% trans "Filter" %}</span></button>
                         </div>
                     </div>
                 </div>

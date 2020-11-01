@@ -14,6 +14,16 @@ GENDER_BOY          = 6
 GENDER_NO_GENDER    = 7
 
 
+CHILDREN = (
+    (GENDER_BOY, 'BOY'),
+    (GENDER_GIRL, 'GIRL')
+)
+
+BABY = (
+    (GENDER_BABY_BOY, 'BABY BOY'),
+    (GENDER_BABY_GIRL, 'BABY GIRL')
+)
+
 GENDER = (
         (GENDER_MEN, 'MEN'),
         (GENDER_WOMEN, 'WOMEN'),

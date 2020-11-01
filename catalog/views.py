@@ -32,7 +32,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from operator import itemgetter
-from catalog import catalog_service
+from catalog import catalog_servic, constants as Constants
 from lyshop import utils, settings, conf
 import logging
 
@@ -70,6 +70,7 @@ def catalog_home(request):
         'page_title' : page_title,
         'product_list': recent_products,
         'type_list': ProductType.objects.all()
+        'GENDER' : Constants.GENDER
     }
 
     return render(request, template_name, context)
@@ -102,7 +103,8 @@ def category_detail(request, category_uuid=None):
         'product_list': list_set,
         'type_list': ProductType.objects.all(),
         'parent_sub_category_list': Category.objects.filter(parent=category.parent),
-        'subcategory_list': subcats
+        'subcategory_list': subcats,
+        'GENDER' : Constants.GENDER
     }
     return render(request,template_name, context)
 
@@ -152,7 +154,6 @@ def product_detail(request, product_uuid=None):
         'selective_attrs' : selective_attrs,
         'product_attrs': product_attrs
     }
-    utils.show_dict_contents(context, f"Context for {product.display_name}")
     return render(request,template_name, context)
 
 
