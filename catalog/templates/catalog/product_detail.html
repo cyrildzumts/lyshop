@@ -70,12 +70,9 @@
                           {% if attr.selective %}
                             <div class="entry">
                               <span class="key">{% trans attr.display_name %}</span>
-                            <div class="row ">
-                              {% for e in attr.value %} <span class="js-attr-select chips" data-value="{{e.variant}}" data-target="variant">{{e.value}}</span> {% endfor %}
-                            </div>
-                            <select name="variant_uuid" id="selective-attr-2">
-                              {% for e in attr.value %} <option value="{{e.variant}}">{{e.value}}</option> {% endfor %}
-                            </select>
+                              <div class="row flex-right">
+                                {% for e in attr.value %} <span class="js-attr-select chips" data-value="{{e.variant}}" data-target="variant">{{e.value}}</span> {% endfor %}
+                              </div>
                             </div>
                           
                           {% else %}
