@@ -65,7 +65,7 @@ def pay_status_key(value):
     return k
 
 
-@register.filters
+@register.filter
 def pay_status_value(key):
     k,v = utils.find_element_by_key_in_tuples(key, Constants.PAYMENT_STATUS)
     if v is None:
