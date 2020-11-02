@@ -8,13 +8,13 @@
     <div class="mat-box full">
           <div class="mat-box-title">
             {% if balance %}
-            <p class="entry"> <span class="key">{% trans "Balance" %}</span>  <span class="value">{{balance.balance}} {% trans CURRENCY %}</span></p>
+            <div class="entry"> <span class="key">{% trans "Balance" %}</span>  <span class="value secondary-color">{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %}</span></div>
             {% else %}
-            <p class="entry"> <span>{% trans "Balance" %}</span>   <span>0 {% trans CURRENCY %}</span> </p>
+            <div class="entry"> <span>{% trans "Balance" %}</span>   <span>0 {% trans CURRENCY %}</span> </div>
             {% endif %}
             
-            <p class="entry"><span class="key">{% trans "Sold Products" %}</span>  <span class="value">{{number_sold_products}}</span></p>
-            <p class="entry"><span class="key">{% trans "Number of products" %} </span> <span class="value">{{product_count}}</span></p>
+            <div class="entry"><span class="key">{% trans "Sold Products" %}</span>  <span class="value">{{number_sold_products}}</span></div>
+            <div class="entry"><span class="key">{% trans "Products" %} </span> <span class="value">{{product_count}}</span></div>
           </div>
           <div class="mat-box-content">
 

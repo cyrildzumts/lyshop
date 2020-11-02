@@ -89,3 +89,11 @@ li.active.selected{
 .balance{
 	color: var(--secondary-color);
 }
+
+.primary-color{
+    color: var(--primary-color);
+}
+
+.secondary-color{
+    color: var(--secondary-color);
+}
