@@ -15,7 +15,7 @@ from orders import commons
 from vendors.models import SoldProduct
 from orders.forms import ShippingAddressForm, BillingAddressForm, PaymentRequestForm, PaymentOptionForm, OrderFilterOption
 from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory
-from lyshop import settings, utils
+from lyshop import settings, utils, conf as GLOBAL_CONF
 from http import HTTPStatus
 import json
 import logging
