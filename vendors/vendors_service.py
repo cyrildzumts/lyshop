@@ -41,14 +41,20 @@ def get_ordered_items(seller):
         return OrderItem.objects.none()
     return OrderItem.objects.filter(product__product__sold_by=seller).filter(order__status__in=ORDER_CONSTANTS.ORDERED)
 
+def get_sold_items(seller):
+    if not isinstance(seller, User) or not is_vendor(seller):
+        return OrderItem.objects.none()
+    return OrderItem.objects.filter(product__product__sold_by=seller).filter(order__status__in=ORDER_CONSTANTS.SOLD)
+
 
 def get_vendor_home_variable(user):
     if not isinstance(user, User) or not is_vendor(user):
         return {}
     number_sold_products = SoldProduct.objects.filter(seller=user).aggregate(count=Sum('quantity')).get('count', 0)
+    sold = get_sold_items(user).count()
     product_count  = user.sold_products.aggregate(count=Sum('quantity')).get('count', 0)
     ordered_products = get_ordered_items(user).count()
-    return {'product_count' : product_count, 'number_sold_products' : number_sold_products, 'ordered_products' : ordered_products}
+    return {'product_count' : product_count, 'number_sold_products' : number_sold_products, 'ordered_products' : ordered_products, 'sold' : sold}
 
 
 def get_next_payment_date(user):
