@@ -5,7 +5,7 @@ from django.db.models import F,Q,Count, Sum, FloatField
 from django.db import transaction
 from accounts.models import Account
 from vendors.models import SoldProduct, Balance, BalanceHistory
-from orders import orders_service
+from orders import orders_service, commons as ORDER_CONSTANTS
 from orders.models import Order, OrderItem
 from vendors import constants as Constants
 from datetime import date as Date, datetime as DateTime
@@ -36,12 +36,19 @@ def get_vendor_balance(user):
         pass
     return balance
 
+def get_ordered_items(seller):
+    if not isinstance(seller, User) or not is_vendor(seller):
+        return OrderItem.objects.none()
+    return OrderItem.objects.filter(product__product__sold_by=request.user).filter(order__in=ORDER_CONSTANTS.ORDERED)
+
+
 def get_vendor_home_variable(user):
     if not isinstance(user, User) or not is_vendor(user):
         return {}
     number_sold_products = SoldProduct.objects.filter(seller=user).aggregate(count=Sum('quantity')).get('count', 0)
     product_count  = user.sold_products.aggregate(count=Sum('quantity')).get('count', 0)
-    return {'product_count' : product_count, 'number_sold_products' : number_sold_products}
+    ordered_products = get_ordered_items(user).count()
+    return {'product_count' : product_count, 'number_sold_products' : number_sold_products, 'ordered_products' : ordered_products}
 
 
 def get_next_payment_date(user):
@@ -177,3 +184,4 @@ def update_product(order, product, data):
         else:
             logger.warn(f"SoldProduct for order {order.order_ref_number} not updated. User requesting the change is missing")
     return 0
+
