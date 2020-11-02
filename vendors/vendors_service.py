@@ -39,7 +39,7 @@ def get_vendor_balance(user):
 def get_ordered_items(seller):
     if not isinstance(seller, User) or not is_vendor(seller):
         return OrderItem.objects.none()
-    return OrderItem.objects.filter(product__product__sold_by=seller).filter(order__in=ORDER_CONSTANTS.ORDERED)
+    return OrderItem.objects.filter(product__product__sold_by=seller).filter(order__status__in=ORDER_CONSTANTS.ORDERED)
 
 
 def get_vendor_home_variable(user):
