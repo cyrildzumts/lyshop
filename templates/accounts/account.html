@@ -10,21 +10,17 @@
         <div class="container">
 
             <div class="col col-9">
-                <div class="banner--content flex-column">
-                    <div class="row row-left"><span class="item"><h4>{% trans "Current Balance" %}</h4></span></div>
                     {% if is_seller %}
-                    <div class="row row-left subtitle"><span class="item"><span class="big strong">{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %} </span></span></div>
+                    <div class="banner--content flex-column">
+                        <div class="row row-left"><span class="item"><h4>{% trans "Current Balance" %}</h4></span></div>
+                        <div class="row row-left subtitle"><span class="item"><span class="big strong">{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %} </span></span></div>
+                    </div><!--End of Banner-Content-->
                     {% endif %}
-                    
-                    
-                </div><!--End of Banner-Content-->
                 <div class="banner--actions">
                         <a class="mat-button mat-button-text" href="{{account.get_absolute_url}}"> {% trans "Account Details" %}</a>
                         <a class="mat-button mat-button-text" href="{% url 'addressbook:addressbook' %}"><i class="fas fa-address-book icon"></i>  {% trans "Addressbook" %}</a>
                         <a class="mat-button mat-button-text" href="{% url 'orders:orders' %}"> {% trans "Orders" %}</a>
                         <a class="mat-button mat-button-text" href="{{account.get_absolute_url}}"> {% trans "Wishlist" %}</a>
-                        
-                        
                 </div><!--End of Banner-Actions-->
             </div><!--End of Responsive-->
         
