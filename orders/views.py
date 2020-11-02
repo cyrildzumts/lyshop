@@ -46,7 +46,7 @@ def orders(request):
     
     logger.debug(f"selected_filters : {field_filter.selected_filters}")
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:

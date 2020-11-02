@@ -25,7 +25,7 @@ def addressbook(request):
     queryset = Address.objects.filter(user=request.user).order_by('-created_at')
     page_title = _("Addressbook") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -44,7 +44,7 @@ def addresses(request):
     queryset = Address.objects.filter(user=request.user).order_by('-created_at')
     page_title = _("Addresses") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:

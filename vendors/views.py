@@ -22,7 +22,7 @@ from orders.forms import OrderItemUpdateForm
 from orders.models import Order, OrderItem
 from orders import commons as Order_Constants
 from core.filters import filters
-from lyshop import utils, settings
+from lyshop import utils, settings, conf as GLOBAL_CONF
 from vendors import vendors_service
 from shipment import shipment_service
 from vendors.models import Balance, BalanceHistory, VendorPayment, VendorPaymentHistory, SoldProduct
@@ -82,7 +82,7 @@ def brands(request):
 
     queryset = Brand.objects.all().order_by('-created_at')
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -244,7 +244,7 @@ def brand_products(request, brand_uuid=None):
     brand = get_object_or_404(Brand, brand_uuid=brand_uuid)
     queryset = Product.objects.filter(brand=brand, sold_by=request.user)
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -304,7 +304,7 @@ def product_list(request):
     queryset = field_filter.apply_filter().filter(sold_by=request.user)
     selected_filters = field_filter.selected_filters
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -738,7 +738,7 @@ def product_images(request, product_uuid):
     product = get_object_or_404(Product, product_uuid=product_uuid, sold_by=request.user)
     queryset = ProductImage.objects.filter(product=product).order_by('-created_at')
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -957,7 +957,7 @@ def attributes(request):
 
     queryset = ProductAttribute.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -986,7 +986,7 @@ def coupons(request):
     template_name = "vendors/coupon_list.html"
     page_title = "Coupon - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         request_set = paginator.page(page)
     except PageNotAnInteger:
@@ -1157,7 +1157,7 @@ def product_types(request):
 
     queryset = ProductType.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -1327,7 +1327,7 @@ def product_type_products(request, type_uuid=None):
     product_type = get_object_or_404(ProductType, type_uuid=type_uuid)
     queryset = Product.objects.filter(product_type=product_type, sold_by=request.user)
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -1358,7 +1358,7 @@ def product_type_attributes(request):
 
     queryset = ProductTypeAttribute.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -1529,7 +1529,7 @@ def sold_product_list(request):
 
     queryset = SoldProduct.objects.filter(seller=request.user).order_by('-created_at')
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -1626,7 +1626,7 @@ def balance_history(request, balance_uuid):
     balance = get_object_or_404(Balance, balance_uuid=balance_uuid)
     queryset = BalanceHistory.objects.filter(balance__balance_uuid=balance_uuid)
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -1684,7 +1684,7 @@ def payments(request):
     template_name = "vendors/payment_list.html"
     page_title = "Payments - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -1727,7 +1727,7 @@ def orders(request):
     page_title = _('Order Item')
     order_items = OrderItem.objects.filter(product__product__sold_by=request.user).order_by('-created_at')
     page = request.GET.get('page', 1)
-    paginator = Paginator(order_items, utils.PAGINATED_BY)
+    paginator = Paginator(order_items, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
