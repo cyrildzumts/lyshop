@@ -85,3 +85,7 @@ li.active.selected{
 .docklet:hover a{
     color: var(--secondary-color);
 }
+
+.balance{
+	color: var(--secondary-color);
+}

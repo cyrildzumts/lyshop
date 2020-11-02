@@ -234,7 +234,6 @@ li a{
 h1,h2,h3, h4, h5, h6{
 	font-family: 'Montserrat';
 	font-weight: 700;
-	margin-bottom: 16px;
 }
 
 h1{
@@ -1075,15 +1074,16 @@ button, input, select, textarea{
 /****************************************************************/
 /* sections */
 .balance{
-	font-size: 1.5em;
+	font-size: 0.6em;
 	font-weight: bold;
 	line-height: 1.5;
+	letter-spacing: 0.3em;
 }
 
 .balance-info{
 	font-size: 1em;
 	font-weight: bold;
-	height: 25px;
+	/*height: 25px;*/
 	border-radius:50%;
 }
 
