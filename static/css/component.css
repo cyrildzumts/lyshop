@@ -1081,8 +1081,11 @@ button, input, select, textarea{
 }
 
 .balance-info{
+	display: flex;
+	flex-direction: column;
 	font-size: 1em;
 	font-weight: bold;
+	max-width: 8em;
 	/*height: 25px;*/
 	border-radius:50%;
 }
