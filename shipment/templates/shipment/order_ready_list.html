@@ -45,7 +45,7 @@
                   {% for order in order_list  %}
                   <tr>
                     <td data-label="{% trans 'Shipping Price' %}">{{order.shipping_price|floatformat:"-2"}} {% trans CURRENCY %}</td>
-                    <td data-label="{% trans 'Status' %}">{{order.ref_number}} </td>
+                    <td data-label="{% trans 'Status' %}">{{order.order_ref_number}} </td>
                     <td data-label="{% trans 'Status' %}">{{order.quantity}} </td>
                     <td data-label="{% trans 'Customer' %}">{{order.user.get_full_name}}</td>
                     <td data-label="{% trans 'Date' %}">{{order.created_at|date:"F j, Y"}}</td>
