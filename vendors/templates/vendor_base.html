@@ -12,17 +12,22 @@
 
     <div class="mat-box full">
           <div class="mat-box-title">
-            {% if balance %}
-            <p> <span>{% trans "Balance" %}</span>  <span>{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
-            {% else %}
-            <p> <span>{% trans "Balance" %}</span>   <span>0 {% trans CURRENCY %}</span> </p>
+            {% if is_seller %}
+            <div class="balance-info">
+                  <div class="row flex-left"><h4>{% trans "Balance" %}</h4></div>
+                  <div class="row flex-left balance"><span>{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %} </span></div>
+            </div><!--End of Banner-Content-->
             {% endif %}
-            
-            <p><span>{% trans "Sold Products" %}</span>  <span>{{number_sold_products}}</span></p>
-            <p><span>{% trans "Number of products" %} </span> <span>{{product_count}}</span></p>
-          </div>
-          <div class="mat-box-content">
-
+            <div class="box">
+                  <div class="col-12 flex-column">
+                        <span>{% trans "Products" %}</span>  
+                        <span>{{product_count}}</span>
+                  </div>
+                  <div class="col-12 flex-column">
+                        <span>{% trans "Sold Products" %}</span>  
+                        <span>{{number_sold_products}}</span>
+                  </div>
+            </div>
           </div>
           <div class="container">
               <ul class="actions row" role="navigation">
