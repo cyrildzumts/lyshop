@@ -12,7 +12,10 @@
             <div class="col col-9">
                 <div class="banner--content flex-column">
                     <div class="row row-left"><span class="item"><h4>{% trans "Current Balance" %}</h4></span></div>
-                    <div class="row row-left subtitle"><span class="item"><span class="big strong">{{account.balance|floatformat:"-2"}} {% trans CURRENCY %} </span></span></div>
+                    {% if is_seller %}
+                    <div class="row row-left subtitle"><span class="item"><span class="big strong">{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %} </span></span></div>
+                    {% endif %}
+                    
                     
                 </div><!--End of Banner-Content-->
                 <div class="banner--actions">
