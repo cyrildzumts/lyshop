@@ -9,6 +9,7 @@ app_name = 'shipment'
 urlpatterns = [
     path('', views.shipment_home, name='shipment-home'),
     path('shipments/', views.shipments, name='shipments'),
+    path('shipments/ready-for-shipment', views.order_ready_for_shipment, name='ready-for-shipment'),
     path('shipments/detail/<uuid:shipment_uuid>/', views.shipment_detail, name='shipment-detail'),
     path('shipments/delete/<uuid:shipment_uuid>/', views.shipment_delete, name='shipment-delete'),
     path('shipments/update/<uuid:shipment_uuid>/', views.shipment_update, name='shipment-update'),

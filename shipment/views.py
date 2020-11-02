@@ -20,7 +20,7 @@ from django.utils import timezone
 from shipment.models import Shipment, ShippedItem, ShipmentStatusHistory
 from shipment import shipment_service, constants as Constants
 from shipment.forms import ShipmentForm
-from lyshop import utils
+from lyshop import utils, conf as GLOBAL_CONF
 import logging
 
 logger = logging.getLogger(__name__)
@@ -43,7 +43,7 @@ def shipment_home(request):
 def shipments(request):
     queryset = Shipment.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, utils.PAGINATED_BY)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
@@ -55,6 +55,26 @@ def shipments(request):
         'shipment_list' : list_set
     }
     template_name = 'shipment/shipment_list.html'
+
+    return render(request, template_name, context)
+
+
+@login_required
+def order_ready_for_shipment(request):
+    queryset = shipment_service.get_orders_ready_for_shipment()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context = {
+        'page_title' : _('Shipment Waiting'),
+        'order_list' : list_set
+    }
+    template_name = 'shipment/order_ready_list.html'
 
     return render(request, template_name, context)
 

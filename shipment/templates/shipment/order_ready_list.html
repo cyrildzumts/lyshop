@@ -1,11 +1,11 @@
-{% extends "order_base.html"%}
+{% extends "shipment_base.html"%}
 {% load i18n %}
 {% load shipment_status %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
                 {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Shipment Home" %}</h4>
+                    <h4> {% trans "Orders ready for shipment" %}</h4>
                 {% endblock HEADER_BANNER_TITLE %}
                 
         </div>
@@ -14,10 +14,8 @@
             <div class="col col-9">
                 <div class="banner--actions">
                     
-                    <a class="mat-button mat-button-text" href="{% url 'shipment:shipments' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipments" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'shipment:ready-for-shipment' %}"><i class="fas fa-check-square icon"></i><span>{% trans "Ready" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment Home" %}</span></a>
                     
-                        
                 </div><!--End of Banner-Actions-->
             </div><!--End of Responsive-->
         
@@ -27,29 +25,31 @@
 {% endblock HEADER_BANNER %}
 
 {% block MAIN %}
-{% if recent_shipments %}
+{% if shipment_list %}
 <div class="container">
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         <table id="shipment-list" class="mat-table js-filter-table">
-          <caption>{% trans "Recent Shipments" %}</caption>
+          <caption>{% trans "Orders" %}</caption>
           <thead>
                   <tr>
                           <th scope="col">{% trans "Shipping Price" %}</th>
+                          <th scope="col">{% trans "Order Reference" %}</th>
+                          <th scope="col">{% trans "Quantity" %}</th>
                           <th scope="col">{% trans "Customer" %}</th>
-                          <th scope="col">{% trans "Status" %}</th>
                           <th scope="col">{% trans "Date" %}</th>
-                          <th scope="col">{% trans "Details" %}</th>
+                          
                   </tr>
           </thead>
           <tbody>
-                  {% for s in recent_shipments %}
+                  {% for order in order_list  %}
                   <tr>
-                    <td data-label="{% trans 'Shipping Price' %}">{{s.price|floatformat:"-2"}} {% trans CURRENCY %}</td>
-                    <td data-label="{% trans 'Customer' %}">{{s.customer.get_full_name}}</td>
-                    <td data-label="{% trans 'Status' %}">{{s.shipment_status|shipment_status_value}} </td>
-                    <td data-label="{% trans 'Date' %}">{{s.created_at|date:"F j, Y"}}</td>
-                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{s.get_absolute_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                    <td data-label="{% trans 'Shipping Price' %}">{{order.shipping_price|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                    <td data-label="{% trans 'Status' %}">{{order.ref_number}} </td>
+                    <td data-label="{% trans 'Status' %}">{{order.quantity}} </td>
+                    <td data-label="{% trans 'Customer' %}">{{order.user.get_full_name}}</td>
+                    <td data-label="{% trans 'Date' %}">{{order.created_at|date:"F j, Y"}}</td>
+                    
                   </tr>
                   {% endfor %}
                   
@@ -59,7 +59,7 @@
           </tfoot>
 
     </table>
-    {% include "tags/pagination.html" with page_set=shipment_list %}
+    {% include "tags/pagination.html" with page_set=order_list %}
     </div><!--End of Table Wrapper-->
   </div>
 </div>

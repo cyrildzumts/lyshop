@@ -116,3 +116,6 @@ def shipment_for_order_exists(order):
         logger.error("Type Error : order not of Order type")
         raise TypeError("Type Error : order argument not of type Order.")
     return Shipment.objects.filter(order=order).exists()
+
+def get_orders_ready_for_shipment():
+    return Order.objects.filter(status=ORDER_SHIPMENT_STATUS_MAPPING[constants.WAITING])
