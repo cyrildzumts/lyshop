@@ -129,6 +129,10 @@
         </div>
 </footer>
 
+{% block CSRF_TOKEN %}
+{% csrf_token %}
+{% endblock CSRF_TOKEN %}
+
 
 {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {% endcomment %}
 <script  data-main="{% static 'js/lyshopApp' %}" src="{% static 'js/require.js' %}"></script>        

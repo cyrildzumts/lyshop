@@ -13,11 +13,13 @@ define(['ajax_api'], function(ajax_api) {
 
     Cart.prototype.add = function(product_uuid){
         console.log("Adding product %s into cart", product_uuid);
+        var csrf_token = document.querySelector('input[name="csrfmiddlewaretoken"]');
+        
         var option = {
             type:'GET',
             dataType: this.data_type,
             url : this.baseURL,
-            data : {product: product_uuid}
+            data : {product: product_uuid, csrfmiddlewaretoken:csrf_token.value}
         }
         ajax_api(option).then(
             (response)=>{

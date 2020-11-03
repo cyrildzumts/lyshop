@@ -469,6 +469,6 @@ def ajax_debug(request):
         'cookies' : request.COOKIES,
         'GET' : request.GET,
         'POST': request.POST,
-        'scheme': reuqest.scheme
+        'scheme': request.scheme
     }
     return JsonResponse(context)
