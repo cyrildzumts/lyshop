@@ -106,6 +106,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             console.error("invalid coupon");
             return;
         }
+        console.log("Cart addCoupon : this : ", this);
         this.isValidCoupon(coupon, function(response){
             if(response.status && response.valid){
                 var option = {
