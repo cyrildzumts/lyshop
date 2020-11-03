@@ -152,6 +152,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             function(response){
                 var data = response;
                 console.log(data);
+                $('#coupon').val('');
                 document.location.reload();
             }, 
             function(error){
