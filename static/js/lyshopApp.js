@@ -1,4 +1,4 @@
-requirejs.confif({
+requirejs.config({
     baseUrl :'js/lib',
     paths:{
         vendor: '../vendor'
