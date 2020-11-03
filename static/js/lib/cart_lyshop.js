@@ -150,7 +150,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             type:'POST',
             dataType: 'json',
             url : '/cart/ajax-coupon-verify/',
-            data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
+            data : {coupon : coupon, csrfmiddlewaretoken : this.csrfmiddlewaretoken}
         }
         ajax_api(option).then(function(response){
             console.log(response);
