@@ -508,8 +508,8 @@ def ajax_coupon_remove(request):
         cart.refresh_from_db()
         context['success'] = True
         context['status'] = True
-        context['total'] = cart.get_total()
-        context['reduction'] = cart.get_reduction()
+        context['total'] = f'{cart.get_total():g}'
+        context['reduction'] = f'{cart.get_reduction():g}'
         return JsonResponse(context)
 
     context['status'] = False
