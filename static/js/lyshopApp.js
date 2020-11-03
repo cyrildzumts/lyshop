@@ -1,5 +1,5 @@
 requirejs.config({
-    baseUrl :'js/lib',
+    baseUrl :'static/js/lib',
     paths:{
         vendor: '../vendor'
     }
