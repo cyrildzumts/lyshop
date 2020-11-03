@@ -457,3 +457,18 @@ def cart_clear(request):
         'status' : True
     }
     return JsonResponse(context)
+
+
+@login_required
+def ajax_debug(request):
+    context = {
+        'path' : request.path,
+        'method' : request.method,
+        'encoding' : request.encoding,
+        'content_type': request.content_type,
+        'cookies' : request.COOKIES,
+        'GET' : request.GET,
+        'POST': request.POST,
+        'scheme': reuqest.scheme
+    }
+    return JsonResponse(context)

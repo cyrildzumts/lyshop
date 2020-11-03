@@ -5,11 +5,28 @@ define(['ajax_api'], function(ajax_api) {
         this.items = [1,2,4,85,63];
         this.total = 25000;
         this.currency = "XAF";
+        this.baseURL = "/cart/ajax-debug/";
+        this.data_type = "json"
+
         console.log("New Cart created");
     }
 
     Cart.prototype.add = function(product_uuid){
         console.log("Adding product %s into cart", product_uuid);
+        var option = {
+            type:'POST',
+            dataType: this.data_type,
+            url : this.baseURL,
+            data : {product: product_uuid}
+        }
+        ajax_api(option).then(
+            (response)=>{
+                console.log("ajax response : ", response);
+            },
+            (error)=>{
+                console.log("ajax error : ", error);
+            }
+        );
     }
     Cart.prototype.remove = function(product_uuid){
         console.log("Removing product %s from cart", product_uuid);
