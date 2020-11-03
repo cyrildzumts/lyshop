@@ -158,7 +158,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 callback(response);
             }
             
-        }, function(reason){
+        }, function(error){
             console.error("Error on vefirying Coupon \"%s\" ", coupon);
             console.error(error);
             if(typeof callback == "function"){
