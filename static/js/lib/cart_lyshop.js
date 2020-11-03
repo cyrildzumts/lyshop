@@ -141,7 +141,8 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
     }
 
     Cart.prototype.isValidCoupon = function(coupon, callback){
-        if(!this.csrfmiddlewaretoken || !this.csrfmiddlewaretoken.value){
+        var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
+        if(!csrfmiddlewaretoken){
             console.warning("Cart add oporation not allowed: csrf_token missing");
             return;
         }
@@ -150,20 +151,21 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             type:'POST',
             dataType: 'json',
             url : '/cart/ajax-coupon-verify/',
-            data : {coupon : coupon, csrfmiddlewaretoken : this.csrfmiddlewaretoken}
+            data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
         }
-        ajax_api(option).then(function(response){
-            console.log(response);
-            if(typeof callback == "function"){
-                callback(response);
-            }
-            
-        }, function(error){
-            console.error("Error on vefirying Coupon \"%s\" ", coupon);
-            if(typeof callback == "function"){
-                callback(error);
-            }
-        });
+        ajax_api(option).then(
+            function(response){
+                console.log(response);
+                if(typeof callback == "function"){
+                    callback(response);
+                }
+            }, 
+            function(error){
+                console.error("Error on vefirying Coupon \"%s\" ", coupon);
+                if(typeof callback == "function"){
+                    callback(error);
+                }
+            });
     }
 
     Cart.prototype.update_product = function(to_update){
