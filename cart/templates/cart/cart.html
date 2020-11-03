@@ -28,7 +28,7 @@
                     <div class="container left">
                         <ul class="mat-list">
                             <li class="secondary-color"><span>{% trans "Activated Coupon" %}</span></li>
-                            <li><div>{% if cart.coupon %}<span>{{cart.coupon.name}}</span> <button class="js-remove-coupon"><i class="fas fa-remove icon"></i> <span>{% trans "Remove" %}</span></button>{% endif %}</div></li>
+                            <li><div class="flex flex-left">{% if cart.coupon %}<span>{{cart.coupon.name}}</span> <button class="js-remove-coupon"><i class="fas fa-remove icon"></i> <span>{% trans "Remove" %}</span></button>{% endif %}</div></li>
                         </ul>
                         <div id="coupon-wrapper" class="{% if cart.coupon %}hidden{% endif %}">
                             <div id="coupon-error" class="error hidden"><span>{% trans "Invalid coupon" %}</span></div>
