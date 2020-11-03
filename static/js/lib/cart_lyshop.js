@@ -1,4 +1,4 @@
-define(['ajax'], function(ajax) {
+define(['ajax_api'], function(ajax_api) {
     'use strict';
     function Cart(){
         this.user = "cyrildz"
