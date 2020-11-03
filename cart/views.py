@@ -179,7 +179,7 @@ def ajax_cart_item_increment(request, item_uuid):
         context['status'] = True
         context['item_quantity'] = item.quantity
         context['item_total'] = item.total_price
-        context['cart_total'] = cart.amount
+        context['cart_total'] = float(f'{cart.amount:g}')
         context['count'] = cart.quantity
 
         return JsonResponse(context, status=HTTPStatus.NOT_ACCEPTABLE)
@@ -229,7 +229,7 @@ def ajax_cart_item_decrement(request, item_uuid):
         context['status'] = True
         context['item_quantity'] = item.quantity
         context['item_total'] = item.total_price
-        context['cart_total'] = cart.amount
+        context['cart_total'] = float(f'{cart.amount:g}')
         context['count'] = cart.quantity
 
         return JsonResponse(context)
@@ -292,9 +292,9 @@ def ajax_cart_item_update_quantity(request):
         context['status'] = True
         context['item_quantity'] = requested_quantity
         context['item_total'] = item.total_price
-        context['total'] = cart.amount
-        context['solded_price'] = cart.solded_price
-        context['reduction'] = cart.get_reduction()
+        context['total'] = float(f'{cart.amount:g}')
+        context['solded_price'] = float(f'{cart.solded_price:g}')
+        context['reduction'] = float(f'{cart.get_reduction():g}')
         context['cart_quantity'] = cart.quantity
         logger.info(f"Updated  Cart Item  \"{item}\" quantity from Cart \"{cart}\" to quantity {item.quantity}")
         return JsonResponse(context)
@@ -318,7 +318,7 @@ def ajax_cart_item_delete(request, item_uuid):
         context['success'] = True
         context['status'] = True
         context['cart_empty'] = cart_empty
-        context['cart_total'] = cart.amount
+        context['cart_total'] = float(f'{cart.amount:g}')
         context['count'] = cart.quantity
         return JsonResponse(context)
     else :
@@ -346,7 +346,7 @@ def ajax_cart_item_to_wishlist(request, item_uuid):
     cart.refresh_from_db()
     context['success'] = True
     context['status'] = True
-    context['cart_total'] = cart.amount
+    context['cart_total'] = float(f'{cart.amount:g}')
     context['count'] = cart.quantity
     return JsonResponse(context)
     
@@ -411,11 +411,11 @@ def ajax_cart_item_update(request, item_uuid=None, action=None):
         context['status'] = True
         if requested_quantity > 0:
             context['item_quantity'] = item.quantity
-            context['item_total'] = item.item_total_price
+            context['item_total'] = float(f'{item.item_total_price:g}')
             context['removed'] = False
         else:
             context['removed'] = True
-        context['cart_total'] = cart.amount
+        context['cart_total'] = float(f'{cart.amount:g}')
         context['count'] = cart.quantity
         logger.info(f'Cart Item \"{item_uuid}\" updated by user \"{request.user}\""')
         return JsonResponse(context)
@@ -508,8 +508,8 @@ def ajax_coupon_remove(request):
         cart.refresh_from_db()
         context['success'] = True
         context['status'] = True
-        context['total'] = f'{cart.get_total():g}'
-        context['reduction'] = f'{cart.get_reduction():g}'
+        context['total'] = float(f'{cart.get_total():g}')
+        context['reduction'] = float(f'{cart.get_reduction():g}')
         return JsonResponse(context)
 
     context['status'] = False
