@@ -26,7 +26,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             obj['cart_total'] = $('.js-cart-total');
             obj['cart_quantity'] = $('.js-cart-quantity');
             obj['item_uuid'] = item.data('item');
-            self.update_cart_item(obj);
+            self.update_product(obj);
         });
 
         $('#add-cart-form').submit(function(event){
