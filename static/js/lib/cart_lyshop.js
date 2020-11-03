@@ -14,7 +14,7 @@ define(['ajax_api'], function(ajax_api) {
     Cart.prototype.add = function(product_uuid){
         console.log("Adding product %s into cart", product_uuid);
         var option = {
-            type:'POST',
+            type:'GET',
             dataType: this.data_type,
             url : this.baseURL,
             data : {product: product_uuid}
