@@ -10,6 +10,10 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
     }
 
     Cart.prototype.init = function(){
+        if(!this.csrfmiddlewaretoken || !this.csrfmiddlewaretoken.value){
+            console.warn("no csrf_token found");
+            return;
+        }
         var self = this;
 
         $('.js-cart-update-item-quantity,.js-cart-delete-item').on('click', function(){
