@@ -28,6 +28,9 @@ class CartItemQuantityUpdateForm(forms.Form):
     quantity = forms.IntegerField()
 
 
+class CouponVerificationForm(forms.Form):
+    coupon = forms.CharField(max_length=32)
+
 
 class AddCartForm(forms.Form):
     attr = forms.IntegerField(required=False)

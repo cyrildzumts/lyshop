@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from cart.models import CartItem, CartModel, Coupon
 from catalog.models import ProductVariant, Product
 import logging
+import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -172,13 +173,20 @@ def get_cartitems(user):
         cartitems_queryset = CartItem.objects.filter(cart=cart)
     return cartitems_queryset
 
-def apply_coupon(cart, coupon):
-    if not isinstance(cart, CartModel) :
+def is_valid_coupon(coupon):
+    if not isinstance(coupon, str) :
         return False
-    if not isinstance(coupon, str):
+    coupon_exists = Coupon.objects.filter(name=coupon, is_active=True, expire_at__gte=datetime.datetime.now()).exists()
+    logger.info(f"Coupon \"{coupon}\" is valid :  \"{coupon_exists}\"")
+    
+    return coupon_exists
+    
+
+def apply_coupon(cart, coupon):
+    if not isinstance(cart, CartModel) or not isinstance(coupon, str) :
         return False
     try:
-        coupon_model = Coupon.objects.get(name=coupon, is_active=True)
+        coupon_model = Coupon.objects.get(name=coupon, is_active=True, expire_at__lte=datetime.datetime.now())
         price = cart.amount
         solded_price = float(price) *((100 - coupon_model.reduction) / 100.0)
         CartModel.objects.filter(pk=cart.pk).update(coupon=coupon_model, solded_price=solded_price)

@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.cart, name='cart'),
     path('add-to-cart/', views.add_to_cart, name='cart-add'),
     path('ajax-add-coupon/', views.ajax_add_coupon, name='cart-add-coupon'),
+    path('ajax-coupon-verify/', views.ajax_coupon_verify, name='ajax-coupon-verify'),
     path('ajax-debug/', views.ajax_debug, name='ajax-debug'),
     path('ajax-add-to-cart/', views.ajax_add_to_cart, name='cart-add-ajax'),
     path('ajax-cart-item-update/', views.ajax_cart_item_update_quantity, name='cart-item-update-ajax'),

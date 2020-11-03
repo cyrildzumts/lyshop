@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.db.models import F, Q, Count, Sum, FloatField
 from lyshop import conf
 from catalog.models import ProductVariant, Product
-from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm, CouponForm, CartItemQuantityUpdateForm
+from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm, CouponForm, CartItemQuantityUpdateForm, CouponVerificationForm
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from catalog import catalog_service
@@ -472,3 +472,26 @@ def ajax_debug(request):
         'scheme': request.scheme
     }
     return JsonResponse(context)
+
+@login_required
+def ajax_coupon_verify(request):
+    context = {
+        'success' : False
+    }
+    if request.method == 'POST':
+        form = CouponVerificationForm(request.POST)
+        if form.is_valid():
+            coupon = form.cleaned_data['coupon']
+            valid = cart_service.is_valid_coupon(coupon)
+            context['success'] = True
+            context['status'] = True
+            context['valid'] = valid
+            return JsonResponse(context)
+
+        else:
+            context['status'] = False
+            context['error'] = 'Bad Request. coupon is missing'
+            return JsonResponse(context, status=HTTPStatus.BAD_REQUEST)
+    context['status'] = False
+    context['error'] = 'Bad Request'
+    return JsonResponse(context, status=HTTPStatus.BAD_REQUEST)

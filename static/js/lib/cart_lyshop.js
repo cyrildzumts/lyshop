@@ -106,23 +106,28 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             console.error("invalid coupon");
             return;
         }
-        if(this.isValidCoupon(coupon)){
-            var option = {
-                type:'POST',
-                dataType: 'json',
-                url : '/cart/ajax-add-coupon/',
-                data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
+        this.isValidCoupon(coupon, function(response){
+            if(response.status && response.valid){
+                var option = {
+                    type:'POST',
+                    dataType: 'json',
+                    url : '/cart/ajax-add-coupon/',
+                    data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
+                }
+                ajax_api(option).then(function(data){
+                    console.log(data);
+                    document.getElementById('reduction').textContent = data.reduction;
+                    document.getElementById('total').textContent = data.total;
+                }, function(reason){
+                    console.error("Error on adding Coupon \"%s\" to user cart", coupon);
+                    console.error(reason);
+                });
+            }else if(response.status && !response.valid){
+                $("#coupon-error").toggleClass('hidden', !response.valid);
+                console.log("invalid coupon : %s", coupon);
             }
-            ajax_api(option).then(function(response){
-                console.log(response);
-                document.getElementById('reduction').textContent = response.reduction;
-                document.getElementById('total').textContent = response.total;
-            }, function(reason){
-                console.error("Error on adding Coupon \"%s\" to user cart", coupon);
-                console.error(reason);
-            });
-        }
-        
+            
+        });
     }
     
 
@@ -134,12 +139,31 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
         console.log("Remove coupon %s from cart", coupon);
     }
 
-    Cart.prototype.isValidCoupon = function(coupon){
+    Cart.prototype.isValidCoupon = function(coupon, callback){
         if(!this.csrfmiddlewaretoken || !this.csrfmiddlewaretoken.value){
             console.warning("Cart add oporation not allowed: csrf_token missing");
             return;
         }
         console.log("Verifying coupon ", coupon);
+        var option = {
+            type:'POST',
+            dataType: 'json',
+            url : '/cart/ajax-coupon-verify/',
+            data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
+        }
+        ajax_api(option).then(function(response){
+            console.log(response);
+            if(typeof callback == "function"){
+                callback(response);
+            }
+            
+        }, function(reason){
+            console.error("Error on vefirying Coupon \"%s\" ", coupon);
+            console.error(error);
+            if(typeof callback == "function"){
+                callback(error);
+            }
+        });
     }
 
     Cart.prototype.update_product = function(to_update){

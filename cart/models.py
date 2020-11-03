@@ -19,6 +19,7 @@ class Coupon(models.Model):
     expire_at = models.DateTimeField(blank=True, null=True)
     is_active = models.BooleanField(default=False, blank=True)
     usage = models.IntegerField(default=0, blank=True)
+    max_usage = models.IntegerField(blank=True, null=True)
     coupon_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):
