@@ -26,12 +26,19 @@
                 </div>
                 <div class="mat-box-content">
                     <div class="container left">
-                        <div id="coupon-error" class="error hidden"><span>{% trans "Invalid coupon" %}</span></div>
-                        <div class="entry">
-                            <span class="key">{% trans "Coupon" %}</span>
-                            <input id="coupon" class="js-coupon value" name="coupon">
-                            <button class="js-add-coupon mat-button mat-button-text" data-target="coupon">{% trans "Add" %}</button>
+                        <ul class="mat-list">
+                            <li class="secondary-color"><span>{% trans "Activated Coupon" %}</span></li>
+                            <li><div>{% if cart.coupon %}<span>{{cart.coupon.name}}</span> <button class="js-remove-coupon"><i class="fas fa-remove icon"></i> <span>{% trans "Remove" %}</span></button>{% endif %}</div></li>
+                        </ul>
+                        <div id="coupon-wrapper" class="{% if cart.coupon %}hidden{% endif %}">
+                            <div id="coupon-error" class="error hidden"><span>{% trans "Invalid coupon" %}</span></div>
+                            <div class="entry">
+                                <span class="key">{% trans "Coupon" %}</span>
+                                <input id="coupon" class="js-coupon value" name="coupon" {% if cart.coupon %} value="{{cart.coupon.name}}" {% endif %}>
+                                <button class="js-add-coupon mat-button mat-button-text" data-target="coupon">{% trans "Add" %}</button>
+                            </div>
                         </div>
+                        
                         <div class="entry"><span class="key">{% trans "Number of items" %}</span><span class="js-cart-quantity value">{{cart.quantity}}</span></div>
                         {% if cart.coupon %}
                         <div class="entry"><span class="key">{% trans "Reduction" %}</span><span id="reduction" class="js-cart-reduction value">{{cart.get_reduction|floatformat:"-2"}} <span>{% trans CURRENCY %}</span></span></div>

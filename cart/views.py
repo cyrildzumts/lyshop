@@ -495,3 +495,23 @@ def ajax_coupon_verify(request):
     context['status'] = False
     context['error'] = 'Bad Request'
     return JsonResponse(context, status=HTTPStatus.BAD_REQUEST)
+
+
+@login_required
+def ajax_coupon_remove(request):
+    context = {
+        'success' : False
+    }
+    cart, created = CartModel.objects.get_or_create(user=request.user)
+    if request.method == 'POST':
+        cart_service.remove_coupon(cart)
+        cart.refresh_from_db()
+        context['success'] = True
+        context['status'] = True
+        context['total'] = cart.get_total()
+        context['reduction'] = cart.get_reduction()
+        return JsonResponse(context)
+
+    context['status'] = False
+    context['error'] = 'Bad Request'
+    return JsonResponse(context, status=HTTPStatus.BAD_REQUEST)

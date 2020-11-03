@@ -48,6 +48,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             element.toggleClass('chips-selected', !element.hasClass('chips-selected')).siblings().removeClass('chips-selected');
         });
         $('.js-add-coupon').on('click', self.addCoupon.bind(this));
+        $(".js-remove-coupon").on('click', self.removeCoupon);
         console.log("Cart initialized");
     }
 
@@ -134,12 +135,29 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
     }
     
 
-    Cart.prototype.removeCoupon = function(coupon){
-        if(!this.csrfmiddlewaretoken || !this.csrfmiddlewaretoken.value){
-            console.warning("Cart add oporation not allowed: csrf_token missing");
+    Cart.prototype.removeCoupon = function(){
+        var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
+        if(!csrfmiddlewaretoken){
+            console.warning("Cart remove oporation not allowed: csrf_token missing");
             return;
         }
-        console.log("Remove coupon %s from cart", coupon);
+        console.log("Remove coupon %s from cart");
+        var option = {
+            type:'POST',
+            dataType: 'json',
+            url : '/cart/ajax-coupon-remove/',
+            data : {csrfmiddlewaretoken : csrfmiddlewaretoken}
+        }
+        ajax_api(option).then(
+            function(response){
+                var data = JSON.parse(response);
+                console.log(data);
+                document.location.reload();
+            }, 
+            function(error){
+                console.error("Error on vefirying Coupon");
+            });
+
     }
 
     Cart.prototype.isValidCoupon = function(coupon, callback){
