@@ -150,7 +150,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
         }
         ajax_api(option).then(
             function(response){
-                var data = JSON.parse(response);
+                var data = response;
                 console.log(data);
                 document.location.reload();
             }, 
