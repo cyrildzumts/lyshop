@@ -16,7 +16,7 @@ define(['ajax_api'], function(ajax_api) {
         var csrf_token = document.querySelector('input[name="csrfmiddlewaretoken"]');
         
         var option = {
-            type:'GET',
+            type:'POST',
             dataType: this.data_type,
             url : this.baseURL,
             data : {product: product_uuid, csrfmiddlewaretoken:csrf_token.value}
