@@ -91,10 +91,11 @@ slider.init();
     $('form .js-cancel').on('click', can_leave);
     */
 
+    /*
     $('.mat-list').on('click', '.mat-list-item', function(){
         $(this).toggleClass('active');
     });
-
+    */
     $('.js-dialog-open').on('click', function(){
         var target = $($(this).data('target'));
         target.show();
