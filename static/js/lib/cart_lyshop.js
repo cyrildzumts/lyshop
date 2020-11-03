@@ -47,7 +47,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             input.val(element.data('value'));
             element.toggleClass('chips-selected', !element.hasClass('chips-selected')).siblings().removeClass('chips-selected');
         });
-        $('.js-add-coupon').on('click', self.addCoupon);
+        $('.js-add-coupon').on('click', self.addCoupon.bind(this));
         console.log("Cart initialized");
     }
 
