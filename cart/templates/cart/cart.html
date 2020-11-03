@@ -25,7 +25,7 @@
                     <h4>{% trans "Summary" %}</h4>
                 </div>
                 <div class="mat-box-content">
-                    <div class="container left">
+                    <div class="container flex-left">
                         <ul class="mat-list {% if not cart.coupon %}hidden{% endif %}">
                             <li class="secondary-color"><span>{% trans "Activated Coupon" %}</span></li>
                             <li><div class="flex flex-left">{% if cart.coupon %}<span>{{cart.coupon.name}}</span> <button class="js-remove-coupon"><i class="fas fa-remove icon"></i> <span>{% trans "Remove" %}</span></button>{% endif %}</div></li>
