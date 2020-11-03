@@ -5,8 +5,8 @@ requirejs.config({
     }
 });
 
-requirejs(['cart_lyshop', 'ajax', 'vendor/jquery.min'], function(Cart, ajax, LS){
+requirejs(['cart_lyshop', 'ajax', 'vendor/jquery.min'], function(Cart, ajax, $){
     console.log("LyshopApp loaded ...");
     var cart = new Cart();
-    console.log("JQuery version :", LS);
+    console.log("JQuery version :", $);
 });
