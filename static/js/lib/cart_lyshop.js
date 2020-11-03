@@ -64,7 +64,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             url : '/cart/ajax-add-to-cart/',
             data : data
         }
-        add_promise = ajax_api(option).then(function(response){
+        ajax_api(option).then(function(response){
             self.update_badge(response.quantity);
         }, function(reason){
             console.error(reason);
@@ -109,7 +109,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 url : '/cart/ajax-add-coupon/',
                 data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
             }
-            add_promise = ajax_api(option).then(function(response){
+            ajax_api(option).then(function(response){
                 console.log(response);
                 document.getElementById('reduction').textContent = response.reduction;
                 document.getElementById('total').textContent = response.total;
@@ -152,7 +152,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             url : '/cart/ajax-cart-item/' + data['item'] + '/' + data['action'] + '/',
             data : data
         }
-        add_promise = ajax_api(option).then(function(response){
+        ajax_api(option).then(function(response){
             self.update_badge(response.count);
             if(parseInt(response.count) == 0){
                 document.location.reload();
@@ -189,7 +189,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             url : '/cart/ajax-cart-item-update/',
             data : data
         }
-        add_promise = ajax_api(option).then(function(response){
+        ajax_api(option).then(function(response){
             console.log(response);
     
             if(response['item_quantity'] == 0){
