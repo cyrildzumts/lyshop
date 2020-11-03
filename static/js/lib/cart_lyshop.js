@@ -159,13 +159,13 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             function(response){
                 console.log(response);
                 if(typeof callback == "function"){
-                    callback(response);
+                    callback(JSON.parse(response));
                 }
             }, 
             function(error){
                 console.error("Error on vefirying Coupon \"%s\" ", coupon);
                 if(typeof callback == "function"){
-                    callback(error);
+                    callback(JSON.parse(error));
                 }
             });
     }

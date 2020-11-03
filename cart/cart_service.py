@@ -195,4 +195,11 @@ def apply_coupon(cart, coupon):
         logger.warn(f"No coupon found with the name \"{coupon}\"")
         return False
     return True
+
+def remove_coupon(cart):
+    if not isinstance(cart, CartModel):
+        return False
+    if not cart.coupon:
+        return False
     
+    CartModel.objects.filter(pk=cart.pk).update(coupon=None, solded_price=0)
