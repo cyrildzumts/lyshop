@@ -214,10 +214,10 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 to_update.parent.fadeOut('slow').remove()
             }else{
                 to_update.target.val(response['item_quantity']);
-                to_update.update.html(response['item_total'].replace('.', ','));
+                to_update.update.html(response['item_total']);
             }
 
-            to_update.cart_total.html(response['cart_total'].replace('.', ','));
+            to_update.cart_total.html(response['cart_total']);
             to_update.cart_quantity.html(response['count']);            
             
         }, function(reason){
@@ -248,17 +248,17 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 $('#' + target.data('parent')).fadeOut('slow').remove();
             }else{
                 target.val(response['item_quantity']);
-                $('#' + target.data('total')).html(response['item_total'].replace('.', ','));
+                $('#' + target.data('total')).html(response['item_total']);
             }
     
             if(response['reduction']){
-                $('#reduction').html(response['reduction'].replace('.', ','));
-                $('#solded_price').html(response['solded_price'].replace('.', ','));
+                $('#reduction').html(response['reduction']);
+                $('#solded_price').html(response['solded_price']);
             }else{
                 $('#reduction').html(response['reduction']);
             }
             
-            $('#total').html(response['total'].replace('.', ','));
+            $('#total').html(response['total']);
             $('.js-cart-quantity').html(response['cart_quantity']);
             this.update_badge(response['cart_quantity']);
             
