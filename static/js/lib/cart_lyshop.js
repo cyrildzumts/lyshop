@@ -204,6 +204,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             data : data
         }
         ajax_api(option).then(function(response){
+            console.log("update_product : ", response);
             self.update_badge(response.count);
             if(parseInt(response.count) == 0){
                 document.location.reload();
