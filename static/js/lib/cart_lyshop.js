@@ -130,7 +130,9 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                     console.error(reason);
                 });
             }else if(response.status && !response.valid){
-                
+                setTimeout(()=>{
+                    $("#coupon-error").fadeOut(600);
+                }, 5000);
                 console.log("invalid coupon : %s", coupon);
             }
             
