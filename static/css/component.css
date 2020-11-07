@@ -326,6 +326,12 @@ label{
 	border-radius: 0 !important;
 
 }
+
+.mat-input input:disabled{
+	color: #ccc;
+	border-bottom-color: #ccc;
+}
+
 .mat-input span, .form-group span{
 	display: inline-block;
 	width: 100%;

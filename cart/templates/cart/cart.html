@@ -28,13 +28,13 @@
                     <div class="container flex-left">
                         
                         <div id="coupon-wrapper" class="full">
-                            <div id="coupon-error" class="error hidden"><span>{% trans "Invalid coupon" %}</span></div>
+                            <div id="coupon-error" class="error hidden"><i class="fas fa-ban icon"></i><span>{% trans "Invalid coupon" %}</span> </div>
                             <div class="entry">
                                 <span class="key">{% trans "Coupon" %}</span>
-                                <div class="value flex flex-right">
+                                <div class="value flex mat-input">
                                     <input id="coupon" class="js-coupon" name="coupon" {% if cart.coupon %} value="{{cart.coupon.name}}" disabled{% endif %}>
                                     <button class="js-add-coupon mat-button mat-button-text {% if cart.coupon %}hidden{% endif %}" data-target="coupon"><i class="fas fa-plus icon"></i> <span>{% trans "Add" %}</span></button>
-                                    <button class="js-remove-coupon {% if not cart.coupon %}hidden{% endif %}"><i class="fas fa-remove icon"></i> <span>{% trans "Remove" %}</span></button>
+                                    <button class="js-remove-coupon {% if not cart.coupon %}hidden{% endif %}"><i class="fas fa-trash icon"></i> <span>{% trans "Remove" %}</span></button>
                                 </div>
                                 
                             </div>
