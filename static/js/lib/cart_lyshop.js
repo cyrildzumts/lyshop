@@ -120,8 +120,8 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 }
                 ajax_api(option).then(function(response){
                     console.log(response);
-                    $(".js-cart-original-price").text(response.subtotal);
-                    $(".js-cart-final-price").text(response.total);
+                    $(".original-price").text(response.subtotal);
+                    $(".final-price").text(response.total);
                     $(".js-cart-reduction").text(response.reduction);
                     $(".js-add-coupon").hide().siblings(".js-remove-coupon").show();
                     $("#coupon").prop('disabled', true).toggleClass('disabled');
@@ -156,8 +156,8 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 var data = response;
                 console.log(data);
                 $('#coupon').prop('disabled', false).removeClass('disabled', false).val('');
-                $(".js-cart-original-price").text(response.subtotal);
-                $(".js-cart-final-price").text(response.total);
+                $(".original-price").text(response.subtotal);
+                $(".final-price").text(response.total);
                 $(".js-cart-reduction").text(response.reduction);
                 $(".js-add-coupon").show().siblings(".js-remove-coupon").hide();
                 //document.location.reload();
@@ -223,8 +223,8 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 to_update.target.val(response['item_quantity']);
                 to_update.update.html(response['item_total']);
             }
-            $(".js-cart-original-price").text(response.subtotal);
-            $(".js-cart-final-price").text(response.total);
+            $(".original-price").text(response.subtotal);
+            $(".final-price").text(response.total);
             $(".js-cart-quantity").text(response.count);
             $(".js-cart-reduction").text(response.reduction);
             //to_update.cart_total.html(response['cart_total']);
@@ -261,8 +261,8 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 $('#' + target.data('total')).html(response['item_total']);
             }
     
-            $(".js-cart-original-price").text(response.subtotal);
-            $(".js-cart-final-price").text(response.total);
+            $(".original-price").text(response.subtotal);
+            $(".final-price").text(response.total);
             $(".js-cart-quantity").text(response.count);
             $(".js-cart-reduction").text(response.reduction);
             this.update_badge(response.count);
