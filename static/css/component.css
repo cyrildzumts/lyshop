@@ -97,6 +97,9 @@ canvas{
 	content: "-";
 	padding: 0 16px;
 }
+#coupon-error{
+	display: none;
+}
 
 .state{
 	padding: 0 8px;

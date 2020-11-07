@@ -109,7 +109,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
         }
         console.log("Cart addCoupon : this : ", this);
         this.isValidCoupon(coupon, function(response){
-            $("#coupon-error").toggleClass('hidden', response.valid);
+            $("#coupon-error").toggle(!response.valid);
             if(response.status && response.valid){
                 
                 var option = {
