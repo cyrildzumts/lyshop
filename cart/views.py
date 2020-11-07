@@ -271,8 +271,6 @@ def ajax_cart_item_update_quantity(request):
         logger.info(f"Cart item update quantity : Cart Item not found.")
         return JsonResponse(context, status=HTTPStatus.NOT_FOUND)
 
-
-    item_quantity = item.quantity
     requested_quantity = form.cleaned_data.get('quantity')
     updated_rows , item = cart_service.update_cart(cart, item, requested_quantity)
     
@@ -353,7 +351,6 @@ def ajax_cart_item_to_wishlist(request, item_uuid):
         context['status'] = False
         return JsonResponse(context, status=HTTPStatus.NOT_FOUND)
     
-    product = item.product
     cart_service.remove_from_cart(cart, item)
     cart.refresh_from_db()
     context['success'] = True

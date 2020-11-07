@@ -118,10 +118,13 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                     url : '/cart/ajax-add-coupon/',
                     data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
                 }
-                ajax_api(option).then(function(data){
-                    console.log(data);
-                    document.getElementById('reduction').textContent = data.reduction;
-                    document.getElementById('total').textContent = data.total;
+                ajax_api(option).then(function(response){
+                    console.log(response);
+                    $(".js-cart-original-price").text(response.subtotal);
+                    $(".js-cart-final-price").text(response.total);
+                    $(".js-cart-reduction").text(response.reductiont);
+                    $(".js-add-coupon").hide().siblings(".js-remove-coupon").show();
+                    $("#coupon").prop('disabled', true).toggleClass('disabled');
                 }, function(reason){
                     console.error("Error on adding Coupon \"%s\" to user cart", coupon);
                     console.error(reason);
@@ -152,8 +155,12 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             function(response){
                 var data = response;
                 console.log(data);
-                $('#coupon').val('');
-                document.location.reload();
+                $('#coupon').prop('disabled', false).removeClass('disabled', false).val('');
+                $(".js-cart-original-price").text(response.subtotal);
+                $(".js-cart-final-price").text(response.total);
+                $(".js-cart-reduction").text(response.reductiont);
+                $(".js-add-coupon").show().siblings(".js-remove-coupon").hide();
+                //document.location.reload();
             }, 
             function(error){
                 console.error("Error on vefirying Coupon");
@@ -206,7 +213,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
         ajax_api(option).then(function(response){
             console.log("update_product : ", response);
             self.update_badge(response.count);
-            if(parseInt(response.count) == 0){
+            if(response.count == 0){
                 document.location.reload();
                 return ;
             }
@@ -216,9 +223,11 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 to_update.target.val(response['item_quantity']);
                 to_update.update.html(response['item_total']);
             }
-
-            to_update.cart_total.html(response['cart_total']);
-            to_update.cart_quantity.html(response['count']);            
+            $(".js-cart-original-price").text(response.subtotal);
+            $(".js-cart-final-price").text(response.total);
+            $(".js-cart-quantity").text(response.count);
+            //to_update.cart_total.html(response['cart_total']);
+            //to_update.cart_quantity.html(response['count']);            
             
         }, function(reason){
             console.error("Error on updating cart item \"%s\"",data['item']);
@@ -251,16 +260,10 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 $('#' + target.data('total')).html(response['item_total']);
             }
     
-            if(response['reduction']){
-                $('#reduction').html(response['reduction']);
-                $('#solded_price').html(response['solded_price']);
-            }else{
-                $('#reduction').html(response['reduction']);
-            }
-            
-            $('#total').html(response['total']);
-            $('.js-cart-quantity').html(response['cart_quantity']);
-            this.update_badge(response['cart_quantity']);
+            $(".js-cart-original-price").text(response.subtotal);
+            $(".js-cart-final-price").text(response.total);
+            $(".js-cart-quantity").text(response.count);
+            this.update_badge(response.count);
             
         }, function(reason){
     
