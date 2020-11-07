@@ -66,7 +66,7 @@ class CartModel(models.Model):
         return reverse("cart", kwargs={"cart_uuid": self.cart_uuid})
     
     def get_total(self):
-        return self.amount - self.get_reduction()
+        return float(self.amount) - self.get_reduction()
 
     def clear(self):
         pass
