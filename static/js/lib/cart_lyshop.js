@@ -122,7 +122,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                     console.log(response);
                     $(".js-cart-original-price").text(response.subtotal);
                     $(".js-cart-final-price").text(response.total);
-                    $(".js-cart-reduction").text(response.reductiont);
+                    $(".js-cart-reduction").text(response.reduction);
                     $(".js-add-coupon").hide().siblings(".js-remove-coupon").show();
                     $("#coupon").prop('disabled', true).toggleClass('disabled');
                 }, function(reason){
@@ -158,7 +158,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                 $('#coupon').prop('disabled', false).removeClass('disabled', false).val('');
                 $(".js-cart-original-price").text(response.subtotal);
                 $(".js-cart-final-price").text(response.total);
-                $(".js-cart-reduction").text(response.reductiont);
+                $(".js-cart-reduction").text(response.reduction);
                 $(".js-add-coupon").show().siblings(".js-remove-coupon").hide();
                 //document.location.reload();
             }, 
@@ -226,6 +226,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             $(".js-cart-original-price").text(response.subtotal);
             $(".js-cart-final-price").text(response.total);
             $(".js-cart-quantity").text(response.count);
+            $(".js-cart-reduction").text(response.reduction);
             //to_update.cart_total.html(response['cart_total']);
             //to_update.cart_quantity.html(response['count']);            
             
@@ -263,6 +264,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
             $(".js-cart-original-price").text(response.subtotal);
             $(".js-cart-final-price").text(response.total);
             $(".js-cart-quantity").text(response.count);
+            $(".js-cart-reduction").text(response.reduction);
             this.update_badge(response.count);
             
         }, function(reason){
