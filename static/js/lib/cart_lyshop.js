@@ -130,7 +130,7 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
                     console.error(reason);
                 });
             }else if(response.status && !response.valid){
-                $("#coupon-error").toggleClass('hidden', !response.valid);
+                $("#coupon-error").toggleClass('hidden', response.valid);
                 console.log("invalid coupon : %s", coupon);
             }
             
