@@ -329,7 +329,8 @@ label{
 
 .mat-input input:disabled{
 	color: #ccc;
-	border-bottom-color: #ccc;
+	font-weight: 600;
+	border-bottom-color: #ccc !important;
 }
 
 .mat-input span, .form-group span{
@@ -815,15 +816,9 @@ a.button{
 
 .disabled{
 	color:var(--disabled-color) !important;
-	background-color: var(--disabled-bg-color) !important;
+	/*background-color: var(--disabled-bg-color) !important;*/
 	cursor: default !important;
 }
-
-.disabled:hover{
-	background-color: var(--disabled-hover-bg-color) !important;
-}
-
-
 
 .fill {object-fit: fill;}
 .contain {object-fit: contain;}
