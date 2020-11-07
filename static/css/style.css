@@ -130,14 +130,14 @@
 }
 
 .entry .key, .entry .value{
-    display: inline-block;
+    /*display: inline-block;*/
     /*min-width: 250px;*/
     text-align: left;
     font-size: 0.875em;
 }
 
 .cart-item-entry .key, .cart-item-entry .value{
-    display: inline-block;
+    /*display: inline-block;*/
     /*min-width: 250px;*/
     text-align: left;
     font-size: 0.875em;
