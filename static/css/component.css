@@ -319,7 +319,7 @@ label{
 
 .mat-input label input, .mat-input input, .form-group input{
 	display: inline-block;
-	width: 100%;
+	/*width: 100%;*/
 	text-align: left;
 	color: #242424;
 	font-weight: 500;
