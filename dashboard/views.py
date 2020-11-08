@@ -1738,7 +1738,8 @@ def attribute_detail(request, attribute_uuid):
     context = {
         'page_title': page_title,
         'attribute' : attribute,
-        'product_list': attribute.products.all()
+        'product_list': attribute.products.all(),
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -1775,7 +1776,8 @@ def attribute_update(request, attribute_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'brand': attribute
+        'brand': attribute,
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
