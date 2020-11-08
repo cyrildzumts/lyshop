@@ -77,6 +77,9 @@ define(function() {
         }).attr({
             'data-target': '#' + id
         });
+        delete_button.append($("<i/>", {
+            'class': 'fas fa-backspace icon'
+        }));
         delete_button.on('click', function(){
             div.remove();
             self.decremente_management_form();
