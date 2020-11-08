@@ -101,6 +101,8 @@ urlpatterns = [
     path('products/attributes/create/<uuid:variant_uuid>/', views.attribute_create, name='attribute-create'),
     path('products/attributes/add/<uuid:variant_uuid>/', views.add_attributes, name='attribute-add'),
     path('products/attributes/remove/<uuid:variant_uuid>/', views.remove_attributes, name='attribute-remove'),
+    path('products/attributes/update-default-primary/', views.update_primary_attributes, name='attribute-primary-update'),
+
 
     path('payment-requests/', views.payment_requests, name='payment-requests'),
     path('payment-requests/detail/<uuid:request_uuid>/', views.payment_request_details, name='payment-request-detail'),

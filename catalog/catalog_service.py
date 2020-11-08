@@ -1,5 +1,6 @@
-from django.db.models import Q,Count
+from django.db.models import Q, Count
 from catalog.models import Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute
+from catalog import constants as Constants
 import logging
 
 logger = logging.getLogger(__name__)
@@ -157,3 +158,12 @@ def get_variant_from_attr(attr_id, product):
     variant = attr.products.filter(id__in=p_variants).first()
     logger.debug(f"get variant \"{variant}\" for attr \"{attr}\"")
     return variant
+
+
+def update_default_attributes_primary():
+    return ProductAttribute.objects.filter(name__in=Constants.DEFAULT_PRIMARY_ATTRIBUTES, is_primary=False).update(is_primary=True)
+
+def toggle_attributes_primary(name_list=[], primary=True):
+    if not isinstance(name_list, list) or not isinstance(primary, bool):
+        return 0
+    return ProductAttribute.objects.filter(Q(name__in=name_list)|Q(display_name__in=name_list), is_primary=False).update(is_primary=primary)

@@ -42,6 +42,7 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
 from cart.models import Coupon
 from cart.forms import CouponForm
 from catalog import models
+from catalog import catalog_service
 from catalog import constants as Catalog_Constants
 from core.filters import filters
 from orders import commons as Order_Constants
@@ -1810,10 +1811,25 @@ def attributes(request):
     context = {
         'page_title': page_title,
         'attribute_list': list_set
+        'has_default_not_set' : ProductAttribute.objects.filter(name__in=Catalog_Constants.DEFAULT_PRIMARY_ATTRIBUTES, is_primary=False).exists()
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
+@login_required
+def update_primary_attributes(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    catalog_service.update_default_attributes_primary()
+            
+    return redirect('dashboard:attributes')
 
 @login_required
 def brands(request):
