@@ -45,6 +45,7 @@
                           <th scope="col">{% trans "Name" %}</th>
                           <th scope="col">{% trans "Display Name" %}</th>
                           <th scope="col">{% trans "Value" %}</th>
+                          <th scope="col">{% trans "Primary" %}</th>
                           <th scope="col">{% trans "Value Type" %}</th>
                           <th scope="col">{% trans "Action" %}</th>
                   </tr>
@@ -56,7 +57,8 @@
                   <td data-label="{% trans 'Name' %}">{{attr.name}}</td>
                   <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
                   <td data-label="{% trans 'Value' %}">{{attr.value}}</td>
-                  <td data-label="{% trans 'Value type' %}">{{attr.value_type|attr_type_key}}</td>
+                  <td data-label="{% trans 'Primary' %}">{{attr.is_primary|yesno}}</td>
+                  <td data-label="{% trans 'Value type' %}">{{attr.value_type|attr_type_value}}</td>
                   <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{{attr.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   </tr>
                   {% endfor %}

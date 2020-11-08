@@ -50,7 +50,7 @@
             
             </div>
             <div class="col-m-12 col-xs-12 col-4">
-                <div class="flex flex-column">
+                <div class="row">
                     <div class="cart-item-entry">
                         <span class="key">{% trans "Art. Nr" %}</span><span class="value">{{item.product.article_number}}</span>
                     </div>
@@ -59,7 +59,7 @@
             <div class="col-m-12 col-xs-12 col-4">
                 <div class="flex flex-column">
                     {% for attr in item.product.attributes.all %}
-                        {% if attr.is_primaire %}
+                        {% if attr.is_primary %}
                             <div class="cart-item-entry">
                                 <span class="key">{{attr.display_name}}</span> <span class="value">{{attr.value}}</span>
                             </div>

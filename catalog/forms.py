@@ -20,7 +20,7 @@ class ProductAttributeForm(forms.ModelForm):
 
     class Meta:
         model = ProductAttribute
-        fields = ['name', 'display_name', 'value', 'value_type']
+        fields = ['name', 'display_name', 'value', 'value_type', 'is_primary']
     
 
     def clean(self):
@@ -39,6 +39,7 @@ class AttributeForm(forms.Form):
     attribute_display_name = forms.CharField(max_length=32)
     attribute_value = forms.CharField(max_length=32)
     attribute_value_type = forms.IntegerField()
+    attribute_is_primary = forms.BooleanField()
 
 
 

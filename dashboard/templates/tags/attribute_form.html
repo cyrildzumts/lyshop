@@ -14,11 +14,15 @@
         <label for="value">{% trans "Attribute Value" %}</label>
         <input type="text"  name="value">
      </div>
+     <div class="form-group">
+        <label for="is-primary">{% trans "Is Primary" %}</label>
+        <input type="checkbox"  name="is_primary">
+     </div>
       <div class="form-group">
         <label for="value_type">{% trans "Value Type" %}</label>
         <select name="value_type">
         {% for k,v in ATTRIBUTE_TYPE %}
-            <option value="{{v}}">{% trans k %}</option>
+            <option value="{{k}}">{% trans v %}</option>
         {% endfor %}
         </select>
      </div>
