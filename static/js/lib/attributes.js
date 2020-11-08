@@ -47,6 +47,13 @@ function create_attribute(index){
         'maxlength': input_max_length
     });
     input_value.appendTo(label_value);
+    var label_primary = $("<label/>").text(attr_template.is_primary + " : ");
+    var input_primary = $('<input type="checkbox">').attr({
+        'id':`id-form-${index}-primary`,
+        'name': `form-${index}-is_primary`
+    });
+
+    input_primary.appendTo(label_primary);
     var label_value_type = $("<label/>").text(attr_template.value_type + " : ");
     var select_value_type = $('<select/>').attr({
         'id':`id-form-${index}-value_type`,
@@ -68,7 +75,7 @@ function create_attribute(index){
         'id':`id-form-${index}-id`,
         'name': `form-${index}-id`,
     });
-    div.append([label_name, label_display_name, label_value, label_value_type, input_form_id, delete_button]);
+    div.append([label_name, label_display_name, label_value, label_value_type,label_primary ,input_form_id, delete_button]);
     div.appendTo(container);
     incremente_management_form(form);
     console.log("[OK] Adding attribute done!");
@@ -167,6 +174,13 @@ var AttributManager = (function(){
             'maxlength': input_max_length
         });
         input_value.appendTo(label_value);
+
+        var label_primary = $("<label/>").text(attr_template.is_primary + " : ");
+        var input_primary = $('<input type="checkbox">').attr({
+            'id':`id-form-${index}-primary`,
+            'name': `form-${index}-is_primary`
+        });
+        input_primary.appendTo(label_primary);
         var label_value_type = $("<label/>").text(attr_template.value_type + " : ");
         var select_value_type = $('<select/>').attr({
             'id':`id-form-${this.total_form}-value_type`,
@@ -188,10 +202,10 @@ var AttributManager = (function(){
             'id':`id-form-${this.total_form}-id`,
             'name': `form-${this.total_form}-id`,
         });
-        div.append([label_name, label_display_name, label_value, label_value_type, input_form_id, delete_button]);
+        div.append([label_name, label_display_name, label_value, label_value_type, label_primary, input_form_id, delete_button]);
         div.appendTo(container);
         self.incremente_management_form();
-        self.attrs_inputs.push([input_name, input_display_name, input_value, select_value_type, input_form_id]);
+        self.attrs_inputs.push([input_name, input_display_name, input_value, select_value_type, input_primary, input_form_id]);
         console.log("[OK] Adding attribute done!");
         return div;
     };
@@ -321,12 +335,19 @@ function create_attribute_entry(container, form){
             'text' : el.value
         }).appendTo(select_value_type);
     });
+    var label_primary = $("<label/>").text(attr_template.is_primary + " : ");
+    var input_primary = $('<input type="checkbox">').attr({
+        'id':`id-form-${total_form}-value`,
+        'name': `form-${total_form}-is_primary`,
+        'maxlength': input_max_length
+    });
+    input_primary.appendTo(label_primary);
     var input_form_id = $('<input type="hidden">').attr({
         'id':`id-form-${total_form}-id`,
         'name': `form-${total_form}-id`,
     });
-    div.append([label_name, label_display_name, label_value, label_value_type, input_form_id, delete_button]);
-    attr_list.push([input_name, input_display_name, input_value, select_value_type, input_form_id]);
+    div.append([label_name, label_display_name, label_value, label_value_type, label_primary, input_form_id, delete_button]);
+    attr_list.push([input_name, input_display_name, input_value, select_value_type, input_primary, input_form_id]);
     div.appendTo(container);
     incremente_management_form(form);
     console.log("[OK] Adding attribute done!");
