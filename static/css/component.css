@@ -309,6 +309,8 @@ label{
 	font-weight: 600;
 	padding: 0 !important;
 	margin-bottom: 0;
+	margin-left : 4px;
+	margin-right: 4px;
 	transform-origin: left top;
 	transition-duration: 160ms;
 	letter-spacing: .2px;
