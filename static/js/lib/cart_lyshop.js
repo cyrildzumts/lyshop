@@ -1,4 +1,4 @@
-define('cart',['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
+define(['ajax_api'], function(ajax_api) {
     'use strict';
     function Cart(){
         this.user = "";
