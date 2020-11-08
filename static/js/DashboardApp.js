@@ -1,9 +1,3 @@
-requirejs.config({
-    baseUrl :'/static/js/lib',
-    paths:{
-        vendor: '../vendor'
-    }
-});
 
 requirejs(['ajax_api', 'attributes_api','vendor/jquery.min'], function(ajax_api, AttributeManager){
     console.log("DashboardApp loaded ...");
