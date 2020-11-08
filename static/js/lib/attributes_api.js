@@ -107,8 +107,8 @@ define(function() {
 
         var label_primary = $("<label/>").text(attr_template.is_primary + " : ");
         var input_primary = $('<input type="checkbox">').attr({
-            'id':`id-form-${index}-primary`,
-            'name': `form-${index}-is_primary`
+            'id':`id-form-${this.total_form}-primary`,
+            'name': `form-${this.total_form}-is_primary`
         });
         input_primary.appendTo(label_primary);
         var label_value_type = $("<label/>").text(attr_template.value_type + " : ");
