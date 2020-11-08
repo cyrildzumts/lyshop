@@ -23,7 +23,7 @@
             <button class="mat-button mat-button-default js-add-new-attribute" title="{% trans 'Add new Attribute' %}" data-form="#form-add-attributes" data-target="#form-attr-container">{% trans "Add" %}</button>
         </div>
         <div class="mat-box-content">
-            <form id="form-add-attributes" action="{% url 'dashboard:attribute-create' %}" method="POST">{% csrf_token %}
+            <form id="form-add-attributes" action="{% url 'dashboard:attributes-create' %}" method="POST">{% csrf_token %}
                 <input id="id_form-TOTAL_FORMS" type="hidden" name="form-TOTAL_FORMS" value="0">
                 <input id="id_form-INITIAL_FORMS" type="hidden" name="form-INITIAL_FORMS" value="0">
                 <input id="id_form-MIN_NUM_FORMS" type="hidden" name="form-MIN_NUM_FORMS" value="0">
