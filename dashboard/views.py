@@ -1679,7 +1679,7 @@ def attributes_create(request):
     if not PermissionManager.user_can_add_product(request.user):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-    template_name = 'dashboard/attribute_create.html'
+    template_name = 'dashboard/attributes_create.html'
     page_title = _('New Attribute')
     
     attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm)
