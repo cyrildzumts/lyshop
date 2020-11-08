@@ -1,3 +1,4 @@
+/*
 requirejs.config({
     baseUrl :'/static/js/lib',
     paths:{
@@ -10,3 +11,5 @@ requirejs(['ajax_api', 'attributes_api','vendor/jquery.min'], function(ajax_api,
     attribute_manager.init();
     console.log("JQuery version :", $().jquery);
 });
+
+*/
