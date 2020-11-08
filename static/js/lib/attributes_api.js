@@ -16,6 +16,7 @@ define(function() {
         this.id_form_INITIAL_FORMS = $("#id_form-INITIAL_FORMS", this.form);
         this.id_form_MIN_NUM_FORMS = $("#id_form-MIN_NUM_FORMS", this.form);
         this.id_form_MAX_NUM_FORMS = $("#id_form-MAX_MIN_FORMS", this.form);
+        console.log("AttributeManager created ...");
     };
     AttributManager.prototype.init = function(){
         var self = this;
@@ -24,6 +25,7 @@ define(function() {
             //var form_container = $($(this).data('form'));
             self.create_attribute();
         });
+        console.log("AttributeManager initialized ...");
     };
 
     AttributManager.prototype.addAttribute = function(){
