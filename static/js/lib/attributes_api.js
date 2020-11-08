@@ -1,6 +1,6 @@
-define([], function() {
+define(function() {
     'use strict';
-
+    console.log("attribute_api creation ...");
     function AttributManager(){
         
         //this.form = $('#form-attrs-management');
