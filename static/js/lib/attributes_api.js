@@ -67,7 +67,7 @@ define(function() {
         var self = this;
         var id = `attr-form-${this.total_form}`;
         var div = $('<div/>', {
-            'class': 'row',
+            'class': 'flex mat-input',
             'id': id
         });
         var delete_button = $("<button/>", {
