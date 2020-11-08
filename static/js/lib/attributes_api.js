@@ -1,7 +1,7 @@
-define(['vendor/jquery.min'], function() {
+define([], function() {
     'use strict';
 
-    function AttributManager(options){
+    function AttributManager(){
         
         //this.form = $('#form-attrs-management');
         this.form =$('#form-add-attributes');
