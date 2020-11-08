@@ -1639,9 +1639,7 @@ def attribute_create(request, variant_uuid):
         raise PermissionDenied
     template_name = 'dashboard/attribute_create.html'
     page_title = _('New Attribute')
-    
-    form = None
-    username = request.user.username
+
     variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid)
     attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm)
     if request.method == 'POST':
@@ -1660,12 +1658,50 @@ def attribute_create(request, variant_uuid):
             logger.error(f'Error on creating new product variant. Action requested by user \"{username}\"')
             logger.error(formset.errors)
             return redirect('dashboard:product-variant-detail', variant_uuid=variant_uuid)
-    else:
-        form = ProductVariantForm()
+
     context = {
         'page_title': page_title,
         'formset' : attribute_formset(),
         'variant' : variant
+    }
+    context['attribute_formset'] = attribute_formset
+    context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+@login_required
+def attributes_create(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_add_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/attribute_create.html'
+    page_title = _('New Attribute')
+    
+    attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        formset = attribute_formset(postdata)
+        logger.info("Attribute formset valid checking")
+        if formset.is_valid():
+            logger.info("Attribute formset valid")
+            formset.save()
+            messages.success(request, _('Attribute formset valid'))
+            logger.info(f'New attributes added by user \"{username}\"')
+            return redirect('dashboard:attributes')
+        else:
+            messages.error(request, _('Product variant not created'))
+            logger.error(f'Error on creating new attribute. Action requested by user \"{username}\"')
+            logger.error(formset.errors)
+            return redirect('dashboard:attributes-create')
+
+    context = {
+        'page_title': page_title,
+        'formset' : attribute_formset(),
     }
     context['attribute_formset'] = attribute_formset
     context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE

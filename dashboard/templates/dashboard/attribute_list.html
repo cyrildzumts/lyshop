@@ -17,6 +17,9 @@
                     {% if has_default_not_set %}
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:attribute-primary-update' %}"><i class="fas fa-sync icon"></i><span>{% trans "Update Default Primary" %}</span></a>    
                     {% endif %}
+                    {% if can_view_product %}
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:attributes-create' %}"><i class="fas fa-plus icon"></i><span>{% trans "Add new Attributes" %}</span></a>    
+                    {% endif %}
                 </div><!--End of Banner-Actions-->
                 
             </div><!--End of Responsive-->
