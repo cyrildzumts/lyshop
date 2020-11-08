@@ -1666,6 +1666,7 @@ def attribute_create(request, variant_uuid):
     }
     context['attribute_formset'] = attribute_formset
     context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -1704,7 +1705,7 @@ def attributes_create(request):
         'formset' : attribute_formset(),
     }
     context['attribute_formset'] = attribute_formset
-    context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
