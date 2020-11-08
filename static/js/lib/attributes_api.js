@@ -1,4 +1,4 @@
-define(['vendor/jquery.min'], function() {
+define('attribute',['vendor/jquery.min'], function() {
     'use strict';
 
     function AttributManager(){
