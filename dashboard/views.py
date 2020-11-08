@@ -1810,7 +1810,7 @@ def attributes(request):
         list_set = None
     context = {
         'page_title': page_title,
-        'attribute_list': list_set
+        'attribute_list': list_set,
         'has_default_not_set' : ProductAttribute.objects.filter(name__in=Catalog_Constants.DEFAULT_PRIMARY_ATTRIBUTES, is_primary=False).exists()
     }
     context.update(get_view_permissions(request.user))
