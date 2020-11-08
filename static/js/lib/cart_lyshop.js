@@ -285,5 +285,5 @@ define(['ajax_api', 'vendor/jquery.min'], function(ajax_api) {
         }
     }
 
-    return Cart
+    return Cart;
 });

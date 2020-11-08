@@ -1,9 +1,6 @@
 define(['vendor/jquery.min'], function() {
     'use strict';
 
-    var input_max_length = 32;
-    var replace_pattern = /\d+/g;
-
     function AttributManager(options){
         
         //this.form = $('#form-attrs-management');
