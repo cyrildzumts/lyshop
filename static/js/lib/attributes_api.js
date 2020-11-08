@@ -1,4 +1,4 @@
-define([], function() {
+define(['vendor/jquery.min'], function() {
     'use strict';
 
     function AttributManager(){
