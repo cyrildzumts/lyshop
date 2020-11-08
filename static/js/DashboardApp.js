@@ -5,11 +5,9 @@ requirejs.config({
     }
 });
 
-requirejs(['cart_lyshop', 'ajax_api', 'attributes_api','vendor/jquery.min'], function(Cart, ajax_api, AttributeManager){
-    console.log("LyshopApp loaded ...");
-    var cart = new Cart();
+requirejs(['ajax_api', 'attributes_api','vendor/jquery.min'], function(ajax_api, AttributeManager){
+    console.log("DashboardApp loaded ...");
     var attribute_manager = new AttributeManager();
-    cart.init();
     attribute_manager.init();
     console.log("JQuery version :", $().jquery);
 });
