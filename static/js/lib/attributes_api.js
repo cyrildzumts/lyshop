@@ -97,7 +97,7 @@ define(function() {
             'maxlength': self.input_max_length
         });
         input_display_name.appendTo(label_display_name);
-        var label_value = $("<label/>").text(attr_template.key + " : ");
+        var label_value = $("<label/>").text(attr_template.value + " : ");
         var input_value = $('<input type="text">').attr({
             'id':`id-form-${this.total_form}-value`,
             'name': `form-${this.total_form}-value`,
