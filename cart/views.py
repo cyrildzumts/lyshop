@@ -36,7 +36,7 @@ def cart(request):
     context = {
         'cart': cart,
         'cartitems_exist' : cartitems_exist,
-        'item_list' : CartItem.objects.filter(cart=cart),
+        'item_list' : CartItem.objects.select_related('product').prefetch_related('product__attributes').filter(cart=cart),
         'page_title' : settings.SITE_NAME + ' ' + 'Cart',
     }
 
