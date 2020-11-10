@@ -62,6 +62,7 @@ logger = logging.getLogger(__name__)
 
 MAX_IMAGE_SIZE = 2097152
 
+
 @login_required
 def dashboard(request):
     template_name = "dashboard/dashboard.html"

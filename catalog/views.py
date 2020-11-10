@@ -27,13 +27,13 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm
 )
 
-
+from core.filters import filters
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from operator import itemgetter
 from catalog import catalog_service, constants as Constants
-from lyshop import utils, settings, conf
+from lyshop import utils, settings, conf as GLOBAL_CONF
 import logging
 
 
@@ -44,16 +44,16 @@ logger = logging.getLogger(__name__)
 
 class ProductListView(ListView):
     queryset = Product.objects.filter(is_active=True)
-    context_object_name = conf.PRODUCT_LIST_CONTEXT_NAME
-    template_name = conf.PRODUCT_LIST_TEMPLATE_NAME
-    paginated_by = conf.PAGINATED_BY
+    context_object_name = GLOBAL_CONF.PRODUCT_LIST_CONTEXT_NAME
+    template_name = GLOBAL_CONF.PRODUCT_LIST_TEMPLATE_NAME
+    paginated_by = GLOBAL_CONF.PAGINATED_BY
 
 
 class ProductDetailView(DetailView):
     model = Product
-    pk_url_kwarg = conf.PK_ULR_KWARG
-    context_object_name = conf.PRODUCT_DETAIL_CONTEXT_NAME
-    template_name = conf.PRODUCT_DETAIL_TEMPLATE_NAME
+    pk_url_kwarg = GLOBAL_CONF.PK_ULR_KWARG
+    context_object_name = GLOBAL_CONF.PRODUCT_DETAIL_CONTEXT_NAME
+    template_name = GLOBAL_CONF.PRODUCT_DETAIL_TEMPLATE_NAME
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -64,13 +64,19 @@ class ProductDetailView(DetailView):
 
 def catalog_home(request):
     page_title = _('Catalog Home')
-    template_name = conf.CATALOG_HOME_TEMPLATE_NAME
-    recent_products = Product.objects.all()[:conf.LATEST_QUERYSET_LIMIT]
+    template_name = GLOBAL_CONF.CATALOG_HOME_TEMPLATE_NAME
+    recent_products = Product.objects.all()[:GLOBAL_CONF.LATEST_QUERYSET_LIMIT]
+    queryDict = request.GET.copy()
+    field_filter = filters.Filter(Product, queryDict)
+    queryset = field_filter.apply_filter()
+    selected_filters = field_filter.selected_filters
     context = {
         'page_title' : page_title,
         'product_list': recent_products,
         'type_list': ProductType.objects.all(),
-        'GENDER' : Constants.GENDER
+        'GENDER' : Constants.GENDER,
+        'SELECTED_FILTERS' : selected_filters,
+        'FILTER_CONFIG' : Product.FILTER_CONFIG
     }
 
     return render(request, template_name, context)
@@ -81,21 +87,28 @@ def category_detail(request, category_uuid=None):
     if request.method != 'GET':
         raise HttpResponseBadRequest
 
+    page_title = _(category.display_name)
     category = get_object_or_404(Category, category_uuid=category_uuid)
     subcats = category.get_children()
     logger.info(f"Cat {category.display_name} children : {subcats.count()}")
     filterquery = Q(category__category_uuid=category_uuid)
     subcatquery = Q(category__id__in=subcats.values_list('id'))
-    queryset = Product.objects.filter(filterquery | subcatquery)
-    page_title = _(category.display_name)
+    #queryset = Product.objects.filter(filterquery | subcatquery)
+
+    queryDict = request.GET.copy()
+    field_filter = filters.Filter(Product, queryDict)
+    queryset = field_filter.apply_filter()
+    selected_filters = field_filter.selected_filters
+
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:
         list_set = paginator.page(1)
     except EmptyPage:
         list_set = None
+
     context = {
         'page_title': page_title,
         'category' : category,
@@ -104,7 +117,9 @@ def category_detail(request, category_uuid=None):
         'type_list': ProductType.objects.all(),
         'parent_sub_category_list': Category.objects.filter(parent=category.parent),
         'subcategory_list': subcats,
-        'GENDER' : Constants.GENDER
+        'GENDER' : Constants.GENDER,
+        'SELECTED_FILTERS' : selected_filters,
+        'FILTER_CONFIG' : Product.FILTER_CONFIG
     }
     return render(request,template_name, context)
 
@@ -118,7 +133,7 @@ def brand_detail(request, brand_uuid=None):
     queryset = Product.objects.filter(brand__brand_uuid=brand_uuid)
     page_title = _(brand.display_name)
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
         list_set = paginator.page(page)
     except PageNotAnInteger:

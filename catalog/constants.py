@@ -1,5 +1,6 @@
 
 from lyshop import utils
+import datetime
 
 
 SHORT_DESCRIPTION_MAX_SIZE = 164
@@ -59,6 +60,14 @@ ATTRIBUTE_TYPE = (
     (ATTRIBUTE_TYPE_DATETIME, 'DATETIME')
 )
 
+ATTRIBUTE_TYPE_MAPPING = {
+    ATTRIBUTE_TYPE_STRING : str,
+    ATTRIBUTE_TYPE_INTEGER : int,
+    ATTRIBUTE_TYPE_DECIMAL : float,
+    ATTRIBUTE_TYPE_DATETIME : datetime.datetimel,
+    ATTRIBUTE_TYPE_DATE : datetime.date
+}
+
 ATTRIBUTE_TYPE_OLD = (
     ('STRING', ATTRIBUTE_TYPE_STRING),
     ('INTEGER', ATTRIBUTE_TYPE_INTEGER),
@@ -74,6 +83,9 @@ COMMISSION_DECIMAL_PLACES = 5
 
 DEFAULT_PRIMARY_ATTRIBUTES = ['size', 'capacity','color']
 
+INTEGER_PATTERN_REGEX               = re.compile(r'^[0-9]+$')
+LIST_FILTER_PATTERN                 = re.compile(r'^\w+([,;]\w+)*$')
+INTEGER_RANGE_FILTER_PATTERN        = re.compile(r'(?P<START>\d+)?(?:-{1,2})(?P<END>\d+)?')
 
 
 def get_attribute_type_key(value):
