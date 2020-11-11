@@ -74,9 +74,10 @@ def catalog_home(request):
         'page_title' : page_title,
         'product_list': recent_products,
         'type_list': ProductType.objects.all(),
+        'queryset' : queryset,
         'GENDER' : Constants.GENDER,
         'SELECTED_FILTERS' : selected_filters,
-        'FILTER_CONFIG' : Product.FILTER_CONFIG
+        'FILTER_CONFIG' : Product.CATALOGUE_FILTER_CONFIG
     }
 
     return render(request, template_name, context)
@@ -87,10 +88,9 @@ def category_detail(request, category_uuid=None):
     if request.method != 'GET':
         raise HttpResponseBadRequest
 
-    page_title = _(category.display_name)
     category = get_object_or_404(Category, category_uuid=category_uuid)
+    page_title = _(category.display_name)
     subcats = category.get_children()
-    logger.info(f"Cat {category.display_name} children : {subcats.count()}")
     filterquery = Q(category__category_uuid=category_uuid)
     subcatquery = Q(category__id__in=subcats.values_list('id'))
     #queryset = Product.objects.filter(filterquery | subcatquery)
@@ -119,7 +119,7 @@ def category_detail(request, category_uuid=None):
         'subcategory_list': subcats,
         'GENDER' : Constants.GENDER,
         'SELECTED_FILTERS' : selected_filters,
-        'FILTER_CONFIG' : Product.FILTER_CONFIG
+        'FILTER_CONFIG' : Product.CATALOGUE_FILTER_CONFIG
     }
     return render(request,template_name, context)
 

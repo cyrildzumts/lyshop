@@ -263,6 +263,7 @@ class Product(models.Model):
     related_products = models.ManyToManyField('self')
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     FILTERABLE_FIELDS = ['brand', 'created_at','gender', 'price', 'product_type', 'promotion_price', 'quantity' ]
+    CATALOGUE_FILTERABLE_FIELDS = ['brand','gender', 'price', 'product_type' ]
     FILTER_CONFIG = {
         'model' : 'Product',
         'fields' : FILTERABLE_FIELDS,
@@ -270,6 +271,14 @@ class Product(models.Model):
         'quantity' : {'field_name': 'quantity','template_name' : 'tags/integer_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
         'price' : {'field_name': 'price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
         'promotion_price' : {'field_name': 'promotion_price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
+        'brand' : {'field_name': 'brand','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : Brand.objects.all()},
+        'product_type' : {'field_name': 'product_type','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : ProductType.objects.all()},
+        'gender' : {'field_name': 'genre','template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'queryset':False, 'selection_options' : constants.GENDER},
+    }
+    CATALOGUE_FILTER_CONFIG = {
+        'model' : 'Product',
+        'fields' : CATALOGUE_FILTERABLE_FIELDS,
+        'price' : {'field_name': 'price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
         'brand' : {'field_name': 'brand','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : Brand.objects.all()},
         'product_type' : {'field_name': 'product_type','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : ProductType.objects.all()},
         'gender' : {'field_name': 'genre','template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'queryset':False, 'selection_options' : constants.GENDER},
