@@ -1,6 +1,7 @@
 
 from lyshop import utils
 import datetime
+import re
 
 
 SHORT_DESCRIPTION_MAX_SIZE = 164
