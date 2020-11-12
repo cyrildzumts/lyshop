@@ -34,7 +34,7 @@
 <div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         {% if FILTER_CONFIG %}
-            {% include "core/core_filter.html" %}
+            {% include "core/core_filter.html" with FILTER_TEMPLATE="core/filter.html" %}
         {% endif %}
         <table id="order-list" class="mat-table js-filter-table">
           <thead>

@@ -14,7 +14,7 @@
             </div>
         </div><!--End of Row-->
         {% if FILTER_CONFIG %}
-            {% include "core/core_filter.html" %}
+            {% include "core/core_filter.html" with FILTER_TEMPLATE="core/filter.html" %}
         {% endif %}
         <form action="{% url 'dashboard:products-delete' %}" method="POST">{% csrf_token %}
         <table id="product-list" class="mat-table js-filter-table">

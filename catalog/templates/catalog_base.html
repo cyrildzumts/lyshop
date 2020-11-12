@@ -20,7 +20,14 @@
 {% endblock CATEGORIES %}
 <div class="main container">
     <div class="col-m-12 col-2">
-    {% include "tags/product_filter.html" %}
+        <div class="flex flex-column">
+            {% if FILTER_CONFIG %}
+                {% include "core/core_filter.html" with FILTER_TEMPLATE="core/catalog_filter.html" %}
+            {% endif %}
+            {% include "tags/catalog_filter.html" %}
+            {% include "tags/product_filter.html" %}
+        </div>
+    
     </div>
     <div class="col-m-12 col-10">
         {% block MAIN_CONTENT %}

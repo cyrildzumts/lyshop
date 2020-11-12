@@ -76,8 +76,7 @@ def catalog_home(request):
         'type_list': ProductType.objects.all(),
         'queryset' : queryset,
         'GENDER' : Constants.GENDER,
-        'SELECTED_FILTERS' : selected_filters,
-        'FILTER_CONFIG' : Product.CATALOGUE_FILTER_CONFIG
+        'SELECTED_FILTERS' : selected_filters
     }
 
     return render(request, template_name, context)
@@ -118,8 +117,7 @@ def category_detail(request, category_uuid=None):
         'parent_sub_category_list': Category.objects.filter(parent=category.parent),
         'subcategory_list': subcats,
         'GENDER' : Constants.GENDER,
-        'SELECTED_FILTERS' : selected_filters,
-        'FILTER_CONFIG' : Product.CATALOGUE_FILTER_CONFIG
+        'SELECTED_FILTERS' : selected_filters
     }
     return render(request,template_name, context)
 
