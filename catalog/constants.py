@@ -64,7 +64,7 @@ ATTRIBUTE_TYPE_MAPPING = {
     ATTRIBUTE_TYPE_STRING : str,
     ATTRIBUTE_TYPE_INTEGER : int,
     ATTRIBUTE_TYPE_DECIMAL : float,
-    ATTRIBUTE_TYPE_DATETIME : datetime.datetimel,
+    ATTRIBUTE_TYPE_DATETIME : datetime.datetime,
     ATTRIBUTE_TYPE_DATE : datetime.date
 }
 
