@@ -60,8 +60,8 @@ window.addEventListener('beforeunload', askConfirmation);
 let slider = new Slider();
 slider.init();
 
-    var collapsible = new Collapsible();
-    collapsible.init();
+    //var collapsible = new Collapsible();
+    //collapsible.init();
     
     $('.js-grid-enable').on('click', function(){
         $(this).toggleClass('active');

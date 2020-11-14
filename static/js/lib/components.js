@@ -234,7 +234,10 @@ var Collapsible = (function(){
         if(this.$collapsible.length == 0){
             return;
         }
-        this.$collapsible.children('.collapse-content').hide()
+        //this.$collapsible.children('.collapse-content').hide()
+        $('.collapsible').on('click', '.collapse-toggle', function(){
+            $('#' + $(this).data('target')).toggle();
+        });
         $(this.$collapsible).on("click", ".open", function(event){
             var target =$(event.target).data("target");
             if(target == undefined){
