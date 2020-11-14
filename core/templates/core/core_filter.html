@@ -2,7 +2,7 @@
 {% load core_tags %}
 <div class="table-filter">
     <div class="grid">
-        <i class="fas fa-filter icon"></i>
+        <span><i class="fas fa-filter icon"></i>{% trans "FILTER" %}</span>
         {% for field in FILTER_CONFIG.fields %}
             {% include FILTER_TEMPLATE with TEMPLATE_NAME=FILTER_CONFIG|access_dict:field|access_dict:'template_name' DISPLAY_NAME=FILTER_CONFIG|access_dict:field|access_dict:'display_name'  FIELD_FILTER=FILTER_CONFIG|access_dict:field field_name=field %}
         {% endfor %}
