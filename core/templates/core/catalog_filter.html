@@ -2,23 +2,19 @@
 {% load core_tags %}
  <div id="product-filter" class="container">
     <div {% if field_name in SELECTED_FILTERS  %} class="chips chips-selected" {% else %}class="chips" {% endif %}  title="{{field_name}}">
-        <span class="js-open-modal open-modal" data-target="{{field_name}}-content" >{% trans field_name %}</span>
-        <span id="{{field_name}}-filter" class="filter"></span>
+        <span class="js-open-modal open-modal" data-target="{{field_name}}-content" >{% trans DISPLAY_NAME %}</span>
     </div>
     <div id="{{field_name}}-content" class="box">
         <div class="">
-        <div class="content">
-            <div class="filter-header">
-                <span class="title">{% trans "Filter" %}</span><span class="js-close-modal close-modal" data-target="{{field_name}}-content" ><i class="fas fa-close"></i></span>
-            </div>
-            <div class="filter-body">
-                {% include template_name with SELECTION=FIELD_FILTER.selection SELECTION_OPTIONS=FIELD_FILTER.selection_options RANGE=FIELD_FILTER.range FILTER=SELECTED_FILTERS|access_dict:field_name  %}
-            </div>
-            <div class="actions">
-                <span class="js-close-modal close-modal mat-button mat-button-text" data-target="{{field_name}}-content" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
-                <button class="mat-button mat-button-default js-close-modal close-modal" data-target="{{field_name}}-content">{% trans "Apply" %}</button>
-            </div>
-        </div><!--End of Modal-Content -->
+            <div class="content">
+                <div class="filter-body">
+                    {% include TEMPLATE_NAME with SELECTION=FIELD_FILTER.selection SELECTION_OPTIONS=FIELD_FILTER.selection_options RANGE=FIELD_FILTER.range FILTER=SELECTED_FILTERS|access_dict:field_name  %}
+                </div>
+                <div class="actions">
+                    <span class="js-close-modal close-modal mat-button mat-button-text" data-target="{{field_name}}-content" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
+                    <button class="mat-button mat-button-default js-close-modal close-modal" data-target="{{field_name}}-content">{% trans "Apply" %}</button>
+                </div>
+            </div><!--End of Modal-Content -->
         </div><!--End of Modal-Dialog -->
     </div><!--End of Modal-->
 </div><!--End of Container-->

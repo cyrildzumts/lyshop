@@ -9,7 +9,7 @@ from shipment import constants as Constants
 import uuid
 # Create your models here.
 
-
+#TODO make this model filterable
 class Shipment(models.Model):
     shipment_number = models.CharField(max_length=32, blank=True, null=True)
     shipment_ref_number = models.IntegerField(default=utils.get_random_ref)

@@ -113,6 +113,7 @@ class Refund(models.Model):
         return reverse("dashboard:refund-detail", kwargs={"refund_uuid": self.refund_uuid})
 '''
 
+#TODO Make this model filterable
 class Payment(models.Model):
     seller = models.ForeignKey(User, related_name='payments', blank=False, null=True, on_delete=models.SET_NULL)
     amount = models.DecimalField(blank=False, null=False, max_digits=GlobalConf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GlobalConf.PRODUCT_PRICE_DECIMAL_PLACES)
@@ -133,7 +134,7 @@ class Payment(models.Model):
     payment_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):
-        return f"Payment {seller.username} - {amount}"
+        return f"Payment {self.seller.username} - {self.amount}"
 
     def get_absolute_url(self):
         return reverse("payment:payment-detail", kwargs={"payment_uuid": self.payment_uuid})

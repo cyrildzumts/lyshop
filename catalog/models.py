@@ -267,21 +267,21 @@ class Product(models.Model):
     FILTER_CONFIG = {
         'model' : 'Product',
         'fields' : FILTERABLE_FIELDS,
-        'created_at' : {'field_name': 'created_at','template_name' : 'tags/datetime_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
-        'quantity' : {'field_name': 'quantity','template_name' : 'tags/integer_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
-        'price' : {'field_name': 'price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
-        'promotion_price' : {'field_name': 'promotion_price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
-        'brand' : {'field_name': 'brand','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : Brand.objects.all()},
-        'product_type' : {'field_name': 'product_type','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : ProductType.objects.all()},
-        'gender' : {'field_name': 'genre','template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'queryset':False, 'selection_options' : constants.GENDER},
+        'created_at' : {'field_name': 'created_at','display_name': 'Created at', 'template_name' : 'tags/datetime_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
+        'quantity' : {'field_name': 'quantity','display_name': 'Quantity', 'template_name' : 'tags/integer_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
+        'price' : {'field_name': 'price','display_name': 'Price', 'template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
+        'promotion_price' : {'field_name': 'promotion_price','display_name': 'Promotion Price', 'template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
+        'brand' : {'field_name': 'brand','display_name': 'Brand', 'template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : Brand.objects.all()},
+        'product_type' : {'field_name': 'product_type','display_name': 'Product Type', 'template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : ProductType.objects.all()},
+        'gender' : {'field_name': 'genre','display_name': 'Gender', 'template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'queryset':False, 'selection_options' : constants.GENDER},
     }
     CATALOGUE_FILTER_CONFIG = {
         'model' : 'Product',
         'fields' : CATALOGUE_FILTERABLE_FIELDS,
-        'price' : {'field_name': 'price','template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
-        'brand' : {'field_name': 'brand','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : Brand.objects.all()},
-        'product_type' : {'field_name': 'product_type','template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : ProductType.objects.all()},
-        'gender' : {'field_name': 'genre','template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'queryset':False, 'selection_options' : constants.GENDER},
+        'price' : {'field_name': 'price','display_name': 'Price', 'template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
+        'brand' : {'field_name': 'brand','display_name': 'Brand', 'template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : Brand.objects.all()},
+        'product_type' : {'field_name': 'product_type','display_name': 'Product Type', 'template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'queryset':True, 'selection_options' : ProductType.objects.all()},
+        'gender' : {'field_name': 'genre','display_name': 'Gender', 'template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'queryset':False, 'selection_options' : constants.GENDER},
     }
 
     def __str__(self):

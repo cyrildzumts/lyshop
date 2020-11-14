@@ -70,6 +70,7 @@ class VendorPaymentHistory(models.Model):
         return f"VendorPaymentHistory {self.id}"
 
 
+#TODO make this model filterable
 class SoldProduct(models.Model):
     order = models.ForeignKey('orders.Order', blank=False, null=True, on_delete=models.SET_NULL)
     order_ref = models.IntegerField(blank=True, null=True)
