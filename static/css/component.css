@@ -60,6 +60,10 @@ canvas{
 	font-size: 0.875em;
 }
 
+.product-filter{
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
 .catalog-filter{
 	width: 100%;
 	max-height: 100%;
