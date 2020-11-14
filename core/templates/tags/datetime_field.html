@@ -1,30 +1,26 @@
 {% load i18n %}
 {% load core_tags %}
-<div class="integer-filter field-filter mat-box">
+<div class="integer-filter field-filter">
 
     <div class="hidden" id="inputs">
         <input id="{{field_name}}-id" class="filter-input" type="text" name="{{field_name}}" value="{{FILTER.value}}">
     </div>
-    <div class="box">
-        <div class="box-content">
-            <div class="form-group">
-                <label for="{{field_name}}-start">{% trans "Min" %}</label>
-                <input id="{{field_name}}-start" class="filter-input-start js-range-filter js-range-start no-submit" data-range-next="{{field_name}}-end" data-type="range-start" data-target="{{field_name}}-id" type="date" name="{{field_name}}-start" value="{{FILTER.range_start}}">
-            </div>
-            <div class="form-group">
-                <label for="{{field_name}}-end">{% trans "Max" %}</label>
-                <input id="{{field_name}}-end" class="filter-input-end js-range-filter js-range-end no-submit" data-range-next="{{field_name}}-start" data-type="range-end" data-target="{{field_name}}-id" type="date" name="{{field_name}}-end" value="{{FILTER.range_end}}">
-            </div>
-        
+    <div class="box-content">
+        <div class="form-group">
+            <label for="{{field_name}}-start">{% trans "Min" %}</label>
+            <input id="{{field_name}}-start" class="filter-input-start js-range-filter js-range-start no-submit" data-range-next="{{field_name}}-end" data-type="range-start" data-target="{{field_name}}-id" type="date" name="{{field_name}}-start" value="{{FILTER.range_start}}">
         </div>
+        <div class="form-group">
+            <label for="{{field_name}}-end">{% trans "Max" %}</label>
+            <input id="{{field_name}}-end" class="filter-input-end js-range-filter js-range-end no-submit" data-range-next="{{field_name}}-start" data-type="range-end" data-target="{{field_name}}-id" type="date" name="{{field_name}}-end" value="{{FILTER.range_end}}">
+        </div>
+    
     </div>
-    <div class="box">
-        <div class="box-content">
-            <div class="form-group">
-                <label for="{{field_name}}-value"></label>
-                <input id="{{field_name}}-value" class="filter-input-value js-value-filter field-filter-input no-submit" data-type="value" data-target="{{field_name}}-id" type="date" name="{{field_name}}-value" value="{{FILTER.selection}}">
-            </div>   
-        </div>
+    <div class="box-content">
+        <div class="form-group">
+            <label for="{{field_name}}-value"></label>
+            <input id="{{field_name}}-value" class="filter-input-value js-value-filter field-filter-input no-submit" data-type="value" data-target="{{field_name}}-id" type="date" name="{{field_name}}-value" value="{{FILTER.selection}}">
+        </div>   
     </div>
 
 </div>

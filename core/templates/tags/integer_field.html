@@ -1,48 +1,40 @@
 {% load i18n %}
 {% load core_tags %}
-<div class="integer-filter field-filter mat-box">
+<div class="integer-filter field-filter">
     <div class="hidden" id="inputs">
         <input id="{{field_name}}-id" class="filter-input" type="text" name="{{field_name}}" value="{{FILTER.value}}">
     </div>
     {% if SELECTION %}
-    <div class="box">
-        
-        <div class="row">
-        {% if FIELD_FILTER.queryset %}
-            {% for obj in FIELD_FILTER.selection_options %} 
-                <span  class="chips js-list-filter {% if obj.pk in FILTER.selection or obj.pk == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}"  data-value="{{obj.pk}}">{% trans obj.display_name %}</span> 
-            {% endfor %}
-        {% else %}
-            {% for k, v in SELECTION_OPTIONS %} 
-                <span  class="chips js-list-filter {% if k in FILTER.selection or k == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}"  data-value="{{k}}">{% trans v %}</span> 
-            {% endfor %}
-        {% endif %}
-        
-        </div>
+    <div class="row">
+    {% if FIELD_FILTER.queryset %}
+        {% for obj in FIELD_FILTER.selection_options %} 
+            <span  class="chips js-list-filter {% if obj.pk in FILTER.selection or obj.pk == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}"  data-value="{{obj.pk}}">{% trans obj.display_name %}</span> 
+        {% endfor %}
+    {% else %}
+        {% for k, v in SELECTION_OPTIONS %} 
+            <span  class="chips js-list-filter {% if k in FILTER.selection or k == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}"  data-value="{{k}}">{% trans v %}</span> 
+        {% endfor %}
+    {% endif %}
+    
     </div>
     {% elif RANGE %}
-    <div class="box">
-        <div class="box-content">
-            <div class="form-group">
-                <label for="{{field_name}}-start">{% trans "Min" %}</label>
-                <input id="{{field_name}}-start" class="filter-input-start js-range-filter js-range-start no-submit" data-range-next="{{field_name}}-end" data-type="range-start" data-target="{{field_name}}-id" type="text" name="{{field_name}}-start" value="{{FILTER.range_start}}">
-            </div>
-            <div class="form-group">
-                <label for="{{field_name}}-end">{% trans "Max" %}</label>
-                <input id="{{field_name}}-end" class="filter-input-end js-range-filter js-range-end no-submit" data-range-next="{{field_name}}-start" data-type="range-end" data-target="{{field_name}}-id" type="text" name="{{field_name}}-end" value="{{FILTER.range_end}}">
-            </div>
-        
+    <div class="box-content">
+        <div class="form-group">
+            <label for="{{field_name}}-start">{% trans "Min" %}</label>
+            <input id="{{field_name}}-start" class="filter-input-start js-range-filter js-range-start no-submit" data-range-next="{{field_name}}-end" data-type="range-start" data-target="{{field_name}}-id" type="text" name="{{field_name}}-start" value="{{FILTER.range_start}}">
+        </div>
+        <div class="form-group">
+            <label for="{{field_name}}-end">{% trans "Max" %}</label>
+            <input id="{{field_name}}-end" class="filter-input-end js-range-filter js-range-end no-submit" data-range-next="{{field_name}}-start" data-type="range-end" data-target="{{field_name}}-id" type="text" name="{{field_name}}-end" value="{{FILTER.range_end}}">
         </div>
     </div>
     {% else %}
-        <div class="box">
-            <div class="box-content">
-                <div class="form-group">
-                    <label for="{{field_name}}-value"></label>
-                    <input id="{{field_name}}-value" class="filter-input-value js-value-filter field-filter-input no-submit" data-type="value" data-target="{{field_name}}-id" type="text" name="{{field_name}}-value" value="{{FILTER.selection}}">
-                </div>   
-            </div>
-        </div>
+    <div class="box-content">
+        <div class="form-group">
+            <label for="{{field_name}}-value"></label>
+            <input id="{{field_name}}-value" class="filter-input-value js-value-filter field-filter-input no-submit" data-type="value" data-target="{{field_name}}-id" type="text" name="{{field_name}}-value" value="{{FILTER.selection}}">
+        </div>   
+    </div>
     {% endif %}
 
 </div>
