@@ -120,7 +120,7 @@ var Modal = (function(){
 
 
     Modal.prototype.init = function(){
-        that = this;
+        var that = this;
         var modals = $(".js-open-modal").click(function(event){
             var modal = $("#" + $(this).data('target'));
             that.modal = modal;
