@@ -48,20 +48,9 @@ function prevent_leaving(){
 
 $(document).ready(function(){
 
-let tabs = new Tabs();
-tabs.init();
-
-var modal = new Modal({});
-
 //$(window).on('beforeunload', onbeforeunload);
 window.addEventListener('beforeunload', askConfirmation);
 
-
-let slider = new Slider();
-slider.init();
-
-    //var collapsible = new Collapsible();
-    //collapsible.init();
     
     $('.js-grid-enable').on('click', function(){
         $(this).toggleClass('active');
