@@ -37,7 +37,7 @@ class Order(models.Model):
         'model' : 'Order',
         'fields' : FILTERABLE_FIELDS,
         'amount' : {'field_name': 'amount','display_name': 'Amount', 'template_name' : 'tags/decimal_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
-        'created_at' : {'field_name': 'created_at','display_name': 'Created at', 'template_name' : 'tags/datetime_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
+        'created_at' : {'field_name': 'created_at','display_name': 'Creation Date', 'template_name' : 'tags/datetime_field.html', 'range': True, 'selection' : False, 'selection_options' : ()},
         'payment_option' : {'field_name': 'payment_option','display_name': 'Payment Option', 'template_name' : 'tags/integer_field.html','range': False, 'selection' : True, 'selection_options' : commons.PAYMENT_OPTIONS},
         'status' : {'field_name': 'status','display_name': 'Status', 'template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'selection_options' : commons.ORDER_STATUS},
     }
