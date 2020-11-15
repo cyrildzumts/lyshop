@@ -213,6 +213,7 @@ class PaymentMethod(models.Model):
     provider = models.CharField(max_length=255 ,blank=False, null=False)
     credential = models.CharField(max_length=255 ,blank=False, null=False)
     is_active = models.BooleanField(default=True, blank=True, null=True)
+    mode = models.IntegerField(default=commons.ORDER_PAYMENT_PAY, blank=True, null=True, choices=commons.ORDER_PAYMENT_MODE)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     changed_by = models.ForeignKey(User, related_name='changed_payment_methods', blank=True, null=True, on_delete=models.SET_NULL)
@@ -221,7 +222,7 @@ class PaymentMethod(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['provider', 'credential'], name='unique_payment_method'),
+            models.UniqueConstraint(fields=['provider', 'credential', 'mode'], name='unique_payment_method'),
             models.UniqueConstraint(fields=['name', 'display_name'], name='unique_payment_method_naming'),
         ]
         ordering = ['-created_at']

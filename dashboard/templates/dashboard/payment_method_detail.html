@@ -12,7 +12,7 @@
 {% endblock HEADER_BANNER %}
 {% block MAIN_CONTENT %}
 
-{% if can_view_coupon %}
+{% if can_view_payment %}
 <div class="container">
         <div class="mat-box full">
           <div class="grid">
@@ -29,12 +29,15 @@
                 <div class="entry">
                   <span class="key">{% trans "Credential" %}</span> <span class="value">{{payment_method.credential}}</span>
                 </div>
+                <div class="entry">
+                  <span class="key">{% trans "Mode" %}</span> <span class="value">{{payment_method.mode|pay_mode_value}}</span>
+                </div>
                 
             </div>
             
             <div class="box">
                 <div class="entry">
-                  <span class="key">{% trans "Create at" %}</span> <span class="value">{{coupon.created_at|date:"F j, Y"}}</span>
+                  <span class="key">{% trans "Create at" %}</span> <span class="value">{{payment_method.created_at|date:"F j, Y"}}</span>
                 </div>
                 <div class="entry">
                   <span class="key">{% trans "Added by" %}</span> <span class="value">{{payment_method.added_by.username}}</span>

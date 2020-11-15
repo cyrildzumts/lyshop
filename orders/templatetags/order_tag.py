@@ -72,3 +72,21 @@ def pay_status_value(key):
         logger.info(f"pay_status_value: Could not found value  for key \"{key}\"")
         return key
     return v
+
+
+@register.filter
+def pay_mode_key(value):
+    k,v = utils.find_element_by_value_in_tuples(value, Constants.ORDER_PAYMENT_MODE)
+    if k is None:
+        logger.info(f"pay_mode_key: Could not found key  for value \"{value}\"")
+        return value
+    return k
+
+
+@register.filter
+def pay_mode_value(key):
+    k,v = utils.find_element_by_key_in_tuples(key, Constants.ORDER_PAYMENT_MODE)
+    if v is None:
+        logger.info(f"pay_mode_value: Could not found value  for key \"{key}\"")
+        return key
+    return v

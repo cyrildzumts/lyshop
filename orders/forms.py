@@ -47,7 +47,7 @@ class PaymentOptionForm(forms.Form):
 class PaymentMethodForm(forms.ModelForm):
     class Meta:
         model = PaymentMethod
-        fields = ['name', 'display_name', 'provider', 'credential', 'added_by', 'changed_by']
+        fields = ['name', 'display_name', 'provider','mode', 'credential', 'added_by', 'changed_by']
 
 
 class DashboardOrderUpdateForm(forms.ModelForm):

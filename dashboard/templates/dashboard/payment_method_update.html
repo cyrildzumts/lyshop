@@ -12,7 +12,7 @@
 
             <div class="col col-9">
                 <div class="banner--actions">
-                    {% if can_view_coupon %}
+                    {% if can_view_payment %}
                     <a class="mat-button mat-button-outlined" href="{% url 'dashboard:payment-methods'%}"> {% trans "Payment Methods" %}</a>{% endif %}
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
                     
@@ -49,6 +49,14 @@
                         <div class="form-group">
                             <label for="credential">{% trans "Credential" %}</label>
                             <input id="credential" type="text"  name="credential" value="{{payment_method.credential}}">
+                        </div>
+                        <div class="mat-input">
+                            <label for="mode">{% trans "Mode" %}</label>
+                            <select name="mode" id="mode">
+                                {% for k,v in ORDER_PAYMENT_MODE %}
+                                    <option value="{{k}}" {% if k==payment_method.mode %}selected{% endif %}>{% trans v %}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="is-active">{% trans "Active" %}</label>

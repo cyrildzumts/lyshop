@@ -1,6 +1,7 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
 {% load tz %}
+{% load order_tag %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -48,6 +49,7 @@
                           <th scope="col">{% trans "Name" %}</th>
                           <th scope="col">{% trans "Display Name" %}</th>
                           <th scope="col">{% trans "Provider" %}</th>
+                          <th scope="col">{% trans "Mode" %}</th>
                           <th scope="col">{% trans "Active" %}</th>
                           <th scope="col">{% trans "Date of creation" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
@@ -61,6 +63,7 @@
                   <td data-label="{% trans 'Name' %}">{{payment_method.name}}</td>
                   <td data-label="{% trans 'Display Name' %}">{{payment_method.display_name}}</td>
                   <td data-label="{% trans 'Provider' %}">{{payment_method.provider}}</td>
+                  <td data-label="{% trans 'Mode' %}">{{payment_method.mode|pay_mode_value}}</td>
                   <td data-label="{% trans 'Active' %}">{{payment_method.is_active|yesno}}</td>
                   <td data-label="{% trans 'Date of Creation' %}">{{payment_method.created_at|date:"F j, Y"}}</td>
                   <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{payment_method.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
