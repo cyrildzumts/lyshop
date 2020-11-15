@@ -346,7 +346,12 @@ def get_view_permissions(user=None):
         'can_add_group' : PermissionManager.user_can_add_group(user),
         'can_delete_group' : PermissionManager.user_can_delete_group(user),
         'can_change_group' : PermissionManager.user_can_change_group(user),
+
         'can_view_payment': PermissionManager.user_can_view_payment(user),
+        'can_add_payment': PermissionManager.user_can_add_payment(user),
+        'can_delete_payment': PermissionManager.user_can_delete_payment(user),
+        'can_change_payment': PermissionManager.user_can_change_payment(user),
+
 
         'can_generate_token': PermissionManager.user_can_generate_token(user)
     }
