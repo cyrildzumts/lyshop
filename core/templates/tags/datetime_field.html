@@ -5,6 +5,7 @@
     <div class="hidden" id="inputs">
         <input id="{{field_name}}-id" class="filter-input" type="text" name="{{field_name}}" value="{{FILTER.value}}">
     </div>
+    {% if RANGE %}
     <div class="box-content">
         <div class="form-group">
             <label for="{{field_name}}-start">{% trans "Min" %}</label>
@@ -16,11 +17,13 @@
         </div>
     
     </div>
+    {% else %}
     <div class="box-content">
         <div class="form-group">
             <label for="{{field_name}}-value"></label>
             <input id="{{field_name}}-value" class="filter-input-value js-value-filter field-filter-input no-submit" data-type="value" data-target="{{field_name}}-id" type="date" name="{{field_name}}-value" value="{{FILTER.selection}}">
         </div>   
     </div>
-
+    
+    {% endif %}
 </div>
