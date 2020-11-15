@@ -55,7 +55,7 @@
                             <label for="mode">{% trans "Mode" %}</label>
                             <select name="mode" id="mode">
                                 {% for k,v in ORDER_PAYMENT_MODE %}
-                                    <option value="{{k}}" {% if k==payment_method.mode %}selected{% endif %}>{% trans v %}</option>
+                                    <option value="{{k}}" {% if payment_method.mode == k %}selected{% endif %}>{% trans v %}</option>
                                 {% endfor %}
                             </select>
                         </div>
