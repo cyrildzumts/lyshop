@@ -31,8 +31,8 @@ from catalog.models import (
     Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage, ProductType, ProductTypeAttribute,
     Highlight
 )
-from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory
-from orders.forms import DashboardOrderUpdateForm, OrderItemUpdateForm
+from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory, PaymentMethod
+from orders.forms import DashboardOrderUpdateForm, OrderItemUpdateForm, PaymentMethodForm
 from orders import orders_service
 from shipment import shipment_service
 from catalog.forms import (BrandForm, ProductAttributeForm, 
@@ -46,6 +46,7 @@ from catalog import catalog_service
 from catalog import constants as Catalog_Constants
 from core.filters import filters
 from orders import commons as Order_Constants
+from orders import orders_service
 from vendors.models import SoldProduct, Balance, VendorPayment, BalanceHistory
 from vendors import vendors_service
 from dashboard import analytics
@@ -3956,3 +3957,169 @@ def product_type_attributes_delete(request):
         messages.error(request, f"ProductTypeAttribute could not be deleted")
         logger.error(f"ID list invalid. Error : {id_list}")
     return redirect('dashboard:product-type-attributes')
+
+
+
+@login_required
+def payment_method_create(request):
+    template_name = 'dashboard/payment_method_create.html'
+    page_title = _('New Payment Method')
+    context = {
+        'page_title': page_title
+    }
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_add_payment(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        payment_method, created = orders_service.create_payment_method(postdata)
+        if created:
+            messages.success(request,_('New PaymentMethod {payment_method} created'))
+            logger.info(f'[ OK ] New PaymentMethod {payment_method} added by user {request.user.username}' )
+            return redirect('dashboard:payment-methods')
+        else:
+            messages.error(request,_('PaymentMethod not created'))
+            logger.error(f'[ NOT OK ] Error on adding New PaymentMethod by user {request.user.username}. Errors : {form.errors}' )
+
+    form = PaymentMethodForm()
+    context['form'] = form
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+    
+
+
+
+@login_required
+def payment_methods(request):
+    template_name = 'dashboard/payment_method_list.html'
+    page_title = _('Payment Method List')
+    context = {
+        'page_title': page_title
+    }
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_payment(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    queryset = orders_service.get_payment_methods()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['payment_method_list'] = list_set
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+@login_required
+def payment_method_detail(request, method_uuid=None):
+    template_name = 'dashboard/payment_method_detail.html'
+    page_title = _('Payment Method')
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_payment(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    context = {
+        'page_title': page_title
+    }
+
+    payment_method = get_object_or_404(PaymentMethod, method_uuid=method_uuid)
+    context['page_title'] = page_title
+    context['payment_method'] = payment_method
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+@login_required
+def payment_method_update(request, method_uuid):
+    template_name = 'dashboard/payment_method_update.html'
+    page_title = _('Edit Payment Method')
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_payment(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    payment_method = get_object_or_404(PaymentMethod, method_uuid=method_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        payment_method, updated = orders_service.update_payment_method(postdata, payment_method)
+        if updated :
+            messages.success(request,_('PaymentMethod updated'))
+            logger.info(f'[ OK ] PaymentMethod \"{payment_method}\" updated by user {request.user.username}' )
+            return redirect(payment_method.get_dashboard_url())
+        else:
+            messages.error(request,_('Error when updating PaymentMethod'))
+            logger.error(f'[ NOT OK ] Error on updating PaymentMethod \"{payment_method}\" added by user {request.user.username}' )
+
+    elif request.method == 'GET':
+        form = PaymentMethodForm(instance=payment_method)
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'payment_method':payment_method
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def payment_method_delete(request, method_uuid):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_payment(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request. POST request expected but received a GET request')
+    payment_method = get_object_or_404(PaymentMethod, method_uuid=method_uuid)
+    PaymentMethod.objects.filter(pk=payment_method.pk).delete()
+    return redirect('dashboard:payment-methods')
+
+
+@login_required
+def payment_methods_delete(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_payment(request.user):
+        logger.warning(f"PermissionDenied to user \"{username}\" for path \"{request.path}\"")
+        raise PermissionDenied
+    if request.method != "POST":
+        raise SuspiciousOperation('Bad request')
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('payment_methods')
+
+    if len(id_list):
+        method_list = list(map(int, id_list))
+        PaymentMethod.objects.filter(id__in=method_list).delete()
+        messages.success(request, f"PaymentMethod \"{method_list}\" deleted")
+        logger.info(f"PaymentMethod \"{method_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"PaymentMethod  could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('dashboard:payment-methods')

@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, UniqueConstraint
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from catalog.models import ProductVariant
@@ -205,3 +205,39 @@ class OrderStatusHistory(models.Model):
 
     def get_dashboard_url(self):
         return reverse('dashboard:order-history-detail', kwargs={'history_uuid':self.history_uuid})
+
+
+class PaymentMethod(models.Model):
+    name = models.CharField(max_length=255 ,blank=False, null=False)
+    display_name = models.CharField(max_length=255 ,blank=False, null=False)
+    provider = models.CharField(max_length=255 ,blank=False, null=False)
+    credential = models.CharField(max_length=255 ,blank=False, null=False)
+    is_active = models.BooleanField(default=True, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+    changed_by = models.ForeignKey(User, related_name='changed_payment_methods', blank=True, null=True, on_delete=models.SET_NULL)
+    added_by = models.ForeignKey(User, related_name='added_payment_methods', blank=True, null=True, on_delete=models.SET_NULL)
+    method_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+
+    class Meta:
+        constrains = [
+            models.UniqueConstraint(fields=['provider', 'credential'], name='unique_payment_method'),
+            models.UniqueConstraint(fields=['name', 'display_name'], name='unique_payment_method_naming'),
+        ]
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.name} - {self.display_name}"
+
+    def get_absolute_url(self):
+       return reverse('dashbord:payment-method-detail', kwargs={'method_uuid':self.method_uuid})
+
+    def get_dashboard_url(self):
+        return reverse('dashboard:payment-method-detail', kwargs={'method_uuid':self.method_uuid})
+    
+    def get_delete_url(self):
+        return reverse('dashboard:payment-method-delete', kwargs={'method_uuid':self.method_uuid})
+    
+    def get_update_url(self):
+        return reverse('dashboard:payment-method-update', kwargs={'method_uuid':self.method_uuid})
+    

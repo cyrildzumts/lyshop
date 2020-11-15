@@ -1,0 +1,73 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Edit Payment Method" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col col-9">
+                <div class="banner--actions">
+                    {% if can_view_coupon %}
+                    <a class="mat-button mat-button-outlined" href="{% url 'dashboard:payment-methods'%}"> {% trans "Payment Methods" %}</a>{% endif %}
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
+                    
+                        
+                </div><!--End of Banner-Actions-->
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+{% block MAIN_CONTENT %}
+<div class="container">
+    {% if can_change_payment %}
+        <div class="mat-box">
+    
+                <form class="form" name="edit-payment-method" action="{{payment_method.get_update_url}}" method="POST">{% csrf_token %}
+                    <input type="hidden" name="changed_by" value="{{request.user.pk}}">
+                    <div class="container">
+                    
+                        <div class="form-group">
+                            <label for="name">{% trans "Name" %}</label>
+                            <input id="name" type="text"  name="name" value="{{payment_method.name}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="display-name">{% trans "Display Name" %}</label>
+                            <input id="display-name" type="text"  name="display_name" value="{{payment_method.display_name}}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="provider">{% trans "Provider" %}</label>
+                            <input id="provider" type="text"  name="provider" value="{{payment_method.provider}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="credential">{% trans "Credential" %}</label>
+                            <input id="credential" type="text"  name="credential" value="{{payment_method.credential}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="is-active">{% trans "Active" %}</label>
+                            <input id="is-active" type="checkbox"  name="is_active" {% if payment_method.is_active %}checked{% endif %} >
+                        </div>
+                    
+                    </div><!-- End of container-->
+
+                    <div class="actions">
+                            <a class="mat-button mat-button-text js-cancel" href="{% url 'dashboard:payment-methods' %}">{% trans "Cancel" %}</a>
+                            <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
+                    </div>
+                    
+                </form>
+        </div>        
+    {% else %}
+    <div class="access-error">
+        <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock MAIN_CONTENT %}

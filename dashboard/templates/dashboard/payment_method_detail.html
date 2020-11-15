@@ -1,0 +1,73 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Payment Method" %} - {{payment_method.name}}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+    </div>
+{% endblock HEADER_BANNER %}
+{% block MAIN_CONTENT %}
+
+{% if can_view_coupon %}
+<div class="container">
+        <div class="mat-box full">
+          <div class="grid">
+            <div class="box">
+                <div class="entry">
+                  <span class="key">{% trans "Name" %}</span> <span class="value">{{payment_method.name}}</span>
+                </div>
+                <div class="entry">
+                  <span class="key">{% trans "Display Name" %}</span> <span class="value">{{payment_method.display_name}}</span>
+                </div>
+                <div class="entry">
+                  <span class="key">{% trans "Provider" %}</span> <span class="value">{{payment_method.provider}}</span>
+                </div>
+                <div class="entry">
+                  <span class="key">{% trans "Credential" %}</span> <span class="value">{{payment_method.credential}}</span>
+                </div>
+                
+            </div>
+            
+            <div class="box">
+                <div class="entry">
+                  <span class="key">{% trans "Create at" %}</span> <span class="value">{{coupon.created_at|date:"F j, Y"}}</span>
+                </div>
+                <div class="entry">
+                  <span class="key">{% trans "Added by" %}</span> <span class="value">{{payment_method.added_by.username}}</span>
+                </div>
+                {% if payment_method.changed_by %}
+                <div class="entry">
+                  <span class="key">{% trans "Last changed by" %}</span> <span class="value">{{payment_method.changed_by.username}}</span>
+                </div>
+                {% endif %}
+                <div class="entry">
+                  <span class="key">{% trans "Active" %}</span> <span class="value">{{payment_method.is_active|yesno}}</span>
+                </div>
+            </div>
+            <div class="box">
+               
+                
+                
+            </div>
+          </div><!--End of title-->
+          <div class="mat-box-content">
+                <div class="banner--actions">
+                    <a class="mat-button mat-button-default" href="{{payment_method.get_update_url}}"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:payment-method-create'%}"><i class="fas fa-plus icon"></i>{% trans "New Paymnet Method" %}</a>
+                    <a class="mat-button mat-button-default warn" href="{{payment_method.get_delete_url}}"><i class="fas fa-trash icon"></i>{% trans "Delete" %}</a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:payment-methods' %}"><i class="fas fa-list icon"></i></span>{% trans "Payment Methods" %}</a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i> <span>{% trans "Dashboard" %}</span></a>     
+                </div><!--End of Banner-Actions-->
+          </div><!--End of mat-box-content-->
+        </div><!--End of mat-box-->
+</div>
+{% else %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% endif %}
+{% endblock MAIN_CONTENT %}

@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from orders import commons
-from orders.models import Order, OrderItem,PaymentRequest, OrderStatusHistory
+from orders.models import Order, OrderItem,PaymentRequest, OrderStatusHistory, PaymentMethod
+from orders.forms import PaymentMethodForm
 from catalog.models import Product, ProductVariant
 from vendors.models import SoldProduct, Balance, BalanceHistory
 from shipment import shipment_service
@@ -212,3 +213,40 @@ def refund_order(order):
     if not isinstance(order, Order):
         logger.error("Type Error : order not of Order type")
         raise TypeError("Type Error : order argument not of type Order.")
+
+
+def get_payment_method(name="")
+    if isinstance(name, str) and len(name) > 0:
+        try:
+            return PaymentMethod.objects.get(name=name)
+        except PaymentMethod.DoesNotExist as e:
+            logger.warn(f'get_payment_method: No PaymentMethod found with name \"{name}\"')
+    return None
+
+def get_payment_methods():
+    return PaymentMethod.objects.all()
+
+
+def create_payment_method(postdata):
+    form = PaymentMethodForm(postdata)
+    if form.is_valid():
+        payment_method = form.save()
+        logger.info(f'Created new PaymentMethod {payment_method}')
+        return payment_method, True
+    else:
+        logger.warn(f'PaymentMethodForm invalid. Errors : {form.errors}')
+        return return None, False
+
+
+def update_payment_method(postdata, payment_method):
+    if not isinstance(payment_method, PaymentMethod):
+        payment_method, False
+    form = PaymentMethodForm(postdata, payment_method)
+    if form.is_valid():
+        payment_method = form.save()
+        logger.info(f'Updated PaymentMethod {payment_method}')
+        return payment_method, True
+    else:
+        logger.warn(f'PaymentMethodForm invalid. Errors : {form.errors}')
+        return return payment_method, False
+

@@ -60,6 +60,12 @@ urlpatterns = [
     path('orders/update/<uuid:order_uuid>/', views.order_update, name='order-update'),
     path('orders/history/<uuid:order_uuid>/', views.order_history, name='order-history'),
     path('orders/history/detail/<uuid:history_uuid>/', views.order_history_detail, name='order-history-detail'),
+    path('orders/payment-methods', views.payment_methods, name='payment-methods'),
+    path('orders/payment_methods/detail/<uuid:method_uuid>/', views.payment_method_detail, name='payment-method-detail'),
+    path('orders/payment_methods/update/<uuid:method_uuid>/', views.payment_method_update, name='payment-method-update'),
+    path('orders/payment_methods/delete/<uuid:method_uuid>/', views.payment_method_delete, name='payment-method-delete'),
+    path('orders/payment_methods/delete/', views.payment_methods_delete, name='payment-methods-delete'),
+    path('orders/payment_methods/create/', views.payment_method_create, name='payment-method-create'),
 
     path('products/', views.products, name='products'),
     path('products/detail/<uuid:product_uuid>/', views.product_detail, name='product-detail'),
