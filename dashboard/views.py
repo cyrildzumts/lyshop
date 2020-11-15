@@ -3964,9 +3964,6 @@ def product_type_attributes_delete(request):
 def payment_method_create(request):
     template_name = 'dashboard/payment_method_create.html'
     page_title = _('New Payment Method')
-    context = {
-        'page_title': page_title
-    }
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
         logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
@@ -3975,6 +3972,10 @@ def payment_method_create(request):
     if not PermissionManager.user_can_add_payment(request.user):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
+    context = {
+        'page_title': page_title,
+        'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE
+    }
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         payment_method, created = orders_service.create_payment_method(postdata)
@@ -3998,9 +3999,7 @@ def payment_method_create(request):
 def payment_methods(request):
     template_name = 'dashboard/payment_method_list.html'
     page_title = _('Payment Method List')
-    context = {
-        'page_title': page_title
-    }
+    
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
         logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
@@ -4009,7 +4008,10 @@ def payment_methods(request):
     if not PermissionManager.user_can_view_payment(request.user):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-
+    context = {
+        'page_title': page_title,
+        'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE
+    }
     queryset = orders_service.get_payment_methods()
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
@@ -4019,7 +4021,6 @@ def payment_methods(request):
         list_set = paginator.page(1)
     except EmptyPage:
         list_set = None
-    context['page_title'] = page_title
     context['payment_method_list'] = list_set
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4041,7 +4042,6 @@ def payment_method_detail(request, method_uuid=None):
     }
 
     payment_method = get_object_or_404(PaymentMethod, method_uuid=method_uuid)
-    context['page_title'] = page_title
     context['payment_method'] = payment_method
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4075,7 +4075,8 @@ def payment_method_update(request, method_uuid):
     context = {
         'page_title': page_title,
         'form' : form,
-        'payment_method':payment_method
+        'payment_method':payment_method,
+        'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
