@@ -235,7 +235,7 @@ def create_payment_method(postdata):
         return payment_method, True
     else:
         logger.warn(f'PaymentMethodForm invalid. Errors : {form.errors}')
-        return return None, False
+        return None, False
 
 
 def update_payment_method(postdata, payment_method):
@@ -248,5 +248,5 @@ def update_payment_method(postdata, payment_method):
         return payment_method, True
     else:
         logger.warn(f'PaymentMethodForm invalid. Errors : {form.errors}')
-        return return payment_method, False
+        return payment_method, False
 
