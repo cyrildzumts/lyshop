@@ -241,7 +241,7 @@ def create_payment_method(postdata):
 def update_payment_method(postdata, payment_method):
     if not isinstance(payment_method, PaymentMethod):
         payment_method, False
-    form = PaymentMethodForm(postdata, payment_method)
+    form = PaymentMethodForm(postdata, instance=payment_method)
     if form.is_valid():
         payment_method = form.save()
         logger.info(f'Updated PaymentMethod {payment_method}')

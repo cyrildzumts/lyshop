@@ -4070,8 +4070,7 @@ def payment_method_update(request, method_uuid):
             messages.error(request,_('Error when updating PaymentMethod'))
             logger.error(f'[ NOT OK ] Error on updating PaymentMethod \"{payment_method}\" added by user {request.user.username}' )
 
-    elif request.method == 'GET':
-        form = PaymentMethodForm(instance=payment_method)
+    form = PaymentMethodForm(instance=payment_method)
     context = {
         'page_title': page_title,
         'form' : form,
