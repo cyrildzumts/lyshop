@@ -314,6 +314,7 @@ label{
 	/*position: absolute;*/
 	left: 0;
 	text-align: left;
+	min-width: 12.5em;
 	max-width: 100%;
 	color: var(--label-color);
 	font-weight: 600;
