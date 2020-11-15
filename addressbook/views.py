@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from addressbook import constants as Addressbook_Constants
 from addressbook.models import Address
 from addressbook.forms import AddressForm
-from lyshop import settings, utils
+from lyshop import settings, utils, conf as GLOBAL_CONF
 import json
 import logging
 import uuid
