@@ -220,7 +220,7 @@ class PaymentMethod(models.Model):
     method_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     class Meta:
-        constrains = [
+        constraints = [
             models.UniqueConstraint(fields=['provider', 'credential'], name='unique_payment_method'),
             models.UniqueConstraint(fields=['name', 'display_name'], name='unique_payment_method_naming'),
         ]
