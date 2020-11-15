@@ -215,7 +215,7 @@ def refund_order(order):
         raise TypeError("Type Error : order argument not of type Order.")
 
 
-def get_payment_method(name="")
+def get_payment_method(name=""):
     if isinstance(name, str) and len(name) > 0:
         try:
             return PaymentMethod.objects.get(name=name)
