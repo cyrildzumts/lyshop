@@ -49,6 +49,7 @@ from orders import commons as Order_Constants
 from orders import orders_service
 from vendors.models import SoldProduct, Balance, VendorPayment, BalanceHistory
 from vendors import vendors_service
+from inventory import inventory_service
 from dashboard import analytics
 from itertools import islice
 import json
@@ -103,9 +104,8 @@ def category_create (request):
         raise PermissionDenied
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        form = CategoryForm(postdata)
-        if form.is_valid():
-            category = form.save()
+        category = inventory_service.create_category(postdata)
+        if category:
             messages.success(request,_('New Category created'))
             logger.info(f'[ OK ]New Category \"{category.name}\" added by user {request.user.username}' )
             return redirect('dashboard:categories')
@@ -191,18 +191,16 @@ def category_update(request, category_uuid):
         raise PermissionDenied
     category = get_object_or_404(models.Category, category_uuid=category_uuid)
     if request.method == 'POST':
-        postdata = utils.get_postdata(request)
-        form = CategoryForm(postdata, instance=category)
-        if form.is_valid():
-            category = form.save()
+        category , updated = inventory_service.update_category(postdata, category)
+        if updated:
             messages.success(request,_('Category updated'))
             logger.info(f'[ OK ] Category \"{category.name}\" updated by user {request.user.username}' )
             return redirect(category.get_dashboard_url())
         else:
             messages.error(request,_('Error when updating category'))
             logger.error(f'[ NOT OK ] Error on updating Category \"{category.name}\" added by user {request.user.username}' )
-    elif request.method == 'GET':
-        form = CategoryForm(instance=category)
+
+    form = CategoryForm(instance=category)
     context = {
         'page_title': page_title,
         'form' : form,
@@ -308,22 +306,20 @@ def product_create(request):
     context = {
         'page_title': page_title,
     }
-    form = None
     
     username = request.user.username
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        form = ProductForm(postdata)
-        if form.is_valid():
-            product = form.save()
+        product = inventory_service.create_product(postdata)
+        if product:
             messages.success(request, _('New Product created'))
             logger.info(f'New product added by user \"{username}\"')
             return redirect('dashboard:products')
         else:
             messages.error(request, _('Product not created'))
             logger.error(f'Error on creating new product. Action requested by user \"{username}\"')
-    else:
-        form = ProductForm()
+
+    form = ProductForm()
     context['form'] = form
     context['brand_list'] = models.Brand.objects.all()
     context['category_list'] = models.Category.objects.all()
@@ -1053,17 +1049,16 @@ def product_update(request, product_uuid=None):
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         form = ProductForm(postdata, instance=product)
-        if form.is_valid():
-            product = form.save()
+        product, updated = inventory_service.update_product(postdata, product)
+        if updated:
             messages.success(request, _('Product updated'))
             logger.info(f'product {product.name} updated by user \"{username}\"')
             return redirect('dashboard:product-detail', product_uuid=product_uuid)
         else:
             messages.error(request, _('Product not updated'))
             logger.error(f'Error on updating product. Action requested by user \"{username}\"')
-            logger.error(form.errors)
-    else:
-        form = ProductForm(instance=product)
+
+    form = ProductForm(instance=product)
     context['form'] = form
     context['product'] = product
     context['brand_list'] = models.Brand.objects.all()
@@ -1672,6 +1667,7 @@ def attribute_create(request, variant_uuid):
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
+
 @login_required
 def attributes_create(request):
     username = request.user.username
@@ -1683,7 +1679,7 @@ def attributes_create(request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     template_name = 'dashboard/attributes_create.html'
-    page_title = _('New Attribute')
+    page_title = _('New Attributes')
     
     attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm)
     if request.method == 'POST':

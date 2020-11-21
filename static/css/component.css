@@ -1890,9 +1890,9 @@ input.editable{
 	/*background-color: #2424243E;*/
 }
 .mat-button-outlined{
-	border: 1px solid #242424;
+	border: 1px solid #242424 !important;
 
-	color: #242424
+	color: #242424 !important;
 	/*border-radius: 4px;*/
 }
 
