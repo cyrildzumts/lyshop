@@ -3856,12 +3856,13 @@ def product_type_attribute_detail(request, type_attribute_uuid=None):
         raise SuspiciousOperation('Bad request')
 
     type_attribute = get_object_or_404(ProductTypeAttribute, type_attribute_uuid=type_attribute_uuid)
+    attributes = ProductAttribute.objects.filter(name=type_attribute.name, display_name=type_attribute.display_name)
     #product_list = Product.objects.filter(product_type=product_type)
     context = {
         'page_title': page_title,
         #'product_list': product_list,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
-        'attribute_list': type_attribute.attributes.all(),
+        'attribute_list': attributes,
         'type_attribute': type_attribute
     }
     context.update(get_view_permissions(request.user))
