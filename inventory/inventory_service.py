@@ -66,11 +66,29 @@ def update_product_from_data(data, product):
     return p, created
 
 
-def create_variant(product, attributes_data):
-    if not isinstance(attributes_data, dict) or not isinstance(product, models.Product):
+def create_variant(product, postdata):
+    if not isinstance(postdata, dict) or not isinstance(product, models.Product):
         return None, False
     
     created = False
+    exists = models.ProductVariant.objects.filter()
+    attribute_formset = modelformset_factory(models.ProductAttribute, form=forms.ProductAttributeForm)
+
+    formset = attribute_formset(postdata)
+    logger.info("Attribute formset valid checking")
+    if formset.is_valid():
+        logger.info("create_variant : Attribute formset valid")
+        attributes = formset.save()
+        variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
+            price=product.price, product=product, attributes=attributes 
+        )
+        logger.info(f'New Product Variant created ')
+        return variant
+    else:
+        logger.error(f'Error on creating new product variant')
+        logger.error(formset.errors)
+    return None
+        
 
 
 
@@ -195,5 +213,5 @@ def update_product_type(postdata, product_type):
         return product_type, True
     else:
         logger.error(f'Error when updating ProductType.')
-    return attribute, False
+    return product_type, False
 

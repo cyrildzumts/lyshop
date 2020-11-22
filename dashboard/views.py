@@ -514,6 +514,7 @@ def order_item(request, order_uuid=None, item_uuid=None):
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
+
 @login_required
 def order_item_update(request, order_uuid=None, item_uuid=None):
     template_name = 'dashboard/order_item_update.html'
