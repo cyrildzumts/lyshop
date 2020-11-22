@@ -3634,6 +3634,7 @@ def product_type_detail(request, type_uuid=None):
         'page_title': page_title,
         'product_list': product_list,
         'product_type': product_type,
+        'attribute_list': product_type.attributes.all(),
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
     }
     context.update(get_view_permissions(request.user))
