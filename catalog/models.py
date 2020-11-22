@@ -185,6 +185,7 @@ class ProductTypeAttribute(models.Model):
     name = models.CharField(max_length=32, null=False, blank=False)
     display_name = models.CharField(max_length=32, null=True, blank=True)
     attribute_type = models.IntegerField(constants.ATTRIBUTE_TYPE_STRING)
+    attributes = models.ManyToManyField(ProductAttribute, related_name='type_attributes', blank=True, null=True)
     description = models.CharField(max_length=164)
     type_attribute_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 

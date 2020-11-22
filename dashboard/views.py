@@ -3861,6 +3861,7 @@ def product_type_attribute_detail(request, type_attribute_uuid=None):
         'page_title': page_title,
         #'product_list': product_list,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
+        'attribute_list': type_attribute.attributes.all(),
         'type_attribute': type_attribute
     }
     context.update(get_view_permissions(request.user))
@@ -3900,6 +3901,7 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
         'page_title': page_title,
         'form' : form,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
+        'attribute_list': type_attribute.attributes.all(),
         'type_attribute': type_attribute
     }
     context.update(get_view_permissions(request.user))
