@@ -32,7 +32,7 @@ def gender_value(key):
 
 @register.filter
 def attr_type_key(value):
-    k,v = utils.find_element_by_value_in_tuples(key, Constants.ATTRIBUTE_TYPE)
+    k,v = utils.find_element_by_value_in_tuples(value, Constants.ATTRIBUTE_TYPE)
     if k is None:
         logger.info(f"attr_type_key : Could not found key  for value \"{value}\"")
         return value
