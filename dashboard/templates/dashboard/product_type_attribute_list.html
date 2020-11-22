@@ -57,7 +57,7 @@
                         <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="type_attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
                         <td>{{attr.name}}</td>
                         <td>{{attr.display_name}}</td>
-                        <td>{{attr.attribute_type|attr_type_key}}</td>
+                        <td>{{attr.attribute_type|attr_type_value}}</td>
                         <td>{{attr.description}}</td>
                         <td><a class="mat-button mat-button-text" href="{{attr.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   </tr>

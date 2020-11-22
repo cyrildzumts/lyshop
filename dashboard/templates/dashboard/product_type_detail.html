@@ -7,14 +7,20 @@
 
 <div class="container">
         <div class="mat-box full">
-          <div class="mat-box-title">
-            <h3> {% trans "Name" %} : {{product_type.name}} </h3>
-            <h4> {% trans "Display Name" %} : {{product_type.display_name}}</h4>
-            <h4> {% trans "Product Count" %} : {{product_list.count}}</h4>
-            <h4> {% trans "Type Code" %} : {{product_type.code}}</h4>
-          </div>
+          
           <div class="mat-box-content">
-
+              <div class="entry">
+                  <span class="key">{% trans "Name" %}</span><span class="value">{{product_type.name}}</span>
+              </div>
+              <div class="entry">
+                  <span class="key">{% trans "Display Name" %}</span><span class="value">{{product_type.display_name}}</span>
+              </div>
+              <div class="entry">
+                  <span class="key">{% trans "Product Count" %}</span><span class="value">{{product_list.count}}</span>
+              </div>
+              <div class="entry">
+                  <span class="key">{% trans "Type Code" %}</span><span class="value">{{product_type.code}}</span>
+              </div>
           </div>
           <div class="container">
               <ul class="actions row" role="navigation">

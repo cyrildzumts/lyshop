@@ -38,9 +38,9 @@
                             <select id="attribute-type" name="attribute_type">
                                 {% for k,v in ATTRIBUTE_TYPE %}
                                     {% if v == type_attribute.attribute_type %}
-                                        <option value="{{v}}" selected>{{k}}</option>
+                                        <option value="{{k}}" selected>{{v}}</option>
                                     {% else %}
-                                        <option value="{{v}}">{{k}}</option>
+                                        <option value="{{k}}">{{v}}</option>
                                     {% endif %}
                                     
                                 {% endfor %}
