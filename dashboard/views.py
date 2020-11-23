@@ -1689,9 +1689,10 @@ def attributes_create(request):
         logger.info("Attribute formset valid checking")
         if formset.is_valid():
             logger.info("Attribute formset valid")
-            formset.save()
+            attrs = formset.save()
             messages.success(request, _('Attribute formset valid'))
             logger.info(f'New attributes added by user \"{username}\"')
+            logger.info(f"attrs type : {type(attrs)}")
             return redirect('dashboard:attributes')
         else:
             messages.error(request, _('Product variant not created'))

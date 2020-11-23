@@ -1,3 +1,4 @@
+from catalog.models import ProductAttribute
 from catalog import models
 from catalog import forms
 from django.forms import formset_factory, modelformset_factory
@@ -76,18 +77,28 @@ def create_variant(product, postdata):
 
     formset = attribute_formset(postdata)
     logger.info("Attribute formset valid checking")
+    attributes = None
+    key = 'attributes'
+    new_attributes = ProductAttribute.objects.none()
+    if key in postdata:
+        attrs = postdata.getlist(key)
+        attributes = ProductAttribute.objects.filter(pk__in=attrs)
+
+
     if formset.is_valid():
         logger.info("create_variant : Attribute formset valid")
-        attributes = formset.save()
-        variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
-            price=product.price, product=product, attributes=attributes 
-        )
-        logger.info(f'New Product Variant created ')
-        return variant
+        new_attributes = formset.save()
+    
     else:
         logger.error(f'Error on creating new product variant')
         logger.error(formset.errors)
-    return None
+    
+    variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
+            price=product.price, product=product, attributes=new_attributes 
+        )
+
+    logger.info(f'New Product Variant created ')
+    return variant
         
 
 
@@ -157,7 +168,6 @@ def create_attributes(postdata):
         return None, False
     attribute_formset = modelformset_factory(models.ProductAttribute, form=forms.ProductAttributeForm)
     formset = attribute_formset(postdata)
-    logger.info("Attributes formset valid checking")
     if formset.is_valid():
         logger.info("Attributes formset valid")
         instances = formset.save()
