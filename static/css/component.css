@@ -1884,7 +1884,7 @@ input.editable{
 
 .mat-button:disabled {
 	color: #ccc !important;
-	font-weight: 700;
+	font-weight: 700 !important;
 	border: 1px solid #ccc !important;
 }
 
