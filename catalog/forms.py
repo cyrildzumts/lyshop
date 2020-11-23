@@ -23,7 +23,7 @@ class ProductAttributeForm(forms.ModelForm):
         model = ProductAttribute
         fields = ['name', 'display_name', 'value', 'value_type', 'is_primary']
     
-
+    '''
     def clean(self):
         cleaned_data = super().clean()
         name = cleaned_data.get('name')
@@ -31,7 +31,7 @@ class ProductAttributeForm(forms.ModelForm):
         already_exist = ProductAttribute.objects.filter(name=name, value=value).exists()
         if already_exist:
             raise forms.ValidationError(f"Unique contraint on field name - \"{name}\" - and field value \"{value}\" violated")
-
+    '''
         
 
 class AttributeForm(forms.Form):
