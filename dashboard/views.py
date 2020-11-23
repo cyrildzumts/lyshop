@@ -1376,7 +1376,7 @@ def create_product_variant(request, product_uuid=None):
         'page_title': page_title,
         'form' : form,
         'product' : product,
-        'atrribute_list' : inventory_service.get_product_type_attributes(product),
+        'attribute_list' : inventory_service.get_product_type_attributes(product),
         'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
     }
     context['attribute_formset'] = attribute_formset
