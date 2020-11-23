@@ -1792,8 +1792,6 @@ def attribute_update(request, attribute_uuid=None):
     if not PermissionManager.user_can_change_product(request.user):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-    template_name = 'dashboard/attribute_update.html'
-    page_title = _('Attribute Update')
     
     form = None
     username = request.user.username
@@ -1809,16 +1807,8 @@ def attribute_update(request, attribute_uuid=None):
         else:
             messages.error(request, _('Attribute not updated'))
             logger.error(f'Error on updated Attribute. Action requested by user \"{username}\"')
-    else:
-        form = ProductAttributeForm(instance=attribute)
-    context = {
-        'page_title': page_title,
-        'form' : form,
-        'brand': attribute,
-        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
-    }
-    context.update(get_view_permissions(request.user))
-    return render(request, template_name, context)
+
+    return redirect(attribute.get_dashboard_url())
 
 
 @login_required
