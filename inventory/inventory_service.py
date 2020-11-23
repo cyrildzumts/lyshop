@@ -144,11 +144,11 @@ def create_variant(product, postdata):
     
     if attributes:
         commons_attrs, p_attrs = group_attributes(attributes)
-        #for pk in p_attrs:
-        #    variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
-        #            price=product.price, product=product)
-        #    variant.attributes.add(*[pk, *commons_attrs])
-        #    variants.append(variant)
+        for pk in p_attrs:
+            variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
+                    price=product.price, product=product)
+            variant.attributes.add(*[pk, *commons_attrs])
+            variants.append(variant)
         logger.info(f'New Product Variants({len(p_attrs)})  created ')
     else:
         logger.warn("Variant could not be created. No valid attributes submitted.")
