@@ -15,6 +15,7 @@ from catalog.models import ProductVariant, Product
 from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm, CouponForm, CartItemQuantityUpdateForm, CouponVerificationForm
 from cart.models import CartItem, CartModel
 from cart import cart_service
+from orders import orders_service
 from catalog import catalog_service
 from lyshop import settings, utils
 from http import HTTPStatus
@@ -36,6 +37,7 @@ def cart(request):
     context = {
         'cart': cart,
         'cartitems_exist' : cartitems_exist,
+        'payment_methods' : orders_service.get_payment_methods(),
         'item_list' : CartItem.objects.select_related('product').prefetch_related('product__attributes').filter(cart=cart),
         'page_title' : settings.SITE_NAME + ' ' + 'Cart',
     }

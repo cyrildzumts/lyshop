@@ -224,7 +224,7 @@ def get_payment_method(name=""):
     return None
 
 def get_payment_methods():
-    return PaymentMethod.objects.all()
+    return PaymentMethod.objects.filter(is_active=True)
 
 
 def create_payment_method(postdata):

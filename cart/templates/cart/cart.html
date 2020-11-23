@@ -1,5 +1,6 @@
 {% extends "cart_base.html" %}
 {% load i18n %}
+{% load order_tags %}
 {% block MAIN %}
 {% csrf_token %}
 {% if item_list %}
@@ -48,10 +49,11 @@
                         <div class="actions"><a class="mat-button mat-button-default" href="{% url 'orders:checkout' %}">{% trans "Checkout" %}</a></div>
                     </div>
                     <div class="container">
-                        <p class="entry left">{% trans "We accept the following payment methods" %}</p>
+                        <p class="left">{% trans "We accept the following payment methods" %}</p>
                         <div class="row row-left entry">
-                            <i class="key">{% trans "PAY" %}</i>
-                            <i class="key">{% trans "CASH" %}</i>
+                            {% for payment_method in payment_methods %}
+                                <i class="key" title="{{payment_method.mode|pay_mode_value}}">{{payment_method.display_name}}</i>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="container">
