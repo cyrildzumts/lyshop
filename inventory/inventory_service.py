@@ -21,6 +21,31 @@ def get_product_type_attributes(product):
 
     return attributes
 
+
+def group_attributes(attrs):
+    if not isinstance(attrs, list):
+        return None
+    queryset = models.ProductAttribute.objects.filter(pk__in=attrs).values('id', 'name')
+    commons_attrs = {}
+    common_names = []
+    p_attrs = []
+    for attr in queryset:
+        name = attr['name']
+        if name not in commons_attrs :
+            commons_attrs[name] = [attr['id']]
+        else:
+            p_attrs.extend([attr['id'], commons_attrs[name][0]])
+            del commons_attrs[name]
+    logger.info(f"group_attributes : attrs = {attrs}")
+    logger.info(f"Common Attrs : {commons_attrs}")
+    logger.info(f"P_Attrs : {p_attrs}")
+    return commons_attrs, p_attrs
+
+
+
+
+
+
 def create_product(postdata):
     if not isinstance(postdata, dict):
         return None, False
@@ -110,9 +135,11 @@ def create_variant(product, postdata):
         logger.error(formset.errors)
     
     if attributes:
-        variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
-                price=product.price, product=product)
-        variant.attributes.add(*attributes)
+        commons_attrs, p_attrs = group_attributes(attributes)
+
+        #variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
+        #        price=product.price, product=product)
+        #variant.attributes.add(*attributes)
         logger.info(f'New Product Variant created ')
     else:
         logger.warn("Variant could not be created. No valid attributes submitted.")
