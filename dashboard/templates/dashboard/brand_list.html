@@ -37,9 +37,11 @@
         </div><!--End of Row-->
         <form action="{% url 'dashboard:brands-delete' %}" method="POST">{% csrf_token %}
         <table id="brand-list" class="mat-table js-filter-table">
+            {% if can_delete_brand %}
             <div class="actions">
-                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i> <span>{% trans "Delete Seleted" %}</span></button>
+                    <button class="js-activable mat-button mat-button-outlined"><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button>
             </div>
+            {% endif %}
           <thead>
                   
                   <tr>

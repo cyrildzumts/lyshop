@@ -38,9 +38,11 @@
         </div><!--End of Row-->
         <form action="{% url 'dashboard:highlights-delete' %}" method="POST">{% csrf_token %}
         <table id="brand-list" class="mat-table js-filter-table">
+            {% if can_delete_highlight %}
             <div class="actions">
-                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i> <span>{% trans "Delete Seleted" %}</span></button>
+                    <button class="js-activable mat-button mat-button-outlined"><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button>
             </div>
+            {% endif %}
           <thead>
                   
                   <tr>
@@ -60,7 +62,7 @@
                   <td data-label="{% trans 'Display Name' %}">{{highlight.display_name}}</td>
                   <td data-label="{% trans 'Active' %}">{{highlight.is_active|yesno}}</td>
                   <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{highlight.get_dashboard_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
-                  {% if can_delete_brand %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:highlight-delete' highlight.highlight_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
+                  {% if can_delete_highlight %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:highlight-delete' highlight.highlight_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   
