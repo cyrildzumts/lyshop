@@ -107,7 +107,7 @@ def update_product_from_data(data, product):
 
 # Check if there is no variant for that product with the same attributes
 def create_variant(product, postdata):
-    variant = None
+    variants = []
     if not isinstance(postdata, dict) or not isinstance(product, models.Product):
         return variant
     
@@ -136,14 +136,15 @@ def create_variant(product, postdata):
     
     if attributes:
         commons_attrs, p_attrs = group_attributes(attributes)
-
-        #variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
-        #        price=product.price, product=product)
-        #variant.attributes.add(*attributes)
-        logger.info(f'New Product Variant created ')
+        for pk in p_attrs:
+            variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
+                    price=product.price, product=product)
+            variant.attributes.add(*[pk, *commons_attrs])
+            variants.append(variant)
+        logger.info(f'New Product Variants({len(p_attrs)})  created ')
     else:
         logger.warn("Variant could not be created. No valid attributes submitted.")
-    return variant
+    return variants
     
         
 

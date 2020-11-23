@@ -1361,10 +1361,11 @@ def create_product_variant(request, product_uuid=None):
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         variant = inventory_service.create_variant(product, postdata)
-        if variant:
-            messages.success(request, _('New Product variant created'))
-            logger.info(f'New product variant added by user \"{username}\"')
-            return redirect('dashboard:product-variant-detail', variant_uuid=variant.product_uuid)
+        if variants:
+            count = len(variants)
+            messages.success(request, _(f'New Product variants({count}) created'))
+            logger.info(f'New product variants({count}) added by user \"{username}\"')
+            return redirect('dashboard:product-detail', product_uuid=product_uuid)
         else:
             messages.error(request, _('Product variant not created'))
             logger.error(f'Error on creating new product variant. Action requested by user \"{username}\"')
