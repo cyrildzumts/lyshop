@@ -26,19 +26,27 @@ def group_attributes(attrs):
     if not isinstance(attrs, list):
         return None
     queryset = models.ProductAttribute.objects.filter(pk__in=attrs).values('id', 'name')
-    commons_attrs = {}
+    attributes = {}
+    commons_attrs = []
     common_names = []
     p_attrs = []
     for attr in queryset:
         name = attr['name']
-        if name not in commons_attrs :
-            commons_attrs[name] = attr['id']
+        if name not in attributes :
+            attributes[name] = [attr['id']]
         else:
-            p_attrs.extend([attr['id'], commons_attrs[name]])
-            del commons_attrs[name]
+            attributes[name].append(attr['id'])
+    
+    for name in attributes:
+        if len(attributes[name]) > 1 :
+            p_attrs.extend(attributes[name])
+        elif len(attributes[name]) == 1 :
+            commons_attrs.extend(attributes[name])
+
     logger.info(f"group_attributes : attrs = {attrs}")
-    logger.info(f"Common Attrs : {commons_attrs}")
-    logger.info(f"P_Attrs : {p_attrs}")
+    logger.info(f"Attributes : {attributes}")
+    logger.info(f"Common Attributes : {commons_attrs}")
+    logger.info(f"P_Attributes : {p_attrs}")
     return commons_attrs, p_attrs
 
 
