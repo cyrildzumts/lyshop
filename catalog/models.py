@@ -153,7 +153,7 @@ class ProductAttribute(models.Model):
     name = models.CharField(max_length=32, null=False, blank=False)
     value = models.CharField(max_length=32, null=False, blank=False)
     value_type = models.IntegerField(default=constants.ATTRIBUTE_TYPE_DEFAULT ,null=False, blank=False, choices=constants.ATTRIBUTE_TYPE)
-    is_primary = models.BooleanField(default=False, blank=True, null=True)
+    is_primary = models.BooleanField(default=False)
     display_name = models.CharField(max_length=32, null=False, blank=False)
     attribute_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
