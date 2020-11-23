@@ -50,9 +50,9 @@
                     </div>
                     <div class="container">
                         <p class="left">{% trans "We accept the following payment methods" %}</p>
-                        <div class="row row-left entry">
+                        <div class="row">
                             {% for payment_method in payment_methods %}
-                                <i class="key" title="{{payment_method.mode|pay_mode_value}}">{{payment_method.display_name}}</i>
+                                <span class="mat-button mat-button-outlined" title="{{payment_method.mode|pay_mode_value}}">{{payment_method.display_name}}</span>
                             {% endfor %}
                         </div>
                     </div>
