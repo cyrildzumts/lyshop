@@ -1807,6 +1807,7 @@ def attribute_update(request, attribute_uuid=None):
         else:
             messages.error(request, _('Attribute not updated'))
             logger.error(f'Error on updated Attribute. Action requested by user \"{username}\"')
+            logger.error(f"Errors : {form.errors}")
 
     return redirect(attribute.get_dashboard_url())
 
