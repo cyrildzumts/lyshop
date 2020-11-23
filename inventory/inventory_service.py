@@ -111,8 +111,8 @@ def create_variant(product, postdata):
     
     if attributes:
         variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
-                price=product.price, product=product, attributes=models.ProductAttribute.objects.filter(pk__in=attributes)
-            )
+                price=product.price, product=product)
+        variant.attributes.add(*attributes)
         logger.info(f'New Product Variant created ')
     else:
         logger.warn("Variant could not be created. No valid attributes submitted.")
