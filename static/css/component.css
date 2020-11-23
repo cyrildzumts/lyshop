@@ -1883,8 +1883,9 @@ input.editable{
 }
 
 .mat-button:disabled {
-	color: #ccc;
+	color: #ccc !important;
 	font-weight: 700;
+	border: 1px solid #ccc !important;
 }
 
 .mat-button-default:hover{
