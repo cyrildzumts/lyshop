@@ -16,7 +16,7 @@ def get_product_type_attributes(product):
     type_attributes = models.ProductTypeAttribute.objects.filter(product_types__in=[product.product_type])
     names = []
     if type_attributes.exists():
-        names = type_attributes.value_list('name')
+        names = type_attributes.values_list('name')
         attributes = ProductAttribute.objects.filter(name__in=names)
 
     return attributes
