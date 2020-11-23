@@ -158,7 +158,7 @@ def product_detail(request, product_uuid=None):
     images = ProductImage.objects.filter(product=product)
     common_attrs, selective_attrs = catalog_service.get_product_attributes(product.id)
     product_attrs = catalog_service.product_attributes(product.id)
-    utils.show_dict_contents(product_attrs, f"Product Attributes for {product.display_name}")
+
     context = {
         'page_title': page_title,
         'product': product,

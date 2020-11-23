@@ -28,7 +28,6 @@ def group_attributes(attrs):
     queryset = models.ProductAttribute.objects.filter(pk__in=attrs).values('id', 'name')
     attributes = {}
     commons_attrs = []
-    common_names = []
     p_attrs = []
     for attr in queryset:
         name = attr['name']
@@ -43,15 +42,7 @@ def group_attributes(attrs):
         elif len(attributes[name]) == 1 :
             commons_attrs.extend(attributes[name])
 
-    logger.info(f"group_attributes : attrs = {attrs}")
-    logger.info(f"Attributes : {attributes}")
-    logger.info(f"Common Attributes : {commons_attrs}")
-    logger.info(f"P_Attributes : {p_attrs}")
     return commons_attrs, p_attrs
-
-
-
-
 
 
 def create_product(postdata):
