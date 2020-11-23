@@ -34,7 +34,7 @@ def group_attributes(attrs):
         if name not in commons_attrs :
             commons_attrs[name] = attr['id']
         else:
-            p_attrs.extend([attr['id'], commons_attrs[name])
+            p_attrs.extend([attr['id'], commons_attrs[name]])
             del commons_attrs[name]
     logger.info(f"group_attributes : attrs = {attrs}")
     logger.info(f"Common Attrs : {commons_attrs}")
