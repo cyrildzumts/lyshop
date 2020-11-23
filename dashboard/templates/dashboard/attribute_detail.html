@@ -1,7 +1,31 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
 {% load catalog_tags %}
-{% block MAIN %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "Attribute" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+
+            <div class="col-m-12 col-9">
+                <div class="banner--actions">
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:attributes-create' %}"><i class="fas fa-plus icon"></i><span>{% trans "Add new Attributes" %}</span></a>    
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:attributes' %}"><i class="icon"></i><span>{% trans "Attributes" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>    
+                </div><!--End of Banner-Actions-->
+                
+            </div><!--End of Responsive-->
+        
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+
+{% block MAIN_CONTENT %}
 {% if can_view_product %}
 
 {% if can_delete_product %}
@@ -64,7 +88,7 @@
         </div>
           
           <div class="form-group actions">
-            <a class="mat-button mat-button-outlined" href="{% url 'dashboard:home' %}">{% trans "Cancel" %}</a>
+            <a class="mat-button mat-button-outlined" href="{% url 'dashboard:attributes' %}">{% trans "Cancel" %}</a>
             <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
           </div>
     </form>
@@ -96,4 +120,4 @@
 </div>
 {% endif %}
 
-{% endblock MAIN %}
+{% endblock MAIN_CONTENT %}
