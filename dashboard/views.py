@@ -1371,7 +1371,7 @@ def create_product_variant(request, product_uuid=None):
     
     page_title = _('New Product Variant')
     form = ProductVariantForm()
-    
+    attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm)
     context = {
         'page_title': page_title,
         'form' : form,
