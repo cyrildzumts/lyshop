@@ -1360,7 +1360,7 @@ def create_product_variant(request, product_uuid=None):
     
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        variant = inventory_service.create_variant(product, postdata)
+        variants = inventory_service.create_variant(product, postdata)
         if variants:
             count = len(variants)
             messages.success(request, _(f'New Product variants({count}) created'))
