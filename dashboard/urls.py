@@ -97,7 +97,8 @@ urlpatterns = [
     path('products/product-variant/detail/<uuid:variant_uuid>/', views.product_variant_detail, name='product-variant-detail'),
     path('products/product-variant/update/<uuid:variant_uuid>/', views.product_variant_update, name='product-variant-update'),
     path('products/product-variant/delete/<uuid:variant_uuid>/', views.product_variant_delete, name='product-variant-delete'),
-    path('products/product-variant/create/<uuid:product_uuid>/', views.product_variant_create, name='product-variant-create'),
+    #path('products/product-variant/create/<uuid:product_uuid>/', views.product_variant_create, name='product-variant-create'),
+    path('products/product-variant/create/<uuid:product_uuid>/', views.create_product_variant, name='product-variant-create'),
 
     path('products/attributes/', views.attributes, name='attributes'),
     path('products/attributes/detail/<uuid:attribute_uuid>/', views.attribute_detail, name='attribute-detail'),

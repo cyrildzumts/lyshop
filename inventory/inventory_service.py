@@ -8,6 +8,19 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
+def get_product_type_attributes(product):
+    if not isinstance(product, models.Product):
+        return []
+    attributes = ProductAttribute.objects.none()
+    type_attributes = models.ProductTypeAttribute.objects.filter(product_types__in=[product.product_type])
+    names = []
+    if type_attributes.exists():
+        names = type_attributes.value_list('name')
+        attributes = ProductAttribute.objects.filter(name__in=names)
+
+    return attributes
+
 def create_product(postdata):
     if not isinstance(postdata, dict):
         return None, False
@@ -67,9 +80,11 @@ def update_product_from_data(data, product):
     return p, created
 
 
+# Check if there is no variant for that product with the same attributes
 def create_variant(product, postdata):
+    variant = None
     if not isinstance(postdata, dict) or not isinstance(product, models.Product):
-        return None, False
+        return variant
     
     created = False
     exists = models.ProductVariant.objects.filter()
@@ -77,28 +92,32 @@ def create_variant(product, postdata):
 
     formset = attribute_formset(postdata)
     logger.info("Attribute formset valid checking")
-    attributes = None
+    attributes = []
     key = 'attributes'
     new_attributes = ProductAttribute.objects.none()
     if key in postdata:
         attrs = postdata.getlist(key)
-        attributes = ProductAttribute.objects.filter(pk__in=attrs)
+        attributes.extend(list(map(int, attrs)))
 
 
     if formset.is_valid():
         logger.info("create_variant : Attribute formset valid")
         new_attributes = formset.save()
+        attributes.extend([attr.pk for attr in new_attributes])
     
     else:
         logger.error(f'Error on creating new product variant')
         logger.error(formset.errors)
     
-    variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
-            price=product.price, product=product, attributes=new_attributes 
-        )
-
-    logger.info(f'New Product Variant created ')
+    if attributes:
+        variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
+                price=product.price, product=product, attributes=models.ProductAttribute.objects.filter(pk__in=attributes)
+            )
+        logger.info(f'New Product Variant created ')
+    else:
+        logger.warn("Variant could not be created. No valid attributes submitted.")
     return variant
+    
         
 
 

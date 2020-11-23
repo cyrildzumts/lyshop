@@ -1344,6 +1344,47 @@ def product_variant_create(request, product_uuid=None):
     return render(request, template_name, context)
 
 @login_required
+def create_product_variant(request, product_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_add_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/create_product_variant.html'
+    
+    username = request.user.username
+    product = get_object_or_404(models.Product, product_uuid=product_uuid)
+    
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        variant = inventory_service.create_variant(product, postdata)
+        if variant:
+            messages.success(request, _('New Product variant created'))
+            logger.info(f'New product variant added by user \"{username}\"')
+            return redirect('dashboard:product-variant-detail', variant_uuid=variant.product_uuid)
+        else:
+            messages.error(request, _('Product variant not created'))
+            logger.error(f'Error on creating new product variant. Action requested by user \"{username}\"')
+    
+    page_title = _('New Product Variant')
+    form = ProductVariantForm()
+    
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'product' : product,
+        'atrribute_list' : inventory_service.get_product_type_attributes(product),
+        'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
+    }
+    context['attribute_formset'] = attribute_formset
+    context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+@login_required
 def product_variant_detail(request, variant_uuid=None):
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
