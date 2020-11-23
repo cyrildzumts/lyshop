@@ -28,7 +28,7 @@ def group_attributes(attrs):
     queryset = models.ProductAttribute.objects.filter(pk__in=attrs).values('id', 'name')
     commons_attrs = {}
     common_names = []
-    p_attrs = {}
+    p_attrs = []
     for attr in queryset:
         name = attr['name']
         if name not in commons_attrs :
