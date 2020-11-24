@@ -31,7 +31,7 @@ def order_status_value(key):
 
 @register.filter
 def payment_option_key(value):
-    k,v = utils.find_element_by_value_in_tuples(value, Constants.PAYMENT_OPTIONS)
+    k,v = utils.find_element_by_value_in_tuples(value, Constants.ORDER_PAYMENT_OPTIONS)
     if k is None:
         logger.info(f"payment_option_key : Could not found key  for value \"{value}\"")
         return value
@@ -39,7 +39,7 @@ def payment_option_key(value):
 
 @register.filter
 def payment_option_value(key):
-    k,v = utils.find_element_by_key_in_tuples(key, Constants.PAYMENT_OPTIONS)
+    k,v = utils.find_element_by_key_in_tuples(key, Constants.ORDER_PAYMENT_OPTIONS)
     if v is None:
         logger.info(f"payment_option_value : Could not found value  for key \"{key}\"")
         return key

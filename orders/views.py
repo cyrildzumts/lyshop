@@ -125,7 +125,8 @@ def checkout(request):
         'ADDRESS_TYPES' : Addressbook_Constants.ADDRESS_TYPES,
         'cart' : cart,
         'cartitems' : orders_service.get_user_cartitems(request.user),
-        'PAYMENT_OPTIONS': commons.PAYMENT_OPTIONS,
+        'payment_methods' : orders_service.get_payment_methods(),
+        'PAYMENT_OPTIONS': commons.ORDER_PAYMENT_OPTIONS,
     }
     country = ''
     if not cart or (cart.quantity == 0 or cart.amount == 0.0):

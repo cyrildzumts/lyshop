@@ -130,6 +130,12 @@ PAYMENT_OPTIONS = (
     (PAY_BEFORE_DELIVERY, 'PAY BEFORE DELIVERY'),
 )
 
+ORDER_PAYMENT_OPTIONS = (
+    (PAY_AT_DELIVERY, 'PAY AT DELIVERY'),
+    (PAY_BEFORE_DELIVERY, 'PAY BEFORE DELIVERY'),
+    (PAY_AT_ORDER, 'PAY AT ORDER'),
+)
+
 
 
 def get_order_status_name(order_status=None):
@@ -138,5 +144,5 @@ def get_order_status_name(order_status=None):
 
 
 def get_payment_option_name(option=None):
-    key, value = utils.find_element_by_key_in_tuples(option, PAYMENT_OPTIONS)
+    key, value = utils.find_element_by_key_in_tuples(option, ORDER_PAYMENT_OPTIONS)
     return key, value
