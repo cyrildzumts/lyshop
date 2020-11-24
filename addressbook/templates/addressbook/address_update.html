@@ -47,8 +47,8 @@
                 <input type="text" id="house-number" name="house_number" value="{{address.house_number}}">
             </div>
             <div class="mat-input">
-                <label for="phone_number">{% trans "Phone Number" %}</label>
-                <input type="text" id="phone_number" value="{{address.phone_number|default_if_none:''}}">
+                <label for="phone-number">{% trans "Phone Number" %}</label>
+                <input type="text" id="phone-number" name="phone_number" value="{{address.phone_number|default_if_none:''}}">
             </div>
             
         </div>
