@@ -106,10 +106,6 @@ def address_update(request, address_uuid=None):
 @login_required
 def address_delete(request, address_uuid=None):
     username = request.user.username
-    
-    if request.method != "POST":
-        raise SuspiciousOperation('Bad request')
-
     obj = get_object_or_404(Address, address_uuid=address_uuid, user=request.user)
     Address.objects.filter(pk=obj.pk).delete()
     logger.info(f'Address \"{obj}\" deleted by user \"{request.user.username}\"')
@@ -121,10 +117,6 @@ def address_delete(request, address_uuid=None):
 def addresses_delete(request):
     username = request.user.username
     
-
-    if request.method != "POST":
-        raise SuspiciousOperation('Bad request')
-
     postdata = utils.get_postdata(request)
     id_list = postdata.getlist('addresses')
 
