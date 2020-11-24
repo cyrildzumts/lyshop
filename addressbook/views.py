@@ -63,7 +63,7 @@ def address_detail(request, address_uuid=None):
     username = request.user.username
     page_title = _('Address')
 
-    address = get_object_or_404(Addres,user=request.user, address_uuid=address_uuid)
+    address = get_object_or_404(Address,user=request.user, address_uuid=address_uuid)
     context = {
         'page_title': page_title,
         'address': address,
