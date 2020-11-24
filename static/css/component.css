@@ -126,7 +126,7 @@ canvas{
 
 ul, nav, .nav{
 	list-style-type: none;
-	padding: 0;
+	padding: 16px 4px;
 	margin: 0;
 }
 
