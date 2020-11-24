@@ -212,7 +212,7 @@ class PaymentMethod(models.Model):
     display_name = models.CharField(max_length=255 ,blank=False, null=False)
     provider = models.CharField(max_length=255 ,blank=False, null=False)
     credential = models.CharField(max_length=255 ,blank=False, null=False)
-    is_active = models.BooleanField(default=True, blank=True, null=True)
+    is_active = models.BooleanField(default=False, blank=True, null=True)
     mode = models.IntegerField(default=commons.ORDER_PAYMENT_PAY, blank=True, null=True, choices=commons.ORDER_PAYMENT_MODE)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
