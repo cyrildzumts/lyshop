@@ -23,10 +23,10 @@ class Order(models.Model):
     quantity = models.IntegerField(default=0, blank=True, null=True)
     address = models.ForeignKey('addressbook.Address', blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
-    is_active = models.BooleanField(default=True, blank=True, null=True)
-    is_closed = models.BooleanField(default=False, blank=True, null=True)
-    is_paid = models.BooleanField(default=False, blank=True)
-    vendor_balance_updated = models.BooleanField(default=False, blank=True)
+    is_active = models.BooleanField(default=True,)
+    is_closed = models.BooleanField(default=False)
+    is_paid = models.BooleanField(default=False)
+    vendor_balance_updated = models.BooleanField(default=False)
     status = models.IntegerField(default=commons.ORDER_SUBMITTED)
     payment_option = models.IntegerField(default=commons.PAY_WITH_PAY)
     coupon = models.ForeignKey("cart.Coupon", related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
@@ -82,7 +82,7 @@ class OrderItem(models.Model):
     total_price = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     total_promotion_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
-    is_active = models.BooleanField(default=True, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
     item_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_FIELDS = ['order', 'product', 'quantity', 'unit_price', 'total_price','created_at', 'item_uuid']
 
@@ -171,6 +171,7 @@ class PaymentRequest(models.Model):
     redirect_success_url = models.TextField(max_length=256, blank=True, null=True)
     redirect_failed_url = models.TextField(max_length=256, blank=True, null=True)
     failed_reason = models.TextField(max_length=256, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
     request_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_FIELDS = ['token', 'pay_url', 'verification_code', 'order', 'customer', 'amount', 'created_at', 'status', 'request_uuid']
 

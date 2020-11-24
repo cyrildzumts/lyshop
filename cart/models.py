@@ -17,7 +17,7 @@ class Coupon(models.Model):
     activated_at = models.DateTimeField(blank=True, null=True)
     begin_at = models.DateTimeField(blank=True, null=True)
     expire_at = models.DateTimeField(blank=True, null=True)
-    is_active = models.BooleanField(default=False, blank=True)
+    is_active = models.BooleanField(default=False)
     usage = models.IntegerField(default=0, blank=True)
     max_usage = models.IntegerField(blank=True, null=True)
     coupon_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -96,7 +96,7 @@ class CartItem(models.Model):
     unit_price = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     total_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
-    is_active = models.BooleanField(default=True, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
     item_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):

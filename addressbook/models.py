@@ -17,7 +17,7 @@ class Address(models.Model):
     address_extra = models.CharField(max_length=64, blank=True, null=True)
     street = models.CharField(max_length=64, blank=True, null=True)
     house_number = models.IntegerField(blank=True, null=True)
-    is_active = models.BooleanField(default=True, blank=True, null=False)
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     last_changed_by = models.ForeignKey(User, related_name='edited_addresses', blank=True, null=True, on_delete=models.SET_NULL)
