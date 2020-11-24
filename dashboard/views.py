@@ -4096,6 +4096,7 @@ def payment_method_update(request, method_uuid):
     payment_method = get_object_or_404(PaymentMethod, method_uuid=method_uuid)
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
+        utils.show_dict_contents(postdata, "PAYMENT METHOD POSTDATA ")
         payment_method, updated = orders_service.update_payment_method(postdata, payment_method)
         if updated :
             messages.success(request,_('PaymentMethod updated'))
