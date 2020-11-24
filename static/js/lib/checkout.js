@@ -48,12 +48,12 @@ define([
             self.payment_method = this.value;
             self.validate_pament_options();
         });
-
+        this.validate_address();
         console.log("Checkout initialized");
     };
 
     Checkout.prototype.validate_address = function(){
-        console.log("Validatin Address : ");
+        console.log("Validating Address : ");
         var toggle = false;
         var address_input = $('#address').get();
         var inputs_container = $('#new-address').get();
