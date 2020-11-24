@@ -25,7 +25,7 @@ define([
 
     var Checkout = function(tabs_comp){
         tabs = tabs_comp;
-        this.address = new address;
+        this.address = {};
         this.payment_option = -1;
         this.payment_method = -1;
         this.currentTab = 1;
