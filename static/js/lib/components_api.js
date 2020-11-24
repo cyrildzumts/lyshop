@@ -2,6 +2,10 @@ define(function() {
     'use strict';
 
 var Tabs = (function(){
+    var tab_preffix = "step-header-";
+    var checked_icon_class = "fas fa-check";
+    var tab_title_class = "tab-title";
+    var tab_title_checked = "tab-checked";
 
     function Tabs(){
         this.currentTab     = 0;
@@ -33,6 +37,14 @@ var Tabs = (function(){
                 $(current.data('toggle')).show().siblings('div.tab-content').hide();
             }
         });
+    };
+    Tabs.prototype.toggle_checked = function(index, toggle){
+        if(index < 0 || index > this.tabCount){
+            console.warn("No tab with index %s", index);
+            return;
+        }
+        $('.' + tab_preffix + index + " .icon").toggleClass(checked_icon_class, toggle);
+        $('.' + tab_preffix + index + " ." + tab_title_class).toggleClass(tab_title_checked, toggle);
     };
     Tabs.prototype.onTabClicked = function(event){
         var tab = parseInt($(event.target).data("index"));

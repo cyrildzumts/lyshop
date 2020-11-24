@@ -1,10 +1,11 @@
 {% load i18n %}
 <div id="{{step_id}}" class="tab-content" data-checked="{{step_id}} tab-icon">
     <div class="title">
-        <i class="fas fa-check icon tab-icon"></i><span>{% trans "Shipping Address" %}</span>
+        <span>{% trans "Shipping Address" %}</span>
     </div>
-    <div class="box">
-            {% if address %}
+    {% if address %}
+    <div id="checkout-address" class="mat-box">
+            <input id="address" type="hidden" name="address" value="{{address.pk}}">
             <div class="mat-input">
                 <label for="name">{% trans "Name" %}</label>
                 <input type="text" id="name" value="{{address.firstname}} {{address.lastname}}" disabled>
@@ -41,14 +42,13 @@
                 <input type="checkbox" id="address_type" checked disabled>
                 <label for="address_type">{% trans "Shipping address same as billing" %}</label>
             </div>
-            
-            {% else %}
-            <div class="row">
-                <h3>{% trans "Add an Addres" %}</h3>
-                <div class="wrapper">
-                    {% include "addressbook_tags/address_form.html" %}
-                </div>
-            </div>
-            {% endif %} 
     </div>
+    {% else %}
+    <div class="mat-box">
+        <h3>{% trans "Add an Addres" %}</h3>
+        <div id="new-address" class="wrapper">
+            {% include "addressbook_tags/address_form.html" %}
+        </div>
+    </div>
+            {% endif %} 
 </div>
