@@ -24,61 +24,9 @@
         <input type="hidden" name="user" value="{{request.user.pk}}">
         
         <div class="tab-container">
-            <div id="step-1" class="tab-content">
-                <div class="title">
-                    <span>{% trans "User Info" %}</span>
-                </div>
-                <div class="box">
-                        {% if address_list %}
-                        <div class="mat-input">
-                            <label for="address">{% trans "Shipping Address" %}</label>
-                            <select name="address" id="address">
-                                <option >{% trans "Please, Select an address" %}</option>
-                                {% for addr in address_list %}
-                                <option value="{{addr.pk}}">{{addr}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        {% else %}
-                        <div class="row">
-                            <h3>{% trans "Add an Addres" %}</h3>
-                            <div class="wrapper">
-                                {% include "addressbook_tags/address_form.html" %}
-                            </div>
-                        </div>
-                        {% endif %}
-                        
-                </div>
-
-                
-                <div class="actions">
-                    <button class="mat-button mat-button-outlined js-next-tab" data-next-tab-index="1" title="{% trans 'Next Step' %}" disabled><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-            <div id="step-2" class="tab-content">
-                <div class="title">
-                    <span>{% trans "Payment Option" %}</span>
-                </div>
-                {% for k,v in PAYMENT_OPTIONS %}
-                    <div class="row">
-                        <label ><input type="radio" name="payment_option" value="{{k}}">  <span>{% trans v %}</span></label>
-                    </div>
-                
-                {% endfor %}
-                <div class="actions">
-                    <button class="mat-button mat-button-outlined" data-next-tab-index="0" title="{% trans 'Previous Step' %}"><i class="fas fa-chevron-left"></i></button>
-                    <button class="mat-button mat-button-outlined" data-next-tab-index="2" title="{% trans 'Next Step' %}"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-            <div id="step-3" class="tab-content">
-                <div class="title">
-                    <span>{% trans "Verification" %}</span>
-                </div>
-                <div class="actions">
-                    <button class="mat-button mat-button-outlined" data-next-tab-index="1" title="{% trans 'Previous Step' %}"><i class="fas fa-chevron-left"></i></button>
-                    <button class="mat-button mat-button-outlined" data-next-tab-index="3" title="{% trans 'Next Step' %}"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
+            {% include "tags/checkout_address.html" with step_id="step-1" %}
+            {% include "tags/payment_options.html" with step_id="step-2" %}
+            {% include "tags/cart_summary.html" with step_id="step-3" %}
             <div id="step-4" class="tab-content">
                 <div class="title">
                     <span>{% trans "Confirmation" %}</span>
