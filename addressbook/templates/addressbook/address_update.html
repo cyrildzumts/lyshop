@@ -46,20 +46,10 @@
                 <label for="house-number">{% trans "House Number" %}</label>
                 <input type="text" id="house-number" name="house_number" value="{{address.house_number}}">
             </div>
-
-            <div class="form-group">
-                <label for="address-type">{% trans "Use this address as" %}</label>
-                <select name="address_type" id="address-type">
-                {% for k,v in ADDRESS_TYPES %} 
-                    {% if k == address.address_type %}
-                    <option value="{{k}}" selected>{% trans v %}</option> 
-                    {% else %}
-                    <option value="{{k}}">{% trans v %}</option> 
-                    {% endif %}
-                {% endfor %}
-                </select>
+            <div class="mat-input">
+                <label for="phone_number">{% trans "Phone Number" %}</label>
+                <input type="text" id="phone_number" value="{{address.phone_number}}">
             </div>
-
             
         </div>
         <div class="actions">
