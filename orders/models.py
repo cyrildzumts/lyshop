@@ -219,6 +219,7 @@ class PaymentMethod(models.Model):
     changed_by = models.ForeignKey(User, related_name='changed_payment_methods', blank=True, null=True, on_delete=models.SET_NULL)
     added_by = models.ForeignKey(User, related_name='added_payment_methods', blank=True, null=True, on_delete=models.SET_NULL)
     method_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'display_name', 'provider', 'credential', 'mode', 'is_active', 'added_by', 'changed_by']
 
     class Meta:
         constraints = [
