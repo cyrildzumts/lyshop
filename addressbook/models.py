@@ -11,6 +11,7 @@ class Address(models.Model):
     firstname= models.CharField(max_length=32, blank=True, null=True)
     lastname = models.CharField(max_length=64, blank=True, null=True)
     country = models.CharField(max_length=32)
+    phone_number = models.CharField(max_length=32, blank=True, null=True)
     postal_code = models.IntegerField(blank=True, null=True)
     address_type = models.IntegerField(default=Addressbook_Constants.ADDRESS_FOR_BILLING_AND_SHIPPING, blank=True, null=True, choices=Addressbook_Constants.ADDRESS_TYPES)
     address_extra = models.CharField(max_length=64, blank=True, null=True)
@@ -21,7 +22,7 @@ class Address(models.Model):
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     last_changed_by = models.ForeignKey(User, related_name='edited_addresses', blank=True, null=True, on_delete=models.SET_NULL)
     address_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-    FORM_FIELDS = ['user', 'city', 'firstname', 'lastname', 'country', 'postal_code', 'address_extra', 'street','house_number', 'is_active', 'last_changed_by',]
+    FORM_FIELDS = ['user', 'city', 'firstname', 'lastname', 'country', 'postal_code','phone_number', 'address_extra', 'street','house_number', 'is_active', 'last_changed_by',]
 
     def __str__(self):
         return f"Addressbook {self.user.username} {self.pk}"
