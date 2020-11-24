@@ -1,0 +1,34 @@
+
+<div id="{{step_id}}" class="tab-content" data-checked="{{step_id}} tab-icon">
+    <div class="title">
+        <i class="fas fa-check icon tab-icon"></i><span>{% trans "Cart Summary" %}</span>
+    </div>
+    <div class="box">
+        
+        <div class="mat-box-content">
+            <div class="container flex-left">
+                <div id="coupon-wrapper" class="full">
+                    <div class="entry">
+                        <span class="key">{% trans "Coupon" %}</span>
+                        <div class="value flex mat-input">
+                            <input id="coupon" class="js-coupon" name="coupon" {% if cart.coupon %} value="{{cart.coupon.name}}" disabled{% endif %}>
+                        </div>
+                    </div>
+                </div>  
+                <div class="entry"><span class="key">{% trans "Number of items" %}</span><span class="js-cart-quantity value">{{cart.quantity}}</span></div>
+                <div class="entry"><span class="key">{% trans "Reduction" %}</span> <div class="value"><span id="reduction" class="js-cart-reduction">{{cart.get_reduction|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></div></div>
+                <div class="entry"><span class="key">{% trans "Sub Total" %}({% trans "no reduction" %})</span><div class="price right value"><span id="total" class="js-cart-total original-price value">{{cart.amount|floatformat:"-2"}}</span><span>{% trans CURRENCY %}</span></div></div>
+                <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price right value"><span id="solded-price final-price" class="js-cart-solded-price final-price value">{{cart.get_total|floatformat:"-2"}}</span><span>{% trans CURRENCY %}</span></div></div>
+            </div>
+
+        </div>
+    </div><!--End of Box-->
+    <div class="mat-box">
+        <div class="mat-box-content">
+            <ul>
+                <li><p class="entry left">{% trans "Standard shipping cost 3000 XAF" %}</p></li>
+                <li><p class="entry left">{% trans "Express shipping cost 5000 XAF. Express shipping are sent as soon as possible so that the customer receives the order on the next few days." %}</p></li>
+            </ul>
+        </div>
+    </div><!--End of Box-->
+</div><!--End of tab-content-->

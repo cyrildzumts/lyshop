@@ -115,29 +115,25 @@ def checkout(request):
     cart = orders_service.get_user_cart(request.user)
     template_name = 'orders/checkout.html'
     address_list = addressbook_service.get_addresses(request.user)
+    address = None
+    if address_list.exists():
+        address = address_list.first()
     context = {
         'page_title' : _("Checkout") + ' - ' + settings.SITE_NAME,
-        'address_list': addressbook_service.get_addresses(request.user),
+        'address_list': address_list,
+        'address': address,
         'ADDRESS_TYPES' : Addressbook_Constants.ADDRESS_TYPES,
+        'cart' : cart,
+        'cartitems' : orders_service.get_user_cartitems(request.user),
         'PAYMENT_OPTIONS': commons.PAYMENT_OPTIONS,
     }
-    address = None
     country = ''
     if not cart or (cart.quantity == 0 or cart.amount == 0.0):
         messages.error(request, _("Your Cart is empty"))
         return redirect('catalog:catalog-home')
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        if address_list.exists():
-            addressForm = AddressModelForm(postdata)
-            if addressForm.is_valid():
-                logger.info("AddressModelForm is Valid")
-                address = addressbook_service.get_address(addressForm.cleaned_data['address'])
-                country = address.country
-                logger.debug(address)
-            else:
-                logger.info("AddressModelForm is not Valid")
-        else:
+        if not address:
             addressForm = AddressForm(postdata)
             if addressForm.is_valid():
                 logger.info("AddressForm is Valid")
@@ -146,7 +142,6 @@ def checkout(request):
             else:
                 logger.info("AddressForm is not Valid")
 
-        
         payment_option_form = PaymentOptionForm(postdata)
         payment_option_form_is_valid = payment_option_form.is_valid()
         if  payment_option_form_is_valid:

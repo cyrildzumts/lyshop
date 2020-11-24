@@ -1,0 +1,24 @@
+{% load i18n %}
+{% load order_tag %}
+<div id="{{step_id}}" class="tab-content" data-checked="{{step_id}} tab-icon">
+    <div class="title">
+        <i class="fas fa-check icon tab-icon"></i><span>{% trans "Payment Options" %}</span>
+    </div>
+    <div class="box">
+
+        <div class="row">
+            <span>{% trans "Payment Methods" %}</span>
+        </div>
+        <div class="container">
+            <ul class="mat-list">
+                {% for p_method in payment_methods %}
+                <li title="{{p_method.mode|pay_mode_value}}"><input type="radio" name="payment_method" value="{{p_method.pk}}"><label for="payment_method">{{p_method.display_name}}</label></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="payment-option">
+            {% trans "Payment Options Placeholders" %}
+        </div>
+            
+    </div>
+</div>
