@@ -4,7 +4,7 @@
         <i class="fas fa-check icon tab-icon"></i><span>{% trans "Shipping Address" %}</span>
     </div>
     <div class="box">
-            {% if not address %}
+            {% if address %}
             <div class="mat-input">
                 <label for="name">{% trans "Name" %}</label>
                 <input type="text" id="name" value="{{address.firstname}} {{address.lastname}}" disabled>
@@ -28,6 +28,10 @@
             <div class="mat-input">
                 <label for="house_number">{% trans "House Number" %}</label>
                 <input type="text" id="house_number" value="{{address.house_number}}" disabled>
+            </div>
+            <div class="mat-input">
+                <label for="phone_number">{% trans "Phone Number" %}</label>
+                <input type="text" id="phone_number" value="{{address.phone_number}}" disabled>
             </div>
             <div class="mat-input">
                 <label for="country">{% trans "Country" %}</label>
