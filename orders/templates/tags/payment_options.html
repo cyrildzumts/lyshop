@@ -1,20 +1,18 @@
 {% load i18n %}
 {% load order_tag %}
 <div id="{{step_id}}" class="tab-content" data-checked="{{icon_parent}} icon">
-    <div class="title">
-        <span>{% trans "Payment" %}</span>
-    </div>
-    <div id="payment-option" class="box">
+
+    <div id="payment-option" class="mat-box">
             <div class="title">{% trans "Payment Options " %}</div>
-            <ul class="flex">
+            <ul class="flex flex-left">
                 {% for k,v in PAYMENT_OPTIONS %}
                 <li title="{{v}}"><input class="js-input-payment-option" type="radio" name="payment_option" value="{{k}}"><label for="payment_option">{% trans v %}</label></li>
                 {% endfor %}
             </ul>
     </div>
-    <div id="payment-method" class="box">
+    <div id="payment-method" class="mat-box">
             <div class="title">{% trans "Payment Methods " %}</div>
-            <ul class="flex">
+            <ul class="flex flex-left">
                 {% for p_method in payment_methods %}
                 <li title="{{p_method.mode|pay_mode_value}}"><input class="js-input-payment-method" type="radio" name="payment_method" value="{{p_method.pk}}"><label for="payment_method">{{p_method.display_name}}</label></li>
                 {% endfor %}
