@@ -91,7 +91,7 @@ def address_update(request, address_uuid=None):
             obj = form.save()
             messages.success(request, _('Address updated'))
             logger.info(f'address {obj} updated by user \"{username}\"')
-            return redirect('addressbook:addressbook', address_uuid=address_uuid)
+            return redirect('addressbook:address-detail', address_uuid=address_uuid)
         else:
             messages.error(request, _('Address not updated'))
             logger.error(f'Error on updating address. Action requested by user \"{username}\"')

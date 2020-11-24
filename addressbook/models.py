@@ -28,7 +28,7 @@ class Address(models.Model):
         return f"Addressbook {self.user.username} {self.pk}"
     
     def get_absolute_url(self):
-        return reverse("addressbook:address", kwargs={"address_uuid": self.address_uuid})
+        return reverse("addressbook:address-detail", kwargs={"address_uuid": self.address_uuid})
     
     def get_update_url(self):
         return reverse("addressbook:address-update", kwargs={"address_uuid": self.address_uuid})
