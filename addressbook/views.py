@@ -88,6 +88,7 @@ def address_update(request, address_uuid=None):
         postdata = utils.get_postdata(request)
         form = AddressForm(postdata, instance=obj)
         if form.is_valid():
+            utils.show_dict_contents(form.cleaned_data, "Address submitted Data")
             obj = form.save()
             messages.success(request, _('Address updated'))
             logger.info(f'address {obj} updated by user \"{username}\"')
