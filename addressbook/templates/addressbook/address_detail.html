@@ -41,7 +41,7 @@
                         <span class="key">{% trans "House Number" %}</span><span class="value">{{address.house_number}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Phone Number" %}</span><span class="value">{{address.phone_number}}</span>
+                        <span class="key">{% trans "Phone Number" %}</span><span class="value">{{address.phone_number|default_if_none:""}}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Address is used for" %}</span><span class="value">{{address.address_type|address_type_value}}</span>

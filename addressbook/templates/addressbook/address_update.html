@@ -48,7 +48,7 @@
             </div>
             <div class="mat-input">
                 <label for="phone_number">{% trans "Phone Number" %}</label>
-                <input type="text" id="phone_number" value="{{address.phone_number}}">
+                <input type="text" id="phone_number" value="{{address.phone_number|default_if_none:''}}">
             </div>
             
         </div>

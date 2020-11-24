@@ -11,7 +11,7 @@ class Address(models.Model):
     firstname= models.CharField(max_length=32, blank=True, null=True)
     lastname = models.CharField(max_length=64, blank=True, null=True)
     country = models.CharField(max_length=32)
-    phone_number = models.CharField(max_length=32, blank=True, null=True)
+    phone_number = models.CharField(max_length=32,blank=True, null=True)
     postal_code = models.IntegerField(blank=True, null=True)
     address_type = models.IntegerField(default=Addressbook_Constants.ADDRESS_FOR_BILLING_AND_SHIPPING, blank=True, null=True, choices=Addressbook_Constants.ADDRESS_TYPES)
     address_extra = models.CharField(max_length=64, blank=True, null=True)
