@@ -223,8 +223,12 @@ def get_payment_method(name=""):
             logger.warn(f'get_payment_method: No PaymentMethod found with name \"{name}\"')
     return None
 
-def get_payment_methods():
-    return PaymentMethod.objects.filter(is_active=True)
+def get_payment_methods(filter_active=False):
+    if filter_active:
+        qs = PaymentMethod.objects.filter(is_active=True)
+    else:
+        qs = PaymentMethod.objects.all()
+    return qs
 
 
 def create_payment_method(postdata):

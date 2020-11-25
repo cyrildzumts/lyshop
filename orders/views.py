@@ -125,7 +125,7 @@ def checkout(request):
         'ADDRESS_TYPES' : Addressbook_Constants.ADDRESS_TYPES,
         'cart' : cart,
         'cartitems' : orders_service.get_user_cartitems(request.user),
-        'payment_methods' : orders_service.get_payment_methods(),
+        'payment_methods' : orders_service.get_payment_methods(filter_active=True),
         'PAYMENT_OPTIONS': commons.ORDER_PAYMENT_OPTIONS,
     }
     country = ''
