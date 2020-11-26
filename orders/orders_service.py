@@ -154,7 +154,6 @@ def order_pay_at_order(user, data):
             result['order'] = order
             return result
         except Exception as e:
-            messages.error(request,"An error occured during processing Order")
             logger.error(f"Error on creating PaymentRequest for order {order.order_ref_number}")
             logger.exception(e)
         
