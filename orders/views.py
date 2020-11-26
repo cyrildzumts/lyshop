@@ -132,11 +132,12 @@ def checkout(request):
         messages.error(request, _("Your Cart is empty"))
         return redirect('catalog:catalog-home')
     if request.method == 'POST':
-        result = orders_service.process_order(request.user, utils.get_postdata(request))
+        result = orders_service.process_order(request.user, request)
         if result.get('success'):
             if result.get('order').payment_option == commons.PAY_AT_ORDER:
                 return result.get(commons.KEY_REDIRECT_PAYMENT_URL)  
             else:
+                messages.success(request,"order has been successfully submitted")
                 return result.get(commons.KEY_REDIRECT_SUCCESS_URL)
         else:
             logger.warn("Order Checkout failed")
@@ -294,6 +295,7 @@ def checkout_success(request, order_uuid):
         Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAID, is_paid=True)
         OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAID, order_ref_id=order.id, changed_by=request.user)
 
+    messages.success(request,"order has been successfully submitted")
     flag = orders_service.mark_product_sold(order)
     context = {
         'page_title' : page_title

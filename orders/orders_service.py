@@ -88,6 +88,7 @@ def order_pay_at_delivery(user, data):
     
 
 def order_pay_at_order(user, data):
+    request = data['request']
     result = {}
     if  not isinstance(user, User) or not isinstance(data, dict):
         logger.warn(f"order_pay_at_order : User or data has a wrong type. Expecting user type to be User but got a {type(user)} instead ")
@@ -112,7 +113,7 @@ def order_pay_at_order(user, data):
         logger.warn(f"order_pay_at_order : no address found with id \"{data.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
         return result
 
-    order = create_order_from_cart(user=request.user, address=address, kwargs={'user': request.user, 'address' : address, 'payment_option': commons.PAY_AT_ORDER})
+    order = create_order_from_cart(user=user, address=address, kwargs={'user': user, 'address' : address, 'payment_option': commons.PAY_AT_ORDER})
     redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
     redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
     result = {
@@ -124,7 +125,7 @@ def order_pay_at_order(user, data):
         payment_data = {
             'requester_name': settings.PAY_USERNAME,
             'amount': order.total,
-            'customer_name': request.user.get_full_name(),
+            'customer_name': user.get_full_name(),
             'quantity': cart.quantity,
             'description': settings.PAY_REQUEST_DESCRIPTION,
             'country' : address.country,
@@ -148,7 +149,6 @@ def order_pay_at_order(user, data):
         payment_data['verification_code'] = response_json['verification_code']
         try:
             payment_request = PaymentRequest.objects.create(**payment_data)
-            messages.success(request,"order has been successfully submitted")
             result['success'] = True
             result[commons.KEY_REDIRECT_PAYMENT_URL] = reverse('orders:checkout-redirect-payment', request_uuid=payment_request.request_uuid)
             result['order'] = order
@@ -175,7 +175,7 @@ def order_pay_before_delivery(user, data):
         logger.warn(f"order_pay_before_delivery : no address found with id \"{data.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
         return result
 
-    order = create_order_from_cart(user=request.user, address=address, kwargs={'user': request.user,'payment_option': commons.PAY_BEFORE_DELIVERY, 'address': address})
+    order = create_order_from_cart(user=user, address=address, kwargs={'user': user,'payment_option': commons.PAY_BEFORE_DELIVERY, 'address': address})
     redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
     redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
     result = {
@@ -188,7 +188,8 @@ def order_pay_before_delivery(user, data):
 
     
 
-def process_order(user, postdata):
+def process_order(user, request):
+    postdata = utils.get_postdata(request)
     payment_option = None
     payment_method = None
     shipping_address = None
@@ -213,7 +214,7 @@ def process_order(user, postdata):
     payment_option = int(postdata.get(commons.PAYMENT_OPTION_FIELD))
     payment_method = int(postdata.get(commons.PAYMENT_METHOD_FIELD))
     shipping_address =  int(postdata.get(commons.SHIPPING_ADDRESS_FIELD))
-    data = {'postdata': postdata, commons.PAYMENT_METHOD_FIELD : payment_method, commons.SHIPPING_ADDRESS_FIELD : shipping_address}
+    data = {'postdata': postdata,'request': request, commons.PAYMENT_METHOD_FIELD : payment_method, commons.SHIPPING_ADDRESS_FIELD : shipping_address}
     if payment_option == commons.PAY_BEFORE_DELIVERY:
         result = order_pay_before_delivery(user, data)
     elif payment_option == commons.PAY_AT_DELIVERY:
