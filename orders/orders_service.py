@@ -40,7 +40,7 @@ def refresh_order(order):
     
     return order
 
-def create_order_from_cart(user, address=None, **kwargs):
+def create_order_from_cart(user=None, address=None, **kwargs):
     logger.debug("creating order from Cart")
     cart = get_user_cart(user)
     total = 0
