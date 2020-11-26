@@ -49,7 +49,8 @@ def create_order_from_cart(user, address=None, **kwargs):
     else:
         total = cart.amount + SHIPPING_PRICE
     #order = Order.objects.create(user=user, address=address, coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total)
-    order = Order.objects.create(coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total, **kwargs)
+    order_kwargs = {'coupon' : cart.coupon, 'amount' : cart.amount, 'solded_price' : cart.solded_price, 'quantity' : cart.quantity, 'shipping_price' : SHIPPING_PRICE, 'total' : total, **kwargs}
+    order = Order.objects.create(**order_kwargs)
     OrderStatusHistory.objects.create(order=order, order_status=order.status, order_ref_id=order.id, changed_by=user)
     logger.debug("order instance created")
     items_queryset = get_user_cartitems(user)
