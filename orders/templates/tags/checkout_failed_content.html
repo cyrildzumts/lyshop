@@ -1,10 +1,7 @@
 {% load i18n %}
 
-<div>
-    <p> 
-    {% trans "Your transaction has failed. " %}
-    {% trans "You will be redirected to your account page in an instant." %}
-    {% trans "Click here to directly go to your Account if you don't want to way." %} : <a class="mat-button mat-button-default" href="{% url 'accounts:account' %}">{% trans "My Account" %}</a>
-    
-    </p>
+<div class="mat-box">
+    <p>{% trans "Your transaction has failed. " %}</p>
+    <p>{% trans "You will be redirected to your account page in an instant." %}</p>
+    <p>{% trans "Click here to directly go to your Account if you don't want to way." %} : <a class="mat-button mat-button-default" href="{% url 'accounts:account' %}">{% trans "My Account" %}</a></p>
 </div>

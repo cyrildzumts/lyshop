@@ -8,12 +8,9 @@
 {% block MAIN %}
 
 <div class="container">
-    <div>
-        <p> 
-        {% trans "You will be redirected to Pay for payment in an instant." %}
-        {% trans "Click here to directly go to PAY if you don't want to wait." %} : <a class="mat-button mat-button-default" href="{{payment_request.pay_url}}">{% trans "PAY" %}</a>
-        
-        </p>
+    <div class="mat-box">
+        <p>{% trans "You will be redirected to Pay for payment in an instant." %}</p>
+        <p>{% trans "Click here to directly go to PAY if you don't want to wait." %} : <a class="mat-button mat-button-default" href="{{payment_request.pay_url}}">{% trans "PAY" %}</a></p>
     </div>
 </div>
 {% endblock MAIN %}

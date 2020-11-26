@@ -111,6 +111,43 @@ def order_cancel(request, order_uuid):
 
 @login_required
 def checkout(request):
+    #TODO Refactore this views : move business logic to order_service
+    cart = orders_service.get_user_cart(request.user)
+    template_name = 'orders/checkout.html'
+    address_list = addressbook_service.get_addresses(request.user)
+    address = None
+    if address_list.exists():
+        address = address_list.first()
+    context = {
+        'page_title' : _("Checkout") + ' - ' + settings.SITE_NAME,
+        'address_list': address_list,
+        'address': address,
+        'ADDRESS_TYPES' : Addressbook_Constants.ADDRESS_TYPES,
+        'cart' : cart,
+        'cartitems' : orders_service.get_user_cartitems(request.user),
+        'payment_methods' : orders_service.get_payment_methods(filter_active=True),
+        'PAYMENT_OPTIONS': commons.ORDER_PAYMENT_OPTIONS,
+    }
+    if not cart or (cart.quantity == 0 or cart.amount == 0.0):
+        messages.error(request, _("Your Cart is empty"))
+        return redirect('catalog:catalog-home')
+    if request.method == 'POST':
+        result = orders_service.process_order(request.user, utils.get_postdata(request))
+        if result.get('success'):
+            if result.get('order').payment_option == commons.PAY_AT_ORDER:
+                return result.get(commons.KEY_REDIRECT_PAYMENT_URL)  
+            else:
+                return result.get(commons.KEY_REDIRECT_SUCCESS_URL)
+        else:
+            logger.warn("Order Checkout failed")
+            return result.get(commons.KEY_REDIRECT_FAILED_URL)
+    
+    return render(request, template_name, context)
+
+
+
+@login_required
+def checkout_old(request):
     #TODO Refactore this viewsmove business logic to order_service
     cart = orders_service.get_user_cart(request.user)
     template_name = 'orders/checkout.html'
@@ -134,6 +171,7 @@ def checkout(request):
         return redirect('catalog:catalog-home')
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
+        #result = orders_service.process_order(request.user, postdata)
         if not address:
             addressForm = AddressForm(postdata)
             if addressForm.is_valid():
@@ -217,6 +255,7 @@ def checkout(request):
     return render(request, template_name, context)
 
 
+
 def checkout_redirect_payment(request, request_uuid):
     page_title = _("Checkout Redirect to PAY") + " - " + settings.SITE_NAME
     template_name = "orders/checkout_redirect_payment.html"
@@ -238,20 +277,26 @@ def checkout_success(request, order_uuid):
     template_name = "orders/checkout_success.html"
     order = None
     payment_request = None
-    queryset = PaymentRequest.objects.filter(order__order_uuid=order_uuid, customer=request.user)
-    if not queryset.exists():
+    try:
+        order = Order.objects.get(order_uuid=order_uuid)
+    except Order.DoesNotExist as e:
         logger.error(f"checkout_success view call with invalid order uuid \"{order_uuid}\". No order found")
         raise Http404
-    queryset.update(status=commons.ORDER_PAID, payment_status=commons.PAYMENT_PAID)
-    payment_request = queryset.first()
-    order = payment_request.order
-    Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAID, is_paid=True)
-    OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAID, order_ref_id=order.id, changed_by=request.user)
+
+    if order.payment_option == commons.PAY_AT_ORDER:
+        queryset = PaymentRequest.objects.filter(order__order_uuid=order_uuid, customer=request.user)
+        if not queryset.exists():
+            logger.error(f"checkout_success view call with order uuid \"{order_uuid}\". No Payment request  found")
+            raise Http404
+        queryset.update(status=commons.ORDER_PAID, payment_status=commons.PAYMENT_PAID)
+        payment_request = queryset.first()
+        orders_service.order_clear_cart(request.user)
+        Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAID, is_paid=True)
+        OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAID, order_ref_id=order.id, changed_by=request.user)
+
     flag = orders_service.mark_product_sold(order)
     context = {
-        'page_title' : page_title,
-        'order' : order,
-        'payment_request': payment_request
+        'page_title' : page_title
     }
     return render(request, template_name, context)
 
@@ -261,24 +306,26 @@ def checkout_failed(request, order_uuid):
     template_name = "orders/checkout_failed.html"
     order = None
     payment_request = None
-    #queryset = PaymentRequest.objects.filter(request_uuid=request_uuid, order__order_uuid=order_uuid)
     try:
-        payment_request = PaymentRequest.objects.filter(order__order_uuid=order_uuid, customer=request.user).get()
-        logger.info(f"Checkout failed : found payment request with order uuid \"{order_uuid}\"")
-        order = payment_request.order
-        PaymentRequest.objects.filter(id=payment_request.id).update(payment_status=commons.PAYMENT_FAILED)
-        Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAYMENT_FAILED)
-        OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAYMENT_FAILED, order_ref_id=order.id, changed_by=request.user)
-        orders_service.cancel_order(order)
-        #order = payment_request.order
-    except PaymentRequest.DoesNotExist:
+        order = Order.objects.get(order_uuid=order_uuid)
+    except Order.DoesNotExist as e:
         logger.error(f"checkout_failed view call with invalid order uuid \"{order_uuid}\". No order found")
         raise Http404
+    #queryset = PaymentRequest.objects.filter(request_uuid=request_uuid, order__order_uuid=order_uuid)
+    if order.payment_option == commons.PAY_AT_ORDER:
+        try:
+            payment_request = PaymentRequest.objects.filter(order__order_uuid=order_uuid, customer=request.user).get()
+            logger.info(f"Checkout failed : found payment request with order uuid \"{order_uuid}\"")
+            PaymentRequest.objects.filter(id=payment_request.id).update(payment_status=commons.PAYMENT_FAILED)
+            Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAYMENT_FAILED)
+            OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAYMENT_FAILED, order_ref_id=order.id, changed_by=request.user)
+            orders_service.cancel_order(order)
+        except PaymentRequest.DoesNotExist:
+            logger.error(f"checkout_failed view call with invalid order uuid \"{order_uuid}\". No order found")
+            raise Http404
 
     context = {
-        'page_title' : page_title,
-        #'order' : order,
-        'payment_request': payment_request
+        'page_title' : page_title
     }
     return render(request, template_name, context)
 

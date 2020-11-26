@@ -1,6 +1,8 @@
 from lyshop import settings, utils
+from django.shortcuts import redirect, reverse
 from django.db.models import F,Q,Count, Sum, FloatField
 from django.db import transaction
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from cart.models import CartItem, CartModel
 from cart import cart_service
@@ -10,6 +12,7 @@ from orders.forms import PaymentMethodForm
 from catalog.models import Product, ProductVariant
 from vendors.models import SoldProduct, Balance, BalanceHistory
 from shipment import shipment_service
+from addressbook import addressbook_service
 from itertools import islice
 import requests
 import json
@@ -37,7 +40,7 @@ def refresh_order(order):
     
     return order
 
-def create_order_from_cart(user, address=None):
+def create_order_from_cart(user, address=None, **kwargs):
     logger.debug("creating order from Cart")
     cart = get_user_cart(user)
     total = 0
@@ -45,7 +48,8 @@ def create_order_from_cart(user, address=None):
         total = cart.solded_price + SHIPPING_PRICE
     else:
         total = cart.amount + SHIPPING_PRICE
-    order = Order.objects.create(user=user, address=address ,coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total)
+    #order = Order.objects.create(user=user, address=address, coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total)
+    order = Order.objects.create(coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total, **kwargs)
     OrderStatusHistory.objects.create(order=order, order_status=order.status, order_ref_id=order.id, changed_by=user)
     logger.debug("order instance created")
     items_queryset = get_user_cartitems(user)
@@ -74,6 +78,151 @@ def create_order_from_cart(user, address=None):
     return order
 
 
+def order_pay_at_delivery(user, data):
+    result = {}
+    if  not isinstance(user, User) or not isinstance(data, dict):
+        logger.warn(f"order_pay_at_delivery : User or data has a wrong type. Expecting user type to be User but got a {type(user)} instead ")
+        logger.warn(f"order_pay_at_delivery : User or data has a wrong type. Expecting data type to be dict or a descendant of a dict but got a {type(data)} instead ")
+    
+    return result
+    
+
+def order_pay_at_order(user, data):
+    result = {}
+    if  not isinstance(user, User) or not isinstance(data, dict):
+        logger.warn(f"order_pay_at_order : User or data has a wrong type. Expecting user type to be User but got a {type(user)} instead ")
+        logger.warn(f"order_pay_at_order : User or data has a wrong type. Expecting data type to be dict or a descendant of a dict but got a {type(data)} instead ")
+        return result
+
+    if commons.PAYMENT_METHOD_FIELD not in data:
+        logger.warn(f"order_pay_at_order : Invalid data : PAYMENT_METHOD_FIELD(\"{commons.PAYMENT_METHOD_FIELD}\") not found in data.")
+        return result
+
+    payment_method = None
+    try:
+        payment_method = PaymentMethod.objects.get(id=data.get(commons.PAYMENT_METHOD_FIELD), mode=commons.ORDER_PAYMENT_PAY)
+    except ObjectDoesNotExist as e:
+        logger.warn(f"order_pay_at_order : no payment_method found with id \"{data.get(commons.PAYMENT_METHOD_FIELD)}\" mode = ORDER_PAYMENT_PAY which is \"{commons.ORDER_PAYMENT_PAY}\"")
+        logger.exception(e)
+        return result
+    
+    ## Pasted from views 
+    address = addressbook_service.get_address(data.get(commons.SHIPPING_ADDRESS_FIELD))
+    if not address:
+        logger.warn(f"order_pay_at_order : no address found with id \"{data.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
+        return result
+
+    order = create_order_from_cart(user=request.user, address=address, kwargs={'user': request.user, 'address' : address, 'payment_option': commons.PAY_AT_ORDER})
+    redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
+    redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
+    result = {
+        'success': False,
+        commons.KEY_REDIRECT_SUCCESS_URL: redirect_success_url,
+        commons.KEY_REDIRECT_FAILED_URL: redirect_failed_url
+    }
+    try:
+        payment_data = {
+            'requester_name': settings.PAY_USERNAME,
+            'amount': order.total,
+            'customer_name': request.user.get_full_name(),
+            'quantity': cart.quantity,
+            'description': settings.PAY_REQUEST_DESCRIPTION,
+            'country' : address.country,
+            'redirect_success_url': request.build_absolute_uri(redirect_success_url),
+            'redirect_failed_url': request.build_absolute_uri(redirect_failed_url),
+            'product_name' : 'LYSHOP'
+        }
+    except Exception as e:
+        logger.error("Error on prepayring payment data")
+        logger.exception(e)
+        return result
+    
+    response = orders_service.request_payment(payment_data)
+    if response:
+        response_json = response.json()
+        logger.debug(f"request payment succeed for order {order.order_ref_number}")
+        payment_data['token'] = response_json['token']
+        payment_data['pay_url'] = response_json['url']
+        payment_data['order'] = order
+        payment_data['customer'] = request.user
+        payment_data['verification_code'] = response_json['verification_code']
+        try:
+            payment_request = PaymentRequest.objects.create(**payment_data)
+            messages.success(request,"order has been successfully submitted")
+            result['success'] = True
+            result[commons.KEY_REDIRECT_PAYMENT_URL] = reverse('orders:checkout-redirect-payment', request_uuid=payment_request.request_uuid)
+            result['order'] = order
+            return result
+        except Exception as e:
+            messages.error(request,"An error occured during processing Order")
+            logger.error(f"Error on creating PaymentRequest for order {order.order_ref_number}")
+            logger.exception(e)
+        
+
+    logger.debug("order failed")
+    return result
+    
+
+def order_pay_before_delivery(user, data):
+    result = {}
+    if  not isinstance(user, User) or not isinstance(data, dict):
+        logger.warn(f"order_pay_before_delivery : User or data has a wrong type. Expecting user type to be User but got a {type(user)} instead ")
+        logger.warn(f"order_pay_before_delivery : User or data has a wrong type. Expecting data type to be dict or a descendant of a dict but got a {type(data)} instead ")
+        return result
+
+    address = addressbook_service.get_address(data.get(commons.SHIPPING_ADDRESS_FIELD))
+    if not address:
+        logger.warn(f"order_pay_before_delivery : no address found with id \"{data.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
+        return result
+
+    order = create_order_from_cart(user=request.user, address=address, kwargs={'user': request.user,'payment_option': commons.PAY_BEFORE_DELIVERY, 'address': address})
+    redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
+    redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
+    result = {
+        'success': True,
+        'order' : order,
+        commons.KEY_REDIRECT_SUCCESS_URL: redirect_success_url,
+        commons.KEY_REDIRECT_FAILED_URL: redirect_failed_url
+    }
+    return result
+
+    
+
+def process_order(user, postdata):
+    payment_option = None
+    payment_method = None
+    shipping_address = None
+    result = {'success' : False}
+    if  not isinstance(user, User) or not isinstance(postdata, dict):
+        logger.warn(f"process_order : User or postdata has a wrong type. Expecting user type to be User but got a {type(user)} instead ")
+        logger.warn(f"process_order : User or postdata has a wrong type. Expecting postdata type to be dict or a descendant of a dict but got a {type(postdata)} instead ")
+        return result
+
+    if commons.PAYMENT_OPTION_FIELD not in postdata:
+        logger.warn(f"process_order : PAYMENT_OPTION_FIELD {commons.PAYMENT_OPTION_FIELD} missing")
+        return result
+    
+    if commons.PAYMENT_METHOD_FIELD not in postdata:
+        logger.warn(f"process_order : PAYMENT_METHOD_FIELD \"{commons.PAYMENT_METHOD_FIELD}\" missing")
+        return result
+    
+    if commons.SHIPPING_ADDRESS_FIELD not in postdata:
+        logger.warn(f"process_order : SHIPPING_ADDRESS_FIELD \"{commons.SHIPPING_ADDRESS_FIELD}\" missing")
+        return result
+    
+    payment_option = int(postdata.get(commons.PAYMENT_OPTION_FIELD))
+    payment_method = int(postdata.get(commons.PAYMENT_METHOD_FIELD))
+    shipping_address =  int(postdata.get(commons.SHIPPING_ADDRESS_FIELD))
+    data = {'postdata': postdata, commons.PAYMENT_METHOD_FIELD : payment_method, commons.SHIPPING_ADDRESS_FIELD : shipping_address}
+    if payment_option == commons.PAY_BEFORE_DELIVERY:
+        result = order_pay_before_delivery(user, data)
+    elif payment_option == commons.PAY_AT_DELIVERY:
+        result = order_pay_at_delivery(user, data)
+    elif payment_option == commons.PAY_AT_ORDER:
+        result = order_pay_before_delivery(user, data)
+
+    return result
+    
 
 def cancel_order(order, request_user=None):
     if  not isinstance(order, Order):
