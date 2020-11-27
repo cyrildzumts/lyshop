@@ -37,6 +37,7 @@ var Tabs = (function(){
                 $(current.data('toggle')).show().siblings('div.tab-content').hide();
             }
         });
+        console.log("Tabs initialised");
     };
     Tabs.prototype.toggle_checked = function(index, toggle){
         if(index < 0 || index > this.tabCount){
