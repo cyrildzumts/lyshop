@@ -125,13 +125,10 @@ define([
                     console.log("disabling input : ", this);
                     this.disabled = true;
                 });
-                var input = $('<input>', {name : 'address', type :'hidden', value : response.id});
+                var input = $('<input>', {name : 'address', type :'hidden', value : response.id, disabled: true});
                 input.appendTo(container);
                 tabs.toggle_checked(address_tab, true);
                 $('.js-add-address, .js-create-address').addClass('disabled').prop('disabled', true);
-                $('#address').prop('disabled', true);
-
-
             }else{
                 console.log("address not created. Error : %s", response.error);
             }
