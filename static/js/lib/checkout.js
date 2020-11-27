@@ -110,7 +110,7 @@ define([
         address_inputs.each(function(){
             data[this.name] = this.value;
         });
-        $('#checkout-address').prop('disabled', true);
+        $('#checkout-address').prop('disabled', 'disabled');
         var option = {
             type:'POST',
             dataType: 'json',
@@ -123,12 +123,12 @@ define([
             if(response.status){
                 address_inputs.each(function(){
                     console.log("disabling input : ", this);
-                    this.disabled = true;
+                    this.disabled = 'disabled';
                 });
-                var input = $('<input>', {name : 'address', type :'hidden', value : response.id, disabled: true});
+                var input = $('<input>', {name : 'address', type :'hidden', value : response.id});
                 input.appendTo(container);
                 tabs.toggle_checked(address_tab, true);
-                $('.js-add-address, .js-create-address').addClass('disabled').prop('disabled', true);
+                $('.js-add-address, .js-create-address').addClass('disabled').prop('disabled', 'disabled');
             }else{
                 console.log("address not created. Error : %s", response.error);
             }
