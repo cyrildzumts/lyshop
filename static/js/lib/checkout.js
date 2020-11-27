@@ -122,6 +122,7 @@ define([
             console.log(response);
             if(response.status){
                 address_inputs.each(function(){
+                    console.log("disabling input : ", this);
                     this.disabled = true;
                 });
                 var input = $('<input>', {name : 'address', type :'hidden', value : response.id});
