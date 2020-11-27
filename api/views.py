@@ -20,7 +20,7 @@ from rest_framework.permissions import IsAuthenticated
 from api.serializers import ( 
     Account, AccountSerializer, BrandSerializer, ProductVariantSerializer, ProductSerializer, ProductAttributeSerializer,
     CategorySerializer, CartItemSerializer, OrderSerializer, OrderItemSerializer,
-    UserSerializer
+    UserSerializer, AddressSerializer
  )
 from accounts.models import Account
 from orders.models import OrderItem, Order
@@ -115,8 +115,10 @@ def create_address(request):
     if address :
         address_dict = model_to_dict(address)
         address_dict.update({'status': True})
+        serialized = AddressSerializer(instance=address)
         logger.info(f"Address Dict : {address_dict}")
-        return Response(data=address_dict, status=status.HTTP_200_OK)
+        logger.info(f"Address serialzed :  {serialized.data}")
+        return Response(serialized.data)
     
     return Response(data={'status': False, 'error': 'address not created'}, status=status.HTTP_200_OK)
 
