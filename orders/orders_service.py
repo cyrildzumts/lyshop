@@ -49,6 +49,8 @@ def create_order_from_cart(**kwargs):
         total = cart.solded_price + SHIPPING_PRICE
     else:
         total = cart.amount + SHIPPING_PRICE
+    
+    logger.info(f"create_order_from_cart : Total : {total}")
     #order = Order.objects.create(user=user, address=address, coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total)
     order_kwargs = {'coupon' : cart.coupon, 'amount' : cart.amount, 'solded_price' : cart.solded_price, 'quantity' : cart.quantity, 'shipping_price' : SHIPPING_PRICE, 'total' : total}
     order_kwargs.update(kwargs)
