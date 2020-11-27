@@ -137,7 +137,6 @@ def checkout(request):
             if result.get('order').payment_option == commons.PAY_AT_ORDER:
                 return redirect(result.get(commons.KEY_REDIRECT_PAYMENT_URL))
             else:
-                messages.success(request,"order has been successfully submitted")
                 return redirect(result.get(commons.KEY_REDIRECT_SUCCESS_URL))
         else:
             logger.warn("Order Checkout failed")
@@ -291,12 +290,12 @@ def checkout_success(request, order_uuid):
             raise Http404
         queryset.update(status=commons.ORDER_PAID, payment_status=commons.PAYMENT_PAID)
         payment_request = queryset.first()
-        orders_service.order_clear_cart(request.user)
         Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAID, is_paid=True)
         OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAID, order_ref_id=order.id, changed_by=request.user)
 
-    messages.success(request,"order has been successfully submitted")
+    orders_service.order_clear_cart(request.user)
     flag = orders_service.mark_product_sold(order)
+    messages.success(request,"order has been successfully submitted")
     context = {
         'page_title' : page_title
     }
