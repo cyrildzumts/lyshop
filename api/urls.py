@@ -20,7 +20,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('analytics/', views.analytics_data, name='analytics'),
     path('create-address/', views.create_address, name='create-address'),
-    path('update-update/<uuid:address_uuid>/', views.address_update, name='update-address'),
+    path('update-address/<uuid:address_uuid>/', views.update_address, name='update-address'),
     path('api-token-auth/', drf_api_views.obtain_auth_token, name='api-token-auth'),
     path('user-search/', views.UserSearchView.as_view(), name="user-search")
 ]
