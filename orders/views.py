@@ -135,13 +135,13 @@ def checkout(request):
         result = orders_service.process_order(request.user, request)
         if result.get('success'):
             if result.get('order').payment_option == commons.PAY_AT_ORDER:
-                return result.get(commons.KEY_REDIRECT_PAYMENT_URL)  
+                return redirect(result.get(commons.KEY_REDIRECT_PAYMENT_URL))
             else:
                 messages.success(request,"order has been successfully submitted")
-                return result.get(commons.KEY_REDIRECT_SUCCESS_URL)
+                return redirect(result.get(commons.KEY_REDIRECT_SUCCESS_URL))
         else:
             logger.warn("Order Checkout failed")
-            return result.get(commons.KEY_REDIRECT_FAILED_URL)
+            return redirect(result.get(commons.KEY_REDIRECT_FAILED_URL))
     
     return render(request, template_name, context)
 
