@@ -3,7 +3,9 @@
 <div id="{{step_id}}" class="tab-content" data-checked="{{icon_parent}} icon">
 
     <div id="payment-option" class="mat-box">
-            <div class="title">{% trans "Payment Options " %}</div>
+            <div class="title">
+                <div class="flex">{% trans "Payment Options " %}</div>
+            </div>
             <ul class="flex-left">
                 {% for k,v in PAYMENT_OPTIONS %}
                 <li title="{{v}}"><input class="js-input-payment-option" type="radio" name="payment_option" value="{{k}}"><label for="payment_option">{% trans v %}</label></li>
@@ -17,6 +19,5 @@
                 <li title="{{p_method.mode|pay_mode_value}}"><input class="js-input-payment-method" type="radio" name="payment_method" value="{{p_method.pk}}"><label for="payment_method">{{p_method.display_name}}</label></li>
                 {% endfor %}
             </ul>
-    </div>
-        
+    </div> 
 </div>

@@ -1,7 +1,7 @@
 {% load i18n %}
 <div id="{{step_id}}" class="tab-content" data-checked="{{step_id}} tab-icon">
     <div class="title">
-        <div><span>{% trans "Shipping Address" %}</span> <span class="js-add-address mat-button  mat-button-outlined"> <i class="fas fa plus icon"></i> {% trans "New Address" %}</span></div>
+        <div class="flex"><span>{% trans "Shipping Address" %}</span> <span class="js-add-address mat-button  mat-button-outlined"> <i class="fas fa-plus icon"></i> {% trans "New Address" %}</span></div>
     </div>
     {% if address %}
     <div id="checkout-address" class="mat-box">

@@ -26,7 +26,7 @@ var Tabs = (function(){
         }
         
         $('div.tab-container').each(function(){
-            $(this).find('div.tab-content:eq(0)').nextAll().hide();
+            $(this).find('.tab-content:eq(0)').nextAll().hide();
         });
         //this.tabs.hide();
         $('div.tab-bar .tab').click(function(){
