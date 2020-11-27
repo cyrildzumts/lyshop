@@ -40,8 +40,9 @@ def refresh_order(order):
     
     return order
 
-def create_order_from_cart(user=None, address=None, **kwargs):
+def create_order_from_cart(**kwargs):
     logger.debug("creating order from Cart")
+    user = kwargs['user']
     cart = get_user_cart(user)
     total = 0
     if cart.coupon:
@@ -115,7 +116,7 @@ def order_pay_at_order(user, data):
         logger.warn(f"order_pay_at_order : no address found with id \"{data.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
         return result
 
-    order = create_order_from_cart(user=user, address=address, kwargs={'user': user, 'address' : address, 'payment_option': commons.PAY_AT_ORDER})
+    order = create_order_from_cart(**{'user': user, 'address' : address, 'payment_option': commons.PAY_AT_ORDER})
     redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
     redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
     result = {
@@ -176,7 +177,7 @@ def order_pay_before_delivery(user, data):
         logger.warn(f"order_pay_before_delivery : no address found with id \"{data.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
         return result
 
-    order = create_order_from_cart(user=user, address=address, kwargs={'user': user,'payment_option': commons.PAY_BEFORE_DELIVERY, 'address': address})
+    order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_BEFORE_DELIVERY, 'address': address})
     redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
     redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
     result = {
