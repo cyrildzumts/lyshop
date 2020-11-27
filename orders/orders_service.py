@@ -93,7 +93,7 @@ def order_pay_at_delivery(user, data):
     
 
 def order_pay_at_order(user, data):
-    request = data['request']
+    
     result = {}
     if  not isinstance(user, User) or not isinstance(data, dict):
         logger.warn(f"order_pay_at_order : User or data has a wrong type. Expecting user type to be User but got a {type(user)} instead ")
@@ -101,25 +101,13 @@ def order_pay_at_order(user, data):
         return result
 
     logger.info("Processing order_pay_at_order")
+    request = data['request']
     if commons.PAYMENT_METHOD_FIELD not in data:
         logger.warn(f"order_pay_at_order : Invalid data : PAYMENT_METHOD_FIELD(\"{commons.PAYMENT_METHOD_FIELD}\") not found in data.")
         return result
-
-    payment_method = None
-    try:
-        payment_method = PaymentMethod.objects.get(id=data.get(commons.PAYMENT_METHOD_FIELD), mode=commons.ORDER_PAYMENT_PAY)
-    except ObjectDoesNotExist as e:
-        logger.warn(f"order_pay_at_order : no payment_method found with id \"{data.get(commons.PAYMENT_METHOD_FIELD)}\" mode = ORDER_PAYMENT_PAY which is \"{commons.ORDER_PAYMENT_PAY}\"")
-        logger.exception(e)
-        return result
     
-    ## Pasted from views 
-    address = addressbook_service.get_address(data.get(commons.SHIPPING_ADDRESS_FIELD))
-    if not address:
-        logger.warn(f"order_pay_at_order : no address found with id \"{data.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
-        return result
-
-    order = create_order_from_cart(**{'user': user, 'address' : address, 'payment_option': commons.PAY_AT_ORDER, 'payment_method': payment_method})
+    address = data.get(commons.SHIPPING_ADDRESS_FIELD)
+    order = create_order_from_cart(**{'user': user, 'address' : address, 'payment_option': data.get(commons.PAYMENT_OPTION_FIELD), 'payment_method': data.get(commons.PAYMENT_METHOD_FIELD)})
     redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
     redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
     result = {
@@ -151,7 +139,7 @@ def order_pay_at_order(user, data):
         payment_data['token'] = response_json['token']
         payment_data['pay_url'] = response_json['url']
         payment_data['order'] = order
-        payment_data['customer'] = request.user
+        payment_data['customer'] = user
         payment_data['verification_code'] = response_json['verification_code']
         try:
             payment_request = PaymentRequest.objects.create(**payment_data)
@@ -175,14 +163,8 @@ def order_pay_before_delivery(user, data):
         logger.warn(f"order_pay_before_delivery : User or data has a wrong type. Expecting data type to be dict or a descendant of a dict but got a {type(data)} instead ")
         return result
     logger.info("Processing order_pay_before_delivery")
-    address = addressbook_service.get_address(data.get(commons.SHIPPING_ADDRESS_FIELD))
-    if not address:
-        logger.warn(f"order_pay_before_delivery : no address found with id \"{data.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
-        return result
-    
 
-
-    order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_BEFORE_DELIVERY, 'address': address, 'payment_method': data.get(commons.PAYMENT_METHOD_FIELD)})
+    order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_BEFORE_DELIVERY, 'address':  data.get(commons.SHIPPING_ADDRESS_FIELD), 'payment_method': data.get(commons.PAYMENT_METHOD_FIELD)})
     redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
     redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
     result = {
@@ -218,7 +200,7 @@ def process_order(user, request):
         return result
     
     try:
-        payment_method = PaymentMethod.objects.get(id=int(postdata.get(commons.PAYMENT_METHOD_FIELD)), mode=commons.ORDER_PAYMENT_PAY)
+        payment_method = PaymentMethod.objects.get(id=int(postdata.get(commons.PAYMENT_METHOD_FIELD)))
     except ObjectDoesNotExist as e:
         logger.warn(f"process_order : no payment_method found with id \"{postdata.get(commons.PAYMENT_METHOD_FIELD)}\" mode = ORDER_PAYMENT_PAY which is \"{commons.ORDER_PAYMENT_PAY}\"")
         logger.exception(e)
@@ -230,7 +212,7 @@ def process_order(user, request):
         return result
 
     payment_option = int(postdata.get(commons.PAYMENT_OPTION_FIELD))
-    data = {'postdata': postdata,'request': request, commons.PAYMENT_METHOD_FIELD : payment_method, commons.SHIPPING_ADDRESS_FIELD : address}
+    data = {'postdata': postdata,'request': request, commons.PAYMENT_METHOD_FIELD : payment_method, commons.SHIPPING_ADDRESS_FIELD : address, commons.PAYMENT_OPTION_FIELD : payment_option}
     if payment_option == commons.PAY_BEFORE_DELIVERY:
         result = order_pay_before_delivery(user, data)
     elif payment_option == commons.PAY_AT_DELIVERY:
