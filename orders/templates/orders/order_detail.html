@@ -54,6 +54,7 @@
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
                 <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
+                <p class="entry"><span class="key">{% trans "Shipping Address" %}</span> <span class="value">{{order.address}}</span></p>
             </div>
             
         </div><!--End of title-->
