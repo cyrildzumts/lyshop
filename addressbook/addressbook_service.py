@@ -21,7 +21,7 @@ def get_addresses(user):
 def get_address(address_id):
     address = None
     try:
-        if isinstance(address_id, int)
+        if isinstance(address_id, int):
             address = Address.objects.get(pk=address_id)
         elif isinstance(address_id, uuid.uuid4):
             address = Address.objects.get(address_uuid=address_id)
