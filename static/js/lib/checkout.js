@@ -61,6 +61,7 @@ define([
             self.create_address();
         });
         this.validate_address();
+        tabs.init();
         console.log("Checkout initialized");
     };
 
