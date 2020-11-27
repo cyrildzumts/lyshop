@@ -144,7 +144,7 @@ def order_pay_at_order(user, data):
         logger.exception(e)
         return result
     
-    response = orders_service.request_payment(payment_data)
+    response = request_payment(payment_data)
     if response:
         response_json = response.json()
         logger.debug(f"request payment succeed for order {order.order_ref_number}")
