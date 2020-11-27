@@ -100,6 +100,7 @@ def order_pay_at_order(user, data):
         logger.warn(f"order_pay_at_order : User or data has a wrong type. Expecting data type to be dict or a descendant of a dict but got a {type(data)} instead ")
         return result
 
+    logger.info("Processing order_pay_at_order")
     if commons.PAYMENT_METHOD_FIELD not in data:
         logger.warn(f"order_pay_at_order : Invalid data : PAYMENT_METHOD_FIELD(\"{commons.PAYMENT_METHOD_FIELD}\") not found in data.")
         return result
@@ -173,7 +174,7 @@ def order_pay_before_delivery(user, data):
         logger.warn(f"order_pay_before_delivery : User or data has a wrong type. Expecting user type to be User but got a {type(user)} instead ")
         logger.warn(f"order_pay_before_delivery : User or data has a wrong type. Expecting data type to be dict or a descendant of a dict but got a {type(data)} instead ")
         return result
-
+    logger.info("Processing order_pay_before_delivery")
     address = addressbook_service.get_address(data.get(commons.SHIPPING_ADDRESS_FIELD))
     if not address:
         logger.warn(f"order_pay_before_delivery : no address found with id \"{data.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
@@ -224,7 +225,7 @@ def process_order(user, request):
     elif payment_option == commons.PAY_AT_DELIVERY:
         result = order_pay_at_delivery(user, data)
     elif payment_option == commons.PAY_AT_ORDER:
-        result = order_pay_before_delivery(user, data)
+        result = order_pay_at_order(user, data)
 
     return result
     
