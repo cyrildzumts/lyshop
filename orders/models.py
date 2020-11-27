@@ -21,11 +21,12 @@ class Order(models.Model):
     solded_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     total = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     quantity = models.IntegerField(default=0, blank=True, null=True)
-    address = models.ForeignKey('addressbook.Address', blank=True, null=True, on_delete=models.SET_NULL)
+    address = models.ForeignKey('addressbook.Address', related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     is_active = models.BooleanField(default=True,)
     is_closed = models.BooleanField(default=False)
     is_paid = models.BooleanField(default=False)
+    payment_method = models.ForeignKey('orders.PaymentMethod', related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
     vendor_balance_updated = models.BooleanField(default=False)
     status = models.IntegerField(default=commons.ORDER_SUBMITTED)
     payment_option = models.IntegerField(default=commons.PAY_WITH_PAY)
@@ -230,7 +231,7 @@ class PaymentMethod(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.name} - {self.display_name}"
+        return f"{self.display_name} - {self.provider} - {self.credential}"
 
     def get_absolute_url(self):
        return reverse('dashbord:payment-method-detail', kwargs={'method_uuid':self.method_uuid})
