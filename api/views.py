@@ -118,7 +118,7 @@ def create_address(request):
         serialized = AddressSerializer(instance=address)
         logger.info(f"Address Dict : {address_dict}")
         logger.info(f"Address serialzed :  {serialized.data}")
-        return Response(serialized.data)
+        return Response(address_dict)
     
     return Response(data={'status': False, 'error': 'address not created'}, status=status.HTTP_200_OK)
 
