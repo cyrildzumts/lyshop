@@ -199,7 +199,6 @@ def process_order(user, request):
     postdata = utils.get_postdata(request)
     payment_option = None
     payment_method = None
-    shipping_address = None
     result = {'success' : False}
     if  not isinstance(user, User) or not isinstance(postdata, dict):
         logger.warn(f"process_order : User or postdata has a wrong type. Expecting user type to be User but got a {type(user)} instead ")
@@ -218,10 +217,20 @@ def process_order(user, request):
         logger.warn(f"process_order : SHIPPING_ADDRESS_FIELD \"{commons.SHIPPING_ADDRESS_FIELD}\" missing")
         return result
     
+    try:
+        payment_method = PaymentMethod.objects.get(id=int(postdata.get(commons.PAYMENT_METHOD_FIELD)), mode=commons.ORDER_PAYMENT_PAY)
+    except ObjectDoesNotExist as e:
+        logger.warn(f"process_order : no payment_method found with id \"{data.get(commons.PAYMENT_METHOD_FIELD)}\" mode = ORDER_PAYMENT_PAY which is \"{commons.ORDER_PAYMENT_PAY}\"")
+        logger.exception(e)
+        return result
+    
+    address = addressbook_service.get_address(int(postdata.get(commons.SHIPPING_ADDRESS_FIELD)))
+    if not address:
+        logger.warn(f"process_order : no address found with id \"{postdata.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
+        return result
+
     payment_option = int(postdata.get(commons.PAYMENT_OPTION_FIELD))
-    payment_method = int(postdata.get(commons.PAYMENT_METHOD_FIELD))
-    shipping_address =  int(postdata.get(commons.SHIPPING_ADDRESS_FIELD))
-    data = {'postdata': postdata,'request': request, commons.PAYMENT_METHOD_FIELD : payment_method, commons.SHIPPING_ADDRESS_FIELD : shipping_address}
+    data = {'postdata': postdata,'request': request, commons.PAYMENT_METHOD_FIELD : payment_method, commons.SHIPPING_ADDRESS_FIELD : address}
     if payment_option == commons.PAY_BEFORE_DELIVERY:
         result = order_pay_before_delivery(user, data)
     elif payment_option == commons.PAY_AT_DELIVERY:
