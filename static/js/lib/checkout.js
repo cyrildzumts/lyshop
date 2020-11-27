@@ -128,6 +128,8 @@ define([
                 input.appendTo(container);
                 tabs.toggle_checked(address_tab, true);
                 $('.js-add-address, .js-create-address').prop('disabled', true);
+                $('#address').prop('disabled', true);
+
 
             }else{
                 console.log("address not created. Error : %s", response.error);
