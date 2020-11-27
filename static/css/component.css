@@ -832,8 +832,10 @@ a.button{
 
 .disabled{
 	color:var(--disabled-color) !important;
-	/*background-color: var(--disabled-bg-color) !important;*/
+	font-weight: 700 !important;
+	/*border: 2px solid #ccc !important;*/
 	cursor: default !important;
+	pointer-events: none !important;
 }
 
 .fill {object-fit: fill;}

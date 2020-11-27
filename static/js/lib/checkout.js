@@ -128,7 +128,7 @@ define([
                 var input = $('<input>', {name : 'address', type :'hidden', value : response.id});
                 input.appendTo(container);
                 tabs.toggle_checked(address_tab, true);
-                $('.js-add-address, .js-create-address').prop('disabled', true);
+                $('.js-add-address, .js-create-address').addClass('disabled').prop('disabled', true);
                 $('#address').prop('disabled', true);
 
 
