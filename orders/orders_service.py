@@ -220,7 +220,7 @@ def process_order(user, request):
     try:
         payment_method = PaymentMethod.objects.get(id=int(postdata.get(commons.PAYMENT_METHOD_FIELD)), mode=commons.ORDER_PAYMENT_PAY)
     except ObjectDoesNotExist as e:
-        logger.warn(f"process_order : no payment_method found with id \"{data.get(commons.PAYMENT_METHOD_FIELD)}\" mode = ORDER_PAYMENT_PAY which is \"{commons.ORDER_PAYMENT_PAY}\"")
+        logger.warn(f"process_order : no payment_method found with id \"{postdata.get(commons.PAYMENT_METHOD_FIELD)}\" mode = ORDER_PAYMENT_PAY which is \"{commons.ORDER_PAYMENT_PAY}\"")
         logger.exception(e)
         return result
     
