@@ -4,7 +4,7 @@ from rest_framework.permissions import BasePermission, IsAuthenticated
 from api.serializers import ( 
     Account, AccountSerializer, BrandSerializer, ProductVariantSerializer, ProductSerializer, ProductAttributeSerializer,
     CategorySerializer, CartItemSerializer, OrderSerializer, OrderItemSerializer,
-    UserSerializer
+    UserSerializer, AddressSerializer
  )
 
 
@@ -50,3 +50,8 @@ class OrderViewSet(viewsets.ReadOnlyModelViewSet):
 class OrderItemViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = OrderItemSerializer.Meta.model.objects.all()
     serializer_class = OrderItemSerializer
+
+
+class AddressViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = AddressSerializer.Meta.model.objects.all()
+    serializer_class = AddressSerializer

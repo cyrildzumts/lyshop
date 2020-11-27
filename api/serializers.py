@@ -8,6 +8,7 @@ from catalog.models import (
 from cart.models import (
     CartModel, CartItem, Coupon
 )
+from addressbook.models import Address
 
 
 class BrandSerializer(serializers.ModelSerializer):
@@ -70,3 +71,9 @@ class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = OrderItem.DEFAULT_FIELDS
+
+
+class AddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Address
+        fields = Address.FORM_FIELDS

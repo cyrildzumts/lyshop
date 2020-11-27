@@ -1,7 +1,13 @@
 define([
-
-], function() {
+'ajax_api'
+], function(ajax_api) {
     'use strict';
+    var ADDRESS_FIELDS = [ 
+            'user', 'city', 'firstname', 'lastname', 'country', 
+            'postal_code','phone_number', 'address_extra', 'street',
+            'house_number', 'is_active'
+        ];
+    var api_address_url = '/api/create-address/';
     var address = {
         id : "",
         name : "",
@@ -35,7 +41,7 @@ define([
         this.current_step = {};
         
     };
-
+    
     Checkout.prototype.init = function(){
         var self = this;
         $('.js-input-payment-option').on('change', function(event){
@@ -47,6 +53,12 @@ define([
             console.log("%s =  %s - checked : %s",this.name, this.value, this.checked);
             self.payment_method = this.value;
             self.validate_pament_options();
+        });
+        $('.js-add-address').on('click', function(){
+            $('#new-address').toggleClass('hidden');
+        });
+        $('.js-create-address').on('click', function(){
+            self.create_address();
         });
         this.validate_address();
         console.log("Checkout initialized");
@@ -85,6 +97,43 @@ define([
        tabs.toggle_checked(payment_tab, toggle);
 
     };
+
+    Checkout.prototype.create_address = function(){
+        var self = this;
+        var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]');
+        var container = $('#new-address');
+        var address_inputs = $('input', container);
+        data = {
+            'csrfmiddlewaretoken' : csrfmiddlewaretoken.val()
+        };
+        address_inputs.each(function(){
+            data[this.name] = this.value;
+        });
+        var option = {
+            type:'POST',
+            dataType: 'json',
+            url : api_address_url,
+            data : data
+        }
+        add_promise = ajax(option).then(function(response){
+            console.log("Address Created : %s", response['status']);
+            console.log(response);
+            if(response.status){
+                address_inputs.each(function(){
+                    this.disabled = true;
+                });
+                var input = $('<input>', {name : 'address', type :'hidden', value : response.id});
+                input.appendTo(container);
+                tabs.toggle_checked(address_tab, true);
+            }else{
+                console.log("address not created. Error : %s", response.error);
+            }
+            
+        }, function(reason){
+            console.error("Error on adding Product into cart");
+            console.error(reason);
+        });
+    }
 
     Checkout.prototype.validate_cart = function(){
 

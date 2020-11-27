@@ -58,6 +58,7 @@ class CartModel(models.Model):
     quantity = models.IntegerField(default=0, blank=True, null=True)
     coupon = models.ForeignKey(Coupon, related_name="carts", blank=True, null=True, on_delete=models.SET_NULL)
     cart_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['user', 'amount', 'solded_price', 'coupon', 'quantity']
 
     def __str__(self):
         return f"Cart - {self.user.username} - {self.quantity} items"
@@ -98,6 +99,7 @@ class CartItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     is_active = models.BooleanField(default=True)
     item_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['cart', 'product', 'quantity', 'unit_price', 'total_price']
 
     def __str__(self):
         return f"CartIem - {self.product.name} - {self.quantity}"

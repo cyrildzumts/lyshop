@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from addressbook.models import Address
 from addressbook import constants as Addressbook_Constants
 from addressbook.forms import AddressModelForm
+from core import core_tools
 from lyshop import utils, conf
 import logging
 import uuid
@@ -18,8 +19,19 @@ def get_addresses(user):
 
 
 def get_address(address_id):
+    address = None
     try:
-        address = Address.objects.get(pk=address_id)
+        if isinstance(address_id, int)
+            address = Address.objects.get(pk=address_id)
+        elif isinstance(address_id, uuid.uuid4):
+            address = Address.objects.get(address_uuid=address_id)
+    except ObjectDoesNotExist as e:
+        address = None
+    return address
+
+def get_address_uuid(address_uuid):
+    try:
+        address = Address.objects.get(address_uuid=address_uuid)
     except ObjectDoesNotExist as e:
         address = None
     return address
@@ -75,6 +87,18 @@ def set_address_type(address, address_type):
 
     Address.objects.filter(pk=address.pk).update(address_type=address_type)
     return True
+
+
+def create_address(data):
+    return core_tools.create_instance(model=Address, data=data)
+
+def update_address(address, data):
+    updated_rows = core_tools.update_instance(model=Address, instance=address, data=data)
+    if updated_rows == 1:
+        logger.info("Address updated")
+    
+    return updated_rows == 1
+
 
 def delete_address(address):
     if  not isinstance(address, Address):

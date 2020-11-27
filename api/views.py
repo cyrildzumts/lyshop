@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from django.db.models.functions import ExtractDay, ExtractMonth, ExtractYear
@@ -24,6 +25,7 @@ from api.serializers import (
 from accounts.models import Account
 from orders.models import OrderItem, Order
 from dashboard import analytics
+from addressbook import addressbook_service
 
 from lyshop import utils
 from django.utils import timezone
@@ -101,3 +103,29 @@ def analytics_data(request):
         response_status = status.HTTP_400_BAD_REQUEST
     
     return Response(data, status=response_status)
+
+
+def create_address(request):
+    logger.info(f"API: New Address creation request from user {request.user.username}")
+    if request.method != 'POST':
+        return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    address = addressbook_service.create_address(request.POST.copy())
+    if address :
+        return Response(data={'status': True, **model_to_dict(address)}, status=status.HTTP_200_OK)
+    
+    return Response(data={'status': False, 'error': 'address not created'}, status=status.HTTP_200_OK)
+
+
+def update_address(request, address_uuid):
+    logger.info(f"API: Address update request from user {request.user.username}")
+    if request.method != 'POST':
+        return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    address = addressbook_service.get_address(address_uuid)
+    updated = addressbook_service.update_address(address, request.POST.copy())
+    if updated :
+        address.refresh_from_db()
+        return Response(data={'status': True, **model_to_dict(address)}, status=status.HTTP_200_OK)
+    
+    return Response(data={'status': False, 'error': 'address not created'}, status=status.HTTP_200_OK)

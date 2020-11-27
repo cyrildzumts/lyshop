@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.shortcuts import reverse
 from django.contrib.auth.models import User, Group
 from vendors import constants as Vendor_Constants
-from lyshop import conf
+from lyshop import conf, settings
 import uuid
 
 # Create your models here.
@@ -52,7 +52,7 @@ class VendorPayment(models.Model):
     payment_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):
-        return f"VendorPayment {self.id}"
+        return f"VendorPayment {self.seller.username} - {self.amount} {settings.CURRENCY}"
 
     def get_absolute_url(self):
         return reverse("vendors:payment-detail", kwargs={"payment_uuid": self.payment_uuid})
@@ -67,7 +67,7 @@ class VendorPaymentHistory(models.Model):
 
 
     def __str__(self):
-        return f"VendorPaymentHistory {self.id}"
+        return f"{self.payment.seller.username} - {self.amount} {settings.CURRENCY}"
 
 
 #TODO make this model filterable

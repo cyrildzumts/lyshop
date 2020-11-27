@@ -25,6 +25,7 @@ class PaymentPolicy(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     modified_by = models.ForeignKey(User, related_name="edited_payment_policies", unique=False, null=True,blank=True, on_delete=models.SET_NULL)
     policy_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['monthly_limit', 'commission', 'modified_by']
 
 
 
@@ -58,6 +59,7 @@ class PaymentPolicyGroup(models.Model):
     #commission = models.DecimalField(max_digits=GlobalConf.COMMISSION_MAX_DIGITS, decimal_places=GlobalConf.COMMISSION_DECIMAL_PLACES, default=GlobalConf.COMMISSION_DEFAULT)
     members = models.ManyToManyField(User, through='PaymentPolicyMembership', through_fields=('group', 'user'), blank=True)
     policy_group_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'policy', 'policy_id_ref', 'members']
 
     def __str__(self):
         return self.name
@@ -132,6 +134,8 @@ class Payment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     payment_date = models.DateTimeField(blank=True, null=True)
     payment_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['seller','amount', 'balance_account','pay_username', 'mobile_number','bank_name', 'payment_date', 'payment_mode', 
+    'commission', 'bank_account_number', 'payment_schedule', 'policy', 'monthly_limit', 'payment_status']
 
     def __str__(self):
         return f"Payment {self.seller.username} - {self.amount}"
@@ -151,6 +155,7 @@ class PaymentDate(models.Model):
     name = models.CharField(default=PaymentConf.PAYMENT_DATE_LAST_FRIDAY, max_length=64, blank=False, null=False)
     payment_schedule = models.IntegerField(default=PaymentConf.PAYMENT_DATE_LAST_FRIDAY, blank=False, null=False, choices=PaymentConf.PAYMENT_DATE)
     date_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'payment_schedule']
     
     def __str__(self):
         return f"PaymentDate {self.name}"
@@ -168,6 +173,7 @@ class PaymentDateGroup(models.Model):
     schedule = models.ForeignKey(PaymentDate, on_delete=models.CASCADE, related_name='payment_date_group')
     members = models.ManyToManyField(User, through='PaymentDateGroupMembership', through_fields=('group', 'user'), blank=True, null=True)
     group_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'schedule', 'members']
 
     def __str__(self):
         return f"PaymentDateGroup {self.name}"

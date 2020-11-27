@@ -22,10 +22,10 @@ class Address(models.Model):
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     last_changed_by = models.ForeignKey(User, related_name='edited_addresses', blank=True, null=True, on_delete=models.SET_NULL)
     address_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-    FORM_FIELDS = ['user', 'city', 'firstname', 'lastname', 'country', 'postal_code','phone_number', 'address_extra', 'street','house_number', 'is_active', 'last_changed_by',]
+    FORM_FIELDS = ['user', 'city', 'firstname', 'lastname', 'country', 'postal_code','phone_number', 'address_extra', 'street','house_number', 'is_active', 'last_changed_by']
 
     def __str__(self):
-        return f"Addressbook {self.user.username} {self.pk}"
+        return f"Address {self.firstname} {self.lastname}  - {self.country} - {self.city} - {self.street} {self.pk}"
     
     def get_absolute_url(self):
         return reverse("addressbook:address-detail", kwargs={"address_uuid": self.address_uuid})

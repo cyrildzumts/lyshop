@@ -25,6 +25,7 @@ class Shipment(models.Model):
     shipment_status = models.IntegerField(default=Constants.WAITING, blank=True)
     shipment_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_UPDATE_FIELDS = ['company', 'shipped_at', 'delivered_at', 'shipment_status']
+    FORM_FIELDS = ['company', 'customer', 'order', 'price', 'last_changed_by', 'shipped_at', 'delivered_at', 'shipment_status']
 
     def __str__(self):
         return f"Shipment {self.shipment_number}"

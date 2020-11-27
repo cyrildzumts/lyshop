@@ -96,6 +96,7 @@ class Category(models.Model):
     view_count = models.IntegerField(blank=True, null=True, default=0)
     parent = models.ForeignKey('self', related_name='children', blank=True, null=True, on_delete=models.SET_NULL)
     category_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'display_name', 'code', 'parent', 'added_by', 'is_active']
 
     def __str__(self):
         return self.name
@@ -125,6 +126,7 @@ class Brand(models.Model):
     is_active = models.BooleanField(default=True)
     view_count = models.IntegerField(blank=True, null=True, default=0)
     brand_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'display_name', 'code', 'added_by', 'is_active']
 
     def __str__(self):
         return self.name
@@ -156,6 +158,7 @@ class ProductAttribute(models.Model):
     is_primary = models.BooleanField(default=False)
     display_name = models.CharField(max_length=32, null=False, blank=False)
     attribute_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'display_name', 'value', 'value_type', 'is_primary']
 
     class Meta:
         unique_together = ['name', 'value']
@@ -188,6 +191,7 @@ class ProductTypeAttribute(models.Model):
     attributes = models.ManyToManyField(ProductAttribute, related_name='type_attributes', blank=True, null=True)
     description = models.CharField(max_length=164)
     type_attribute_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'display_name', 'attribute_type', 'attributes', 'description']
 
     def get_dashboard_url(self):
         return reverse("dashboard:product-type-attribute-detail", kwargs={"type_attribute_uuid": self.type_attribute_uuid})
@@ -214,6 +218,7 @@ class ProductType(models.Model):
     attributes = models.ManyToManyField(ProductAttribute, related_name='product_types', blank=True, null=True)
     type_attributes = models.ManyToManyField(ProductTypeAttribute, related_name='product_types', blank=True, null=True)
     type_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'display_name', 'code', 'is_active', 'attributes', 'type_attributes']
 
 
     def __str__(self):
@@ -263,6 +268,8 @@ class Product(models.Model):
     view_count = models.IntegerField(blank=True, null=True, default=0)
     related_products = models.ManyToManyField('self')
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'display_name', 'product_type', 'category','brand', 'is_active', 'price', 'promotion_price','quantity','sold_by','short_description'
+    ,'description','gender', 'related_products', 'added_by']
     FILTERABLE_FIELDS = ['brand', 'created_at','gender', 'price', 'product_type', 'promotion_price', 'quantity' ]
     CATALOGUE_FILTERABLE_FIELDS = ['brand','gender', 'price', 'product_type' ]
     FILTER_CONFIG = {
@@ -351,6 +358,7 @@ class ProductVariant(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'display_name', 'product', 'is_active', 'price', 'promotion_price','quantity','attributes','short_description']
 
     def __str__(self):
         return self.name
@@ -470,6 +478,7 @@ class RelatedProduct(models.Model):
     name = models.CharField(max_length=32, null=False, blank=False)
     product = models.ForeignKey(Product, related_name='related_product', on_delete=models.CASCADE)
     related_products = models.ManyToManyField(Product)
+    FORM_FIELDS = ['name', 'product', 'related_products']
 
 
 class Highlight(models.Model):
@@ -482,6 +491,7 @@ class Highlight(models.Model):
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     description = models.CharField(max_length=constants.DESCRIPTION_MAX_SIZE, blank=True, null=True)
     highlight_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name','display_name', 'gender', 'is_active', 'products', 'description']
 
     def get_absolute_url(self):
         return reverse("dashboard:highlight-detail", kwargs={"highlight_uuid": self.highlight_uuid})

@@ -33,6 +33,7 @@ class Order(models.Model):
     coupon = models.ForeignKey("cart.Coupon", related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
     order_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_FIELDS = ['user', 'amount', 'quantity', 'created_at', 'status', 'coupon', 'payment_option', 'total', 'shipping_price', 'is_closed', 'solded_price', 'order_uuid']
+    FORM_FIELDS = DEFAULT_FIELDS
     FILTERABLE_FIELDS = ['amount','created_at', 'payment_option', 'status']
     FILTER_CONFIG = {
         'model' : 'Order',
@@ -86,6 +87,7 @@ class OrderItem(models.Model):
     is_active = models.BooleanField(default=True)
     item_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_FIELDS = ['order', 'product', 'quantity', 'unit_price', 'total_price','created_at', 'item_uuid']
+    FORM_FIELDS = DEFAULT_FIELDS
 
     def __str__(self):
         return f"OrderIem - {self.product.name} - {self.quantity}"
@@ -175,6 +177,7 @@ class PaymentRequest(models.Model):
     is_active = models.BooleanField(default=True)
     request_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_FIELDS = ['token', 'pay_url', 'verification_code', 'order', 'customer', 'amount', 'created_at', 'status', 'request_uuid']
+    FORM_FIELDS = DEFAULT_FIELDS
 
 
     def __str__(self):

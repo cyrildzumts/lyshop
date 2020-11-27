@@ -2,6 +2,7 @@
 {% load addresses_tags %}
 
 <div class="container">
+    <input type="hidden" name="user" value="{{request.user.pk}}">
     <div class="form-group">
         <label for="firstname">{% trans "Firstame" %}</label>
         <input type="text" id="firstname" name="firstname" >
@@ -38,6 +39,9 @@
     <div class="form-group">
         <label for="phone-number">{% trans "Phone Number" %}</label>
         <input type="text" id="phone-number" name="phone_number" >
+    </div>
+    <div class="actions">
+        <span class="js-create-address mat-button  mat-button-outlined"> <i class="fas fa plus icon"></i> {% trans "Create Address" %}</span></div>
     </div>
 </div>
 
