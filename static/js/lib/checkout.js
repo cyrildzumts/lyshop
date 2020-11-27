@@ -117,7 +117,7 @@ define([
             url : api_address_url,
             data : data
         }
-        add_promise = ajax(option).then(function(response){
+        var add_promise = ajax(option).then(function(response){
             console.log("Address Created : %s", response['status']);
             console.log(response);
             if(response.status){

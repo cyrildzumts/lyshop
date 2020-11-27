@@ -104,19 +104,23 @@ def analytics_data(request):
     
     return Response(data, status=response_status)
 
-
+@api_view(['POST'])
 def create_address(request):
     logger.info(f"API: New Address creation request from user {request.user.username}")
     if request.method != 'POST':
         return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
     
     address = addressbook_service.create_address(request.POST.copy())
+    
     if address :
-        return Response(data={'status': True, **model_to_dict(address)}, status=status.HTTP_200_OK)
+        address_dict = model_to_dict(address)
+        address_dict.update({'status': True})
+        logger.info(f"Address Dict : {address_dict}")
+        return Response(data=address_dict, status=status.HTTP_200_OK)
     
     return Response(data={'status': False, 'error': 'address not created'}, status=status.HTTP_200_OK)
 
-
+@api_view(['POST'])
 def update_address(request, address_uuid):
     logger.info(f"API: Address update request from user {request.user.username}")
     if request.method != 'POST':
