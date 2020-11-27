@@ -25,7 +25,7 @@ class Address(models.Model):
     FORM_FIELDS = ['user', 'city', 'firstname', 'lastname', 'country', 'postal_code','phone_number', 'address_extra', 'street','house_number', 'is_active', 'last_changed_by']
 
     def __str__(self):
-        return f"Address {self.firstname} {self.lastname}  - {self.country} - {self.city} - {self.street} {self.pk}"
+        return f"{self.firstname} {self.lastname}  - {self.street} - {self.postal_code} - {self.city} - {self.country}"
     
     def get_absolute_url(self):
         return reverse("addressbook:address-detail", kwargs={"address_uuid": self.address_uuid})
