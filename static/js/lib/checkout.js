@@ -55,7 +55,7 @@ define([
             self.validate_pament_options();
         });
         $('.js-add-address').on('click', function(){
-            $('#new-address').toggleClass('hidden');
+            $('#new-address, #checkout-address').toggleClass('hidden');
         });
         $('.js-create-address').on('click', function(){
             self.create_address();
