@@ -156,7 +156,7 @@ def order_pay_at_order(user, data):
         try:
             payment_request = PaymentRequest.objects.create(**payment_data)
             result['success'] = True
-            result[commons.KEY_REDIRECT_PAYMENT_URL] = reverse('orders:checkout-redirect-payment', request_uuid=payment_request.request_uuid)
+            result[commons.KEY_REDIRECT_PAYMENT_URL] = reverse('orders:checkout-redirect-payment', kwargs={'request_uuid' : payment_request.request_uuid})
             result['order'] = order
             return result
         except Exception as e:
