@@ -104,7 +104,7 @@ define([
         var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]');
         var container = $('#new-address');
         var address_inputs = $('input', container);
-        data = {
+        var data = {
             'csrfmiddlewaretoken' : csrfmiddlewaretoken.val()
         };
         address_inputs.each(function(){
