@@ -132,7 +132,7 @@ def order_pay_at_order(user, data):
             'requester_name': settings.PAY_USERNAME,
             'amount': order.total,
             'customer_name': user.get_full_name(),
-            'quantity': cart.quantity,
+            'quantity': order.quantity,
             'description': settings.PAY_REQUEST_DESCRIPTION,
             'country' : address.country,
             'redirect_success_url': request.build_absolute_uri(redirect_success_url),
