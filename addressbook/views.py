@@ -74,8 +74,6 @@ def address_detail(request, address_uuid=None):
 @login_required
 def address_update(request, address_uuid=None):
     username = request.user.username
-
-
     template_name = 'addressbook/address_update.html'
     page_title = _('Address Update')
     context = {
@@ -86,50 +84,16 @@ def address_update(request, address_uuid=None):
     username = request.user.username
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        updated = addressbook_service.update_address(obj, postdata)
-        if updated:
+        updated_address = addressbook_service.update_address(obj, postdata)
+        if updated_address:
             messages.success(request, _('Address updated'))
-            logger.info(f'address {obj} updated by user \"{username}\"')
+            logger.info(f'address {updated_address} updated by user \"{username}\"')
             return redirect('addressbook:address-detail', address_uuid=address_uuid)
         else:
             messages.error(request, _('Address not updated'))
             logger.error(f'Error on updating address. Action requested by user \"{username}\"')
 
     form = AddressForm(instance=obj)
-    context['form'] = form
-    context['address'] = obj
-    context['ADDRESS_TYPES'] = Addressbook_Constants.ADDRESS_TYPES
-    return render(request, template_name, context)
-
-
-@login_required
-def address_update_old(request, address_uuid=None):
-    username = request.user.username
-
-
-    template_name = 'addressbook/address_update.html'
-    page_title = _('Address Update')
-    context = {
-        'page_title': page_title,
-    }
-    form = None
-    obj = get_object_or_404(Address, address_uuid=address_uuid, user=request.user)
-    username = request.user.username
-    if request.method == 'POST':
-        postdata = utils.get_postdata(request)
-        form = AddressForm(postdata, instance=obj)
-        if form.is_valid():
-            utils.show_dict_contents(form.cleaned_data, "Address cleaned submitted Data")
-            obj = form.save()
-            messages.success(request, _('Address updated'))
-            logger.info(f'address {obj} updated by user \"{username}\"')
-            return redirect('addressbook:address-detail', address_uuid=address_uuid)
-        else:
-            messages.error(request, _('Address not updated'))
-            logger.error(f'Error on updating address. Action requested by user \"{username}\"')
-            logger.error(form.errors)
-    else:
-        form = AddressForm(instance=obj)
     context['form'] = form
     context['address'] = obj
     context['ADDRESS_TYPES'] = Addressbook_Constants.ADDRESS_TYPES
@@ -187,36 +151,6 @@ def address_create(request):
             logger.error(f'Error on creating new address. Action requested by user \"{username}\"')
 
     form = AddressForm()
-    context['form'] = form
-    context['ADDRESS_TYPES'] = Addressbook_Constants.ADDRESS_TYPES
-    return render(request, template_name, context)
-
-
-@login_required
-def address_create_old(request):
-    username = request.user.username
-    
-    template_name = 'addressbook/address_create.html'
-    page_title = _('New Address')
-    
-    context = {
-        'page_title': page_title,
-    }
-    form = None
-    
-    if request.method == 'POST':
-        postdata = utils.get_postdata(request)
-        form = AddressForm(postdata)
-        if form.is_valid():
-            address = form.save()
-            messages.success(request, _('New Address created'))
-            logger.info(f'New Address added by user \"{username}\"')
-            return redirect('addressbook:addressbook')
-        else:
-            messages.error(request, _('Address not created'))
-            logger.error(f'Error on creating new address. Action requested by user \"{username}\"')
-    else:
-        form = AddressForm()
     context['form'] = form
     context['ADDRESS_TYPES'] = Addressbook_Constants.ADDRESS_TYPES
     return render(request, template_name, context)

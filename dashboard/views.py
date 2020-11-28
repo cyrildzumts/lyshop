@@ -4201,8 +4201,6 @@ def address_detail(request, address_uuid=None):
 @login_required
 def address_update(request, address_uuid=None):
     username = request.user.username
-
-
     template_name = 'dashboard/address_update.html'
     page_title = _('Address Update')
     context = {
