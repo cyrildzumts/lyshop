@@ -92,7 +92,7 @@ class ProductVariantUpdateForm(forms.ModelForm):
 
     class Meta:
         model = ProductVariant
-        fields = ['name', 'display_name', 'product', 'attributes', 'price','promotion_price', 'quantity']
+        fields = ['name', 'display_name', 'price','promotion_price', 'quantity']
 
 
 

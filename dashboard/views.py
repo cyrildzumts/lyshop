@@ -36,7 +36,7 @@ from orders.forms import DashboardOrderUpdateForm, OrderItemUpdateForm, PaymentM
 from orders import orders_service
 from shipment import shipment_service
 from catalog.forms import (BrandForm, ProductAttributeForm, 
-    ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
+    ProductForm, ProductVariantForm, ProductVariantUpdateForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
     DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm, HighlightForm
 )
 from cart.models import Coupon
@@ -1439,7 +1439,7 @@ def product_variant_update(request, variant_uuid=None):
     attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm, extra=4, max_num=5)
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        form = ProductVariantForm(postdata, instance=variant)
+        form = ProductVariantUpdateForm(postdata, instance=variant)
         if form.is_valid():
             p_variant = form.save()
             messages.success(request, _('Product variant updated'))
