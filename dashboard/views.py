@@ -4211,7 +4211,7 @@ def address_update(request, address_uuid=None):
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         updated_address = addressbook_service.update_address(obj, postdata)
-        if updated:
+        if updated_address:
             messages.success(request, _('Address updated'))
             logger.info(f'address {updated_address} updated by user \"{username}\"')
             return redirect('dashboard:address-detail', address_uuid=address_uuid)
