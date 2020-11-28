@@ -101,8 +101,9 @@ def product_attributes(product_id):
     attr_dict = {}
     attrs = []
     for v in variants:
-        for attr in v.attributes.values('id', 'name', 'display_name', 'value', 'quantity'):
+        for attr in v.attributes.values('id', 'name', 'display_name', 'value'):
             attr['variant'] = v.product_uuid
+            attr['quantity'] = v.quantity
             attrs.append(attr)
     if len(attrs):
         logger.info("Attrs available")
