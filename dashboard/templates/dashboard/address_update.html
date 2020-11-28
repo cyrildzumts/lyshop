@@ -16,7 +16,7 @@
                 <label for="user">{% trans "User" %}</label>
                 <select name="user" id="user">
                 {% for u in user_list %}
-                    <option value="{{u.pk}}" {% if address.user and u.pk == address.user.pk %}selected{% endif %}>{{user.username}}</option>
+                    <option value="{{u.pk}}" {% if address.user and u.pk == address.user.pk %}selected{% endif %}>{{u.username}}</option>
                 {% endfor %}
                 </select>
             </div>
