@@ -92,13 +92,13 @@ def category_detail(request, category_uuid=None):
     subcats = category.get_children()
     filterquery = Q(category__category_uuid=category_uuid)
     subcatquery = Q(category__id__in=subcats.values_list('id'))
-    #queryset = Product.objects.filter(filterquery | subcatquery)
+    
 
     queryDict = request.GET.copy()
     field_filter = filters.Filter(Product, queryDict)
     queryset = field_filter.apply_filter()
     selected_filters = field_filter.selected_filters
-
+    queryset = queryset.filter(filterquery | subcatquery)
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
