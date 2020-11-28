@@ -81,9 +81,9 @@ def group_attrs(attrs):
     for attr in attrs:
         name = attr['name']
         if name not in grouped_attrs:
-            grouped_attrs[name] = {'display_name' : attr['display_name'], 'variant': attr['variant'], 'value': [{'variant': attr['variant'], 'value': attr['value']}]}
+            grouped_attrs[name] = {'display_name' : attr['display_name'], 'variant': attr['variant'], 'value': [{'variant': attr['variant'], 'value': attr['value'], 'quantity': attr['quantity']}]}
         else:
-            value = {'variant': attr['variant'], 'value': attr['value']}
+            value = {'variant': attr['variant'], 'value': attr['value'], 'quantity': attr['quantity']}
             entry = grouped_attrs[name]
             if not contain_attr(value['value'], entry['value']):
                 entry['value'].append(value)
@@ -101,7 +101,7 @@ def product_attributes(product_id):
     attr_dict = {}
     attrs = []
     for v in variants:
-        for attr in v.attributes.values('id', 'name', 'display_name', 'value'):
+        for attr in v.attributes.values('id', 'name', 'display_name', 'value', 'quantity'):
             attr['variant'] = v.product_uuid
             attrs.append(attr)
     if len(attrs):
