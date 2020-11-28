@@ -18,6 +18,7 @@ class Address(models.Model):
     street = models.CharField(max_length=64, blank=True, null=True)
     house_number = models.IntegerField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
+    is_favorite = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     last_changed_by = models.ForeignKey(User, related_name='edited_addresses', blank=True, null=True, on_delete=models.SET_NULL)
@@ -32,6 +33,9 @@ class Address(models.Model):
     
     def get_update_url(self):
         return reverse("addressbook:address-update", kwargs={"address_uuid": self.address_uuid})
+    
+    def get_favorite_url(self):
+        return reverse("addressbook:address-favorite", kwargs={"address_uuid": self.address_uuid})
     
     def get_delete_url(self):
         return reverse("addressbook:address-delete", kwargs={"address_uuid": self.address_uuid})

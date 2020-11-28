@@ -1,5 +1,6 @@
 
 from django.contrib.auth.models import User
+from django.db.models import F
 from django.core.exceptions import ObjectDoesNotExist
 from addressbook.models import Address
 from addressbook import constants as Addressbook_Constants
@@ -88,6 +89,12 @@ def set_address_type(address, address_type):
     Address.objects.filter(pk=address.pk).update(address_type=address_type)
     return True
 
+def toggle_favorite(address):
+    if  not isinstance(address, Address):
+        return False
+    
+    Address.objects.filter(pk=address.pk).update(is_favorite=not F('is_favorite'))
+    return True
 
 def create_address(data):
     return core_tools.create_instance(model=Address, data=data)

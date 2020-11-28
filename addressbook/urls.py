@@ -10,6 +10,7 @@ urlpatterns = [
     path('addresses/', views.addresses, name='addresses'),
     path('address-details/<uuid:address_uuid>/', views.address_detail, name='address-detail'),
     path('address-delete/<uuid:address_uuid>/', views.address_delete, name='address-delete'),
+    path('address-favorite/<uuid:address_uuid>/', views.address_toggle_favorite, name='address-favorite'),
     path('address-update/<uuid:address_uuid>/', views.address_update, name='address-update'),
     path('addresses/create/', views.address_create, name='address-create'),
     path('addresses-delete/', views.addresses_delete, name='address-delete'),
