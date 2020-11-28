@@ -106,6 +106,21 @@
   justify-content: flex-end !important;
 }
 
+.align-left{
+  align-items: flex-start !important;
+}
+.align-right{
+  align-items: flex-end !important;
+}
+
+.align-center{
+  align-items: center !important;
+}
+
+.align-baseline{
+  align-items: baseline !important;
+}
+
 .flex-wrap{
   flex-wrap: wrap;
 }
