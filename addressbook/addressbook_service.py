@@ -93,11 +93,11 @@ def create_address(data):
     return core_tools.create_instance(model=Address, data=data)
 
 def update_address(address, data):
-    updated_rows = core_tools.update_instance(model=Address, instance=address, data=data)
-    if updated_rows == 1:
+    updated_address = core_tools.update_instance(model=Address, instance=address, data=data)
+    if updated_address:
         logger.info("Address updated")
     
-    return updated_rows == 1
+    return updated_address
 
 
 def delete_address(address):

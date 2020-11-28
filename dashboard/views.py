@@ -4212,10 +4212,10 @@ def address_update(request, address_uuid=None):
     username = request.user.username
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        updated = addressbook_service.update_address(obj, postdata)
+        updated_address = addressbook_service.update_address(obj, postdata)
         if updated:
             messages.success(request, _('Address updated'))
-            logger.info(f'address {obj} updated by user \"{username}\"')
+            logger.info(f'address {updated_address} updated by user \"{username}\"')
             return redirect('dashboard:address-detail', address_uuid=address_uuid)
         else:
             messages.error(request, _('Address not updated'))
