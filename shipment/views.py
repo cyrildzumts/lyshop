@@ -81,7 +81,7 @@ def order_ready_for_shipment(request):
 
 @login_required
 def shipment_detail(request, shipment_uuid):
-    shipment = get_object_or_404(Shipment, shipment_uuid=shipment_uuid)
+    shipment = get_object_or_404(Shipment.objects.select_related('order__address'), shipment_uuid=shipment_uuid)
 
     context = {
         'page_title' : _('Shipment'),

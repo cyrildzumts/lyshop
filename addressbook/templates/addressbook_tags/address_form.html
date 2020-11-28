@@ -2,6 +2,7 @@
 {% load addresses_tags %}
 
 <div class="container">
+    <input type="hidden" name="user" value="{{request.user.pk}}">
     <div class="form-group">
         <label for="firstname">{% trans "Firstame" %}</label>
         <input type="text" id="firstname" name="firstname" >

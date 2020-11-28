@@ -21,8 +21,6 @@
             </div>
         </div>
         <form  action="{% url 'orders:checkout' %}" method="POST">{% csrf_token %}
-            <input type="hidden" name="user" value="{{request.user.pk}}">
-            
             <div class="tab-container">
                 {% include "tags/checkout_address.html" with step_id="step-1" index="1" icon_parent="step-header-1" %}
                 {% include "tags/payment_options.html" with step_id="step-2" index="2" icon_parent="step-header-2" %}

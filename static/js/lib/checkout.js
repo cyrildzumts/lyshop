@@ -7,6 +7,12 @@ define([
             'postal_code','phone_number', 'address_extra', 'street',
             'house_number', 'is_active'
         ];
+
+    var ADDRESS_FIELDS_REQUIRED = [ 
+        'user', 'city', 'firstname', 'lastname', 'country', 
+        'postal_code','phone_number', 'street'
+ 
+    ];
     var api_address_url = '/api/create-address/';
     var address = {
         id : "",
@@ -56,6 +62,7 @@ define([
         });
         $('.js-add-address').on('click', function(){
             $('#new-address, #checkout-address').toggleClass('hidden');
+            document.getElementById('address').toggleAttribute('disabled')
         });
         $('.js-create-address').on('click', function(){
             self.create_address();
@@ -104,13 +111,26 @@ define([
         var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]');
         var container = $('#new-address');
         var address_inputs = $('input', container);
+        var available_fields = [];
         var data = {
             'csrfmiddlewaretoken' : csrfmiddlewaretoken.val()
         };
         address_inputs.each(function(){
+            if(this.value){
+                available_fields.push(this.name);
+            }
             data[this.name] = this.value;
         });
-        $('#checkout-address').prop('disabled', 'disabled');
+        var missing_fields = ADDRESS_FIELDS_REQUIRED.filter(field => available_fields.includes(field));
+        if(missing_fields.length > 0){
+            missing_fields.forEach(field =>{
+                console.error("Address required field %s is missing", field);
+                $(`input[name="${field}"]`, address_inputs).addClass('warn');
+            });
+            return;
+        }else{
+            address_inputs.removeClass('warn');
+        }
         var option = {
             type:'POST',
             dataType: 'json',
@@ -122,7 +142,6 @@ define([
             console.log(response);
             if(response.status){
                 address_inputs.each(function(){
-                    console.log("disabling input : ", this);
                     this.disabled = 'disabled';
                 });
                 var input = $('<input>', {name : 'address', type :'hidden', value : response.id});

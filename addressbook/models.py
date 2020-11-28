@@ -35,6 +35,15 @@ class Address(models.Model):
     
     def get_delete_url(self):
         return reverse("addressbook:address-delete", kwargs={"address_uuid": self.address_uuid})
+
+    def get_dashboard_url(self):
+        return reverse("dashboard:address-detail", kwargs={"address_uuid": self.address_uuid})
+    
+    def get_dashboard_update_url(self):
+        return reverse("dashboard:address-update", kwargs={"address_uuid": self.address_uuid})
+    
+    def get_dashboard_delete_url(self):
+        return reverse("dashboard:address-delete", kwargs={"address_uuid": self.address_uuid})
     
     
 

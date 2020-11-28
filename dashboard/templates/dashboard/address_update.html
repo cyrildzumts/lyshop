@@ -1,0 +1,68 @@
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% load addresses_tags %}
+{% block MAIN_CONTENT %}
+
+<div class="container wrapper">
+    <form  class="form" name="product" action="{{address.get_dashboard_update_url}}" method="POST">{% csrf_token %}
+        <input type="hidden" name="last_changed_by" value="{{request.user.pk}}">
+        
+        <div class="mat-box">
+            <div class="actions">
+                <a class="mat-button mat-button-text js-cancel" href="{{address.get_dashboard_url}}">{% trans "Cancel" %}</a>
+                <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
+            </div>
+            <div class="form-group">
+                <label for="user">{% trans "User" %}</label>
+                <select name="user" id="user">
+                {% for u in user_list %}
+                    <option value="{{u.pk}}" {% if address.user and u.pk == address.user.pk %}selected{% endif %}>{{user.username}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="firstname">{% trans "Firstame" %}</label>
+                <input type="text" id="firstname" name="firstname" value="{{address.firstname}}">
+            </div>
+            <div class="form-group">
+                <label for="lastname">{% trans "Lastname" %}</label>
+                <input type="text" id="lastname" name="lastname" value="{{address.lastname}}" >
+            </div>
+            <div class="form-group">
+                <label for="country">{% trans "Country" %} </label>
+                <input type="text" id="country" name="country" value="{{address.country}}">
+            </div>
+            <div class="form-group">
+                <label for="city">{% trans "City" %} </label>
+                <input type="text" id="city" name="city" value="{{address.city}}">
+            </div>
+
+            <div class="form-group">
+                <label for="postal-code">{% trans "Postal code" %}</label>
+                <input type="text" id="postal-code" name="postal_code" value="{{address.postal_code}}">
+            </div>
+            <div class="form-group">
+                <label for="address-extra">{% trans "Address Extra" %}</label>
+                <input type="text" id="address-extra" name="address_extra" value="{{address.address_extra}}">
+            </div>
+            <div class="form-group">
+                <label for="street">{% trans "Street" %}</label>
+                <input type="text" id="street" name="street" value="{{address.street}}">
+            </div>
+            <div class="form-group">
+                <label for="house-number">{% trans "House Number" %}</label>
+                <input type="text" id="house-number" name="house_number" value="{{address.house_number}}">
+            </div>
+            <div class="mat-input">
+                <label for="phone-number">{% trans "Phone Number" %}</label>
+                <input type="text" id="phone-number" name="phone_number" value="{{address.phone_number|default_if_none:''}}">
+            </div>
+            
+        </div>
+        <div class="actions">
+            <a class="mat-button mat-button-text js-cancel" href="{{address.get_dashboard_url}}">{% trans "Cancel" %}</a>
+            <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
+        </div>
+    </form>
+</div>
+{% endblock MAIN_CONTENT %}
