@@ -101,7 +101,7 @@ def toggle_favorite(address):
         )
     )
     '''
-    old_state = adress.is_favorite
+    old_state = address.is_favorite
     Address.objects.filter(pk=address.pk).update(is_favorite=Q(is_favorite=False))
     if not old_state:
         Address.objects.filter(user=address.user).exclude(pk=address.pk).update(is_favorite=False)
