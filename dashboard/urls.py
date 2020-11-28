@@ -7,11 +7,11 @@ app_name = 'dashboard'
 urlpatterns = [
     path('', views.dashboard, name='home'),
 
-    path('', views.addressbook, name='addressbook'),
-    path('address-details/<uuid:address_uuid>/', views.address_detail, name='address-detail'),
-    path('address-delete/<uuid:address_uuid>/', views.address_delete, name='address-delete'),
-    path('address-update/<uuid:address_uuid>/', views.address_update, name='address-update'),
-    path('addresses-delete/', views.addresses_delete, name='address-delete'),
+    path('addressbook/', views.addressbook, name='addressbook'),
+    path('addressbook/address-details/<uuid:address_uuid>/', views.address_detail, name='address-detail'),
+    path('addressbook/address-delete/<uuid:address_uuid>/', views.address_delete, name='address-delete'),
+    path('addressbook/address-update/<uuid:address_uuid>/', views.address_update, name='address-update'),
+    path('addressbook/addresses-delete/', views.addresses_delete, name='address-delete'),
     
     path('brands/', views.brands, name='brands'),
     path('brands/create/', views.brand_create, name='brand-create'),
