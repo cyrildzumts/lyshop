@@ -1,6 +1,6 @@
 
 from django.contrib.auth.models import User
-from django.db.models import F
+from django.db.models import F, Q, Case, When, Value
 from django.core.exceptions import ObjectDoesNotExist
 from addressbook.models import Address
 from addressbook import constants as Addressbook_Constants
@@ -93,7 +93,15 @@ def toggle_favorite(address):
     if  not isinstance(address, Address):
         return False
     
-    Address.objects.filter(pk=address.pk).update(is_favorite=not F('is_favorite'))
+    '''
+    Address.objects.filter(pk=address.pk).update(
+        is_favorite=Case(
+            When(is_favorite=True, then=Value(False)),
+            default=Value(True)
+        )
+    )
+    '''
+    Address.objects.filter(pk=address.pk).update(is_favorite=Q(is_favorite=False))
     return True
 
 def create_address(data):
