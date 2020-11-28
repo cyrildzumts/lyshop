@@ -121,11 +121,11 @@ define([
             }
             data[this.name] = this.value;
         });
-        var missing_fields = ADDRESS_FIELDS_REQUIRED.filter(field => available_fields.includes(field));
+        var missing_fields = ADDRESS_FIELDS_REQUIRED.filter(field => !available_fields.includes(field));
         if(missing_fields.length > 0){
             missing_fields.forEach(field =>{
                 console.error("Address required field %s is missing", field);
-                $(`input[name="${field}"]`, address_inputs).addClass('warn');
+                $(`input[name="${field}"]`, container).addClass('warn');
             });
             return;
         }else{
