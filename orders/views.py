@@ -116,8 +116,8 @@ def checkout(request):
     template_name = 'orders/checkout.html'
     address_list = addressbook_service.get_addresses(request.user)
     address = None
-    if address_list.exists():
-        address = address_list.first()
+    if address_list.filter(is_favorite=True).exists():
+        address = address_list.filter(is_favorite=True).first()
     context = {
         'page_title' : _("Checkout") + ' - ' + settings.SITE_NAME,
         'address_list': address_list,
