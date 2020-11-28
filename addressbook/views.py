@@ -112,10 +112,9 @@ def address_delete(request, address_uuid=None):
 def address_toggle_favorite(request, address_uuid=None):
     username = request.user.username
     obj = get_object_or_404(Address, address_uuid=address_uuid, user=request.user)
-    Address.objects.filter(pk=obj.pk).delete()
     toggled = addressbook_service.toggle_favorite(obj)
-    logger.info(f'Address \"{obj}\" deleted by user \"{request.user.username}\"')
-    messages.success(request, _('Address deleted'))
+    logger.info(f'Address \"{obj}\" favorite changed by user \"{request.user.username}\"')
+    messages.success(request, _('Address changed'))
     return redirect('addressbook:addressbook')
 
 
