@@ -29,52 +29,57 @@
     <div class="grid">
         {% for address in address_list %}
         <div class="row">
-                <div class="box">
-                    <div class="actions">
-                        <a href="{{address.get_dashboard_update_url}}" class="mat-button mat-button-default"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
-                        <a href="{{address.get_dashboard_delete_url}}" class="mat-button mat-button-default warn"><i class="fas fa-trash icon"></i>{% trans "Delete" %}</a>
+                <div class="col-xs-12 col-4">
+                    <div class="box">
+                        <div class="actions flex-column flex-left">
+                            <a href="{{address.get_dashboard_update_url}}" class="mat-button mat-button-default"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
+                            <a href="{{address.get_dashboard_delete_url}}" class="mat-button mat-button-default warn"><i class="fas fa-trash icon"></i>{% trans "Delete" %}</a>
+                        </div>
                     </div>
                 </div>
-                <div class="box">
-                    <div class="entry">
-                        <span class="key">{% trans "Main Address" %}</span><span class="value">{{address.is_favorite|yesno}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "User" %}</span><span class="value">{{address.user.username|default_if_none:"-"}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Firstname" %}</span><span class="value">{{address.firstname}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Lastname" %}</span><span class="value">{{address.lastname}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Country" %}</span><span class="value">{{address.country}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "City" %}</span><span class="value">{{address.city}}</span>
-                    </div>
+                <div class="col-xs-12 col-4">
+                        <div class="box">
+                            <div class="entry">
+                                <span class="key">{% trans "Main Address" %}</span><span class="value">{{address.is_favorite|yesno}}</span>
+                            </div>
+                            <div class="entry">
+                                <span class="key">{% trans "Firstname" %}</span><span class="value">{{address.firstname}}</span>
+                            </div>
+                            <div class="entry">
+                                <span class="key">{% trans "Lastname" %}</span><span class="value">{{address.lastname}}</span>
+                            </div>
+                            <div class="entry">
+                                <span class="key">{% trans "Country" %}</span><span class="value">{{address.country}}</span>
+                            </div>
+                            <div class="entry">
+                                <span class="key">{% trans "City" %}</span><span class="value">{{address.city}}</span>
+                            </div>
+
+                        </div>
                 </div>
-                <div class="box">
-                    <div class="entry">
-                        <span class="key">{% trans "Postal Code" %}</span><span class="value">{{address.postal_code}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Address Extra" %}</span><span class="value">{{address.address_extra}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Street" %}</span><span class="value">{{address.street}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "House Number" %}</span><span class="value">{{address.house_number}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Phone Number" %}</span><span class="value">{{address.phone_number}}</span>
-                    </div>
-                    <div class="entry">
-                        <span class="key">{% trans "Address is used for" %}</span><span class="value">{{address.address_type|address_type_value}}</span>
-                    </div>
-                </div>
+                <div class="col-xs-12 col-4">
+                        <div class="box">
+                            <div class="entry">
+                                <span class="key">{% trans "Postal Code" %}</span><span class="value">{{address.postal_code}}</span>
+                            </div>
+                            <div class="entry">
+                                <span class="key">{% trans "Address Extra" %}</span><span class="value">{{address.address_extra}}</span>
+                            </div>
+                            <div class="entry">
+                                <span class="key">{% trans "Street" %}</span><span class="value">{{address.street}}</span>
+                            </div>
+                            <div class="entry">
+                                <span class="key">{% trans "House Number" %}</span><span class="value">{{address.house_number}}</span>
+                            </div>
+                            <div class="entry">
+                                <span class="key">{% trans "Phone Number" %}</span><span class="value">{{address.phone_number}}</span>
+                            </div>
+                            <div class="entry">
+                                <span class="key">{% trans "Address is used for" %}</span><span class="value">{{address.address_type|address_type_value}}</span>
+                            </div>
+
+                        </div>
+                </div>    
         </div>
         
         
