@@ -93,10 +93,18 @@
                       </ul>
                 </div>
                 <div class="actions">
+                  {% if product.quantity > 0 %}
                   <button type="submit" class="mat-button mat-button-default js-add-to-cart">
-                  <i class="icon fas fa-shopping-cart"></i>
-                  <span class="">{% trans "Add to Cart" %}</span>
+                    <i class="icon fas fa-shopping-cart"></i>
+                    <span class="">{% trans "Add to Cart" %}</span>
                   </button>
+                  {% else %}
+                    <button class="mat-button mat-button-default" disabled>
+                    <i class="icon fas fa-shopping-cart"></i>
+                    <span class="">{% trans "Out of Stock" %}</span>
+                    </button>
+                  {% endif %}
+                  
                 </div>
             </div><!--End of product detail-->
             </form>
