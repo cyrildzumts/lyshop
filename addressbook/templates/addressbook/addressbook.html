@@ -23,6 +23,9 @@
                 </div>
                 <div class="box">
                     <div class="entry">
+                        <span class="key">{% trans "Main Address" %}</span><span class="value">{{address.is_favorite|yesno}}</span>
+                    </div>
+                    <div class="entry">
                         <span class="key">{% trans "Firstname" %}</span><span class="value">{{address.firstname}}</span>
                     </div>
                     <div class="entry">
@@ -34,6 +37,7 @@
                     <div class="entry">
                         <span class="key">{% trans "City" %}</span><span class="value">{{address.city}}</span>
                     </div>
+
                 </div>
                 <div class="box">
                     <div class="entry">
@@ -54,6 +58,7 @@
                     <div class="entry">
                         <span class="key">{% trans "Address is used for" %}</span><span class="value">{{address.address_type|address_type_value}}</span>
                     </div>
+
                 </div>
         </div>
         
