@@ -4169,7 +4169,7 @@ def addressbook(request):
     template_name = "dashboard/addressbook.html"
     username = request.user.username
     context = {}
-    queryset = Address.objects.order_by('-created_at')
+    queryset = Address.objects.all().order_by('-created_at')
     page_title = _("Addresses") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
