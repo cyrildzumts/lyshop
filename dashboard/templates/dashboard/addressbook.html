@@ -37,6 +37,9 @@
                 </div>
                 <div class="box">
                     <div class="entry">
+                        <span class="key">{% trans "User" %}</span><span class="value">{{address.user.username|default_if_none:"-"}}</span>
+                    </div>
+                    <div class="entry">
                         <span class="key">{% trans "Firstname" %}</span><span class="value">{{address.firstname}}</span>
                     </div>
                     <div class="entry">
