@@ -6,7 +6,7 @@ from celery.schedules import crontab
 from dashboard import tasks
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lyshop.settings')
-app = Celery(settings.CELERY_APP_NAME)
+app = Celery(settings.SITE_NAME)
 app.config_from_object('django.conf:settings', namespace=settings.CELERY_NAMESPACE)
 app.conf.task_queues = (
     Queue(settings.CELERY_DEFAULT_QUEUE, Exchange(settings.CELERY_DEFAULT_EXCHANGE), routing_key=settings.CELERY_DEFAULT_ROUTING_KEY),
