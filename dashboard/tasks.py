@@ -34,5 +34,7 @@ def send_mail_task(email_context=None):
 
 
 @task
-def cancel_unpaid_orders():
-    pass
+def cancel_unpaid_orders_task():
+    logger.info("Starting cancel_unpaid_orders_task")
+    orders_service.clean_unpaid_orders()
+    logger.info("Finished cancel_unpaid_orders_task")

@@ -2,6 +2,7 @@ import os
 from kombu import Exchange, Queue
 from lyshop import settings
 from celery import Celery
+from celery.schedules import crontab
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lyshop.settings')
 app = Celery(settings.SITE_NAME)
@@ -14,4 +15,10 @@ app.conf.task_queues = (
 app.conf.task_default_queue = settings.CELERY_DEFAULT_QUEUE
 app.conf.task_default_exchange_type = settings.CELERY_DEFAULT_EXCHANGE_TYPE
 app.conf.task_default_routing_key = settings.CELERY_DEFAULT_ROUTING_KEY
+app.conf.beat_schedule = {
+    'clean_unpaid_orders': {
+        'task': 'cancel_unpaid_orders_task',
+        'schedule' : crontab(minute=0, hour='*/3')
+    }
+}
 app.autodiscover_tasks()
