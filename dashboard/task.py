@@ -1,11 +1,9 @@
 import string
-from django.contrib.auth.models import User
 from django.utils.crypto import get_random_string
 from django.core.mail import send_mail
 from celery import shared_task, task
 import django.template.loader as loader
-from orders.models import Order
-from orders import orders_service, commons as Orders_Constants
+from orders import orders_service
 import logging
 
 
