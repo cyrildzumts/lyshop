@@ -18,8 +18,7 @@ app.conf.task_default_routing_key = settings.CELERY_DEFAULT_ROUTING_KEY
 app.conf.beat_schedule = {
     'clean_unpaid_orders': {
         'task': 'dashboard.tasks.cancel_unpaid_orders_task',
-        'schedule' : crontab()
-        #'schedule' : crontab(minute=0, hour='*/3')
+        'schedule' : crontab(minute=0, hour='*/3')
     }
 }
 app.autodiscover_tasks()

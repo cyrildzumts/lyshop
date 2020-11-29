@@ -19,7 +19,7 @@
                 <option value="{{u.pk}}" selected>{{u.get_full_name}}[{{u.username}}]</option>
             {% endfor %}
         </select>
-        <div class="form-group">
+        <div class="actions">
             <a class="mat-button mat-button-text js-cancel" href="{%url 'dashboard:group-detail' group.pk%}">{% trans "Cancel" %}</a>
             <button class="mat-button mat-button-default" type="submit">{% trans "Update Group" %}</button>
         </div>
