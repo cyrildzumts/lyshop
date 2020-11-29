@@ -57,6 +57,7 @@ urlpatterns = [
     path('highlights/add-products/<uuid:highlight_uuid>/', views.highlight_add_products, name='highlight-add-products'),
 
     path('orders/', views.orders, name='orders'),
+    path('orders/clean-unpaid-orders/', views.orders_clean, name='clean-unpaid-orders'),
     path('orders/detail/<uuid:order_uuid>/', views.order_detail, name='order-detail'),
     path('orders/order-item/<uuid:order_uuid>/<uuid:item_uuid>/', views.order_item, name='order-item'),
     path('orders/order-item/update/<uuid:order_uuid>/<uuid:item_uuid>/', views.order_item_update, name='order-item-update'),

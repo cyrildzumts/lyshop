@@ -46,7 +46,7 @@ class Order(models.Model):
 
 
     def __str__(self):
-        return f'Order {self.user.username}'
+        return f'Order {self.order_ref_number}'
     
     def get_absolute_url(self):
         return reverse("orders:order-detail", kwargs={"order_uuid": self.order_uuid})

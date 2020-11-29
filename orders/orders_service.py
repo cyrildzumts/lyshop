@@ -18,6 +18,7 @@ import requests
 import json
 import logging
 import uuid
+import datetime
 
 
 logger = logging.getLogger(__name__)
@@ -240,6 +241,19 @@ def cancel_order(order, request_user=None):
     return True
 
 
+def clean_unpaid_orders():
+    request_user = User.objects.get(username='admin')
+    payment_due_date = datetime.datetime.now() - datetime.timedelta(commons.ORDER_PAID_DAY_DELAY)
+    queryset = Order.objects.filter(status=commons.ORDER_SUBMITTED, is_paid=False, created_at__lt=payment_due_date)
+    orders_count = queryset.count()
+    logger.info(f"Clean unpaid orders : updating unpaid orders")
+    for order in queryset:
+        logger.info(f"Cancelling order {order}")
+        cancel_order(oroder, request_user)
+    
+    logger.info(f"Clean unpaid orders : updated {orders_count} unpaid orders")
+    
+
 
 def order_clear_cart(user):
     logger.debug("Order - Clearing Cart Items")
@@ -401,4 +415,5 @@ def update_payment_method(postdata, payment_method):
     else:
         logger.warn(f'PaymentMethodForm invalid. Errors : {form.errors}')
         return payment_method, False
+
 

@@ -97,7 +97,6 @@ def order_cancel(request, order_uuid):
     order = get_object_or_404(Order,user=request.user, order_uuid=order_uuid)
         
     if orders_service.is_cancelable(order):
-        #Order.objects.filter(id=order.id).update(status=commons.ORDER_CANCELED, last_changed_by=request.user)
         orders_service.cancel_order(order, request.user)
         OrderStatusHistory.objects.create(order_status=commons.ORDER_CANCELED, order=order, order_ref_id=order.id, changed_by=request.user)
         messages.success(request, "Your order has been canceled")

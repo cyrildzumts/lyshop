@@ -427,7 +427,7 @@ def order_cancel(request, order_uuid):
     order = get_object_or_404(Order,user=request.user, order_uuid=order_uuid)
         
     if orders_service.is_cancelable(order):
-        Order.objects.filter(id=order.id).update(status=commons.ORDER_CANCELED, last_changed_by=request.user)
+        orders_service.cancel_order(order, request.user)
         OrderStatusHistory.objects.create(order_status=commons.ORDER_CANCELED, order=order, order_ref_id=order.id, changed_by=request.user)
         messages.success(request, "Your order has been canceled")
         logger.info(f"Order {order.id} canceled by user {request.user.username}")
@@ -435,6 +435,29 @@ def order_cancel(request, order_uuid):
         messages.error(request, "Error. Your order can no more be canceled")
         
     return redirect('dashboard:order-detail', order_uuid=order_uuid)
+
+
+@login_required
+def orders_clean(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+        
+    orders_service.clean_unpaid_orders()
+    messages.success(request, "Unpaid Orders has been cancelled")
+    logger.info(f"Unpaid Orders cancelled by user {request.user.username}")
+    
+        
+    return redirect('dashboard:orders')
 
 
 @login_required

@@ -10,6 +10,10 @@ PAYMENT_PAY_USER = None
 PAYMENT_PAY_HOST = 'http://pay-atalaku.com/api/payment-request'
 PAYMENT_PAY_URL = f'{PAYMENT_PAY_HOST}/{PAYMENT_PAY_USER}/{PAYMENT_PAY_TOKEN}/'
 
+# Unpaid orders submitted 'ORDER_PAID_DAY_DELAY' ago 
+# must be cancelled
+ORDER_PAID_DAY_DELAY = 3
+
 PAYMENT_OPTION_FIELD        = "payment_option"
 PAYMENT_METHOD_FIELD        = "payment_method"
 SHIPPING_ADDRESS_FIELD      = "address"
