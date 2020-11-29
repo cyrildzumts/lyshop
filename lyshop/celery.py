@@ -3,7 +3,7 @@ from kombu import Exchange, Queue
 from lyshop import settings
 from celery import Celery
 from celery.schedules import crontab
-from dashboard import tasks
+from dashboard import task
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lyshop.settings')
 app = Celery(settings.SITE_NAME)
