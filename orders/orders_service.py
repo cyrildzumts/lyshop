@@ -4,6 +4,7 @@ from django.db.models import F,Q,Count, Sum, FloatField
 from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
+from django.utils import timezone
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from orders import commons
@@ -243,7 +244,7 @@ def cancel_order(order, request_user=None):
 
 def clean_unpaid_orders():
     request_user = User.objects.get(username='admin')
-    payment_due_date = datetime.datetime.now() - datetime.timedelta(commons.ORDER_PAID_DAY_DELAY)
+    payment_due_date = timezone.now() - datetime.timedelta(commons.ORDER_PAID_DAY_DELAY)
     queryset = Order.objects.filter(status=commons.ORDER_SUBMITTED, is_paid=False, created_at__lt=payment_due_date)
     orders_count = queryset.count()
     logger.info(f"Clean unpaid orders : updating unpaid orders")
