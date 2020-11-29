@@ -50,7 +50,7 @@ class CouponForm(forms.ModelForm):
         begin_at = cleaned_data.get('begin_at')
         created_at = cleaned_data.get('created_at')
         max_usage = cleaned_data.get('max_usage')
-        if max_usage is not None and  (max_usage < 0 or max_usage > GLOBAL_CONF.COUPON_MAX_USAGE :
+        if max_usage is not None and  (max_usage < 0 or max_usage > GLOBAL_CONF.COUPON_MAX_USAGE) :
             raise ValidationError(
                 f'Invalid max usage: current max_usage = {max_usage}. max_usage must be > 0 and < {GLOBAL_CONF.COUPON_MAX_USAGE}'
             )
