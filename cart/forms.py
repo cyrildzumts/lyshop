@@ -54,12 +54,12 @@ class CouponForm(forms.ModelForm):
             raise ValidationError(
                 f'Invalid max usage: current max_usage = {max_usage}. max_usage must be > 0 and < {GLOBAL_CONF.COUPON_MAX_USAGE}'
             )
-        if begin_at < created_at:
+        if begin_at and created_at and  begin_at < created_at:
             raise ValidationError(
                 f'Invalid date: begin_at({begin_at}) < created_at({created_at})'
             )
 
-        if begin_at > expire_at:
+        if begin_at and expire_at and begin_at  > expire_at:
             raise ValidationError(
                 f'Invalid date: begin_at({begin_at}) > expire_at({expire_at})'
             )
