@@ -25,7 +25,7 @@
                 </div>
                 
                 <div class="entry">
-                  <span class="key">{% trans "Active" %}</span> <span class="value">{{coupon.is_active:yesno}}</span>
+                  <span class="key">{% trans "Active" %}</span> <span class="value">{{coupon.is_active|yesno}}</span>
                 </div>
                  {% if coupon.seller %}
                 <div class="entry">
