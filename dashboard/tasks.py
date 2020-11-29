@@ -1,7 +1,7 @@
 import string
 from django.utils.crypto import get_random_string
 from django.core.mail import send_mail
-from celery import shared_task, task
+from celery import shared_task
 import django.template.loader as loader
 from orders import orders_service
 import logging
@@ -31,7 +31,7 @@ def send_mail_task(email_context=None):
         logger.debug("email_context or template_name not available")
 
 
-@task
+@shared_task
 def cancel_unpaid_orders_task():
     logger.info("Starting cancel_unpaid_orders_task")
     orders_service.clean_unpaid_orders()
