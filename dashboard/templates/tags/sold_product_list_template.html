@@ -51,7 +51,7 @@
                   <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{sold_product.product.image}}" alt="{{sold_product.product.display_name}}"></div></td>
                   <td scope="row" data-label="{% trans 'Name' %}">{{sold_product.product.name}}</td>
                   <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
-                  <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_key}}</td>
+                  <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_value}}</td>
                   <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
                   <td scope="row" data-label="{% trans 'Promotion Price' %}"><span><span>{{sold_product.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
@@ -62,7 +62,7 @@
                   <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{sold_product.product.image}}" alt="{{sold_product.product.display_name}}"></div></td>
                   <td scope="row" data-label="{% trans 'Name' %}">{{sold_product.product.name}}</td>
                   <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
-                  <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_key}}</td>
+                  <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_value}}</td>
                   <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.unit_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
                   <td scope="row" data-label="{% trans 'End Price' %}"><span>{{sold_product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
