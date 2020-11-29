@@ -29,6 +29,10 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="max-usage">{% trans "Max Usage" %}</label>
+                            <input id="max-usage" type="text"  name="max_usage" value="{{coupon.max_usage}}">
+                        </div>
+                        <div class="form-group">
                             <label for="begin-at">{% trans "Start on" %}</label>
                             <input id="begin-at" type="Date"  name="begin_at" value="{{coupon.begin_at|date:'Y-m-d'}}">
                         </div>

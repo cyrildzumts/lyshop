@@ -47,6 +47,9 @@ class Coupon(models.Model):
     def get_vendor_delete_url(self):
         return reverse("vendors:coupon-delete", kwargs={"coupon_uuid": self.coupon_uuid})
     
+    def get_solded_price(self, price):
+        return float(price) * ((100 - self.reduction) / 100.0) 
+    
     
 
 class CartModel(models.Model):

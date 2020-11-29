@@ -1,5 +1,3 @@
-import string
-from django.utils.crypto import get_random_string
 from django.core.mail import send_mail
 from celery import shared_task
 import django.template.loader as loader
@@ -36,3 +34,4 @@ def cancel_unpaid_orders_task():
     logger.info("Starting cancel_unpaid_orders_task")
     orders_service.clean_unpaid_orders()
     logger.info("Finished cancel_unpaid_orders_task")
+

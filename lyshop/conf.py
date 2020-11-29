@@ -1,6 +1,8 @@
 PAGINATED_BY = 100
 PK_ULR_KWARG= 'product_uuid'
 
+COUPON_MAX_USAGE = 200
+
 PRODUCT_LIST_CONTEXT_NAME = 'product_list'
 PRODUCT_LIST_TEMPLATE_NAME = 'catalog/product_list.html'
 PRODUCT_DETAIL_CONTEXT_NAME = 'product'

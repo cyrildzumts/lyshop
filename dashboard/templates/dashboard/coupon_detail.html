@@ -25,7 +25,7 @@
                 </div>
                 
                 <div class="entry">
-                  <span class="key">{% trans "Status" %}</span> <span class="value">{% if coupon.is_active %}{% trans "Activated" %} {% else %}{% trans "Not activated" %}{% endif %}</span>
+                  <span class="key">{% trans "Active" %}</span> <span class="value">{{coupon.is_active:yesno}}</span>
                 </div>
                  {% if coupon.seller %}
                 <div class="entry">
@@ -50,6 +50,20 @@
                 </div>
             </div>
             <div class="box">
+                <div class="entry">
+                  <span class="key">{% trans "Usage" %}</span> <span class="value">{{coupon.usage|default_if_none:"0"}}</span>
+                </div>
+                <div class="entry">
+                  <span class="key">{% trans "Max Usage" %}</span> <span class="value">{{coupon.max_usage|default_if_none:"-"}}</span>
+                </div>
+                <div class="entry">
+                  <span class="key">{% trans "Expire at" %}</span> <span class="value">{{coupon.expire_at|date:"F j, Y"}}</span>
+                </div>
+                <div class="entry">
+                  <span class="key">{% trans "Activated at" %}</span> <span class="value">{{coupon.activated_at|date:"F j, Y"}}</span>
+                </div>
+            </div>
+            <div class="box">
                
                 <div class="entry">
                   <span class="key">{% trans "Added by" %}</span> <span class="value">{{coupon.added_by.username}}</span>
@@ -60,7 +74,7 @@
             </div>
           </div><!--End of title-->
           <div class="mat-box-content">
-                <div class="banner--actions">
+                <div class="actions">
                     <a class="mat-button mat-button-default" href="{{coupon.get_update_url}}"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
                     <a class="mat-button mat-button-default" href="{% url 'dashboard:coupon-create'%}"><i class="fas fa-plus icon"></i>{% trans "Add New Coupon" %}</a>
                     <a class="mat-button mat-button-default warn" href="{{coupon.get_dashboard_delete_url}}"><i class="fas fa-trash icon"></i>{% trans "Delete" %}</a>

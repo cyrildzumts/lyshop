@@ -1,6 +1,7 @@
 from django.db.models import F,Q,Count, Sum, FloatField, When, Case
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils import timezone
 from cart.models import CartItem, CartModel, Coupon
 from catalog.models import ProductVariant, Product
 import logging
@@ -186,9 +187,8 @@ def apply_coupon(cart, coupon):
     if not isinstance(cart, CartModel) or not isinstance(coupon, str) :
         return False
     try:
-        coupon_model = Coupon.objects.get(name=coupon, is_active=True, expire_at__gte=datetime.datetime.now())
-        price = cart.amount
-        solded_price = float(price) *((100 - coupon_model.reduction) / 100.0)
+        coupon_model = Coupon.objects.get(name=coupon, is_active=True, expire_at__gte=timezone.now())
+        solded_price = coupon.get_solded_price(cart.amount)
         CartModel.objects.filter(pk=cart.pk).update(coupon=coupon_model, solded_price=solded_price)
         logger.info(f"Coupon \"{coupon}\" applied to Cart for user \"{cart.user.username}\"")
     except ObjectDoesNotExist as e:
@@ -203,3 +203,15 @@ def remove_coupon(cart):
         return False
     
     CartModel.objects.filter(pk=cart.pk).update(coupon=None, solded_price=0)
+
+
+def coupons_cleanup():
+    coupon_set = Coupon.objects.filter(is_active=True, expire_at__lt=timezone.now())
+    cart_set = CartModel.objects.filter(coupon__in=coupon_set)
+    cart_count = cart_set.count()
+    coupon_count = coupon_set.count()
+    logger.info(f"coupons_cleanup : Found {coupon_count} expired coupon.")
+    logger.info(f"coupons_cleanup : Found {cart_count} Carts using expired coupons.")
+    coupon_set.update(is_active=False)
+    cart_set.update(coupon=None, solded_price=0)
+    logger.info(f"coupons_cleanup : Finished cleaning expired coupons.")

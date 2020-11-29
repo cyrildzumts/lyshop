@@ -48,9 +48,10 @@ CELERY_DEFAULT_EXCHANGE_TYPE = 'direct'
 
 CELERY_NAMESPACE = 'CELERY'
 CELERY_APP_NAME = 'lyshop'
-CELERY_IMPORT = (
-    'dashboard.tasks',
-)
+#CELERY_IMPORT = (
+#    'dashboard.tasks',
+#    'cart.tasks',
+#)
 
 ALLOWED_HOSTS = [os.getenv('LYSHOP_ALLOWED_HOST')]
 

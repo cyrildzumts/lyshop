@@ -19,6 +19,10 @@
                             <input id="reduction" type="text"  name="reduction" value="">
                         </div>
                         <div class="form-group">
+                            <label for="max-usage">{% trans "Max Usage" %}</label>
+                            <input id="max-usage" type="text"  name="max_usage" value="">
+                        </div>
+                        <div class="form-group">
                             <label for="seller">{% trans "Seller" %}</label>
                             <select name="seller" id="seller">
                                 {% for seller in sellers %}<option value="{{seller.id}}">{{seller.username}}</option>{% endfor %}
