@@ -17,7 +17,7 @@ app.conf.task_default_exchange_type = settings.CELERY_DEFAULT_EXCHANGE_TYPE
 app.conf.task_default_routing_key = settings.CELERY_DEFAULT_ROUTING_KEY
 app.conf.beat_schedule = {
     'clean_unpaid_orders': {
-        'task': 'tasks.cancel_unpaid_orders_task',
+        'task': 'cancel_unpaid_orders_task',
         'schedule' : crontab()
         #'schedule' : crontab(minute=0, hour='*/3')
     }
