@@ -12,7 +12,7 @@
 
     <div class="mat-box full">
           <div class="mat-box-title">
-            {% if is_seller %}
+            {% if is_seller and balance %}
             <div class="balance-info">
                   <div class="row flex-left"><h4>{% trans "Balance" %}</h4></div>
                   <div class="row flex-left balance"><span>{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %} </span></div>
@@ -25,7 +25,9 @@
                   <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a></li>
                   <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:sold-products' %}"><i class="fas fa-list icon"></i><span>{% trans "Sold products" %}</span></a></li>
                   <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:payments' %}"><i class="fas fa-list icon"></i><span>{% trans "Payments" %}</span></a></li>
+                  {% if balance %}
                   <li class="list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:balance-history' balance.balance_uuid %}"><i class="fas fa-history icon"></i><span>{% trans "Balance History" %}</span></a></li>
+                  {% endif %}
                   
               </ul>
           </div>
