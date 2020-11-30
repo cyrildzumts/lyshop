@@ -23,7 +23,7 @@ def is_vendor(user=None):
     return isinstance(user, User) and user.groups.filter(name=Constants.VENDOR_GROUP).exists()
 
 def can_have_balance(user):
-    return isinstance(user, User) and user.groups.filter(name=Constants.FEE_GROUP).exists()
+    return isinstance(user, User) and user.groups.filter(name=Constants.VENDOR_GROUP).exists()
 
 
 def get_vendor_balance(user):
