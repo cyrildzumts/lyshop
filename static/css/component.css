@@ -136,17 +136,6 @@ li a{
 	text-decoration: none;
 }
 
-.balance{
-	font-size: 1.5em;
-	font-weight: bold;
-}
-
-.balance-info{
-	font-size: 1em;
-	font-weight: bold;
-	height: 25px;
-	border-radius:50%;
-}
 
 .header {
 	
@@ -1107,8 +1096,6 @@ button, input, select, textarea{
 	font-size: 1em;
 	font-weight: bold;
 	max-width: 8em;
-	/*height: 25px;*/
-	border-radius:50%;
 }
 
 .register-hint{
