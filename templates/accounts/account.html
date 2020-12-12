@@ -1,41 +1,16 @@
-{% extends "base.html"%}
+{% extends "account_base.html"%}
 {% load i18n %}
 {% load shipment_status %}
 {% load order_tag %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                <h4> {% trans "Welcome" %} {{name}}</h4>
-        </div>
-        <div class="container">
-
-            <div class="col-10">
-                    {% if is_seller %}
-                    <div class="balance-info">
-                        <div class="row flex-left"><h4>{% trans "Balance" %}</h4></div>
-                        <div class="row flex-left balance"><span>{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %} </span></div>
-                    </div><!--End of Banner-Content-->
-                    {% endif %}
-                <div class="actions">
-                        <a class="mat-button mat-button-text" href="{{account.get_absolute_url}}"> {% trans "Account Details" %}</a>
-                        <a class="mat-button mat-button-text" href="{% url 'addressbook:addressbook' %}"><i class="fas fa-address-book icon"></i>  {% trans "Addressbook" %}</a>
-                        <a class="mat-button mat-button-text" href="{% url 'orders:orders' %}"> {% trans "Orders" %}</a>
-                        <a class="mat-button mat-button-text" href="{{account.get_absolute_url}}"> {% trans "Wishlist" %}</a>
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
 {% block MAIN %}
 
-<div class="row">
-    <p>{% trans "Account Summary" %}</p>
+<div class="flex">
+    <h3>{% trans "Account Summary" %}</h3>
 </div>
 <div class="container">
-   <p>{% trans "Recent Orders" %}</p>
+   
    {% if recent_orders %}
+   <div class="title"><h4>{% trans "Recent Orders" %}</h4></div>
    <div class="mat-table-wrapper">
         <table id="order-list" class="mat-table js-filter-table">
           <thead>
@@ -72,7 +47,7 @@
     </table>
     </div><!--End of Table Wrapper-->
    {% else %}
-   <div class="row">
+   <div class="mat-box">
     <p>{% trans "You have not order any product yet." %}</p>
     <p>{% trans "Your recent orders will be shown here." %}</p>
    </div>

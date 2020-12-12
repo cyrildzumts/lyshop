@@ -67,8 +67,10 @@
                         </div>
                 </div>    
         </div>
-        
-        
+        {% empty %}
+            <div class="mat-box">
+            <p>{% trans "You don't have added an address yet." %}</p>
+            </div>
         {% endfor %}
     </div>
 

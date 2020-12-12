@@ -2329,7 +2329,7 @@ a.mat-button{
 }
 
 table thead, .mat-table thead{
-	height: 64px;
+	max-height: 64px;
 	font-size: 1em;
 	font-weight: 600;
 	color: #242424;
