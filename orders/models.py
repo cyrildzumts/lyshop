@@ -222,7 +222,7 @@ class OrderPayment(models.Model):
         return queryset
 
 class Refund(models.Model):
-    amount = models.DecimalField(default=0.0, max_digits=GLOBAL_CONF.MAX_DIGITS, decimal_places=GLOBAL_CONF.DECIMAL_PLACES)
+    amount = models.DecimalField(default=0.0, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
     status = models.IntegerField(default=Constants.REFUND_PENDING, choices=Constants.REFUND_STATUS)
     declined_reason = models.IntegerField(blank=True, null=True, choices=Constants.REFUND_DECLINED_REASON)
     payment = models.OneToOneField(OrderPayment, on_delete=models.CASCADE)
