@@ -197,6 +197,49 @@ class PaymentRequest(models.Model):
         return queryset
 
 
+class OrderPayment(models.Model):
+    amount = models.DecimalField(default=0.0, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order_payments')
+    verification_code = models.TextField(max_length=80)
+    payment_mode = models.IntegerField(choices=commons.ORDER_PAYMENT_MODE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    payment_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+
+    def __str__(self):
+        return f"OrderPayment - {self.amount}"
+    
+    def get_absolute_url(self):
+        return reverse('orders:order-payment-detail', kwargs={'payment_uuid':self.payment_uuid})
+
+    def get_dashboard_absolute_url(self):
+        return reverse('dashboard:order-payment-detail', kwargs={'payment_uuid':self.payment_uuid})
+
+    @staticmethod
+    def get_user_payments(user):
+        queryset = OrderPayment.objects.none()
+        if user and user.is_authenticated:
+            queryset = OrderPayment.objects.filter(sender=user).order_by('-created_at')
+        return queryset
+
+class Refund(models.Model):
+    amount = models.DecimalField(default=0.0, max_digits=GLOBAL_CONF.MAX_DIGITS, decimal_places=GLOBAL_CONF.DECIMAL_PLACES)
+    status = models.IntegerField(default=Constants.REFUND_PENDING, choices=Constants.REFUND_STATUS)
+    declined_reason = models.IntegerField(blank=True, null=True, choices=Constants.REFUND_DECLINED_REASON)
+    payment = models.OneToOneField(OrderPayment, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_changed_at = models.DateTimeField(auto_now=True)
+    refund_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+
+    def __str__(self):
+        return f"Refund {self.payment.sender.username} : {self.amount} {settings.CURRENCY}"
+
+    def get_absolute_url(self):
+        return reverse('orders:refund-detail', kwargs={'refund_uuid':self.refund_uuid})
+
+    def get_dashboard_absolute_url(self):
+        return reverse('dashboard:refund-detail', kwargs={'refund_uuid':self.refund_uuid})
+
+
 class OrderStatusHistory(models.Model):
     order_status = models.IntegerField()
     order_ref_id = models.IntegerField(blank=False, null=False)

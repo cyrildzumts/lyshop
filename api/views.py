@@ -115,9 +115,7 @@ def create_address(request):
     if address :
         address_dict = model_to_dict(address)
         address_dict.update({'status': True})
-        serialized = AddressSerializer(instance=address)
         logger.info(f"Address Dict : {address_dict}")
-        logger.info(f"Address serialzed :  {serialized.data}")
         return Response(address_dict)
     
     return Response(data={'status': False, 'error': 'address not created'}, status=status.HTTP_200_OK)
@@ -135,3 +133,17 @@ def update_address(request, address_uuid):
         return Response(data={'status': True, **model_to_dict(address)}, status=status.HTTP_200_OK)
     
     return Response(data={'status': False, 'error': 'address not created'}, status=status.HTTP_200_OK)
+
+
+
+
+@api_view(['GET', 'POST'])
+def client_add_payment(request, order_uuid, token):
+    postdata = utils.get_postdata(request)
+    
+    pass
+
+
+@api_view(['GET', 'POST'])
+def client_add_refund(request, payment_uuid, token):
+    pass
