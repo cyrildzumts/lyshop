@@ -4,12 +4,15 @@
 <form id="lang-form" name="localization-form" action="{% url 'set_language' %}" method="POST">{% csrf_token %}  
         <input name="next" type="hidden" value="{{request.path}}">
         <input id="current-lang" type="hidden" name="language" value="{{LANGUAGE_CODE}}">
-        <i class="fas fa-globe icon"></i>
-        <ul class="mat-list row languages">
-        {% get_available_languages as LANGUAGES %}
-        {% get_language_info_list for LANGUAGES as languages %}
-        {% for language in languages %}
-                <li class="mat-list-item js-lang {% if language.code == LANGUAGE_CODE %}language active selected{% endif %}" onclick="change_language(this);" data-value="{{language.code}}" {% if language.code == LANGUAGE_CODE %}class="language active selected"{% endif %}>{{ language.code }}</li>
-        {% endfor %}
-        </ul>
+        <div class="flex">
+                <i class="fas fa-globe icon"></i>
+                <ul class="flex languages">
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                        <li class="mat-list-item js-lang {% if language.code == LANGUAGE_CODE %}language active selected{% endif %}" onclick="change_language(this);" data-value="{{language.code}}" {% if language.code == LANGUAGE_CODE %}class="language active selected"{% endif %}>{{ language.code }}</li>
+                {% endfor %}
+                </ul>
+        </div>
+       
 </form>

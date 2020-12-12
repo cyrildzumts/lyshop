@@ -13,6 +13,15 @@ body{
     color: var(--fourth-color) !important;
     font-weight: 700;
 }
+.site-panel{
+    background-color: var(--primary-color);
+    color: var(--fourth-color);
+}
+
+.header .menu-button{
+    color: var(--fourth-color);
+    font-weight: 600;
+}
 
 .page--banner{
     background-color: var(--third-color);
