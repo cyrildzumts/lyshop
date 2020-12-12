@@ -27,9 +27,18 @@ body{
     background-color: var(--primary-color);
     color: var(--third-color);
 }
+.mat-button-text{
+    /*background-color: var(--primary-color);*/
+    color: var(--primary-color);
+}
+.mat-button-outline{
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
 
 .mat-button{
-    color: var(--primary-color);
+    /*color: var(--primary-color);*/
     font-weight: 700;
 }
 
