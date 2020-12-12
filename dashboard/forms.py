@@ -39,7 +39,7 @@ class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ("user","date_of_birth","telefon",
-                  "newsletter","is_active",,"account_type",
+                  "newsletter","is_active","account_type",
                   "email_validated", )
         
 
