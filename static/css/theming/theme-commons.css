@@ -132,3 +132,12 @@ li.active.selected{
 .secondary-color{
     color: var(--secondary-color);
 }
+
+.mat-input label, .form-group label{
+	color: var(--primary-color);
+}
+
+.mat-input label input, .mat-input input, .form-group input{
+    color: var(--primary-color);
+	border-bottom: 2px solid var(--primary-color) !important;
+}

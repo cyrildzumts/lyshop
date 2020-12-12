@@ -295,7 +295,7 @@ label{
 	position: relative;
 	min-height: 72px;
 	width: 100%;
-	padding: 8px;
+	padding: 8px 0;
 }
 
 .mat-input label, .form-group label{
@@ -305,7 +305,6 @@ label{
 	text-align: left;
 	min-width: 12.5em;
 	max-width: 100%;
-	color: var(--label-color);
 	font-weight: 600;
 	padding: 0 !important;
 	margin-bottom: 0;
@@ -319,9 +318,8 @@ label{
 
 .mat-input label input, .mat-input input, .form-group input{
 	display: inline-block;
-	/*width: 100%;*/
+	width: 100%;
 	text-align: left;
-	color: #242424;
 	font-weight: 500;
 	letter-spacing: .2px;
 	border: none !important;
