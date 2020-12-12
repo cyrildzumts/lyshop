@@ -223,8 +223,8 @@ class OrderPayment(models.Model):
 
 class Refund(models.Model):
     amount = models.DecimalField(default=0.0, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
-    status = models.IntegerField(default=Constants.REFUND_PENDING, choices=Constants.REFUND_STATUS)
-    declined_reason = models.IntegerField(blank=True, null=True, choices=Constants.REFUND_DECLINED_REASON)
+    status = models.IntegerField(default=commons.REFUND_PENDING, choices=commons.REFUND_STATUS)
+    declined_reason = models.IntegerField(blank=True, null=True, choices=commons.REFUND_DECLINED_REASON)
     payment = models.OneToOneField(OrderPayment, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     last_changed_at = models.DateTimeField(auto_now=True)
