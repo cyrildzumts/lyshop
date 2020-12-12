@@ -210,9 +210,9 @@ li a{
 }
 
 .banner--description{
-	width: 50%;
+	/*width: 50%;*/
 	text-align: center;
-	font-size: 1.125em;
+	font-size: 1em;
 }
 .banner-entry{
 	margin-bottom: 16px;
