@@ -5,7 +5,7 @@ body{
 }
 
 .header{
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: var(--fourth-color);
 }
 
