@@ -223,6 +223,8 @@
 .col-xs-12 { width: 100%; }
 .hidden-xs {display: none;}
 .box{ width: 100%;}
+.mat-box{width: 100%;}
+body{font-size: 1.5em;}
 
 }
   
@@ -245,6 +247,8 @@
   .col-m-12 { width: 100%; }
   .hidden-m {display: none;}
   .box{ width: 100%;}
+  .mat-box{width: 100%;}
+  body{font-size: 1.5em;}
 
 }
 
