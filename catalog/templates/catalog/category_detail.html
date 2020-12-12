@@ -3,9 +3,9 @@
 {% load i18n %}
 {% load l10n %}
 
-{% block  HEADER_BANNER_TITLE %}
+{% block  HEADER_BANNER %}
        
-{% endblock HEADER_BANNER_TITLE %}
+{% endblock HEADER_BANNER%}
 
 {% block MAIN_CONTENT %}
 <div class="container">
@@ -17,7 +17,7 @@
         </div>
         {% else %}
         <div class="mat-box">
-        <p>{% trans "There are no products to display for this category yet." %}</p>
+        <p>{% trans "There are no products to display for this  category yet." %}</p>
         <p>{% trans "As soon as Product are available on this category, they will be listed here." %}</p>
         <p>{% trans "Please try again later" %}</p>
         </div>
