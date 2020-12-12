@@ -105,8 +105,7 @@ def category_create (request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     if request.method == 'POST':
-        postdata = utils.get_postdata(request)
-        category = inventory_service.create_category(postdata)
+        category = inventory_service.create_category(utils.get_postdata(request))
         if category:
             messages.success(request,_('New Category created'))
             logger.info(f'[ OK ]New Category \"{category.name}\" added by user {request.user.username}' )
@@ -193,7 +192,7 @@ def category_update(request, category_uuid):
         raise PermissionDenied
     category = get_object_or_404(models.Category, category_uuid=category_uuid)
     if request.method == 'POST':
-        category , updated = inventory_service.update_category(postdata, category)
+        category , updated = inventory_service.update_category(utils.get_postdata(request), category)
         if updated:
             messages.success(request,_('Category updated'))
             logger.info(f'[ OK ] Category \"{category.name}\" updated by user {request.user.username}' )
