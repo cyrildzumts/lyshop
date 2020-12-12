@@ -1873,28 +1873,6 @@ input.editable{
 	/*border-radius: 4px;*/
 }
 
-.mat-button:disabled {
-	color: #ccc !important;
-	font-weight: 700 !important;
-	border: 2px solid #ccc !important;
-}
-
-.mat-button:disabled:hover {
-	color: #aaa !important;
-	font-weight: 700 !important;
-	border: 2px solid #aaa !important;
-}
-
-.mat-button-outlined{
-	border: 2px solid #242424 !important;
-
-	/*border-radius: 4px;*/
-}
-
-.mat-button-outlined:hover{
-
-	color: #202020;
-}
 
 .mat-button-default *{
 	font-weight: 700;

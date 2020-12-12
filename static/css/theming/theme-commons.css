@@ -32,9 +32,22 @@ body{
     color: var(--primary-color);
 }
 .mat-button-outline{
-    border-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
     color: var(--primary-color);
 }
+
+.mat-button:disabled {
+	color: #ccc !important;
+	font-weight: 700 !important;
+	border: 2px solid #ccc !important;
+}
+
+.mat-button:disabled:hover {
+	color: #aaa !important;
+	font-weight: 700 !important;
+	border: 2px solid #aaa !important;
+}
+
 
 
 .mat-button{
