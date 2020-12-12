@@ -99,7 +99,7 @@ class Category(models.Model):
     FORM_FIELDS = ['name', 'display_name', 'code', 'parent', 'added_by', 'is_active']
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.display_name}"
     
     def get_children(self):
         return Category.objects.filter(parent=self)

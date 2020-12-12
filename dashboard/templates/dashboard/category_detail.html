@@ -34,6 +34,12 @@
             <div class="entry">
               <span class="key">{% trans "Creation Date" %}</span> <span class="value">{{category.created_at|date:'F j, Y'}}</span>
             </div>
+            <div class="entry">
+              <span class="key">{% trans "Is active" %}</span> <span class="value">{{category.is_active|yesno}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Parent" %}</span> <span class="value">{{category.parent}}</span>
+            </div>
       </div>
     </div>
     <div class="mat-box-content">
