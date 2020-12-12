@@ -4,7 +4,7 @@ from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from catalog.models import ProductVariant
 from addressbook.models import Address
-from lyshop import conf
+from lyshop import conf as GLOBAL_CONF
 from orders import commons
 from lyshop import settings, utils
 import uuid
@@ -16,10 +16,10 @@ class Order(models.Model):
     order_ref_number = models.IntegerField(default=utils.get_random_ref)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     last_changed_by = models.ForeignKey(User, related_name='edited_orders', blank=True, null=True, on_delete=models.SET_NULL)
-    amount = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
-    shipping_price = models.DecimalField(default=0, blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
-    solded_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
-    total = models.DecimalField(default=0, blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    amount = models.DecimalField(default=0, blank=False, null=False, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
+    shipping_price = models.DecimalField(default=0, blank=True, null=True, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
+    solded_price = models.DecimalField(blank=True, null=True, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
+    total = models.DecimalField(default=0, blank=False, null=False, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
     quantity = models.IntegerField(default=0, blank=True, null=True)
     address = models.ForeignKey('addressbook.Address', related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
@@ -79,10 +79,10 @@ class OrderItem(models.Model):
     changed_by = models.ForeignKey(User, related_name='changed_orderitems', blank=True, null=True, on_delete=models.SET_NULL)
     product = models.ForeignKey(ProductVariant, related_name='order_items', on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
-    unit_price = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
-    promotion_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
-    total_price = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
-    total_promotion_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    unit_price = models.DecimalField( max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
+    promotion_price = models.DecimalField(blank=True, null=True, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
+    total_price = models.DecimalField( max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
+    total_promotion_price = models.DecimalField(blank=True, null=True, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     is_active = models.BooleanField(default=True)
     item_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -157,11 +157,11 @@ class PaymentRequest(models.Model):
     verification_code = models.TextField(max_length=80, blank=True, null=True)
     order = models.ForeignKey(Order, related_name='payment_requests', on_delete=models.CASCADE, blank=True, null=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE ,blank=False )
-    amount = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
-    unit_price = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES, blank=True, null=True)
+    amount = models.DecimalField( max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
+    unit_price = models.DecimalField( max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES, blank=True, null=True)
     quantity = models.IntegerField(default=1, blank=True, null=True)
-    tva = models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES, blank=True, null=True)
-    commission =  models.DecimalField( max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES, blank=True, null=True)
+    tva = models.DecimalField( max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES, blank=True, null=True)
+    commission =  models.DecimalField( max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES, blank=True, null=True)
     country = models.CharField(max_length=128, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -198,7 +198,7 @@ class PaymentRequest(models.Model):
 
 
 class OrderPayment(models.Model):
-    amount = models.DecimalField(default=0.0, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    amount = models.DecimalField(default=0.0, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order_payments')
     verification_code = models.TextField(max_length=80)
     payment_mode = models.IntegerField(choices=commons.ORDER_PAYMENT_MODE)
