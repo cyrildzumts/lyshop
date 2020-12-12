@@ -28,6 +28,13 @@
           <div class="mat-box">
             {% include "tags/form_snippet.html" with form=user_form %}
           </div>
+          <div class="mat-input">
+            <label for="account_type">{% trans "ACCOUNT TYPE" %}</label>
+            <select name="account_type" id="account_type">
+              <option value="">{% trans "Select an Account Type" %}</option>
+              {% for k, v in ACCOUNT_TYPE %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
+            </select>
+          </div>
           {% comment %}<div class="mat-box">
             {% include "tags/form_snippet.html" with form=account_form %}
           </div>
