@@ -19,10 +19,16 @@
           {% endblocktrans %}
         </p>
     </div><!--End of Banner Content-->
-      
-  <div class="banner--actions">
+  {% if discover %}
+   <div class="banner--actions">
     <a class="mat-button mat-button-default" href="#"> {% trans 'Discover' %} {{site_name}}</a>
   </div><!--End of Banner Actions-->
+  {% else %}
+  <div class="banner--actions">
+    <a class="mat-button mat-button-default" href="catalog:catalog-home"> {% trans 'Discover' %} {{site_name}}</a>
+  </div><!--End of Banner Actions-->
+  {% endif %}
+ 
   
 </div><!--End of Banner-->
 {% endblock HEADER_BANNER %}
