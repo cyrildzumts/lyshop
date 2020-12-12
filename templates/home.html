@@ -25,7 +25,7 @@
   </div><!--End of Banner Actions-->
   {% else %}
   <div class="banner--actions">
-    <a class="mat-button mat-button-default" href="catalog:catalog-home"> {% trans 'Discover' %} {{site_name}}</a>
+    <a class="mat-button mat-button-default" href="{% url 'catalog:catalog-home' %}"> {% trans 'Discover' %} {{site_name}}</a>
   </div><!--End of Banner Actions-->
   {% endif %}
  
