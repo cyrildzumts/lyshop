@@ -3,7 +3,7 @@
 {% load addresses_tags %}
 {% block MAIN %}
 
-<div class="col-xs-12 col-8">
+<div class="col-xs-12 col-4">
     <form  class="form" name="product" action="{% url 'addressbook:address-create' %}" method="POST">{% csrf_token %}
         <input type="hidden" name="user" value="{{request.user.pk}}">
         
