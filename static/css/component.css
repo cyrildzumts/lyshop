@@ -2577,13 +2577,12 @@ table tbody tr, .mat-table tbody tr{
 	padding: 0;
 }
 #about-page p{
-	width: 50%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
 
-#about-page div ul{ 
+#about-page ul{ 
 	list-style-type: unset;
 	padding: 0.5em 2.5em;
 	margin: 0;
