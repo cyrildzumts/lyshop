@@ -2573,7 +2573,6 @@ table tbody tr, .mat-table tbody tr{
 #about-page p{
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;
 }
 
 
@@ -2584,10 +2583,6 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
-	#about-page p{
-		width: 95%;
-	}
-	
 	.list-md-vertical{
 		display: flex;
 		flex-direction: column;
@@ -2643,9 +2638,6 @@ table tbody tr, .mat-table tbody tr{
 
 
 @media only screen and (min-width:40em){
-	#about-page p{
-		width: 50%;
-	}
 	.category-nav{
 		display: flex;
 		align-items: center;
