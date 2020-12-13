@@ -1966,6 +1966,11 @@ a.mat-button{
 	justify-content: center;
 }
 
+.footer .list-item *{
+	padding: 0 1em;
+}
+
+
 
 
 .mat-list{
