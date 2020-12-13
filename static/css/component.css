@@ -2558,8 +2558,16 @@ table tbody tr, .mat-table tbody tr{
 	padding: 1em;
 	margin: 1em auto;
 }
+#about-page .title{ 
+	padding: 0.5em;
+}
 
 #about-page p{ 
+	padding: 0.5em;
+	margin: 0.5em auto;
+}
+
+#about-page p ul{ 
 	padding: 1em;
 	margin: 1em auto;
 }
