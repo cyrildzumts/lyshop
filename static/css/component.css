@@ -2533,9 +2533,14 @@ table tbody tr, .mat-table tbody tr{
 }
 */
 @media only screen and (max-width:40em){
+	.category-nav{
+		width: 100%;
+	}
 	.list-md-vertical{
 		display: flex;
 		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
 
 	}
 	.mat-table thead, table thead{
@@ -2583,6 +2588,12 @@ table tbody tr, .mat-table tbody tr{
 
 
 @media only screen and (min-width:40em){
+	.category-nav{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
 	.list-horizontal{
 		display: flex;
 		flex-direction: row;
