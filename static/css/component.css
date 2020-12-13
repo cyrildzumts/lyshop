@@ -2487,6 +2487,9 @@ table tbody tr, .mat-table tbody tr{
 	top: 48px;
 	left: -100%;
 }
+.site-panel  .mat-button{
+	justify-content: start !important;
+}
 
 .highlight{
 	position: relative;
@@ -2630,9 +2633,7 @@ table tbody tr, .mat-table tbody tr{
 		width: 100%;
 		/*background-color: transparent;*/
 	}
-	.site-panel .mat-list-item .mat-button{
-		justify-content: start !important;
-	}
+	
 	.header--panel .mat-list{
 		padding: 0;
 	}
