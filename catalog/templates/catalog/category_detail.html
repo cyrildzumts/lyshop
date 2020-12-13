@@ -3,9 +3,11 @@
 {% load i18n %}
 {% load l10n %}
 
-{% block  HEADER_BANNER %}
-       
-{% endblock HEADER_BANNER%}
+{% if not show_banner %}
+{% block HEADER_BANNER %}
+
+{% endblock HEADER_BANNER %}
+{% endif %}
 
 {% block MAIN_CONTENT %}
 <div class="container">

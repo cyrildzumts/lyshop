@@ -5,15 +5,7 @@
         
 {% endblock META_REDIRECT %}
 
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Catalog" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %} 
-        </div>
-    </div>
-{% endblock HEADER_BANNER %}
+
 {% block MAIN %}
 {% block CATEGORIES %}
 {% include 'tags/category_nav.html' %}

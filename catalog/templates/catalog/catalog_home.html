@@ -1,8 +1,11 @@
 {% extends "catalog_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER_TITLE %}
+{% if not show_banner %}
+{% block HEADER_BANNER %}
 
-{% endblock HEADER_BANNER_TITLE %}
+{% endblock HEADER_BANNER %}
+{% endif %}
+
 
 {% block FILTER %}
 {% endblock FILTER %}

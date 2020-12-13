@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %} 
+{% if banner %}
 
 {% block HEADER_BANNER %}
 <div class="banner">
@@ -32,6 +33,7 @@
   
 </div><!--End of Banner-->
 {% endblock HEADER_BANNER %}
+{% endif %}
 
 {% block MAIN %}
 
