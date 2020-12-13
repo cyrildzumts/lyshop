@@ -2570,7 +2570,13 @@ table tbody tr, .mat-table tbody tr{
 	text-align: left;
 	padding: 0.5em;
 }
+#about-page div p{ 
+	width: 100%;
+	text-align: left;
+	padding: 0;
+}
 #about-page p{
+	width: 50%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
