@@ -2560,6 +2560,9 @@ table tbody tr, .mat-table tbody tr{
 		justify-content: flex-start;
 
 	}
+	.site-panel {
+		padding: 0.5em 1em !important;
+	}
 	.mat-table thead, table thead{
 		border: none;
 		width: 1px;
