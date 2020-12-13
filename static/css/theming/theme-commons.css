@@ -141,3 +141,6 @@ li.active.selected{
     color: var(--primary-color);
 	border-bottom: 2px solid var(--primary-color) !important;
 }
+.list-item .mat-button{
+    color: var(--third-color);
+}

@@ -1959,6 +1959,12 @@ a.mat-button{
 	margin: 2px 0;
 }
 
+.footer .list-item{
+	display: flex;
+	align-items: baseline;
+	font-size: 0.8em;
+	justify-content: center;
+}
 
 
 
@@ -2538,7 +2544,7 @@ table tbody tr, .mat-table tbody tr{
 	padding: 0.5em 1em;
 }
 @media only screen and (max-width:40em){
-
+	
 	.list-md-vertical{
 		display: flex;
 		flex-direction: column;
@@ -2618,6 +2624,9 @@ table tbody tr, .mat-table tbody tr{
 		left: unset;
 		width: 100%;
 		/*background-color: transparent;*/
+	}
+	.site-panel .mat-list-item .mat-button{
+		justify-content: start !important;
 	}
 	.header--panel .mat-list{
 		padding: 0;
