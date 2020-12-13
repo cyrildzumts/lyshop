@@ -2570,6 +2570,12 @@ table tbody tr, .mat-table tbody tr{
 	text-align: left;
 	padding: 0.5em;
 }
+#about-page p{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 
 #about-page div ul{ 
 	list-style-type: unset;
@@ -2578,6 +2584,9 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
+	#about-page p{
+		width: 95%;
+	}
 	
 	.list-md-vertical{
 		display: flex;
@@ -2634,6 +2643,9 @@ table tbody tr, .mat-table tbody tr{
 
 
 @media only screen and (min-width:40em){
+	#about-page p{
+		width: 50%;
+	}
 	.category-nav{
 		display: flex;
 		align-items: center;
