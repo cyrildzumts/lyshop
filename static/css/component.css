@@ -2532,10 +2532,13 @@ table tbody tr, .mat-table tbody tr{
 	display: none;
 }
 */
+.category-nav{
+
+	width: 100%;
+	padding: 0.5em 1em;
+}
 @media only screen and (max-width:40em){
-	.category-nav{
-		width: 100%;
-	}
+
 	.list-md-vertical{
 		display: flex;
 		flex-direction: column;
