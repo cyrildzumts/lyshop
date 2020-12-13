@@ -2551,6 +2551,19 @@ table tbody tr, .mat-table tbody tr{
 	width: 100%;
 	padding: 0.5em 1em;
 }
+
+#about-page{
+	display: flex;
+	flex-direction: column;
+	padding: 1em;
+	margin: 1em auto;
+}
+
+#about-page p{ 
+	padding: 1em;
+	margin: 1em auto;
+}
+
 @media only screen and (max-width:40em){
 	
 	.list-md-vertical{
