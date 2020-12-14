@@ -144,3 +144,19 @@ li.active.selected{
 .list-item .mat-button{
     color: var(--third-color) !important;
 }
+
+#notifications-wrapper{
+    background-color: var(--primary-color);
+}
+
+.notification-list{
+    background-color:var(--primary-color);
+    color: var(--third-color);
+}
+
+.notification{
+    background-color:var(--primary-color);
+    color: var(--third-color);
+    padding: 0.5em 0.2em;
+}
+

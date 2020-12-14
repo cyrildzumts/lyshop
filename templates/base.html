@@ -96,15 +96,12 @@
 {% block NOTIFICATIONS %}
         <div id="notifications-wrapper" class="notifications-wrapper">
                 <div class="flex-column">
-                        <div class="row notifications-controls">
-                               <span class="title">{% trans "INFO" %}</span>
-                        </div>
                         <ul id="messages" class="messages notification-list" data-toggle="#notifications-wrapper">
                         {% for message in messages %}
                                 <li {% if message.tags %} class="{{message.tags}}" {% endif %}>
                                         <div class="notification flex">
                                                 <i class="js-close fas fa-times-circle icon"></i>
-                                                <span>{{message}}</span>
+                                                <p>{{message}}</p>
                                         </div>
                                 </li>
                         {% endfor %}
