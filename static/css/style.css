@@ -145,15 +145,15 @@
     margin-right: 4px;
 }
 
-.entry .key{
-    font-weight: 400;
+.entry .key, .attr .key{
+    font-weight: 600;
     /*width: 50%;*/
     /*margin: 4px 8px;*/
 
 }
 
 .entry .value{
-    font-weight: 600;
+    font-weight: 500;
     text-align: right;
     margin: 4px 8px;
 }
