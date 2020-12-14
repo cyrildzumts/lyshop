@@ -144,10 +144,11 @@ li.active.selected{
 .list-item .mat-button{
     color: var(--third-color) !important;
 }
-
+/*
 #notifications-wrapper{
     background-color: var(--primary-color);
 }
+*/
 
 .notification-list{
     background-color:var(--primary-color);

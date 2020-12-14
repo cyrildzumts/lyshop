@@ -71,8 +71,10 @@ define(['ajax_api'], function(ajax_api) {
         }
         ajax_api(option).then(function(response){
             self.update_badge(response.quantity);
+            notify({level:'info', content:'product added'});
         }, function(reason){
             console.error(reason);
+            notify({level:'warn', content:'product could not be added'});
         });
     }
 
@@ -125,7 +127,9 @@ define(['ajax_api'], function(ajax_api) {
                     $(".js-cart-reduction").text(response.reduction);
                     $(".js-add-coupon").hide().siblings(".js-remove-coupon").show();
                     $("#coupon").prop('disabled', true).toggleClass('disabled');
+                    notify({level:'info', content:'coupon added'});
                 }, function(reason){
+                    notify({level:'info', content:'coupon could not be added'});
                     console.error("Error on adding Coupon \"%s\" to user cart", coupon);
                     console.error(reason);
                 });
@@ -162,10 +166,12 @@ define(['ajax_api'], function(ajax_api) {
                 $(".final-price").text(response.total);
                 $(".js-cart-reduction").text(response.reduction);
                 $(".js-add-coupon").show().siblings(".js-remove-coupon").hide();
+                notify({level:'info', content:'coupon removed'});
                 //document.location.reload();
             }, 
             function(error){
                 console.error("Error on vefirying Coupon");
+                notify({level:'warn', content:'error on checking the coupon'});
             });
 
     }
@@ -229,6 +235,7 @@ define(['ajax_api'], function(ajax_api) {
             $(".final-price").text(response.total);
             $(".js-cart-quantity").text(response.count);
             $(".js-cart-reduction").text(response.reduction);
+            notify({level:'info', content:'cart updated'});
             //to_update.cart_total.html(response['cart_total']);
             //to_update.cart_quantity.html(response['count']);            
             
@@ -268,6 +275,7 @@ define(['ajax_api'], function(ajax_api) {
             $(".js-cart-quantity").text(response.count);
             $(".js-cart-reduction").text(response.reduction);
             this.update_badge(response.count);
+            notify({level:'info', content:'cart updated'});
             
         }, function(reason){
     
@@ -275,6 +283,7 @@ define(['ajax_api'], function(ajax_api) {
             console.error("Error Response Text : \"%s\"", reason.responseText)
             console.error(reason);
             target.val(reason.responseJSON['item_quantity']);
+            notify({level:'warn', content:'cart could not be updated'});
         });
     }
 
