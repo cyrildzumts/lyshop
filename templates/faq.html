@@ -6,7 +6,7 @@
 
 
 {% block MAIN %}
-<div id="faq-page" class="col-xs-12 col-6">
+<div id="static-page" class="col-xs-12 col-6">
 <h2>{% trans "LYSHOP FAQ" %}</h2>
 <p>
 {% blocktrans trimmed %}
@@ -25,7 +25,10 @@ This FAQ will collects the commons questions may be looking for answer for.
 <h3>{% trans "How long does it take to be delivered ?" %}</h3>
 <p></p>
 <h3>{% trans "What are the available payment methods ?" %}</h3>
-<p></p>
+<p>{% trans "The available payment methods are" %} : </p>
+<ul>
+    <li>Airtel Money</li>
+</ul>
 
 </div>
 

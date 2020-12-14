@@ -2552,7 +2552,7 @@ table tbody tr, .mat-table tbody tr{
 	padding: 0.5em 1em;
 }
 
-#about-page{
+#static-page{
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -2560,27 +2560,27 @@ table tbody tr, .mat-table tbody tr{
 	letter-spacing: 0.15em;
 	padding: 1em;
 }
-#about-page .title{ 
+#static-page .title{ 
 	padding: 0.5em;
 }
 
-#about-page div, #about-page p{ 
+#static-page div, #static-page p{ 
 	width: 100%;
 	text-align: left;
 	padding: 0.5em;
 }
-#about-page div p{ 
+#static-page div p{ 
 	width: 100%;
 	text-align: left;
 	padding: 0;
 }
-#about-page p{
+#static-page p{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
 
-#about-page ul{ 
+#static-page ul{ 
 	list-style-type: unset;
 	padding: 0.5em 0.5em 0.5em 2.1em;
 	margin: 0;
