@@ -1309,7 +1309,8 @@ a {
 .badge{
 	color: #6b808c;
 	display: inline-block;
-	margin: 0 4px 4px 0;
+	margin: 0;
+	margin-left: 0.1em;
 	max-width: 100%;
 	min-height: 20px;
 	overflow: hidden;
