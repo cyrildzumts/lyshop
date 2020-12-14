@@ -2558,9 +2558,7 @@ table tbody tr, .mat-table tbody tr{
 	align-items: flex-start;
 	justify-content: flex-start;
 	letter-spacing: 0.15em;
-	width: 70%;
 	padding: 1em;
-	margin: 1em auto;
 }
 #about-page .title{ 
 	padding: 0.5em;
@@ -2584,7 +2582,7 @@ table tbody tr, .mat-table tbody tr{
 
 #about-page ul{ 
 	list-style-type: unset;
-	padding: 0.5em 2.5em;
+	padding: 0.5em 0.5em 0.5em 2.1em;
 	margin: 0;
 }
 
