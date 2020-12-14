@@ -61,7 +61,7 @@ def about(request):
 
 
 def faq(request):
-    template_name = "faq_flat.html"
+    template_name = "faq.html"
     page_title = "FAQ" + ' - ' + settings.SITE_NAME
     context = {
         'page_title': page_title,

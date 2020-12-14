@@ -1,0 +1,32 @@
+{% extends "base.html"%}
+{% load i18n %} 
+{% block META_REDIRECT %}
+        
+{% endblock META_REDIRECT %}
+
+
+{% block MAIN %}
+<div id="faq-page" class="col-xs-12 col-6">
+<h2>{% trans "LYSHOP FAQ" %}</h2>
+<p>
+{% blocktrans trimmed %}
+This FAQ will collects the commons questions may be looking for answer for.
+{% endblocktrans %}
+</p>
+
+<h3>{% trans "How do I add an Item in the Cart ?" %}</h3>
+<p></p>
+<h3>{% trans "How can I place an Order ?" %}</h3>
+<p></p>
+<h3>{% trans "I have placed an order. What now ?" %}</h3>
+<p></p>
+<h3>{% trans "How can I cancel my order ?" %}</h3>
+<p></p>
+<h3>{% trans "How long does it take to be delivered ?" %}</h3>
+<p></p>
+<h3>{% trans "What are the available payment methods ?" %}</h3>
+<p></p>
+
+</div>
+
+{% endblock MAIN %}
