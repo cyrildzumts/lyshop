@@ -78,14 +78,14 @@
                           {% else %}
                             <div class="entry">
                               <span class="key">{% trans attr.display_name %}</span>
-                              <span class="value">{{attr.value.value}}</span>
+                              <span class="value chips">{{attr.value.value}}</span>
                             </div>
                           {% endif %}
                         </li>
                         {% endfor %}
                         <li class="attr-wrapper">
-                          <div class="attr description entry">
-                              <span class="key">{% trans "Description" %}</span>
+                          <div class="attr description">
+                              <span class="key">{% trans "Description" %} :</span>
                               <p class="value">{{product.description}}</p>
                           </div>
                         </li>

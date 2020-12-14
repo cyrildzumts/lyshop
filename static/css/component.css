@@ -2587,6 +2587,11 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
+	.xs-column{
+		flex-direction: column;
+		align-items: baseline;
+		justify-content: start;
+	}
 	.list-md-vertical{
 		display: flex;
 		flex-direction: column;

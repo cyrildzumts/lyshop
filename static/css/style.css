@@ -1,5 +1,5 @@
 
-.strong{
+.strong, .bold, .em{
     font-weight: bold;
 }
 
@@ -111,7 +111,7 @@
     width: 100%;
     font-size: 1em;
     /*text-align: center;*/
-    padding: 8px 4px;
+    padding-top: 0.5em;
 }
 
 .cart-item-entry{
@@ -148,7 +148,7 @@
 .entry .key{
     font-weight: 400;
     /*width: 50%;*/
-    margin: 4px 8px;
+    /*margin: 4px 8px;*/
 
 }
 
