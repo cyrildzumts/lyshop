@@ -46,6 +46,10 @@
             </div>
             
         </div><!--End of title-->
+        <div class="actions">
+            <a class="mat-button mat-button-text js-cancel" href="{{highlight.get_dashboard_url}}">{% trans "Cancel" %}</a>
+            <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
+        </div>
         <div class="mat-box-content">
             <form action="{{highlight.get_update_url}}" method="POST">{% csrf_token %}
                 <input type="hidden" name="last_changed_by" value="{{request.user.id}}">
@@ -75,16 +79,6 @@
                     
                     </select>
                 </div>
-                <div class="mat-input">
-                    <label for="products">{% trans "Products" %}</label>
-                    <select name="products" id="products" multiple>
-                        {% for p in products %}
-                            <option value="{{p.pk}}" selected>{% trans p.display_name %}</option>
-                        {% endfor %}
-                    
-                    </select>
-                </div>
-
                 <div class="flex flex-column">
                     <div class="form-group">
                         <label for="description">{% trans "Description" %}</label>
@@ -93,6 +87,18 @@
                     
                     <div class="row"> <span id="description-counter" class="char-counter">{{highlight.description|length}}</span><span class="text-max-length"> / {{DESCRIPTION_MAX_SIZE}}</span></div>
                 </div>
+
+                {% comment %}<div class="mat-input">
+                    <label for="products">{% trans "Products" %}</label>
+                    <select name="products" id="products" multiple>
+                        {% for p in products %}
+                            <option value="{{p.pk}}" selected>{% trans p.display_name %}</option>
+                        {% endfor %}
+                    
+                    </select>
+                </div>
+                {% endcomment %}
+                {% include "tags/highlight_product_update.html" with product_list=products %}
                 <div class="actions">
                     <a class="mat-button mat-button-text js-cancel" href="{{highlight.get_dashboard_url}}">{% trans "Cancel" %}</a>
                     <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
