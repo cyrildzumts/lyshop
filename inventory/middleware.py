@@ -8,7 +8,7 @@ class VisitorCounter:
 
     def __call__(self, request):
 
-        Visitor.objects.udapte_or_create(defaults={'hits' : F('hits')+1},url=request.path)
+        Visitor.objects.updatete_or_create(defaults={'hits' : F('hits')+1},url=request.path)
         response = self.get_response(request)
 
         return response
