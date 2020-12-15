@@ -1385,8 +1385,8 @@ def create_product_variant(request, product_uuid=None):
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         variants = inventory_service.create_variant(product, postdata)
-        if variants:
-            count = len(variants)
+        count = len(variants)
+        if count:
             messages.success(request, _(f'New Product variants({count}) created'))
             logger.info(f'New product variants({count}) added by user \"{username}\"')
             return redirect('dashboard:product-detail', product_uuid=product_uuid)
