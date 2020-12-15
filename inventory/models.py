@@ -10,7 +10,7 @@ class Visitor(models.Model):
 
 
 class UniqueIP(models.Model):
-    id_address = models.GenericIPAddressField(editable=False)
+    ip_address = models.GenericIPAddressField(editable=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     hits = models.PositiveIntegerField(default=0)
 
