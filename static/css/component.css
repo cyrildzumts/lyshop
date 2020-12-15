@@ -2495,6 +2495,7 @@ table tbody tr, .mat-table tbody tr{
 	position: relative;
 	width: 100%;
 	overflow-x: auto;
+	padding-top: 3em;
 	margin-bottom: 1em !important;
 }
 
