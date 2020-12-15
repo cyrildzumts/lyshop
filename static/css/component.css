@@ -2586,6 +2586,9 @@ table tbody tr, .mat-table tbody tr{
 	margin: 0;
 }
 
+#products .wrapper{
+	padding: 0 !important;
+}
 @media only screen and (max-width:40em){
 	#products{
 		font-size: 0.7em;
