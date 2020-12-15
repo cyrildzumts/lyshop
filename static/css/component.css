@@ -2586,9 +2586,13 @@ table tbody tr, .mat-table tbody tr{
 	margin: 0;
 }
 
-#products .wrapper{
+#products .wrapper, #products .mat-box{
 	padding: 0 !important;
 }
+ #products .mat-box{
+	padding: 0.2em !important;
+}
+
 @media only screen and (max-width:40em){
 	#products{
 		font-size: 0.7em;
