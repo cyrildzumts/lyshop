@@ -2502,7 +2502,7 @@ table tbody tr, .mat-table tbody tr{
 	position: absolute;
 	top: 0.5em;
 	left: 0.5em;
-	padding: 2em;
+	padding: 0.2em;
 	font-size: 0.875em;
 	font-weight: 600;
 }
