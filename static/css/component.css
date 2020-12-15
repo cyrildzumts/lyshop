@@ -2500,11 +2500,11 @@ table tbody tr, .mat-table tbody tr{
 .highlight{
 	position: relative;
 	width: 100%;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	overflow: hidden;
-	overflow-x: auto;
-	padding: 0.2em;
+	flex-direction: row !important;
+	flex-wrap: nowrap !important;
+	overflow: hidden !important;
+	overflow-x: auto !important;
+	padding: 0.2em !important;
 	padding-top: 3em;
 	margin-bottom: 1em !important;
 }
