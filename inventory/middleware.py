@@ -9,11 +9,11 @@ class VisitorCounter:
         self.get_response = get_response
 
     def __call__(self, request):
-        logger.info("VisitorCounter started...")
+        logger.info(f"VisitorCounter started... for path {request.path}")
         v, created = Visitor.objects.get_or_create(url=request.path)
         Visitor.objects.filter(pk=v.pk).update(hits=F('hits') + 1)
         response = self.get_response(request)
-        logger.info("VisitorCounter finished...")
+        logger.info(f"VisitorCounter finished...for path {request.path}")
         return response
 
 
@@ -22,9 +22,9 @@ class UniqueIPCounter:
         self.get_response = get_response
 
     def __call__(self, request):
-        logger.info("UniquevisitorCounter started...")
+        logger.info(f"UniquevisitorCounter started...for ip address {request.META['REMOTE_ADDR']}")
         v, created = UniqueIP.objects.get_or_create(ip_address=request.META['REMOTE_ADDR'])
         UniqueIP.objects.filter(pk=v.pk).update(hits=F('hits') + 1)
         response = self.get_response(request)
-        logger.info("UniquevisitorCounter finished...")
+        logger.info(f"UniquevisitorCounter finished...for ip address {request.META['REMOTE_ADDR']}")
         return response
