@@ -141,7 +141,10 @@ def create_variant(product, postdata):
                     price=product.price, product=product)
             variant.attributes.add(*[pk, *commons_attrs])
             variants.append(variant)
-        logger.info(f'New Product Variants({len(p_attrs)})  created ')
+        if len(variants):
+            logger.info(f'New Product Variants({len(p_attrs)})  created ')
+        else:
+            logger.info(f'New Product Variants({len(p_attrs)})  not created ')
     else:
         logger.warn("Variant could not be created. No valid attributes submitted.")
     return variants
