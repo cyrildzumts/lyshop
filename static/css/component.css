@@ -1690,15 +1690,21 @@ input.editable{
 .scrollable{
 	max-height: 900px;
 	min-width: 100%;
-	overflow-y: auto;
-	padding: 10px 5px;
+	overflow: auto;
+	padding: 0.2em;
 }
 
 .scrollable-h{
 
 	min-width: 100%;
 	overflow-x: auto;
-	padding: 4px 16px;
+	padding: 0.2em;
+}
+.scrollable-v{
+
+	min-width: 100%;
+	overflow-y: auto;
+	padding: 0.2em;
 }
 
 .drag-area{
@@ -2494,7 +2500,11 @@ table tbody tr, .mat-table tbody tr{
 .highlight{
 	position: relative;
 	width: 100%;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	overflow: hidden;
 	overflow-x: auto;
+	padding: 0.2em;
 	padding-top: 3em;
 	margin-bottom: 1em !important;
 }
