@@ -1750,7 +1750,6 @@ def bulk_attributes_create(request):
 
     form = None
     username = request.user.username
-    variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid)
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         attrs, created = inventory_service.bulk_create_attributes(postdata)
