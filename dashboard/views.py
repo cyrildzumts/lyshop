@@ -52,6 +52,7 @@ from vendors import vendors_service
 from addressbook.models import Address
 from addressbook import addressbook_service, constants as Addressbook_Constants
 from inventory import inventory_service
+from inventory.models import Visitor, UniqueIP
 from dashboard import analytics
 from itertools import islice
 import json
@@ -76,7 +77,9 @@ def dashboard(request):
     context = {
             'name'          : username,
             'page_title'    : page_title,
-            'is_allowed'     : can_view_dashboard
+            'is_allowed'     : can_view_dashboard,
+            'visitors' : Visitor.objects.count(),
+            'unique_visitors' : UniqueIP.objects.count(),
         }
     if not can_view_dashboard :
         logger.warning(f"Dashboard : PermissionDenied to user {username} for path {request.path}")
@@ -2274,7 +2277,10 @@ def reports(request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'visitors' : Visitor.objects.count(),
+        'unique_visitors' : UniqueIP.objects.count()
+    }
     qs_orders = Order.objects.all()
     currents_orders = analytics.get_orders()
     qs_users = User.objects.all()
