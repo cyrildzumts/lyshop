@@ -10,7 +10,7 @@ class VisitorCounter:
 
     def __call__(self, request):
         logger.info("VisitorCounter started...")
-        v = Visitor.objects.get_or_create(url=request.path)
+        v, created = Visitor.objects.get_or_create(url=request.path)
         Visitor.objects.update(pk=v.pk, hits=F('hits') + 1)
         response = self.get_response(request)
         logger.info("VisitorCounter finished...")
@@ -23,7 +23,7 @@ class UniqueIPCounter:
 
     def __call__(self, request):
         logger.info("UniquevisitorCounter started...")
-        v = UniqueIP.objects.get_or_create(ip_address=request.META.REMOTE_ADDR)
+        v, created = UniqueIP.objects.get_or_create(ip_address=request.META.REMOTE_ADDR)
         UniqueIP.objects.update(pk=v.pk, hits=F('hits') + 1)
         response = self.get_response(request)
         logger.info("UniquevisitorCounter finished...")
