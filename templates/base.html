@@ -53,7 +53,7 @@
         {% if account %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{{user.username}}</a></li>{% endif %}
       
         <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}">
-                <div id="cart-wrapper" class="row align-center cart"><i class="fas fa-shopping-cart"></i><span id="cart-badge" class="badge">{{cart_items_count}}</span></div></a>
+                <div id="cart-wrapper" class="row align-center cart"><i class="fas fa-shopping-cart icon"></i><span>{% trans "Cart" %}</span>(<span id="cart-badge" class="badge">{{cart_items_count}}</span>)</div></a>
         </li>
         <li class="mat-list-item"><a class="signout-btn mat-button mat-button-text signout" href="{% url 'accounts:logout' %}">{% trans 'Logout' %}</a></li>
       {% else %}
