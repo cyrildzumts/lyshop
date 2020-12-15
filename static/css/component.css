@@ -2586,7 +2586,7 @@ table tbody tr, .mat-table tbody tr{
 	margin: 0;
 }
 
-#products .wrapper, #products .mat-box{
+#products .wrapper, .highlight .wrapper{
 	padding: 0 !important;
 }
  #products .mat-box{

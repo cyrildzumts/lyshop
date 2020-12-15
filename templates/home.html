@@ -39,15 +39,20 @@
 
 <div class="container">
   {% for h in highlights %}
-      <div class="grid flex-center scrollable-h highlight" id="highlighted-products products">
-          <div class="label">{% trans h.display_name %}</div>
-          {% include "tags/home_products.html" with product_list=h.products.all %}
+      <div class="wrapper">
+              <div class="grid flex-center scrollable-h highlight">
+                <div class="label">{% trans h.display_name %}</div>
+                {% include "tags/home_products.html" with product_list=h.products.all %}
+            </div>
       </div>
   {% endfor %}
-  
-  <div class="grid flex-center scrollable-h" id="favorite-products">
-     {% include "tags/home_products.html" with product_list=favorites %}
-  </div>
-
+  {% if favorites %}
+    <div class="wrapper">
+      <div class="grid flex-center scrollable-h" id="favorite-products">
+      {% include "tags/home_products.html" with product_list=favorites %}
+      </div>
+    </div>
+    
+  {% endif %}
 </div>
 {% endblock MAIN %}
