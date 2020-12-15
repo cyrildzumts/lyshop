@@ -23,7 +23,7 @@ class UniqueIPCounter:
 
     def __call__(self, request):
         logger.info("UniquevisitorCounter started...")
-        v, created = UniqueIP.objects.get_or_create(ip_address=request.META.['REMOTE_ADDR'])
+        v, created = UniqueIP.objects.get_or_create(ip_address=request.META['REMOTE_ADDR'])
         UniqueIP.objects.filter(pk=v.pk).update(hits=F('hits') + 1)
         response = self.get_response(request)
         logger.info("UniquevisitorCounter finished...")
