@@ -2335,7 +2335,7 @@ a.mat-button{
 
 table thead, .mat-table thead{
 	max-height: 64px;
-	font-size: 1em;
+	font-size: 0.875em;
 	font-weight: 600;
 	color: #242424;
 }
@@ -2709,7 +2709,7 @@ table tbody tr, .mat-table tbody tr{
 		min-height: 48px;
 		/*flex-direction: row;*/
 		border: 1px solid #ddd;
-		padding: .35em;
+		/*padding: .35em;*/
 	}
 	
 	.mat-table td, .mat-table th{
@@ -2718,7 +2718,7 @@ table tbody tr, .mat-table tbody tr{
 	}
 	
 	.mat-table td{
-		padding: 6px 16px;
+		padding: 2px 4px;
 	}
 
 	.mat-table td::before{
