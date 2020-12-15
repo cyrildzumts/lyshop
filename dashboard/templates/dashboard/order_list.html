@@ -33,7 +33,7 @@
 <form id="filter-form" action="" method="GET">{% comment %}{% csrf_token %}
 {% endcomment %}
 <div class="container">
-<div class="col-m-12 col-9">
+<div class="full">
     <div class="mat-table-wrapper">
         {% if FILTER_CONFIG %}
             {% include "core/core_filter.html" with FILTER_TEMPLATE="core/filter.html" %}
