@@ -32,6 +32,15 @@ class ProductAttributeForm(forms.ModelForm):
         if already_exist:
             raise forms.ValidationError(f"Unique contraint on field name - \"{name}\" - and field value \"{value}\" violated")
     '''
+
+class MassProductAttributeForm(forms.Form):
+    name = forms.CharField(max_length=32)
+    display_name = forms.CharField(max_length=32)
+    value_type = forms.IntegerField()
+    is_primary = forms.BooleanField()
+    range_start = forms.IntegerField()
+    range_end = forms.IntegerField()
+    
         
 
 class AttributeForm(forms.Form):

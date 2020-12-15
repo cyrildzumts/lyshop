@@ -40,6 +40,21 @@
     </div><!--End of box-->
 </div>
 
+<div class="container">
+    <div class="mat-box full">
+        <h4>{% trans "Bulk Create Attribtutes" %}</h4>
+        <div class="mat-box-content">
+            <form id="bulk-add-attributes" name="buld-attributes" action="{% url 'dashboard:bulk-attributes-create' %}" method="POST">{% csrf_token %}
+                {% include "tags/bulk_attributes_form.html" %}
+                <div class="actions">
+                    <a class="mat-button mat-button-outlined" href="{% url 'dashboard:attributes' %}" >{% trans "Cancel" %}</a>
+                    <button class="mat-button mat-button-default" type="submit">{% trans "Create" %}</button>
+                </div>
+            </form>
+        </div><!--End of box content-->
+    </div><!--End of box-->
+</div>
+
 
 {% else %}
 <div class="access-error">

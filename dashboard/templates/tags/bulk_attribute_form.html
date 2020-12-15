@@ -1,0 +1,33 @@
+{% load i18n %}
+
+
+<div class="box">
+     <div class="form-group">
+        <label for="name">{% trans "Attribute Name" %}</label>
+        <input type="text"  name="name">
+     </div>
+      <div class="form-group">
+        <label for="display_name">{% trans "Attribute Display Name" %}</label>
+        <input type="text"  name="display_name">
+     </div>
+      <div class="form-group">
+        <label for="range_start">{% trans "StartValue" %}</label>
+        <input id="range_start" type="text"  name="range_start">
+     </div>
+     <div class="form-group">
+        <label for="range_end">{% trans "End Value" %}</label>
+        <input id="range_end" type="text"  name="range_end">
+     </div>
+     <div class="form-group">
+        <label for="is-primary">{% trans "Is Primary" %}</label>
+        <input type="checkbox"  name="is_primary">
+     </div>
+      <div class="form-group">
+        <label for="value_type">{% trans "Value Type" %}</label>
+        <select name="value_type">
+        {% for k,v in ATTRIBUTE_TYPE %}
+            <option value="{{k}}">{% trans v %}</option>
+        {% endfor %}
+        </select>
+     </div>
+</div>

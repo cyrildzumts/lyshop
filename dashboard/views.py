@@ -1691,6 +1691,8 @@ def remove_attributes(request, variant_uuid):
     return redirect('dashboard:product-variant-detail', variant_uuid=variant_uuid)
 
 
+
+
 @login_required
 def attribute_create(request, variant_uuid):
     username = request.user.username
@@ -1734,6 +1736,33 @@ def attribute_create(request, variant_uuid):
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
+
+@login_required
+def bulk_attributes_create(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    form = None
+    username = request.user.username
+    variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        attrs, created = inventory_service.bulk_create_attributes(postdata)
+        if created:
+            messages.success(request, _('Attributes created'))
+            logger.info(f'attributes created iin bluk by user \"{username}\"')
+        else:
+            messages.error(request, _('Attributes not created'))
+            logger.error(f'Error on bulk creating attributes. Action requested by user \"{username}\"')
+            logger.error(form.errors)
+            
+    return redirect('dashboard:attributes')
 
 @login_required
 def attributes_create(request):

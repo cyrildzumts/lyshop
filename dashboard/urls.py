@@ -113,6 +113,7 @@ urlpatterns = [
     path('products/attributes/delete/<uuid:attribute_uuid>/', views.attribute_delete, name='attribute-delete'),
     path('products/attributes/create/<uuid:variant_uuid>/', views.attribute_create, name='attribute-create'),
     path('products/attributes/create/', views.attributes_create, name='attributes-create'),
+    path('products/attributes/bulk-create/', views.bulk_attributes_create, name='bulk-attributes-create'),
     path('products/attributes/add/<uuid:variant_uuid>/', views.add_attributes, name='attribute-add'),
     path('products/attributes/remove/<uuid:variant_uuid>/', views.remove_attributes, name='attribute-remove'),
     path('products/attributes/update-default-primary/', views.update_primary_attributes, name='attribute-primary-update'),

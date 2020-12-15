@@ -225,6 +225,23 @@ def create_attributes(postdata):
         logger.error(formset.errors)
     return None, False
 
+def bulk_create_attributes(postdata):
+    if not isinstance(postdata, dict):
+        return None, False
+    form = forms.MassProductAttributeForm(postdata)
+    if form.is_valid():
+        name = form.cleaned_data.get('name')
+        display_name = form.cleaned_data.get('display_name')
+        value_type = form.cleaned_data.get('value_type')
+        is_primary = form.cleaned_data.get('is_primary')
+        range_start = form.cleaned_data.get('range_start')
+        range_end = form.cleaned_data.get('range_end')
+        attrs = [models.ProductAttribute.objects.create(name=name, display_name=display_name, value_type=value_type, is_primary=is_primary, value=value) for value in range(range_start, range_end + 1)]
+        return attrs, True
+    else:
+        logger.error(f"error on create mass ProductAttribute. Error : {form.errors}")
+    return None, False
+
 
 def delete_attributes(attrs):
     if not isinstance(attrs, list):
