@@ -1,5 +1,6 @@
 from inventory.models import Visitor, UniqueIP
 from django.db.models import F
+from django.utils import timezone
 import logging
 
 logger = logging.getLogger(__name__)
