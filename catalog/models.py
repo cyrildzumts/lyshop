@@ -87,8 +87,8 @@ class PolicyMembership(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=32, null=False, blank=False)
-    display_name = models.CharField(max_length=32, null=True, blank=True)
+    name = models.CharField(max_length=64)
+    display_name = models.CharField(max_length=64)
     code = models.IntegerField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='addeds_categories', blank=False, null=False)
@@ -118,8 +118,8 @@ class Category(models.Model):
 
 
 class Brand(models.Model):
-    name = models.CharField(max_length=32, null=False, blank=False)
-    display_name = models.CharField(max_length=32, null=True, blank=True)
+    name = models.CharField(max_length=64)
+    display_name = models.CharField(max_length=64)
     code = models.IntegerField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     added_by = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='addeds_brands', blank=False, null=True)
@@ -152,11 +152,11 @@ class Brand(models.Model):
 
 class ProductAttribute(models.Model):
 
-    name = models.CharField(max_length=32, null=False, blank=False)
-    value = models.CharField(max_length=32, null=False, blank=False)
+    name = models.CharField(max_length=64)
+    value = models.CharField(max_length=64)
     value_type = models.IntegerField(default=constants.ATTRIBUTE_TYPE_DEFAULT ,null=False, blank=False, choices=constants.ATTRIBUTE_TYPE)
     is_primary = models.BooleanField(default=False)
-    display_name = models.CharField(max_length=32, null=False, blank=False)
+    display_name = models.CharField(max_length=64)
     attribute_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     FORM_FIELDS = ['name', 'display_name', 'value', 'value_type', 'is_primary']
 
@@ -185,8 +185,8 @@ class ProductAttribute(models.Model):
 
 class ProductTypeAttribute(models.Model):
 
-    name = models.CharField(max_length=32, null=False, blank=False)
-    display_name = models.CharField(max_length=32, null=True, blank=True)
+    name = models.CharField(max_length=64)
+    display_name = models.CharField(max_length=64)
     attribute_type = models.IntegerField(constants.ATTRIBUTE_TYPE_STRING)
     attributes = models.ManyToManyField(ProductAttribute, related_name='type_attributes', blank=True, null=True)
     description = models.CharField(max_length=164)
@@ -211,8 +211,8 @@ class ProductTypeAttribute(models.Model):
 
 
 class ProductType(models.Model):
-    name = models.CharField(max_length=50)
-    display_name = models.CharField(max_length=32, null=False, blank=False)
+    name = models.CharField(max_length=64)
+    display_name = models.CharField(max_length=64, null=False, blank=False)
     code = models.IntegerField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     attributes = models.ManyToManyField(ProductAttribute, related_name='product_types', blank=True, null=True)
@@ -246,9 +246,9 @@ class ProductType(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=32, null=False, blank=False)
+    name = models.CharField(max_length=64)
     product_type = models.ForeignKey(ProductType, related_name="products", on_delete=models.SET_NULL, blank=True, null=True)
-    display_name = models.CharField(max_length=32, null=True, blank=True)
+    display_name = models.CharField(max_length=64)
     article_number = models.IntegerField(blank=True, null=True)
     category = models.ForeignKey(Category,related_name='products', on_delete=models.SET_NULL, blank=True, null=True)
     brand = models.ForeignKey(Brand,related_name='products', on_delete=models.SET_NULL, blank=True, null=True)
@@ -345,10 +345,10 @@ class SKUModel(models.Model):
 
 
 class ProductVariant(models.Model):
-    name = models.CharField(max_length=32, null=False, blank=False)
-    display_name = models.CharField(max_length=32, null=True, blank=True)
-    sku = models.CharField(max_length=32,blank=True, null=True)
-    article_number = models.CharField(max_length=32,blank=True, null=True)
+    name = models.CharField(max_length=64)
+    display_name = models.CharField(max_length=64, null=True, blank=True)
+    sku = models.CharField(max_length=64,blank=True, null=True)
+    article_number = models.CharField(max_length=64,blank=True, null=True)
     product = models.ForeignKey(Product, related_name='variants' ,on_delete=models.CASCADE, blank=False, null=False)
     is_active = models.BooleanField(default=False)
     attributes = models.ManyToManyField(ProductAttribute, related_name='products', null=True, blank=True)
@@ -414,7 +414,7 @@ def upload_to(instance, filename):
 class ProductImage(models.Model):
     height = models.IntegerField(blank=True, null=True)
     width = models.IntegerField(blank=True, null=True)
-    name = models.CharField(max_length=32, null=False, blank=False)
+    name = models.CharField(max_length=64, null=False, blank=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
     product_variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE, related_name='images', blank=True, null=True)
     image = models.ImageField(upload_to=upload_to, height_field='height', width_field='width')
@@ -475,15 +475,15 @@ def generate_product_sku(sender, instance, created, **kwargs):
 
 
 class RelatedProduct(models.Model):
-    name = models.CharField(max_length=32, null=False, blank=False)
+    name = models.CharField(max_length=64, null=False, blank=False)
     product = models.ForeignKey(Product, related_name='related_product', on_delete=models.CASCADE)
     related_products = models.ManyToManyField(Product)
     FORM_FIELDS = ['name', 'product', 'related_products']
 
 
 class Highlight(models.Model):
-    name = models.CharField(max_length=32, null=False, blank=False)
-    display_name = models.CharField(max_length=32, null=False, blank=False)
+    name = models.CharField(max_length=64, null=False, blank=False)
+    display_name = models.CharField(max_length=64, null=False, blank=False)
     gender = models.IntegerField(default=constants.GENDER_WOMEN, choices=constants.GENDER)
     products = models.ManyToManyField(Product, blank=True)
     is_active = models.BooleanField(default=False)
