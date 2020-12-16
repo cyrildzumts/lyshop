@@ -1258,8 +1258,12 @@ def product_image_delete(request, image_uuid=None):
 
     p_image = get_object_or_404(ProductImage, image_uuid=image_uuid)
     product = p_image.product
+    logger.debug(f"product_image_delete: Deleteing Product image{p_image.name} for product {product} from directory ")
     p_image.delete_image_file()
+    logger.debug(f"product_image_delete: Deleteing Product image{p_image.name} for product {product} from directory done ")
+    logger.debug(f"product_image_delete: Deleteing Product image{p_image.name} for product {product} from database ")
     ProductImage.objects.filter(pk=p_image.pk).delete()
+    logger.debug(f"product_image_delete: Deleteing Product image{p_image.name} for product {product} from database done")
     return redirect(product.get_dashboard_url())
 
 @login_required
