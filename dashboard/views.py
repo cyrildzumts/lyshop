@@ -314,8 +314,8 @@ def product_create(request):
     username = request.user.username
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
-        product = inventory_service.create_product(postdata)
-        if product:
+        product, created = inventory_service.create_product(postdata)
+        if created:
             messages.success(request, _('New Product created'))
             logger.info(f'New product added by user \"{username}\"')
             return redirect(product.get_dashboard_url())

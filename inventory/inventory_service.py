@@ -55,6 +55,8 @@ def create_product(postdata):
         p = form.save()
         logger.info(f"create_product : New Product {p.name} Created")
         created = True
+    else:
+        logger(f"Error when creating a new product : {form.errors}")
     return p, created
 
 
