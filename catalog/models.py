@@ -484,7 +484,7 @@ class RelatedProduct(models.Model):
 class Highlight(models.Model):
     name = models.CharField(max_length=64, null=False, blank=False)
     display_name = models.CharField(max_length=64, null=False, blank=False)
-    gender = models.IntegerField(default=constants.GENDER_WOMEN, choices=constants.GENDER)
+    gender = models.IntegerField(default=constants.GENDER_WOMEN, choices=constants.GENDER, blank=True, null=True)
     products = models.ManyToManyField(Product, blank=True)
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
