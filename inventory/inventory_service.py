@@ -137,7 +137,7 @@ def create_variant(product, postdata):
     
     if attributes:
         commons_attrs, p_attrs = group_attributes(attributes)
-        logger.debug(f"Variant create : common_attrs = {commns_attrs}, p_attrs = {p_attrs}")
+        logger.debug(f"Variant create : common_attrs = {commons_attrs}, p_attrs = {p_attrs}")
         for pk in p_attrs:
             logger.info(f'pk : {pk}')
             variant = models.ProductVariant.objects.create(name=product.name, display_name=product.display_name,
