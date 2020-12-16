@@ -318,7 +318,7 @@ def product_create(request):
         if product:
             messages.success(request, _('New Product created'))
             logger.info(f'New product added by user \"{username}\"')
-            return redirect('dashboard:products')
+            return redirect(product.get_dashboard_url())
         else:
             messages.error(request, _('Product not created'))
             logger.error(f'Error on creating new product. Action requested by user \"{username}\"')
