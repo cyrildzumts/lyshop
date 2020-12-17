@@ -23,10 +23,13 @@ class UniqueIPCounter:
         self.get_response = get_response
 
     def __call__(self, request):
-        logger.info(f"UniquevisitorCounter started...for ip address {request.META['REMOTE_ADDR']}")
-        logger.info(f"UniquevisitorCounter started-  X-Forwarded-For address {request.META.get('X-Forwarded-For')}")
-        logger.info(f"UniquevisitorCounter started - headers {request.headers}")
-        v, created = UniqueIP.objects.get_or_create(ip_address=request.META['REMOTE_ADDR'])
+        
+        if "X-Forwarded-For" in request.META:
+            client_ip = request.META.get('X-Forwarded-For').split()[0]
+        else:
+            client_ip = request.META.get('REMOTE_ADDR')
+        logger.info(f"UniquevisitorCounter started...for ip address {client_ip}")
+        v, created = UniqueIP.objects.get_or_create(ip_address=client_ip)
         UniqueIP.objects.filter(pk=v.pk).update(hits=F('hits') + 1)
         response = self.get_response(request)
         return response
