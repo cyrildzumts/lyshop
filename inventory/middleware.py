@@ -25,7 +25,7 @@ class UniqueIPCounter:
     def __call__(self, request):
         
         if "X-Forwarded-For" in request.META:
-            client_ip = request.META.get('X-Forwarded-For').split()[0]
+            client_ip = request.META.get('X-Forwarded-For').split(',')[0]
         else:
             client_ip = request.META.get('REMOTE_ADDR')
         logger.info(f"UniquevisitorCounter started...for ip address {client_ip}")
