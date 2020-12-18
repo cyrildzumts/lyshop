@@ -1,6 +1,6 @@
 {% load i18n %}
 {% for p in product_list %}
-<div class="filterable product product-card" data-name="{{p.display_name}}" data-brand="{{p.brand.id}}" data-gender="{{p.gender}}" data-price="{{p.price|floatformat:'-2'}}" data-type="{{p.product_type.id}}">
+<div class="mat-box filterable product product-card" data-name="{{p.display_name}}" data-brand="{{p.brand.id}}" data-gender="{{p.gender}}" data-price="{{p.price|floatformat:'-2'}}" data-type="{{p.product_type.id}}">
         <div class="img-wrapper product-image">
         {% if p.images and p.images.first %}
                 <img class="img-responsive" src="{{p.images.first.get_image_url}}" alt="{{p.display_name}}">
