@@ -11,6 +11,7 @@ static_root/*
 .vscode
 */migrations/*
 */__pycache__/*
+lyshop_site.conf
 log
 logs
 *.log
