@@ -299,8 +299,8 @@ LOGGING = {
 
 LANGUAGE_CODE = 'fr'
 LANGUAGES = (
-    ('en',_('English')),
     ('fr',_('French')),
+    ('en',_('English')),
 )
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')

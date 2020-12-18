@@ -416,6 +416,7 @@ function getCookie(cname) {
   }
 
 function change_language(element){
+    console.log("change language clicked");
     var form = $('#lang-form');
     var $el = $(element);
     if($el.hasClass('active')||$el.hasClass('selected')){

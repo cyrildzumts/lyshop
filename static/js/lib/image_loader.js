@@ -5,12 +5,10 @@ define([], function() {
     const loadImages = (image) =>{
         image.setAttribute('src', image.getAttribute('data-src'));
         image.onload = () =>{
-            console.log("loading image ", image);
             image.removeAttribute('data-src');
         }
     };
     if ('IntersectionObserver' in window){
-        console.log("IntersectionObserver available");
         const observer = new IntersectionObserver((items, observer) =>{
             items.forEach((item) =>{
                 if(item.isIntersecting){
