@@ -2613,6 +2613,15 @@ table tbody tr, .mat-table tbody tr{
 	max-width: 100%;
 }
 
+.products img[data-src]{
+	filter: blur(0.2em);
+}
+
+.products img{
+	filter: blur(0em);
+	transition: filter 0.5s;
+}
+
 .product-info{
 	display: flex;
 	flex-direction: column;
