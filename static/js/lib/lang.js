@@ -1,5 +1,37 @@
 define([], function() {
     'use strict';
-    var lang_ccokie = "";
+    var lang_cookie = "";
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+    }
+
+    function change_language(element){
+        console.log("change language clicked");
+        var form = $('#lang-form');
+        var $el = $(element);
+        if($el.hasClass('active')||$el.hasClass('selected')){
+            return;
+        }
+        var name = $('input[name="language"]', form);
+        lang_cookie = $el.data('value');
+        name.val($el.data('value'));
+        document.cookie = "django_language=" + name.val() +";";
+        form.submit();
+    }
+    $('.js-lang').on('click', function(event){
+        change_language(this);
+    });
     console.log("lang.js installed");
 });
