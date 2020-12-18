@@ -1,6 +1,7 @@
 define([], function() {
     'use strict';
     var lang_cookie = "";
+    const DEFAULT_LANGUAGE = "fr";
     function getCookie(cname) {
         var name = cname + "=";
         var decodedCookie = decodeURIComponent(document.cookie);
