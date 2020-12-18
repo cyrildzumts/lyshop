@@ -12,10 +12,8 @@
 {% block MAIN_CONTENT %}
 <div class="container">
         {% if product_list %}
-        <div class="wrapper">
-                <div id="products" class="grid js-product-list">
-                        {% include "tags/products_snippet.html" with product_list=product_list %}
-                </div>
+        <div id="products" class="products js-product-list">
+                {% include "tags/products_snippet.html" with product_list=product_list %}
         </div>
         {% else %}
         <div class="mat-box">
