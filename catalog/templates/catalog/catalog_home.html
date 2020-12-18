@@ -13,8 +13,10 @@
 {% block MAIN_CONTENT %}
 <div class="container">
         {% if queryset %}
-        <div id="products" class="products js-product-list">
-                {% include "tags/products_snippet.html" with product_list=queryset %}
+        <div class="wrapper">
+                <div id="products" class="grid js-product-list">
+                        {% include "tags/products_snippet.html" with product_list=queryset %}
+                </div>
         </div>
         {% else %}
         <div class="mat-box">
