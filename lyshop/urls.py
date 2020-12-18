@@ -43,8 +43,12 @@ urlpatterns = [
 '''
 
 
+urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
+]
 
-trans_patterns = i18n_patterns(
+
+urlpatterns = i18n_patterns(
     [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
@@ -65,8 +69,7 @@ trans_patterns = i18n_patterns(
 ]
 )
 
-urlpatterns = [
-    include(trans_patterns),
+urlpatterns += [
     path('i18n/', include('django.conf.urls.i18n')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
