@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.sitemaps import Sitemap
 from catalog.models import Highlight
 from catalog import constants as Catalog_Constants
 # from django import forms
@@ -77,3 +78,15 @@ def customer_usage(request):
     }
     return render(request, template_name,context)
 
+
+
+
+
+class LyshopSiteMap(Sitemap):
+    changefreq = "montly"
+
+    def items(self):
+        return ["about", "faq","home", "catalog:catalo-home"]
+    
+    def location(self, item):
+        return reverse(item)
