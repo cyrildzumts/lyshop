@@ -10,6 +10,7 @@ define([], function() {
         }
     };
     if ('IntersectionObserver' in window){
+        console.log("IntersectionObserver available");
         const observer = new IntersectionObserver((items, observer) =>{
             items.forEach((item) =>{
                 if(item.isIntersecting){
