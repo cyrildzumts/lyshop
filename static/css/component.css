@@ -2606,7 +2606,7 @@ table tbody tr, .mat-table tbody tr{
 	display: flex;
 	flex-direction: column;
 	padding: 2%;
-	flex: 1 16%;
+	flex: 1 23%;
 }
 
 .product-image img{
@@ -2619,6 +2619,10 @@ table tbody tr, .mat-table tbody tr{
 	align-items: flex-start;
 	padding: 2%;
 	margin-top: auto;
+}
+
+.price{
+	font-weight: 500;
 }
 
 #products .wrapper, .highlight .wrapper, .products .wrapper{
