@@ -49,7 +49,7 @@ urlpatterns = [
 
 
 urlpatterns = i18n_patterns(
-    [
+    *[
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('admin/', admin.site.urls),
