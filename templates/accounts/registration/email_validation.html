@@ -21,7 +21,7 @@
 
 {% load i18n %}{% autoescape off %}
 {% if validated %}
-{% blocktrans %}Great !  Your email address has been verified. You can now use this site.{{ site_name }}.{% endblocktrans %}
+{% blocktrans %}Great !  Your email address has been verified.{% endblocktrans %}
 {% blocktrans %}Go to your Account by folowing this Link {% endblocktrans %} :
 <a href="{% url 'accounts:account' %}">{% trans "My Account" %}</a>
 {% else %}
