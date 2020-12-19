@@ -921,7 +921,7 @@ a.button{
 }
 
 .languages{
-  padding: 0 16px;
+  padding: 0 0.4em;
 }
 .languages .mat-button{
 	width:auto !important;
@@ -2755,7 +2755,7 @@ table tbody tr, .mat-table tbody tr{
 	.header--panel .mat-list .mat-list-item{
 		border-bottom: none;
 		width: auto;
-		margin: 0 16px 0 0;
+		margin: 0 1em 0 0;
 	}
 
 	.banner--actions, .actions{
