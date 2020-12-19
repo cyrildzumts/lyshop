@@ -450,13 +450,13 @@ $(document).ready(function(){
         input_check_max_limit(this);
     });
     $('.js-reveal-btn, .js-revealable-hide').on('click', function(){
-        var target = $(this).data('target');
+        var target = $($(this).data('target')).parent();
         $('.js-revealable', target).toggleClass('hidden');
     });
     /*
     $('.js-revealable-hide').on('click', function(){
         console.log('hidding revealable inputs');
-        var target = $(this).data('target');
+        var target = $($(this).data('target')).parent();
         $('.js-revealable', target).hide();
     });
     */
