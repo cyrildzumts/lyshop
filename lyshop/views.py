@@ -86,7 +86,7 @@ class LyshopSiteMap(Sitemap):
     changefreq = "montly"
 
     def items(self):
-        return ["about", "faq","home", "catalog:catalog-home"]
+        return ["about", "faq", "home", "catalog:catalog-home"]
     
     def location(self, item):
         return reverse(item)
