@@ -10,7 +10,7 @@
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
                 {% for language in languages %}
-                        <li class="mat-list-item js-lang {% if language.code == LANGUAGE_CODE %}language active selected{% endif %}" data-value="{{language.code}}">{{ language.code }}</li>
+                        <li class="mat-list-item js-lang language {% if language.code == LANGUAGE_CODE %}active selected{%else%}lang-select{% endif %}" data-value="{{language.code}}" title="{% trans 'Select language : ' %}{%trans language.code %}">{{ language.code }}</li>
                 {% endfor %}
                 </ul>
         </div>

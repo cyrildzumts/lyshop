@@ -2629,6 +2629,12 @@ table tbody tr, .mat-table tbody tr{
 	padding: 2%;
 	margin-top: auto;
 }
+.language{
+	cursor: default;
+}
+.language.lang-select{
+	cursor: pointer !important;
+}
 
 .price{
 	font-weight: 500;
