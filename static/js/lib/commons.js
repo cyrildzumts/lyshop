@@ -449,4 +449,15 @@ $(document).ready(function(){
         console.log("limited input keyup");
         input_check_max_limit(this);
     });
+    $('.js-reveal-btn, .js-revealable-hide').on('click', function(){
+        var target = $(this).data('target');
+        $('.js-revealable', target).toggleClass('hidden');
+    });
+    /*
+    $('.js-revealable-hide').on('click', function(){
+        console.log('hidding revealable inputs');
+        var target = $(this).data('target');
+        $('.js-revealable', target).hide();
+    });
+    */
 });

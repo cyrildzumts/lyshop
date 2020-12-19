@@ -101,16 +101,6 @@ window.addEventListener('beforeunload', askConfirmation);
         var target = $(this).data('target');
         $(':input', target).val('');
     });
-    $('.js-reveal-btn').on('click', function(){
-        var target = $(this).data('target');
-        $('.js-revealable', target).show();
-    });
-    $('.js-revealable-hide').on('click', function(){
-        console.log('hidding revealable inputs');
-        var target = $(this).data('target');
-        $('.js-revealable', target).hide();
-    });
-    
 });
 
 
