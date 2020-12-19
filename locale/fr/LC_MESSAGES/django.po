@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-19 13:48+0000\n"
+"POT-Creation-Date: 2020-12-19 17:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4837,41 +4837,51 @@ msgid "Issues report"
 msgstr "Rapport de problèmes"
 
 #: templates/about.html:44
+#, fuzzy
+#| msgid ""
+#| "In case you have any issue with your order, please contact us through the "
+#| "contact page."
 msgid ""
-"In case you have any issue with your order, please contact us through the "
-"contact page."
+"In case you have any issue with your order, please contact at the following "
+"address:"
 msgstr ""
 "En cas de problème avec votre commande, veuillez nous contacter via la page "
 "de contact."
 
-#: templates/about.html:50
+#: templates/about.html:48 templates/tags/channel.html:3
+#, fuzzy
+#| msgid "Send"
+msgid "Send Mail"
+msgstr "Envoyer"
+
+#: templates/about.html:51
 msgid "Refund"
 msgstr "Remboursement"
 
-#: templates/about.html:53
+#: templates/about.html:54
 msgid "It is possible to get a refund. You must meet the following conditions:"
 msgstr ""
 "Il est possible d'obtenir un remboursement. Vous devez remplir les "
 "conditions suivantes:"
 
-#: templates/about.html:58
+#: templates/about.html:59
 msgid "The order must have been paid"
 msgstr "La commande doit avoir été payée"
 
-#: templates/about.html:59
+#: templates/about.html:60
 msgid "You have successfully returned the ordered items"
 msgstr "Vous avez renvoyé avec succès les articles commandés"
 
-#: templates/about.html:60
+#: templates/about.html:61
 msgid "The returned ordered items are intact and has not been used."
 msgstr ""
 "Les articles commandés retournés sont intacts et n'ont pas été utilisés."
 
-#: templates/about.html:61
+#: templates/about.html:62
 msgid "The ordered items have been returned on time."
 msgstr "Les articles commandés ont été retournés à temps."
 
-#: templates/about.html:61
+#: templates/about.html:62
 #, fuzzy
 #| msgid "Pay at delivery"
 msgid "max. 7 days after delivery"
@@ -5340,7 +5350,7 @@ msgid "LYSHOP FAQ"
 msgstr "LYSHOP FAQ"
 
 #: templates/faq.html:12
-msgid "This FAQ collects the commons questions may be looking for answer for."
+msgid "This FAQ collects the commons questions you may be looking for answers."
 msgstr ""
 
 #: templates/faq.html:17
@@ -5348,81 +5358,85 @@ msgid "How do I pay my bills ?"
 msgstr "Comment payer mes factures?"
 
 #: templates/faq.html:18
-msgid "As of now, we support only mobile payment through Airtel Money."
-msgstr ""
-"Actuellement, nous ne prenons en charge que le paiement mobile via Airtel "
-"Money."
+#, fuzzy
+#| msgid "We accept the following payment methods"
+msgid "As of now, we support the following payment method"
+msgstr "Nous acceptons les méthodes de paiement suivantes"
 
-#: templates/faq.html:19
+#: templates/faq.html:20
 msgid "Other payments methods will be added when available"
 msgstr ""
 "D'autres méthodes de paiement seront ajoutées lorsqu'elles seront disponibles"
 
-#: templates/faq.html:21
+#: templates/faq.html:22
 msgid "The payment methods don't suit me, how can I get your products ?"
 msgstr ""
 "Les modes de paiement ne me conviennent pas, comment puis-je obtenir vos "
 "produits?"
 
-#: templates/faq.html:22
+#: templates/faq.html:23
 #, fuzzy
 #| msgid "Please, get in touch with us. We will see if we find a solution."
 msgid "Please, get in touch with us. will see if we find a solution."
 msgstr "Veuillez nous contacter. Nous verrons si nous trouvons une solution."
 
-#: templates/faq.html:23
+#: templates/faq.html:24
+msgid "You can contact us through the following channel"
+msgstr ""
+
+#: templates/faq.html:26
 #, fuzzy
 #| msgid "How do I add an item in the Cart ?"
 msgid "How do I add an Item in the Cart ?"
 msgstr "Comment ajouter un article dans le panier?"
 
-#: templates/faq.html:24
+#: templates/faq.html:27
 #, fuzzy
 #| msgid "To add an item into your cart follow the step below"
 msgid "To add an item into your cart follow the step bellow"
 msgstr "Pour ajouter un article à votre panier, suivez l'étape ci-dessous"
 
-#: templates/faq.html:26
+#: templates/faq.html:29
 msgid "From our website, open the article you want to buy"
 msgstr "Depuis notre site Web, ouvrez l'article que vous souhaitez acheter"
 
-#: templates/faq.html:27
+#: templates/faq.html:30
 msgid "From the product page, click on the Add to Cart button"
 msgstr "Depuis la page produit, cliquez sur le bouton Ajouter au panier"
 
-#: templates/faq.html:28
+#: templates/faq.html:31
 msgid "The article is added to your cart"
 msgstr "L'article est ajouté à votre panier"
 
-#: templates/faq.html:30
+#: templates/faq.html:33
 msgid "How can I place an Order ?"
 msgstr "Comment puis-je passer une commande?"
 
-#: templates/faq.html:31
+#: templates/faq.html:34
 #, fuzzy
 #| msgid "To place an order, please follow the steps below"
 msgid "To place an order, please follow the steps bellow"
 msgstr "Pour passer une commande, veuillez suivre les étapes ci-dessous"
 
-#: templates/faq.html:33
+#: templates/faq.html:36
 #, fuzzy
 #| msgid "Add to Cart"
 msgid "Add items in your cart"
 msgstr "Ajouter au panier"
 
-#: templates/faq.html:34
+#: templates/faq.html:37
 msgid "From your cart page, click on the Checkout button"
 msgstr "Depuis la page de votre panier, cliquez sur le bouton Commander"
 
-#: templates/faq.html:35
+#: templates/faq.html:38
 msgid "From there on, follow the displayed steps"
 msgstr "À partir de là, suivez les étapes affichées"
 
-#: templates/faq.html:37
+#: templates/faq.html:40
 msgid "I have placed an order. What now ?"
 msgstr "J'ai passé une commande. Et maintenant ?"
 
-#: templates/faq.html:40
+#: templates/faq.html:43
 msgid ""
 "Once we receive your order's payment, your order will be processed and "
 "shipped to you at the registered address you gave."
@@ -5430,29 +5444,29 @@ msgstr ""
 "Une fois que nous recevons le paiement de votre commande, votre commande "
 "sera traitée et expédiée à l'adresse enregistrée que vous avez indiquée"
 
-#: templates/faq.html:46
+#: templates/faq.html:49
 msgid ""
 "\n"
 "You have 3 days to pay your order before we can ship it.\n"
 "After this delay your order will be automatically cancelled.\n"
 msgstr ""
 
-#: templates/faq.html:52
+#: templates/faq.html:55
 msgid "I placed an order, but didn't get a confirmation mail"
 msgstr ""
 
-#: templates/faq.html:54
+#: templates/faq.html:57
 msgid ""
 "\n"
 "It may be due to network error, or a technical issue from our side.\n"
-"Please get in touch with us through the contact page.\n"
+"Please get in touch with us through one the following channel\n"
 msgstr ""
 
-#: templates/faq.html:60
+#: templates/faq.html:64
 msgid "I place an order, but the order was not delivered"
 msgstr "Je passe une commande, mais la commande n'a pas été livrée"
 
-#: templates/faq.html:62
+#: templates/faq.html:66
 msgid ""
 "\n"
 "Make sure you have paid your order before the delay. \n"
@@ -5460,62 +5474,63 @@ msgid ""
 "cancelled.\n"
 "Please contact us with the evidence of your payment so that we proceed to a "
 "refund.\n"
-msgstr ""
-
-#: templates/faq.html:68
-msgid "How can I cancel my order ?"
-msgstr ""
-
-#: templates/faq.html:69
-msgid "To cancel your order, please follow steps described bellow"
-msgstr ""
-
-#: templates/faq.html:71
-msgid "From your account page, click on the Orders button"
-msgstr ""
-
-#: templates/faq.html:72
-msgid "open the order you want to cancel"
-msgstr ""
-
-#: templates/faq.html:73
-msgid "click on the Cancel Order button"
+"Get in touch with us through one the following channel\n"
 msgstr ""
 
 #: templates/faq.html:74
+msgid "How can I cancel my order ?"
+msgstr ""
+
+#: templates/faq.html:75
+msgid "To cancel your order, please follow steps described bellow"
+msgstr ""
+
+#: templates/faq.html:77
+msgid "From your account page, click on the Orders button"
+msgstr ""
+
+#: templates/faq.html:78
+msgid "open the order you want to cancel"
+msgstr ""
+
+#: templates/faq.html:79
+msgid "click on the Cancel Order button"
+msgstr ""
+
+#: templates/faq.html:80
 msgid ""
 "please, check the order status. Ashipped Order can no longer be cancelled."
 msgstr ""
 
-#: templates/faq.html:76
+#: templates/faq.html:82
 msgid "How long does it take to be delivered ?"
 msgstr "Combien de temps faut-il pour être livré?"
 
-#: templates/faq.html:77
+#: templates/faq.html:83
 msgid "Standard shipping can take up to 5 days to be delivered"
 msgstr "L'expédition standard peut prendre jusqu'à 5 jours pour être livrée"
 
-#: templates/faq.html:78
+#: templates/faq.html:84
 msgid "If you are in a  hurry, please consider the Express shipping option"
 msgstr "Si vous êtes pressé, veuillez considérer l'option d'expédition Express"
 
-#: templates/faq.html:79
+#: templates/faq.html:85
 #, fuzzy
 #| msgid "We accept the following payment methods"
 msgid "What are the available payment methods ?"
 msgstr "Nous acceptons les méthodes de paiement suivantes"
 
-#: templates/faq.html:80
+#: templates/faq.html:86
 msgid "The available payment methods are"
 msgstr "Les modes de paiement disponibles sont"
 
-#: templates/faq.html:84
+#: templates/faq.html:88
 #, fuzzy
 #| msgid "I placed an Order, but it got cancelled after some days"
-msgid "I place an Order, but it got cancelled after some day"
+msgid "I place an Order, but it got cancelled after some days"
 msgstr "J'ai passé une commande, mais elle a été annulée après quelques jours"
 
-#: templates/faq.html:86
+#: templates/faq.html:90
 msgid ""
 "All unpaid orders get automatically cancelled after 3 days from the day you "
 "placed the order."
@@ -5523,7 +5538,7 @@ msgstr ""
 "Toutes les commandes impayées sont automatiquement annulées après 3 jours à "
 "compter du jour où vous avez passé la commande."
 
-#: templates/faq.html:91
+#: templates/faq.html:95
 msgid "Make sure you pay your order on time"
 msgstr "Assurez-vous de payer votre commande à temps"
 
@@ -5563,6 +5578,10 @@ msgstr "Réinitialiser le filtre"
 #| msgid "Reset Filter"
 msgid "Use this Filter"
 msgstr "Réinitialiser le filtre"
+
+#: templates/tags/channel.html:4
+msgid "Contact us on Facebook"
+msgstr ""
 
 #: templates/tags/date_filter.html:7
 msgid "Filter the list by Date field"
@@ -5752,6 +5771,14 @@ msgstr "Numéro de téléphone"
 msgid "Filter the list by status field"
 msgstr ""
 
+#: templates/tags/supported_payment_method.html:3
+msgid "Airtel Money"
+msgstr ""
+
+#: templates/tags/supported_payment_method.html:4
+msgid "CASH"
+msgstr "EN ESPÈCES"
+
 #: templates/tags/unauthorized.html:4
 msgid "The requested Page was not found."
 msgstr "La page demandée est introuvable."
@@ -5935,11 +5962,13 @@ msgstr "Actualiser l'attribut"
 msgid "Balance Histories"
 msgstr "Historique du solde"
 
+#~ msgid "As of now, we support only mobile payment through Airtel Money."
+#~ msgstr ""
+#~ "Actuellement, nous ne prenons en charge que le paiement mobile via Airtel "
+#~ "Money."
+
 #~ msgid "Items"
 #~ msgstr "Articles"
-
-#~ msgid "CASH"
-#~ msgstr "EN ESPÈCES"
 
 #~ msgid "CATALOG"
 #~ msgstr "CATALOGUE"
