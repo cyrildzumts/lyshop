@@ -10,16 +10,19 @@
 <h3>{% trans "LYSHOP FAQ" %}</h3>
 <p>
 {% blocktrans trimmed %}
-This FAQ collects the commons questions may be looking for answer for.
+This FAQ collects the commons questions you may be looking for answers.
 {% endblocktrans %}
 </p>
 
 <h4>{% trans "How do I pay my bills ?" %}</h4>
-<p>{% trans "As of now, we support only mobile payment through Airtel Money." %}</p>
+<p>{% trans "As of now, we support the following payment method" %} : </p>
+{% include "tags/supported_payment_method.html" %}
 <p>{% trans "Other payments methods will be added when available" %}</p>
 
 <h4>{% trans "The payment methods don't suit me, how can I get your products ?" %}</h4>
 <p>{% trans "Please, get in touch with us. will see if we find a solution." %}</p>
+<p>{% trans "You can contact us through the following channel" %} : </p>
+{% include "tags/channel.html" %}
 <h4>{% trans "How do I add an Item in the Cart ?" %}</h4>
 <p>{% trans "To add an item into your cart follow the step bellow" %} :</p>
 <ul>
@@ -53,9 +56,10 @@ After this delay your order will be automatically cancelled.
 <p>
 {% blocktrans %}
 It may be due to network error, or a technical issue from our side.
-Please get in touch with us through the contact page.
-{% endblocktrans %}
+Please get in touch with us through one the following channel
+{% endblocktrans %} :
 </p>
+{% include "tags/channel.html" %}
 
 <h4>{% trans "I place an order, but the order was not delivered" %}</h4>
 <p>
@@ -63,7 +67,9 @@ Please get in touch with us through the contact page.
 Make sure you have paid your order before the delay. 
 After the payment delay timeout, your order will be automatically cancelled.
 Please contact us with the evidence of your payment so that we proceed to a refund.
-{% endblocktrans %}</p>
+Get in touch with us through one the following channel
+{% endblocktrans %} :</p>
+{% include "tags/channel.html" %}
 
 <h4>{% trans "How can I cancel my order ?" %}</h4>
 <p>{% trans "To cancel your order, please follow steps described bellow" %}</p>
@@ -78,10 +84,8 @@ Please contact us with the evidence of your payment so that we proceed to a refu
 <p>{% trans "If you are in a  hurry, please consider the Express shipping option" %}</p>
 <h4>{% trans "What are the available payment methods ?" %}</h4>
 <p>{% trans "The available payment methods are" %} : </p>
-<ul>
-    <li>Airtel Money</li>
-</ul>
-<h4>{% trans "I place an Order, but it got cancelled after some day" %}</h4>
+{% include "tags/supported_payment_method.html" %}
+<h4>{% trans "I place an Order, but it got cancelled after some days" %}</h4>
 <p>
 {% blocktrans trimmed%}
 All unpaid orders get automatically cancelled after 3 days from the day 
