@@ -52,7 +52,7 @@
     <span class="key">{% trans "Value Type" %}</span> <span class="value">{{attribute.value_type|attr_type_value}}</span>
   </div>
   <div class="entry">
-    <span class="key">{% trans "Is Primary" %}</span> <span class="value">{{attribute.is_primary|yesno}}</span>
+    <span class="key">{% trans "Is Primary" %}</span> <span class="value">{{attribute.is_primary|yesno:_("yes,no")}}</span>
   </div>
 </div>
 

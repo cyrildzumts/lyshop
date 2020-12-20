@@ -64,7 +64,7 @@
                   <tr>
                   <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
                   <td data-label="{% trans 'Name' %}">{{attr.name}}</td>
-                  <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
+                  <td data-label="{% trans 'Display Name' %}">{% trans attr.display_name %}</td>
                   <td data-label="{% trans 'Value' %}">{% trans attr.value %}</td>
                   <td data-label="{% trans 'Primary' %}">{{attr.is_primary|yesno:_("yes,no")}}</td>
                   <td data-label="{% trans 'Value type' %}">{{attr.value_type|attr_type_value}}</td>
