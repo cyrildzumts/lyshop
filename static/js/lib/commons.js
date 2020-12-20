@@ -467,7 +467,8 @@ $(document).ready(function(){
     });
     $('.js-clear-input').on('click', function(){
         var target = $('#' + $(this).data('target'));
-        $(':input', target).val('');
+        $('input[type!=checkbox]', target).val('');
+        $('input:checkbox', target).val('').prop('checked', false);
     });
     /*
     $('.js-revealable-hide').on('click', function(){
