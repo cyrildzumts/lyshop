@@ -1,4 +1,5 @@
 from django import template
+from django.utils.translation import gettext_lazy as _
 from lyshop import utils
 from catalog import constants as Constants
 import logging
@@ -25,7 +26,7 @@ def gender_value(key):
     if v is None:
         logger.info(f"gender_value : Could not found value  for key \"{key}\"")
         return key
-    return v
+    return _(v)
 
 
 
@@ -45,4 +46,4 @@ def attr_type_value(key):
     if v is None:
         logger.info(f"attr_type_value : Could not found value  for key \"{key}\"")
         return key
-    return v
+    return _(v)
