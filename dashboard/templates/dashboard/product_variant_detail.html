@@ -101,11 +101,11 @@
       <h4>{% trans "Add Attribute Dialog" %}</h4>
     </div>
     <span class="mat-button mat-button-text js-dialog-close dialog-close" data-target="attr-dialog"><i class="fas fa-times"></i></span>
-    <span class="mat-button js-clear-input" data-target="form-attr-container">{% trans "Clear Form" %}</span>
+    <span class="mat-button js-clear-input" data-target="available-attrs">{% trans "Clear Form" %}</span>
     <div class="dialog-content container">
       <div class="mat-list-wrapper full">
       <form class="row" action="{% url 'dashboard:attribute-add' variant.product_uuid %}" method="post"> {% csrf_token %}
-        <ul class="box">
+        <ul id="available-attrs" class="box">
           {% for attr in available_attribute_list %}
             <li class="mat-list-item entry"><span class="key">{{attr.display_name}}</span><span class="value">{{attr.value}}</span><input type="checkbox" name="attributes" value="{{attr.pk}}"></li>
           {% endfor %}
