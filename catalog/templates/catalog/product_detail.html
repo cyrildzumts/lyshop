@@ -71,7 +71,7 @@
                             <div class="entry">
                               <span class="key">{% trans attr.display_name %}</span>
                               <div class="row flex-right">
-                                {% for e in attr.value %} <span class="js-attr-select chips {% if e.quantity < 1 %}disabled{% endif %}" data-quantity="{{e.quantity}}" data-value="{{e.variant}}" data-target="variant">{% trans e.value %}</span> {% endfor %}
+                                {% for e in attr.value %} <span class="js-attr-select chips {% if e.quantity < 1 %}disabled{% endif %}" data-quantity="{{e.quantity}}" data-value="{{e.variant}}" data-target="variant">{{e.value}}</span> {% endfor %}
                               </div>
                             </div>
                           
