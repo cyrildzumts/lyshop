@@ -1434,7 +1434,7 @@ def product_variant_detail(request, variant_uuid=None):
     product = variant.product
     attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm, extra=4, max_num=5)
     attribute_list = variant.attributes.all()
-    available_attribute_list = ProductAttribute.objects.exclude(id__in=attribute_list.values_list('id'))
+    available_attribute_list = ProductAttribute.objects.exclude(id__in=attribute_list.values_list('id')).order_by('value')
     context = {
         'page_title': page_title,
         'product': product,
