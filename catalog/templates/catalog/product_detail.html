@@ -52,7 +52,11 @@
                         <span class="value">{{product.brand.display_name}}</span> - <span>{{product.display_name}}</span>
                       </div>
                       <div class="gender">
-                        <span class="value">{% blocktrans %}{{product.gender|gender_value}}{% endblocktrans %}</span>
+                        <span class="value">
+                        {% blocktrans with gender=product.gender|gender_value%}
+                          {{ gender }}
+                        {% endblocktrans %}
+                        </span>
                       </div>
                       {% if product.is_promoted %}
                       <div class="price">
