@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-19 17:31+0000\n"
+"POT-Creation-Date: 2020-12-20 12:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -598,7 +598,7 @@ msgstr "Total"
 #: cart/templates/cart/cart.html:49 cart/templates/cart_base.html:22
 #: orders/views.py:121 orders/views.py:158
 msgid "Checkout"
-msgstr "Chekck-out"
+msgstr "Commander"
 
 #: cart/templates/cart/cart.html:52
 msgid "We accept the following payment methods"
@@ -688,6 +688,115 @@ msgstr "Quantité"
 msgid "Art. Nr"
 msgstr ""
 
+#: catalog/strings.py:6
+msgid "Eaux de Toilette"
+msgstr "Eaux de Toilette"
+
+#: catalog/strings.py:7
+msgid "Eaux de Parfum"
+msgstr "Eaux de Parfum"
+
+#: catalog/strings.py:8
+msgid "Parfum"
+msgstr "Parfum"
+
+#: catalog/strings.py:9
+msgid "Bags"
+msgstr "Sacs"
+
+#: catalog/strings.py:10
+#: dashboard/templates/dashboard/payment_method_create.html:51
+#: dashboard/templates/dashboard/payment_method_detail.html:34
+#: dashboard/templates/dashboard/payment_method_list.html:52
+#: dashboard/templates/dashboard/payment_method_list.html:66
+#: dashboard/templates/dashboard/payment_method_update.html:55
+msgid "Mode"
+msgstr "Mode"
+
+#: catalog/strings.py:11
+msgid "Clothes"
+msgstr "Vêtements"
+
+#: catalog/strings.py:12
+msgid "Electronic"
+msgstr "Electronique"
+
+#: catalog/strings.py:13
+msgid "Shoes"
+msgstr "Chaussures"
+
+#: catalog/strings.py:17
+msgid "WOMEN"
+msgstr "FEMME"
+
+#: catalog/strings.py:18
+msgid "MEN"
+msgstr "HOMME"
+
+#: catalog/strings.py:19
+msgid "BABY BOY"
+msgstr "BÉBÉ GARCON"
+
+#: catalog/strings.py:20
+msgid "BABY GIRL"
+msgstr "BÉBÉ FILLE"
+
+#: catalog/strings.py:21
+msgid "BOY"
+msgstr "GARCON"
+
+#: catalog/strings.py:22
+msgid "GIRL"
+msgstr "FILLE"
+
+#: catalog/strings.py:23
+msgid "NO GENDER"
+msgstr "MIXTE"
+
+#: catalog/strings.py:26
+msgid "SHOES"
+msgstr "CHAUSSURES"
+
+#: catalog/strings.py:27
+msgid "SMARTPHONE"
+msgstr "SMARTPHONE"
+
+#: catalog/strings.py:28
+msgid "PARFUM"
+msgstr "PARFUM"
+
+#: catalog/strings.py:29
+msgid "BAG"
+msgstr "SAC"
+
+#: catalog/strings.py:30
+msgid "ACCESSORIES"
+msgstr "ACCÉSSOIRES"
+
+#: catalog/strings.py:33
+msgid "Color"
+msgstr ""
+
+#: catalog/strings.py:34
+msgid "Size"
+msgstr ""
+
+#: catalog/strings.py:35
+msgid "Capacity"
+msgstr ""
+
+#: catalog/strings.py:36
+msgid "Battery"
+msgstr ""
+
+#: catalog/strings.py:37
+msgid "Material"
+msgstr ""
+
+#: catalog/strings.py:38
+msgid "RAM"
+msgstr ""
+
 #: catalog/templates/catalog/catalog_home.html:21
 #, fuzzy
 #| msgid "There is no sold products yet."
@@ -756,7 +865,7 @@ msgstr "Ajouter au panier"
 
 #: catalog/templates/catalog/product_detail.html:104
 msgid "Out of Stock"
-msgstr ""
+msgstr "En rupture de stock"
 
 #: catalog/templates/catalog/product_detail.html:121
 #: catalog/templates/catalog/product_variant_detail.html:100
@@ -2817,14 +2926,6 @@ msgstr "Demandes de paiement"
 #| msgid "Province"
 msgid "Provider"
 msgstr "Région"
-
-#: dashboard/templates/dashboard/payment_method_create.html:51
-#: dashboard/templates/dashboard/payment_method_detail.html:34
-#: dashboard/templates/dashboard/payment_method_list.html:52
-#: dashboard/templates/dashboard/payment_method_list.html:66
-#: dashboard/templates/dashboard/payment_method_update.html:55
-msgid "Mode"
-msgstr ""
 
 #: dashboard/templates/dashboard/payment_method_create.html:59
 #: dashboard/templates/dashboard/payment_method_detail.html:31

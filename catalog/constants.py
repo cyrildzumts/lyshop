@@ -1,4 +1,3 @@
-
 from lyshop import utils
 import datetime
 import re
@@ -14,7 +13,6 @@ GENDER_BABY_BOY     = 4
 GENDER_GIRL         = 5
 GENDER_BOY          = 6
 GENDER_NO_GENDER    = 7
-
 
 CHILDREN = (
     (GENDER_BOY, 'BOY'),
@@ -35,16 +33,6 @@ GENDER = (
         (GENDER_BOY, 'BOY'),
         (GENDER_NO_GENDER, 'NO GENDER')
     )
-
-GENDER_OLD = (
-    ('MEN', GENDER_MEN),
-    ('WOMEN', GENDER_WOMEN),
-    ('BABY GIRL', GENDER_BABY_GIRL),
-    ('BABY BOY', GENDER_BABY_BOY),
-    ('GIRL', GENDER_GIRL),
-    ('BOY', GENDER_BOY),
-    ('NO GENDER', GENDER_NO_GENDER)
-)
 
 ATTRIBUTE_TYPE_STRING = 1
 ATTRIBUTE_TYPE_INTEGER = 2
@@ -69,20 +57,11 @@ ATTRIBUTE_TYPE_MAPPING = {
     ATTRIBUTE_TYPE_DATE : datetime.date
 }
 
-ATTRIBUTE_TYPE_OLD = (
-    ('STRING', ATTRIBUTE_TYPE_STRING),
-    ('INTEGER', ATTRIBUTE_TYPE_INTEGER),
-    ('DECIMAL', ATTRIBUTE_TYPE_DECIMAL),
-    ('DATE', ATTRIBUTE_TYPE_DATE),
-    ('DATETIME', ATTRIBUTE_TYPE_DATETIME),
-    ('DEFAULT(STRING)', ATTRIBUTE_TYPE_DEFAULT)
-)
-
 COMMISSION_DEFAULT = 0.03
 COMMISSION_MAX_DIGITS = 7
 COMMISSION_DECIMAL_PLACES = 5
 
-DEFAULT_PRIMARY_ATTRIBUTES = ['size', 'capacity','color']
+DEFAULT_PRIMARY_ATTRIBUTES = ['size', 'capacity', 'color']
 
 INTEGER_PATTERN_REGEX               = re.compile(r'^[0-9]+$')
 LIST_FILTER_PATTERN                 = re.compile(r'^\w+([,;]\w+)*$')
