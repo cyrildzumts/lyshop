@@ -25,6 +25,7 @@ from lyshop import utils, settings, conf as GLOBAL_CONF
 from dashboard.forms import (AccountForm, GroupFormCreation, PolicyForm, PolicyGroupForm, 
     PolicyGroupUpdateForm, PolicyGroupUpdateMembersForm, TokenForm, OrderSoldItemForm
 )
+from accounts import constants as Account_Constants
 from accounts.forms import AccountCreationForm, UserCreationForm
 from accounts.account_services import AccountService
 from catalog.models import (
@@ -3333,6 +3334,7 @@ def create_account(request):
     username = request.user.username
     context = {
         'page_title':_('New User') + ' - ' + settings.SITE_NAME,
+        'ACCOUNT_TYPE' : Account_Constants.ACCOUNT_TYPE,
     }
     template_name = 'dashboard/new_user.html'
     can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
