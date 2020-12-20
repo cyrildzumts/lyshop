@@ -466,9 +466,11 @@ $(document).ready(function(){
         $('.js-revealable', target).toggleClass('hidden');
     });
     $('.js-clear-input').on('click', function(){
+        
         var target = $('#' + $(this).data('target'));
+        console.log("Clearing inputs from ", target);
         $('input[type!=checkbox]', target).val('');
-        $('input:checkbox', target).val('').prop('checked', false);
+        $('input:checkbox', target).val('').prop('checked', '');
     });
     /*
     $('.js-revealable-hide').on('click', function(){
