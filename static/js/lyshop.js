@@ -85,22 +85,8 @@ window.addEventListener('beforeunload', askConfirmation);
         $(this).toggleClass('active');
     });
     */
-    $('.js-dialog-open').on('click', function(){
-        var target = $($(this).data('target'));
-        target.show();
-    });
-
     
-    $('.js-dialog-close').on('click', function(){
-        var target = $($(this).data('target'));
-        target.hide();
-        //var parent = $(this).parents('.dialog').hide();
-        $('input[type!="hidden"]', target).val('');
-    });
-    $('.js-clear-input').on('click', function(){
-        var target = $(this).data('target');
-        $(':input', target).val('');
-    });
+    
 });
 
 

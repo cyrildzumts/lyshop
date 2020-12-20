@@ -449,9 +449,25 @@ $(document).ready(function(){
         console.log("limited input keyup");
         input_check_max_limit(this);
     });
+    $('.js-dialog-open').on('click', function(){
+        var target = $('#' + $(this).data('target'));
+        target.show();
+    });
+
+    
+    $('.js-dialog-close').on('click', function(){
+        var target = $("#" + $(this).data('target'));
+        target.hide();
+        //var parent = $(this).parents('.dialog').hide();
+        $('input[type!="hidden"]', target).val('');
+    });
     $('.js-reveal-btn, .js-revealable-hide').on('click', function(){
         var target = $($(this).data('target')).parent();
         $('.js-revealable', target).toggleClass('hidden');
+    });
+    $('.js-clear-input').on('click', function(){
+        var target = $('#' + $(this).data('target'));
+        $(':input', target).val('');
     });
     /*
     $('.js-revealable-hide').on('click', function(){

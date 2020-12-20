@@ -74,7 +74,7 @@
   </div>
   <div class="mat-box wrapper full">
       <div class="actions">
-        <span class="mat-button js-add-attr-btn js-dialog-open" data-target="#attr-dialog"><i class="fas fa-plus icon"></i> <span>{% trans "Add Attribute" %}</span></span>
+        <span class="mat-button js-add-attr-btn js-dialog-open" data-target="attr-dialog"><i class="fas fa-plus icon"></i> <span>{% trans "Add Attribute" %}</span></span>
         <span class="mat-button js-reveal-btn" data-target="#variant-attrs"><i class="fas fa-pen icon"></i><span>{% trans "Edit Attribute" %}</span></span>
       </div>
       <div class="mat-box-content row">
@@ -89,7 +89,7 @@
                   
               </ul>
               <div class="actions hidden js-revealable">
-                    <span class="mat-button js-dialog-close js-revealable-hide" data-target="#variant-attrs" >{% trans "Cancel" %}</span>
+                    <span class="mat-button js-revealable-hide" data-target="#variant-attrs" >{% trans "Cancel" %}</span>
                     <button class="mat-button mat-button-default" type="submit">{% trans "Remove Attributes" %}</button>
               </div>
           </form>
@@ -100,8 +100,8 @@
     <div class="dialog-title">
       <h4>{% trans "Add Attribute Dialog" %}</h4>
     </div>
-    <span class="mat-button js-dialog-close dialog-close"><i class="fas fa-close"></i></span>
-    <span class="mat-button js-clear-input" data-target="#attrs-container">{% trans "Clear Form" %}</span>
+    <span class="mat-button mat-button-text js-dialog-close dialog-close" data-target="attr-dialog"><i class="fas fa-times"></i></span>
+    <span class="mat-button js-clear-input" data-target="form-attr-container">{% trans "Clear Form" %}</span>
     <div class="dialog-content container">
       <div class="mat-list-wrapper full">
       <form class="row" action="{% url 'dashboard:attribute-add' variant.product_uuid %}" method="post"> {% csrf_token %}
@@ -111,7 +111,7 @@
           {% endfor %}
         </ul>
         <div class="actions">
-              <span class="mat-button js-dialog-close" >{% trans "Cancel" %}</span>
+              <span class="mat-button mat-button-text js-dialog-close" data-target="attr-dialog">{% trans "Cancel" %}</span>
               <button class="mat-button mat-button-default" type="submit">{% trans "Add Attributes" %}</button>
         </div>
       </form>
@@ -131,7 +131,7 @@
                     
                     </div>
                     <div class="form-group actions">
-                        <span class="mat-button js-dialog-close" >{% trans "Cancel" %}</span>
+                        <span class="mat-button mat-button-text js-dialog-close" data-target="attr-dialog">{% trans "Cancel" %}</span>
                         <button class="mat-button mat-button-default" type="submit">{% trans "Create" %}</button>
                     </div>
                 </form>
