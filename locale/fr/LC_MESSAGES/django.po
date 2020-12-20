@@ -6087,11 +6087,11 @@ msgstr "Non activé"
 
 #: vendors/templates/vendors/order_item.html:37
 msgid "Is Paid"
-msgstr ""
+msgstr "Est Payé"
 
 #: vendors/templates/vendors/order_item.html:37
 msgid "yes,no"
-msgstr ""
+msgstr "oui,non"
 
 #: vendors/templates/vendors/order_list.html:49
 #, fuzzy
@@ -6109,9 +6109,6 @@ msgstr "Ajouter un produit"
 msgid "Sold"
 msgstr "Date de vente"
 
-#: vendors/templates/vendors/vendor_home.html:19
-msgid "Commandes"
-msgstr ""
 
 #: vendors/templates/vendors/vendor_home.html:39
 msgid "Recent Sold Products"
