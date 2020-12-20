@@ -3331,8 +3331,9 @@ def permission_delete(request, pk=None):
 @login_required
 def create_account(request):
     username = request.user.username
-    context = {}
-    page_title = _('New User')
+    context = {
+        'page_title':_('New User') + ' - ' + settings.SITE_NAME,
+    }
     template_name = 'dashboard/new_user.html'
     can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
     if not can_access_dashboard:
