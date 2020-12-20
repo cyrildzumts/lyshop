@@ -53,7 +53,7 @@
                       </div>
                       <div class="gender">
                         <span class="value">
-                        {% blocktrans with gender=product.gender|gender_value%}
+                        {% blocktrans with gender=_(product.gender|gender_value)%}
                           {{ gender }}
                         {% endblocktrans %}
                         </span>
