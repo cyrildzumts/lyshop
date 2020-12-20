@@ -73,15 +73,15 @@
             <span class="key">{% trans "Description" %}</span> <span class="value">{{product.description}}</span>
           </div>
         </div>
-        <div class="container wrapper">
-            <ul class="actions row" role="navigation">
+        <div class="container">
+            <ul class="actions" role="navigation">
                 {% if can_change_product %}<li><a class="mat-button mat-button-default" href="{{product.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>{% endif %}
                 {% if can_add_product %}
                 <li><a class="mat-button mat-button-default" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a></li>
                 <li><a class="mat-button mat-button-default" href="{% url 'dashboard:product-image-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Image" %}</span></a></li>
                 {% endif %}
-                <li> <a class="mat-button mat-button-text" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a> </li>
-                <li> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+                <li> <a class="mat-button mat-button-default" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a> </li>
+                <li> <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a></li>
             </ul>
         </div>
       </div><!--End of mat-box-content-->

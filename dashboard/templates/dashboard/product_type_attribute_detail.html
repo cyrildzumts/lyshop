@@ -24,7 +24,7 @@
           </div>
          
           <div class="container">
-              <ul class="actions row" role="navigation">
+              <ul class="actions" role="navigation">
                   {% if can_change_product %}<li class="list-item"><a class="mat-button mat-button-default" href="{{type_attribute.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>{% endif %}
                   {% if can_add_product %}<li class="list-item"> <a class="mat-button mat-button-default" href="{% url 'dashboard:product-type-attribute-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Produt Attribute Type" %}</span></a> </li>{% endif %}
                   <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes' %}"><i class="fas fa-list icon"></i><span>{% trans "Product Attribute Types" %}</span></a> </li>

@@ -13,8 +13,8 @@
             <div class="col col-9">
                 <div class="banner--actions">
                     {% if can_view_coupon %}
-                    <a class="mat-button mat-button-outlined" href="{% url 'dashboard:coupons'%}"> {% trans "Coupons" %}</a>{% endif %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:coupons'%}"><i class="fas fa-list icon"></i><span>{% trans "Coupons" %}</span></a>{% endif %}
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     
                         
                 </div><!--End of Banner-Actions-->

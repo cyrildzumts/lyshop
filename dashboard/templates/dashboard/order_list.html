@@ -14,9 +14,9 @@
             <div class="col-xs-12 col-9">
                 <div class="banner--actions">
                     {% if can_change_order %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:clean-unpaid-orders' %}"><i class="fas fa-sync icon"></i><span>{% trans "Clean Unpaid Orders" %}</span></a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:clean-unpaid-orders' %}"><i class="fas fa-sync icon"></i><span>{% trans "Clean Unpaid Orders" %}</span></a>
                     {% endif %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     
                         
                 </div><!--End of Banner-Actions-->

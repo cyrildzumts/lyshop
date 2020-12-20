@@ -45,7 +45,7 @@
                                 <td data-label="{% trans 'Name' %}">{{attr.name}}</td>
                                 <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
                                 <td data-label="{% trans 'Value' %}">{{attr.value}}</td>
-                                <td data-label="{% trans 'Primary' %}">{{attr.is_primary|yesno}}</td>
+                                <td data-label="{% trans 'Primary' %}">{{attr.is_primary|yesno:_("yes,no")}}</td>
                                 <td data-label="{% trans 'Value type' %}">{{attr.value_type|attr_type_value}}</td>
                             </tr>
                             {% endfor %}

@@ -17,7 +17,7 @@
                     {% endif %}
                     {% if can_delete_policy %}<a class="mat-button mat-button-default warn js-need-confirmation" href="{% url 'dashboard:policy-groups' %}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete All Policies" %}</span></a>
                     {% endif %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     
                         
                 </div><!--End of Banner-Actions-->

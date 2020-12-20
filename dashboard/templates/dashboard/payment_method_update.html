@@ -10,17 +10,11 @@
                 
         </div>
         <div class="container">
-
-            <div class="col col-9">
-                <div class="banner--actions">
+                <div class="actions">
                     {% if can_view_payment %}
-                    <a class="mat-button mat-button-outlined" href="{% url 'dashboard:payment-methods'%}"> {% trans "Payment Methods" %}</a>{% endif %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
-                    
-                        
+                    <a class="mat-button mat-button-outlined" href="{% url 'dashboard:payment-methods'%}"><i class="fas fa-list icon"></i><span>{% trans "Payment Methods" %}</span></a>{% endif %}
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i> <span>{% trans "Dashboard" %}</span></a>          
                 </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
         </div><!--End of Container-->
         
     </div>

@@ -23,8 +23,8 @@
         
         <a class="mat-button mat-button-default" href="{{item.get_update_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Update" %}</span></a>
         <a class="mat-button mat-button-default" href="{{order.get_dashboard_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Order" %}</span></a>
-        <a class="mat-button mat-button-text" href="{% url 'dashboard:orders' %}"><i class="fas fa-list icon"></i><span>{% trans "Orders" %}</span></a>
-        <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>   
+        <a class="mat-button mat-button-default" href="{% url 'dashboard:orders' %}"><i class="fas fa-list icon"></i><span>{% trans "Orders" %}</span></a>
+        <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>   
         
     </div><!--End of Banner-Actions-->
     <div class="mat-box wrapper full">

@@ -14,7 +14,7 @@
                 <div class="banner--actions">
                     {% if can_add_policy %}<a class="mat-button mat-button-default" href="{% url 'dashboard:policy-create' %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add new Policy" %}</span></a>{% endif %}
                     {% if can_delete_policy %}<a class="mat-button mat-button-default warn js-need-confirmation" href="{% url 'dashboard:policy-remove-all' %}"> <i class="fas fa-remove icon"></i> <span>{% trans "Delete All Policies" %}</span> </a>{% endif %}
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><span class="home"></span><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><span class="home"></span><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     
                 </div><!--End of Banner-Actions-->
             </div><!--End of Responsive-->
