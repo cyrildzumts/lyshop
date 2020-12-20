@@ -32,7 +32,7 @@
                           <th scope="col">{% trans "Promotion Price" %}</th>
                           <th scope="col">{% trans "Quantity" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
-                          {% if can_delete_product %}<th scope="col">{% trans "Delete Action" %}</th>{% endif %}
+                          {% if can_delete_product %}<th scope="col">{% trans "Action" %}</th>{% endif %}
                   </tr>
           </thead>
           <tbody>
@@ -45,7 +45,7 @@
                   <td scope="row" data-label="{% trans 'Name' %}">{{product.name}}</td>
                   <td data-label="{% trans 'Display Name' %}">{{product.display_name}}</td>
                   <td data-label="{% trans 'Gender' %}">{{product.gender|gender_value}}</td>
-                  <td data-label="{% trans 'Type' %}">{{product.product_type.display_name}}</td>
+                  <td data-label="{% trans 'Type' %}">{% trans product.product_type.display_name %}</td>
                   <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                   <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                   <td data-label="{% trans 'Quantity' %}">{{product.quantity}}</td>
