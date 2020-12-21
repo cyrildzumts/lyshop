@@ -1,3 +1,5 @@
+const { get } = require("../vendor/js.cookie");
+
 define(['ajax_api', 'vendor/js.cookie'], function(ajax_api, Cookies) {
     'use strict';
     var lang_cookie = "";
@@ -19,9 +21,7 @@ define(['ajax_api', 'vendor/js.cookie'], function(ajax_api, Cookies) {
         return "";
     }
     function get_lang(){
-        const current_lang = getCookie(LANGUAGE_KEY) || DEFAULT_LANGUAGE;
-        console.log("js.cookie.js");
-        console.log("Cookie lang : %s", Cookies.get(LANGUAGE_KEY));
+        const current_lang = $('#current-lang').val();
         return current_lang;
     }
     function Cart(){
@@ -104,8 +104,8 @@ define(['ajax_api', 'vendor/js.cookie'], function(ajax_api, Cookies) {
             method: 'POST',
             dataType: 'json',
             headers:{'Content-Type': 'application/json'},
-            url : '/cart/ajax-add-to-cart/',
-            data : data
+            url : '/' + get_lang() + '/cart/ajax-add-to-cart/',
+            data : $('#add-cart-form').serialize()
         }
         ajax_api(option).then(function(response){
             self.update_badge(response.quantity);
