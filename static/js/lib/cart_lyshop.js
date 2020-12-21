@@ -102,7 +102,7 @@ define(['ajax_api', 'vendor/js.cookie'], function(ajax_api) {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            headers:{'Content-Type': 'application/json'},
+            //headers:{'Content-Type': 'application/json'},
             url : '/' + get_lang() + '/cart/ajax-add-to-cart/',
             data : $('#add-cart-form').serialize()
         }
