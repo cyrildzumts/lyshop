@@ -1,6 +1,5 @@
-const { get } = require("../vendor/js.cookie");
 
-define(['ajax_api', 'vendor/js.cookie'], function(ajax_api, Cookies) {
+define(['ajax_api', 'vendor/js.cookie'], function(ajax_api) {
     'use strict';
     var lang_cookie = "";
     const DEFAULT_LANGUAGE = "fr";
