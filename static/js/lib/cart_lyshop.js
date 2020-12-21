@@ -63,6 +63,7 @@ define(['ajax_api'], function(ajax_api) {
             console.warn("No data for to add to to cart");
             return;
         }
+        console.log("Add To Cart Form Data : ", data);
         var option = {
             type:'POST',
             dataType: 'json',
