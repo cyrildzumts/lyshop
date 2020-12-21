@@ -31,15 +31,15 @@ define(['ajax_api'], function(ajax_api) {
 
         $('#add-cart-form').submit(function(event){
             event.stopPropagation();
-            //event.preventDefault();
+            event.preventDefault();
             //var data = {};
             
             /*$.each($(this).serializeArray(),(i, e) =>{
                 data[e.name] = e.value;
             });
-            self.add($(this).serializeArray());
             */
-           return true;
+            self.add($(this).serializeArray());
+           //return true;
         });
         $('.js-cart-item-quantity').on('keypress', function(e){
             if(e.which != 13){
