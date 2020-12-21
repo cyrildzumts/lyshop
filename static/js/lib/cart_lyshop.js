@@ -36,7 +36,7 @@ define(['ajax_api'], function(ajax_api) {
             $.each($(this).serializeArray(),(i, e) =>{
                 data[e.name] = e.value;
             });
-            self.add(data);
+            self.add($(this).serializeArray());
         });
         $('.js-cart-item-quantity').on('keypress', function(e){
             if(e.which != 13){
@@ -61,7 +61,11 @@ define(['ajax_api'], function(ajax_api) {
     }
 
 
-    Cart.prototype.add = function(data){
+    Cart.prototype.add = function(dataArray){
+        var data = {};
+        $.each(dataArray,(i, e) =>{
+            data[e.name] = e.value;
+        });
         var self = this;
         if(!data){
             console.warn("No data for to add to to cart");
