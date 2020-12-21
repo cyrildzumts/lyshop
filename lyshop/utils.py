@@ -82,3 +82,28 @@ def find_element_by_value_in_tuples(value, tuples):
             key = k
             break
     return key, value
+
+
+def show_request(request):
+    logger.info("REQUEST DATA")
+    logger.info(f"SCHEME : {request.scheme}")
+    logger.info(f"PATH : {request.path}")
+    logger.info(f"PATH INFO: {request.path_info}")
+    logger.info(f"METHOD : {request.method}")
+    logger.info(f"ENCODING : {request.encoding}")
+    logger.info(f"CONTENT_TYPE : {request.content_type}")
+    logger.info(f"CONTENT_PARAMS : {request.content_params}")
+    logger.info(f"GET : {request.GET}")
+    logger.info(f"POST : {request.POST}")
+    logger.info(f"COOKIES : {request.COOKIES}")
+    logger.info(f"META : ")
+    logger.info("------------------------------")
+    for k,v in request.META.items():
+        logger.info(f"{k} : {v}")
+    logger.info("------------------------------")
+
+    logger.info(f"HEADERS : ")
+    for k,v in request.headers.items():
+        logger.info(f"{k} : {v}")
+    logger.info("------------------------------")
+    logger.info("REQUEST CONTENT FINISHED")

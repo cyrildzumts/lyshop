@@ -110,6 +110,7 @@ def ajax_add_to_cart(request):
         'success': False
     }
     logger.debug("ajax-add-to-cart")
+    utils.show_request(request)
     if request.method == 'POST':
         postdata = request.POST.copy()
 
