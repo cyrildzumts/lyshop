@@ -114,6 +114,7 @@ def ajax_add_to_cart(request):
         postdata = request.POST.copy()
 
         form = AddCartForm(postdata)
+        logger.info("Ajax send as POST")
         if form.is_valid():
             logger.debug("Summitted data are valid")
             variant_uuid = form.cleaned_data['variant_uuid']
@@ -133,7 +134,8 @@ def ajax_add_to_cart(request):
             context['status'] = False
             return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
             
-    
+    else:
+        logger.warn("Ajax send as GET Request")
     context['error'] = 'Bad Request'
     context['status'] = False
     return JsonResponse(context, status=HTTPStatus.BAD_REQUEST)
