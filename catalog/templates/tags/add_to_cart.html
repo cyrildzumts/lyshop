@@ -13,8 +13,8 @@
         <i class="icon fas fa-shopping-cart"></i>
         <span class="">{% trans "Add to Cart" %}</span>
     </button>
-    <div class="hint">
-    <a href="{% url 'accounts:login'  %}?next={{request.path}}" class="mat-button mat-button-text"><i class="fas fa-sign-in-alt icon"></i><span class="hint">{% trans "Please, login first or create an account" %}</span></a>
+    <div class="hint-link">
+    <a href="{% url 'accounts:login'  %}?next={{request.path}}" class="mat-button mat-button-default"><i class="fas fa-sign-in-alt icon"></i><span class="hint">{% trans "Please, login first or create an account" %}</span></a>
     </div>
     {% endif %}
 

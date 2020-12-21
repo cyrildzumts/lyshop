@@ -48,7 +48,8 @@ body{
 .mat-button:disabled {
 	color: #ccc !important;
 	font-weight: 700 !important;
-	border: 2px solid #ccc !important;
+    border: 2px solid #ccc !important;
+    cursor: not-allowed;
 }
 
 .mat-button:disabled:hover {
