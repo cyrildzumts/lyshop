@@ -61,7 +61,7 @@ define(['ajax_api', 'vendor/js.cookie'], function(ajax_api) {
                 data[e.name] = e.value;
             });
             */
-            self.add($(this).serializeArray());
+            self.add($(this).serialize());
            //return true;
         });
         $('.js-cart-item-quantity').on('keypress', function(e){
@@ -87,24 +87,24 @@ define(['ajax_api', 'vendor/js.cookie'], function(ajax_api) {
     }
 
 
-    Cart.prototype.add = function(dataArray){
-        var data = {};
+    Cart.prototype.add = function(formData){
+        /*var data = {};
         $.each(dataArray,(i, e) =>{
             data[e.name] = e.value;
         });
+        */
         var self = this;
-        if(!data){
+        if(!formData){
             console.warn("No data for to add to to cart");
             return;
         }
-        console.log("Add To Cart Form Data : ", data);
+        console.log("Add To Cart Form Data : ", formData);
         var option = {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            //headers:{'Content-Type': 'application/json'},
             url : '/' + get_lang() + '/cart/ajax-add-to-cart/',
-            data : $('#add-cart-form').serialize()
+            data : formData
         }
         ajax_api(option).then(function(response){
             self.update_badge(response.quantity);
