@@ -59,15 +59,14 @@
           <div class="container wrapper">
               <ul class="actions row" role="navigation">
                   <li><a class="mat-button mat-button-default" href="{{variant.get_update_url}}"><span class="fas fa-pen icon"></span><span class="">{% trans "Edit" %}</span></a></li>
-                  <li><a class="mat-button mat-button-text" href="{{product.get_dashboard_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Parent Product" %}</span></a></li>
                   <li>
                       <form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
                           <button class="mat-button mat-button-default warn" type="submit"><span class="fas fa-trash icon"></span><span class="">{% trans "Delete" %}</span></button>
-                          {% comment %} <a class="mat-button mat-button-default warn" href="{{variant.get_delete_url}}"><span class="fas fa-trash"></span><span class="">{% trans "Delete" %}</span></a> {% endcomment %}
                       </form>
                   </li>
-                  <li> <a class="mat-button mat-button-text" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a> </li>
-                  <li> <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a></li>
+                  <li><a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Parent Product" %}</span></a></li>
+                  <li> <a class="mat-button mat-button-default" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a> </li>
+                  <li> <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a></li>
               </ul>
           </div>
         </div><!--End of mat-box-content-->

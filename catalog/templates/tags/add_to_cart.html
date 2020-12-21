@@ -1,0 +1,25 @@
+{% load i18n %}
+
+
+<div class="actions">
+{% if product_available %}
+    {% if user.is_authenticated %}
+    <button type="submit" class="mat-button mat-button-default js-add-to-cart">
+        <i class="icon fas fa-shopping-cart"></i>
+        <span class="">{% trans "Add to Cart" %}</span>
+    </button>
+    {% else %}
+    <button class="mat-button mat-button-default" disabled>
+        <i class="icon fas fa-shopping-cart"></i>
+        <span class="">{% trans "Add to Cart" %}</span>
+    </button>
+    <a href="accounts:login" class="mat-button mat-button-text"><i class="fas fa-sign-in-alt icon"></i><span class="hint">{% trans "Please, login first or create an account" %}</span></a>
+    {% endif %}
+
+{% else %}
+    <button class="mat-button mat-button-default" disabled>
+        <i class="icon fas fa-shopping-cart"></i>
+        <span class="">{% trans "Out of Stock" %}</span>
+    </button>
+{% endif %}
+</div>
