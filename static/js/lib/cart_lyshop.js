@@ -33,7 +33,7 @@ define(['ajax_api'], function(ajax_api) {
             event.stopPropagation();
             event.preventDefault();
             var data = {};
-            $(this).serialize().each((i, e) =>{
+            $.each($(this).serializeArray(),(i, e) =>{
                 data[e.name] = e.value;
             });
             self.add(data);
