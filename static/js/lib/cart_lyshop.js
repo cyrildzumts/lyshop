@@ -31,7 +31,7 @@ define(['ajax_api'], function(ajax_api) {
 
         $('#add-cart-form').submit(function(event){
             event.stopPropagation();
-            event.preventDefault();
+            //event.preventDefault();
             //var data = {};
             
             /*$.each($(this).serializeArray(),(i, e) =>{
