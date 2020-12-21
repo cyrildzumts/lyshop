@@ -32,7 +32,11 @@ define(['ajax_api'], function(ajax_api) {
         $('#add-cart-form').submit(function(event){
             event.stopPropagation();
             event.preventDefault();
-            self.add($(this).serialize());
+            var data = {};
+            $(this).serialize().each((i, e) =>{
+                data[e.name] = e.value;
+            });
+            self.add(data);
         });
         $('.js-cart-item-quantity').on('keypress', function(e){
             if(e.which != 13){
