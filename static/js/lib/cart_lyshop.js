@@ -1,5 +1,26 @@
 define(['ajax_api'], function(ajax_api) {
     'use strict';
+    var lang_cookie = "";
+    const DEFAULT_LANGUAGE = "fr";
+    const LANGUAGE_KEY = 'django_language';
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+    }
+    function get_lang(){
+        const current_lang = getCookie(LANGUAGE_KEY) || DEFAULT_LANGUAGE;
+    }
     function Cart(){
         this.user = "";
         this.items = [];
@@ -80,7 +101,7 @@ define(['ajax_api'], function(ajax_api) {
             method: 'POST',
             dataType: 'json',
             headers:{'Content-Type': 'application/json'},
-            url : '/cart/ajax-add-to-cart/',
+            url : '/' + get_lang() + '/cart/ajax-add-to-cart/',
             data : data
         }
         ajax_api(option).then(function(response){
