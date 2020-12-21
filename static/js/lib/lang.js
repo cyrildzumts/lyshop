@@ -39,5 +39,5 @@ define([], function() {
         change_language(this);
     });
     console.log("lang.js installed");
-    return {get_cookie: get_cookie, get_lang: get_lang}
+    return {get_cookie: getCookie, get_lang: get_lang}
 });
