@@ -209,7 +209,7 @@ msgstr "Ville"
 #, fuzzy
 #| msgid "Total Price"
 msgid "Postal code"
-msgstr "Prix total"
+msgstr "Code postale"
 
 #: addressbook/templates/addressbook/address_create.html:37
 #: addressbook/templates/addressbook/address_detail.html:35
@@ -250,7 +250,7 @@ msgstr "Numéro de maison"
 
 #: addressbook/templates/addressbook/address_create.html:50
 msgid "Use this address as"
-msgstr ""
+msgstr "Utiliser cette adresse pour"
 
 #: addressbook/templates/addressbook/address_create.html:52
 #, fuzzy
@@ -340,7 +340,7 @@ msgstr "Prénom"
 #: dashboard/templates/dashboard/address_detail.html:34
 #: dashboard/templates/dashboard/addressbook.html:63
 msgid "Postal Code"
-msgstr ""
+msgstr "Code postale"
 
 #: addressbook/templates/addressbook/address_detail.html:44
 #: addressbook/templates/addressbook/address_update.html:50
@@ -362,7 +362,7 @@ msgstr "Numéro de téléphone"
 #, fuzzy
 #| msgid "Address extra"
 msgid "Address is used for"
-msgstr "Addresse supplémnetaire"
+msgstr "Utiliser pour"
 
 #: addressbook/templates/addressbook/address_update.html:14
 #: addressbook/templates/addressbook/address_update.html:57
@@ -411,26 +411,26 @@ msgstr "Actualiser"
 
 #: addressbook/templates/addressbook/addressbook.html:17
 msgid "Dont use as Main"
-msgstr ""
+msgstr "Ne pas utiliser comme principale"
 
 #: addressbook/templates/addressbook/addressbook.html:19
 #, fuzzy
 #| msgid "Enter your E-mail address"
 msgid "Use as main address"
-msgstr "Entrer votre addresse E-mail"
+msgstr "Utilser comme adresse principale"
 
 #: addressbook/templates/addressbook/addressbook.html:29
 #: dashboard/templates/dashboard/addressbook.html:43
 #, fuzzy
 #| msgid "Billing Address"
 msgid "Main Address"
-msgstr "Addresse de facture"
+msgstr "Adresse principale"
 
 #: addressbook/templates/addressbook/addressbook.html:72
 #, fuzzy
 #| msgid "You have bought any article yet."
 msgid "You don't have added an address yet."
-msgstr "Vous n'avez encore acheté aucun article."
+msgstr "Vous n'avez encore ajouté d'adresses."
 
 #: addressbook/templates/addressbook_base.html:10 addressbook/views.py:26
 #: dashboard/templates/dashboard/addressbook.html:8
@@ -439,78 +439,78 @@ msgstr "Vous n'avez encore acheté aucun article."
 #, fuzzy
 #| msgid "Address"
 msgid "Addressbook"
-msgstr "Addresse"
+msgstr "Carnet d'adresses"
 
 #: addressbook/templates/addressbook_base.html:17
 #, fuzzy
 #| msgid "Add new Brand"
 msgid "Add new Address"
-msgstr "Ajouter une nouvelle marque"
+msgstr "Ajouter une nouvelle adresse"
 
 #: addressbook/templates/addressbook_tags/address_form.html:44
 #, fuzzy
 #| msgid "Create Access Token"
 msgid "Create Address"
-msgstr "Créér un Token d'accès"
+msgstr "Créér une adresse"
 
 #: addressbook/views.py:45 dashboard/views.py:4233
 #, fuzzy
 #| msgid "Address"
 msgid "Addresses"
-msgstr "Addresse"
+msgstr "Adresses"
 
 #: addressbook/views.py:64 dashboard/templates/tags/account_update_form.html:34
 #: dashboard/views.py:4251
 msgid "Address"
-msgstr "Addresse"
+msgstr "Adresse"
 
 #: addressbook/views.py:78 dashboard/views.py:4265
 #, fuzzy
 #| msgid "Address Extra"
 msgid "Address Update"
-msgstr "Addresse supplémnetaire"
+msgstr "Actualiser l'adresse"
 
 #: addressbook/views.py:89 dashboard/views.py:4275
 #, fuzzy
 #| msgid "Attribute updated"
 msgid "Address updated"
-msgstr "Attribut actualisé"
+msgstr "Adresse actualisée"
 
 #: addressbook/views.py:93 dashboard/views.py:4279
 #, fuzzy
 #| msgid "Attribute not updated"
 msgid "Address not updated"
-msgstr "Attribut non actualisé"
+msgstr "Adresse non actualisée"
 
 #: addressbook/views.py:108 dashboard/views.py:4294
 #, fuzzy
 #| msgid "Address extra"
 msgid "Address deleted"
-msgstr "Addresse supplémnetaire"
+msgstr "Adresse supprimée"
 
 #: addressbook/views.py:117
 #, fuzzy
 #| msgid "Password changed"
 msgid "Address changed"
-msgstr "Mot de passe modifié"
+msgstr "Adress modifié"
 
 #: addressbook/views.py:145 orders/templates/tags/checkout_address.html:4
 #, fuzzy
 #| msgid "Address"
 msgid "New Address"
-msgstr "Addresse"
+msgstr "Nouvelle Adresse"
 
 #: addressbook/views.py:155
 #, fuzzy
 #| msgid "New Brand created"
 msgid "New Address created"
-msgstr "Nouvelle marque créee"
+msgstr "Nouvelle adresse créee"
 
 #: addressbook/views.py:159
 #, fuzzy
 #| msgid "Brand not created"
 msgid "Address not created"
-msgstr "Nouvelle marque non créee"
+msgstr "Nouvelle adresse non créee"
 
 #: cart/templates/cart/cart.html:26
 msgid "Summary"
@@ -518,7 +518,7 @@ msgstr "Résumé"
 
 #: cart/templates/cart/cart.html:32
 msgid "Invalid coupon"
-msgstr ""
+msgstr "Coupon invalide"
 
 #: cart/templates/cart/cart.html:34
 #: dashboard/templates/dashboard/coupon_detail.html:7
@@ -579,7 +579,7 @@ msgstr "Réduction"
 #, fuzzy
 #| msgid "Total"
 msgid "Sub Total"
-msgstr "Total"
+msgstr "Sous-Total"
 
 #: cart/templates/cart/cart.html:46 orders/templates/tags/cart_summary.html:20
 msgid "no reduction"
@@ -686,7 +686,7 @@ msgstr "Quantité"
 
 #: cart/templates/cart_tags/item_snippet.html:55
 msgid "Art. Nr"
-msgstr ""
+msgstr "Nr. d'article"
 
 #: catalog/strings.py:6
 msgid "Bags"
@@ -906,18 +906,18 @@ msgstr "Les produits récemment ajoutés seront affichés ici."
 #: catalog/templates/catalog/catalog_home.html:23
 #: catalog/templates/catalog/category_detail.html:22
 msgid "Please try again later"
-msgstr ""
+msgstr "Veuillez reesayer pus tard"
 
 #: catalog/templates/catalog/category_detail.html:20
 #, fuzzy
 #| msgid "There is no Order history yet."
 msgid "There are no products to display for this  category yet."
-msgstr "Il n'y a pas d'historique de commande actuellement"
+msgstr "Il n'y a pas de produits dans cette catégorie actuellement"
 
 #: catalog/templates/catalog/category_detail.html:21
 msgid ""
 "As soon as Product are available on this category, they will be listed here."
-msgstr ""
+msgstr "Dès que des produits sont disponible pour cette catégorie, ils seront affichés ici"
 
 #: catalog/templates/catalog/product_detail.html:88
 #: catalog/templates/catalog/product_variant_detail.html:81
@@ -964,7 +964,7 @@ msgstr "En rupture de stock"
 #: catalog/templates/catalog/product_detail.html:121
 #: catalog/templates/catalog/product_variant_detail.html:100
 msgid "Variants"
-msgstr "Variantes"
+msgstr "Déclinaisons"
 
 #: catalog/templates/catalog/product_image_detail.html:5
 #: dashboard/templates/dashboard/product_image.html:5
@@ -1209,7 +1209,7 @@ msgstr "Fermer"
 #: core/templates/core/catalog_filter.html:14
 #: core/templates/core/filter.html:17
 msgid "Apply"
-msgstr ""
+msgstr "Appliquer"
 
 #: core/templates/tags/datetime_field.html:11
 #: core/templates/tags/decimal_field.html:17
@@ -1609,7 +1609,7 @@ msgstr "Type de la valeur"
 #: dashboard/templates/tags/attribute_form.html:18
 #: dashboard/templates/tags/bulk_attributes_form.html:22
 msgid "Is Primary"
-msgstr ""
+msgstr "Est primaire"
 
 #: dashboard/templates/dashboard/attribute_detail.html:99
 #: dashboard/templates/dashboard/brand_product_detail.html:17
@@ -1825,7 +1825,7 @@ msgstr "Tout sélectioner"
 #: dashboard/templates/dashboard/product_type_attribute_detail.html:63
 #: dashboard/templates/dashboard/product_variant_detail.html:169
 msgid "Primary"
-msgstr ""
+msgstr "Primaire"
 
 #: dashboard/templates/dashboard/attribute_list.html:59
 #: dashboard/templates/dashboard/attribute_list.html:71
@@ -2130,7 +2130,7 @@ msgstr "Crée par"
 #: payment/templates/payment/payment_update.html:68
 #: vendors/templates/vendors/payment_detail.html:64
 msgid "Creation Date"
-msgstr "Date de la creation"
+msgstr "Date de la création"
 
 #: dashboard/templates/dashboard/category_detail.html:38
 #, fuzzy
@@ -2142,7 +2142,7 @@ msgstr "Est actif"
 #, fuzzy
 #| msgid "Parent Product"
 msgid "Parent"
-msgstr "Produit Parent"
+msgstr "Parent"
 
 #: dashboard/templates/dashboard/category_detail.html:48
 #: dashboard/templates/dashboard/category_list.html:17
@@ -2286,7 +2286,7 @@ msgstr "Coupons"
 #, fuzzy
 #| msgid "Is Active"
 msgid "Active"
-msgstr "Est actif"
+msgstr "Actif"
 
 #: dashboard/templates/dashboard/coupon_detail.html:32
 #: dashboard/templates/tags/product_creation_form.html:63
@@ -2313,7 +2313,7 @@ msgstr "Crée le"
 #: dashboard/templates/dashboard/coupon_detail.html:43
 #: vendors/templates/vendors/coupon_detail.html:34
 msgid "Begin at"
-msgstr ""
+msgstr "Commence le"
 
 #: dashboard/templates/dashboard/coupon_detail.html:46
 #: dashboard/templates/dashboard/coupon_detail.html:60
