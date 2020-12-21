@@ -70,6 +70,7 @@ define(['ajax_api'], function(ajax_api) {
         console.log("Add To Cart Form Data : ", data);
         var option = {
             type:'POST',
+            method: 'POST',
             dataType: 'json',
             url : '/cart/ajax-add-to-cart/',
             data : data
