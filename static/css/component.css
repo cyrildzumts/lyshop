@@ -2654,7 +2654,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
-	.hint-link .mat-button{
+	.add-to-cart .mat-button{
 		font-size: 0.6em;
 	}
 	.hint-link .hint {
