@@ -1,7 +1,7 @@
 {% load i18n %}
 
 
-<div class="actions">
+<div class="add-to-cart actions">
 {% if quantity > 0 %}
     {% if user.is_authenticated %}
     <button type="submit" class="mat-button mat-button-default js-add-to-cart">
@@ -13,7 +13,9 @@
         <i class="icon fas fa-shopping-cart"></i>
         <span class="">{% trans "Add to Cart" %}</span>
     </button>
-    <a href="accounts:login" class="mat-button mat-button-text"><i class="fas fa-sign-in-alt icon"></i><span class="hint">{% trans "Please, login first or create an account" %}</span></a>
+    <div class="hint">
+    <a href="{% url 'accounts:login' %}" class="mat-button mat-button-text"><i class="fas fa-sign-in-alt icon"></i><span class="hint">{% trans "Please, login first or create an account" %}</span></a>
+    </div>
     {% endif %}
 
 {% else %}

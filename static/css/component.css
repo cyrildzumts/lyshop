@@ -1721,7 +1721,9 @@ input.editable{
 	font-weight: 700;
 	width: 25em;
 }
-
+.add-to-cart .hint {
+	font-size: 0.875em;
+}
 .on-drag{
 	border-width: 4px;
 	border-color: var(--on-drag-border-color);
