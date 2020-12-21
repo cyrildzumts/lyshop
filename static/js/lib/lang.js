@@ -18,6 +18,10 @@ define([], function() {
         return "";
     }
 
+    function get_lang(){
+      const current_lang = $('#current-lang').val();
+      return current_lang;
+    }
     function change_language(element){
         console.log("change language clicked");
         var form = $('#lang-form');
@@ -35,4 +39,5 @@ define([], function() {
         change_language(this);
     });
     console.log("lang.js installed");
+    return {get_cookie: get_cookie, get_lang: get_lang}
 });

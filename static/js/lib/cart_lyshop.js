@@ -28,6 +28,7 @@ define(['ajax_api', 'vendor/js.cookie'], function(ajax_api) {
         this.items = [];
         this.total = 0;
         this.csrfmiddlewaretoken = document.querySelector('input[name="csrfmiddlewaretoken"]');
+        this.url_prefix = '/' + get_lang();
 
         console.log("New Cart created");
     }
@@ -88,11 +89,6 @@ define(['ajax_api', 'vendor/js.cookie'], function(ajax_api) {
 
 
     Cart.prototype.add = function(formData){
-        /*var data = {};
-        $.each(dataArray,(i, e) =>{
-            data[e.name] = e.value;
-        });
-        */
         var self = this;
         if(!formData){
             console.warn("No data for to add to to cart");
@@ -103,10 +99,10 @@ define(['ajax_api', 'vendor/js.cookie'], function(ajax_api) {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/' + get_lang() + '/cart/ajax-add-to-cart/',
+            url : '/cart/ajax-add-to-cart/',
             data : formData
         }
-        ajax_api(option).then(function(response){
+        ajax_api(option, false).then(function(response){
             self.update_badge(response.quantity);
             notify({level:'info', content:'product added'});
         }, function(reason){

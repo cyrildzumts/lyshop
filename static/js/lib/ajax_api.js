@@ -1,4 +1,4 @@
-define(['vendor/jquery.min'], function() {
+define(['vendor/jquery.min', 'lang'], function(Locale) {
     'use strict';
     /**
        * 
@@ -15,8 +15,12 @@ define(['vendor/jquery.min'], function() {
   
         A future object is returned
     */
-      function ajax_api(options){
-        console.log("ajax_api called with options data - ", options.data);
+
+      function ajax_api(options, debug){
+        if(debug){
+          console.debug("ajax_api options - ", options);
+        }
+        options.url = '/' + Locale.get_lang() + options.url;
         return new Promise(function(resolve, reject){
             $.ajax(options).done(resolve).fail(reject);
         });
