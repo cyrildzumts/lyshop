@@ -26,6 +26,7 @@
 </head>
 
 <body>
+<input id="lang" type="hidden" name="lang" value="{{LANGUAGE_CODE}}">
 {% block SCRIPT_VAR %}
 {% endblock SCRIPT_VAR %}
 <div class="page full">
@@ -130,9 +131,7 @@
         </div>
 </footer>
 
-{% block CSRF_TOKEN %}
-{% csrf_token %}
-{% endblock CSRF_TOKEN %}
+
 
 
 {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {% endcomment %}
