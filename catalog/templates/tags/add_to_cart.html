@@ -2,7 +2,7 @@
 
 
 <div class="actions">
-{% if product_available %}
+{% if quantity > 0 %}
     {% if user.is_authenticated %}
     <button type="submit" class="mat-button mat-button-default js-add-to-cart">
         <i class="icon fas fa-shopping-cart"></i>
