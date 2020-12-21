@@ -1,4 +1,4 @@
-define(['ajax_api', 'vendor/js.cookie'], function(ajax_api) {
+define(['ajax_api'], function(ajax_api) {
     'use strict';
     var lang_cookie = "";
     const DEFAULT_LANGUAGE = "fr";
