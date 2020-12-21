@@ -79,6 +79,7 @@ define(['ajax_api'], function(ajax_api) {
             type:'POST',
             method: 'POST',
             dataType: 'json',
+            headers:{'Content-Type': 'application/json'},
             url : '/cart/ajax-add-to-cart/',
             data : data
         }

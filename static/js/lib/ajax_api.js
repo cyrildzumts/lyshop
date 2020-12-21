@@ -16,6 +16,7 @@ define(['vendor/jquery.min'], function() {
         A future object is returned
     */
       function ajax_api(options){
+        console.log("ajax_api called with options data - ", options.data);
         return new Promise(function(resolve, reject){
             $.ajax(options).done(resolve).fail(reject);
         });
