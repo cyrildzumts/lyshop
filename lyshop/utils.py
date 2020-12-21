@@ -94,7 +94,15 @@ def show_request(request):
     logger.info(f"CONTENT_TYPE : {request.content_type}")
     logger.info(f"CONTENT_PARAMS : {request.content_params}")
     logger.info(f"GET : {request.GET}")
+    logger.info("------------------------------")
+    for k,v in request.GET.items():
+        logger.info(f"{k} : {v}")
+    logger.info("------------------------------")
     logger.info(f"POST : {request.POST}")
+    logger.info("------------------------------")
+    for k,v in request.POST.items():
+        logger.info(f"{k} : {v}")
+    logger.info("------------------------------")
     logger.info(f"COOKIES : {request.COOKIES}")
     logger.info(f"META : ")
     logger.info("------------------------------")
