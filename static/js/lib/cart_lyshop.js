@@ -20,6 +20,7 @@ define(['ajax_api'], function(ajax_api) {
     }
     function get_lang(){
         const current_lang = getCookie(LANGUAGE_KEY) || DEFAULT_LANGUAGE;
+        return current_lang;
     }
     function Cart(){
         this.user = "";
