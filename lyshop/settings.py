@@ -215,6 +215,7 @@ DATABASES['default'] = DATABASES[DEFAULT_DATABASE]
 DEV_MODE = DEFAULT_DATABASE == 'dev'
 #CSRF_COOKIE_SECURE = not DEV_MODE
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = DEV_MODE
 #DEBUG = True

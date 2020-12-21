@@ -1,4 +1,4 @@
-define(['ajax_api'], function(ajax_api) {
+define(['ajax_api', 'vendor/js.cookie'], function(ajax_api) {
     'use strict';
     var lang_cookie = "";
     const DEFAULT_LANGUAGE = "fr";
@@ -20,6 +20,8 @@ define(['ajax_api'], function(ajax_api) {
     }
     function get_lang(){
         const current_lang = getCookie(LANGUAGE_KEY) || DEFAULT_LANGUAGE;
+        console.log("js.cookie.js");
+        console.log("Cookie lang : %s", Cookies.get(LANGUAGE_KEY));
         return current_lang;
     }
     function Cart(){
