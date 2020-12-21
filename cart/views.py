@@ -52,10 +52,8 @@ def add_to_cart(request):
         'success': False
     }
     logger.debug("ajax-add-to-cart")
-    utils.show_request(request)
     if request.method == 'POST':
         postdata = request.POST.copy()
-        logger.info("send as POST")
         form = AddToCartForm(postdata)
         if form.is_valid():
             product = form.cleaned_data['product']
@@ -108,13 +106,10 @@ def ajax_add_to_cart(request):
     context = {
         'success': False
     }
-    logger.debug("ajax-add-to-cart")
-    utils.show_request(request)
     if request.method == 'POST':
         postdata = request.POST.copy()
 
         form = AddCartForm(postdata)
-        logger.info("Ajax send as POST")
         if form.is_valid():
             logger.debug("Summitted data are valid")
             variant_uuid = form.cleaned_data['variant_uuid']
