@@ -45,18 +45,17 @@ def cart(request):
     return render(request, template_name, context)
 
 
-
-
-
-
 @login_required
 def add_to_cart(request):
     cart, created = CartModel.objects.get_or_create(user=request.user)
     context = {
         'success': False
     }
+    logger.debug("ajax-add-to-cart")
+    utils.show_request(request)
     if request.method == 'POST':
         postdata = request.POST.copy()
+        logger.info("send as POST")
         form = AddToCartForm(postdata)
         if form.is_valid():
             product = form.cleaned_data['product']
@@ -64,18 +63,18 @@ def add_to_cart(request):
             if result:
                 context['success'] = True
                 context['status'] = True
-                return redirect(product.get_absolute_url())
+                #return redirect(product.get_absolute_url())
         else:
-            context['error'] = 'Bad Request. product_uuid missing'
+            context['error'] = 'Form is invalid'
             context['status'] = False
-            if request.is_ajax():
-                return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
+            messages.error(request, message="Invalid Form")
+            #if request.is_ajax():
+            #   return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
             
     else:
         context['error'] = 'Bad Request'
         context['status'] = False
         return redirect('catalog:home')
-
 
 @login_required
 def ajax_add_coupon(request):

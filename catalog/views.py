@@ -26,7 +26,8 @@ from catalog.models import (
 from catalog.forms import (BrandForm, ProductAttributeForm, 
     ProductForm, ProductVariantForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm
 )
-
+from cart import cart_service
+from cart.forms import AddCartForm
 from core.filters import filters
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -150,10 +151,23 @@ def product_detail(request, product_uuid=None):
     template_name = 'catalog/product_detail.html'
     page_title = _('Product Detail')
     
-    if request.method != 'GET':
-        raise HttpResponseBadRequest
 
     product = get_object_or_404(Product, product_uuid=product_uuid)
+    if request.method == "POST":
+        form = AddCartForm(utils.get_postdata(request))
+        if form.is_valid():
+            variant = get_object_or_404(ProductVariant, product_uuid=form.cleaned_data['variant_uuid'])
+            item, cart = cart_service.add_to_cart(cart_service.get_cart(request.user), variant)
+            if item:
+                messages.success(request, message="Product added")
+                logger.info("Product added")
+            else:
+                messages.success(request, message="Product not added")
+                logger.info("Product not added")
+        else:
+                messages.success(request, message="Invalid form")
+                logger.info(f"Product not added. Form is not valid : {form.errors} ")
+                
     Product.objects.filter(product_uuid=product_uuid).update(view_count=F('view_count') + 1)
     images = ProductImage.objects.filter(product=product)
     common_attrs, selective_attrs = catalog_service.get_product_attributes(product.id)
@@ -169,6 +183,38 @@ def product_detail(request, product_uuid=None):
     }
     return render(request,template_name, context)
 
+@login_required
+def add_product_to_cart(request):
+    cart, created = CartModel.objects.get_or_create(user=request.user)
+    context = {
+        'success': False
+    }
+    logger.debug("ajax-add-to-cart")
+    utils.show_request(request)
+    template_name = 'catalog/product_detail.html'
+    page_title = _('Product Detail')
+    if request.method == 'POST':
+        postdata = request.POST.copy()
+        logger.info("send as POST")
+        form = AddCartForm(postdata)
+        if form.is_valid():
+            product = form.cleaned_data['product']
+            result , cart = cart_service.add_to_cart(cart, product)
+            if result:
+                context['success'] = True
+                context['status'] = True
+                #return redirect(product.get_absolute_url())
+        else:
+            context['error'] = 'Form is invalid'
+            context['status'] = False
+            messages.error(request, message="Invalid Form")
+            #if request.is_ajax():
+            #   return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
+            
+    else:
+        context['error'] = 'Bad Request'
+        context['status'] = False
+        return 
 
 
 def product_variant_detail(request, variant_uuid=None):
