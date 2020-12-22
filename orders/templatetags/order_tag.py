@@ -90,3 +90,21 @@ def pay_mode_value(key):
         logger.info(f"pay_mode_value: Could not found value  for key \"{key}\"")
         return key
     return v
+
+
+@register.filter
+def refund_status_value(key):
+    k,v = utils.find_element_by_key_in_tuples(key, Constants.REFUND_STATUS)
+    if v is None:
+        logger.info(f"refund_status_value: Could not found value  for key \"{key}\"")
+        return key
+    return v
+
+
+@register.filter
+def refund_declined_value(key):
+    k,v = utils.find_element_by_key_in_tuples(key, Constants.REFUND_DECLINED_REASON)
+    if v is None:
+        logger.info(f"refund_declined_value: Could not found value  for key \"{key}\"")
+        return key
+    return v

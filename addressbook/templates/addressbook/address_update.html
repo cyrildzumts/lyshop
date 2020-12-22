@@ -32,19 +32,19 @@
 
             <div class="form-group">
                 <label for="postal-code">{% trans "Postal code" %}</label>
-                <input type="text" id="postal-code" name="postal_code" value="{{address.postal_code}}">
+                <input type="text" id="postal-code" name="postal_code" value="{{address.postal_code|default_if_none:''}}">
             </div>
             <div class="form-group">
                 <label for="address-extra">{% trans "Address Extra" %}</label>
-                <input type="text" id="address-extra" name="address_extra" value="{{address.address_extra}}">
+                <input type="text" id="address-extra" name="address_extra" value="{{address.address_extra|default_if_none:''}}">
             </div>
             <div class="form-group">
                 <label for="street">{% trans "Street" %}</label>
-                <input type="text" id="street" name="street" value="{{address.street}}">
+                <input type="text" id="street" name="street" value="{{address.street|default_if_none:''}}">
             </div>
             <div class="form-group">
                 <label for="house-number">{% trans "House Number" %}</label>
-                <input type="text" id="house-number" name="house_number" value="{{address.house_number}}">
+                <input type="text" id="house-number" name="house_number" value="{{address.house_number|default_if_none:''}}">
             </div>
             <div class="mat-input">
                 <label for="phone-number">{% trans "Phone Number" %}</label>
