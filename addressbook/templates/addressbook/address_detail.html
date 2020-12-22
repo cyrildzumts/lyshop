@@ -21,24 +21,24 @@
                         <span class="key">{% trans "Lastname" %}</span><span class="value">{{address.lastname}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Country" %}</span><span class="value">{{address.country}}</span>
+                        <span class="key">{% trans "Country" %}</span><span class="value">{{address.country|default_if_none:""}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "City" %}</span><span class="value">{{address.city}}</span>
+                        <span class="key">{% trans "City" %}</span><span class="value">{{address.city|default_if_none:""}}</span>
                     </div>
                 </div>
                 <div class="box">
                     <div class="entry">
-                        <span class="key">{% trans "Postal Code" %}</span><span class="value">{{address.postal_code}}</span>
+                        <span class="key">{% trans "Postal Code" %}</span><span class="value">{{address.postal_code|default_if_none:""}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Address Extra" %}</span><span class="value">{{address.address_extra}}</span>
+                        <span class="key">{% trans "Address Extra" %}</span><span class="value">{{address.address_extra|default_if_none:""}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "Street" %}</span><span class="value">{{address.street}}</span>
+                        <span class="key">{% trans "Street" %}</span><span class="value">{{address.street|default_if_none:""}}</span>
                     </div>
                     <div class="entry">
-                        <span class="key">{% trans "House Number" %}</span><span class="value">{{address.house_number}}</span>
+                        <span class="key">{% trans "House Number" %}</span><span class="value">{{address.house_number|default_if_none:""}}</span>
                     </div>
                     <div class="entry">
                         <span class="key">{% trans "Phone Number" %}</span><span class="value">{{address.phone_number|default_if_none:""}}</span>
