@@ -307,7 +307,7 @@ def ship_modes_delete(request):
         mode_list = list(map(int, id_list))
         ShipMode.objects.filter(id__in=mode_list).delete()
         messages.success(request, f"Ship Mode \"{mode_list}\" deleted")
-        logger.info(f"Ship Mode \"{method_list}\" deleted by user {username}")
+        logger.info(f"Ship Mode \"{mode_list}\" deleted by user {username}")
         
     else:
         messages.error(request, f"Ship Mode  could not be deleted")
