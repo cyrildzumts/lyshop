@@ -187,7 +187,7 @@ def ship_mode_create(request):
         if created:
             messages.success(request,_('New Ship Mode created'))
             logger.info(f'[ OK ] New Ship Mode {ship_mode} added by user {request.user.username}' )
-            return redirect('shipment:ship_modes')
+            return redirect('shipment:ship-modes')
         else:
             messages.error(request,_('Ship Mode not created'))
             logger.error(f'[ NOT OK ] Error on adding New Ship Mode by user {request.user.username}.' )
