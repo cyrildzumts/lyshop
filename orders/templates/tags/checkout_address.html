@@ -5,7 +5,7 @@
         <div class="mat-box-content">
             <ul>
                 {% for ship_mode in ship_modes %}
-                <li class="list-item" title="{{ship_mode}}"><input class="js-input-ship-mode" data-mode="{{ship_mode.mode}}" data-price="{{ship_mode.price|floatformat:'-2'}}" type="radio" name="ship_mode" value="{{ship_mode.pk}}"><label for="ship_mode">{{ship_mode}} - {{ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</label></li>
+                <li class="list-item" title="{{ship_mode}}"><input class="js-input-ship-mode" data-mode="{{ship_mode.mode}}" data-price="{{ship_mode.price|floatformat:'-2'}}" type="radio" name="ship_mode" value="{{ship_mode.pk}}"><label for="ship_mode">{% trans ship_mode %} - {{ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</label></li>
                 {% endfor %}
             </ul>
         </div>
