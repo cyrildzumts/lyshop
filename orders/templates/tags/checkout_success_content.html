@@ -2,6 +2,10 @@
 
 <div class="mat-box">
     <p>{% trans "Your transaction was succesfull. " %}</p>
-    <p>{% trans "You will be redirected to your account page in an instant." %}</p>
+    {% comment %}<p>{% trans "You will be redirected to your account page in an instant." %}</p>
+    {% endcomment %}
     <p>{% trans "Click here to directly go to your Account if you don't want to way." %} : <a class="mat-button mat-button-default" href="{% url 'accounts:account' %}">{% trans "My Account" %}</a></p>
+</div>
+<div class="mat-box">
+    {% include tags_template %}
 </div>

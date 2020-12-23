@@ -1,0 +1,13 @@
+{% load i18n %}
+
+{% load order_tag %}
+<div class="mat-box">
+    <p>{% trans "You Selected the payment Method" %}</p>
+    <p>{% trans "Keep you Phone always on so that we can call you for delivery" %}</p>
+    <p>{% trans "Your order will be cancelled if we can't reach you." %}</p>
+    <p>{% trans "Do keep the information below, since you " %}</p>
+
+    {% include "tags_payment_method.html" %}
+</div>
+
+

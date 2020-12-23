@@ -84,7 +84,7 @@ def create_order_from_cart(**kwargs):
     logger.debug("Order created from Cart")
     return order
 
-
+#TODO Filter user high failed delivery rate
 def order_pay_at_delivery(user, data):
     result = {}
     if  not isinstance(user, User) or not isinstance(data, dict):
@@ -92,16 +92,23 @@ def order_pay_at_delivery(user, data):
         logger.warn(f"order_pay_at_delivery : User or data has a wrong type. Expecting data type to be dict or a descendant of a dict but got a {type(data)} instead ")
         return result
     logger.info("Processing order_pay_at_delivery")
-
-    order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_AT_DELIVERY, 'address':  data.get(commons.SHIPPING_ADDRESS_FIELD), 'payment_method': data.get(commons.PAYMENT_METHOD_FIELD)})
-    redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
-    redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
-    result = {
-        'success': True,
-        'order' : order,
-        commons.KEY_REDIRECT_SUCCESS_URL: redirect_success_url,
-        commons.KEY_REDIRECT_FAILED_URL: redirect_failed_url
-    }
+    p_method = data.get(commons.PAYMENT_METHOD_FIELD)
+    if p_method != commons.ORDER_PAYMENT_CASH:
+        logger.warn(f"order_pay_at_delivery : wrong payment method. current payment method : {p_method}; Expected payment method {commons.ORDER_PAYMENT_CASH}")
+        result = {
+            'success': False,
+            'msg' : "Expected CASH Payment method"
+        }
+    else:
+        order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_AT_DELIVERY, 'address':  data.get(commons.SHIPPING_ADDRESS_FIELD), 'payment_method': data.get(commons.PAYMENT_METHOD_FIELD)})
+        redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
+        redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
+        result = {
+            'success': True,
+            'order' : order,
+            commons.KEY_REDIRECT_SUCCESS_URL: redirect_success_url,
+            commons.KEY_REDIRECT_FAILED_URL: redirect_failed_url
+        }
     return result
     
 

@@ -138,8 +138,10 @@ def checkout(request):
             else:
                 return redirect(result.get(commons.KEY_REDIRECT_SUCCESS_URL))
         else:
+            messages.error(request, message=result.get('msg'))
             logger.warn("Order Checkout failed")
-            return redirect(result.get(commons.KEY_REDIRECT_FAILED_URL))
+            if result.get(commons.KEY_REDIRECT_FAILED_URL):
+                return redirect(result.get(commons.KEY_REDIRECT_FAILED_URL))
     
     return render(request, template_name, context)
 
@@ -294,9 +296,20 @@ def checkout_success(request, order_uuid):
 
     orders_service.order_clear_cart(request.user)
     flag = orders_service.mark_product_sold(order)
+    p_mode = order.payment_method.mode
+    if p_mode == commons.ORDER_PAYMENT_CASH:
+        tags_template = "tags/checkout_success_cash.html"
+    elif p_mode == commons.ORDER_PAYMENT_MOBILE:
+        tags_template = "tags/checkout_success_mobile.html"
+    elif p_mode == commons.ORDER_PAYMENT_PAY:
+        tags_template = "tags/checkout_success_pay.html"
     messages.success(request,"order has been successfully submitted")
     context = {
-        'page_title' : page_title
+        'page_title' : page_title,
+        'order': order,
+        'payment_option': order.payment_option,
+        'payment_method': order.payment_method,
+        'tags_template' : tags_template
     }
     return render(request, template_name, context)
 
