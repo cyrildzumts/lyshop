@@ -14,6 +14,7 @@ urlpatterns = [
     path('shipments/delete/<uuid:shipment_uuid>/', views.shipment_delete, name='shipment-delete'),
     path('shipments/update/<uuid:shipment_uuid>/', views.shipment_update, name='shipment-update'),
     path('ship-modes/', views.ship_modes, name='ship-modes'),
+    path('ship-modes/create/', views.ship_mode_create, name='ship-mode-create'),
     path('ship-modes/detail/<uuid:ship_uuid>/', views.ship_mode_detail, name='ship-mode-detail'),
     path('ship-modes/delete/', views.ship_modes_delete, name='ship-modes-delete'),
     path('ship-modes/delete/<uuid:ship_uuid>/', views.ship_mode_delete, name='ship-mode-delete'),
