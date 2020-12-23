@@ -4,6 +4,15 @@
         <div class="flex"><span>{% trans "Cart Summary" %}</span></div>
     </div>
     <div class="mat-box">
+        <div class="mat-box-content">
+            <ul>
+                {% for ship_mode in ship_modes %}
+                <li class="list-item" title="{{ship_mode}}"><input class="js-input-ship-mode" data-price="{{ship_mode.price|floatformat:'-2'}}" type="radio" name="ship_mode" value="{{ship_mode.pk}}"><label for="ship_mode">{{ship_mode}} - {{ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</label></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div><!--End of Box-->
+    <div class="mat-box">
         
         <div class="mat-box-content">
             <div class="container flex-left">
@@ -18,18 +27,12 @@
                 <div class="entry"><span class="key">{% trans "Number of items" %}</span><span class="js-cart-quantity value">{{cart.quantity}}</span></div>
                 <div class="entry"><span class="key">{% trans "Reduction" %}</span> <div class="value"><span id="reduction" class="js-cart-reduction">{{cart.get_reduction|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></div></div>
                 <div class="entry"><span class="key">{% trans "Sub Total" %}({% trans "no reduction" %})</span><div class="price right value"><span id="total" class="js-cart-total original-price value">{{cart.amount|floatformat:"-2"}}</span><span>{% trans CURRENCY %}</span></div></div>
-                <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price right value"><span id="solded-price final-price" class="js-cart-solded-price final-price value">{{cart.get_total|floatformat:"-2"}}</span><span>{% trans CURRENCY %}</span></div></div>
+                <div class="entry"><span class="key">{% trans "Total" %}</span><div class="price right value"><span id="solded-price final-price" class="js-cart-solded-price js-final-price final-price value">{{cart.get_total|floatformat:"-2"}}</span><span>{% trans CURRENCY %}</span></div></div>
+                <div class="entry"><span class="key">{% trans "Shipping" %}</span><div class="price right value"><span id="shipping-price" class="js-shipping-price  value">0</span><span>{% trans CURRENCY %}</span></div></div>
+                <div class="entry"><span class="key">{% trans "Grand Total" %}</span><div class="price right value"><span id="grand-total" class="js-grand-total value">{{cart.get_total|floatformat:"-2"}}</span><span>{% trans CURRENCY %}</span></div></div>
             </div>
 
         </div>
     </div><!--End of Box-->
-    <div class="mat-box">
-        <div class="mat-box-content">
-            <ul>
-                {% for ship_mode in ship_modes %}
-                <li title="{{ship_mode}}"><input class="js-input-ship-mode" type="radio" name="ship_mode" value="{{ship_mode.pk}}"><label for="ship_mode">{{ship_mode}} - {{ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</label></li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div><!--End of Box-->
+    
 </div><!--End of tab-content-->

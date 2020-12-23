@@ -45,13 +45,14 @@ def refresh_order(order):
 def create_order_from_cart(**kwargs):
     logger.debug("creating order from Cart")
     user = kwargs['user']
+    ship_mode = kwargs['ship_mode']
     cart = get_user_cart(user)
     total = 0
     if cart.coupon:
         total = cart.solded_price + SHIPPING_PRICE
     else:
         total = cart.amount + SHIPPING_PRICE
-    
+    total += ship_mode.price
     logger.info(f"create_order_from_cart : Total : {total}")
     #order = Order.objects.create(user=user, address=address, coupon=cart.coupon, amount=cart.amount, solded_price=cart.solded_price, quantity=cart.quantity, shipping_price=SHIPPING_PRICE, total=total)
     order_kwargs = {'coupon' : cart.coupon, 'amount' : cart.amount, 'solded_price' : cart.solded_price, 'quantity' : cart.quantity, 'shipping_price' : SHIPPING_PRICE, 'total' : total}

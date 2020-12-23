@@ -67,6 +67,9 @@ define([
         $('.js-create-address').on('click', function(){
             self.create_address();
         });
+        $('.js-input-ship-mode').on('change', function(event){
+            self.ship_mode_changed(this);
+        });
         this.validate_address();
         tabs.init();
         console.log("Checkout initialized");
@@ -167,6 +170,16 @@ define([
     };
     Checkout.prototype.update_payment_method = function(){
         
+    };
+    Checkout.prototype.ship_mode_changed = function(el){
+        var shipping_price_el = $('.js-shipping-price');
+        var grand_total_el = $('.js-grand-total');
+        var total_el = $('.js-final-price');
+        var total = parseInt(total_el.text());
+        var shipping_price = parseInt($(el).data('price'));
+        total += shipping_price;
+        shipping_price_el.text(shipping_price);
+        grand_total_el.text(total);
     };
     
     return Checkout;
