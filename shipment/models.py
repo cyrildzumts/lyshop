@@ -17,6 +17,7 @@ class Shipment(models.Model):
     customer = models.ForeignKey(User, related_name='shipment', blank=True, null=True, on_delete=models.SET_NULL)
     last_changed_by = models.ForeignKey(User, related_name='edited_shipments', blank=True, null=True, on_delete=models.SET_NULL)
     order = models.ForeignKey(Order, related_name='order_shipment', blank=True, null=True, on_delete=models.SET_NULL)
+    ship_mode = models.ForeignKey('shipment.ShipMode', related_name='orders', blank=True, null=True, on_delete=models.SET_NULL)
     price = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     created_at = models.DateTimeField(auto_now_add=True)
     last_changed_at = models.DateTimeField(auto_now=True)
@@ -74,3 +75,33 @@ class ShipmentStatusHistory(models.Model):
 
     def get_dashboard_url(self):
         return reverse('dashboard:shipment-history-detail', kwargs={'history_uuid':self.history_uuid})
+
+
+
+class ShipMode(models.Model):
+    name = models.CharField(max_length=255)
+    display_name = models.CharField(max_length=255)
+    mode = models.IntegerField(default=Constants.SHIP_STANDARD, choices=Constants.SHIP_MODE)
+    price = models.DecimalField(default=0, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
+    is_active = models.BooleanField(default=True)
+    added_by = models.ForeignKey(User, related_name='added_ship_modes', blank=True, null=True, on_delete=models.SET_NULL)
+    changed_by = models.ForeignKey(User, related_name='edited_ship_modes', blank=True, null=True, on_delete=models.SET_NULL)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_changed_at = models.DateTimeField(auto_now=True)
+    ship_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['name', 'display_name', 'mode', 'price','is_active']
+
+    def __str__(self):
+        return f"{self.display_name}"
+
+    def get_absolute_url(self):
+       return reverse('shipment:ship-mode-detail', kwargs={'ship_uuid':self.ship_uuid})
+
+    def get_update_url(self):
+       return reverse('shipment:ship-mode-update', kwargs={'ship_uuid':self.ship_uuid})
+    
+    def get_delete_url(self):
+       return reverse('shipment:ship-mode-delete', kwargs={'ship_uuid':self.ship_uuid})
+
+    def get_dashboard_url(self):
+        return reverse('dashboard:ship-mode-detail', kwargs={'ship_uuid':self.ship_uuid})

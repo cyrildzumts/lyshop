@@ -24,3 +24,13 @@ def shipment_status_value(key):
         logger.info(f"shipment_status_value : Could not found value for key \"{key}\"")
         return key
     return v
+
+
+
+@register.filter
+def ship_mode_value(key):
+    k,v = utils.find_element_by_key_in_tuples(key, Constants.SHIP_MODE)
+    if v is None:
+        logger.info(f"ship_mode_value : Could not found value for key \"{key}\"")
+        return key
+    return v

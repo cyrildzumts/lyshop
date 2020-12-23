@@ -1,7 +1,8 @@
 from django.db import IntegrityError
 from django.contrib.auth.models import User
-from shipment.models import Shipment, ShipmentStatusHistory, Shipment
+from shipment.models import Shipment, ShipmentStatusHistory, Shipment, ShipMode
 from shipment import constants
+from shipment.forms import ShipModeForm
 from lyshop import conf, utils, settings
 from orders.models import Order, OrderStatusHistory
 from orders import commons
@@ -119,3 +120,45 @@ def shipment_for_order_exists(order):
 
 def get_orders_ready_for_shipment():
     return Order.objects.filter(status=ORDER_SHIPMENT_STATUS_MAPPING[constants.WAITING])
+
+
+
+def get_ship_mode(name=""):
+    if isinstance(name, str) and len(name) > 0:
+        try:
+            return ShipMode.objects.get(name=name)
+        except ShipMode.DoesNotExist as e:
+            logger.warn(f'get_ship_mode: No Ship Mode found with name \"{name}\"')
+    return None
+
+def get_ship_modes(filter_active=False):
+    if filter_active:
+        qs = ShipMode.objects.filter(is_active=True)
+    else:
+        qs = ShipMode.objects.all()
+    return qs
+
+
+def create_ship_mode(postdata):
+    form = ShipModeForm(postdata)
+    if form.is_valid():
+        ship_mode = form.save()
+        logger.info(f'Created new Ship Mode {ship_mode}')
+        return ship_mode, True
+    else:
+        logger.warn(f'Ship Mode Form invalid. Errors : {form.errors}')
+        return None, False
+
+
+def update_ship_mode(postdata, ship_mode):
+    if not isinstance(ship_mode, ShipMode):
+        ship_mode, False
+    form = ShipModeForm(postdata, instance=ship_mode)
+    if form.is_valid():
+        ship_mode = form.save()
+        logger.info(f'Updated Ship Mode {ship_mode}')
+        return ship_mode, True
+    else:
+        logger.warn(f'Ship Mode form invalid. Errors : {form.errors}')
+
+    return ship_mode, False

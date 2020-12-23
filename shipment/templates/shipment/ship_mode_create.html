@@ -1,0 +1,75 @@
+{% extends "shipment_base.html"%}
+{% load i18n %}
+{% load order_tag %}
+{% block HEADER_BANNER %}
+    <div class="banner banner-align-left">
+        <div class="full welcome-text center">
+                {% block  HEADER_BANNER_TITLE %}
+                    <h4> {% trans "New Ship Mode" %}</h4>
+                {% endblock HEADER_BANNER_TITLE %}
+                
+        </div>
+        <div class="container">
+                <div class="actions">
+                    {% if can_view_payment %}
+                    <a class="mat-button mat-button-default" href="{% url 'shipment:shipments'%}"> {% trans "Shipments" %}</a>{% endif %}
+                    <a class="mat-button mat-button-default" href="{% url 'shipment:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment Board" %}</span></a>
+                    
+                        
+                </div><!--End of Banner-Actions-->
+        </div><!--End of Container-->
+        
+    </div>
+{% endblock HEADER_BANNER %}
+{% block MAIN_CONTENT %}
+<div class="container">
+    {% if can_add_shipment %}
+        <div class="mat-box">
+    
+                <form class="form" name="add-ship-mode" action="{% url 'shipment:ship-mode-create' %}" method="POST">{% csrf_token %}
+                    <input type="hidden" name="added_by" value="{{request.user.pk}}">
+                    <div class="container">
+                    
+                        <div class="form-group">
+                            <label for="name">{% trans "Name" %}</label>
+                            <input id="name" type="text"  name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="display-name">{% trans "Display Name" %}</label>
+                            <input id="display-name" type="text"  name="display_name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="price">{% trans "Price" %}({% trans CURRENCY %})</label>
+                            <input id="price" type="text"  name="price">
+                        </div>
+                        <div class="mat-input">
+                            <label for="mode">{% trans "Mode" %}</label>
+                            <select name="mode" id="mode">
+                                {% for k,v in SHIP_MODE %}
+                                    <option value="{{k}}">{% trans v %}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="is-active">{% trans "Active" %}</label>
+                            <input id="is-active" type="checkbox"  name="is_active">
+                        </div>
+                    
+                    </div><!-- End of container-->
+
+                    <div class="actions">
+                            <a class="mat-button mat-button-default js-cancel" href="{% url 'shipment:ship-modes' %}">{% trans "Cancel" %}</a>
+                            <button class="mat-button mat-button-default" type="submit">{% trans "Create" %}</button>
+                    </div>
+                    
+                </form>
+        </div>        
+    {% else %}
+    <div class="access-error">
+        <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock MAIN_CONTENT %}
