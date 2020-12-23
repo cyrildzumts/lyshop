@@ -72,6 +72,8 @@ define([
         });
         this.validate_address();
         tabs.init();
+        var el = $('input.js-input-ship-mode[name="ship_mode"]:checked');
+        this.ship_mode_changed(el);
         console.log("Checkout initialized");
     };
 
