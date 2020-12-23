@@ -1,3 +1,5 @@
+from django.utils.translation import gettext_lazy as _
+
 WAITING = 0
 PICKED_UP = 1
 SHIPPED = 2
@@ -7,6 +9,14 @@ RETOURE = 5
 CUSTOMER_NOT_FOUND = 6
 CUSTOMER_HAS_NOT_PAID = 7
 CLOSED = 8
+
+SHIP_STANDARD = 0
+SHIP_EXPRESS  = 1
+
+SHIP_MODE = (
+    (SHIP_STANDARD, _('STANDARD SHIPMENT')),
+    (SHIP_EXPRESS, _('EXPRESS SHIPMENT'))
+)
 
 SHIPMENT_STATUS = (
     (WAITING, 'WAITING'),

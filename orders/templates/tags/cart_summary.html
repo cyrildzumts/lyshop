@@ -26,9 +26,14 @@
     <div class="mat-box">
         <div class="mat-box-content">
             <ul>
-                <li><p class="entry left">{% trans "Standard shipping cost 3000 XAF" %}</p></li>
-                <li><p class="entry left">{% trans "Express shipping cost 5000 XAF. Express shipping are sent as soon as possible so that the customer receives the order on the next few days." %}</p></li>
+                {% for k,v in SHIP_MODE %}
+                <li title="{{v}}"><input class="js-input-ship" type="radio" name="ship_mode" value="{{k}}"><label for="ship_mode">{{v}}</label></li>
+                {% endfor %}
             </ul>
+            <div class="hint">
+                <p class="entry left">{% trans "Standard shipping cost 3000 XAF" %}</p>
+                <p class="entry left">{% trans "Express shipping cost 5000 XAF. Express shipping are sent as soon as possible so that the customer receives the order on the next few days." %}</p>
+            </div>
         </div>
     </div><!--End of Box-->
 </div><!--End of tab-content-->
