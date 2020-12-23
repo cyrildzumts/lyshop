@@ -22,7 +22,7 @@
                 {% trans "Payment Methods" %}
             </div>
         </div><!--End of Row-->
-        <form action="{% url 'dashboard:ship-modes-delete' %}" method="POST">{% csrf_token %}
+        <form action="{% url 'shipment:ship-modes-delete' %}" method="POST">{% csrf_token %}
         <table id="ship-mode-list" class="mat-table js-filter-table">
             <div class="actions">
                 <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button>
