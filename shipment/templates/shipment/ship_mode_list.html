@@ -13,7 +13,7 @@
     {% if can_add_shipment %}
     <a class="mat-button mat-button-default" href="{% url 'shipment:ship-mode-create'%}"><i class="fas fa-plus icon"></i>{% trans "New Ship mode" %}</a>
     {% endif %}
-    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+    <a class="mat-button mat-button-default" href="{% url 'shipment:shipment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment" %}</span></a>
         
 </div><!--End of Banner-Actions-->
 <div class="full">
