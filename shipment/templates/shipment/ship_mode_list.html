@@ -6,7 +6,7 @@
     <h4> {% trans "Ship Modes" %}</h4>
 {% endblock HEADER_BANNER_TITLE %}
 
-{% block MAIN_CONTENT %}
+{% block MAIN %}
 {% if can_view_shipment %}
 <div class="container">
 <div class="actions">
@@ -14,7 +14,6 @@
     <a class="mat-button mat-button-default" href="{% url 'shipment:ship-mode-create'%}"><i class="fas fa-plus icon"></i>{% trans "New Ship mode" %}</a>
     {% endif %}
     <a class="mat-button mat-button-default" href="{% url 'shipment:shipment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment" %}</span></a>
-        
 </div><!--End of Banner-Actions-->
 <div class="full">
     <div class="mat-table-wrapper">
@@ -65,4 +64,4 @@
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
 {% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock MAIN %}
