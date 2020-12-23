@@ -126,7 +126,8 @@ def checkout(request):
         'cartitems' : orders_service.get_user_cartitems(request.user),
         'payment_methods' : orders_service.get_payment_methods(filter_active=True),
         'PAYMENT_OPTIONS': commons.ORDER_PAYMENT_OPTIONS,
-        'SHIP_MODE' : SHIPMENT_CONSTANTS.SHIP_MODE
+        'SHIP_MODE' : SHIPMENT_CONSTANTS.SHIP_MODE,
+        'ship_modes' : shipment_service.get_ship_modes()
     }
     if not cart or (cart.quantity == 0 or cart.amount == 0.0):
         messages.error(request, _("Your Cart is empty"))
