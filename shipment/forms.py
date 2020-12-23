@@ -13,4 +13,4 @@ class ShipModeForm(forms.ModelForm):
 
     class Meta:
         model = ShipMode
-        fields = []
+        fields = ShipMode.FORM_FIELDS
