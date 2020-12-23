@@ -17,7 +17,7 @@ from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidde
 from django.contrib import messages
 from django.db.models import F, Q, Count, Sum
 from django.utils import timezone
-from dashboard.permissions import PermissionManager
+from dashboard.permissions import PermissionManager, get_view_permissions
 from shipment.models import Shipment, ShippedItem, ShipmentStatusHistory, ShipMode
 from shipment import shipment_service, constants as Constants
 from shipment.forms import ShipmentForm, ShipModeForm
@@ -285,7 +285,7 @@ def ship_mode_delete(request, ship_uuid):
     if request.method != "POST":
         raise SuspiciousOperation('Bad request. POST request expected but received a GET request')
     ship_mode = get_object_or_404(ShipMode, ship_uuid=ship_uuid)
-    PaymentMethod.objects.filter(pk=ship_mode.pk).delete()
+    ShipMode.objects.filter(pk=ship_mode.pk).delete()
     return redirect('shipment:ship-modes')
 
 
