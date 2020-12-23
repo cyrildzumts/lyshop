@@ -1,6 +1,6 @@
 {% load i18n %}
 <div id="{{step_id}}" class="tab-content" data-checked="{{step_id}} tab-icon">
-    <div class="mat-box full">
+    <div class="mat-box">
         <h3>{% trans "Shipping Mode" %}</h3>
         <div class="mat-box-content">
             <ul>
@@ -11,53 +11,52 @@
         </div>
     </div><!--End of Box-->
     <div id="address-container" class="hidden">
-    <div class="title">
-        <div class="flex"><span>{% trans "Shipping Address" %}</span> <span class="js-add-address mat-button  mat-button-default"> <i class="fas fa-plus icon"></i> {% trans "New Address" %}</span></div>
+        <div class="title">
+            <div class="flex"><span>{% trans "Shipping Address" %}</span> <span class="js-add-address mat-button  mat-button-default"> <i class="fas fa-plus icon"></i> {% trans "New Address" %}</span></div>
+        </div>
+        {% if address %}
+        <div id="checkout-address" class="mat-box">
+                <input id="address" type="hidden" name="address" value="{{address.pk}}">
+                <div class="mat-input">
+                    <label for="name">{% trans "Name" %}</label>
+                    <input type="text" id="name" value="{{address.firstname}} {{address.lastname}}" disabled>
+                </div>
+                <div class="mat-input">
+                    <label for="email">{% trans "Email" %}</label>
+                    <input type="text" id="email" value="{{address.user.email}}" disabled>
+                </div>
+                <div class="mat-input">
+                    <label for="city">{% trans "City" %}</label>
+                    <input type="text" id="city" value="{{address.city}}" disabled>
+                </div>
+                <div class="mat-input">
+                    <label for="postal_code">{% trans "Zip" %}</label>
+                    <input type="text" id="postal_code" value="{{address.postal_code}}" disabled>
+                </div>
+                <div class="mat-input">
+                    <label for="street">{% trans "Street" %}</label>
+                    <input type="text" id="street" value="{{address.street}}" disabled>
+                </div>
+                <div class="mat-input">
+                    <label for="house_number">{% trans "House Number" %}</label>
+                    <input type="text" id="house_number" value="{{address.house_number}}" disabled>
+                </div>
+                <div class="mat-input">
+                    <label for="phone_number">{% trans "Phone Number" %}</label>
+                    <input type="text" id="phone_number" value="{{address.phone_number}}" disabled>
+                </div>
+                <div class="mat-input">
+                    <label for="country">{% trans "Country" %}</label>
+                    <input type="text" id="country" value="{{address.country}}" disabled>
+                </div>
+                <div class="mat-input">
+                    <input type="checkbox" id="address_type" checked disabled>
+                    <label for="address_type">{% trans "Shipping address same as billing" %}</label>
+                </div>
+        </div>
+        {% endif %}
+        <div id="new-address" class="mat-box hidden">
+            {% include "addressbook_tags/address_form.html" %}
+        </div>
     </div>
-    {% if address %}
-    <div id="checkout-address" class="mat-box">
-            <input id="address" type="hidden" name="address" value="{{address.pk}}">
-            <div class="mat-input">
-                <label for="name">{% trans "Name" %}</label>
-                <input type="text" id="name" value="{{address.firstname}} {{address.lastname}}" disabled>
-            </div>
-            <div class="mat-input">
-                <label for="email">{% trans "Email" %}</label>
-                <input type="text" id="email" value="{{address.user.email}}" disabled>
-            </div>
-            <div class="mat-input">
-                <label for="city">{% trans "City" %}</label>
-                <input type="text" id="city" value="{{address.city}}" disabled>
-            </div>
-            <div class="mat-input">
-                <label for="postal_code">{% trans "Zip" %}</label>
-                <input type="text" id="postal_code" value="{{address.postal_code}}" disabled>
-            </div>
-            <div class="mat-input">
-                <label for="street">{% trans "Street" %}</label>
-                <input type="text" id="street" value="{{address.street}}" disabled>
-            </div>
-            <div class="mat-input">
-                <label for="house_number">{% trans "House Number" %}</label>
-                <input type="text" id="house_number" value="{{address.house_number}}" disabled>
-            </div>
-            <div class="mat-input">
-                <label for="phone_number">{% trans "Phone Number" %}</label>
-                <input type="text" id="phone_number" value="{{address.phone_number}}" disabled>
-            </div>
-            <div class="mat-input">
-                <label for="country">{% trans "Country" %}</label>
-                <input type="text" id="country" value="{{address.country}}" disabled>
-            </div>
-            <div class="mat-input">
-                <input type="checkbox" id="address_type" checked disabled>
-                <label for="address_type">{% trans "Shipping address same as billing" %}</label>
-            </div>
-    </div>
-    {% endif %}
-    <div id="new-address" class="mat-box hidden">
-        {% include "addressbook_tags/address_form.html" %}
-    </div>
-    </div>
- 
 </div>

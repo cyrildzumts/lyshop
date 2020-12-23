@@ -1,42 +1,42 @@
 {% extends "order_base.html" %}
 {% load i18n %}
-{% block MAIN %}
+{% block MAIN trimmed%}
 
 
 <div class="container">
-<div class="col-m-12 col-6">
-    <div class="mat-box tabs">
-        <div class="tab-bar row checkout">
-            <div class="tab" data-toggle="#step-1">
-                <div class="step-header-1"><i class="icon"></i><span class="tab-title">{% trans "Shipping Info" %}</span></div>
-            </div>
-            <div class="tab" data-toggle="#step-2">
-                <div class="step-header-2"><i class="icon"></i><span class="tab-title">{% trans "Payment Option" %}</span></div>
-            </div>
-            <div class="tab" data-toggle="#step-3">
-                <div class="step-header-3"><i class="icon"></i><span class="tab-title">{% trans "Verification" %}</span></div>
-            </div>
-            <div class="tab" data-toggle="#step-4">
-                <div class="step-header-4"><i class="icon"></i><span class="tab-title">{% trans "Confirmation" %}</span></div>
-            </div>
-        </div>
-        <form  action="{% url 'orders:checkout' %}" method="POST">{% csrf_token %}
-            <div class="tab-container">
-                {% include "tags/checkout_address.html" with step_id="step-1" index="1" icon_parent="step-header-1" %}
-                {% include "tags/payment_options.html" with step_id="step-2" index="2" icon_parent="step-header-2" %}
-                {% include "tags/cart_summary.html" with step_id="step-3" index="3" icon_parent="step-header-3" %}
-                <div id="step-4" class="tab-content">
-                    <div class="title">
-                        <div class="flex"><span>{% trans "Confirmation" %}</span></div>
-                    </div>
-                    <div class="actions">
-                        <button class="mat-button mat-button-outlined" data-next-tab-index="2" title="{% trans 'Previous Step' %}"><i class="fas fa-chevron-left"></i></button>
-                        <button class="mat-button mat-button-outlined" type="submit" title="{% trans 'Validate' %}"><i class="fas fa-paper-plane"></i></button>
-                    </div>
+    <div class="col-m-12 col-6">
+        <div class="mat-box tabs">
+            <div class="tab-bar row checkout">
+                <div class="tab" data-toggle="#step-1">
+                    <div class="step-header-1"><i class="icon"></i><span class="tab-title">{% trans "Shipping Info" %}</span></div>
                 </div>
-            </div> <!--End of Tab Container-->
-        </form>
-    </div><!--End of mat-box-->
-</div><!--End of col-->
+                <div class="tab" data-toggle="#step-2">
+                    <div class="step-header-2"><i class="icon"></i><span class="tab-title">{% trans "Payment Option" %}</span></div>
+                </div>
+                <div class="tab" data-toggle="#step-3">
+                    <div class="step-header-3"><i class="icon"></i><span class="tab-title">{% trans "Verification" %}</span></div>
+                </div>
+                <div class="tab" data-toggle="#step-4">
+                    <div class="step-header-4"><i class="icon"></i><span class="tab-title">{% trans "Confirmation" %}</span></div>
+                </div>
+            </div>
+            <form  action="{% url 'orders:checkout' %}" method="POST">{% csrf_token %}
+                <div class="tab-container">
+                    {% include "tags/checkout_address.html" with step_id="step-1" index="1" icon_parent="step-header-1" %}
+                    {% include "tags/payment_options.html" with step_id="step-2" index="2" icon_parent="step-header-2" %}
+                    {% include "tags/cart_summary.html" with step_id="step-3" index="3" icon_parent="step-header-3" %}
+                    <div id="step-4" class="tab-content">
+                        <div class="title">
+                            <div class="flex"><span>{% trans "Confirmation" %}</span></div>
+                        </div>
+                        <div class="actions">
+                            <button class="mat-button mat-button-outlined" data-next-tab-index="2" title="{% trans 'Previous Step' %}"><i class="fas fa-chevron-left"></i></button>
+                            <button class="mat-button mat-button-outlined" type="submit" title="{% trans 'Validate' %}"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div> <!--End of Tab Container-->
+            </form>
+        </div><!--End of mat-box-->
+    </div><!--End of col-->
 </div><!--End of container-->
 {% endblock MAIN %}
