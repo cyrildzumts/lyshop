@@ -121,7 +121,13 @@ def shipment_for_order_exists(order):
 def get_orders_ready_for_shipment():
     return Order.objects.filter(status=ORDER_SHIPMENT_STATUS_MAPPING[constants.WAITING])
 
-
+def get_ship_mode_from_id(ship_mode_id):
+    if isinstance(ship_mode_id, int):
+        try:
+            return ShipMode.objects.get(pk=ship_mode_id)
+        except ShipMode.DoesNotExist as e:
+            logger.warn(f'get_ship_mode: No Ship Mode found with id \"{ship_mode_id}\"')
+    return None
 
 def get_ship_mode(name=""):
     if isinstance(name, str) and len(name) > 0:

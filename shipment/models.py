@@ -17,7 +17,7 @@ class Shipment(models.Model):
     customer = models.ForeignKey(User, related_name='shipment', blank=True, null=True, on_delete=models.SET_NULL)
     last_changed_by = models.ForeignKey(User, related_name='edited_shipments', blank=True, null=True, on_delete=models.SET_NULL)
     order = models.ForeignKey(Order, related_name='order_shipment', blank=True, null=True, on_delete=models.SET_NULL)
-    ship_mode = models.ForeignKey('shipment.ShipMode', related_name='orders', blank=True, null=True, on_delete=models.SET_NULL)
+    ship_mode = models.ForeignKey('shipment.ShipMode', related_name='shipments', blank=True, null=True, on_delete=models.SET_NULL)
     price = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     created_at = models.DateTimeField(auto_now_add=True)
     last_changed_at = models.DateTimeField(auto_now=True)

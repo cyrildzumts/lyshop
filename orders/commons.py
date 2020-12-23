@@ -18,6 +18,7 @@ ORDER_PAID_DAY_DELAY = 3
 PAYMENT_OPTION_FIELD        = "payment_option"
 PAYMENT_METHOD_FIELD        = "payment_method"
 SHIPPING_ADDRESS_FIELD      = "address"
+SHIP_MODE_FIELD             = "ship_mode"
 
 KEY_REDIRECT_SUCCESS_URL    = 'redirect_success_url'
 KEY_REDIRECT_FAILED_URL     = 'redirect_failed_url'

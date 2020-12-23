@@ -30,6 +30,7 @@ class Order(models.Model):
     vendor_balance_updated = models.BooleanField(default=False)
     status = models.IntegerField(default=commons.ORDER_SUBMITTED)
     payment_option = models.IntegerField(default=commons.PAY_WITH_PAY)
+    ship_mode = models.ForeignKey('shipment.ShipMode', related_name='orders', blank=True, null=True, on_delete=models.SET_NULL)
     coupon = models.ForeignKey("cart.Coupon", related_name="orders", blank=True, null=True, on_delete=models.SET_NULL)
     order_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_FIELDS = ['user', 'amount', 'quantity', 'created_at', 'status', 'coupon', 'payment_option', 'total', 'shipping_price', 'is_closed', 'solded_price', 'order_uuid']

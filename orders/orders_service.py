@@ -100,7 +100,7 @@ def order_pay_at_delivery(user, data):
             'msg' : "Expected CASH Payment method"
         }
     else:
-        order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_AT_DELIVERY, 'address':  data.get(commons.SHIPPING_ADDRESS_FIELD), 'payment_method': p_method})
+        order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_AT_DELIVERY, 'address':  data.get(commons.SHIPPING_ADDRESS_FIELD), 'payment_method': p_method, commons.SHIP_MODE_FIELD : data.get(commons.SHIP_MODE_FIELD) })
         redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
         redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
         result = {
@@ -127,7 +127,7 @@ def order_pay_at_order(user, data):
         return result
     
     address = data.get(commons.SHIPPING_ADDRESS_FIELD)
-    order = create_order_from_cart(**{'user': user, 'address' : address, 'payment_option': data.get(commons.PAYMENT_OPTION_FIELD), 'payment_method': data.get(commons.PAYMENT_METHOD_FIELD)})
+    order = create_order_from_cart(**{'user': user, 'address' : address, 'payment_option': data.get(commons.PAYMENT_OPTION_FIELD), 'payment_method': data.get(commons.PAYMENT_METHOD_FIELD), commons.SHIP_MODE_FIELD : data.get(commons.SHIP_MODE_FIELD)})
     redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
     redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
     result = {
@@ -184,7 +184,7 @@ def order_pay_before_delivery(user, data):
         return result
     logger.info("Processing order_pay_before_delivery")
 
-    order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_BEFORE_DELIVERY, 'address':  data.get(commons.SHIPPING_ADDRESS_FIELD), 'payment_method': data.get(commons.PAYMENT_METHOD_FIELD)})
+    order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_BEFORE_DELIVERY, 'address':  data.get(commons.SHIPPING_ADDRESS_FIELD), 'payment_method': data.get(commons.PAYMENT_METHOD_FIELD), commons.SHIP_MODE_FIELD : data.get(commons.SHIP_MODE_FIELD)})
     redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
     redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
     result = {
@@ -205,6 +205,10 @@ def process_order(user, request):
     if  not isinstance(user, User) or not isinstance(postdata, dict):
         logger.warn(f"process_order : User or postdata has a wrong type. Expecting user type to be User but got a {type(user)} instead ")
         logger.warn(f"process_order : User or postdata has a wrong type. Expecting postdata type to be dict or a descendant of a dict but got a {type(postdata)} instead ")
+        return result
+
+    if commons.SHIP_MODE_FIELD not in postdata:
+        logger.warn(f"process_order : SHIP_MODE_FIELD {commons.SHIP_MODE_FIELD} missing")
         return result
 
     if commons.PAYMENT_OPTION_FIELD not in postdata:
@@ -231,8 +235,13 @@ def process_order(user, request):
         logger.warn(f"process_order : no address found with id \"{postdata.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
         return result
 
+    ship_mode = shipment_service.get_ship_mode_from_id(int(postdata.get(commons.SHIP_MODE_FIELD)))
+    if not address:
+        logger.warn(f"process_order : no ship_mode found with id \"{postdata.get(commons.SHIP_MODE_FIELD)}\".")
+        return result
+
     payment_option = int(postdata.get(commons.PAYMENT_OPTION_FIELD))
-    data = {'postdata': postdata,'request': request, commons.PAYMENT_METHOD_FIELD : payment_method, commons.SHIPPING_ADDRESS_FIELD : address, commons.PAYMENT_OPTION_FIELD : payment_option}
+    data = {'postdata': postdata,'request': request, commons.PAYMENT_METHOD_FIELD : payment_method, commons.SHIP_MODE_FIELD : ship_mode ,commons.SHIPPING_ADDRESS_FIELD : address, commons.PAYMENT_OPTION_FIELD : payment_option}
     if payment_option == commons.PAY_BEFORE_DELIVERY:
         result = order_pay_before_delivery(user, data)
     elif payment_option == commons.PAY_AT_DELIVERY:
