@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-21 12:43+0000\n"
+"POT-Creation-Date: 2020-12-23 22:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: addressbook/templates/addressbook/address_create.html:12
-#: addressbook/templates/addressbook/address_create.html:60
+#: addressbook/templates/addressbook/address_create.html:64
 #: addressbook/templates/addressbook/address_update.html:13
 #: addressbook/templates/addressbook/address_update.html:56
 #: dashboard/templates/dashboard/address_update.html:12
@@ -44,9 +44,9 @@ msgstr ""
 #: dashboard/templates/dashboard/product_type_attribute_update.html:57
 #: dashboard/templates/dashboard/product_type_create.html:55
 #: dashboard/templates/dashboard/product_type_update.html:78
-#: dashboard/templates/dashboard/product_variant_detail.html:93
-#: dashboard/templates/dashboard/product_variant_detail.html:115
-#: dashboard/templates/dashboard/product_variant_detail.html:135
+#: dashboard/templates/dashboard/product_variant_detail.html:91
+#: dashboard/templates/dashboard/product_variant_detail.html:113
+#: dashboard/templates/dashboard/product_variant_detail.html:133
 #: dashboard/templates/dashboard/token_generate.html:43
 #: dashboard/templates/tags/account_update_form.html:53
 #: dashboard/templates/tags/brand_creation_form.html:37
@@ -84,6 +84,8 @@ msgstr ""
 #: payment/templates/payment_tags/policy_group_update_form.html:48
 #: payment/templates/payment_tags/policy_remove_form.html:39
 #: payment/templates/payment_tags/policy_update_form.html:38
+#: shipment/templates/shipment/ship_mode_create.html:50
+#: shipment/templates/shipment/ship_mode_update.html:62
 #: shipment/templates/shipment/shipment_update.html:64
 #: templates/accounts/registration/password_change.html:38
 #: templates/accounts/registration/password_reset_confirm.html:28
@@ -120,7 +122,7 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #: addressbook/templates/addressbook/address_create.html:13
-#: addressbook/templates/addressbook/address_create.html:61
+#: addressbook/templates/addressbook/address_create.html:65
 #: dashboard/templates/dashboard/attributes_create.html:36
 #: dashboard/templates/dashboard/attributes_create.html:51
 #: dashboard/templates/dashboard/create_product_variant.html:74
@@ -128,7 +130,7 @@ msgstr "Annuler"
 #: dashboard/templates/dashboard/payment_method_create.html:67
 #: dashboard/templates/dashboard/product_type_attribute_create.html:52
 #: dashboard/templates/dashboard/product_type_create.html:56
-#: dashboard/templates/dashboard/product_variant_detail.html:136
+#: dashboard/templates/dashboard/product_variant_detail.html:134
 #: dashboard/templates/tags/brand_creation_form.html:38
 #: dashboard/templates/tags/category_creation_form.html:47
 #: dashboard/templates/tags/coupon_form.html:48
@@ -138,6 +140,7 @@ msgstr "Annuler"
 #: payment/templates/payment/payment_date_group_create.html:38
 #: payment/templates/payment_tags/policy_creation_form.html:24
 #: payment/templates/payment_tags/policy_group_creation_form.html:32
+#: shipment/templates/shipment/ship_mode_create.html:51
 #: templates/tags/signup_dialog.html:56
 #: vendors/templates/vendor_tags/brand_creation_form.html:38
 #: vendors/templates/vendor_tags/coupon_form.html:43
@@ -181,7 +184,7 @@ msgstr "Nom de famille"
 #: dashboard/templates/dashboard/addressbook.html:52
 #: dashboard/templates/dashboard/user_detail.html:60
 #: dashboard/templates/tags/account_update_form.html:30
-#: orders/templates/tags/checkout_address.html:38
+#: orders/templates/tags/checkout_address.html:49
 msgid "Country"
 msgstr "Pays"
 
@@ -196,7 +199,7 @@ msgstr "Pays"
 #: dashboard/templates/dashboard/addressbook.html:55
 #: dashboard/templates/dashboard/user_detail.html:63
 #: dashboard/templates/tags/account_update_form.html:18
-#: orders/templates/tags/checkout_address.html:18
+#: orders/templates/tags/checkout_address.html:29
 msgid "City"
 msgstr "Ville"
 
@@ -228,7 +231,7 @@ msgstr "Addresse supplémentaire"
 #: dashboard/templates/dashboard/address_detail.html:40
 #: dashboard/templates/dashboard/address_update.html:49
 #: dashboard/templates/dashboard/addressbook.html:69
-#: orders/templates/tags/checkout_address.html:26
+#: orders/templates/tags/checkout_address.html:37
 msgid "Street"
 msgstr "Rue"
 
@@ -240,17 +243,31 @@ msgstr "Rue"
 #: dashboard/templates/dashboard/address_detail.html:43
 #: dashboard/templates/dashboard/address_update.html:53
 #: dashboard/templates/dashboard/addressbook.html:72
-#: orders/templates/tags/checkout_address.html:30
+#: orders/templates/tags/checkout_address.html:41
 #, fuzzy
 #| msgid "House number"
 msgid "House Number"
 msgstr "Numéro de maison"
 
-#: addressbook/templates/addressbook/address_create.html:50
+#: addressbook/templates/addressbook/address_create.html:49
+#: addressbook/templates/addressbook/address_detail.html:44
+#: addressbook/templates/addressbook/address_update.html:50
+#: addressbook/templates/addressbook/addressbook.html:61
+#: addressbook/templates/addressbook_tags/address_form.html:40
+#: dashboard/templates/dashboard/address_detail.html:46
+#: dashboard/templates/dashboard/address_update.html:57
+#: dashboard/templates/dashboard/addressbook.html:75
+#: orders/templates/tags/checkout_address.html:45
+#, fuzzy
+#| msgid "Phone-Number"
+msgid "Phone Number"
+msgstr "Numéro de téléphone"
+
+#: addressbook/templates/addressbook/address_create.html:54
 msgid "Use this address as"
 msgstr "Utiliser cette adresse pour"
 
-#: addressbook/templates/addressbook/address_create.html:52
+#: addressbook/templates/addressbook/address_create.html:56
 #, fuzzy
 #| msgid "Select a Product Type"
 msgid "Select an Address Type"
@@ -275,6 +292,7 @@ msgstr "Choisissez un type de produit"
 #: dashboard/templates/dashboard/product_variant_detail.html:61
 #: payment/templates/payment/policy_detail.html:15
 #: payment/templates/payment/policy_group_detail.html:16
+#: shipment/templates/shipment/ship_mode_detail.html:12
 #: vendors/templates/vendors/brand_detail.html:22
 #: vendors/templates/vendors/coupon_detail.html:55
 #: vendors/templates/vendors/product_detail.html:68
@@ -305,12 +323,13 @@ msgstr "Éditer"
 #: dashboard/templates/dashboard/policy_group_detail.html:17
 #: dashboard/templates/dashboard/product_image_detail.html:15
 #: dashboard/templates/dashboard/product_type_list.html:64
-#: dashboard/templates/dashboard/product_variant_detail.html:65
+#: dashboard/templates/dashboard/product_variant_detail.html:64
 #: dashboard/templates/dashboard/product_variant_list.html:61
 #: dashboard/templates/dashboard/sold_product_detail.html:59
 #: dashboard/templates/tags/product_list_template.html:54
 #: dashboard/templates/tags/sold_product_list_template.html:60
 #: payment/templates/payment/policy_group_detail.html:17
+#: shipment/templates/shipment/ship_mode_detail.html:14
 #: shipment/templates/shipment/shipment_detail.html:24
 #: vendors/templates/vendor_tags/product_list_template.html:50
 #: vendors/templates/vendor_tags/sold_product_list_template.html:41
@@ -339,19 +358,6 @@ msgstr "Prénom"
 #: dashboard/templates/dashboard/addressbook.html:63
 msgid "Postal Code"
 msgstr "Code postale"
-
-#: addressbook/templates/addressbook/address_detail.html:44
-#: addressbook/templates/addressbook/address_update.html:50
-#: addressbook/templates/addressbook/addressbook.html:61
-#: addressbook/templates/addressbook_tags/address_form.html:40
-#: dashboard/templates/dashboard/address_detail.html:46
-#: dashboard/templates/dashboard/address_update.html:57
-#: dashboard/templates/dashboard/addressbook.html:75
-#: orders/templates/tags/checkout_address.html:34
-#, fuzzy
-#| msgid "Phone-Number"
-msgid "Phone Number"
-msgstr "Numéro de téléphone"
 
 #: addressbook/templates/addressbook/address_detail.html:47
 #: addressbook/templates/addressbook/addressbook.html:64
@@ -392,6 +398,7 @@ msgstr "Utiliser pour"
 #: payment/templates/payment/payment_date_group_update.html:58
 #: payment/templates/payment_tags/policy_group_update_form.html:49
 #: payment/templates/payment_tags/policy_update_form.html:39
+#: shipment/templates/shipment/ship_mode_update.html:63
 #: shipment/templates/shipment/shipment_update.html:65
 #: vendors/templates/vendor_tags/brand_update_form.html:41
 #: vendors/templates/vendor_tags/category_update_form.html:58
@@ -492,7 +499,7 @@ msgstr "Adresse supprimée"
 msgid "Address changed"
 msgstr "Adress modifié"
 
-#: addressbook/views.py:145 orders/templates/tags/checkout_address.html:4
+#: addressbook/views.py:145 orders/templates/tags/checkout_address.html:15
 #, fuzzy
 #| msgid "Address"
 msgid "New Address"
@@ -525,7 +532,7 @@ msgstr "Coupon invalide"
 #: dashboard/templates/dashboard/order_item_update.html:43
 #: dashboard/templates/dashboard/order_update.html:43
 #: orders/templates/orders/order_detail.html:44
-#: orders/templates/tags/cart_summary.html:12
+#: orders/templates/tags/cart_summary.html:13
 msgid "Coupon"
 msgstr "Coupon"
 
@@ -533,7 +540,7 @@ msgstr "Coupon"
 #: dashboard/templates/dashboard/attributes_create.html:23
 #: dashboard/templates/dashboard/create_product_variant.html:63
 #: dashboard/templates/dashboard/product_attribute_create.html:18
-#: dashboard/templates/dashboard/product_variant_detail.html:123
+#: dashboard/templates/dashboard/product_variant_detail.html:121
 #: dashboard/templates/tags/product_variant_creation_form.html:38
 #: dashboard/templates/tags/product_variant_update_form.html:37
 #: vendors/templates/vendor_tags/product_variant_creation_form.html:49
@@ -549,7 +556,7 @@ msgstr "Ajouter"
 msgid "Remove"
 msgstr "Retirer"
 
-#: cart/templates/cart/cart.html:44 orders/templates/tags/cart_summary.html:18
+#: cart/templates/cart/cart.html:44 orders/templates/tags/cart_summary.html:19
 msgid "Number of items"
 msgstr "Nombre d'articles"
 
@@ -564,7 +571,7 @@ msgstr "Nombre d'articles"
 #: dashboard/templates/tags/coupon_form.html:18
 #: dashboard/templates/tags/coupon_form_update.html:16
 #: orders/templates/orders/order_detail.html:43
-#: orders/templates/tags/cart_summary.html:19
+#: orders/templates/tags/cart_summary.html:20
 #: vendors/templates/vendor_tags/coupon_form.html:22
 #: vendors/templates/vendor_tags/coupon_form_update.html:21
 #: vendors/templates/vendors/coupon_detail.html:15
@@ -573,13 +580,13 @@ msgstr "Nombre d'articles"
 msgid "Reduction"
 msgstr "Réduction"
 
-#: cart/templates/cart/cart.html:46 orders/templates/tags/cart_summary.html:20
+#: cart/templates/cart/cart.html:46 orders/templates/tags/cart_summary.html:21
 #, fuzzy
 #| msgid "Total"
 msgid "Sub Total"
 msgstr "Sous-Total"
 
-#: cart/templates/cart/cart.html:46 orders/templates/tags/cart_summary.html:20
+#: cart/templates/cart/cart.html:46 orders/templates/tags/cart_summary.html:21
 msgid "no reduction"
 msgstr "pas de réduction"
 
@@ -587,14 +594,14 @@ msgstr "pas de réduction"
 #: cart/templates/cart_tags/item_snippet.html:32
 #: dashboard/templates/dashboard/order_update.html:46
 #: dashboard/templates/dashboard/sold_product_detail.html:41
-#: orders/templates/orders/order_detail.html:47
-#: orders/templates/tags/cart_summary.html:21
+#: orders/templates/orders/order_detail.html:53
+#: orders/templates/tags/cart_summary.html:22
 #: vendors/templates/vendors/sold_product_detail.html:41
 msgid "Total"
 msgstr "Total"
 
 #: cart/templates/cart/cart.html:49 cart/templates/cart_base.html:22
-#: orders/views.py:121 orders/views.py:158
+#: orders/views.py:121 orders/views.py:162
 msgid "Checkout"
 msgstr "Commander"
 
@@ -609,11 +616,11 @@ msgstr ""
 "Le prix et les frais d'expédition seront confirmés lors de la clôture de "
 "votre commande"
 
-#: cart/templates/cart/cart.html:67 orders/templates/tags/cart_summary.html:29
+#: cart/templates/cart/cart.html:67
 msgid "Standard shipping cost 3000 XAF"
 msgstr "Frais d'expédition standard 3000 FCFA"
 
-#: cart/templates/cart/cart.html:68 orders/templates/tags/cart_summary.html:30
+#: cart/templates/cart/cart.html:68
 msgid ""
 "Express shipping cost 5000 XAF. Express shipping are sent as soon as "
 "possible so that the customer receives the order on the next few days."
@@ -712,6 +719,12 @@ msgstr "Electronique"
 #: dashboard/templates/dashboard/payment_method_list.html:52
 #: dashboard/templates/dashboard/payment_method_list.html:66
 #: dashboard/templates/dashboard/payment_method_update.html:49
+#: orders/templates/tags/tags_payment_method.html:17
+#: shipment/templates/shipment/ship_mode_create.html:34
+#: shipment/templates/shipment/ship_mode_detail.html:31
+#: shipment/templates/shipment/ship_mode_list.html:30
+#: shipment/templates/shipment/ship_mode_list.html:42
+#: shipment/templates/shipment/ship_mode_update.html:46
 msgid "Mode"
 msgstr "Mode"
 
@@ -952,16 +965,7 @@ msgstr ""
 msgid "Description"
 msgstr "Description"
 
-#: catalog/templates/catalog/product_detail.html:101
-#: catalog/templates/catalog/product_variant_detail.html:88
-msgid "Add to Cart"
-msgstr "Ajouter au panier"
-
-#: catalog/templates/catalog/product_detail.html:106
-msgid "Out of Stock"
-msgstr "En rupture de stock"
-
-#: catalog/templates/catalog/product_detail.html:123
+#: catalog/templates/catalog/product_detail.html:112
 #: catalog/templates/catalog/product_variant_detail.html:100
 msgid "Variants"
 msgstr "Déclinaisons"
@@ -977,6 +981,22 @@ msgstr "Image du produit"
 #: vendors/templates/vendors/product_image_detail.html:13
 msgid "Back"
 msgstr "Retour"
+
+#: catalog/templates/catalog/product_variant_detail.html:88
+#: catalog/templates/tags/add_to_cart.html:9
+#: catalog/templates/tags/add_to_cart.html:14
+msgid "Add to Cart"
+msgstr "Ajouter au panier"
+
+#: catalog/templates/tags/add_to_cart.html:17
+#, fuzzy
+#| msgid "I want to create an account"
+msgid "Please, login first or create an account"
+msgstr "Je veux créer un compte"
+
+#: catalog/templates/tags/add_to_cart.html:24
+msgid "Out of Stock"
+msgstr "En rupture de stock"
 
 #: catalog/templates/tags/home_products.html:39
 #: catalog/templates/tags/products_snippet.html:33
@@ -1020,7 +1040,7 @@ msgstr "Retour"
 #: dashboard/templates/tags/sold_product_list_template.html:37
 #: dashboard/templates/tags/sold_product_list_template.html:59
 #: dashboard/templates/tags/sold_product_list_template.html:70
-#: orders/templates/orders/order_detail.html:79
+#: orders/templates/orders/order_detail.html:85
 #: orders/templates/orders/order_list.html:26
 #: orders/templates/orders/order_list.html:37
 #: payment/templates/payment/payment_home.html:30
@@ -1028,8 +1048,10 @@ msgstr "Retour"
 #: payment/templates/payment/payment_list.html:31
 #: payment/templates/payment/payment_list.html:41
 #: payment/templates/payment/policy_list.html:45
-#: shipment/templates/shipment/shipment_home.html:42
-#: shipment/templates/shipment/shipment_home.html:52
+#: shipment/templates/shipment/ship_mode_list.html:33
+#: shipment/templates/shipment/ship_mode_list.html:45
+#: shipment/templates/shipment/shipment_home.html:21
+#: shipment/templates/shipment/shipment_home.html:31
 #: shipment/templates/shipment/shipment_list.html:41
 #: shipment/templates/shipment/shipment_list.html:51
 #: templates/accounts/account.html:23 templates/accounts/account.html:38
@@ -1174,17 +1196,17 @@ msgstr "Prix inférieur à prix plus élevé"
 msgid "Populariy"
 msgstr "Popularité"
 
-#: catalog/views.py:66
+#: catalog/views.py:67
 msgid "Catalog Home"
 msgstr "Accueil"
 
-#: catalog/views.py:151 dashboard/views.py:1044 dashboard/views.py:1567
-#: dashboard/views.py:2193 vendors/views.py:271 vendors/views.py:330
-#: vendors/views.py:1553
+#: catalog/views.py:152 catalog/views.py:195 dashboard/views.py:1044
+#: dashboard/views.py:1567 dashboard/views.py:2193 vendors/views.py:271
+#: vendors/views.py:330 vendors/views.py:1553
 msgid "Product Detail"
 msgstr "Les détails du produit"
 
-#: catalog/views.py:176 dashboard/views.py:1432 vendors/views.py:517
+#: catalog/views.py:222 dashboard/views.py:1432 vendors/views.py:517
 msgid "Product Variant Detail"
 msgstr "Détail de la variante de produit"
 
@@ -1192,7 +1214,7 @@ msgstr "Détail de la variante de produit"
 #: core/templates/core/filter.html:16
 #: dashboard/templates/dashboard/policy_group_detail.html:62
 #: dashboard/templates/tags/case_close_form.html:42
-#: payment/templates/payment/policy_group_detail.html:62 templates/base.html:38
+#: payment/templates/payment/policy_group_detail.html:62 templates/base.html:39
 #: templates/tags/amount_filter.html:39 templates/tags/date_filter.html:42
 #: templates/tags/order_list_filter.html:31
 #: templates/tags/order_status_filter.html:30
@@ -1210,13 +1232,13 @@ msgstr "Appliquer"
 #: core/templates/tags/decimal_field.html:17
 #: core/templates/tags/integer_field.html:23
 msgid "Min"
-msgstr ""
+msgstr "Min"
 
 #: core/templates/tags/datetime_field.html:15
 #: core/templates/tags/decimal_field.html:21
 #: core/templates/tags/integer_field.html:27
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 #: dashboard/templates/dashboard/account_detail.html:8
 #: dashboard/templates/dashboard/attribute_detail.html:42
@@ -1265,7 +1287,7 @@ msgstr ""
 #: dashboard/templates/dashboard/product_type_list.html:60
 #: dashboard/templates/dashboard/product_type_update.html:47
 #: dashboard/templates/dashboard/product_variant_detail.html:26
-#: dashboard/templates/dashboard/product_variant_detail.html:166
+#: dashboard/templates/dashboard/product_variant_detail.html:164
 #: dashboard/templates/dashboard/product_variant_list.html:42
 #: dashboard/templates/dashboard/sold_product_detail.html:17
 #: dashboard/templates/dashboard/user_list.html:34
@@ -1286,11 +1308,14 @@ msgstr ""
 #: dashboard/templates/tags/sold_product_list_template.html:30
 #: dashboard/templates/tags/sold_product_list_template.html:52
 #: dashboard/templates/tags/sold_product_list_template.html:63
-#: orders/templates/tags/checkout_address.html:10
+#: orders/templates/tags/checkout_address.html:21
 #: payment/templates/payment/payment_date_create.html:17
 #: payment/templates/payment/payment_date_group_create.html:17
 #: payment/templates/payment/payment_date_group_update.html:17
 #: payment/templates/payment/policy_group_list.html:48
+#: shipment/templates/shipment/ship_mode_create.html:21
+#: shipment/templates/shipment/ship_mode_detail.html:22
+#: shipment/templates/shipment/ship_mode_update.html:33
 #: vendors/templates/vendor_tags/brand_creation_form.html:17
 #: vendors/templates/vendor_tags/brand_update_form.html:20
 #: vendors/templates/vendor_tags/category_update_form.html:18
@@ -1408,7 +1433,7 @@ msgstr "Utilsateur"
 #: dashboard/templates/dashboard/product_type_detail.html:30
 #: dashboard/templates/dashboard/product_type_list.html:18
 #: dashboard/templates/dashboard/product_type_update.html:18
-#: dashboard/templates/dashboard/product_variant_detail.html:71
+#: dashboard/templates/dashboard/product_variant_detail.html:69
 #: dashboard/templates/dashboard/product_variant_list.html:15
 #: dashboard/templates/dashboard/reports.html:18
 #: dashboard/templates/dashboard/sold_product_detail.html:57
@@ -1421,7 +1446,7 @@ msgstr "Utilsateur"
 #: dashboard/templates/tags/group_update_form.html:8
 #: dashboard/templates/tags/idcard_form.html:21 dashboard/views.py:76
 #: payment/templates/payment/policy_group_detail.html:20
-#: payment/templates/payment_base.html:57 templates/base.html:48
+#: payment/templates/payment_base.html:57 templates/base.html:49
 #: vendors/templates/vendors/attribute_list.html:16
 #: vendors/templates/vendors/coupon_update.html:8
 #: vendors/templates/vendors/product_type_attribute_detail.html:26
@@ -1496,7 +1521,7 @@ msgstr "Attributs"
 #: dashboard/templates/dashboard/product_type_list.html:61
 #: dashboard/templates/dashboard/product_type_update.html:51
 #: dashboard/templates/dashboard/product_variant_detail.html:29
-#: dashboard/templates/dashboard/product_variant_detail.html:167
+#: dashboard/templates/dashboard/product_variant_detail.html:165
 #: dashboard/templates/dashboard/product_variant_list.html:43
 #: dashboard/templates/dashboard/sold_product_detail.html:20
 #: dashboard/templates/tags/brand_creation_form.html:21
@@ -1515,7 +1540,13 @@ msgstr "Attributs"
 #: dashboard/templates/tags/sold_product_list_template.html:31
 #: dashboard/templates/tags/sold_product_list_template.html:53
 #: dashboard/templates/tags/sold_product_list_template.html:64
-#: orders/templates/orders/order_detail.html:73
+#: orders/templates/orders/order_detail.html:79
+#: orders/templates/tags/tags_payment_method.html:8
+#: shipment/templates/shipment/ship_mode_create.html:25
+#: shipment/templates/shipment/ship_mode_detail.html:25
+#: shipment/templates/shipment/ship_mode_list.html:28
+#: shipment/templates/shipment/ship_mode_list.html:40
+#: shipment/templates/shipment/ship_mode_update.html:37
 #: vendors/templates/vendor_tags/brand_creation_form.html:21
 #: vendors/templates/vendor_tags/brand_update_form.html:24
 #: vendors/templates/vendor_tags/category_update_form.html:22
@@ -1572,7 +1603,7 @@ msgstr "Nom affiché"
 #: dashboard/templates/dashboard/create_product_variant.html:94
 #: dashboard/templates/dashboard/product_type_attribute_detail.html:50
 #: dashboard/templates/dashboard/product_type_attribute_detail.html:62
-#: dashboard/templates/dashboard/product_variant_detail.html:168
+#: dashboard/templates/dashboard/product_variant_detail.html:166
 #: vendors/templates/vendors/attribute_detail.html:15
 #: vendors/templates/vendors/attribute_detail.html:35
 #: vendors/templates/vendors/attribute_list.html:47
@@ -1588,7 +1619,7 @@ msgstr "Valeur"
 #: dashboard/templates/dashboard/create_product_variant.html:38
 #: dashboard/templates/dashboard/create_product_variant.html:96
 #: dashboard/templates/dashboard/product_type_attribute_detail.html:52
-#: dashboard/templates/dashboard/product_variant_detail.html:170
+#: dashboard/templates/dashboard/product_variant_detail.html:168
 #: dashboard/templates/tags/attribute_form.html:22
 #: dashboard/templates/tags/bulk_attributes_form.html:26
 #: vendors/templates/vendor_tags/attribute_form.html:18
@@ -1609,6 +1640,8 @@ msgstr "Est primaire"
 #: dashboard/templates/dashboard/attribute_detail.html:55
 #: dashboard/templates/dashboard/attribute_list.html:64
 #: dashboard/templates/dashboard/create_product_variant.html:48
+#: shipment/templates/shipment/ship_mode_detail.html:49
+#: shipment/templates/shipment/ship_mode_list.html:43
 #: vendors/templates/vendors/order_item.html:37
 msgid "yes,no"
 msgstr "oui,non"
@@ -1617,7 +1650,7 @@ msgstr "oui,non"
 #: dashboard/templates/dashboard/brand_product_detail.html:17
 #: dashboard/templates/dashboard/highlight_detail.html:82
 #: dashboard/templates/dashboard/product_detail.html:83
-#: dashboard/templates/dashboard/product_variant_detail.html:70
+#: dashboard/templates/dashboard/product_variant_detail.html:68
 #: dashboard/templates/dashboard/sold_product_list.html:7
 #: dashboard/templates/dashboard_base.html:56
 #: dashboard/templates/tags/analytics.html:28
@@ -1692,7 +1725,7 @@ msgstr "Aucun produit disponible pour cet attribut"
 #: dashboard/templates/dashboard/product_type_detail.html:96
 #: dashboard/templates/dashboard/product_type_list.html:77
 #: dashboard/templates/dashboard/product_type_update.html:90
-#: dashboard/templates/dashboard/product_variant_detail.html:149
+#: dashboard/templates/dashboard/product_variant_detail.html:147
 #: dashboard/templates/dashboard/sold_product_detail.html:84
 #: dashboard/templates/dashboard/token_list.html:60
 #: dashboard/templates/dashboard/user_list.html:65
@@ -1729,6 +1762,10 @@ msgstr "Aucun produit disponible pour cet attribut"
 #: payment/templates/payment_tags/policy_group_creation_form.html:42
 #: payment/templates/payment_tags/policy_group_update_form.html:59
 #: payment/templates/payment_tags/policy_update_form.html:49
+#: shipment/templates/shipment/ship_mode_create.html:58
+#: shipment/templates/shipment/ship_mode_detail.html:57
+#: shipment/templates/shipment/ship_mode_list.html:59
+#: shipment/templates/shipment/ship_mode_update.html:70
 #: vendors/templates/vendor_tags/brand_creation_form.html:49
 #: vendors/templates/vendor_tags/brand_update_form.html:52
 #: vendors/templates/vendor_tags/category_update_form.html:67
@@ -1786,6 +1823,7 @@ msgstr ""
 #: dashboard/templates/tags/sold_product_list_template.html:12
 #: payment/templates/payment/policy_group_list.html:45
 #: payment/templates/payment/policy_list.html:40
+#: shipment/templates/shipment/ship_mode_list.html:23
 #: vendors/templates/vendor_tags/product_list_template.html:11
 #: vendors/templates/vendor_tags/sold_product_list_template.html:12
 #: vendors/templates/vendors/coupon_list.html:26
@@ -1808,6 +1846,7 @@ msgstr "Supprimer la sélection"
 #: dashboard/templates/tags/product_list_template.html:25
 #: dashboard/templates/tags/sold_product_list_template.html:17
 #: payment/templates/payment/policy_list.html:42
+#: shipment/templates/shipment/ship_mode_list.html:27
 #: vendors/templates/vendor_tags/product_list_template.html:21
 #: vendors/templates/vendor_tags/sold_product_list_template.html:16
 #: vendors/templates/vendors/attribute_list.html:44
@@ -1825,7 +1864,7 @@ msgstr "Tout sélectioner"
 #: dashboard/templates/dashboard/create_product_variant.html:95
 #: dashboard/templates/dashboard/product_type_attribute_detail.html:51
 #: dashboard/templates/dashboard/product_type_attribute_detail.html:63
-#: dashboard/templates/dashboard/product_variant_detail.html:169
+#: dashboard/templates/dashboard/product_variant_detail.html:167
 msgid "Primary"
 msgstr "Primaire"
 
@@ -1879,14 +1918,14 @@ msgstr "Nouvel attribut"
 
 #: dashboard/templates/dashboard/attributes_create.html:20
 #: dashboard/templates/dashboard/create_product_variant.html:60
-#: dashboard/templates/dashboard/product_variant_detail.html:121
+#: dashboard/templates/dashboard/product_variant_detail.html:119
 #: vendors/templates/vendors/product_variant_detail.html:114
 msgid "New Attribtute"
 msgstr "Nouveau"
 
 #: dashboard/templates/dashboard/attributes_create.html:22
 #: dashboard/templates/dashboard/create_product_variant.html:62
-#: dashboard/templates/dashboard/product_variant_detail.html:105
+#: dashboard/templates/dashboard/product_variant_detail.html:103
 #: vendors/templates/vendors/product_variant_detail.html:98
 msgid "Clear Form"
 msgstr "Nettoyer"
@@ -1970,6 +2009,11 @@ msgstr "Produits de la marque"
 #: dashboard/templates/tags/sold_product_list_template.html:56
 #: dashboard/templates/tags/sold_product_list_template.html:67
 #: orders/templates/orders/order_detail.html:41
+#: shipment/templates/shipment/ship_mode_create.html:30
+#: shipment/templates/shipment/ship_mode_detail.html:28
+#: shipment/templates/shipment/ship_mode_list.html:29
+#: shipment/templates/shipment/ship_mode_list.html:41
+#: shipment/templates/shipment/ship_mode_update.html:42
 #: vendors/templates/vendor_tags/product_creation_form.html:22
 #: vendors/templates/vendor_tags/product_list_template.html:27
 #: vendors/templates/vendor_tags/product_list_template.html:45
@@ -2020,7 +2064,7 @@ msgstr "Retourner à la marque"
 #: dashboard/templates/dashboard/brand_product_detail.html:34
 #: dashboard/templates/dashboard/highlight_detail.html:68
 #: dashboard/templates/dashboard/highlight_detail.html:110
-#: orders/templates/orders/order_detail.html:92
+#: orders/templates/orders/order_detail.html:98
 #: vendors/templates/vendors/brand_product_detail.html:23
 msgid "Product Details"
 msgstr "Détails du produit"
@@ -2202,8 +2246,8 @@ msgstr "description"
 #: shipment/templates/shipment/shipment_histories.html:35
 #: shipment/templates/shipment/shipment_histories.html:49
 #: shipment/templates/shipment/shipment_histories.html:57
-#: shipment/templates/shipment/shipment_home.html:41
-#: shipment/templates/shipment/shipment_home.html:51
+#: shipment/templates/shipment/shipment_home.html:20
+#: shipment/templates/shipment/shipment_home.html:30
 #: shipment/templates/shipment/shipment_list.html:40
 #: shipment/templates/shipment/shipment_list.html:50
 #: templates/accounts/account.html:22 templates/accounts/account.html:37
@@ -2239,7 +2283,7 @@ msgstr "Ouvert"
 #: payment/templates/payment/payment_list.html:41
 #: payment/templates/payment/policy_group_list.html:60
 #: payment/templates/payment/policy_list.html:54
-#: shipment/templates/shipment/shipment_home.html:52
+#: shipment/templates/shipment/shipment_home.html:31
 #: shipment/templates/shipment/shipment_list.html:51
 #: templates/accounts/account.html:38
 #: vendors/templates/vendors/payment_list.html:41
@@ -2285,6 +2329,11 @@ msgstr "Coupons"
 #: dashboard/templates/dashboard/payment_method_update.html:57
 #: dashboard/templates/tags/brand_update_form.html:33
 #: dashboard/templates/tags/product_update_form.html:31
+#: shipment/templates/shipment/ship_mode_create.html:43
+#: shipment/templates/shipment/ship_mode_detail.html:49
+#: shipment/templates/shipment/ship_mode_list.html:31
+#: shipment/templates/shipment/ship_mode_list.html:43
+#: shipment/templates/shipment/ship_mode_update.html:55
 #, fuzzy
 #| msgid "Is Active"
 msgid "Active"
@@ -2308,6 +2357,7 @@ msgstr "Vendeur"
 
 #: dashboard/templates/dashboard/coupon_detail.html:40
 #: dashboard/templates/dashboard/payment_method_detail.html:41
+#: shipment/templates/shipment/ship_mode_detail.html:38
 #: vendors/templates/vendors/coupon_detail.html:31
 msgid "Create at"
 msgstr "Crée le"
@@ -2342,10 +2392,11 @@ msgstr ""
 #: dashboard/templates/tags/coupon_form.html:22
 #: dashboard/templates/tags/coupon_form_update.html:32
 msgid "Max Usage"
-msgstr ""
+msgstr "Utilisation maximum"
 
 #: dashboard/templates/dashboard/coupon_detail.html:69
 #: dashboard/templates/dashboard/payment_method_detail.html:44
+#: shipment/templates/shipment/ship_mode_detail.html:41
 #: vendors/templates/vendors/coupon_detail.html:46
 msgid "Added by"
 msgstr "Ajouté par"
@@ -2367,6 +2418,7 @@ msgstr "Ajouter un nouveau coupon"
 
 #: dashboard/templates/dashboard/coupon_list.html:52
 #: dashboard/templates/dashboard/payment_method_list.html:54
+#: shipment/templates/shipment/ship_mode_list.html:32
 #: vendors/templates/vendors/coupon_list.html:34
 msgid "Date of creation"
 msgstr "Date de création"
@@ -2397,8 +2449,8 @@ msgstr "Vendeur"
 #: shipment/templates/shipment/shipment_histories.html:34
 #: shipment/templates/shipment/shipment_histories.html:47
 #: shipment/templates/shipment/shipment_histories.html:55
-#: shipment/templates/shipment/shipment_home.html:40
-#: shipment/templates/shipment/shipment_home.html:50
+#: shipment/templates/shipment/shipment_home.html:19
+#: shipment/templates/shipment/shipment_home.html:29
 #: shipment/templates/shipment/shipment_list.html:39
 #: shipment/templates/shipment/shipment_list.html:49
 #: templates/accounts/account.html:20 templates/accounts/account.html:31
@@ -2410,6 +2462,7 @@ msgstr "Statut"
 
 #: dashboard/templates/dashboard/coupon_list.html:65
 #: dashboard/templates/dashboard/payment_method_list.html:68
+#: shipment/templates/shipment/ship_mode_list.html:44
 #: vendors/templates/vendors/coupon_list.html:47
 msgid "Date of Creation"
 msgstr "Date de création"
@@ -2465,8 +2518,8 @@ msgstr "Commandes recentes"
 #: shipment/templates/shipment/order_ready_list.html:50
 #: shipment/templates/shipment/shipment_detail.html:36
 #: shipment/templates/shipment/shipment_histories.html:30
-#: shipment/templates/shipment/shipment_home.html:39
-#: shipment/templates/shipment/shipment_home.html:49
+#: shipment/templates/shipment/shipment_home.html:18
+#: shipment/templates/shipment/shipment_home.html:28
 #: shipment/templates/shipment/shipment_list.html:38
 #: shipment/templates/shipment/shipment_list.html:48
 #: vendors/templates/vendors/balance_histories.html:35
@@ -2478,7 +2531,7 @@ msgstr "Client"
 
 #: dashboard/templates/dashboard/dashboard.html:36
 #: dashboard/templates/dashboard/order_detail.html:85
-#: orders/templates/orders/order_detail.html:78
+#: orders/templates/orders/order_detail.html:84
 #: vendors/templates/vendors/order_list.html:48
 msgid "Total Price"
 msgstr "Prix total"
@@ -2637,7 +2690,7 @@ msgstr "Produits vendus"
 #: dashboard/templates/dashboard/highlight_detail.html:54
 #: dashboard/templates/dashboard/highlight_detail.html:95
 #: dashboard/templates/dashboard/order_detail.html:82
-#: orders/templates/orders/order_detail.html:75
+#: orders/templates/orders/order_detail.html:81
 #: vendors/templates/vendors/order_list.html:45
 msgid "Quantiy"
 msgstr "Quantité"
@@ -2658,7 +2711,7 @@ msgstr "Quantité"
 #: dashboard/templates/tags/sold_product_list_template.html:24
 #: dashboard/templates/tags/sold_product_list_template.html:35
 #: dashboard/templates/tags/sold_product_list_template.html:57
-#: orders/templates/orders/order_detail.html:77
+#: orders/templates/orders/order_detail.html:83
 #: vendors/templates/vendor_tags/product_list_template.html:28
 #: vendors/templates/vendor_tags/product_list_template.html:46
 #: vendors/templates/vendor_tags/product_update_form.html:25
@@ -2860,8 +2913,8 @@ msgstr "Statut du paiement"
 
 #: dashboard/templates/dashboard/order_detail.html:37
 #: dashboard/templates/dashboard/order_item.html:37
-#: dashboard/templates/dashboard/order_item_update.html:36
-#: orders/templates/orders/order_detail.html:36
+#: dashboard/templates/dashboard/order_item_update.html:36 orders/commons.py:98
+#: orders/commons.py:107 orders/templates/orders/order_detail.html:36
 msgid "PAID"
 msgstr "PAYÉ"
 
@@ -2881,8 +2934,8 @@ msgid "Payment Method"
 msgstr "Option de payment"
 
 #: dashboard/templates/dashboard/order_detail.html:39
-#: orders/templates/orders/order_detail.html:52
-#: orders/templates/tags/checkout_address.html:4
+#: orders/templates/orders/order_detail.html:58
+#: orders/templates/tags/checkout_address.html:15
 #: shipment/templates/shipment/shipment_detail.html:47
 msgid "Shipping Address"
 msgstr "Addresse d'envoie"
@@ -2891,13 +2944,14 @@ msgstr "Addresse d'envoie"
 #: dashboard/templates/dashboard/order_item.html:46
 #: dashboard/templates/dashboard/order_item_update.html:45
 #: dashboard/templates/dashboard/order_update.html:45
-#: orders/templates/orders/order_detail.html:46
+#: orders/templates/orders/order_detail.html:47
+#: orders/templates/orders/order_detail.html:50
 #: shipment/templates/shipment/order_ready_list.html:36
 #: shipment/templates/shipment/order_ready_list.html:47
 #: shipment/templates/shipment/shipment_detail.html:34
 #: shipment/templates/shipment/shipment_histories.html:28
-#: shipment/templates/shipment/shipment_home.html:38
-#: shipment/templates/shipment/shipment_home.html:48
+#: shipment/templates/shipment/shipment_home.html:17
+#: shipment/templates/shipment/shipment_home.html:27
 #: shipment/templates/shipment/shipment_list.html:37
 #: shipment/templates/shipment/shipment_list.html:47
 msgid "Shipping Price"
@@ -2907,7 +2961,7 @@ msgstr "Frais d'envoi"
 #: dashboard/templates/dashboard/order_item.html:50
 #: dashboard/templates/dashboard/order_item_update.html:49
 #: dashboard/templates/dashboard/order_update.html:49
-#: orders/templates/orders/order_detail.html:50
+#: orders/templates/orders/order_detail.html:56
 #: vendors/templates/vendors/order_item.html:41
 msgid "Order Date"
 msgstr "Date de la commande"
@@ -2916,7 +2970,7 @@ msgstr "Date de la commande"
 #: dashboard/templates/dashboard/order_item.html:51
 #: dashboard/templates/dashboard/order_item_update.html:50
 #: dashboard/templates/dashboard/order_update.html:50
-#: orders/templates/orders/order_detail.html:51
+#: orders/templates/orders/order_detail.html:57
 #: vendors/templates/vendors/order_item.html:42
 msgid "Last Update"
 msgstr "Dernière mise à jour"
@@ -2925,16 +2979,16 @@ msgstr "Dernière mise à jour"
 #: dashboard/templates/dashboard/order_item.html:52
 #: dashboard/templates/dashboard/order_item_update.html:51
 msgid "TOTAL"
-msgstr ""
+msgstr "TOTAL"
 
 #: dashboard/templates/dashboard/order_detail.html:70
-#: orders/templates/orders/order_detail.html:63
+#: orders/templates/orders/order_detail.html:69
 #: vendors/templates/vendors/order_list.html:32
 msgid "Order Items"
 msgstr "Contenu de la commande"
 
 #: dashboard/templates/dashboard/order_detail.html:81
-#: orders/templates/orders/order_detail.html:74
+#: orders/templates/orders/order_detail.html:80
 #: vendors/templates/vendors/order_list.html:44
 msgid "Options"
 msgstr "Options"
@@ -2945,7 +2999,7 @@ msgstr "Options"
 #: dashboard/templates/dashboard/product_detail.html:54
 #: dashboard/templates/dashboard/product_variant_detail.html:47
 #: dashboard/templates/dashboard/sold_product_detail.html:35
-#: orders/templates/orders/order_detail.html:76
+#: orders/templates/orders/order_detail.html:82
 #: vendors/templates/vendors/order_item.html:81
 #: vendors/templates/vendors/order_item_update.html:63
 #: vendors/templates/vendors/order_list.html:46
@@ -3007,7 +3061,7 @@ msgstr "Commande Payée"
 
 #: dashboard/templates/dashboard/payment_method_create.html:8
 #: dashboard/templates/dashboard/payment_method_list.html:18
-#: dashboard/views.py:4066
+#: dashboard/views.py:4066 shipment/views.py:174
 #, fuzzy
 #| msgid "Payment Option"
 msgid "New Payment Method"
@@ -3029,6 +3083,7 @@ msgstr "Demandes de paiement"
 #: dashboard/templates/dashboard/payment_method_list.html:51
 #: dashboard/templates/dashboard/payment_method_list.html:65
 #: dashboard/templates/dashboard/payment_method_update.html:41
+#: orders/templates/tags/tags_payment_method.html:11
 #, fuzzy
 #| msgid "Province"
 msgid "Provider"
@@ -3037,10 +3092,12 @@ msgstr "Région"
 #: dashboard/templates/dashboard/payment_method_create.html:55
 #: dashboard/templates/dashboard/payment_method_detail.html:31
 #: dashboard/templates/dashboard/payment_method_update.html:45
+#: orders/templates/tags/tags_payment_method.html:14
 msgid "Credential"
 msgstr ""
 
 #: dashboard/templates/dashboard/payment_method_detail.html:48
+#: shipment/templates/shipment/ship_mode_detail.html:45
 #, fuzzy
 #| msgid "Password changed"
 msgid "Last changed by"
@@ -3048,7 +3105,7 @@ msgstr "Mot de passe modifié"
 
 #: dashboard/templates/dashboard/payment_method_detail.html:64
 msgid "New Paymnet Method"
-msgstr ""
+msgstr "Nouvelle Methode de paiment"
 
 #: dashboard/templates/dashboard/payment_method_update.html:8
 #: dashboard/views.py:4152
@@ -3552,34 +3609,34 @@ msgstr "Déclinaison"
 msgid "Product Variant Information"
 msgstr "Déclinaison"
 
-#: dashboard/templates/dashboard/product_variant_detail.html:62
+#: dashboard/templates/dashboard/product_variant_detail.html:67
 #: dashboard/templates/dashboard/sold_product_detail.html:56
 #: vendors/templates/vendors/product_variant_detail.html:53
 #: vendors/templates/vendors/sold_product_detail.html:56
 msgid "Parent Product"
 msgstr "Produit Parent"
 
-#: dashboard/templates/dashboard/product_variant_detail.html:78
+#: dashboard/templates/dashboard/product_variant_detail.html:76
 #: vendors/templates/vendors/product_variant_detail.html:71
 msgid "Add Attribute"
 msgstr "Ajouter"
 
-#: dashboard/templates/dashboard/product_variant_detail.html:79
+#: dashboard/templates/dashboard/product_variant_detail.html:77
 #: vendors/templates/vendors/product_variant_detail.html:72
 msgid "Edit Attribute"
 msgstr "Modifier"
 
-#: dashboard/templates/dashboard/product_variant_detail.html:94
+#: dashboard/templates/dashboard/product_variant_detail.html:92
 #: vendors/templates/vendors/product_variant_detail.html:87
 msgid "Remove Attributes"
 msgstr "Supprimer"
 
-#: dashboard/templates/dashboard/product_variant_detail.html:102
+#: dashboard/templates/dashboard/product_variant_detail.html:100
 #: vendors/templates/vendors/product_variant_detail.html:95
 msgid "Add Attribute Dialog"
 msgstr "Dialogue d'ajouter"
 
-#: dashboard/templates/dashboard/product_variant_detail.html:116
+#: dashboard/templates/dashboard/product_variant_detail.html:114
 #: vendors/templates/vendors/product_variant_detail.html:109
 msgid "Add Attributes"
 msgstr "Ajouter"
@@ -3755,12 +3812,13 @@ msgid "Products Attributes"
 msgstr "Attributs de produits"
 
 #: dashboard/templates/dashboard_base.html:69
+#: shipment/templates/shipment/ship_mode_create.html:11
+#: shipment/templates/shipment/ship_mode_update.html:23
 #: shipment/templates/shipment/shipment_detail.html:26
-#: shipment/templates/shipment/shipment_home.html:17
 #: shipment/templates/shipment/shipment_list.html:8
 #: shipment/templates/shipment/shipment_update.html:16
-#: shipment/templates/shipment_base.html:20 shipment/views.py:35
-#: shipment/views.py:54
+#: shipment/templates/shipment_base.html:19 shipment/views.py:36
+#: shipment/views.py:55
 msgid "Shipments"
 msgstr "Envoies"
 
@@ -3776,7 +3834,7 @@ msgstr "Token"
 msgid "Token AUTH API"
 msgstr "Token AUTH API"
 
-#: dashboard/templates/dashboard_base.html:76 templates/base.html:58
+#: dashboard/templates/dashboard_base.html:76 templates/base.html:59
 #: vendors/templates/vendor_base.html:60
 msgid "Logout"
 msgstr "Se déconnecter"
@@ -4496,13 +4554,173 @@ msgstr "Accueil"
 msgid "Error when updating PaymentMethod"
 msgstr "Erreur à la mise à jour de la categorie"
 
-#: lyshop/settings.py:302
+#: lyshop/settings.py:304
 msgid "French"
 msgstr "Francais"
 
-#: lyshop/settings.py:303
+#: lyshop/settings.py:305
 msgid "English"
 msgstr "Anglais"
+
+#: orders/commons.py:88 orders/commons.py:165
+msgid "PENDING"
+msgstr "EN ATTENTE"
+
+#: orders/commons.py:89 orders/commons.py:166
+msgid "ACCEPTED"
+msgstr "ACCEPTÉ"
+
+#: orders/commons.py:90
+msgid "REFUSED"
+msgstr "REFUSÉ"
+
+#: orders/commons.py:91
+msgid "ACTIVE"
+msgstr "ACTIVE"
+
+#: orders/commons.py:92 orders/commons.py:109
+msgid "CANCELED"
+msgstr "ANNULÉ"
+
+#: orders/commons.py:93
+msgid "CLEARED"
+msgstr "EFFACÉ"
+
+#: orders/commons.py:94
+msgid "CREATED"
+msgstr "CRÉE"
+
+#: orders/commons.py:95
+msgid "COMPLETED"
+msgstr "TERMINÉ"
+
+#: orders/commons.py:96
+msgid "EXPIRED"
+msgstr "EXPIRÉ"
+
+#: orders/commons.py:97
+msgid "FAILED"
+msgstr "ÉCHOUÉ"
+
+#: orders/commons.py:99
+msgid "PROCESSED"
+msgstr "TRAITÉ"
+
+#: orders/commons.py:100 orders/commons.py:115 orders/commons.py:167
+msgid "REFUND"
+msgstr "REMBOURSEMENT"
+
+#: orders/commons.py:101 orders/commons.py:119
+msgid "REFUNDED"
+msgstr "REMBOURSÉ"
+
+#: orders/commons.py:105
+msgid "SUBMITTED"
+msgstr "SOUMIS"
+
+#: orders/commons.py:106
+msgid "PROCESSING"
+msgstr "EN TRAITEMENT"
+
+#: orders/commons.py:108
+#, fuzzy
+#| msgid "PAYMENT ID"
+msgid "PAYMENT FAILED"
+msgstr "PAIEMENT ÉCHOUÉ"
+
+#: orders/commons.py:110
+#, fuzzy
+#| msgid "SHIPMENT ID"
+msgid "SHIPPED"
+msgstr "EXPÉDIÉ"
+
+#: orders/commons.py:111
+msgid "DELIVERED"
+msgstr "LIVRÉ"
+
+#: orders/commons.py:112
+msgid "PICKED UP"
+msgstr "RÉCUPERÉ"
+
+#: orders/commons.py:113
+msgid "CUSTOMER NOT FOUND"
+msgstr "CLIENT NON TROUVÉ"
+
+#: orders/commons.py:114
+msgid "READY FOR SHIPMENT"
+msgstr "PRÊT POUR L'EXPÉDITION"
+
+#: orders/commons.py:116
+msgid "CUSTOMER HAS NOT PAID"
+msgstr "LE CLIENT N'A PAS PAYÉ"
+
+#: orders/commons.py:117
+msgid "RETOURE"
+msgstr "RETOUR"
+
+#: orders/commons.py:118
+msgid "CLOSED"
+msgstr "FERMÉ"
+
+#: orders/commons.py:133 templates/tags/supported_payment_method.html:4
+msgid "CASH"
+msgstr "EN ESPÈCES"
+
+#: orders/commons.py:134
+#, fuzzy
+#| msgid "PAYMENT ID"
+msgid "PAYMENT WITH PAY"
+msgstr "ID PAIEMENT"
+
+#: orders/commons.py:135
+msgid "MOBILE PAYMENT"
+msgstr "PAIEMENT MOBILE"
+
+#: orders/commons.py:139 orders/commons.py:147
+msgid "PAY AT DELIVERY"
+msgstr "PAYER À LA LIVRAISON"
+
+#: orders/commons.py:140 orders/commons.py:149
+#, fuzzy
+#| msgid "SORT ORDER"
+msgid "PAY AT ORDER"
+msgstr "ORDRE DE TRI"
+
+#: orders/commons.py:141
+msgid "PAY BY SMS"
+msgstr "PAYER À LA COMMANDE"
+
+#: orders/commons.py:142
+msgid "PAY WITH PAY"
+msgstr "PAYER AVEC PAY"
+
+#: orders/commons.py:143 orders/commons.py:148
+msgid "PAY BEFORE DELIVERY"
+msgstr "PAYEZ AVANT LA LIVRAISON"
+
+#: orders/commons.py:168
+msgid "DECLINED"
+msgstr "RÉFUSÉ"
+
+#: orders/commons.py:169
+msgid "CANCELLED"
+msgstr "ANNULÉ"
+
+#: orders/commons.py:173
+msgid "UNSUFFICIENT FUND"
+msgstr "FONDS INSUFFISANTS"
+
+#: orders/commons.py:174
+msgid "NOT APPLICABLE"
+msgstr "N'EST PAS APPLICABLE"
+
+#: orders/commons.py:175
+msgid "ARTICLE USED"
+msgstr "ARTICLE UTILISÉ"
+
+#: orders/commons.py:176
+msgid "ARTICLE NOT RETURNED ON TIME"
+msgstr "ARTICLE NON RETOURNÉ À TEMPS"
 
 #: orders/templates/orders/checkout.html:11
 msgid "Shipping Info"
@@ -4550,7 +4768,14 @@ msgstr "Informations sur la commande."
 msgid "Back to Orders"
 msgstr "Retour à la commande"
 
-#: orders/templates/orders/order_detail.html:106
+#: orders/templates/orders/order_detail.html:48
+#: shipment/templates/shipment/ship_mode_detail.html:5 shipment/views.py:232
+#, fuzzy
+#| msgid "Shipment Home"
+msgid "Ship Mode"
+msgstr "Accueil d'expédition"
+
+#: orders/templates/orders/order_detail.html:112
 msgid "Error. No order found."
 msgstr "Erreur. Aucune commande trouvée."
 
@@ -4572,16 +4797,34 @@ msgstr "Vos commandes seront affichées ici"
 msgid "Cart Summary"
 msgstr "Résumé"
 
-#: orders/templates/tags/checkout_address.html:14
+#: orders/templates/tags/cart_summary.html:23
+#, fuzzy
+#| msgid "Shipping Info"
+msgid "Shipping"
+msgstr "Livraison"
+
+#: orders/templates/tags/cart_summary.html:24
+#, fuzzy
+#| msgid "Brand Detail"
+msgid "Grand Total"
+msgstr "Grand Total"
+
+#: orders/templates/tags/checkout_address.html:4
+#, fuzzy
+#| msgid "Shipping Info"
+msgid "Shipping Mode"
+msgstr "Mode de livraison"
+
+#: orders/templates/tags/checkout_address.html:25
 #: templates/accounts/registration/password_reset_form.html:31
 msgid "Email"
 msgstr "Email"
 
-#: orders/templates/tags/checkout_address.html:22
+#: orders/templates/tags/checkout_address.html:33
 msgid "Zip"
 msgstr "Code postale"
 
-#: orders/templates/tags/checkout_address.html:43
+#: orders/templates/tags/checkout_address.html:54
 #, fuzzy
 #| msgid "Shipping Address"
 msgid "Shipping address same as billing"
@@ -4592,26 +4835,64 @@ msgid "Your transaction has failed. "
 msgstr "Votre transaction a échoué"
 
 #: orders/templates/tags/checkout_failed_content.html:5
-#: orders/templates/tags/checkout_success_content.html:5
 msgid "You will be redirected to your account page in an instant."
 msgstr "Vous serez redirigé vers la page de votre compte en un instant."
 
 #: orders/templates/tags/checkout_failed_content.html:6
-#: orders/templates/tags/checkout_success_content.html:6
+#: orders/templates/tags/checkout_success_content.html:8
 msgid "Click here to directly go to your Account if you don't want to way."
 msgstr ""
 "Cliquez ici pour accéder directement à votre compte si vous ne souhaitez pas "
 "y accéder"
 
 #: orders/templates/tags/checkout_failed_content.html:6
-#: orders/templates/tags/checkout_success_content.html:6
+#: orders/templates/tags/checkout_success_content.html:8
 #: templates/accounts/registration/email_validation.html:26
 msgid "My Account"
 msgstr "Mon compte"
 
+#: orders/templates/tags/checkout_success_cash.html:5
+msgid "You Selected the payment Method CASH"
+msgstr "Vous avez sélectionné le mode de paiement CASH"
+
+#: orders/templates/tags/checkout_success_cash.html:6
+msgid "Keep you Phone always on so that we can call you for delivery"
+msgstr "Gardez votre téléphone toujours allumé afin que nous puissions vous appeler pour la livraison"
+
+#: orders/templates/tags/checkout_success_cash.html:7
+#: orders/templates/tags/checkout_success_mobile.html:6
+msgid "Your order will be cancelled if we can't reach you."
+msgstr "Votre commande sera annulée si nous ne pouvons pas vous joindre"
+
+#: orders/templates/tags/checkout_success_cash.html:8
+#, fuzzy
+#| msgid "No shipment information"
+msgid "Do keep the information below"
+msgstr "Gardez les informations ci-dessous"
+
 #: orders/templates/tags/checkout_success_content.html:4
 msgid "Your transaction was succesfull. "
 msgstr "Votre transaction a réussi"
+
+#: orders/templates/tags/checkout_success_mobile.html:5
+msgid "Keep you Phone always on so that we can call you for delivery."
+msgstr "Gardez votre téléphone toujours allumé afin que nous puissions vous appeler pour la livraison"
+
+#: orders/templates/tags/checkout_success_mobile.html:7
+msgid ""
+"If you choosed to pay before delivery, you have delay of 3 days from now on "
+"to pay for your order."
+msgstr "Si vous choisissez de payer avant la livraison, vous disposez désormais d'un délai de 3 jours pour régler votre commande."
+
+#: orders/templates/tags/checkout_success_mobile.html:8
+msgid "After that delay, if not paid your order will be cancelled."
+msgstr "Passé ce délai, si non payée, votre commande sera annulée."
+
+#: orders/templates/tags/checkout_success_mobile.html:9
+#, fuzzy
+#| msgid "No shipment information"
+msgid "Do keep the information below."
+msgstr "Gardez les informations ci-dessous"
 
 #: orders/templates/tags/payment_options.html:7
 #, fuzzy
@@ -4629,19 +4910,19 @@ msgstr "Demandes de paiement"
 msgid "My Orders"
 msgstr "Mes Commandes"
 
-#: orders/views.py:131 orders/views.py:169
+#: orders/views.py:133 orders/views.py:173
 msgid "Your Cart is empty"
 msgstr "Votre panier est vide"
 
-#: orders/views.py:259
+#: orders/views.py:263
 msgid "Checkout Redirect to PAY"
 msgstr "Checkout Redirection vers PAY"
 
-#: orders/views.py:275
+#: orders/views.py:279
 msgid "Checkout succeed"
 msgstr "Paiement réussi"
 
-#: orders/views.py:305
+#: orders/views.py:320
 msgid "Checkout failed"
 msgstr "Échec du paiement"
 
@@ -4651,7 +4932,7 @@ msgstr "Échec du paiement"
 #, fuzzy
 #| msgid "Payment Status"
 msgid "New Payment Date"
-msgstr "Statut du paiement"
+msgstr "Nouvelle Date de paiment"
 
 #: payment/templates/payment/payment_date_create.html:21
 #: payment/templates/payment/payment_date_group_create.html:26
@@ -4670,7 +4951,7 @@ msgstr "Planifier"
 #, fuzzy
 #| msgid "Select a Category"
 msgid "Select an option"
-msgstr "Choisisser une catégorie"
+msgstr "Choisisser une option"
 
 #: payment/templates/payment/payment_detail.html:30
 #: payment/templates/payment/payment_update.html:34
@@ -4678,7 +4959,7 @@ msgstr "Choisisser une catégorie"
 #, fuzzy
 #| msgid "User Information"
 msgid "Payment Information"
-msgstr "Information sur l'utilisateur"
+msgstr "Information sur le paiement"
 
 #: payment/templates/payment/payment_detail.html:40
 #: payment/templates/payment/payment_update.html:44
@@ -4686,7 +4967,7 @@ msgstr "Information sur l'utilisateur"
 #, fuzzy
 #| msgid "Payment"
 msgid "Payment Mode"
-msgstr "Paiement"
+msgstr "Mode de Paiement"
 
 #: payment/templates/payment/payment_detail.html:43
 #: payment/templates/payment/payment_list.html:28
@@ -4698,7 +4979,7 @@ msgstr "Paiement"
 #, fuzzy
 #| msgid "Recived Amount"
 msgid "Paid Amount"
-msgstr "Montant reçu"
+msgstr "Montant Payé"
 
 #: payment/templates/payment/payment_detail.html:46
 #: payment/templates/payment/payment_list.html:29
@@ -4710,7 +4991,7 @@ msgstr "Montant reçu"
 #, fuzzy
 #| msgid "Balance State"
 msgid "Balance Amount"
-msgstr "État du Solde"
+msgstr "Solde"
 
 #: payment/templates/payment/payment_detail.html:49
 #: payment/templates/payment/payment_update.html:53
@@ -4718,7 +4999,7 @@ msgstr "État du Solde"
 #, fuzzy
 #| msgid "See"
 msgid "Fee"
-msgstr "Voir"
+msgstr "Frais"
 
 #: payment/templates/payment/payment_detail.html:58
 #: payment/templates/payment/payment_update.html:62
@@ -4726,7 +5007,7 @@ msgstr "Voir"
 #, fuzzy
 #| msgid "Username"
 msgid "Pay Username"
-msgstr "Nom d'utilisateur"
+msgstr "Nom d'utilisateur Pay"
 
 #: payment/templates/payment/payment_detail.html:67
 #: payment/templates/payment/payment_update.html:71
@@ -4734,7 +5015,7 @@ msgstr "Nom d'utilisateur"
 #, fuzzy
 #| msgid "Payment Status"
 msgid "Payment Date"
-msgstr "Statut du paiement"
+msgstr "Date du paiement"
 
 #: payment/templates/payment/payment_detail.html:74
 #: payment/templates/payment/payment_update.html:78
@@ -4756,7 +5037,7 @@ msgstr "Paiement"
 #, fuzzy
 #| msgid "Recent Shipments"
 msgid "Recent Payments"
-msgstr "Expéditions récentes"
+msgstr "Paiment récentes"
 
 #: payment/templates/payment/payment_home.html:56
 #: payment/templates/payment/payment_list.html:59
@@ -4764,7 +5045,7 @@ msgstr "Expéditions récentes"
 #, fuzzy
 #| msgid "There is no shipments yet."
 msgid "There is no payments yet."
-msgstr "Il n'y a pas encore d'envois"
+msgstr "Il n'y a pas encore de paiment"
 
 #: payment/templates/payment/payment_home.html:59
 #: payment/templates/payment/payment_list.html:62
@@ -4772,13 +5053,13 @@ msgstr "Il n'y a pas encore d'envois"
 #, fuzzy
 #| msgid "Shipments will be displayed here."
 msgid "Recents payments will be displayed here."
-msgstr "Les envois seront affichés ici"
+msgstr "Les paiements recents seront affichés ici"
 
 #: payment/templates/payment_tags/policy_group_creation_form.html:22
 #, fuzzy
 #| msgid "Select all"
 msgid "Select a policy"
-msgstr "Tout sélectioner"
+msgstr "Sélectioner un règle"
 
 #: payment/views.py:39
 #, fuzzy
@@ -4792,6 +5073,26 @@ msgstr "Paiement"
 msgid "Edit Payment Policy Group"
 msgstr "Modifier"
 
+#: shipment/constants.py:20
+msgid "STANDARD SHIPMENT"
+msgstr "EXPÉDITION STANDARD"
+
+#: shipment/constants.py:21
+msgid "EXPRESS SHIPMENT"
+msgstr "EXPÉDITION EXPRESS"
+
+#: shipment/constants.py:22
+msgid "IN STORE PICK UP"
+msgstr "RAMASSAGE EN MAGASIN"
+
+#: shipment/constants.py:23
+msgid "IN STORE PICK UP(POG)"
+msgstr "RAMASSAGE EN MAGASIN(POG)"
+
+#: shipment/constants.py:24
+msgid "IN STORE PICK UP(LBV)"
+msgstr "RAMASSAGE EN MAGASIN(LBV)"
+
 #: shipment/templates/shipment/order_ready_list.html:8
 msgid "Orders ready for shipment"
 msgstr "Commandes prêtes à être expédiées"
@@ -4799,7 +5100,7 @@ msgstr "Commandes prêtes à être expédiées"
 #: shipment/templates/shipment/order_ready_list.html:17
 #: shipment/templates/shipment/shipment_detail.html:28
 #: shipment/templates/shipment/shipment_histories.html:22
-#: shipment/templates/shipment/shipment_home.html:8
+#: shipment/templates/shipment/shipment_home.html:5
 #: shipment/templates/shipment/shipment_list.html:17
 #: shipment/templates/shipment/shipment_update.html:18
 msgid "Shipment Home"
@@ -4812,22 +5113,54 @@ msgid "Order Reference"
 msgstr "Reference de la commande"
 
 #: shipment/templates/shipment/order_ready_list.html:70
-#: shipment/templates/shipment/shipment_home.html:70
+#: shipment/templates/shipment/shipment_home.html:49
 #: shipment/templates/shipment/shipment_list.html:69
 msgid "There is no shipments yet."
 msgstr "Il n'y a pas encore d'envois"
 
 #: shipment/templates/shipment/order_ready_list.html:73
-#: shipment/templates/shipment/shipment_home.html:73
+#: shipment/templates/shipment/shipment_home.html:52
 #: shipment/templates/shipment/shipment_list.html:72
 msgid "Shipments will be displayed here."
 msgstr "Les envois seront affichés ici"
 
+#: shipment/templates/shipment/ship_mode_create.html:5
+msgid "New Ship Mode"
+msgstr "Nouveau mode d'envoi"
+
+#: shipment/templates/shipment/ship_mode_create.html:12
+#: shipment/templates/shipment/ship_mode_detail.html:16
+#: shipment/templates/shipment/ship_mode_update.html:24
+#, fuzzy
+#| msgid "Shipment Home"
+msgid "Shipment Board"
+msgstr "Envoies"
+
+#: shipment/templates/shipment/ship_mode_detail.html:13
+#: shipment/templates/shipment/ship_mode_list.html:14
+msgid "New Ship mode"
+msgstr "Nouveau mode d'envoi"
+
+#: shipment/templates/shipment/ship_mode_detail.html:15
+#: shipment/templates/shipment/ship_mode_list.html:6
+#: shipment/templates/shipment_base.html:18
+#, fuzzy
+#| msgid "Shipments"
+msgid "Ship Modes"
+msgstr "Modes d'envoies"
+
+#: shipment/templates/shipment/ship_mode_list.html:16
 #: shipment/templates/shipment/shipment_detail.html:8
 #: shipment/templates/shipment/shipment_histories.html:9
-#: shipment/templates/shipment_base.html:11 shipment/views.py:87
+#: shipment/templates/shipment_base.html:11 shipment/views.py:88
 msgid "Shipment"
 msgstr "Expédition"
+
+#: shipment/templates/shipment/ship_mode_update.html:8
+#, fuzzy
+#| msgid "Shipment Update"
+msgid "Ship Mode Update"
+msgstr "Actualiser"
 
 #: shipment/templates/shipment/shipment_detail.html:23
 msgid "Update Shipment"
@@ -4835,7 +5168,7 @@ msgstr "Mettre à jour l'envoi"
 
 #: shipment/templates/shipment/shipment_detail.html:27
 #: shipment/templates/shipment/shipment_histories.html:8
-#: shipment/templates/shipment/shipment_update.html:17 shipment/views.py:161
+#: shipment/templates/shipment/shipment_update.html:17 shipment/views.py:162
 msgid "Shipment History"
 msgstr "Historique des expéditions"
 
@@ -4886,11 +5219,7 @@ msgstr "Il n'y a pas encore d'historique des expéditions"
 msgid "Shipment history will be displayed here."
 msgstr "L'historique des envois sera affiché ici."
 
-#: shipment/templates/shipment/shipment_home.html:18
-msgid "Ready"
-msgstr "Prêt"
-
-#: shipment/templates/shipment/shipment_home.html:35
+#: shipment/templates/shipment/shipment_home.html:14
 msgid "Recent Shipments"
 msgstr "Expéditions récentes"
 
@@ -4898,7 +5227,7 @@ msgstr "Expéditions récentes"
 msgid "Shipment List"
 msgstr "Liste d'expédition"
 
-#: shipment/templates/shipment/shipment_update.html:8 shipment/views.py:122
+#: shipment/templates/shipment/shipment_update.html:8 shipment/views.py:123
 msgid "Shipment Update"
 msgstr "Actualiser"
 
@@ -4916,27 +5245,65 @@ msgstr "Date d'expédition"
 msgid "Delivery Date"
 msgstr "Date de livraison"
 
-#: shipment/templates/shipment_base.html:19
+#: shipment/templates/shipment_base.html:17
 msgid "Home"
 msgstr "Accueil"
 
-#: shipment/views.py:74
+#: shipment/templates/shipment_base.html:20
+msgid "Ready"
+msgstr "Prêt"
+
+#: shipment/views.py:75
 #, fuzzy
 #| msgid "Shipment List"
 msgid "Shipment Waiting"
-msgstr "Liste d'expédition"
+msgstr "Expédition en attente"
 
-#: shipment/views.py:112
+#: shipment/views.py:113
 msgid "Shipment updated"
 msgstr "Envoi actualisé"
 
-#: shipment/views.py:116
+#: shipment/views.py:117
 msgid "Shipment Invalid"
 msgstr "Expédition invalide"
 
-#: shipment/views.py:149
+#: shipment/views.py:150
 msgid "Shipment Histories"
 msgstr "Historiques d'expédition"
+
+#: shipment/views.py:188
+#, fuzzy
+#| msgid "New Coupon created"
+msgid "New Ship Mode created"
+msgstr "Nouveau mode d'envoi crée"
+
+#: shipment/views.py:192
+#, fuzzy
+#| msgid "Coupon not created"
+msgid "Ship Mode not created"
+msgstr "Nouveau mode d'envoi non crée"
+
+#: shipment/views.py:206
+#, fuzzy
+#| msgid "Shipment List"
+msgid "Ship Mode List"
+msgstr "Liste de mode d'expédition"
+
+#: shipment/views.py:250
+msgid "Edit Ship Mode"
+msgstr "Modifier"
+
+#: shipment/views.py:261
+#, fuzzy
+#| msgid "Shipment updated"
+msgid "Ship Mode updated"
+msgstr "Mode d'envoi actualisé"
+
+#: shipment/views.py:265
+#, fuzzy
+#| msgid "Error when updating category"
+msgid "Error when updating Ship Mode"
+msgstr "Erreur à la mise à jour du mode d'envoi"
 
 #: templates/400.html:6
 msgid "Bad Request ! "
@@ -5175,7 +5542,7 @@ msgstr "Mot de passe oublié ?"
 
 #: templates/accounts/registration/login.html:40
 #: templates/accounts/registration/password_reset_complete.html:11
-#: templates/base.html:61 templates/tags/signup_dialog.html:34
+#: templates/base.html:62 templates/tags/signup_dialog.html:34
 msgid "Login"
 msgstr "Connexion"
 
@@ -5356,14 +5723,14 @@ msgstr "Reinitialiser"
 #, fuzzy
 #| msgid "PRODUCT TYPE"
 msgid "ACCOUNT TYPE"
-msgstr "TYPE DE PRODUIT"
+msgstr "TYPE DE COMPTE"
 
 #: templates/accounts/registration/register.html:34
 #: templates/tags/registration_form.html:47
 #, fuzzy
 #| msgid "Select a Product Type"
 msgid "Select an Account Type"
-msgstr "Choisissez un type de produit"
+msgstr "Choisissez un type de compte"
 
 #: templates/accounts/registration/register.html:49
 msgid "Already have an account ? "
@@ -5373,15 +5740,15 @@ msgstr "Vous avez déjà un compte ?"
 msgid "Sign In"
 msgstr "Se connecter"
 
-#: templates/base.html:37
+#: templates/base.html:38
 msgid "Menu"
 msgstr "Menu"
 
-#: templates/base.html:46
+#: templates/base.html:47
 msgid "Catalog"
 msgstr "Catalogue"
 
-#: templates/base.html:52 vendors/templates/vendors/brand_detail.html:25
+#: templates/base.html:53 vendors/templates/vendors/brand_detail.html:25
 #: vendors/templates/vendors/brand_list.html:14
 #: vendors/templates/vendors/brand_product_detail.html:13
 #: vendors/templates/vendors/brand_update.html:12
@@ -5394,23 +5761,23 @@ msgstr "Catalogue"
 msgid "Vendor Panel"
 msgstr "Espace Vendeur"
 
-#: templates/base.html:60
+#: templates/base.html:61
 msgid "Create an Account"
 msgstr "Créer un compte"
 
-#: templates/base.html:69
+#: templates/base.html:70
 msgid "Enable Grid"
 msgstr "Activer la Grille"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "ONLINE SHOP"
 msgstr "MAGASIN EN LIGNE"
 
-#: templates/base.html:125
+#: templates/base.html:126
 msgid "About us"
 msgstr "À propos de nous"
 
-#: templates/base.html:126
+#: templates/base.html:127
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -5432,7 +5799,7 @@ msgstr ""
 #, fuzzy, python-format
 #| msgid "You can get it by %(site_name)s"
 msgid "You can sell your products on %(site_name)s"
-msgstr "Vous pouvez l'obtenir chez %(site_name)s"
+msgstr "Vous pouvez vendre vos produits chez %(site_name)s"
 
 #: templates/business_overview.html:24 templates/business_overview.html:57
 #: templates/customer_overview.html:24 templates/home.html:25
@@ -5766,13 +6133,13 @@ msgstr ""
 #, fuzzy
 #| msgid "Amount"
 msgid "amount"
-msgstr "Montant"
+msgstr "montant"
 
 #: templates/tags/amount_filter.html:15
 #, fuzzy
 #| msgid "Reset Filter"
 msgid "Amount Filter"
-msgstr "Réinitialiser le filtre"
+msgstr "filtre du montant"
 
 #: templates/tags/amount_filter.html:40 templates/tags/date_filter.html:43
 #: templates/tags/order_status_filter.html:31
@@ -5781,11 +6148,11 @@ msgstr "Réinitialiser le filtre"
 #, fuzzy
 #| msgid "Reset Filter"
 msgid "Use this Filter"
-msgstr "Réinitialiser le filtre"
+msgstr "Utiliser ce filtre"
 
 #: templates/tags/channel.html:4
 msgid "Contact us on Facebook"
-msgstr ""
+msgstr "Contacter nous sur Facebook"
 
 #: templates/tags/date_filter.html:7
 msgid "Filter the list by Date field"
@@ -5795,37 +6162,37 @@ msgstr ""
 #, fuzzy
 #| msgid "Update"
 msgid "date"
-msgstr "Actualiser"
+msgstr "date"
 
 #: templates/tags/date_filter.html:18
 #, fuzzy
 #| msgid "Filter"
 msgid "Date Filter"
-msgstr "Filtre"
+msgstr "Filtre de Date"
 
 #: templates/tags/date_filter.html:23
 msgid "Enter a begin date"
-msgstr ""
+msgstr "Entrer la date de debut"
 
 #: templates/tags/date_filter.html:27
 #, fuzzy
 #| msgid "Brand Update"
 msgid "Enter a end date"
-msgstr "Actualiser la marque"
+msgstr "Entrez une date de fin"
 
 #: templates/tags/date_filter.html:32
 #, fuzzy
 #| msgid "Reset Filter"
 msgid "Select the Filter"
-msgstr "Réinitialiser le filtre"
+msgstr "Sélectionnez le filtre"
 
 #: templates/tags/date_filter.html:35
 msgid "Date after the chosen date"
-msgstr ""
+msgstr "Date après la date choisie"
 
 #: templates/tags/date_filter.html:36
 msgid "Date before the chosen date"
-msgstr ""
+msgstr "Date antérieure à la date choisie"
 
 #: templates/tags/filter.html:17
 #, fuzzy
@@ -5837,29 +6204,29 @@ msgstr "Option"
 #, fuzzy
 #| msgid "Reset Filter"
 msgid "Use Range Filter"
-msgstr "Réinitialiser le filtre"
+msgstr "Utiliser le filtre de plage"
 
 #: templates/tags/filter.html:29
 #, fuzzy
 #| msgid "Balance State"
 msgid "Range Start"
-msgstr "État du Solde"
+msgstr "Début de gamme"
 
 #: templates/tags/filter.html:31
 msgid "Range End"
-msgstr ""
+msgstr "Fin de plage"
 
 #: templates/tags/language.html:14
 #, fuzzy
 #| msgid "Current Balance"
 msgid "Current language : "
-msgstr "Solde actuel"
+msgstr "Langue actuelle :"
 
 #: templates/tags/language.html:16
 #, fuzzy
 #| msgid "Select a Gender"
 msgid "Select language : "
-msgstr "Choisissez un genre"
+msgstr "Choisissez une langue"
 
 #: templates/tags/order_list_filter.html:8
 #: templates/tags/order_status_filter.html:6
@@ -5875,7 +6242,7 @@ msgstr "Statut"
 #, fuzzy
 #| msgid "Reset Filter"
 msgid "Status Filter"
-msgstr "Réinitialiser le filtre"
+msgstr "Filtre du statut"
 
 #: templates/tags/order_list_filter.html:20
 #: templates/tags/order_status_filter.html:20
@@ -5883,35 +6250,35 @@ msgstr "Réinitialiser le filtre"
 #, fuzzy
 #| msgid "Select a Brand"
 msgid "Select a status"
-msgstr "Choisissez une marque"
+msgstr "Choisissez une un statut"
 
 #: templates/tags/order_list_filter.html:32 templates/tags/table_filter.html:32
 #, fuzzy
 #| msgid "Reset Filter"
 msgid "use this Filter"
-msgstr "Réinitialiser le filtre"
+msgstr "Utiliser ce filtre"
 
 #: templates/tags/order_list_filter.html:45 templates/tags/table_filter.html:45
 #, fuzzy
 #| msgid "Last Update"
 msgid "start date"
-msgstr "Dernière mise à jour"
+msgstr "Date de début"
 
 #: templates/tags/order_list_filter.html:49 templates/tags/table_filter.html:49
 #, fuzzy
 #| msgid "Sold date"
 msgid "end date"
-msgstr "Date de vente"
+msgstr "Date de fin"
 
 #: templates/tags/order_list_filter.html:56 templates/tags/table_filter.html:56
 #, fuzzy
 #| msgid "Amount"
 msgid "Amount filter"
-msgstr "Montant"
+msgstr "Filtre du Montant"
 
 #: templates/tags/pagination.html:13
 msgid "current"
-msgstr ""
+msgstr "actuel"
 
 #: templates/tags/payment_option_filter.html:5
 msgid "Filter the list by payment_option field"
@@ -5937,7 +6304,7 @@ msgstr "Vous n'avez encore commandé aucun produit"
 
 #: templates/tags/registration_form.html:28
 msgid "Password Confirmation"
-msgstr ""
+msgstr "Confirmation de mot de passe"
 
 #: templates/tags/registration_form.html:41
 msgid "Date of birth"
@@ -5975,11 +6342,7 @@ msgstr ""
 
 #: templates/tags/supported_payment_method.html:3
 msgid "Airtel Money"
-msgstr ""
-
-#: templates/tags/supported_payment_method.html:4
-msgid "CASH"
-msgstr "EN ESPÈCES"
+msgstr "Airtel Money"
 
 #: templates/tags/unauthorized.html:4
 msgid "The requested Page was not found."
@@ -5999,25 +6362,25 @@ msgstr "Historique du Solde"
 #, fuzzy
 #| msgid "Payments"
 msgid "Payments Count"
-msgstr "Paiements"
+msgstr "Nombre de Paiements"
 
 #: vendors/templates/vendor_tags/payment_report.html:13
 #, fuzzy
 #| msgid "Payments"
 msgid "Average Payments"
-msgstr "Paiements"
+msgstr "Moyenne de Paiements"
 
 #: vendors/templates/vendor_tags/payment_report.html:17
 #, fuzzy
 #| msgid "Payments"
 msgid "Min Payments"
-msgstr "Paiements"
+msgstr "Paiements minimal"
 
 #: vendors/templates/vendor_tags/payment_report.html:21
 #, fuzzy
 #| msgid "Payments"
 msgid "Max Payments"
-msgstr "Paiements"
+msgstr "Paiements maximum"
 
 #: vendors/templates/vendor_tags/product_creation_form.html:34
 #: vendors/templates/vendors/product_create.html:42
@@ -6043,13 +6406,13 @@ msgstr "Choisissez un type de produit"
 #, fuzzy
 #| msgid "Enter the Operator name"
 msgid "Enter the percent to apply"
-msgstr "Saisir le nom vendeur"
+msgstr "Saisir lle pourcentage à appliquer"
 
 #: vendors/templates/vendor_tags/reduction_form.html:14
 #, fuzzy
 #| msgid "Create Product"
 msgid "Create reduction"
-msgstr "Ajouter un produit"
+msgstr "Crée un réduction"
 
 #: vendors/templates/vendors/balance_histories.html:21
 #: vendors/templates/vendors/payment_detail.html:15
@@ -6110,7 +6473,7 @@ msgstr "Ajouter un produit"
 #, fuzzy
 #| msgid "Sold date"
 msgid "Sold"
-msgstr "Date de vente"
+msgstr "Vendu"
 
 #: vendors/templates/vendors/vendor_home.html:39
 msgid "Recent Sold Products"
@@ -6122,7 +6485,7 @@ msgstr "Il n'y a encore aucun produit vendu"
 
 #: vendors/templates/vendors/vendor_home.html:80
 msgid "Sold products will be displayed here."
-msgstr ""
+msgstr "Les produits vendus seront affichés ici."
 
 #: vendors/templates/vendors/vendor_home.html:90
 msgid "Recent Added Products"
