@@ -13,15 +13,12 @@
                 
         </div>
         <div class="container">
-
-            <div class="col-m-12 col-9">
-                <ul class="banner--actions">
-                    <li><a class="mat-button mat-button-outlined" href="{% url 'home' %}">{% trans 'Home' %}</a></li>
-                    <li><a class="mat-button mat-button-default" href="{% url 'shipment:ship_modes' %}">{% trans 'Ship Modes' %}</a></li>
-                    <li><a class="mat-button mat-button-default" href="{% url 'shipment:shipments' %}">{% trans 'Shipments' %}</a></li>     
-                </ul><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
+        <div class="actions">
+            <a class="mat-button mat-button-outlined" href="{% url 'home' %}">{% trans 'Home' %}</a>
+            <a class="mat-button mat-button-default" href="{% url 'shipment:ship_modes' %}">{% trans 'Ship Modes' %}</a>
+            <a class="mat-button mat-button-default" href="{% url 'shipment:shipments' %}">{% trans 'Shipments' %}</a> 
+            <a class="mat-button mat-button-text" href="{% url 'shipment:ready-for-shipment' %}"><i class="fas fa-check-square icon"></i><span>{% trans "Ready" %}</span></a>   
+        </div><!--End of Banner-Actions-->
         </div><!--End of Container-->
         
     </div>

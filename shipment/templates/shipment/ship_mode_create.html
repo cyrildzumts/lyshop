@@ -1,29 +1,16 @@
 {% extends "shipment_base.html"%}
 {% load i18n %}
-{% load order_tag %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "New Ship Mode" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-                <div class="actions">
-                    {% if can_view_payment %}
-                    <a class="mat-button mat-button-default" href="{% url 'shipment:shipments'%}"> {% trans "Shipments" %}</a>{% endif %}
-                    <a class="mat-button mat-button-default" href="{% url 'shipment:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment Board" %}</span></a>
-                    
-                        
-                </div><!--End of Banner-Actions-->
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
+{% load shipment_status %}
+{% block  HEADER_BANNER_TITLE %}
+    <h4> {% trans "New Ship Mode" %}</h4>
+{% endblock HEADER_BANNER_TITLE %}
 {% block MAIN_CONTENT %}
 <div class="container">
     {% if can_add_shipment %}
+    <div class="actions">
+        <a class="mat-button mat-button-default" href="{% url 'shipment:shipments'%}"> {% trans "Shipments" %}</a>
+        <a class="mat-button mat-button-default" href="{% url 'shipment:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment Board" %}</span></a>
+    </div><!--End of Banner-Actions-->
         <div class="mat-box">
     
                 <form class="form" name="add-ship-mode" action="{% url 'shipment:ship-mode-create' %}" method="POST">{% csrf_token %}
