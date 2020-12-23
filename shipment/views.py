@@ -283,6 +283,7 @@ def ship_mode_delete(request, ship_uuid):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     if request.method != "POST":
+        logger.warn("Delete request sent through the GET method. Use POST instead")
         raise SuspiciousOperation('Bad request. POST request expected but received a GET request')
     ship_mode = get_object_or_404(ShipMode, ship_uuid=ship_uuid)
     ShipMode.objects.filter(pk=ship_mode.pk).delete()
@@ -297,6 +298,7 @@ def ship_modes_delete(request):
         logger.warning(f"PermissionDenied to user \"{username}\" for path \"{request.path}\"")
         raise PermissionDenied
     if request.method != "POST":
+        logger.warn("Delete request sent through the GET method. Use POST instead")
         raise SuspiciousOperation('Bad request')
     postdata = utils.get_postdata(request)
     id_list = postdata.getlist('ship_modes')

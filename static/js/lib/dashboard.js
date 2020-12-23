@@ -155,6 +155,7 @@ $(document).ready(function(){
         }).remove();
         
     });
+    /*
     var selectable_list = $(".js-selectable");
     var activable_list = $(".js-activable");
     var select_all = $('.js-select-all');
@@ -175,5 +176,6 @@ $(document).ready(function(){
         selectable_list.prop('checked', this.checked);
         activable_list.prop('disabled', !this.checked);
     });
+    */
         
     });

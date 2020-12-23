@@ -472,6 +472,26 @@ $(document).ready(function(){
         $('input[type!=checkbox]', target).val('');
         $('input:checkbox', target).val('').prop('checked', '');
     });
+    var selectable_list = $(".js-selectable");
+    var activable_list = $(".js-activable");
+    var select_all = $('.js-select-all');
+    selectable_list.on('click', function(){
+        var is_selected = selectable_list.is(function (el) {
+            return this.checked;
+        });
+        
+        var selected_all = selectable_list.is(function (el) {
+            return !this.checked;
+        });
+        select_all.prop('checked', !selected_all);
+        activable_list.prop('disabled', !is_selected);
+    });
+
+    select_all.on('click', function(){
+        console.log("Select All clicked : %s", this.checked);
+        selectable_list.prop('checked', this.checked);
+        activable_list.prop('disabled', !this.checked);
+    });
     /*
     $('.js-revealable-hide').on('click', function(){
         console.log('hidding revealable inputs');
