@@ -3,6 +3,18 @@
     <div class="title">
         <div class="flex"><span>{% trans "Shipping Address" %}</span> <span class="js-add-address mat-button  mat-button-outlined"> <i class="fas fa-plus icon"></i> {% trans "New Address" %}</span></div>
     </div>
+    <div class="mat-box">
+        <h3>{% trans "Shipping Mode" %}</h3>
+        <div class="mat-box-content">
+            <ul>
+                {% for ship_mode in ship_modes %}
+                <li class="list-item" title="{{ship_mode}}"><input class="js-input-ship-mode" data-mode="{{ship_mode.mode}}" data-price="{{ship_mode.price|floatformat:'-2'}}" type="radio" name="ship_mode" value="{{ship_mode.pk}}"><label for="ship_mode">{{ship_mode}} - {{ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</label></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div><!--End of Box-->
+    <div id="address-container" class="hidden">
+    
     {% if address %}
     <div id="checkout-address" class="mat-box">
             <input id="address" type="hidden" name="address" value="{{address.pk}}">
@@ -46,6 +58,7 @@
     {% endif %}
     <div id="new-address" class="mat-box hidden">
         {% include "addressbook_tags/address_form.html" %}
+    </div>
     </div>
  
 </div>

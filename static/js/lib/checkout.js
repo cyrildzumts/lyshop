@@ -13,6 +13,12 @@ define([
         'postal_code','phone_number', 'street'
  
     ];
+    var SHIP_STANDARD = 0;
+    var SHIP_EXPRESS  = 1
+    var SHIP_IN_STORE = 2
+    var SHIP_IN_STORE_POG = 3
+    var SHIP_IN_STORE_LBV = 4
+    var SHIPPING_ADDRESS_CONTAINER = "address-container";
     var api_address_url = '/api/create-address/';
     var address = {
         id : "",
@@ -173,6 +179,7 @@ define([
         
     };
     Checkout.prototype.ship_mode_changed = function(el){
+        var mode = parseInt($(el).data('mode'));
         var shipping_price_el = $('.js-shipping-price');
         var grand_total_el = $('.js-grand-total');
         var total_el = $('.js-final-price');
@@ -181,6 +188,8 @@ define([
         total += shipping_price;
         shipping_price_el.text(shipping_price);
         grand_total_el.text(total);
+        var show_address_container = mode == SHIP_EXPRESS || mode == SHIP_STANDARD;
+        $("#" + SHIPPING_ADDRESS_CONTAINER).toggleClass('hidden', !show_address_container)
     };
     
     return Checkout;

@@ -3,15 +3,7 @@
     <div class="title">
         <div class="flex"><span>{% trans "Cart Summary" %}</span></div>
     </div>
-    <div class="mat-box">
-        <div class="mat-box-content">
-            <ul>
-                {% for ship_mode in ship_modes %}
-                <li class="list-item" title="{{ship_mode}}"><input class="js-input-ship-mode" data-price="{{ship_mode.price|floatformat:'-2'}}" type="radio" name="ship_mode" value="{{ship_mode.pk}}"><label for="ship_mode">{{ship_mode}} - {{ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</label></li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div><!--End of Box-->
+    
     <div class="mat-box">
         
         <div class="mat-box-content">
