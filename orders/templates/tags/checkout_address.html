@@ -1,9 +1,6 @@
 {% load i18n %}
 <div id="{{step_id}}" class="tab-content" data-checked="{{step_id}} tab-icon">
-    <div class="title">
-        <div class="flex"><span>{% trans "Shipping Address" %}</span> <span class="js-add-address mat-button  mat-button-outlined"> <i class="fas fa-plus icon"></i> {% trans "New Address" %}</span></div>
-    </div>
-    <div class="mat-box">
+    <div class="mat-box full">
         <h3>{% trans "Shipping Mode" %}</h3>
         <div class="mat-box-content">
             <ul>
@@ -13,8 +10,10 @@
             </ul>
         </div>
     </div><!--End of Box-->
-    <div id="address-container" class="hidden">
-    
+    <div id="address-container" class="container hidden">
+    <div class="title">
+        <div class="flex"><span>{% trans "Shipping Address" %}</span> <span class="js-add-address mat-button  mat-button-default"> <i class="fas fa-plus icon"></i> {% trans "New Address" %}</span></div>
+    </div>
     {% if address %}
     <div id="checkout-address" class="mat-box">
             <input id="address" type="hidden" name="address" value="{{address.pk}}">
