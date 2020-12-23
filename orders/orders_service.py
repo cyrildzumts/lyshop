@@ -93,14 +93,14 @@ def order_pay_at_delivery(user, data):
         return result
     logger.info("Processing order_pay_at_delivery")
     p_method = data.get(commons.PAYMENT_METHOD_FIELD)
-    if p_method != commons.ORDER_PAYMENT_CASH:
+    if p_method.mode != commons.ORDER_PAYMENT_CASH:
         logger.warn(f"order_pay_at_delivery : wrong payment method. current payment method : {p_method}; Expected payment method {commons.ORDER_PAYMENT_CASH}")
         result = {
             'success': False,
             'msg' : "Expected CASH Payment method"
         }
     else:
-        order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_AT_DELIVERY, 'address':  data.get(commons.SHIPPING_ADDRESS_FIELD), 'payment_method': data.get(commons.PAYMENT_METHOD_FIELD)})
+        order = create_order_from_cart(**{'user': user,'payment_option': commons.PAY_AT_DELIVERY, 'address':  data.get(commons.SHIPPING_ADDRESS_FIELD), 'payment_method': p_method})
         redirect_success_url = reverse('orders:checkout-success', kwargs={'order_uuid': order.order_uuid})
         redirect_failed_url = reverse('orders:checkout-failed', kwargs={'order_uuid': order.order_uuid})
         result = {
