@@ -14,10 +14,10 @@
         </div>
         <div class="container">
         <div class="actions">
-            <a class="mat-button mat-button-outlined" href="{% url 'home' %}">{% trans 'Home' %}</a>
+            <a class="mat-button mat-button-default" href="{% url 'home' %}">{% trans 'Home' %}</a>
             <a class="mat-button mat-button-default" href="{% url 'shipment:ship-modes' %}">{% trans 'Ship Modes' %}</a>
             <a class="mat-button mat-button-default" href="{% url 'shipment:shipments' %}">{% trans 'Shipments' %}</a> 
-            <a class="mat-button mat-button-text" href="{% url 'shipment:ready-for-shipment' %}"><i class="fas fa-check-square icon"></i><span>{% trans "Ready" %}</span></a>   
+            <a class="mat-button mat-button-default" href="{% url 'shipment:ready-for-shipment' %}"><i class="fas fa-check-square icon"></i><span>{% trans "Ready" %}</span></a>   
         </div><!--End of Banner-Actions-->
         </div><!--End of Container-->
         
