@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-24 00:00+0000\n"
+"POT-Creation-Date: 2020-12-24 22:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -989,8 +989,6 @@ msgid "Add to Cart"
 msgstr "Ajouter au panier"
 
 #: catalog/templates/tags/add_to_cart.html:17
-#, fuzzy
-#| msgid "I want to create an account"
 msgid "Please, login first or create an account"
 msgstr "Veuillez d'abord vous connecter ou créer un compte"
 
@@ -1140,10 +1138,8 @@ msgid "Filter"
 msgstr "Filtre"
 
 #: catalog/templates/tags/product_filter.html:40
-#, fuzzy
-#| msgid "Product Count"
 msgid "Product For"
-msgstr "Nombre de produits"
+msgstr "Produits Pour"
 
 #: catalog/templates/tags/product_filter.html:65
 msgid "PRODUCT TYPE"
@@ -1460,8 +1456,6 @@ msgstr "Attribtut"
 
 #: dashboard/templates/dashboard/attribute_detail.html:16
 #: dashboard/templates/dashboard/attribute_list.html:18
-#, fuzzy
-#| msgid "Add Attributes"
 msgid "Add new Attributes"
 msgstr "Ajouter"
 
@@ -1912,7 +1906,7 @@ msgstr "Type de valeur"
 
 #: dashboard/templates/dashboard/attributes_create.html:9
 #, fuzzy
-#| msgid "New Attribute"
+#| msgid "New Attributes"
 msgid "New Attributes "
 msgstr "Nouvel attribut"
 
@@ -1932,16 +1926,12 @@ msgstr "Nettoyer"
 
 #: dashboard/templates/dashboard/attributes_create.html:23
 #: dashboard/templates/dashboard/create_product_variant.html:63
-#, fuzzy
-#| msgid "Add Attribute"
 msgid "Add new Attribute"
 msgstr "Ajouter"
 
 #: dashboard/templates/dashboard/attributes_create.html:45
-#, fuzzy
-#| msgid "Delete Selected Attributes"
 msgid "Bulk Create Attribtutes"
-msgstr "Supprimer la sélection"
+msgstr "Créer en masse"
 
 #: dashboard/templates/dashboard/brand_create.html:7 dashboard/views.py:2007
 #: vendors/views.py:106
@@ -2179,14 +2169,10 @@ msgid "Creation Date"
 msgstr "Date de la création"
 
 #: dashboard/templates/dashboard/category_detail.html:38
-#, fuzzy
-#| msgid "Is Active"
 msgid "Is active"
 msgstr "Est actif"
 
 #: dashboard/templates/dashboard/category_detail.html:41
-#, fuzzy
-#| msgid "Parent Product"
 msgid "Parent"
 msgstr "Parent"
 
@@ -2334,8 +2320,6 @@ msgstr "Coupons"
 #: shipment/templates/shipment/ship_mode_list.html:31
 #: shipment/templates/shipment/ship_mode_list.html:43
 #: shipment/templates/shipment/ship_mode_update.html:55
-#, fuzzy
-#| msgid "Is Active"
 msgid "Active"
 msgstr "Actif"
 
@@ -2370,18 +2354,14 @@ msgstr "Commence le"
 #: dashboard/templates/dashboard/coupon_detail.html:46
 #: dashboard/templates/dashboard/coupon_detail.html:60
 #: vendors/templates/vendors/coupon_detail.html:37
-#, fuzzy
-#| msgid "Epire at "
 msgid "Expire at"
 msgstr "Date d'expiration"
 
 #: dashboard/templates/dashboard/coupon_detail.html:49
 #: dashboard/templates/dashboard/coupon_detail.html:63
 #: vendors/templates/vendors/coupon_detail.html:40
-#, fuzzy
-#| msgid "Activated"
 msgid "Activated at"
-msgstr "Activé"
+msgstr "Activé le"
 
 #: dashboard/templates/dashboard/coupon_detail.html:54
 #: templates/business_overview.html:81 templates/customer_overview.html:83
@@ -2490,10 +2470,8 @@ msgid "New Product Variant"
 msgstr "Ajouter Variante"
 
 #: dashboard/templates/dashboard/create_product_variant.html:28
-#, fuzzy
-#| msgid "Add Attributes"
 msgid "Available Attributes"
-msgstr "Ajouter"
+msgstr "Attributs disponible"
 
 #: dashboard/templates/dashboard/create_user.html:22
 #: templates/accounts/registration/register.html:22
@@ -2675,17 +2653,13 @@ msgstr ""
 
 #: dashboard/templates/dashboard/highlight_detail.html:32
 #: dashboard/templates/dashboard/highlight_update.html:33
-#, fuzzy
-#| msgid "Create"
 msgid "Created"
-msgstr "Créer"
+msgstr "Créé"
 
 #: dashboard/templates/dashboard/highlight_detail.html:44
 #: dashboard/templates/tags/highlight_product_update.html:5
-#, fuzzy
-#| msgid "Sold Products"
 msgid "Highlight Products"
-msgstr "Produits vendus"
+msgstr "Produits en vogue"
 
 #: dashboard/templates/dashboard/highlight_detail.html:54
 #: dashboard/templates/dashboard/highlight_detail.html:95
@@ -2726,31 +2700,23 @@ msgstr "Quantité"
 #: vendors/templates/vendors/vendor_home.html:46
 #: vendors/templates/vendors/vendor_home.html:58
 #: vendors/templates/vendors/vendor_home.html:96
-#, fuzzy
-#| msgid "Min Price"
 msgid "Promotion Price"
-msgstr "Prix min"
+msgstr "Prix réduit"
 
 #: dashboard/templates/dashboard/highlight_detail.html:89
-#, fuzzy
-#| msgid "Action"
 msgid "Add Selection"
-msgstr "Action"
+msgstr "Ajouter la sélection"
 
 #: dashboard/templates/dashboard/highlight_list.html:8
 msgid "Highlight List"
 msgstr ""
 
 #: dashboard/templates/dashboard/highlight_list.html:17
-#, fuzzy
-#| msgid "Add new Policy"
 msgid "Add new Highlight"
-msgstr "Ajouter une nouvelle règle"
+msgstr "Ajouter"
 
 #: dashboard/templates/dashboard/highlight_update.html:45
 #: dashboard/views.py:895
-#, fuzzy
-#| msgid "Shipment Update"
 msgid "Highlight Update"
 msgstr "Actualiser"
 
@@ -2763,14 +2729,10 @@ msgid "Delivery Place "
 msgstr "Lieu de delivrance"
 
 #: dashboard/templates/dashboard/idcard_detail.html:13
-#, fuzzy
-#| msgid "Delivered Date"
 msgid "Delivered at "
 msgstr "Date de livraison"
 
 #: dashboard/templates/dashboard/idcard_detail.html:14
-#, fuzzy
-#| msgid "Epire at "
 msgid "Expire at "
 msgstr "Date d'expiration"
 
@@ -2824,10 +2786,8 @@ msgstr "Annuler la commande"
 
 #: dashboard/templates/dashboard/order_detail.html:23
 #: dashboard/templates/dashboard/order_update.html:23
-#, fuzzy
-#| msgid "Back to Shipment"
 msgid "Add for Shipment"
-msgstr "Retour à l'expédition"
+msgstr "Marquer pour l'envoi"
 
 #: dashboard/templates/dashboard/order_detail.html:25
 #: dashboard/templates/dashboard/order_update.html:25 dashboard/views.py:717
@@ -2928,10 +2888,8 @@ msgstr "NON PAYÉ"
 #: dashboard/templates/dashboard/order_detail.html:38
 #: dashboard/templates/dashboard/payment_method_detail.html:8
 #: dashboard/views.py:4131 orders/templates/orders/order_detail.html:37
-#, fuzzy
-#| msgid "Payment Option"
 msgid "Payment Method"
-msgstr "Option de payment"
+msgstr "Methodes de payment"
 
 #: dashboard/templates/dashboard/order_detail.html:39
 #: orders/templates/orders/order_detail.html:58
@@ -3016,10 +2974,8 @@ msgstr "Prix unitaire"
 #: vendors/templates/vendors/order_item_update.html:24
 #: vendors/templates/vendors/order_item_update.html:36 vendors/views.py:1727
 #: vendors/views.py:1753
-#, fuzzy
-#| msgid "Order Items"
 msgid "Order Item"
-msgstr "Contenu de la commande"
+msgstr "Article commandé"
 
 #: dashboard/templates/dashboard/order_histories.html:9
 msgid "History For Order"
@@ -3041,15 +2997,13 @@ msgstr "L'historique des commande sera affiché ici"
 #, fuzzy
 #| msgid "Current Month Orders"
 msgid "Clean Unpaid Orders"
-msgstr "Commandes du mois en cours"
+msgstr "Nettoyer"
 
 #: dashboard/templates/dashboard/order_list.html:46
 #: orders/templates/orders/order_list.html:21
 #: orders/templates/orders/order_list.html:32
-#, fuzzy
-#| msgid "Order Reference Number"
 msgid "Reference Number"
-msgstr "Numéro de référence de la commande"
+msgstr "Numéro de référence"
 
 #: dashboard/templates/dashboard/order_update.html:61
 msgid "Update Order"
@@ -3062,10 +3016,8 @@ msgstr "Commande Payée"
 #: dashboard/templates/dashboard/payment_method_create.html:8
 #: dashboard/templates/dashboard/payment_method_list.html:18
 #: dashboard/views.py:4066 shipment/views.py:174
-#, fuzzy
-#| msgid "Payment Option"
 msgid "New Payment Method"
-msgstr "Option de payment"
+msgstr "Nouvelle methode de payment"
 
 #: dashboard/templates/dashboard/payment_method_create.html:15
 #: dashboard/templates/dashboard/payment_method_detail.html:66
@@ -3073,10 +3025,8 @@ msgstr "Option de payment"
 #: dashboard/templates/dashboard/payment_method_list.html:37
 #: dashboard/templates/dashboard/payment_method_update.html:15
 #: dashboard/templates/dashboard_base.html:65
-#, fuzzy
-#| msgid "Payment Requests"
 msgid "Payment Methods"
-msgstr "Demandes de paiement"
+msgstr "Methodes de paiement"
 
 #: dashboard/templates/dashboard/payment_method_create.html:43
 #: dashboard/templates/dashboard/payment_method_detail.html:28
@@ -3084,24 +3034,20 @@ msgstr "Demandes de paiement"
 #: dashboard/templates/dashboard/payment_method_list.html:65
 #: dashboard/templates/dashboard/payment_method_update.html:41
 #: orders/templates/tags/tags_payment_method.html:11
-#, fuzzy
-#| msgid "Province"
 msgid "Provider"
-msgstr "Région"
+msgstr "Fournisseur"
 
 #: dashboard/templates/dashboard/payment_method_create.html:55
 #: dashboard/templates/dashboard/payment_method_detail.html:31
 #: dashboard/templates/dashboard/payment_method_update.html:45
 #: orders/templates/tags/tags_payment_method.html:14
 msgid "Credential"
-msgstr ""
+msgstr "Identifiant"
 
 #: dashboard/templates/dashboard/payment_method_detail.html:48
 #: shipment/templates/shipment/ship_mode_detail.html:45
-#, fuzzy
-#| msgid "Password changed"
 msgid "Last changed by"
-msgstr "Mot de passe modifié"
+msgstr "Dernière modification par"
 
 #: dashboard/templates/dashboard/payment_method_detail.html:64
 msgid "New Paymnet Method"
@@ -3109,10 +3055,8 @@ msgstr "Nouvelle Methode de paiment"
 
 #: dashboard/templates/dashboard/payment_method_update.html:8
 #: dashboard/views.py:4152
-#, fuzzy
-#| msgid "Payment Option"
 msgid "Edit Payment Method"
-msgstr "Option de payment"
+msgstr "Modifier le mode de paiement"
 
 #: dashboard/templates/dashboard/payment_request_detail.html:8
 #: payment/templates/payment/payment_detail.html:8
@@ -3364,10 +3308,8 @@ msgstr "Nouveau produit"
 
 #: dashboard/templates/dashboard/product_detail.html:23
 #: vendors/templates/vendors/product_detail.html:13
-#, fuzzy
-#| msgid "Account Information"
 msgid "Product Information"
-msgstr "Information sur le compte"
+msgstr "Information sur le produit"
 
 #: dashboard/templates/dashboard/product_detail.html:39
 #: dashboard/templates/dashboard/product_type_attribute_detail.html:18
@@ -3485,10 +3427,8 @@ msgid "Delete Selected Attributes"
 msgstr "Supprimer la sélection"
 
 #: dashboard/templates/dashboard/product_type_attribute_detail.html:79
-#, fuzzy
-#| msgid "Product Attributes"
 msgid "No associated Attributes"
-msgstr "Attribtuts de Produits"
+msgstr "Aucun attribut associé"
 
 #: dashboard/templates/dashboard/product_type_attribute_list.html:9
 #: dashboard/templates/dashboard/product_type_attribute_list.html:35
@@ -4364,8 +4304,6 @@ msgid "Attributes not created"
 msgstr "Attributs non retiré"
 
 #: dashboard/views.py:1785
-#, fuzzy
-#| msgid "New Attribute"
 msgid "New Attributes"
 msgstr "Nouvel attribut"
 
