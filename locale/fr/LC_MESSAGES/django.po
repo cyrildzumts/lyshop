@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-23 22:56+0000\n"
+"POT-Creation-Date: 2020-12-24 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -992,7 +992,7 @@ msgstr "Ajouter au panier"
 #, fuzzy
 #| msgid "I want to create an account"
 msgid "Please, login first or create an account"
-msgstr "Je veux créer un compte"
+msgstr "Veuillez d'abord vous connecter ou créer un compte"
 
 #: catalog/templates/tags/add_to_cart.html:24
 msgid "Out of Stock"
@@ -4670,7 +4670,7 @@ msgstr "EN ESPÈCES"
 #, fuzzy
 #| msgid "PAYMENT ID"
 msgid "PAYMENT WITH PAY"
-msgstr "ID PAIEMENT"
+msgstr "PAIEMENT AVEC PAY"
 
 #: orders/commons.py:135
 msgid "MOBILE PAYMENT"
@@ -4684,11 +4684,11 @@ msgstr "PAYER À LA LIVRAISON"
 #, fuzzy
 #| msgid "SORT ORDER"
 msgid "PAY AT ORDER"
-msgstr "ORDRE DE TRI"
+msgstr "PAYER À LA COMMANDE"
 
 #: orders/commons.py:141
 msgid "PAY BY SMS"
-msgstr "PAYER À LA COMMANDE"
+msgstr "PAYER PAR SMS"
 
 #: orders/commons.py:142
 msgid "PAY WITH PAY"
@@ -4857,7 +4857,9 @@ msgstr "Vous avez sélectionné le mode de paiement CASH"
 
 #: orders/templates/tags/checkout_success_cash.html:6
 msgid "Keep you Phone always on so that we can call you for delivery"
-msgstr "Gardez votre téléphone toujours allumé afin que nous puissions vous appeler pour la livraison"
+msgstr ""
+"Gardez votre téléphone toujours allumé afin que nous puissions vous appeler "
+"pour la livraison"
 
 #: orders/templates/tags/checkout_success_cash.html:7
 #: orders/templates/tags/checkout_success_mobile.html:6
@@ -4876,13 +4878,17 @@ msgstr "Votre transaction a réussi"
 
 #: orders/templates/tags/checkout_success_mobile.html:5
 msgid "Keep you Phone always on so that we can call you for delivery."
-msgstr "Gardez votre téléphone toujours allumé afin que nous puissions vous appeler pour la livraison"
+msgstr ""
+"Gardez votre téléphone toujours allumé afin que nous puissions vous appeler "
+"pour la livraison"
 
 #: orders/templates/tags/checkout_success_mobile.html:7
 msgid ""
 "If you choosed to pay before delivery, you have delay of 3 days from now on "
 "to pay for your order."
-msgstr "Si vous choisissez de payer avant la livraison, vous disposez désormais d'un délai de 3 jours pour régler votre commande."
+msgstr ""
+"Si vous choisissez de payer avant la livraison, vous disposez désormais d'un "
+"délai de 3 jours pour régler votre commande."
 
 #: orders/templates/tags/checkout_success_mobile.html:8
 msgid "After that delay, if not paid your order will be cancelled."
