@@ -156,8 +156,6 @@ function onDropHandler(event){
 function onDragOverHandler(event){
     console.log("File(s) in drop area");
     event.preventDefault();
-    
-
 }
 
 function onDragStartHandler(event) {
