@@ -33,8 +33,9 @@ define(['vendor/js.cookie'],function(Cookies) {
         var name = $('input[name="language"]', form);
         lang_cookie = $el.data('value');
         name.val($el.data('value'));
-        //document.cookie = "django_language=" + name.val() +";";
-        Cookies.set(LANGUAGE_KEY, name.val());
+        document.cookie = "django_language=";
+        document.cookie = "django_language=" + name.val() +";";
+        //Cookies.set(LANGUAGE_KEY, name.val());
         form.submit();
     }
     $('.js-lang').on('click', function(event){
