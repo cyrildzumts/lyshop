@@ -1,4 +1,4 @@
-define(['lang', 'vendor/jquery.min'], function(Locale) {
+define(['lang'], function(Locale) {
     'use strict';
     /**
        * 

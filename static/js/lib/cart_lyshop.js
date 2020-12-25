@@ -1,34 +1,13 @@
 
-define(['ajax_api'], function(ajax_api) {
+define(['ajax_api', 'lang'], function(ajax_api, Locale) {
     'use strict';
-    var lang_cookie = "";
-    const DEFAULT_LANGUAGE = "fr";
-    const LANGUAGE_KEY = 'django_language';
-    function getCookie(cname) {
-        var name = cname + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for(var i = 0; i <ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-    }
-    function get_lang(){
-        const current_lang = $('#current-lang').val();
-        return current_lang;
-    }
+    
+
     function Cart(){
         this.user = "";
         this.items = [];
         this.total = 0;
         this.csrfmiddlewaretoken = document.querySelector('input[name="csrfmiddlewaretoken"]');
-        this.url_prefix = '/' + get_lang();
 
         console.log("New Cart created");
     }

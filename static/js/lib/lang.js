@@ -1,6 +1,7 @@
-define(function() {
+define(['vendor/js.cookie.js'],function() {
     'use strict';
     var lang_cookie = "";
+    const LANGUAGE_KEY = 'django_language';
     const DEFAULT_LANGUAGE = "fr";
     function getCookie(cname) {
         var name = cname + "=";
@@ -32,7 +33,8 @@ define(function() {
         var name = $('input[name="language"]', form);
         lang_cookie = $el.data('value');
         name.val($el.data('value'));
-        document.cookie = "django_language=" + name.val() +";";
+        //document.cookie = "django_language=" + name.val() +";";
+        Cookies.set(LANGUAGE_KEY, name.val());
         form.submit();
     }
     $('.js-lang').on('click', function(event){
