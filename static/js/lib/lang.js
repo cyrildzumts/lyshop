@@ -1,4 +1,4 @@
-define([], function() {
+define(function() {
     'use strict';
     var lang_cookie = "";
     const DEFAULT_LANGUAGE = "fr";
