@@ -75,10 +75,12 @@ def dashboard(request):
     can_view_dashboard = PermissionManager.user_can_access_dashboard(request.user)
     page_title = _('Dashboard') + ' - ' + settings.SITE_NAME
     username = request.user.username
+    recent_orders = Order.objects.order_by('-created_at')[:10]
     context = {
             'name'          : username,
             'page_title'    : page_title,
             'is_allowed'     : can_view_dashboard,
+            'order_list' : recent_orders,
             'visitors' : Visitor.objects.count(),
             'unique_visitors' : UniqueIP.objects.count(),
         }
