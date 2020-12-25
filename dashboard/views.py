@@ -81,6 +81,9 @@ def dashboard(request):
             'page_title'    : page_title,
             'is_allowed'     : can_view_dashboard,
             'order_list' : recent_orders,
+            'orders_count': Order.objects.count(),
+            'products_count': Product.objects.count(),
+            'users_counts' : User.objects.count(),
             'visitors' : Visitor.objects.count(),
             'unique_visitors' : UniqueIP.objects.count(),
         }
