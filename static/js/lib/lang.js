@@ -1,4 +1,4 @@
-define(['vendor/js.cookie.js'],function() {
+define(['vendor/js.cookie'],function() {
     'use strict';
     var lang_cookie = "";
     const LANGUAGE_KEY = 'django_language';
