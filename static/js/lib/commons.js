@@ -214,10 +214,10 @@ var FileUpload = (function(){
         var that = this;
         this.clear_btn.on('click', this.clear.bind(this));
 
-        $('.drag-area').on('ondrop', onDragEndHandler);
-        $('.drag-area').on('ondragover', onDragOverHandler);
-        $('.drag-area').on('ondragenter', onDragStartHandler);
-        $('.drag-area').on('ondragleave', onDragEndHandler);
+        $('.drag-area').on('ondrop', onDropHandler)
+            .on('ondragover', onDragOverHandler)
+            .on('ondragenter', onDragStartHandler)
+            .on('ondragleave', onDragEndHandler);
         console.log("Fileupload initialized");
     };
 
