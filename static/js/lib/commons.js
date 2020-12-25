@@ -494,6 +494,7 @@ $(document).ready(function(){
         selectable_list.prop('checked', this.checked);
         activable_list.prop('disabled', !this.checked);
     });
+    console.log("commons.js loaded");
     /*
     $('.js-revealable-hide').on('click', function(){
         console.log('hidding revealable inputs');
