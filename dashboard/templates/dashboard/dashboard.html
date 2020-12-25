@@ -1,5 +1,6 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
+{% load order_tag %}
 {% if not can_access_dashboard %}
 {% include "tags/unauthorized.html" %}
 {% else %}
@@ -11,60 +12,43 @@
 {% endblock HEADER_BANNER %}
 
 {% block MAIN_CONTENT %}
-<div class="container row">
-        <div class="col col-10">
-                <div class="container">
-                        <div class="row">
-                                <div class="col col-9">
-                                        <div class="row">
-                                                {% if can_view_order %}
-                                                
-                                                <div class="col col-6">
-                                                        <div class="row">
-                                                           <div class="mat-table-wrapper">
-                                                                <div class="row">
-                                                                        <div class="list-title">
-                                                                                {% trans "Recent Orders" %}
-                                                                        </div>
-                                                                </div>
-                                                                
-                                                                <table id="order-list" class="mat-table js-filter-table">
-                                                                        <thead>
-                                                                                <tr>
-                                                                                        <!--<th><input id="filter-select-all" type="checkbox" name="allselected-orders"></th>-->
-                                                                                        <th>{% trans "Customer" %}</th>
-                                                                                        <th>{% trans "Total Price" %}</th>
-                                                                                        <th>{% trans "Date of Order" %}</th>
-                                                                                </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                                {% for order in recent_orders  %}
-                                                                                <tr>
-                                                                                <!--<td class="checkbox"><input type="checkbox" name="selected-orders"></td>-->
-                                                                                <td>{{order.user.username}}</td>
-                                                                                <td>{{order.total}} {% trans "XAF" %}</td>
-                                                                                <td>{{order.created_at|date:"F j, Y"}}</td>
-                                                                                </tr>
-                                                                                {% endfor %}
-                                                                                
-                                                                        </tbody>
-                                                                        <tfoot>
-                                                                                
-                                                                        </tfoot>
-                                                        
-                                                                </table>
-                                                                
-                                                           </div> <!--End of Table Wrapper-->
-                                                        </div> <!--End of Row-->
-                                                </div> <!--End of Col-6-->
-                                                {% endif %}
-                                                
-                                        </div><!--End of Row-->
-                                </div><!--End of Col-9-->
-                        </div><!--End of Row-->
-                </div><!--End of Container-->
-        </div><!--End of Col-10-->
-
+<div class="container">
+{% if can_view_order %}
+                        
+<div class="col-xs-12 col-6">
+        <div class="mat-table-wrapper">
+                <h4>{% trans "Recent Orders" %}</h4>
+                <table id="order-list" class="mat-table js-filter-table">
+                        <thead>
+                                <tr>
+                                        <th scope="col">{% trans "Reference Number" %}</th>
+                                        <th>{% trans "Customer" %}</th>
+                                        <th scope="col">{% trans "Status" %}</th>
+                                        <th>{% trans "Total Price" %}</th>
+                                        <th>{% trans "Date of Order" %}</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for order in recent_orders  %}
+                                <tr>
+                                <td data-label="{% trans 'Reference Number' %}">{{o.order_ref_number}}</td>
+                                <td>{{order.user.get_full_name}}</td>
+                                <td data-label="{% trans 'Status' %}">{{o.status|order_status_value}} </td>
+                                <td>{{order.total}} {% trans CURRENCY %}</td>
+                                <td>{{order.created_at|date:"F j, Y"}}</td>
+                                </tr>
+                                {% endfor %}
+                                
+                        </tbody>
+                        <tfoot>
+                                
+                        </tfoot>
+        
+                </table>
+                
+        </div> <!--End of Table Wrapper-->
+</div> <!--End of Col-6-->
+{% endif %}
 </div>
 
 {% endblock MAIN_CONTENT %}
