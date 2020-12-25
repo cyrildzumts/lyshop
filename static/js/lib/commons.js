@@ -197,7 +197,6 @@ function uploadFiles(form, files) {
     
 }
 
-
 var FileUpload = (function(){
     function FileUpload(){
         this.files = [];
@@ -216,6 +215,11 @@ var FileUpload = (function(){
     FileUpload.prototype.init = function(){
         var that = this;
         this.clear_btn.on('click', this.clear.bind(this));
+
+        $('.drag-area').on('ondrop', onDragEndHandler);
+        $('.drag-area').on('ondragover', onDragOverHandler);
+        $('.drag-area').on('ondragenter', onDragStartHandler);
+        $('.drag-area').on('ondragleave', onDragEndHandler);
     };
 
     FileUpload.prototype.clear = function() {
