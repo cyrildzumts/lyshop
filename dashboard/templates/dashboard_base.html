@@ -5,37 +5,8 @@
         
 {% endblock META_REDIRECT %}
 
-
-
-
-{% block HEADER_PANEL %}
-  <div class="header--panel">
-      <div class="col col-1">
-      <div class="row">
-            <ul class="logo">
-                  <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'home' %}">{{site_name}}</a></li>
-            </ul>
-      </div>
-            
-      </div>
-      <ul class="mat-list site-panel">
-            <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}">Dashboard</a></li>
-            <li class="mat-list-item"><a class="mat-button mat-button-text" href="#" ><i class="far fa-bell"></i></a></li> 
-            {% if account %}
-                  <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}">{{user.username}}</a></li>
-            {% endif %}
-            <li class="mat-list-item">
-                  {% include "tags/language.html" %}
-            </li>
-      </ul>               
-  </div>
-{% endblock HEADER_PANEL %}
 {% block HEADER_BANNER %}
-  <div class="row">
-        <div class="col col-6">
-          
-        </div> 
-  </div>
+
 {% endblock HEADER_BANNER %}
 
 {% block MAIN %}

@@ -2,7 +2,7 @@
 
 <div class="container">
 
-        <div id="metrics" class="row flex-wrap">
+        <div id="metrics" class="flex flex-wrap">
 
                 <div id="orders" class="metric mat-box">
                         <div class="metric-title">{% trans "Orders" %}</div>
@@ -22,12 +22,14 @@
                 </div>
         </div>
 
-        <div class="mat-box">
-                <div class="entry">
-                        <span class="key">{% trans "Visitors" %}</span><span class="value">{{visitors}}</span>
-                </div>
-                <div class="entry">
-                        <span class="key">{% trans "Unique Visitors" %}</span><span class="value">{{unique_visitors}}</span>
+        <div class="flex flex-wrap">
+                <div class="mat-box">
+                        <div class="entry">
+                                <span class="key">{% trans "Visitors" %}</span><span class="value">{{visitors}}</span>
+                        </div>
+                        <div class="entry">
+                                <span class="key">{% trans "Unique Visitors" %}</span><span class="value">{{unique_visitors}}</span>
+                        </div>
                 </div>
         </div>
   </div>

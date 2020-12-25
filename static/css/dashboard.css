@@ -67,8 +67,8 @@
     justify-content: center;
     align-content: center;
     text-align: center;
-    padding: 5px 10px;
-    margin: 2px 5px;
+    padding: 8px;
+    margin: 2px 4px;
     font-size: 14px;
     font-weight: bold;
 }
@@ -102,8 +102,6 @@
     margin: 2px;
 }
 
-
-
 #myChart{
     width: 450px;
     height: 600px;
@@ -112,11 +110,12 @@
     margin: 2px 5px;
 }
 
+#metrics{
+    font-size: 0.7em;
+}
+
 .metric{
     width: 250px;
-    background-color: #454545;
-    color: #fafafa;
-    font-size: 0.875em;
     font-family: 'Montserrat';
     text-align: center;
     text-transform: uppercase;
@@ -129,10 +128,11 @@
     width: 100%;
     font-size: 1.2em;
     font-weight: 500;
-    margin-bottom: 16px;
+    margin: 4px;
 }
+
 .metric-value{
     font-size: 1.5em;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin: 4px;
 }

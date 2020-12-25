@@ -162,3 +162,8 @@ li.active.selected{
     padding: 0.5em 0.2em;
 }
 
+.metric{
+    background-color:var(--primary-color);
+    color: var(--third-color);
+}
+
