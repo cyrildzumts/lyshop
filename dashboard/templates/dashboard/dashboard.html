@@ -22,20 +22,22 @@
                         <thead>
                                 <tr>
                                         <th scope="col">{% trans "Reference Number" %}</th>
-                                        <th>{% trans "Customer" %}</th>
+                                        <th scope="col">{% trans "Customer" %}</th>
                                         <th scope="col">{% trans "Status" %}</th>
-                                        <th>{% trans "Total Price" %}</th>
-                                        <th>{% trans "Date of Order" %}</th>
+                                        <th scope="col">{% trans "Total Price" %}</th>
+                                        <th scope="col">{% trans "Date of Order" %}</th>
+                                        <th scope="col">{% trans "Details" %}</th>
                                 </tr>
                         </thead>
                         <tbody>
                                 {% for order in order_list  %}
                                 <tr>
-                                <td data-label="{% trans 'Reference Number' %}">{{order.order_ref_number}}</td>
-                                <td>{{order.user.get_full_name}}</td>
+                                <td scope="row" data-label="{% trans 'Reference Number' %}">{{order.order_ref_number}}</td>
+                                <td data-label="{% trans 'Customer' %}">{{order.user.get_full_name}}</td>
                                 <td data-label="{% trans 'Status' %}">{{order.status|order_status_value}} </td>
-                                <td>{{order.total}} {% trans CURRENCY %}</td>
-                                <td>{{order.created_at|date:"F j, Y"}}</td>
+                                <td data-label="{% trans 'Total Price' %}">{{order.total}} {% trans CURRENCY %}</td>
+                                <td data-label="{% trans 'Date of Order' %}">{{order.created_at|date:"F j, Y"}}</td>
+                                <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
                                 </tr>
                                 {% endfor %}
                                 
