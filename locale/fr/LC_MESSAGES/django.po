@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-25 01:52+0000\n"
+"POT-Creation-Date: 2020-12-25 02:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5702,29 +5702,42 @@ msgstr ""
 "Une fois que nous recevons le paiement de votre commande, votre commande "
 "sera traitée et expédiée à l'adresse enregistrée que vous avez indiquée"
 
-#: templates/faq.html:49
+#: templates/faq.html:46
 msgid ""
 "\n"
 "You have 3 days to pay your order before we can ship it.\n"
 "After this delay your order will be automatically cancelled.\n"
 msgstr ""
 
-#: templates/faq.html:55
+#: templates/faq.html:52
 msgid "I placed an order, but didn't get a confirmation mail"
-msgstr ""
+msgstr "J'ai passé une commande, mais je n'ai pas reçu de mail de confirmation"
 
-#: templates/faq.html:57
+#: templates/faq.html:54
 msgid ""
 "\n"
 "It may be due to network error, or a technical issue from our side.\n"
-"Please get in touch with us through one the following channel\n"
+"Please get in touch with us through one of the following channels\n"
 msgstr ""
+"\n"
+"Cela peut être dû à une erreur réseau ou à un problème technique de notre "
+"part.\n"
+"Veuillez nous contacter via l'un des canaux suivants\n"
 
-#: templates/faq.html:64
+#: templates/faq.html:61
 msgid "I place an order, but the order was not delivered"
 msgstr "Je passe une commande, mais la commande n'a pas été livrée"
 
-#: templates/faq.html:66
+#: templates/faq.html:63
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "Make sure you have paid your order before the delay. \n"
+#| "After the payment delay timeout, your order will be automatically "
+#| "cancelled.\n"
+#| "Please contact us with the evidence of your payment so that we proceed to "
+#| "a refund.\n"
+#| "Get in touch with us through one the following channel\n"
 msgid ""
 "\n"
 "Make sure you have paid your order before the delay. \n"
@@ -5732,62 +5745,67 @@ msgid ""
 "cancelled.\n"
 "Please contact us with the evidence of your payment so that we proceed to a "
 "refund.\n"
-"Get in touch with us through one the following channel\n"
+"Get in touch with us through one of the following channels\n"
 msgstr ""
+"\n"
+"Assurez-vous d'avoir payé votre commande avant le délai. \n"
+"Après le délai de paiement, votre commande sera automatiquement annulée.\n"
+"Veuillez nous contacter avec la preuve de votre paiement afin que nous "
+"procédions à un remboursement.\n"
 
-#: templates/faq.html:74
+#: templates/faq.html:71
 msgid "How can I cancel my order ?"
 msgstr "Comment puis-je annuler ma commande?"
 
-#: templates/faq.html:75
+#: templates/faq.html:72
 msgid "To cancel your order, please follow steps described below"
 msgstr ""
 "Pour annuler votre commande, veuillez suivre les étapes décrites ci-dessous"
 
-#: templates/faq.html:77
+#: templates/faq.html:74
 msgid "From your account page, click on the Orders button"
 msgstr "Depuis la page de votre compte, cliquez sur le bouton Commandes"
 
-#: templates/faq.html:78
+#: templates/faq.html:75
 msgid "open the order you want to cancel"
 msgstr "ouvrez la commande que vous souhaitez annuler"
 
-#: templates/faq.html:79
+#: templates/faq.html:76
 msgid "click on the Cancel Order button"
 msgstr "cliquez sur le bouton Annuler la commande"
 
-#: templates/faq.html:80
+#: templates/faq.html:77
 msgid ""
 "please, check the order status. A shipped Order can no longer be cancelled."
 msgstr ""
 "veuillez vérifier l'état de la commande. Une commande expédiée ne peut plus "
 "être annulée."
 
-#: templates/faq.html:82
+#: templates/faq.html:79
 msgid "How long does it take to be delivered ?"
 msgstr "Combien de temps faut-il pour être livré?"
 
-#: templates/faq.html:83
+#: templates/faq.html:80
 msgid "Standard shipping can take up to 5 days to be delivered"
 msgstr "L'expédition standard peut prendre jusqu'à 5 jours pour être livrée"
 
-#: templates/faq.html:84
+#: templates/faq.html:81
 msgid "If you are in a  hurry, please consider the Express shipping option"
 msgstr "Si vous êtes pressé, veuillez considérer l'option d'expédition Express"
 
-#: templates/faq.html:85
+#: templates/faq.html:82
 msgid "What are the available payment methods ?"
 msgstr "Quels sont les modes de paiement disponibles?"
 
-#: templates/faq.html:86
+#: templates/faq.html:83
 msgid "The available payment methods are"
 msgstr "Les modes de paiement disponibles sont"
 
-#: templates/faq.html:88
+#: templates/faq.html:85
 msgid "I place an Order, but it got cancelled after some days"
 msgstr "J'ai passé une commande, mais elle a été annulée après quelques jours"
 
-#: templates/faq.html:90
+#: templates/faq.html:87
 msgid ""
 "All unpaid orders get automatically cancelled after 3 days from the day you "
 "placed the order."
@@ -5795,7 +5813,7 @@ msgstr ""
 "Toutes les commandes impayées sont automatiquement annulées après 3 jours à "
 "compter du jour où vous avez passé la commande."
 
-#: templates/faq.html:95
+#: templates/faq.html:92
 msgid "Make sure you pay your order on time"
 msgstr "Assurez-vous de payer votre commande à temps"
 
