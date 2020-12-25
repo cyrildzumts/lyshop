@@ -37,7 +37,7 @@
                                 <td data-label="{% trans 'Status' %}">{{order.status|order_status_value}} </td>
                                 <td data-label="{% trans 'Total Price' %}">{{order.total}} {% trans CURRENCY %}</td>
                                 <td data-label="{% trans 'Date of Order' %}">{{order.created_at|date:"F j, Y"}}</td>
-                                <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                                <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{order.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
                                 </tr>
                                 {% endfor %}
                                 
