@@ -83,7 +83,7 @@ def dashboard(request):
             'order_list' : recent_orders,
             'orders_count': Order.objects.count(),
             'products_count': Product.objects.count(),
-            'users_counts' : User.objects.count(),
+            'users_count' : User.objects.count(),
             'visitors' : Visitor.objects.count(),
             'unique_visitors' : UniqueIP.objects.count(),
         }
