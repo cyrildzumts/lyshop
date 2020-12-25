@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-24 22:16+0000\n"
+"POT-Creation-Date: 2020-12-25 01:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,6 @@ msgstr ""
 #: dashboard/templates/tags/policy_group_update_form.html:49
 #: dashboard/templates/tags/policy_remove_form.html:39
 #: dashboard/templates/tags/policy_update_form.html:47
-#: dashboard/templates/tags/product_attribute_update_form.html:15
 #: dashboard/templates/tags/product_creation_form.html:9
 #: dashboard/templates/tags/product_creation_form.html:88
 #: dashboard/templates/tags/product_update_form.html:115
@@ -98,7 +97,6 @@ msgstr ""
 #: vendors/templates/vendor_tags/coupon_form.html:42
 #: vendors/templates/vendor_tags/coupon_form_update.html:42
 #: vendors/templates/vendor_tags/product_attribute_creation_form.html:15
-#: vendors/templates/vendor_tags/product_attribute_update_form.html:15
 #: vendors/templates/vendor_tags/product_creation_form.html:10
 #: vendors/templates/vendor_tags/product_creation_form.html:76
 #: vendors/templates/vendor_tags/product_update_form.html:100
@@ -151,12 +149,17 @@ msgid "Create"
 msgstr "Créer"
 
 #: addressbook/templates/addressbook/address_create.html:16
+#: addressbook/templates/addressbook/address_detail.html:18
 #: addressbook/templates/addressbook/address_update.html:17
+#: addressbook/templates/addressbook/addressbook.html:32
 #: addressbook/templates/addressbook_tags/address_form.html:7
+#: dashboard/templates/dashboard/address_detail.html:20
 #: dashboard/templates/dashboard/address_update.html:24
-#, fuzzy
-#| msgid "Firstname"
-msgid "Firstame"
+#: dashboard/templates/dashboard/addressbook.html:46
+#: dashboard/templates/dashboard/user_detail.html:49
+#: templates/tags/registration_form.html:11
+#: templates/tags/signup_dialog.html:48
+msgid "Firstname"
 msgstr "Prénom"
 
 #: addressbook/templates/addressbook/address_create.html:20
@@ -207,8 +210,6 @@ msgstr "Ville"
 #: addressbook/templates/addressbook/address_update.html:34
 #: addressbook/templates/addressbook_tags/address_form.html:24
 #: dashboard/templates/dashboard/address_update.html:41
-#, fuzzy
-#| msgid "Total Price"
 msgid "Postal code"
 msgstr "Code postale"
 
@@ -244,8 +245,6 @@ msgstr "Rue"
 #: dashboard/templates/dashboard/address_update.html:53
 #: dashboard/templates/dashboard/addressbook.html:72
 #: orders/templates/tags/checkout_address.html:41
-#, fuzzy
-#| msgid "House number"
 msgid "House Number"
 msgstr "Numéro de maison"
 
@@ -258,8 +257,6 @@ msgstr "Numéro de maison"
 #: dashboard/templates/dashboard/address_update.html:57
 #: dashboard/templates/dashboard/addressbook.html:75
 #: orders/templates/tags/checkout_address.html:45
-#, fuzzy
-#| msgid "Phone-Number"
 msgid "Phone Number"
 msgstr "Numéro de téléphone"
 
@@ -268,10 +265,8 @@ msgid "Use this address as"
 msgstr "Utiliser cette adresse pour"
 
 #: addressbook/templates/addressbook/address_create.html:56
-#, fuzzy
-#| msgid "Select a Product Type"
 msgid "Select an Address Type"
-msgstr "Choisissez un type de produit"
+msgstr "Choisissez un type de d'adresse"
 
 #: addressbook/templates/addressbook/address_detail.html:12
 #: addressbook/templates/addressbook/addressbook.html:14
@@ -342,16 +337,6 @@ msgstr "Éditer"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: addressbook/templates/addressbook/address_detail.html:18
-#: addressbook/templates/addressbook/addressbook.html:32
-#: dashboard/templates/dashboard/address_detail.html:20
-#: dashboard/templates/dashboard/addressbook.html:46
-#: dashboard/templates/dashboard/user_detail.html:49
-#: templates/tags/registration_form.html:11
-#: templates/tags/signup_dialog.html:48
-msgid "Firstname"
-msgstr "Prénom"
-
 #: addressbook/templates/addressbook/address_detail.html:32
 #: addressbook/templates/addressbook/addressbook.html:49
 #: dashboard/templates/dashboard/address_detail.html:34
@@ -363,8 +348,6 @@ msgstr "Code postale"
 #: addressbook/templates/addressbook/addressbook.html:64
 #: dashboard/templates/dashboard/address_detail.html:49
 #: dashboard/templates/dashboard/addressbook.html:78
-#, fuzzy
-#| msgid "Address extra"
 msgid "Address is used for"
 msgstr "Utiliser pour"
 
@@ -419,21 +402,15 @@ msgid "Dont use as Main"
 msgstr "Ne pas utiliser comme principale"
 
 #: addressbook/templates/addressbook/addressbook.html:19
-#, fuzzy
-#| msgid "Enter your E-mail address"
 msgid "Use as main address"
 msgstr "Utilser comme adresse principale"
 
 #: addressbook/templates/addressbook/addressbook.html:29
 #: dashboard/templates/dashboard/addressbook.html:43
-#, fuzzy
-#| msgid "Billing Address"
 msgid "Main Address"
 msgstr "Adresse principale"
 
 #: addressbook/templates/addressbook/addressbook.html:72
-#, fuzzy
-#| msgid "You have bought any article yet."
 msgid "You don't have added an address yet."
 msgstr "Vous n'avez encore ajouté d'adresses."
 
@@ -441,26 +418,18 @@ msgstr "Vous n'avez encore ajouté d'adresses."
 #: dashboard/templates/dashboard/addressbook.html:8
 #: dashboard/templates/dashboard_base.html:49
 #: templates/site_account_base.html:24
-#, fuzzy
-#| msgid "Address"
 msgid "Addressbook"
 msgstr "Carnet d'adresses"
 
 #: addressbook/templates/addressbook_base.html:17
-#, fuzzy
-#| msgid "Add new Brand"
 msgid "Add new Address"
 msgstr "Ajouter une nouvelle adresse"
 
 #: addressbook/templates/addressbook_tags/address_form.html:44
-#, fuzzy
-#| msgid "Create Access Token"
 msgid "Create Address"
 msgstr "Créér une adresse"
 
 #: addressbook/views.py:45 dashboard/views.py:4236
-#, fuzzy
-#| msgid "Address"
 msgid "Addresses"
 msgstr "Adresses"
 
@@ -470,50 +439,34 @@ msgid "Address"
 msgstr "Adresse"
 
 #: addressbook/views.py:78 dashboard/views.py:4268
-#, fuzzy
-#| msgid "Address Extra"
 msgid "Address Update"
 msgstr "Actualiser l'adresse"
 
 #: addressbook/views.py:89 dashboard/views.py:4278
-#, fuzzy
-#| msgid "Attribute updated"
 msgid "Address updated"
 msgstr "Adresse actualisée"
 
 #: addressbook/views.py:93 dashboard/views.py:4282
-#, fuzzy
-#| msgid "Attribute not updated"
 msgid "Address not updated"
 msgstr "Adresse non actualisée"
 
 #: addressbook/views.py:108 dashboard/views.py:4297
-#, fuzzy
-#| msgid "Address extra"
 msgid "Address deleted"
 msgstr "Adresse supprimée"
 
 #: addressbook/views.py:117
-#, fuzzy
-#| msgid "Password changed"
 msgid "Address changed"
-msgstr "Adress modifié"
+msgstr "Adresse modifiée"
 
 #: addressbook/views.py:145 orders/templates/tags/checkout_address.html:15
-#, fuzzy
-#| msgid "Address"
 msgid "New Address"
 msgstr "Nouvelle Adresse"
 
 #: addressbook/views.py:155
-#, fuzzy
-#| msgid "New Brand created"
 msgid "New Address created"
 msgstr "Nouvelle adresse créee"
 
 #: addressbook/views.py:159
-#, fuzzy
-#| msgid "Brand not created"
 msgid "Address not created"
 msgstr "Nouvelle adresse non créee"
 
@@ -581,8 +534,6 @@ msgid "Reduction"
 msgstr "Réduction"
 
 #: cart/templates/cart/cart.html:46 orders/templates/tags/cart_summary.html:21
-#, fuzzy
-#| msgid "Total"
 msgid "Sub Total"
 msgstr "Sous-Total"
 
@@ -817,8 +768,6 @@ msgid "one size"
 msgstr "taille unique"
 
 #: catalog/strings.py:42
-#, fuzzy
-#| msgid "Size"
 msgid "One Size"
 msgstr "Taille Unique"
 
@@ -871,8 +820,6 @@ msgid "Olive"
 msgstr "Olive"
 
 #: catalog/strings.py:57
-#, fuzzy
-#| msgid "Change"
 msgid "Orange"
 msgstr "Orange"
 
@@ -885,8 +832,6 @@ msgid "Purple"
 msgstr "Violet"
 
 #: catalog/strings.py:60
-#, fuzzy
-#| msgid "Ready"
 msgid "Red"
 msgstr "Rouge"
 
@@ -903,16 +848,12 @@ msgid "Yellow"
 msgstr "Jaune"
 
 #: catalog/templates/catalog/catalog_home.html:21
-#, fuzzy
-#| msgid "There is no sold products yet."
 msgid "There are no products to display yet."
-msgstr "Il n'y a encore aucun produit vendu"
+msgstr "Il n'y a pas encore de produits à afficher."
 
 #: catalog/templates/catalog/catalog_home.html:22
-#, fuzzy
-#| msgid "Recently added products will be displayed here."
 msgid "As soon as Products are available, they will be displayed here."
-msgstr "Les produits récemment ajoutés seront affichés ici."
+msgstr "Dès que les produits seront disponibles, ils seront affichés ici."
 
 #: catalog/templates/catalog/catalog_home.html:23
 #: catalog/templates/catalog/category_detail.html:22
@@ -920,8 +861,6 @@ msgid "Please try again later"
 msgstr "Veuillez reesayer pus tard"
 
 #: catalog/templates/catalog/category_detail.html:20
-#, fuzzy
-#| msgid "There is no Order history yet."
 msgid "There are no products to display for this  category yet."
 msgstr "Il n'y a pas de produits dans cette catégorie actuellement"
 
@@ -1905,8 +1844,6 @@ msgid "Value type"
 msgstr "Type de valeur"
 
 #: dashboard/templates/dashboard/attributes_create.html:9
-#, fuzzy
-#| msgid "New Attributes"
 msgid "New Attributes "
 msgstr "Nouvel attribut"
 
@@ -2994,8 +2931,6 @@ msgid "Order history will be displayed here."
 msgstr "L'historique des commande sera affiché ici"
 
 #: dashboard/templates/dashboard/order_list.html:17
-#, fuzzy
-#| msgid "Current Month Orders"
 msgid "Clean Unpaid Orders"
 msgstr "Nettoyer"
 
@@ -3544,10 +3479,8 @@ msgstr "Déclinaison"
 #: dashboard/templates/dashboard/sold_product_detail.html:13
 #: vendors/templates/vendors/product_variant_detail.html:13
 #: vendors/templates/vendors/sold_product_detail.html:13
-#, fuzzy
-#| msgid "Product Variant "
 msgid "Product Variant Information"
-msgstr "Déclinaison"
+msgstr "Information sur la déclinaison"
 
 #: dashboard/templates/dashboard/product_variant_detail.html:67
 #: dashboard/templates/dashboard/sold_product_detail.html:56
@@ -3603,15 +3536,11 @@ msgstr "Aucun rapport disponible"
 #: vendors/templates/vendor_tags/sold_product_list_template.html:22
 #: vendors/templates/vendor_tags/sold_product_list_template.html:37
 #: vendors/templates/vendors/sold_product_detail.html:38
-#, fuzzy
-#| msgid "Min Price"
 msgid "End Price"
-msgstr "Prix min"
+msgstr "Prix final"
 
 #: dashboard/templates/dashboard/sold_product_detail.html:49
 #: vendors/templates/vendors/sold_product_detail.html:49
-#, fuzzy
-#| msgid "Sold date"
 msgid "Sold Date"
 msgstr "Date de vente"
 
@@ -3672,10 +3601,8 @@ msgid "Reset Vendor"
 msgstr "Réinitialiser le vendeur"
 
 #: dashboard/templates/dashboard/user_detail.html:22
-#, fuzzy
-#| msgid "Vendor"
 msgid "Pay Vendor"
-msgstr "Vendeur"
+msgstr "Vendeur Pay"
 
 #: dashboard/templates/dashboard/user_detail.html:43
 #: dashboard/templates/dashboard/user_list.html:33
@@ -3705,10 +3632,8 @@ msgid "Balance"
 msgstr "Solde"
 
 #: dashboard/templates/dashboard/user_detail.html:81
-#, fuzzy
-#| msgid "Products"
 msgid "Product sold"
-msgstr "Produits"
+msgstr "Produits vendus"
 
 #: dashboard/templates/dashboard/user_detail.html:85
 msgid "Date joined"
@@ -3834,16 +3759,12 @@ msgid "Brand Code"
 msgstr "Code"
 
 #: dashboard/templates/tags/bulk_attributes_form.html:14
-#, fuzzy
-#| msgid "Value"
-msgid "StartValue"
-msgstr "Valeur"
+msgid "Start Value"
+msgstr "Valeur de début"
 
 #: dashboard/templates/tags/bulk_attributes_form.html:18
-#, fuzzy
-#| msgid "Value"
 msgid "End Value"
-msgstr "Valeur"
+msgstr "Valeur de fin"
 
 #: dashboard/templates/tags/case_close_form.html:8
 msgid "Close this case"
@@ -4069,30 +3990,6 @@ msgstr "Supprimer"
 msgid "Edit Policy"
 msgstr "Modifier"
 
-#: dashboard/templates/tags/product_attribute_update_form.html:10
-#: vendors/templates/vendor_tags/product_attribute_creation_form.html:10
-#: vendors/templates/vendor_tags/product_attribute_update_form.html:10
-#, fuzzy
-#| msgid "Enter the Operator name"
-msgid "Enter the service category"
-msgstr "Saisir le nom vendeur"
-
-#: dashboard/templates/tags/product_attribute_update_form.html:11
-#: vendors/templates/vendor_tags/product_attribute_creation_form.html:11
-#: vendors/templates/vendor_tags/product_attribute_update_form.html:11
-#, fuzzy
-#| msgid "Enter the Operator name"
-msgid "Enter the category name"
-msgstr "Saisir le nom vendeur"
-
-#: dashboard/templates/tags/product_attribute_update_form.html:16
-#: vendors/templates/vendor_tags/product_attribute_creation_form.html:16
-#: vendors/templates/vendor_tags/product_attribute_update_form.html:16
-#, fuzzy
-#| msgid "Create at"
-msgid "Create category"
-msgstr "Crée le"
-
 #: dashboard/templates/tags/product_creation_form.html:10
 #: dashboard/templates/tags/product_creation_form.html:89
 #: vendors/templates/vendor_tags/product_creation_form.html:11
@@ -4182,10 +4079,8 @@ msgid "Order Detail"
 msgstr "Detail - Commande"
 
 #: dashboard/views.py:565 vendors/views.py:1779
-#, fuzzy
-#| msgid "Order Items"
 msgid "Order Item Update"
-msgstr "Contenu de la commande"
+msgstr "Mise à jour de l'article de commande"
 
 #: dashboard/views.py:704
 msgid "Order Histories"
@@ -4201,32 +4096,24 @@ msgid "Attributes not added"
 msgstr "Attributs non ajoutés "
 
 #: dashboard/views.py:841
-#, fuzzy
-#| msgid "New Product created"
 msgid "New Highlight created"
-msgstr "Produit crée"
+msgstr "Nouveau Highlight créé"
 
 #: dashboard/views.py:845
-#, fuzzy
-#| msgid "Product not created"
 msgid "Highlight not created"
-msgstr "Produit non crée"
+msgstr "Highlight non crée"
 
 #: dashboard/views.py:869
 msgid "Highlight Detail"
 msgstr "Info sur le Highlight"
 
 #: dashboard/views.py:906
-#, fuzzy
-#| msgid "Shipment updated"
 msgid "Highlight updated"
-msgstr "Accueil"
+msgstr "Highlight actualisé"
 
 #: dashboard/views.py:910
-#, fuzzy
-#| msgid "Attribute not updated"
 msgid "highlight not updated"
-msgstr "Attribut non actualisé"
+msgstr "Highlight non actualisé"
 
 #: dashboard/views.py:941 dashboard/views.py:962
 msgid "Highlight deleted"
@@ -4256,10 +4143,9 @@ msgid "Product variant not created"
 msgstr "Déclinaison de produit  n'a pas pu etre créee"
 
 #: dashboard/views.py:1398
-#, fuzzy, python-brace-format
-#| msgid "New Product variant created"
+#, python-brace-format
 msgid "New Product variants({count}) created"
-msgstr "Déclinaison de produit créee"
+msgstr "{count} Déclinaison de produit créee"
 
 #: dashboard/views.py:1463 vendors/views.py:544
 msgid "Product Variant Update"
@@ -4292,16 +4178,12 @@ msgid "New Attribute"
 msgstr "Nouvel attribut"
 
 #: dashboard/views.py:1765
-#, fuzzy
-#| msgid "Attribute updated"
 msgid "Attributes created"
-msgstr "Attribut actualisé"
+msgstr "Attribut crées"
 
 #: dashboard/views.py:1768
-#, fuzzy
-#| msgid "Attributes not removed"
 msgid "Attributes not created"
-msgstr "Attributs non retiré"
+msgstr "Attributs non crée"
 
 #: dashboard/views.py:1785
 msgid "New Attributes"
@@ -4348,10 +4230,9 @@ msgid "User Token Generation"
 msgstr "Generateur de token"
 
 #: dashboard/views.py:2260
-#, fuzzy
-#| msgid "Token successfully generated"
-msgid "Token successfully generated for user {}"
-msgstr "Jeton généré avec succès"
+#, python-brace-format
+msgid "Token successfully generated for user {username}"
+msgstr "Jeton généré avec succès pour {username}"
 
 #: dashboard/views.py:2264
 msgid "The submitted form is not valid"
@@ -4469,28 +4350,20 @@ msgid "New PaymentMethod {payment_method} created"
 msgstr ""
 
 #: dashboard/views.py:4087
-#, fuzzy
-#| msgid "Brand not created"
 msgid "PaymentMethod not created"
-msgstr "Nouvelle marque non créee"
+msgstr "Nouveau PaymentMethod non créee"
 
 #: dashboard/views.py:4101
-#, fuzzy
-#| msgid "Payment Request History"
 msgid "Payment Method List"
-msgstr "Historique des demandes de paiement"
+msgstr "Historique des méthodes de paiement"
 
 #: dashboard/views.py:4167
-#, fuzzy
-#| msgid "Shipment updated"
 msgid "PaymentMethod updated"
-msgstr "Accueil"
+msgstr "PaymentMethod actualisé"
 
 #: dashboard/views.py:4171
-#, fuzzy
-#| msgid "Error when updating category"
 msgid "Error when updating PaymentMethod"
-msgstr "Erreur à la mise à jour de la categorie"
+msgstr "Erreur à la mise à jour de  PaymentMethod"
 
 #: lyshop/settings.py:304
 msgid "French"
@@ -4561,14 +4434,10 @@ msgid "PROCESSING"
 msgstr "EN TRAITEMENT"
 
 #: orders/commons.py:108
-#, fuzzy
-#| msgid "PAYMENT ID"
 msgid "PAYMENT FAILED"
 msgstr "PAIEMENT ÉCHOUÉ"
 
 #: orders/commons.py:110
-#, fuzzy
-#| msgid "SHIPMENT ID"
 msgid "SHIPPED"
 msgstr "EXPÉDIÉ"
 
@@ -4605,8 +4474,6 @@ msgid "CASH"
 msgstr "EN ESPÈCES"
 
 #: orders/commons.py:134
-#, fuzzy
-#| msgid "PAYMENT ID"
 msgid "PAYMENT WITH PAY"
 msgstr "PAIEMENT AVEC PAY"
 
@@ -4619,8 +4486,6 @@ msgid "PAY AT DELIVERY"
 msgstr "PAYER À LA LIVRAISON"
 
 #: orders/commons.py:140 orders/commons.py:149
-#, fuzzy
-#| msgid "SORT ORDER"
 msgid "PAY AT ORDER"
 msgstr "PAYER À LA COMMANDE"
 
@@ -4701,55 +4566,39 @@ msgid "Order Info"
 msgstr "Informations sur la commande."
 
 #: orders/templates/orders/order_detail.html:17
-#, fuzzy
-#| msgid "Back to Order"
 msgid "Back to Orders"
-msgstr "Retour à la commande"
+msgstr "Retour aux commandes"
 
 #: orders/templates/orders/order_detail.html:48
 #: shipment/templates/shipment/ship_mode_detail.html:5 shipment/views.py:232
-#, fuzzy
-#| msgid "Shipment Home"
 msgid "Ship Mode"
-msgstr "Accueil d'expédition"
+msgstr "Mode de livraison"
 
 #: orders/templates/orders/order_detail.html:112
 msgid "Error. No order found."
 msgstr "Erreur. Aucune commande trouvée."
 
 #: orders/templates/orders/order_list.html:50
-#, fuzzy
-#| msgid "You have not order any product yet."
 msgid "You have not placed an order yet."
 msgstr "Vous n'avez encore commandé aucun produit"
 
 #: orders/templates/orders/order_list.html:51
-#, fuzzy
-#| msgid "Your orders will be displayed here."
 msgid "Your orders would be listed here when available."
 msgstr "Vos commandes seront affichées ici"
 
 #: orders/templates/tags/cart_summary.html:4
-#, fuzzy
-#| msgid "Summary"
 msgid "Cart Summary"
 msgstr "Résumé"
 
 #: orders/templates/tags/cart_summary.html:23
-#, fuzzy
-#| msgid "Shipping Info"
 msgid "Shipping"
 msgstr "Livraison"
 
 #: orders/templates/tags/cart_summary.html:24
-#, fuzzy
-#| msgid "Brand Detail"
 msgid "Grand Total"
 msgstr "Grand Total"
 
 #: orders/templates/tags/checkout_address.html:4
-#, fuzzy
-#| msgid "Shipping Info"
 msgid "Shipping Mode"
 msgstr "Mode de livraison"
 
@@ -4763,10 +4612,8 @@ msgid "Zip"
 msgstr "Code postale"
 
 #: orders/templates/tags/checkout_address.html:54
-#, fuzzy
-#| msgid "Shipping Address"
 msgid "Shipping address same as billing"
-msgstr "Addresse d'envoie"
+msgstr "Adresse de livraison identique à celle de facturation"
 
 #: orders/templates/tags/checkout_failed_content.html:4
 msgid "Your transaction has failed. "
@@ -4805,8 +4652,6 @@ msgid "Your order will be cancelled if we can't reach you."
 msgstr "Votre commande sera annulée si nous ne pouvons pas vous joindre"
 
 #: orders/templates/tags/checkout_success_cash.html:8
-#, fuzzy
-#| msgid "No shipment information"
 msgid "Do keep the information below"
 msgstr "Gardez les informations ci-dessous"
 
@@ -4833,22 +4678,16 @@ msgid "After that delay, if not paid your order will be cancelled."
 msgstr "Passé ce délai, si non payée, votre commande sera annulée."
 
 #: orders/templates/tags/checkout_success_mobile.html:9
-#, fuzzy
-#| msgid "No shipment information"
 msgid "Do keep the information below."
 msgstr "Gardez les informations ci-dessous"
 
 #: orders/templates/tags/payment_options.html:7
-#, fuzzy
-#| msgid "Payment Option"
 msgid "Payment Options "
-msgstr "Option de payment"
+msgstr "Options de payment"
 
 #: orders/templates/tags/payment_options.html:17
-#, fuzzy
-#| msgid "Payment Requests"
 msgid "Payment Methods "
-msgstr "Demandes de paiement"
+msgstr "Methodes de paiement"
 
 #: orders/views.py:36
 msgid "My Orders"
@@ -4873,8 +4712,6 @@ msgstr "Échec du paiement"
 #: payment/templates/payment/payment_date_create.html:11
 #: payment/templates/payment/payment_date_group_create.html:11
 #: payment/templates/payment/payment_date_group_update.html:11
-#, fuzzy
-#| msgid "Payment Status"
 msgid "New Payment Date"
 msgstr "Nouvelle Date de paiment"
 
@@ -4892,24 +4729,18 @@ msgstr "Planifier"
 #: payment/templates/payment/payment_date_group_create.html:28
 #: payment/templates/payment/payment_date_group_update.html:19
 #: payment/templates/payment/payment_date_group_update.html:33
-#, fuzzy
-#| msgid "Select a Category"
 msgid "Select an option"
 msgstr "Choisisser une option"
 
 #: payment/templates/payment/payment_detail.html:30
 #: payment/templates/payment/payment_update.html:34
 #: vendors/templates/vendors/payment_detail.html:30
-#, fuzzy
-#| msgid "User Information"
 msgid "Payment Information"
 msgstr "Information sur le paiement"
 
 #: payment/templates/payment/payment_detail.html:40
 #: payment/templates/payment/payment_update.html:44
 #: vendors/templates/vendors/payment_detail.html:40
-#, fuzzy
-#| msgid "Payment"
 msgid "Payment Mode"
 msgstr "Mode de Paiement"
 
@@ -4920,8 +4751,6 @@ msgstr "Mode de Paiement"
 #: vendors/templates/vendors/payment_detail.html:43
 #: vendors/templates/vendors/payment_list.html:28
 #: vendors/templates/vendors/payment_list.html:38
-#, fuzzy
-#| msgid "Recived Amount"
 msgid "Paid Amount"
 msgstr "Montant Payé"
 
@@ -4932,32 +4761,24 @@ msgstr "Montant Payé"
 #: vendors/templates/vendors/payment_detail.html:46
 #: vendors/templates/vendors/payment_list.html:29
 #: vendors/templates/vendors/payment_list.html:39
-#, fuzzy
-#| msgid "Balance State"
 msgid "Balance Amount"
 msgstr "Solde"
 
 #: payment/templates/payment/payment_detail.html:49
 #: payment/templates/payment/payment_update.html:53
 #: vendors/templates/vendors/payment_detail.html:49
-#, fuzzy
-#| msgid "See"
 msgid "Fee"
 msgstr "Frais"
 
 #: payment/templates/payment/payment_detail.html:58
 #: payment/templates/payment/payment_update.html:62
 #: vendors/templates/vendors/payment_detail.html:58
-#, fuzzy
-#| msgid "Username"
 msgid "Pay Username"
 msgstr "Nom d'utilisateur Pay"
 
 #: payment/templates/payment/payment_detail.html:67
 #: payment/templates/payment/payment_update.html:71
 #: vendors/templates/vendors/payment_detail.html:67
-#, fuzzy
-#| msgid "Payment Status"
 msgid "Payment Date"
 msgstr "Date du paiement"
 
@@ -4970,50 +4791,36 @@ msgstr "ID PAIEMENT"
 #: payment/templates/payment/payment_home.html:12
 #: payment/templates/payment/payment_list.html:12
 #: vendors/templates/vendors/payment_list.html:12
-#, fuzzy
-#| msgid "Payment"
 msgid "Payment - Home"
 msgstr "Paiement"
 
 #: payment/templates/payment/payment_home.html:24
 #: payment/templates/payment/payment_list.html:24
 #: vendors/templates/vendors/payment_list.html:24
-#, fuzzy
-#| msgid "Recent Shipments"
 msgid "Recent Payments"
 msgstr "Paiment récentes"
 
 #: payment/templates/payment/payment_home.html:56
 #: payment/templates/payment/payment_list.html:59
 #: vendors/templates/vendors/payment_list.html:59
-#, fuzzy
-#| msgid "There is no shipments yet."
 msgid "There is no payments yet."
 msgstr "Il n'y a pas encore de paiment"
 
 #: payment/templates/payment/payment_home.html:59
 #: payment/templates/payment/payment_list.html:62
 #: vendors/templates/vendors/payment_list.html:62
-#, fuzzy
-#| msgid "Shipments will be displayed here."
 msgid "Recents payments will be displayed here."
 msgstr "Les paiements recents seront affichés ici"
 
 #: payment/templates/payment_tags/policy_group_creation_form.html:22
-#, fuzzy
-#| msgid "Select all"
 msgid "Select a policy"
 msgstr "Sélectioner un règle"
 
 #: payment/views.py:39
-#, fuzzy
-#| msgid "Payment"
 msgid "Payment-Home"
 msgstr "Paiement"
 
 #: payment/views.py:411
-#, fuzzy
-#| msgid "Edit Policy Group"
 msgid "Edit Payment Policy Group"
 msgstr "Modifier"
 
@@ -5075,8 +4882,6 @@ msgstr "Nouveau mode d'envoi"
 #: shipment/templates/shipment/ship_mode_create.html:12
 #: shipment/templates/shipment/ship_mode_detail.html:16
 #: shipment/templates/shipment/ship_mode_update.html:24
-#, fuzzy
-#| msgid "Shipment Home"
 msgid "Shipment Board"
 msgstr "Envoies"
 
@@ -5088,8 +4893,6 @@ msgstr "Nouveau mode d'envoi"
 #: shipment/templates/shipment/ship_mode_detail.html:15
 #: shipment/templates/shipment/ship_mode_list.html:6
 #: shipment/templates/shipment_base.html:18
-#, fuzzy
-#| msgid "Shipments"
 msgid "Ship Modes"
 msgstr "Modes d'envoies"
 
@@ -5101,8 +4904,6 @@ msgid "Shipment"
 msgstr "Expédition"
 
 #: shipment/templates/shipment/ship_mode_update.html:8
-#, fuzzy
-#| msgid "Shipment Update"
 msgid "Ship Mode Update"
 msgstr "Actualiser"
 
@@ -5198,8 +4999,6 @@ msgid "Ready"
 msgstr "Prêt"
 
 #: shipment/views.py:75
-#, fuzzy
-#| msgid "Shipment List"
 msgid "Shipment Waiting"
 msgstr "Expédition en attente"
 
@@ -5216,20 +5015,14 @@ msgid "Shipment Histories"
 msgstr "Historiques d'expédition"
 
 #: shipment/views.py:188
-#, fuzzy
-#| msgid "New Coupon created"
 msgid "New Ship Mode created"
 msgstr "Nouveau mode d'envoi crée"
 
 #: shipment/views.py:192
-#, fuzzy
-#| msgid "Coupon not created"
 msgid "Ship Mode not created"
 msgstr "Nouveau mode d'envoi non crée"
 
 #: shipment/views.py:206
-#, fuzzy
-#| msgid "Shipment List"
 msgid "Ship Mode List"
 msgstr "Liste de mode d'expédition"
 
@@ -5238,14 +5031,10 @@ msgid "Edit Ship Mode"
 msgstr "Modifier"
 
 #: shipment/views.py:261
-#, fuzzy
-#| msgid "Shipment updated"
 msgid "Ship Mode updated"
 msgstr "Mode d'envoi actualisé"
 
 #: shipment/views.py:265
-#, fuzzy
-#| msgid "Error when updating category"
 msgid "Error when updating Ship Mode"
 msgstr "Erreur à la mise à jour du mode d'envoi"
 
@@ -5275,8 +5064,6 @@ msgid "Resource not found ! "
 msgstr "Ressource introuvable"
 
 #: templates/404.html:9
-#, fuzzy
-#| msgid "The content you requested does not exist."
 msgid "The content you requested could not be found."
 msgstr "Le contenu que vous avez demandé n'existe pas"
 
@@ -5297,20 +5084,16 @@ msgid "Our technicians are working on the problem."
 msgstr "Nos techniciens travaillent sur le problème"
 
 #: templates/about.html:6
-#, fuzzy
-#| msgid "About us"
 msgid "About LYSHOP"
-msgstr "À propos de nous"
+msgstr "À propos de LYSHOP"
 
 #: templates/about.html:8
 msgid "We are selling products like :"
 msgstr "Nous vendons des produits comme :"
 
 #: templates/about.html:19
-#, fuzzy
-#| msgid "Product List"
 msgid "Product quality"
-msgstr "Liste de produits"
+msgstr "Qualité"
 
 #: templates/about.html:21
 msgid ""
@@ -5351,22 +5134,16 @@ msgid "Issues report"
 msgstr "Rapport de problèmes"
 
 #: templates/about.html:44
-#, fuzzy
-#| msgid ""
-#| "In case you have any issue with your order, please contact us through the "
-#| "contact page."
 msgid ""
 "In case you have any issue with your order, please contact at the following "
 "address:"
 msgstr ""
-"En cas de problème avec votre commande, veuillez nous contacter via la page "
-"de contact."
+"En cas de problème avec votre commande, veuillez contacter à l'adresse "
+"suivante:"
 
 #: templates/about.html:48 templates/tags/channel.html:3
-#, fuzzy
-#| msgid "Send"
 msgid "Send Mail"
-msgstr "Envoyer"
+msgstr "Envoyer un Mail"
 
 #: templates/about.html:51
 msgid "Refund"
@@ -5396,10 +5173,8 @@ msgid "The ordered items have been returned on time."
 msgstr "Les articles commandés ont été retournés à temps."
 
 #: templates/about.html:62
-#, fuzzy
-#| msgid "Pay at delivery"
 msgid "max. 7 days after delivery"
-msgstr "Payez à la livraison"
+msgstr "Max. 7 jours après la livraison"
 
 #: templates/accounts/account.html:8
 msgid "Account Summary"
@@ -5503,10 +5278,8 @@ msgid "CHANGE PASSWORD"
 msgstr ""
 
 #: templates/accounts/registration/password_change.html:8
-#, fuzzy
-#| msgid "Change Password"
 msgid "Change your password"
-msgstr "Modifier le mot de passe"
+msgstr "Modifier votre mot de passe"
 
 #: templates/accounts/registration/password_change.html:20
 msgid ""
@@ -5590,10 +5363,8 @@ msgstr ""
 
 #: templates/accounts/registration/password_reset_done.html:6
 #: templates/accounts/registration/password_reset_form.html:8
-#, fuzzy
-#| msgid "Password"
 msgid "Password reset"
-msgstr "Mot de passe"
+msgstr "Réinitialisation du mot de passe"
 
 #: templates/accounts/registration/password_reset_done.html:17
 msgid ""
@@ -5619,30 +5390,25 @@ msgid "Also check your spam."
 msgstr "Vérifier aussi vos spams."
 
 #: templates/accounts/registration/password_reset_email.html:23
-#, fuzzy, python-format
-#| msgid ""
-#| "You are receiving this email because you requested to reset your password "
-#| "at %(site_name)s."
 msgid ""
-"You are receiving this email because you requested to reset your password at "
-"%(site_name)s.\n"
+"You are receiving this email because you requested to reset your password at"
 msgstr ""
-"Vous recevez ce mail parce vous avez demandé de réinitialiser votre mot de "
-"passe chez %(site_name)s."
+"Vous recevez cet e-mail, car vous avez demandé la réinitialisation de votre "
+"mot de passe à l'adresse"
 
-#: templates/accounts/registration/password_reset_email.html:26
+#: templates/accounts/registration/password_reset_email.html:25
 msgid "Please follow this link and choose a new password"
 msgstr "Veuillez suivre ce lien et choisissez un nouveau mot de passe"
 
-#: templates/accounts/registration/password_reset_email.html:30
+#: templates/accounts/registration/password_reset_email.html:29
 msgid "Your username, in case you forgot it"
 msgstr "Votre nom d'utilisateur, au cas où vous l'aurez oublié"
 
-#: templates/accounts/registration/password_reset_email.html:32
+#: templates/accounts/registration/password_reset_email.html:31
 msgid "Thank you for using our site!"
 msgstr "Merci d'utiliser notre site!"
 
-#: templates/accounts/registration/password_reset_email.html:34
+#: templates/accounts/registration/password_reset_email.html:33
 #, python-format
 msgid "Team %(site_name)s"
 msgstr "L'équipe %(site_name)s"
@@ -5664,15 +5430,11 @@ msgid "Reset"
 msgstr "Reinitialiser"
 
 #: templates/accounts/registration/register.html:32
-#, fuzzy
-#| msgid "PRODUCT TYPE"
 msgid "ACCOUNT TYPE"
 msgstr "TYPE DE COMPTE"
 
 #: templates/accounts/registration/register.html:34
 #: templates/tags/registration_form.html:47
-#, fuzzy
-#| msgid "Select a Product Type"
 msgid "Select an Account Type"
 msgstr "Choisissez un type de compte"
 
@@ -5740,8 +5502,7 @@ msgid "Are you looking for a place where to sell your products ?"
 msgstr ""
 
 #: templates/business_overview.html:17
-#, fuzzy, python-format
-#| msgid "You can get it by %(site_name)s"
+#, python-format
 msgid "You can sell your products on %(site_name)s"
 msgstr "Vous pouvez vendre vos produits chez %(site_name)s"
 
@@ -5764,10 +5525,8 @@ msgid "Wherever you are, add your products with a simple click !"
 msgstr ""
 
 #: templates/business_overview.html:61
-#, fuzzy
-#| msgid "Create my account"
 msgid "Create your account."
-msgstr "Créer mon compte"
+msgstr "Créer votre compte"
 
 #: templates/business_overview.html:70 templates/customer_overview.html:72
 msgid "Learn more"
@@ -5845,14 +5604,10 @@ msgid "With an account, start shopping online"
 msgstr ""
 
 #: templates/customer_overview.html:105
-#, fuzzy
-#| msgid "Create my account"
 msgid "Create your free account"
 msgstr "Créer mon compte"
 
 #: templates/customer_overview.html:119
-#, fuzzy
-#| msgid "Add to Cart"
 msgid "Add items to your cart"
 msgstr "Ajouter au panier"
 
@@ -5873,10 +5628,8 @@ msgid "How do I pay my bills ?"
 msgstr "Comment payer mes factures?"
 
 #: templates/faq.html:18
-#, fuzzy
-#| msgid "We accept the following payment methods"
 msgid "As of now, we support the following payment method"
-msgstr "Nous acceptons les méthodes de paiement suivantes"
+msgstr "Actuellement, nous prenons en charge le mode de paiement suivant"
 
 #: templates/faq.html:20
 msgid "Other payments methods will be added when available"
@@ -5890,25 +5643,19 @@ msgstr ""
 "produits?"
 
 #: templates/faq.html:23
-#, fuzzy
-#| msgid "Please, get in touch with us. We will see if we find a solution."
 msgid "Please, get in touch with us. will see if we find a solution."
 msgstr "Veuillez nous contacter. Nous verrons si nous trouvons une solution."
 
 #: templates/faq.html:24
-msgid "You can contact us through the following channel"
-msgstr ""
+msgid "You can contact us through the following channels"
+msgstr "Vous pouvez nous contacter via les canaux suivants"
 
 #: templates/faq.html:26
-#, fuzzy
-#| msgid "How do I add an item in the Cart ?"
 msgid "How do I add an Item in the Cart ?"
 msgstr "Comment ajouter un article dans le panier?"
 
 #: templates/faq.html:27
-#, fuzzy
-#| msgid "To add an item into your cart follow the step below"
-msgid "To add an item into your cart follow the step bellow"
+msgid "To add an item into your cart follow the step below"
 msgstr "Pour ajouter un article à votre panier, suivez l'étape ci-dessous"
 
 #: templates/faq.html:29
@@ -5928,16 +5675,12 @@ msgid "How can I place an Order ?"
 msgstr "Comment puis-je passer une commande?"
 
 #: templates/faq.html:34
-#, fuzzy
-#| msgid "To place an order, please follow the steps below"
-msgid "To place an order, please follow the steps bellow"
+msgid "To place an order, please follow the steps below"
 msgstr "Pour passer une commande, veuillez suivre les étapes ci-dessous"
 
 #: templates/faq.html:36
-#, fuzzy
-#| msgid "Add to Cart"
 msgid "Add items in your cart"
-msgstr "Ajouter au panier"
+msgstr "Ajouter des articles dans votre panier"
 
 #: templates/faq.html:37
 msgid "From your cart page, click on the Checkout button"
@@ -5994,28 +5737,31 @@ msgstr ""
 
 #: templates/faq.html:74
 msgid "How can I cancel my order ?"
-msgstr ""
+msgstr "Comment puis-je annuler ma commande?"
 
 #: templates/faq.html:75
-msgid "To cancel your order, please follow steps described bellow"
+msgid "To cancel your order, please follow steps described below"
 msgstr ""
+"Pour annuler votre commande, veuillez suivre les étapes décrites ci-dessous"
 
 #: templates/faq.html:77
 msgid "From your account page, click on the Orders button"
-msgstr ""
+msgstr "Depuis la page de votre compte, cliquez sur le bouton Commandes"
 
 #: templates/faq.html:78
 msgid "open the order you want to cancel"
-msgstr ""
+msgstr "ouvrez la commande que vous souhaitez annuler"
 
 #: templates/faq.html:79
 msgid "click on the Cancel Order button"
-msgstr ""
+msgstr "cliquez sur le bouton Annuler la commande"
 
 #: templates/faq.html:80
 msgid ""
-"please, check the order status. Ashipped Order can no longer be cancelled."
+"please, check the order status. A shipped Order can no longer be cancelled."
 msgstr ""
+"veuillez vérifier l'état de la commande. Une commande expédiée ne peut plus "
+"être annulée."
 
 #: templates/faq.html:82
 msgid "How long does it take to be delivered ?"
@@ -6030,18 +5776,14 @@ msgid "If you are in a  hurry, please consider the Express shipping option"
 msgstr "Si vous êtes pressé, veuillez considérer l'option d'expédition Express"
 
 #: templates/faq.html:85
-#, fuzzy
-#| msgid "We accept the following payment methods"
 msgid "What are the available payment methods ?"
-msgstr "Nous acceptons les méthodes de paiement suivantes"
+msgstr "Quels sont les modes de paiement disponibles?"
 
 #: templates/faq.html:86
 msgid "The available payment methods are"
 msgstr "Les modes de paiement disponibles sont"
 
 #: templates/faq.html:88
-#, fuzzy
-#| msgid "I placed an Order, but it got cancelled after some days"
 msgid "I place an Order, but it got cancelled after some days"
 msgstr "J'ai passé une commande, mais elle a été annulée après quelques jours"
 
@@ -6074,14 +5816,10 @@ msgid "Filter the list by Amount field"
 msgstr ""
 
 #: templates/tags/amount_filter.html:6
-#, fuzzy
-#| msgid "Amount"
 msgid "amount"
 msgstr "montant"
 
 #: templates/tags/amount_filter.html:15
-#, fuzzy
-#| msgid "Reset Filter"
 msgid "Amount Filter"
 msgstr "filtre du montant"
 
@@ -6089,8 +5827,6 @@ msgstr "filtre du montant"
 #: templates/tags/order_status_filter.html:31
 #: templates/tags/payment_option_filter.html:37
 #: templates/tags/status_filter.html:38
-#, fuzzy
-#| msgid "Reset Filter"
 msgid "Use this Filter"
 msgstr "Utiliser ce filtre"
 
@@ -6103,14 +5839,10 @@ msgid "Filter the list by Date field"
 msgstr ""
 
 #: templates/tags/date_filter.html:9
-#, fuzzy
-#| msgid "Update"
 msgid "date"
 msgstr "date"
 
 #: templates/tags/date_filter.html:18
-#, fuzzy
-#| msgid "Filter"
 msgid "Date Filter"
 msgstr "Filtre de Date"
 
@@ -6119,14 +5851,10 @@ msgid "Enter a begin date"
 msgstr "Entrer la date de debut"
 
 #: templates/tags/date_filter.html:27
-#, fuzzy
-#| msgid "Brand Update"
 msgid "Enter a end date"
 msgstr "Entrez une date de fin"
 
 #: templates/tags/date_filter.html:32
-#, fuzzy
-#| msgid "Reset Filter"
 msgid "Select the Filter"
 msgstr "Sélectionnez le filtre"
 
@@ -6139,84 +5867,60 @@ msgid "Date before the chosen date"
 msgstr "Date antérieure à la date choisie"
 
 #: templates/tags/filter.html:17
-#, fuzzy
-#| msgid "Option"
 msgid "Filter Option"
-msgstr "Option"
+msgstr " Filtre d'option"
 
 #: templates/tags/filter.html:25
-#, fuzzy
-#| msgid "Reset Filter"
 msgid "Use Range Filter"
 msgstr "Utiliser le filtre de plage"
 
 #: templates/tags/filter.html:29
-#, fuzzy
-#| msgid "Balance State"
 msgid "Range Start"
-msgstr "Début de gamme"
+msgstr "Début de plage"
 
 #: templates/tags/filter.html:31
 msgid "Range End"
 msgstr "Fin de plage"
 
 #: templates/tags/language.html:14
-#, fuzzy
-#| msgid "Current Balance"
 msgid "Current language : "
 msgstr "Langue actuelle :"
 
 #: templates/tags/language.html:16
-#, fuzzy
-#| msgid "Select a Gender"
 msgid "Select language : "
 msgstr "Choisissez une langue"
 
 #: templates/tags/order_list_filter.html:8
 #: templates/tags/order_status_filter.html:6
 #: templates/tags/status_filter.html:6 templates/tags/table_filter.html:8
-#, fuzzy
-#| msgid "Status"
 msgid "status"
-msgstr "Statut"
+msgstr "statut"
 
 #: templates/tags/order_list_filter.html:14
 #: templates/tags/order_status_filter.html:14
 #: templates/tags/status_filter.html:15 templates/tags/table_filter.html:14
-#, fuzzy
-#| msgid "Reset Filter"
 msgid "Status Filter"
 msgstr "Filtre du statut"
 
 #: templates/tags/order_list_filter.html:20
 #: templates/tags/order_status_filter.html:20
 #: templates/tags/table_filter.html:20
-#, fuzzy
-#| msgid "Select a Brand"
 msgid "Select a status"
 msgstr "Choisissez une un statut"
 
 #: templates/tags/order_list_filter.html:32 templates/tags/table_filter.html:32
-#, fuzzy
-#| msgid "Reset Filter"
 msgid "use this Filter"
 msgstr "Utiliser ce filtre"
 
 #: templates/tags/order_list_filter.html:45 templates/tags/table_filter.html:45
-#, fuzzy
-#| msgid "Last Update"
 msgid "start date"
 msgstr "Date de début"
 
 #: templates/tags/order_list_filter.html:49 templates/tags/table_filter.html:49
-#, fuzzy
-#| msgid "Sold date"
 msgid "end date"
 msgstr "Date de fin"
 
 #: templates/tags/order_list_filter.html:56 templates/tags/table_filter.html:56
-#, fuzzy
-#| msgid "Amount"
 msgid "Amount filter"
 msgstr "Filtre du Montant"
 
@@ -6229,22 +5933,16 @@ msgid "Filter the list by payment_option field"
 msgstr ""
 
 #: templates/tags/payment_option_filter.html:7
-#, fuzzy
-#| msgid "Payment Option"
 msgid "payment method"
 msgstr "Option de payment"
 
 #: templates/tags/payment_option_filter.html:15
-#, fuzzy
-#| msgid "Payment Request History"
 msgid "Payment Method Filter"
-msgstr "Historique des demandes de paiement"
+msgstr "Filtre de méthode de paiement"
 
 #: templates/tags/payments_snippet.html:29
-#, fuzzy
-#| msgid "You have not order any product yet."
 msgid "You haven't made any Payments"
-msgstr "Vous n'avez encore commandé aucun produit"
+msgstr "Vous n'avez effectué aucun paiement"
 
 #: templates/tags/registration_form.html:28
 msgid "Password Confirmation"
@@ -6255,10 +5953,8 @@ msgid "Date of birth"
 msgstr "Date de naissance"
 
 #: templates/tags/registration_form.html:45
-#, fuzzy
-#| msgid "Account Type"
 msgid "Account type"
-msgstr "type de compte"
+msgstr "Type de compte"
 
 #: templates/tags/signup_dialog.html:13
 msgid "I have an account"
@@ -6303,28 +5999,38 @@ msgid "Balance History"
 msgstr "Historique du Solde"
 
 #: vendors/templates/vendor_tags/payment_report.html:9
-#, fuzzy
-#| msgid "Payments"
 msgid "Payments Count"
 msgstr "Nombre de Paiements"
 
 #: vendors/templates/vendor_tags/payment_report.html:13
-#, fuzzy
-#| msgid "Payments"
 msgid "Average Payments"
 msgstr "Moyenne de Paiements"
 
 #: vendors/templates/vendor_tags/payment_report.html:17
-#, fuzzy
-#| msgid "Payments"
 msgid "Min Payments"
 msgstr "Paiements minimal"
 
 #: vendors/templates/vendor_tags/payment_report.html:21
-#, fuzzy
-#| msgid "Payments"
 msgid "Max Payments"
 msgstr "Paiements maximum"
+
+#: vendors/templates/vendor_tags/product_attribute_creation_form.html:10
+#, fuzzy
+#| msgid "Enter the percent to apply"
+msgid "Enter the service category"
+msgstr "Saisir lle pourcentage à appliquer"
+
+#: vendors/templates/vendor_tags/product_attribute_creation_form.html:11
+#, fuzzy
+#| msgid "Enter the Operator name"
+msgid "Enter the category name"
+msgstr "Saisir le nom vendeur"
+
+#: vendors/templates/vendor_tags/product_attribute_creation_form.html:16
+#, fuzzy
+#| msgid "Create at"
+msgid "Create category"
+msgstr "Crée le"
 
 #: vendors/templates/vendor_tags/product_creation_form.html:34
 #: vendors/templates/vendors/product_create.html:42
@@ -6347,14 +6053,10 @@ msgid "Select a Product Type"
 msgstr "Choisissez un type de produit"
 
 #: vendors/templates/vendor_tags/reduction_form.html:11
-#, fuzzy
-#| msgid "Enter the Operator name"
 msgid "Enter the percent to apply"
 msgstr "Saisir lle pourcentage à appliquer"
 
 #: vendors/templates/vendor_tags/reduction_form.html:14
-#, fuzzy
-#| msgid "Create Product"
 msgid "Create reduction"
 msgstr "Crée un réduction"
 
@@ -6404,8 +6106,6 @@ msgid "Is Paid"
 msgstr "Est Payé"
 
 #: vendors/templates/vendors/order_list.html:49
-#, fuzzy
-#| msgid "Order Date"
 msgid "Ordered Date"
 msgstr "Date de la commande"
 
@@ -6414,8 +6114,6 @@ msgid "Add Product"
 msgstr "Ajouter un produit"
 
 #: vendors/templates/vendors/vendor_home.html:17
-#, fuzzy
-#| msgid "Sold date"
 msgid "Sold"
 msgstr "Vendu"
 

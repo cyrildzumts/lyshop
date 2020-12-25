@@ -2257,7 +2257,7 @@ def generate_token(request):
                 t = Token.objects.get_or_create(user=user)
                 context['generated_token'] = t
                 logger.info("user \"%s\" create a token for user \"%s\"", request.user.username, user.username )
-                messages.add_message(request, messages.SUCCESS, _('Token successfully generated for user {}'.format(username)) )
+                messages.add_message(request, messages.SUCCESS, _(f'Token successfully generated for user {username}') )
                 return redirect('dashboard:home')
             else :
                 logger.error("TokenForm is invalid : %s\n%s", form.errors, form.non_field_errors)
