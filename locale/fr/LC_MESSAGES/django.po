@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-25 02:08+0000\n"
+"POT-Creation-Date: 2020-12-25 02:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5622,6 +5622,8 @@ msgstr "LYSHOP FAQ"
 #: templates/faq.html:12
 msgid "This FAQ collects the commons questions you may be looking for answers."
 msgstr ""
+"Cette FAQ rassemble les questions communes auxquelles vous pourriez "
+"rechercher des réponses."
 
 #: templates/faq.html:17
 msgid "How do I pay my bills ?"
