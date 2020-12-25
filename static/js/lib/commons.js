@@ -218,6 +218,7 @@ var FileUpload = (function(){
         $('.drag-area').on('ondragover', onDragOverHandler);
         $('.drag-area').on('ondragenter', onDragStartHandler);
         $('.drag-area').on('ondragleave', onDragEndHandler);
+        console.log("Fileupload initialized");
     };
 
     FileUpload.prototype.clear = function() {
