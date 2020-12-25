@@ -15,7 +15,7 @@
       <div class="container">
             <aside class="panel panel-align-left full">
                   <ul class="dock dock-left full">
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'home'%}">{{site_name}}</a></li>
+                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'accounts:logout'%}">{% trans "Logout" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:home'%}">{% trans "Dashboard" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:addressbook'%}">{% trans "Addressbook" %}</a></li>
                               {% if can_view_group %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:groups'%}">{% trans "Groups" %}</a></li>{% endif %}
