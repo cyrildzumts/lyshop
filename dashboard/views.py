@@ -1117,6 +1117,7 @@ def product_delete(request, product_uuid=None):
         raise PermissionDenied
 
     if request.method != "POST":
+        logger.warn("product_delete : only POST request required")
         raise SuspiciousOperation('Bad request')
 
     product = get_object_or_404(models.Product, product_uuid=product_uuid)
@@ -1139,6 +1140,7 @@ def products_delete(request):
         raise PermissionDenied
 
     if request.method != "POST":
+        logger.warn("product_delete : only POST request required")
         raise SuspiciousOperation('Bad request')
 
     postdata = utils.get_postdata(request)
