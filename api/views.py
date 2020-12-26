@@ -153,7 +153,7 @@ def client_add_refund(request, payment_uuid, token):
 @api_view(['GET'])
 def get_attribute_type(request):
     attr_template = {
-    'name': (_'Name'),
+    'name': _('Name'),
     'display_name': _('Display Name'),
     'value' : _('Value'),
     'is_primary' : _('Primary'),
