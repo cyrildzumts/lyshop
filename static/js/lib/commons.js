@@ -385,7 +385,7 @@ define([
             };
             ajax(options, true, true).then(function(response){
                 console.info("Files have bean uploaded.");
-                msg = {
+                var msg = {
                     content : response.message,
                     level : response.status === 'OK'
                 }
