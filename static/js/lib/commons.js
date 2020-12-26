@@ -131,6 +131,7 @@ function onDropHandler(event){
     console.log("File(s) dropped");
     event.preventDefault();
     var files = [];
+    event.dataTransfer = event.originalEvent.dataTransfer;
     if(event.dataTransfer.items){
         var items = event.dataTransfer.items;
         for(var i = 0; i < items.length; i++){
