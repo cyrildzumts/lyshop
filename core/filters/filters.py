@@ -111,7 +111,7 @@ class Filter():
                 self.selected_filters.update(f.filter_dict)
             except Exception as e:
                 pass
-        return self.model.objects.filter(query_objects).filter(is_active=True)
+        return self.model.objects.filter(query_objects)
 
 
     
