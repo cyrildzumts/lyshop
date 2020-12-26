@@ -417,6 +417,9 @@ define([
 
 
     $(document).ready(function(){
+        if(window){
+            window.notify = notify;
+        }
         notification_wrapper = $('#notifications-wrapper');
         messages = $('#messages', notification_wrapper);
         notify_init(notification_wrapper, messages);

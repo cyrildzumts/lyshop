@@ -34,10 +34,14 @@ define(["ajax_api"],function(ajax) {
         }
         ajax(option, true, false).then(function(response){
             console.log(response);
-            notify({level:'info', content:'attr_template initialized'});
+            if("function" = typeof notify){
+                notify({level:'info', content:'attr_template initialized'});
+            }
         }, function(reason){
             console.error(reason);
-            notify({level:'warn', content:'attr_template not initialized'});
+            if("function" = typeof notify){
+                notify({level:'warn', content:'attr_template not initialized'});
+            }
         });
         console.log("AttributeManager initialized ...");
     };
