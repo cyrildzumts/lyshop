@@ -75,7 +75,7 @@ def catalog_home(request):
         'page_title' : page_title,
         'product_list': recent_products,
         'type_list': ProductType.objects.all(),
-        'queryset' : queryset.filter(is_active=True),
+        'queryset' : queryset,
         'GENDER' : Constants.GENDER,
         'SELECTED_FILTERS' : selected_filters
     }
@@ -99,7 +99,7 @@ def category_detail(request, category_uuid=None):
     field_filter = filters.Filter(Product, queryDict)
     queryset = field_filter.apply_filter()
     selected_filters = field_filter.selected_filters
-    queryset = queryset.filter(filterquery | subcatquery).filter(is_active=True)
+    queryset = queryset.filter(filterquery | subcatquery)
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
