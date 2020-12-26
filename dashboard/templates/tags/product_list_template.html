@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load catalog_tags %}
 {% load core_tags %}
-<form action="{% url 'dashboard:products' %}" id="filter-form" method="GET">
+
 
 
 <div class="mat-table-wrapper">
@@ -11,7 +11,9 @@
             </div>
         </div><!--End of Row-->
         {% if FILTER_CONFIG %}
+            <form action="{% url 'dashboard:products' %}" id="filter-form" method="GET">
             {% include "core/core_filter.html" with FILTER_TEMPLATE="core/filter.html" %}
+            </form>
         {% endif %}
         <form action="{% url 'dashboard:products-delete' %}" method="POST">{% csrf_token %}
         <table id="product-list" class="mat-table js-filter-table">
@@ -62,4 +64,3 @@
     </form>
     {% include "tags/pagination.html" with page_set=product_list %}
     </div><!--End of Table Wrapper-->
-</form>
