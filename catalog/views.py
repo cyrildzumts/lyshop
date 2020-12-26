@@ -66,7 +66,7 @@ class ProductDetailView(DetailView):
 def catalog_home(request):
     page_title = _('Catalog Home')
     template_name = GLOBAL_CONF.CATALOG_HOME_TEMPLATE_NAME
-    recent_products = Product.objects.all()[:GLOBAL_CONF.LATEST_QUERYSET_LIMIT]
+    recent_products = Product.objects.filter(is_active=True)[:GLOBAL_CONF.LATEST_QUERYSET_LIMIT]
     queryDict = request.GET.copy()
     field_filter = filters.Filter(Product, queryDict)
     queryset = field_filter.apply_filter()
@@ -75,7 +75,7 @@ def catalog_home(request):
         'page_title' : page_title,
         'product_list': recent_products,
         'type_list': ProductType.objects.all(),
-        'queryset' : queryset,
+        'queryset' : queryset.filter(is_active=True),
         'GENDER' : Constants.GENDER,
         'SELECTED_FILTERS' : selected_filters
     }
@@ -99,7 +99,7 @@ def category_detail(request, category_uuid=None):
     field_filter = filters.Filter(Product, queryDict)
     queryset = field_filter.apply_filter()
     selected_filters = field_filter.selected_filters
-    queryset = queryset.filter(filterquery | subcatquery)
+    queryset = queryset.filter(filterquery | subcatquery).filter(is_active=True)
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
