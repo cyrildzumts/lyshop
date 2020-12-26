@@ -1,6 +1,6 @@
 {% load i18n %} 
 
-<div class="responsive">
+<div class="container">
     
     <form id="file-upload-form" name="product-image" action="{% url 'dashboard:product-image-create' product.product_uuid%}" enctype="multipart/form-data" method="POST">{% csrf_token %}
         <input type="hidden" name="user" value="{{request.user.pk}}">

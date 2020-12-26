@@ -215,9 +215,9 @@ var FileUpload = (function(){
         this.clear_btn.on('click', this.clear.bind(this));
 
         $('.drag-area').on('ondrop', onDropHandler)
-            .on('ondragover', onDragOverHandler)
-            .on('ondragenter', onDragStartHandler)
-            .on('ondragleave', onDragEndHandler)
+            .on('dragover', onDragOverHandler)
+            .on('dragenter', onDragStartHandler)
+            .on('dragleave', onDragEndHandler)
             .on('mouseenter', function(event){
                 event.stopPropagation();
                 console.log('New mouseenter event');
