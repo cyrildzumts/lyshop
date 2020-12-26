@@ -217,7 +217,15 @@ var FileUpload = (function(){
         $('.drag-area').on('ondrop', onDropHandler)
             .on('ondragover', onDragOverHandler)
             .on('ondragenter', onDragStartHandler)
-            .on('ondragleave', onDragEndHandler);
+            .on('ondragleave', onDragEndHandler)
+            .on('mouseenter', function(event){
+                event.stopPropagation();
+                console.log('New mouseenter event');
+            })
+            .on('mouseleave', function(event){
+                event.stopPropagation();
+                console.log('New mouseleave event');
+            });
         console.log("Fileupload initialized");
     };
 
