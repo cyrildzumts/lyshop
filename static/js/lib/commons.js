@@ -383,7 +383,7 @@ define([
                 cache : false,
                 contentType : false
             };
-            ajax(options).then(function(response){
+            ajax(options, true, true).then(function(response){
                 console.info("Files have bean uploaded.");
                 message = response.message;
                 msg = {
