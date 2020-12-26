@@ -192,7 +192,7 @@ define([
             cache : false,
             contentType : false
         };
-        ajax(options).then(function(response){
+        ajax(options, ture, true).then(function(response){
 
         }, function(reason){
 

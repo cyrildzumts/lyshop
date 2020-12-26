@@ -16,11 +16,14 @@ define(['lang'], function(Locale) {
         A future object is returned
     */
 
-      function ajax_api(options, debug){
+      function ajax_api(options, url_contain_lang, debug){
         if(debug){
           console.debug("ajax_api options - ", options);
         }
-        options.url = '/' + Locale.get_lang() + options.url;
+        if(!url_contain_lang){
+          options.url = '/' + Locale.get_lang() + options.url;
+        }
+        
         return new Promise(function(resolve, reject){
             $.ajax(options).done(resolve).fail(reject);
         });
