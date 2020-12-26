@@ -214,7 +214,8 @@ var FileUpload = (function(){
         var that = this;
         this.clear_btn.on('click', this.clear.bind(this));
 
-        $('.drag-area').on('ondrop', onDropHandler)
+        $('.drag-area')
+            .on('drop', onDropHandler)
             .on('dragover', onDragOverHandler)
             .on('dragenter', onDragStartHandler)
             .on('dragleave', onDragEndHandler)
