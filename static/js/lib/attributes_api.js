@@ -1,6 +1,7 @@
-define(function() {
+define(["ajax_api"],function(ajax) {
     'use strict';
     console.log("attribute_api creation ...");
+    var attr_template;
     function AttributManager(){
         
         //this.form = $('#form-attrs-management');
@@ -25,6 +26,19 @@ define(function() {
             //var form_container = $($(this).data('form'));
             self.create_attribute();
         });
+        var option = {
+            type:'GET',
+            method: 'GET',
+            dataType: 'json',
+            url : '/api/attribute-types/'
+        }
+        ajax(option, true, false).then(function(response){
+            console.log(response);
+            notify({level:'info', content:'attr_template initialized'});
+        }, function(reason){
+            console.error(reason);
+            notify({level:'warn', content:'attr_template not initialized'});
+        });
         console.log("AttributeManager initialized ...");
     };
 
@@ -39,7 +53,6 @@ define(function() {
     AttributManager.prototype.clear = function(){
         this.total_form = 0;
         this.updateManagementForm();
-
     };
 
     AttributManager.prototype.updateFormInputIndex = function(){

@@ -26,6 +26,7 @@ from accounts.models import Account
 from orders.models import OrderItem, Order
 from dashboard import analytics
 from addressbook import addressbook_service
+from catalog import constants as CATALOG_CONSTANTS
 
 from lyshop import utils
 from django.utils import timezone
@@ -147,3 +148,16 @@ def client_add_payment(request, order_uuid, token):
 @api_view(['GET', 'POST'])
 def client_add_refund(request, payment_uuid, token):
     pass
+
+
+@api_view(['GET'])
+def get_attribute_type(request):
+    attr_template = {
+    'name': (_'Name'),
+    'display_name': _('Display Name'),
+    'value' : _('Value'),
+    'is_primary' : _('Primary'),
+    'value_type' : _('Value Type'),
+    'value_types' : [{ 'key' :k, 'value': v } for k,v in CATALOG_CONSTANTS.ATTRIBUTE_TYPE]
+    }
+    return Response(data=attr_template)
