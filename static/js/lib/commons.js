@@ -24,11 +24,10 @@ define([
             'text': message.content
         })).appendTo(li);
         li.appendTo(messages);
-        console.log(message);
+        //let top = notification_wrapper.offset().top - $(window).scrollTop();
         notification_wrapper.fadeIn().delay(fadeDelay).fadeOut('slow', function () {
             messages.empty();
         });
-        console.log("Notification sent.");
     }
 
     function notify_init(wrapper, message_container){

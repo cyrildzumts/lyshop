@@ -2662,7 +2662,7 @@ table tbody tr, .mat-table tbody tr{
 
 #notifications-wrapper{
     display: none;
-    position: absolute;
+    position: fixed;
     top : 48px;
     right: 16px;
     width: 344px;
