@@ -2498,6 +2498,7 @@ table tbody tr, .mat-table tbody tr{
 	/*width: 350px;*/
 	top: 48px;
 	left: -100%;
+	font-size: 00.875em;
 }
 .site-panel  .mat-button{
 	justify-content: start !important;
