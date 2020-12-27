@@ -1140,7 +1140,7 @@ def product_changes(request):
 
 
 @login_required
-def product_toggle_active(request,product_uuid=None, toggle):
+def product_toggle_active(request,product_uuid, toggle):
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
         logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
