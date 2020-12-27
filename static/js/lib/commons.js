@@ -18,12 +18,12 @@ define([
         let div = $('<div />', {
             "class" : "notification flex"
         });
-        let span = $('<span />', {
+        div.append($('<i />', {
+            "class" : "fas fa-info-circle icon"
+        })).append($('<span />', {
             'text': message.content
-        });
-        div.append(span).appendTo(li);
+        })).appendTo(li);
         li.appendTo(messages);
-        console.log("Sending notification for message : ");
         console.log(message);
         notification_wrapper.fadeIn().delay(fadeDelay).fadeOut('slow', function () {
             messages.empty();
@@ -59,7 +59,6 @@ define([
 
     var ListFilter = (function(){
         function ListFilter(){
-            console.log("creating ListFilter instance");
             this.init();
             console.log("ListFilter instance created");
         };
@@ -132,7 +131,6 @@ define([
     })();
 
     function onDropHandler(event){
-        console.log("File(s) dropped");
         event.preventDefault();
         var files = [];
         event.dataTransfer = event.originalEvent.dataTransfer;
@@ -142,7 +140,6 @@ define([
                 if(items[i].kind === 'file'){
                     var file = items[i].getAsFile();
                     fileUpload.addFile(file);
-                    console.log("...asFile file[" + i + "].name = " + file.name);
                 }
             }
         }else{
@@ -151,7 +148,6 @@ define([
             for(var i = 0; i < files.length; i++){
                 //var file = files[i]
                 fileUpload.addFile(files[i]);
-                console.log("... file[" + i + "].name = " + files[i].name);
             }
         }
         $('.drag-area').removeClass('on-drag');
@@ -164,18 +160,15 @@ define([
     }
 
     function onDragStartHandler(event) {
-        console.log("Drag start");
         $('.drag-area').addClass('on-drag');
         
     }
     function onDragEndHandler(event) {
-        console.log("Drag end");
         $('.drag-area').removeClass('on-drag');
         
     }
 
     function uploadFiles(form, files) {
-        console.log("SendForm started ...");
         var formData = new FormData(form);
         files.forEach(function(file, index){
             formData.append("file_" + index, file, file.name);
@@ -224,20 +217,10 @@ define([
                 .on('dragover', onDragOverHandler)
                 .on('dragenter', onDragStartHandler)
                 .on('dragleave', onDragEndHandler)
-                .on('mouseenter', function(event){
-                    event.stopPropagation();
-                    console.log('New mouseenter event');
-                })
-                .on('mouseleave', function(event){
-                    event.stopPropagation();
-                    console.log('New mouseleave event');
-                });
             console.log("Fileupload initialized");
         };
 
         FileUpload.prototype.clear = function() {
-            console.log("clear file list ...");
-            console.log(this);
             this.files = [];
             this.formData = undefined;
             this.form = undefined;
