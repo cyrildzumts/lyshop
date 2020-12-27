@@ -87,7 +87,7 @@ def products_toggle_active(id_list, toggle=True):
     if updated_row > 0:
         #Product.objects.filter(id__in=id_list).exclude(is_active=toggle).update(is_active=toggle)
         messages.success(request, f"Products \"{id_list}\" active state changed to {toggle}")
-        logger.info(f"Products \"{id_list}\" active state changed to {toggle}"")
+        logger.info(f"Products \"{id_list}\" active state changed to {toggle}")
         return id_list, True
         
     else:
