@@ -69,7 +69,7 @@ def catalog_home(request):
     recent_products = Product.objects.filter(is_active=True)[:GLOBAL_CONF.LATEST_QUERYSET_LIMIT]
     queryDict = request.GET.copy()
     field_filter = filters.Filter(Product, queryDict)
-    queryset = field_filter.apply_filter()
+    queryset = field_filter.apply_filter().filter(is_active=True)
     selected_filters = field_filter.selected_filters
     context = {
         'page_title' : page_title,
@@ -97,7 +97,7 @@ def category_detail(request, category_uuid=None):
 
     queryDict = request.GET.copy()
     field_filter = filters.Filter(Product, queryDict)
-    queryset = field_filter.apply_filter()
+    queryset = field_filter.apply_filter().filter(is_active=True)
     selected_filters = field_filter.selected_filters
     queryset = queryset.filter(filterquery | subcatquery)
     page = request.GET.get('page', 1)
@@ -129,7 +129,7 @@ def brand_detail(request, brand_uuid=None):
         raise HttpResponseBadRequest
 
     brand = get_object_or_404(Brand, brand_uuid=brand_uuid)
-    queryset = Product.objects.filter(brand__brand_uuid=brand_uuid)
+    queryset = Product.objects.filter(brand__brand_uuid=brand_uuid, is_active=True)
     page_title = _(brand.display_name)
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
