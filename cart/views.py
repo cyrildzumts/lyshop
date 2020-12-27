@@ -122,7 +122,7 @@ def ajax_add_to_cart(request):
                 context['success'] = True
                 context['status'] = True
                 context['quantity'] = cart.quantity
-                context['message'] =  prefix + _('added to cart')
+                context['message'] =  prefix + str(_('added to cart'))
                 return JsonResponse(context)
 
         else:
