@@ -79,6 +79,9 @@ urlpatterns = [
     path('products/delete/<uuid:product_uuid>/', views.product_delete, name='product-delete'),
     path('products/delete/', views.products_delete, name='products-delete'),
     path('products/create/', views.product_create, name='product-create'),
+    path('products/changes/', views.product_changes, name='product-changes'),
+    path('products/activate/(?P<toggle>)/', views.products_toggle_active, name='products-activate'),
+    path('products/activate/<uuid:product_uuid>/(?P<toggle>)/', views.product_toggle_active, name='product-activate'),
 
     path('product-types/', views.product_types, name='product-types'),
     path('product-types/detail/<uuid:type_uuid>/', views.product_type_detail, name='product-type-detail'),

@@ -1031,6 +1031,7 @@ def products(request):
     context['product_list'] = list_set
     context['SELECTED_FILTERS'] = selected_filters
     context['FILTER_CONFIG'] = Product.FILTER_CONFIG
+    context['PRODUCT_ACTIONS'] = Catalog_Constants.PRODUCT_ACTIONS
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -1104,6 +1105,95 @@ def product_update(request, product_uuid=None):
     context['SHORT_DESCRIPTION_MAX_SIZE'] = Catalog_Constants.SHORT_DESCRIPTION_MAX_SIZE
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
+
+
+@login_required
+def product_changes(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        logger.warn("product_changes : only POST request required")
+        raise SuspiciousOperation('Bad request')
+
+    postdata = utils.get_postdata(request)
+    id_list = list(map(int, postdata.getlist('products')))
+    action = int(postdata.get('action'))
+    succeed = False
+    if action == Catalog_Constants.PRODUCT_ACTION_DELETE:
+        count, delete_dict = inventory_service.delete_instances(Product, id_list)
+        succeed = count > 0
+    elif action == Catalog_Constants.PRODUCT_ACTION_ACTIVATE:
+        pid_list, succeed = inventory_service.products_toggle_active(id_list, True)
+    elif action == Catalog_Constants.PRODUCT_ACTION_DEACTIVATE:
+        pid_list, succeed = inventory_service.products_toggle_active(id_list, False)
+    if succedd:
+        logger.info(f'Products \"{id_list}\" active status updated by user \"{request.user.username}\"')
+        messages.success(request, _('Product updated'))
+    return redirect('dashboard:products')
+
+
+@login_required
+def product_toggle_active(request,product_uuid=None, toggle):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        logger.warn("product_toggle_active : only POST request required")
+        raise SuspiciousOperation('Bad request')
+
+    logger.info(f"product_toggle_active : toggle : {toggle} - type of toggle : {type(toggle)}")
+    '''
+    product = get_object_or_404(models.Product, product_uuid=product_uuid)
+    p_name = product.name
+    id_list, updated = inventory_service.products_toggle_active([product.pk], toggle)
+    if updated:
+        logger.info(f'Product \"{p_name}\" active status updated by user \"{request.user.username}\"')
+        messages.success(request, _('Product updated'))
+    '''
+    return redirect('dashboard:products')
+
+
+@login_required
+def products_toggle_active(request, toggle):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method != "POST":
+        logger.warn("products_toggle_active : only POST request required")
+        raise SuspiciousOperation('Bad request')
+
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('products')
+
+    if len(id_list):
+        product_id_list = list(map(int, id_list))
+        #id_list, updated = inventory_service.products_toggle_active(product_id_list, toggle)
+        messages.success(request, f"Products \"{id_list}\" active status updated")
+        logger.info(f"Products \"{id_list}\" active status updated to \"{toggle}\" by user {username}")
+        
+    else:
+        messages.error(request, f"Products \"{id_list}\" could not be updated")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('dashboard:products')
 
 @login_required
 def product_delete(request, product_uuid=None):

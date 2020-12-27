@@ -73,7 +73,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ['name', 'display_name','added_by', 'sold_by' ,'category', 'brand', 'product_type' ,'price', 'promotion_price', 'quantity', 'short_description','description', 'gender']
+        fields = ['name', 'display_name','is_active','added_by', 'sold_by' ,'category', 'brand', 'product_type' ,'price', 'promotion_price', 'quantity', 'short_description','description', 'gender']
 
 
 class AddAttributeForm(forms.ModelForm):
@@ -94,14 +94,14 @@ class ProductVariantForm(forms.ModelForm):
 
     class Meta:
         model = ProductVariant
-        fields = ['name', 'display_name', 'product', 'attributes', 'price','promotion_price', 'quantity']
+        fields = ['name', 'display_name', 'is_active', 'product', 'attributes', 'price','promotion_price', 'quantity']
 
 
 class ProductVariantUpdateForm(forms.ModelForm):
 
     class Meta:
         model = ProductVariant
-        fields = ['name', 'display_name', 'price','promotion_price', 'quantity']
+        fields = ['name', 'display_name','is_active', 'price','promotion_price', 'quantity']
 
 
 

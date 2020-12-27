@@ -1,6 +1,7 @@
 from catalog.models import ProductAttribute
 from catalog import models
 from catalog import forms
+from core import core_tools
 from django.forms import formset_factory, modelformset_factory
 from django.db.models import Model
 from catalog import constants as Constants
@@ -74,6 +75,24 @@ def create_product_from_data(data):
     return p, created
 
 
+def products_toggle_active(id_list, toggle=True):
+    if not isinstance(postdata, dict):
+        return [], False
+    if toggle:
+        msg = f"Products \"{id_list}\" activated"
+    else:
+        msg = f"Products \"{id_list}\" deactivated"
+
+    if len(id_list):
+        Product.objects.filter(id__in=id_list, is_active=not toggle).update(is_active=toggle)
+        messages.success(request, f"Products \"{id_list}\" activated")
+        logger.info(f"Products \"{id_list}\" activated")
+        return id_list, True
+        
+    else:
+        messages.error(request, f"Products \"{id_list}\" could not update active status")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return id_list, False
 
 
 def update_product(postdata, product):
@@ -163,13 +182,17 @@ def create_variant(product, postdata):
         
 
 
+def delete_instances(model, instances):
+    if not isinstance(model, Model) or not isinstance(instances, list):
+        return None, None
+    return core_tools.delete_instances(model, instances)
 
 
 def create_instance(model, data):
     if not isinstance(model, Model) or not isinstance(data, dict):
         return None
 
-    return model.objects.create(**data)
+    return core_tools.create_instance(model, data)
 
 
 def create_category(postdata):

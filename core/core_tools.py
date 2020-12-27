@@ -31,3 +31,12 @@ def update_instance(model, instance, data):
 def delete_instance(model, data):
     logger.warn(f"Delete instance of {model} with data : {data}")
     return model.objects.filter(**data).delete()
+
+def delete_instances(model, id_list):
+    logger.warn(f"Delete instances of {model} with id in : {id_list}")
+    return model.objects.filter(id__in=id_list).delete()
+
+
+def instances_active_toggle(model, id_list, toggle=True):
+    logger.warn(f"Updating active status for  instances of {model} with id in : {id_list}. new active status : {toggle}")
+    return model.objects.filter(id__in=id_list).exclude(is_active=toggle).update(is_active=toggle)
