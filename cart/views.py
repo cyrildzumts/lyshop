@@ -117,12 +117,12 @@ def ajax_add_to_cart(request):
             variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid)
             result, cart = cart_service.add_to_cart(cart, variant)
             if result:
-                prefix = variant.product.display_name + variant.product.brand.display_name
+                prefix = variant.product.display_name + " " + variant.product.brand.display_name
                 cart.refresh_from_db()
                 context['success'] = True
                 context['status'] = True
                 context['quantity'] = cart.quantity
-                context['message'] =  prefix + str(_('added to cart'))
+                context['message'] =  prefix + " " + str(_('added to cart'))
                 return JsonResponse(context)
 
         else:
