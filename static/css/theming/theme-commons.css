@@ -85,7 +85,7 @@ li.active{
 }
 
 li.active.selected{
-	border-bottom: 3px solid var(--secondary-color);
+	border-bottom: 3px solid var(--secondary-color) !important;
 }
 
 .logo{
