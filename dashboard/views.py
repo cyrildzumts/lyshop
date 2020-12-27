@@ -1135,7 +1135,10 @@ def products_changes(request):
         pid_list, succeed = inventory_service.products_toggle_active(id_list, False)
     if succedd:
         logger.info(f'Products \"{id_list}\" active status updated by user \"{request.user.username}\"')
-        messages.success(request, _('Product updated'))
+        messages.success(request, f'Products \"{id_list}\" updated')
+    else:
+        logger.info(f'Products \"{id_list}\" active status could not be updated by user \"{request.user.username}\"')
+        messages.warn(request, f'Products \"{id_list}\" not updated updated')
     return redirect('dashboard:products')
 
 
