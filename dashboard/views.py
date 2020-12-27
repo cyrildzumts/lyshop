@@ -1138,7 +1138,7 @@ def products_changes(request):
         messages.success(request, f'Products \"{id_list}\" updated')
     else:
         logger.info(f'Products \"{id_list}\" active status could not be updated by user \"{request.user.username}\"')
-        messages.warn(request, f'Products \"{id_list}\" not updated updated')
+        messages.warning(request, f'Products \"{id_list}\" not updated updated')
     return redirect('dashboard:products')
 
 
