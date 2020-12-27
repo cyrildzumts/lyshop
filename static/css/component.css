@@ -2498,7 +2498,7 @@ table tbody tr, .mat-table tbody tr{
 	/*width: 350px;*/
 	top: 48px;
 	left: -100%;
-	font-size: 0.8em;
+	font-size: 1em;
 }
 .site-panel  .mat-button{
 	justify-content: start !important;
@@ -2732,6 +2732,7 @@ table tbody tr, .mat-table tbody tr{
 
 	}
 	.site-panel {
+		font-size: 0.8em !important;
 		padding: 0.5em 1em !important;
 	}
 	.mat-table thead, table thead{
