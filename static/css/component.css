@@ -2654,6 +2654,9 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
+	.notification-list{
+		font-size: 0.65em;
+	}
 	.add-to-cart .mat-button{
 		font-size: 0.6em;
 	}
