@@ -39,6 +39,7 @@
         <div class="wrapper full">
             <form id="add-cart-form" action="{{product.get_absolute_url}}" method="POST">{% csrf_token %}
             <input type="hidden" name="product" value="{{product.product_uuid}}">
+            <input id="product-name" type="hidden" name="product_name" value="{{product.display_name}}" disabled readonly>
             {% if not product_attrs.has_selective %}
                 <input id="variant" type="hidden" name="variant_uuid" value="{{product_attrs.variant}}">
             {% else %}

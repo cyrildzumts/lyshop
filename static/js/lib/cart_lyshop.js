@@ -41,7 +41,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
                 data[e.name] = e.value;
             });
             */
-            self.add($(this).serialize());
+            self.add($(this).serialize(), $('#product-name', this).val());
            //return true;
         });
         $('.js-cart-item-quantity').on('keypress', function(e){
@@ -67,7 +67,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
     }
 
 
-    Cart.prototype.add = function(formData){
+    Cart.prototype.add = function(formData, product_name){
         var self = this;
         if(!formData){
             console.warn("No data for to add to to cart");
@@ -83,7 +83,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         }
         ajax_api(option, false).then(function(response){
             self.update_badge(response.quantity);
-            notify({level:'info', content:'product added'});
+            notify({level:'info', content: response.message});
         }, function(reason){
             console.error(reason);
             notify({level:'warn', content:'product could not be added'});

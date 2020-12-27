@@ -121,6 +121,7 @@ def ajax_add_to_cart(request):
                 context['success'] = True
                 context['status'] = True
                 context['quantity'] = cart.quantity
+                context['message'] = variant.product.display_name + variant.product.brand.display_name + _('added to cart')
                 return JsonResponse(context)
 
         else:
