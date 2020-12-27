@@ -157,9 +157,8 @@ li.active.selected{
 }
 
 .notification{
-    background-color:var(--primary-color);
-    color: var(--third-color);
-    padding: 0.5em 0.2em;
+    background-color:var(--notification-bg);
+    color: var(--notification-color);
 }
 
 .metric{

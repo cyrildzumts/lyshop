@@ -436,15 +436,18 @@
     font-weight: 700;
 }
 
-
+.notification{
+    width: 100%;
+    padding: 0.5em 0.2em;
+}
 
 .notification .title{
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 700;
 }
 
 .notification .content{
-    font-size: 1em;
+    font-size: 0.7em;
     font-weight: 400;
 
 }
