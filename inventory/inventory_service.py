@@ -83,9 +83,9 @@ def products_toggle_active(id_list, toggle=True):
     else:
         msg = f"Products \"{id_list}\" deactivated"
 
-    updated_row = core_tools.instances_active_toggle(Product, id_list, toggle)
+    updated_row = core_tools.instances_active_toggle(models.Product, id_list, toggle)
     if updated_row > 0:
-        #Product.objects.filter(id__in=id_list).exclude(is_active=toggle).update(is_active=toggle)
+        #models.Product.objects.filter(id__in=id_list).exclude(is_active=toggle).update(is_active=toggle)
         messages.success(request, f"Products \"{id_list}\" active state changed to {toggle}")
         logger.info(f"Products \"{id_list}\" active state changed to {toggle}")
         return id_list, True
