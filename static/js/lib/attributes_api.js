@@ -35,16 +35,9 @@ define(["ajax_api"],function(ajax) {
         ajax(option, true, false).then(function(response){
             console.log(response);
             attr_template = response;
-            if("function" == typeof notify){
-                notify({level:'info', content:'attr_template initialized'});
-            }
         }, function(reason){
             console.error(reason);
-            if("function" == typeof notify){
-                notify({level:'warn', content:'attr_template not initialized'});
-            }
         });
-        console.log("AttributeManager initialized ...");
     };
 
     AttributManager.prototype.addAttribute = function(){
