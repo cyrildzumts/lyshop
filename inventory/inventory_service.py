@@ -76,17 +76,18 @@ def create_product_from_data(data):
 
 
 def products_toggle_active(id_list, toggle=True):
-    if not isinstance(postdata, dict):
+    if not isinstance(id_list, list):
         return [], False
     if toggle:
         msg = f"Products \"{id_list}\" activated"
     else:
         msg = f"Products \"{id_list}\" deactivated"
 
-    if len(id_list):
-        Product.objects.filter(id__in=id_list, is_active=not toggle).update(is_active=toggle)
-        messages.success(request, f"Products \"{id_list}\" activated")
-        logger.info(f"Products \"{id_list}\" activated")
+    updated_row = core_tools.instances_active_toggle(Product, id_list, toggle)
+    if updated_row > 0:
+        #Product.objects.filter(id__in=id_list).exclude(is_active=toggle).update(is_active=toggle)
+        messages.success(request, f"Products \"{id_list}\" active state changed to {toggle}")
+        logger.info(f"Products \"{id_list}\" active state changed to {toggle}"")
         return id_list, True
         
     else:
