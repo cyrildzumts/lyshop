@@ -1108,7 +1108,7 @@ def product_update(request, product_uuid=None):
 
 
 @login_required
-def product_changes(request):
+def products_changes(request):
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
         logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
