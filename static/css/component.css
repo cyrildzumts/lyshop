@@ -2688,7 +2688,8 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .notification{
-    width: 100%;
+	width: 100%;
+	font-size: 0.7em;
     padding: 0.5em 0.2em;
 }
 
