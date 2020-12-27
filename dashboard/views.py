@@ -1017,7 +1017,7 @@ def products(request):
     #queryset = Product.objects.order_by('-created_at')
     queryDict = request.GET.copy()
     field_filter = filters.Filter(Product, queryDict)
-    queryset = field_filter.apply_filter()
+    queryset = field_filter.apply_filter().order_by('-created_at')
     selected_filters = field_filter.selected_filters
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
@@ -2029,7 +2029,7 @@ def attributes(request):
     page_title = _('Product Attributes')
 
 
-    queryset = ProductAttribute.objects.all()
+    queryset = ProductAttribute.objects.order_by('name', 'value')
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
