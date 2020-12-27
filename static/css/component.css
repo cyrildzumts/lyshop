@@ -2033,6 +2033,10 @@ a.mat-button{
 	min-height: 32px;
 	/*max-height: 72px;*/
 	border-bottom: 1px solid #ccc;
+	margin: 0.2em 0.4em;
+}
+.mat-list-item.language{
+	border-bottom: none !important;
 }
 
 .mat-list-item > input {
