@@ -5,7 +5,7 @@
         <input type="hidden" name="added_by" value="{{request.user.pk}}">
         
         <div class="mat-box">
-            <div class="form-group row">
+            <div class="actions">
                 <a class="mat-button mat-button-text js-cancel" href="{%url 'dashboard:products'%}">{% trans "Cancel" %}</a>
                 <button class="mat-button mat-button-default" type="submit">{% trans "Create Product" %}</button>
             </div>
@@ -69,7 +69,7 @@
             <div class="flex flex-column">
                 <div class="form-group">
                     <label for="short_description">{% trans "Short Description" %}</label>
-                    <textarea id="short_description" class="limited-input" name="short_description" cols="30" rows="10" data-target="#short-description-counter" data-max-length="164"></textarea>
+                    <textarea id="short_description" class="limited-input bordered"  name="short_description" cols="30" rows="10" data-target="#short-description-counter" data-max-length="164"></textarea>
                 </div>
                 
                 <div class="row"> <span id="short-description-counter" class="char-counter">0</span><span class="text-max-length">/164</span></div>
@@ -78,7 +78,7 @@
             <div class="flex flex-column">
                 <div class="form-group">
                     <label for="description">{% trans "Description" %}</label>
-                    <textarea id="description" class="limited-input" name="description" cols="30" rows="10" data-target="#description-counter" data-max-length="300"></textarea>
+                    <textarea id="description" class="limited-input bordered" name="description" cols="30" rows="10" data-target="#description-counter" data-max-length="300"></textarea>
                 </div>
                 
                 <div class="row"> <span id="description-counter" class="char-counter">0</span><span class="text-max-length">/300</span></div>

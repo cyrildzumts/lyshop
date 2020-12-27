@@ -2682,7 +2682,7 @@ table tbody tr, .mat-table tbody tr{
     overflow: auto;
     list-style-type: none;
     text-decoration: none;
-    font-size: 1em;
+    font-size: 0.875em;
     line-height: 16px;
     font-weight: 700;
 }
