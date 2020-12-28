@@ -166,3 +166,8 @@ li.active.selected{
     color: var(--third-color);
 }
 
+.banner-action .mat-button{
+    background-color: #FFFFFF !important;
+    color: var(--primary-color) !important;
+}
+
