@@ -2485,6 +2485,14 @@ table tbody tr, .mat-table tbody tr{
 	justify-content: center;
 
 }
+.image-banner{
+	display: flex;
+	position: relative;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+
+}
 .img-responsive{
 	width: 100%;
 }

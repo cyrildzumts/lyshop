@@ -30,7 +30,11 @@
     <a class="mat-button mat-button-default" href="{% url 'catalog:catalog-home' %}"> {% trans 'Discover' %} {{site_name}}</a>
   </div><!--End of Banner Actions-->
   {% endif %}
- 
+  <div class="container">
+    <div class="image-banner">
+      <img class="img-responsive" src="{% static 'assets/parfum_banner.png' %}" alt="{% trans 'Parfum' %}">
+    </div>
+  </div>
   
 </div><!--End of Banner-->
 {% endblock HEADER_BANNER %}
@@ -39,11 +43,7 @@
 {% block MAIN %}
 
 <div class="container">
-  <div class="flex flex-center">
-    <div class="image-wrapper">
-      <img src="{% static 'assets/parfum_banner.png' %}" alt="{% trans 'Parfum' %}">
-    </div>
-  </div>
+  
   {% for h in highlights %}
     <div class="scrollable-h highlight">
         <div class="label">{% trans h.display_name %}</div>
