@@ -38,6 +38,11 @@
 {% block MAIN %}
 
 <div class="container">
+  <div class="flex flex-center">
+    <div class="image-wrapper">
+      <img src="{% static 'assets/parfum_banner.png'" alt="{% trans 'Parfum' %}">
+    </div>
+  </div>
   {% for h in highlights %}
     <div class="scrollable-h highlight">
         <div class="label">{% trans h.display_name %}</div>
