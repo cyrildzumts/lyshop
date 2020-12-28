@@ -2477,6 +2477,8 @@ table tbody tr, .mat-table tbody tr{
 	border-radius: 0.25rem;
 }
 
+
+
 .image-wrapper{
 	display: flex;
 	position: relative;
@@ -2484,6 +2486,10 @@ table tbody tr, .mat-table tbody tr{
 	align-items: center;
 	justify-content: center;
 
+}
+
+.banner-container{
+	padding-bottom: 1em;
 }
 .image-banner{
 	display: flex;
@@ -2496,8 +2502,6 @@ table tbody tr, .mat-table tbody tr{
 .banner-action{
 	position: absolute;
 	top: 5em;
-	left: 50%;
-	right: 50%;
 	padding: 1em;
 }
 
