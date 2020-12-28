@@ -35,7 +35,12 @@
       <div class="banner-action">
         <a href="{{parfum_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Discover our Parfum" %}</a>
       </div>
-      <img class="img-responsive" src="{% static 'assets/parfum_banner.png' %}" alt="{% trans 'Parfum' %}">
+      <picture class="img-responsive">
+        <source media="(min-width:40em)" srcset="{% static 'assets/parfum_banner.png' %}">
+        <source media="(max-width:40em)" srcset="{% static 'assets/parfum_banner_small.png' %}">
+        <img class="img-responsive" src="{% static 'assets/parfum_banner_small-2.png' %}" alt="{% trans 'Parfum' %}">
+      </picture>
+      
     </div>
   </div>
   
