@@ -2502,7 +2502,6 @@ table tbody tr, .mat-table tbody tr{
 
 .banner-action{
 	position: absolute;
-	top: 6em;
 	padding: 1em;
 }
 
@@ -2726,7 +2725,6 @@ table tbody tr, .mat-table tbody tr{
 }
 @media only screen and (max-width:40em){
 	.banner-action{
-		top: 6.2em;
 		font-size: 0.8em;
 	}
 	.notification-list{
