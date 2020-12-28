@@ -6,8 +6,8 @@
 {% block HEADER_BANNER %}
 <div class="banner">
     <div class="banner--title">
-      <h1> {%trans 'Welcome to '%} {{site_name}}</h1>
-      <h3>{% trans 'ONLINE SHOPPING MADE EASY' %}</h3>
+      <h4> {%trans 'Welcome to '%} {{site_name}}</h4>
+      <h5>{% trans 'ONLINE SHOPPING MADE EASY' %}</h5>
     </div><!--End of Banner Titlte-->
     <div class="banner--content">
         <p class="banner--description banner-entry">
@@ -33,7 +33,7 @@
   <div class="container banner-container">
     <div class="image-banner">
       <div class="banner-action">
-        <a href="" class="mat-button mat-button-default">{% trans "Discover our Parfum" %}</a>
+        <a href="{{parfum_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Discover our Parfum" %}</a>
       </div>
       <img class="img-responsive" src="{% static 'assets/parfum_banner.png' %}" alt="{% trans 'Parfum' %}">
     </div>

@@ -3,7 +3,7 @@ from django.contrib import auth
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.sitemaps import Sitemap
-from catalog.models import Highlight
+from catalog.models import Highlight, Category
 from catalog import constants as Catalog_Constants
 # from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -38,10 +38,12 @@ def home(request):
     template_name = "home.html"
     page_title = settings.SITE_NAME
     highlights = Highlight.objects.filter(is_active=True)
+    parfum_category = Category.objects.get(name='parfum')
     context = {
         'page_title': page_title,
         'user_is_authenticated' : request.user.is_authenticated,
-        'highlights' : highlights
+        'highlights' : highlights,
+        'parfum_category' : parfum_category
     }
     return render(request, template_name,context)
 
