@@ -33,12 +33,23 @@
   <div class="container banner-container">
     <div class="image-banner">
       <div class="banner-action">
-        <a href="{{parfum_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Discover our Parfum" %}</a>
+        <a href="{{parfum_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Discover" %}</a>
       </div>
       <picture class="img-responsive">
         <source media="(min-width:40em)" srcset="{% static 'assets/parfum_banner.png' %}">
         <source media="(max-width:40em)" srcset="{% static 'assets/parfum_banner_small.png' %}">
         <img class="img-responsive" src="{% static 'assets/parfum_banner_small-2.png' %}" alt="{% trans 'Parfum' %}">
+      </picture>
+      
+    </div>
+    <div class="image-banner">
+      <div class="banner-action">
+        <a href="{{mode_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Discover" %}</a>
+      </div>
+      <picture class="img-responsive">
+        <source media="(min-width:40em)" srcset="{% static 'assets/mode_banner.png' %}">
+        <source media="(max-width:40em)" srcset="{% static 'assets/mode_banner_small.png' %}">
+        <img class="img-responsive" src="{% static 'assets/mode_banner_small-2.png' %}" alt="{% trans 'Mode' %}">
       </picture>
       
     </div>
