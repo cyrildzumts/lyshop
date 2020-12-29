@@ -1086,6 +1086,8 @@ def product_update(request, product_uuid=None):
         form = ProductForm(postdata, instance=product)
         product, updated = inventory_service.update_product(postdata, product)
         if updated:
+            if product.quantity == 0:
+                ProductVariant.objects.filter(product=product).update(quantity=0)
             messages.success(request, _('Product updated'))
             logger.info(f'product {product.name} updated by user \"{username}\"')
             return redirect('dashboard:product-detail', product_uuid=product_uuid)
@@ -1494,12 +1496,16 @@ def create_product_variant(request, product_uuid=None):
         postdata = utils.get_postdata(request)
         variants = inventory_service.create_variant(product, postdata)
         count = len(variants)
-        if count:
-            messages.success(request, _(f'New Product variants({count}) created'))
-            logger.info(f'New product variants({count}) added by user \"{username}\"')
+        if count > 0:
+            quantity = 0
+            for v in variants:
+                quantity += v.quantity
+            Product.objects.filter(pk=product.pk).update(quantity=F('quantity') + quantity)
+            messages.success(request, _(f'variants created'))
+            logger.info(f'variants({count}) added by user \"{username}\"')
             return redirect('dashboard:product-detail', product_uuid=product_uuid)
         else:
-            messages.error(request, _('Product variant not created'))
+            messages.error(request, _('variants not created'))
             logger.error(f'Error on creating new product variant. Action requested by user \"{username}\"')
     
     page_title = _('New Product Variant')
@@ -1565,6 +1571,7 @@ def product_variant_update(request, variant_uuid=None):
     form = None
     username = request.user.username
     variant = get_object_or_404(models.ProductVariant, product_uuid=variant_uuid)
+    variant_quantity = variant.quantity
     product = variant.product
     attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm, extra=4, max_num=5)
     if request.method == 'POST':
@@ -1572,11 +1579,14 @@ def product_variant_update(request, variant_uuid=None):
         form = ProductVariantUpdateForm(postdata, instance=variant)
         if form.is_valid():
             p_variant = form.save()
+            if p_variant.quantity != variant_quantity:
+                p_quantity = product.quantity - variant_quantity + p_variant.quantity
+                Product.objects.filter(pk=product.pk).update(quantity=p_quantity)
             messages.success(request, _('Product variant updated'))
-            logger.info(f'Product variant updated by user \"{username}\"')
+            logger.info(f'variant updated by user \"{username}\"')
             return redirect('dashboard:product-variant-detail', variant_uuid=variant_uuid)
         else:
-            messages.error(request, _('Product variant not created'))
+            messages.error(request, _('variant not created'))
             logger.error(f'Error on updating product variant. Action requested by user \"{username}\"')
             #logger.error(formset.errors)
     else:
@@ -1612,8 +1622,9 @@ def product_variant_delete(request, variant_uuid=None):
     product_variant = get_object_or_404(models.ProductVariant, product_uuid=variant_uuid)
     product = product_variant.product
     ProductVariant.objects.filter(pk=product_variant.pk).delete()
-    logger.info(f'Product Variant \"{product_variant.display_name}\" deleted by user \"{request.user.username}\"')
-    messages.success(request, _('Product variant deleted'))
+    Product.objects.filter(pk=product.pk).update(quantity=F('quantity') - product_variant.quantity)
+    logger.info(f'Variant \"{product_variant.display_name}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('variant deleted'))
     return redirect(product.get_dashboard_url())
 
 

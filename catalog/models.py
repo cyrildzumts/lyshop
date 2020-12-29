@@ -255,7 +255,7 @@ class Product(models.Model):
     is_active = models.BooleanField(default=False)
     price = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     promotion_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=0)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='addeds_products', blank=False, null=False)
     sold_by = models.ForeignKey(User,on_delete=models.SET_NULL, related_name='sold_products', blank=True, null=True)
     viewed_by = models.ManyToManyField(User, related_name='viewed_products', blank=True)
