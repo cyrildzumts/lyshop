@@ -5829,8 +5829,6 @@ msgid "Make sure you pay your order on time"
 msgstr "Assurez-vous de payer votre commande à temps"
 
 #: templates/home.html:36
-#, fuzzy
-#| msgid "Parfum"
 msgid "Perfumes"
 msgstr "Parfums"
 
