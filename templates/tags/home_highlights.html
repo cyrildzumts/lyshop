@@ -1,0 +1,21 @@
+{% load i18n %} 
+<div class="container">
+  
+  {% for h in highlights %}
+    <div class="scrollable-h highlight">
+        <div class="label">{% trans h.display_name %}</div>
+        <div class="products js-product-list">
+                {% include "tags/products_snippet.html" with product_list=h.products.all %}
+        </div>
+    </div>
+  {% endfor %}
+  {% if favorites %}
+      <div class="scrollable-h highlight">
+          <div class="label">{% trans "Most Liked" %}</div>
+          <div class="products js-product-list">
+                  {% include "tags/products_snippet.html" with product_list=favorites %}
+          </div>
+      </div>
+    
+  {% endif %}
+</div>
