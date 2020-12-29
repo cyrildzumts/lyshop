@@ -40,12 +40,14 @@ def home(request):
     highlights = Highlight.objects.filter(is_active=True)
     parfum_category = Category.objects.get(name='parfum')
     mode_category = Category.objects.get(name='mode')
+    electronics_category = Category.objects.get(name='electronic')
     context = {
         'page_title': page_title,
         'user_is_authenticated' : request.user.is_authenticated,
         'highlights' : highlights,
         'parfum_category' : parfum_category,
-        'mode_category': mode_category
+        'mode_category': mode_category,
+        'electronics_category' : electronics_category,
     }
     return render(request, template_name,context)
 
