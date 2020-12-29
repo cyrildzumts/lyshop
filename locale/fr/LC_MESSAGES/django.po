@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-27 20:03+0000\n"
+"POT-Creation-Date: 2020-12-29 15:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -933,7 +933,7 @@ msgstr "Quantité"
 msgid "Art. Nr"
 msgstr "Nr. d'article"
 
-#: cart/views.py:124
+#: cart/views.py:125
 msgid "added to cart"
 msgstr "ajouté au panier"
 
@@ -968,11 +968,12 @@ msgstr "Electronique"
 #: shipment/templates/shipment/ship_mode_detail.html:31
 #: shipment/templates/shipment/ship_mode_list.html:30
 #: shipment/templates/shipment/ship_mode_list.html:42
-#: shipment/templates/shipment/ship_mode_update.html:46
+#: shipment/templates/shipment/ship_mode_update.html:46 templates/home.html:47
+#: templates/home.html:52
 msgid "Mode"
 msgstr "Mode"
 
-#: catalog/strings.py:12
+#: catalog/strings.py:12 templates/home.html:41
 msgid "Parfum"
 msgstr "Parfum"
 
@@ -5491,25 +5492,25 @@ msgstr "Créer un compte"
 msgid "Enable Grid"
 msgstr "Activer la Grille"
 
-#: templates/base.html:123
+#: templates/base.html:121
 msgid "ONLINE SHOP"
 msgstr "MAGASIN EN LIGNE"
 
-#: templates/base.html:126
+#: templates/base.html:124
 msgid "About us"
 msgstr "À propos de nous"
 
-#: templates/base.html:127
+#: templates/base.html:125
 msgid "FAQ"
 msgstr "FAQ"
 
 #: templates/business_overview.html:7 templates/customer_overview.html:7
-#: templates/home.html:8
+#: templates/home.html:9
 msgid "Welcome to "
 msgstr "Bienvenu chez"
 
 #: templates/business_overview.html:8 templates/customer_overview.html:8
-#: templates/home.html:9
+#: templates/home.html:10
 msgid "ONLINE SHOPPING MADE EASY"
 msgstr "ACHAT EN LIGNE SIMPLIFIÉ"
 
@@ -5523,8 +5524,8 @@ msgid "You can sell your products on %(site_name)s"
 msgstr "Vous pouvez vendre vos produits chez %(site_name)s"
 
 #: templates/business_overview.html:24 templates/business_overview.html:57
-#: templates/customer_overview.html:24 templates/home.html:25
-#: templates/home.html:29
+#: templates/customer_overview.html:24 templates/home.html:26
+#: templates/home.html:30
 msgid "Discover"
 msgstr "Découvrir"
 
@@ -5594,11 +5595,11 @@ msgstr ""
 msgid "Protection for business"
 msgstr ""
 
-#: templates/customer_overview.html:12 templates/home.html:13
+#: templates/customer_overview.html:12 templates/home.html:14
 msgid "Are you looking for something new ?"
 msgstr "Recherchez-vous quelque chose de nouveau ?"
 
-#: templates/customer_overview.html:17 templates/home.html:18
+#: templates/customer_overview.html:17 templates/home.html:19
 #, python-format
 msgid "You can get it by %(site_name)s"
 msgstr "Vous pouvez l'obtenir chez %(site_name)s"
@@ -5827,9 +5828,15 @@ msgstr ""
 msgid "Make sure you pay your order on time"
 msgstr "Assurez-vous de payer votre commande à temps"
 
-#: templates/home.html:51
-msgid "Most Liked"
-msgstr "Plus aimés"
+#: templates/home.html:36
+#, fuzzy
+#| msgid "Parfum"
+msgid "Perfumes"
+msgstr "Parfums"
+
+#: templates/home.html:58 templates/home.html:63
+msgid "Electronics"
+msgstr "Electronique"
 
 #: templates/site_account_base.html:10
 msgid "Welcome"
@@ -5909,6 +5916,10 @@ msgstr "Début de plage"
 #: templates/tags/filter.html:31
 msgid "Range End"
 msgstr "Fin de plage"
+
+#: templates/tags/home_highlights.html:14
+msgid "Most Liked"
+msgstr "Plus aimés"
 
 #: templates/tags/language.html:14
 msgid "Current language : "
