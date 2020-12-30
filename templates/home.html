@@ -5,7 +5,19 @@
 
 {% block HEADER_BANNER %}
 <div class="banner">
-    <div class="banner--title">
+    <div class="container banner-container">
+    <div class="image-banner">
+      <div class="banner-action">
+        <a class="mat-button mat-button-default" href="{% url 'catalog:catalog-home' %}"> {% trans 'Discover' %} {{site_name}}</a>
+      </div>
+      <picture class="img-responsive">
+        <source media="(min-width:40em)" srcset="{% static 'assets/lyshop_banner.png' %}">
+        <source media="(max-width:40em)" srcset="{% static 'assets/lyshop_banner_small.png' %}">
+        <img class="img-responsive" src="{% static 'assets/lyshop_banner.png' %}" alt="{{site_name}}">
+      </picture>
+      
+    </div>
+    <div class="banner--title hidden">
       <h4> {%trans 'Welcome to '%} {{site_name}}</h4>
       <h5>{% trans 'ONLINE SHOPPING MADE EASY' %}</h5>
     </div><!--End of Banner Titlte-->
