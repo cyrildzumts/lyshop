@@ -8,7 +8,7 @@
             {% for field in FILTER_CONFIG.fields %}
                 {% include FILTER_TEMPLATE with TEMPLATE_NAME=FILTER_CONFIG|access_dict:field|access_dict:'template_name' DISPLAY_NAME=FILTER_CONFIG|access_dict:field|access_dict:'display_name'  FIELD_FILTER=FILTER_CONFIG|access_dict:field field_name=field %}
             {% endfor %}
-          </div>
+            </div>
         </div>
     </div>
 </div>

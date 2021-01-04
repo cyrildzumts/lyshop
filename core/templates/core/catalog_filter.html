@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load core_tags %}
- <div class="collapsible product-filter container flex-left">
+ <div class="collapsible product-filter flex-left">
     <div {% if field_name in SELECTED_FILTERS  %} class="chips chips-selected" {% else %}class="chips" {% endif %}  title="{{field_name}}">
         <span class="collapse-toggle" data-target="{{field_name}}-content" >{% trans DISPLAY_NAME %}</span>
     </div>
