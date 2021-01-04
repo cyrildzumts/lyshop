@@ -3,10 +3,8 @@
 
 {% block HEADER_BANNER %}
     <div class="container">
-        <div class="header--banner">
-            <h3>{% trans 'Registration successful' %}</h3>
-            <a class="mat-button mat-button-default" href="{% url 'accounts:login' %}">{% trans "Please log in to your account" %}</a>
-        </div>
+        <h3>{% trans 'Registration successful' %}</h3>
+        <a class="mat-button mat-button-default" href="{% url 'accounts:login' %}">{% trans "Please log in to your account" %}</a>
     </div>
 {% endblock HEADER_BANNER %}
 {% block MAIN %}
