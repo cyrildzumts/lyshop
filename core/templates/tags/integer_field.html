@@ -5,7 +5,7 @@
         <input id="{{field_name}}-id" class="filter-input" type="text" name="{{field_name}}" value="{{FILTER.value}}">
     </div>
     {% if SELECTION %}
-    <div class="row">
+    <div class="flex flex-column align-left">
     {% if FIELD_FILTER.queryset %}
         {% for obj in FIELD_FILTER.selection_options %} 
             <span  class="chips js-list-filter {% if obj.pk in FILTER.selection or obj.pk == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}"  data-value="{{obj.pk}}">{% trans obj.display_name %}</span> 
