@@ -63,6 +63,7 @@ canvas{
 .product-filter{
 	margin-top: 4px !important;
 	margin-bottom: 4px !important;
+	position: relative;
 }
 .catalog-filter{
 	width: 100%;
@@ -1685,6 +1686,11 @@ input.editable{
 
 .collapsible .collapse-content, .collapsible .content{
     display: none;
+}
+
+.product-filter .collapse-content, .product-filter .collapsible-content{
+	position: fixed;
+	z-index: 100;
 }
 
 .scrollable{

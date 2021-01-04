@@ -171,3 +171,7 @@ li.active.selected{
     color: var(--primary-color) !important;
 }
 
+.product-filter .collapse-content, .product-filter .collapsible-content{
+    background-color:var(--notification-bg);
+    color: var(--notification-color);
+}
