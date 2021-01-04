@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block HEADER_BANNER %}
+    <div class="header--banner">
+        <h3>{% trans 'Registration successful' %}</h3>
+        <a class="mat-button mat-button-text" href="{% url 'accounts:login' %}">{% trans "Please log in to your account" %}</a>
+    </div>
+{% endblock HEADER_BANNER %}
+{% block MAIN %}
+        <p>{% trans "You account has been successfully created." %}</p>
+        <p>{% trans "You can now place order" %}</p>
+        <p><a class="mat-button mat-button-text" href="{%url 'catalog:catalog-home' %}">{% trans 'Discover our Products' %}</a></p>
+{% endblock MAIN %}

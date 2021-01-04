@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-04 15:45+0000\n"
+"POT-Creation-Date: 2021-01-04 16:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5477,6 +5477,27 @@ msgstr "Vous avez déjà un compte ?"
 msgid "Sign In"
 msgstr "Se connecter"
 
+#: templates/accounts/registration/registration_complete.html:6
+
+msgid "Registration successful"
+msgstr "Inscription réussie"
+
+#: templates/accounts/registration/registration_complete.html:7
+msgid "Please log in to your account"
+msgstr "Veuillez vous connecter à votre compte"
+
+#: templates/accounts/registration/registration_complete.html:11
+msgid "You account has been successfully created."
+msgstr "Votre compte a été créé avec succès."
+
+#: templates/accounts/registration/registration_complete.html:12
+msgid "You can now place order"
+msgstr "Vous pouvez maintenant passer commande"
+
+#: templates/accounts/registration/registration_complete.html:13
+msgid "Discover our Products"
+msgstr "Découvrez nos produits"
+
 #: templates/base.html:38
 msgid "Menu"
 msgstr "Menu"
@@ -5613,6 +5634,11 @@ msgstr ""
 msgid "Are you looking for something new ?"
 msgstr "Recherchez-vous quelque chose de nouveau ?"
 
+#: templates/customer_overview.html:17
+#, fuzzy, python-format
+#| msgid "You can get it at %(site_name)s"
+msgid "You can get it by %(site_name)s"
+msgstr "Vous pouvez l'obtenir chez %(site_name)s"
 
 #: templates/customer_overview.html:34
 msgid "An ideal payment solution for everyone"
@@ -5839,6 +5865,7 @@ msgid "Make sure you pay your order on time"
 msgstr "Assurez-vous de payer votre commande à temps"
 
 #: templates/home.html:28
+#, python-format
 msgid "You can get it at %(site_name)s"
 msgstr "Vous pouvez l'obtenir chez %(site_name)s"
 
