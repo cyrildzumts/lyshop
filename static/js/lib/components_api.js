@@ -97,8 +97,9 @@ var Collapsible = (function(){
         //this.$collapsible.children('.collapse-content').hide()
         $('.collapsible').on('click', '.collapse-toggle', function(event){
             event.stopPropagation();
-            $('.collapsible .collapse-content').hide();
-            $('#' + $(this).data('target')).toggle();
+            var content  = $('#' + $(this).data('target'));
+            $('.collapsible .collapse-content').not(content).hide();
+            content.toggle();
         });
         $(this.$collapsible).on("click", ".open", function(event){
             var target =$(event.target).data("target");
