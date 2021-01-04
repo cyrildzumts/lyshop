@@ -263,7 +263,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'formatter': 'file',
-            'filename':'lyshop.log'
+            'filename':'logs/lyshop.log'
         },
         'mail_admins': {
             'level': 'ERROR',
