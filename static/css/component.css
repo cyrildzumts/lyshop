@@ -177,7 +177,6 @@ li a{
 	align-items: center;
 	justify-content: center;
 	/*height: 400px;*/
-	font-size: 0.6em ;
 	padding : 1em;
 	margin-bottom: 16px;
 	letter-spacing: 0.15em;
@@ -2724,6 +2723,9 @@ table tbody tr, .mat-table tbody tr{
 
 }
 @media only screen and (max-width:40em){
+	.banner{
+		font-size: 0.8em ;
+	}
 	.banner-action{
 		font-size: 0.8em;
 	}
