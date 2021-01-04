@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
@@ -38,9 +39,21 @@ def home(request):
     template_name = "home.html"
     page_title = settings.SITE_NAME
     highlights = Highlight.objects.filter(is_active=True)
-    parfum_category = Category.objects.get(name='parfum')
-    mode_category = Category.objects.get(name='mode')
-    electronics_category = Category.objects.get(name='electronic')
+    try:
+        parfum_category = Category.objects.get(name='parfum')
+    except ObjectDoesNotExist as identifier:
+        parfum_category = None
+
+    try:
+        mode_category = Category.objects.get(name='mode')
+    except ObjectDoesNotExist as identifier:
+        mode_category = None
+    
+    try:
+        electronics_category = Category.objects.get(name='electronic')
+    except ObjectDoesNotExist as identifier:
+        electronics_category = None
+    
     context = {
         'page_title': page_title,
         'user_is_authenticated' : request.user.is_authenticated,

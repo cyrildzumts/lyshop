@@ -40,6 +40,8 @@
   </div><!--End of Banner Actions-->
   {% endif %}
   <div class="container banner-container">
+
+  {% if parfum_category %}
     <div class="image-banner">
       <div class="banner-action">
         <a href="{{parfum_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Perfumes" %}</a>
@@ -51,6 +53,10 @@
       </picture>
       
     </div>
+  {% endif %}
+    
+
+    {% if mode_category %}
     <div class="image-banner">
       <div class="banner-action">
         <a href="{{mode_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Mode" %}</a>
@@ -62,6 +68,9 @@
       </picture>
       
     </div>
+    {% endif %}
+    
+    {% if electronics_category %}
     <div class="image-banner">
       <div class="banner-action">
         <a href="{{electronics_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Electronics" %}</a>
@@ -73,6 +82,7 @@
       </picture>
       
     </div>
+    {% endif %}
   </div>
   
 </div><!--End of Banner-->
