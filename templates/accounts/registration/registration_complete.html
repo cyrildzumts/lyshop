@@ -3,8 +3,11 @@
 
 {% block HEADER_BANNER %}
     <div class="container">
-        <div><h3>{% trans 'Registration successful' %}</h3></div>
-        <p><a class="mat-button mat-button-default" href="{% url 'accounts:login' %}">{% trans "Please log in to your account" %}</a></p>
+        <div class="flex flex-column registration-success">
+            <h3>{% trans 'Registration successful' %}</h3>
+            <p><a class="mat-button mat-button-default" href="{% url 'accounts:login' %}">{% trans "Please log in to your account" %}</a></p>
+        </div>
+        
     </div>
 {% endblock HEADER_BANNER %}
 {% block MAIN %}

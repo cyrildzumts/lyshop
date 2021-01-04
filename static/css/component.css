@@ -2677,6 +2677,10 @@ table tbody tr, .mat-table tbody tr{
 	flex: 2 46%;
 }
 
+.registration-success{
+	padding: 1em;
+	font-size: 0.8em;
+}
 
 
 #notifications-wrapper{
@@ -2723,6 +2727,9 @@ table tbody tr, .mat-table tbody tr{
 
 }
 @media only screen and (max-width:40em){
+	.registration-success{
+		font-size: 0.6em;
+	}
 	.banner{
 		font-size: 0.7em ;
 	}
