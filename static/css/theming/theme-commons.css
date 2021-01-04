@@ -175,3 +175,8 @@ li.active.selected{
     background-color:var(--notification-bg);
     color: var(--notification-color);
 }
+
+.content-filter .collapse-content, .content-filter .collapsible-content{
+    background-color:var(--notification-bg);
+    color: var(--notification-color);
+}

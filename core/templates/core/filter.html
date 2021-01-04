@@ -1,20 +1,18 @@
 {% load i18n %}
 {% load core_tags %}
- <div class="modal-container">
+ <div class="collapsible content-filter flex-left">
     <div {% if field_name in SELECTED_FILTERS  %} class="chips chips-selected" {% else %}class="chips" {% endif %}  title="{{field_name}}">
-        <span class="js-open-modal open-modal" data-target="{{field_name}}-modal" >{% trans DISPLAY_NAME %}</span>
+        <span class="collapse-toggle" data-target="{{field_name}}-content" >{% trans DISPLAY_NAME %}</span>
     </div>
-    <div id="{{field_name}}-modal" class="modal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
+    <div id="{{field_name}}-content" class="collapse-content">
+        <div class="mat-box">
+                <div class="filter-body">
                     {% include TEMPLATE_NAME with SELECTION=FIELD_FILTER.selection SELECTION_OPTIONS=FIELD_FILTER.selection_options RANGE=FIELD_FILTER.range FILTER=SELECTED_FILTERS|access_dict:field_name  %}
                 </div>
-                <div class="modal-footer actions">
-                    <span class="js-close-modal close-modal mat-button mat-button-text" data-target="{{field_name}}-modal" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
-                    <button class="mat-button mat-button-default js-close-modal close-modal" data-target="{{field_name}}-modal">{% trans "Apply" %}</button>
+                <div class="actions">
+                    <span class="collapse-toggle  close-modal mat-button mat-button-text" data-target="{{field_name}}-modal" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
+                    <button class="collapse-toggle mat-button-default js-close-modal close-modal" data-target="{{field_name}}-modal">{% trans "Apply" %}</button>
                 </div>
-            </div><!--End of Modal-Content -->
-        </div><!--End of Modal-Dialog -->
-    </div><!--End of Modal-->
-</div><!--End of Container-->
+        </div><!--mat-box-->
+    </div><!--End of collapse-content -->
+</div><!--End of collapsible-->

@@ -60,7 +60,7 @@ canvas{
 	font-size: 0.875em;
 }
 
-.product-filter{
+.product-filter, .content-filter{
 	margin-top: 4px !important;
 	margin-bottom: 4px !important;
 	position: relative;
@@ -1689,6 +1689,11 @@ input.editable{
 }
 
 .product-filter .collapse-content, .product-filter .collapsible-content{
+	position: fixed;
+	z-index: 100;
+}
+
+.content-filter .collapse-content, .content-filter .collapsible-content{
 	position: fixed;
 	z-index: 100;
 }
