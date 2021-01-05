@@ -2835,6 +2835,7 @@ table tbody tr, .mat-table tbody tr{
 		flex-direction: row;
 	}
 	.mobile-site-panel .mat-list-item{
+		width: auto;
 		border-bottom: none;
 		margin: 0;
 	}
