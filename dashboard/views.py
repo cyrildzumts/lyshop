@@ -126,6 +126,7 @@ def category_create (request):
         form = CategoryForm()
     context['form'] = form
     context['category_list'] = models.Category.objects.filter(is_active=True)
+    context['CATEGORIES'] = Catalog_Constants.CATEGORIES
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
     
@@ -215,6 +216,7 @@ def category_update(request, category_uuid):
         'page_title': page_title,
         'form' : form,
         'category':category,
+        'CATEGORIES' : Catalog_Constants.CATEGORIES,
         'category_list': Category.objects.exclude(id__in=[category.pk])
     }
     context.update(get_view_permissions(request.user))
