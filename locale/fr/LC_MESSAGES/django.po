@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-05 19:37+0000\n"
+"POT-Creation-Date: 2021-01-05 19:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -968,6 +968,28 @@ msgstr "Eau De Parfum | Acheter en ligne | LYSHOP"
 #: catalog/constants.py:82
 msgid "Eau De Toilette | Buy online | LYSHOP"
 msgstr "Eau De Toilette | Acheter en ligne | LYSHOP"
+
+#: catalog/constants.py:83
+msgid "Smartphone | Buy online | LYSHOP"
+msgstr "Smartphone | Acheter en ligne | LYSHOP"
+
+#: catalog/constants.py:84
+msgid "Ballerines | Flat shoes | Buy online | LYSHOP"
+msgstr "Ballerines | Acheter en ligne | LYSHOP"
+
+#: catalog/constants.py:85
+msgid "Escarpins  | High heels shoes | Buy online | LYSHOP"
+msgstr "Escarpins | Chaussures à talons hauts | Acheter en ligne | LYSHOP"
+
+#: catalog/constants.py:86
+msgid "Mocassins | Buy online | LYSHOP"
+msgstr "Mocassins | Acheter en ligne | LYSHOP"
+
+#: catalog/constants.py:87
+#, fuzzy
+#| msgid "Eau De Toilette | Buy online | LYSHOP"
+msgid "Sneakers | Sport shoes | Buy online | LYSHOP"
+msgstr "Sneakers | Chaussures de sport | Acheter en ligne | LYSHOP"
 
 #: catalog/strings.py:6
 msgid "Bags"
