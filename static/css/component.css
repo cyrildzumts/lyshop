@@ -2779,6 +2779,9 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
+	.cart-container{
+		font-size: 0.7em;
+	}
 	.header--panel{
 		font-size: 0.7em;
 	}

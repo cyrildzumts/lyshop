@@ -4,12 +4,10 @@
 {% block MAIN %}
 {% csrf_token %}
 {% if item_list %}
-<div class="container wrapper">
+<div class="container wrapper cart-container">
     <div class="col-m-12 col-8">
         <div class="mat-list-wrapper wrapper">
             <ul class="mat-list">
-                
-                
                 {% for item in item_list %}
                 <li class="mat-list-item" id="item-{{item.id}}">
                     {% include "cart_tags/item_snippet.html" %}
@@ -20,7 +18,7 @@
         </div><!--End mat-list-wrapper-->
     </div>
     <div class="col-m-12 col-4">
-        <div class="container wrapper">
+        <div class="container">
             <div class="mat-box">
                 <div class="title">
                     <h4>{% trans "Summary" %}</h4>
