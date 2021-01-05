@@ -14,8 +14,8 @@ def site_context(request):
         cart_items_count = cart_service.cart_items_count(request.user)
     context = {
         'site_name' : settings.SITE_NAME,
-        'meta_keywords': settings.META_KEYWORDS,
-        'meta_description': settings.META_DESCRIPTION,
+        'META_KEYWORDS': settings.META_KEYWORDS,
+        'META_DESCRIPTION': settings.META_DESCRIPTION,
         'redirect_to' : '/',
         'is_dashboard_allowed' : is_dashboard_allowed,
         'dev_mode' : settings.DEV_MODE,

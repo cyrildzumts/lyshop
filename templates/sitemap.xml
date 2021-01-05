@@ -13,7 +13,7 @@
       {% if url.item.publication_date %}<news:publication_date>{{ url.item.publication_date|date:"Y-m-d" }}</news:publication_date>{% endif %}
       {% if url.item.tags %}<news:keywords>{{ url.item.tags }}</news:keywords>{% endif %}
     </news:news>
-   </url>
+  </url>
 {% endfor %}
 {% endspaceless %}
 </urlset>
