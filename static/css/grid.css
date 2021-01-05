@@ -3,7 +3,7 @@
 .container {
   min-width: 100% !important;
   /*height: 100%;*/
-  margin: 0 auto;
+  /*margin: 0;*/
   display: flex !important;
   flex-wrap: wrap;
   position: relative !important;
