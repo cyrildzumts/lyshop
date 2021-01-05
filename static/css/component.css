@@ -71,6 +71,17 @@ canvas{
 	overflow-y: auto;
 }
 
+.catalog-filter .mat-button{
+	font-size: 0.5em;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+.catalog-filter #filter-content{
+	font-size: 0.6em;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
 .diagram-wrapper{
 	width: 100%;
 }
@@ -2315,8 +2326,8 @@ a.mat-button{
 
 .table-filter{
 	width: 100%;
-	padding: 8px 16px;
-	margin: 4px auto;
+	padding: 0 16px;
+	margin: 0 auto;
 }
 
 .mat-table-title{
@@ -2607,7 +2618,7 @@ table tbody tr, .mat-table tbody tr{
 .category-nav ul{
 	display: flex;
 	overflow-x: auto;
-	font-size: 0.8em;
+	font-size: 0.6em;
 	margin: 0 auto;
 }
 .category-nav .mat-button{
