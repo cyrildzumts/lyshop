@@ -56,6 +56,7 @@ define([
     
     Checkout.prototype.init = function(){
         var self = this;
+        var addr = document.getElementById('address');
         $('.js-input-payment-option').on('change', function(event){
             console.log("%s =  %s - checked : %s",this.name, this.value, this.checked);
             self.payment_option = this.value;
@@ -68,7 +69,7 @@ define([
         });
         $('.js-add-address').on('click', function(){
             $('#new-address, #checkout-address').toggleClass('hidden');
-            var addr = document.getElementById('address');
+            
             if(addr){
                 addr.toggleAttribute('disabled');
             }
