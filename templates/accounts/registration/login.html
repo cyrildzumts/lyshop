@@ -36,13 +36,11 @@
                             <div class="form-group">
                                 <a class="mat-button mat-button-text" href="{% url 'accounts:password-reset' %}">{% trans "Forgot your password ?" %}</a>
                             </div>
-                            <div class="actions">
+                            <div class="actions flex-right">
                                 <button id="login-submit" class="mat-button mat-button-default"  name="submit" type="submit">{% trans "Login" %}</button>
                             </div>
-                            <div class="actions">
-                                <div class="flex">
-                                    <span class="register-hint">{% trans "New here ? " %}</span><a class="mat-button mat-button-default register-btn" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
-                                </div>
+                            <div class="actions flex-right">
+                                <span class="register-hint">{% trans "New here ? " %}</span><a class="mat-button mat-button-default register-btn" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
                             </div>
                         </form>
                     </section> <!-- End of Section Login-->

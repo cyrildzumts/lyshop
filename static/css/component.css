@@ -239,7 +239,7 @@ li a{
 	margin-bottom: 16px;
 }
 
-.banner--actions, .actions{
+.banner--actions{
 	display: flex;
 	width: 100%;
 	flex-direction: row;
@@ -247,6 +247,14 @@ li a{
 	justify-content: center;
 	align-items: center;
 	padding: 16px;
+}
+.actions{
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 .banner--actions .mat-button, .actions .mat-button  {
