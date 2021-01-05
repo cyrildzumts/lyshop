@@ -2713,11 +2713,12 @@ table tbody tr, .mat-table tbody tr{
  #products .mat-box,  .products .mat-box{
 	padding: 0.2em !important;
 }
+/*
 .products .product-card:first-child, 
 .products .product-card:nth-child(2){
 	flex: 2 46%;
 }
-
+*/
 .registration-success{
 	padding: 1em;
 	font-size: 0.8em;
