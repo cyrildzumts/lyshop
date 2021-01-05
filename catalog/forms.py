@@ -7,7 +7,7 @@ class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = Category
-        fields = ['name', 'display_name','page_title','code','added_by', 'is_active', 'parent']
+        fields = ['name', 'display_name','page_title_index','code','added_by', 'is_active', 'parent']
 
 
 class BrandForm(forms.ModelForm):
