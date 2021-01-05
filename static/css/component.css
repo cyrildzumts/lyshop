@@ -137,7 +137,7 @@ li a{
 }
 
 .filter-body{
-	max-height: 20em;
+	max-height: 12em;
 	max-width: 15em;
 	overflow: auto;
 }
