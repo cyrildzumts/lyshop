@@ -2551,7 +2551,13 @@ table tbody tr, .mat-table tbody tr{
 	left: -100%;
 	font-size: 1em;
 }
-.site-panel  .mat-button{
+.mobile-site-panel{
+	flex-direction: row;
+	position: relative;
+	font-size: 0.8em !important;
+	padding: 0.5em 1em !important;
+}
+.site-panel  .mat-button, .mobile-site-panel .mat-button{
 	justify-content: start !important;
 }
 
@@ -2768,7 +2774,9 @@ table tbody tr, .mat-table tbody tr{
     font-weight: 400;
 
 }
+
 @media only screen and (max-width:40em){
+	
 	.registration-success{
 		font-size: 0.6em;
 	}
@@ -2809,6 +2817,10 @@ table tbody tr, .mat-table tbody tr{
 	.site-panel {
 		font-size: 0.8em !important;
 		padding: 0.5em 1em !important;
+	}
+	.mobile-site-panel{
+		display: flex;
+		flex-direction: row;
 	}
 	.mat-table thead, table thead{
 		border: none;
@@ -2855,6 +2867,9 @@ table tbody tr, .mat-table tbody tr{
 
 
 @media only screen and (min-width:40em){
+	.mobile-site-panel{
+		display: none;
+	}
 	.category-nav{
 		display: flex;
 		align-items: center;
