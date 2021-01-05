@@ -2794,13 +2794,13 @@ table tbody tr, .mat-table tbody tr{
 		font-size: 0.8em;
 	}
 	.checkout-container .mat-button{
-		font-size: 0.5em;
+		font-size: 0.6em;
 	}
 	.checkout-container .actions{
 		font-size: 2em;
 	}
 	.header--panel{
-		font-size: 0.7em;
+		font-size: 0.8em;
 	}
 	.header--panel .mat-button{
 		min-width: 0 !important;
@@ -2816,7 +2816,7 @@ table tbody tr, .mat-table tbody tr{
 		font-size: 0.6em;
 	}
 	.banner{
-		font-size: 0.7em ;
+		font-size: 0.8em ;
 	}
 	.banner-action{
 		font-size: 0.8em;
@@ -2825,13 +2825,13 @@ table tbody tr, .mat-table tbody tr{
 		font-size: 0.65em !important;
 	}
 	.add-to-cart .mat-button{
-		font-size: 0.6em;
+		font-size: 0.7em;
 	}
 	.hint-link .hint {
-		font-size: 0.5em;
+		font-size: 0.6em;
 	}
 	#products{
-		font-size: 0.7em;
+		font-size: 0.8em;
 	}
 
 	.product-card{
