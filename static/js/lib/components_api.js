@@ -90,14 +90,18 @@ var Collapsible = (function(){
     }
     Collapsible.prototype.init = function(){
         this.$collapsible = $(".collapsible");
-        
+        var filter_content = $('#filter-content');
         if(this.$collapsible.length == 0){
             return;
         }
         $('.collapsible').on('click', '.collapse-toggle', function(event){
             event.stopPropagation();
             var content  = $('#' + $(this).data('target'));
-            content.siblings('.collapse-content').hide();
+            if(content.eq(filter_content)|| content.parent().eq(filter_content)){
+                $('.collapsible .collapse-content', filter_content).hide();
+            }else{
+                $('.collapsible .collapse-content').hide();
+            }
             content.toggle();
         });
         $(this.$collapsible).on("click", ".open", function(event){
