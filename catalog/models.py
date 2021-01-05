@@ -90,7 +90,7 @@ class PolicyMembership(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=64)
     display_name = models.CharField(max_length=64)
-    page_title_index = models.IntegerField(blank=True, null=True, choices=constants.CATEGORIES)
+    page_title_index = models.IntegerField(null=True, choices=constants.CATEGORIES)
     code = models.IntegerField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='addeds_categories', blank=False, null=False)
@@ -119,7 +119,7 @@ class Category(models.Model):
         return reverse("dashboard:category-delete", kwargs={"category_uuid": self.category_uuid})
     
     def get_page_title(self):
-        if(self.page_title_index is not None):
+        if isinstance(self.page_title_index, int):
             return constants.get_category_page_title(self.page_title_index)
         return _(self.display_name)
 
