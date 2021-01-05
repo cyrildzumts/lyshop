@@ -47,3 +47,12 @@ def attr_type_value(key):
         logger.info(f"attr_type_value : Could not found value  for key \"{key}\"")
         return key
     return _(v)
+
+
+@register.filter
+def category_page_title(key):
+    k,v = utils.find_element_by_key_in_tuples(key, Constants.CATEGORIES)
+    if v is None:
+        logger.info(f"category_page_title : Could not found value  for key \"{key}\"")
+        return key
+    return v

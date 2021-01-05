@@ -23,6 +23,12 @@
                 <input id="display_name" type="text"  name="display_name" value="{{category.display_name}}">
             </div>
             <div class="form-group">
+                <label for="page_title">{% trans "Page title" %}</label>
+                <select name="page_title" id="page_title">
+                    {% for k,v in CATEGORIES %}<option value="{{k}}" {% if k == category.page_title_index %}selected{% endif %}>{{v}}</option>{% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="code">{% trans "Code" %}</label>
                 <input id="code" type="text"  name="code" value="{{category.code}}">
             </div>

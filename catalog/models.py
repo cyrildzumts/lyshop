@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, post_save
+from django.utils.translation import gettext_lazy as _
 from django.dispatch import receiver
 from django.urls import reverse
 from catalog import constants
@@ -89,6 +90,7 @@ class PolicyMembership(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=64)
     display_name = models.CharField(max_length=64)
+    page_title_index = models.IntegerField(blank=True, null=True, choices=constants.CATEGORIES)
     code = models.IntegerField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='addeds_categories', blank=False, null=False)
@@ -96,7 +98,7 @@ class Category(models.Model):
     view_count = models.IntegerField(blank=True, null=True, default=0)
     parent = models.ForeignKey('self', related_name='children', blank=True, null=True, on_delete=models.SET_NULL)
     category_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-    FORM_FIELDS = ['name', 'display_name', 'code', 'parent', 'added_by', 'is_active']
+    FORM_FIELDS = ['name', 'display_name','page_title_index', 'code', 'parent', 'added_by', 'is_active']
 
     def __str__(self):
         return f"{self.name} - {self.display_name}"
@@ -115,6 +117,11 @@ class Category(models.Model):
     
     def get_delete_url(self):
         return reverse("dashboard:category-delete", kwargs={"category_uuid": self.category_uuid})
+    
+    def get_page_title(self):
+        if(self.page_title_index is not None):
+            return constants.get_category_page_title(self.page_title_index)
+        return _(self.display_name)
 
 
 class Brand(models.Model):

@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from lyshop import utils
 import datetime
 import re
@@ -70,6 +71,28 @@ PRODUCT_ACTIONS = (
     (PRODUCT_ACTION_DEACTIVATE, 'DEACTIVATE'),
 )
 
+# Category Page Title:
+CATEGORY_SHOES_PAGE_TITLE           = _("Shoes | Ballerinas, Loafer, Pumps | LYSHOP GABON")
+CATEGORY_BAGS_PAGE_TITLE            = _("Bags | Handbags for women | Online Shopping | LYSHOP GABON")
+CATEGORY_PARFUMS_PAGE_TITLE         = _("Perfumes | Perfumes for Men and Women | LYSHOP GABON")
+CATEGORY_ELECTRONICS_PAGE_TITLE     = _("Electronics | Smartphones | LYSHOP GABON")
+CATEGORY_MODE_PAGE_TITLE            = _("Fashion | Women and Men | LYSHOP GABON")
+CATALOG_HOME_PAGE_TITLE             = _("Catalog | Fashion for all | LYSHOP GABON")
+
+CATEGORY_SHOES = 0
+CATEGORY_BAGS = 1
+CATEGORY_PARFUMS = 2
+CATEGORY_ELECTRONICS = 3
+CATEGORY_MODE = 4
+
+CATEGORIES = (
+    (CATEGORY_SHOES, CATEGORY_SHOES_PAGE_TITLE),
+    (CATEGORY_BAGS, CATEGORY_BAGS_PAGE_TITLE),
+    (CATEGORY_PARFUMS, CATEGORY_PARFUMS_PAGE_TITLE),
+    (CATEGORY_ELECTRONICS, CATEGORY_ELECTRONICS_PAGE_TITLE),
+    (CATEGORY_MODE, CATEGORY_MODE_PAGE_TITLE),
+)
+
 
 COMMISSION_DEFAULT = 0.03
 COMMISSION_MAX_DIGITS = 7
@@ -94,3 +117,7 @@ def get_attribute_type_value(key):
 
 def get_gender_value(key):
     return utils.find_element_by_key_in_tuples(key, GENDER)
+
+
+def get_category_page_title(key):
+    return utils.find_element_by_key_in_tuples(key, CATEGORIES)

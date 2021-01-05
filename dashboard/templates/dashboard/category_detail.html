@@ -1,6 +1,6 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
-
+{% load catalog_tags %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -24,6 +24,9 @@
             </div>
             <div class="entry">
               <span class="key">{% trans "Display Name" %}</span> <span class="value">{{category.display_name}}</span>
+            </div>
+            <div class="entry">
+              <span class="key">{% trans "Page title" %}</span> <span class="value">{{category.get_page_title}}</span>
             </div>
             <div class="entry">
               <span class="key"><i class="fas fa-barcode icon">{% trans "Code" %}</i></span> <span class="value">{{category.code}}</span>

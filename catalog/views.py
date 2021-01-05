@@ -64,7 +64,6 @@ class ProductDetailView(DetailView):
 
 
 def catalog_home(request):
-    page_title = _('Catalog Home')
     template_name = GLOBAL_CONF.CATALOG_HOME_TEMPLATE_NAME
     recent_products = Product.objects.filter(is_active=True)[:GLOBAL_CONF.LATEST_QUERYSET_LIMIT]
     queryDict = request.GET.copy()
@@ -72,7 +71,7 @@ def catalog_home(request):
     queryset = field_filter.apply_filter().filter(is_active=True)
     selected_filters = field_filter.selected_filters
     context = {
-        'page_title' : page_title,
+        'page_title' : Constants.CATALOG_HOME_PAGE_TITLE,
         'product_list': recent_products,
         'type_list': ProductType.objects.all(),
         'queryset' : queryset,
@@ -89,7 +88,6 @@ def category_detail(request, category_uuid=None):
         raise HttpResponseBadRequest
 
     category = get_object_or_404(Category, category_uuid=category_uuid)
-    page_title = _(category.display_name)
     subcats = category.get_children()
     filterquery = Q(category__category_uuid=category_uuid)
     subcatquery = Q(category__id__in=subcats.values_list('id'))
@@ -110,7 +108,7 @@ def category_detail(request, category_uuid=None):
         list_set = None
 
     context = {
-        'page_title': page_title,
+        'page_title': category.get_page_title(),
         'category' : category,
         'parent_category' : category.parent,
         'product_list': list_set,
@@ -149,10 +147,8 @@ def brand_detail(request, brand_uuid=None):
 
 def product_detail(request, product_uuid=None):
     template_name = 'catalog/product_detail.html'
-    page_title = _('Product Detail')
-    
-
     product = get_object_or_404(Product, product_uuid=product_uuid)
+    page_title = product.display_name 
     if request.method == "POST":
         form = AddCartForm(utils.get_postdata(request))
         if form.is_valid():
