@@ -12,6 +12,7 @@ static_root/*
 */migrations/*
 */__pycache__/*
 lyshop_site*.conf
+lyshop_site*.conf.backup
 robots.txt
 log
 logs
