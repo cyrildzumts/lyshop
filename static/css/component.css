@@ -139,7 +139,7 @@ li a{
 .filter-body{
 	max-height: 20em;
 	max-width: 15em;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .header {
