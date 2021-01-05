@@ -2555,7 +2555,7 @@ table tbody tr, .mat-table tbody tr{
 	flex-direction: row;
 	position: relative;
 	justify-content: flex-end;
-	font-size: 0.8em !important;
+	font-size: 1.1em !important;
 	padding: 0.5em 1em !important;
 }
 .site-panel  .mat-button, .mobile-site-panel .mat-button{
