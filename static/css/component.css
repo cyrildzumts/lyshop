@@ -136,6 +136,10 @@ li a{
 	text-decoration: none;
 }
 
+.filter-body{
+	max-height: 20em;
+	overflow: hidden;
+}
 
 .header {
 	
