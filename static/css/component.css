@@ -73,12 +73,16 @@ canvas{
 
 .catalog-filter .mat-button{
 	font-size: 0.5em;
-	padding: 0 !important;
 	margin: 0 !important;
 }
 .catalog-filter #filter-content{
 	font-size: 0.6em;
 	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.catalog-filter .actions .mat-button{
+	font-size: 0.7em;
 	margin: 0 !important;
 }
 
