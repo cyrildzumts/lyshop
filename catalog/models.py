@@ -119,9 +119,8 @@ class Category(models.Model):
         return reverse("dashboard:category-delete", kwargs={"category_uuid": self.category_uuid})
     
     def get_page_title(self):
-        if isinstance(self.page_title_index, int):
-            return constants.get_category_page_title(self.page_title_index)
-        return _(self.display_name)
+        k, v = constants.get_category_page_title(self.page_title_index)
+        return v or _(self.display_name)
 
 
 class Brand(models.Model):
