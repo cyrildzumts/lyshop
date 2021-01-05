@@ -300,6 +300,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
     }
 
     Cart.prototype.update_badge = function(quantity){
+        console.log("cart badge updating");
         $('.cart .badge').text(quantity);
         console.log("cart badge updated");
     }
