@@ -2782,6 +2782,9 @@ table tbody tr, .mat-table tbody tr{
 	.cart-container, .checkout-container{
 		font-size: 0.7em;
 	}
+	.checkout-container #address-container{
+		font-size: 0.8em;
+	}
 	.checkout-container .mat-button{
 		font-size: 0.5em;
 	}
