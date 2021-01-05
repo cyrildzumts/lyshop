@@ -37,7 +37,7 @@ def home(request):
     on the root template folder.
     """
     template_name = "home.html"
-    page_title = settings.SITE_NAME
+    page_title = settings.HOME_TITLE
     highlights = Highlight.objects.filter(is_active=True)
     try:
         parfum_category = Category.objects.get(name='parfum')
