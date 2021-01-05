@@ -98,9 +98,9 @@ var Collapsible = (function(){
             event.stopPropagation();
             var content  = $('#' + $(this).data('target'));
             if(content.eq(filter_content)|| content.parent().eq(filter_content)){
-                $('.collapsible .collapse-content', filter_content).hide();
+                $('.collapsible .collapse-content', filter_content).not(content).hide();
             }else{
-                $('.collapsible .collapse-content').hide();
+                $('.collapsible .collapse-content').not(content).hide();
             }
             content.toggle();
         });
