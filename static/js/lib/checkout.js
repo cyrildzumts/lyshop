@@ -1,6 +1,6 @@
 define([
 'ajax_api'
-], function(ajax_api) {
+], function(ajax) {
     'use strict';
     var ADDRESS_FIELDS = [ 
             'user', 'city', 'firstname', 'lastname', 'country', 
