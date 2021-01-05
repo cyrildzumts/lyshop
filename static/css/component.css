@@ -869,11 +869,11 @@ a.button{
 }
 
 .tab-container{
-  padding : 0 16px;
+  padding : 0;
 }
 
 .tab-content{
-  padding: 16px;
+  padding: 0;
   justify-content: start;
 }
 
@@ -2781,6 +2781,9 @@ table tbody tr, .mat-table tbody tr{
 @media only screen and (max-width:40em){
 	.cart-container, .checkout-container{
 		font-size: 0.7em;
+	}
+	.checkout-container .mat-button{
+		font-size: 0.5em;
 	}
 	.header--panel{
 		font-size: 0.7em;
