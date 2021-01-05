@@ -78,8 +78,8 @@ CATEGORY_PARFUMS_PAGE_TITLE         = _("Perfumes | Perfumes for Men and Women |
 CATEGORY_ELECTRONICS_PAGE_TITLE     = _("Electronics | Smartphones | LYSHOP")
 CATEGORY_MODE_PAGE_TITLE            = _("Fashion | Women and Men | LYSHOP")
 CATALOG_HOME_PAGE_TITLE             = _("Catalog | Fashion for all | LYSHOP")
-CATALOG_EDP_PAGE_TITLE             = _("Eau De Parfum | Buy online | LYSHOP")
-CATALOG_EDT_PAGE_TITLE             = _("Eau De Toilette | Buy online | LYSHOP")
+CATEGORY_EDP_PAGE_TITLE             = _("Eau De Parfum | Buy online | LYSHOP")
+CATEGORY_EDT_PAGE_TITLE             = _("Eau De Toilette | Buy online | LYSHOP")
 
 CATEGORY_SHOES = 0
 CATEGORY_BAGS = 1

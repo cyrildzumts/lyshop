@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-05 18:40+0000\n"
+"POT-Creation-Date: 2021-01-05 19:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -428,28 +428,28 @@ msgstr "Ajouter une nouvelle adresse"
 msgid "Create Address"
 msgstr "Créér une adresse"
 
-#: addressbook/views.py:45 dashboard/views.py:4347
+#: addressbook/views.py:45 dashboard/views.py:4349
 msgid "Addresses"
 msgstr "Adresses"
 
 #: addressbook/views.py:64 dashboard/templates/tags/account_update_form.html:34
-#: dashboard/views.py:4365
+#: dashboard/views.py:4367
 msgid "Address"
 msgstr "Adresse"
 
-#: addressbook/views.py:78 dashboard/views.py:4379
+#: addressbook/views.py:78 dashboard/views.py:4381
 msgid "Address Update"
 msgstr "Actualiser l'adresse"
 
-#: addressbook/views.py:89 dashboard/views.py:4389
+#: addressbook/views.py:89 dashboard/views.py:4391
 msgid "Address updated"
 msgstr "Adresse actualisée"
 
-#: addressbook/views.py:93 dashboard/views.py:4393
+#: addressbook/views.py:93 dashboard/views.py:4395
 msgid "Address not updated"
 msgstr "Adresse non actualisée"
 
-#: addressbook/views.py:108 dashboard/views.py:4408
+#: addressbook/views.py:108 dashboard/views.py:4410
 msgid "Address deleted"
 msgstr "Adresse supprimée"
 
@@ -961,6 +961,14 @@ msgstr "Mode | Femmes et hommes | LYSHOP"
 msgid "Catalog | Fashion for all | LYSHOP"
 msgstr "Catalogue | La mode pour tous | LYSHOP"
 
+#: catalog/constants.py:81
+msgid "Eau De Parfum | Buy online | LYSHOP"
+msgstr "Eau De Parfum | Acheter en ligne | LYSHOP"
+
+#: catalog/constants.py:82
+msgid "Eau De Toilette | Buy online | LYSHOP"
+msgstr "Eau De Toilette | Acheter en ligne | LYSHOP"
+
 #: catalog/strings.py:6
 msgid "Bags"
 msgstr "Sacs"
@@ -1451,13 +1459,13 @@ msgstr "Prix inférieur à prix plus élevé"
 msgid "Populariy"
 msgstr "Popularité"
 
-#: catalog/views.py:191 dashboard/views.py:1050 dashboard/views.py:1678
-#: dashboard/views.py:2304 vendors/views.py:271 vendors/views.py:330
+#: catalog/views.py:191 dashboard/views.py:1052 dashboard/views.py:1680
+#: dashboard/views.py:2306 vendors/views.py:271 vendors/views.py:330
 #: vendors/views.py:1553
 msgid "Product Detail"
 msgstr "Les détails du produit"
 
-#: catalog/views.py:218 dashboard/views.py:1538 vendors/views.py:517
+#: catalog/views.py:218 dashboard/views.py:1540 vendors/views.py:517
 msgid "Product Variant Detail"
 msgstr "Détail de la variante de produit"
 
@@ -1583,7 +1591,7 @@ msgid "Dashboard"
 msgstr "Tableau de bord"
 
 #: dashboard/templates/dashboard/attribute_detail.html:8
-#: dashboard/views.py:1986 vendors/views.py:902
+#: dashboard/views.py:1988 vendors/views.py:902
 msgid "Attribute"
 msgstr "Attribtut"
 
@@ -1629,7 +1637,7 @@ msgstr "oui,non"
 #: dashboard/templates/tags/dashboard_summary.html:12
 #: dashboard/templates/tags/product_list_template.html:10
 #: dashboard/templates/tags/sold_product_list_template.html:6
-#: dashboard/views.py:1012 dashboard/views.py:1645
+#: dashboard/views.py:1014 dashboard/views.py:1647
 #: vendors/templates/vendor_base.html:25 vendors/templates/vendor_base.html:54
 #: vendors/templates/vendor_tags/analytics.html:28
 #: vendors/templates/vendor_tags/product_list_template.html:7
@@ -1894,7 +1902,7 @@ msgstr "Ajouter"
 msgid "Bulk Create Attribtutes"
 msgstr "Créer en masse"
 
-#: dashboard/templates/dashboard/brand_create.html:7 dashboard/views.py:2118
+#: dashboard/templates/dashboard/brand_create.html:7 dashboard/views.py:2120
 #: vendors/views.py:106
 msgid "New Brand"
 msgstr "Nouvelle marque"
@@ -1925,14 +1933,14 @@ msgstr "Ajouter un nouveau groupe"
 
 #: dashboard/templates/dashboard/brand_detail.html:24
 #: dashboard/templates/dashboard/brand_list.html:35
-#: dashboard/templates/dashboard_base.html:22 dashboard/views.py:2087
+#: dashboard/templates/dashboard_base.html:22 dashboard/views.py:2089
 #: vendors/templates/vendor_base.html:50
 #: vendors/templates/vendors/brand_detail.html:24
 #: vendors/templates/vendors/brand_list.html:25 vendors/views.py:79
 msgid "Brands"
 msgstr "Marques"
 
-#: dashboard/templates/dashboard/brand_detail.html:31 dashboard/views.py:2268
+#: dashboard/templates/dashboard/brand_detail.html:31 dashboard/views.py:2270
 #: vendors/templates/vendors/brand_detail.html:31 vendors/views.py:239
 msgid "Brand Products"
 msgstr "Produits de la marque"
@@ -2067,8 +2075,8 @@ msgstr "Vendeur"
 #: dashboard/templates/tags/category_creation_form.html:11
 #: dashboard/templates/tags/category_update_form.html:11
 #: dashboard/templates/tags/product_creation_form.html:35
-#: dashboard/templates/tags/product_update_form.html:36 dashboard/views.py:168
-#: dashboard/views.py:281
+#: dashboard/templates/tags/product_update_form.html:36 dashboard/views.py:169
+#: dashboard/views.py:283
 #: vendors/templates/vendor_tags/category_update_form.html:11
 #: vendors/templates/vendor_tags/product_creation_form.html:32
 #: vendors/templates/vendor_tags/product_update_form.html:35
@@ -2101,7 +2109,7 @@ msgid "View Count"
 msgstr "Nombre de vues"
 
 #: dashboard/templates/dashboard/brand_update.html:7
-#: dashboard/templates/tags/brand_update_form.html:13 dashboard/views.py:2179
+#: dashboard/templates/tags/brand_update_form.html:13 dashboard/views.py:2181
 #: vendors/templates/vendor_tags/brand_update_form.html:13 vendors/views.py:161
 msgid "Brand Update"
 msgstr "Actualiser la marque"
@@ -2152,7 +2160,7 @@ msgstr "Ajouter une nouvelle catégorie"
 msgid "Sub Categories"
 msgstr "Sous catégories"
 
-#: dashboard/templates/dashboard/category_list.html:8 dashboard/views.py:138
+#: dashboard/templates/dashboard/category_list.html:8 dashboard/views.py:139
 msgid "Category List"
 msgstr "Liste de catégories"
 
@@ -2251,7 +2259,7 @@ msgstr "Détails"
 msgid "There is no claims now."
 msgstr "Il n'y a aucune plainte actuellement"
 
-#: dashboard/templates/dashboard/coupon_create.html:7 dashboard/views.py:3616
+#: dashboard/templates/dashboard/coupon_create.html:7 dashboard/views.py:3618
 #: vendors/views.py:1025
 msgid "New Coupon"
 msgstr "Nouveau Coupon"
@@ -2428,14 +2436,14 @@ msgstr "Activé"
 msgid "Not Activated"
 msgstr "Pas activé"
 
-#: dashboard/templates/dashboard/coupon_update.html:7 dashboard/views.py:3659
+#: dashboard/templates/dashboard/coupon_update.html:7 dashboard/views.py:3661
 #: vendors/views.py:1060
 msgid "Coupon Update"
 msgstr "Actualiser le coupon"
 
 #: dashboard/templates/dashboard/create_product_variant.html:9
 #: dashboard/templates/dashboard/product_variant_create.html:7
-#: dashboard/views.py:1446 dashboard/views.py:1511 vendors/views.py:477
+#: dashboard/views.py:1448 dashboard/views.py:1513 vendors/views.py:477
 msgid "New Product Variant"
 msgstr "Ajouter Variante"
 
@@ -2582,7 +2590,7 @@ msgstr "Actualiser les permissions du groupe"
 msgid "Create A Group"
 msgstr "Créer un groupe"
 
-#: dashboard/templates/dashboard/highlight_create.html:7 dashboard/views.py:826
+#: dashboard/templates/dashboard/highlight_create.html:7 dashboard/views.py:828
 msgid "New Highlight"
 msgstr "Nouvel Highlight"
 
@@ -2628,7 +2636,7 @@ msgstr "Highlight"
 #: dashboard/templates/dashboard/highlight_detail.html:22
 #: dashboard/templates/dashboard/highlight_list.html:36
 #: dashboard/templates/dashboard/highlight_update.html:23
-#: dashboard/templates/dashboard_base.html:28 dashboard/views.py:804
+#: dashboard/templates/dashboard_base.html:28 dashboard/views.py:806
 msgid "Highlights"
 msgstr "Highlights"
 
@@ -2697,7 +2705,7 @@ msgid "Add new Highlight"
 msgstr "Ajouter"
 
 #: dashboard/templates/dashboard/highlight_update.html:45
-#: dashboard/views.py:900
+#: dashboard/views.py:902
 msgid "Highlight Update"
 msgstr "Actualiser"
 
@@ -2726,7 +2734,7 @@ msgid "Wrong request"
 msgstr "Mauvaise requette"
 
 #: dashboard/templates/dashboard/new_user.html:7
-#: dashboard/templates/dashboard/user_list.html:19 dashboard/views.py:3447
+#: dashboard/templates/dashboard/user_list.html:19 dashboard/views.py:3449
 msgid "New User"
 msgstr "Nouvel utilisateur"
 
@@ -2771,7 +2779,7 @@ msgid "Add for Shipment"
 msgstr "Marquer pour l'envoi"
 
 #: dashboard/templates/dashboard/order_detail.html:25
-#: dashboard/templates/dashboard/order_update.html:25 dashboard/views.py:722
+#: dashboard/templates/dashboard/order_update.html:25 dashboard/views.py:724
 msgid "Order History"
 msgstr "Historique de la commande"
 
@@ -2868,7 +2876,7 @@ msgstr "NON PAYÉ"
 
 #: dashboard/templates/dashboard/order_detail.html:38
 #: dashboard/templates/dashboard/payment_method_detail.html:8
-#: dashboard/views.py:4242 orders/templates/orders/order_detail.html:37
+#: dashboard/views.py:4244 orders/templates/orders/order_detail.html:37
 msgid "Payment Method"
 msgstr "Methodes de payment"
 
@@ -2951,7 +2959,7 @@ msgstr "Prix unitaire"
 #: dashboard/templates/dashboard/order_detail.html:101
 #: dashboard/templates/dashboard/order_item.html:68
 #: dashboard/templates/dashboard/order_item_update.html:70
-#: dashboard/views.py:532 vendors/templates/vendors/order_item.html:54
+#: dashboard/views.py:534 vendors/templates/vendors/order_item.html:54
 #: vendors/templates/vendors/order_item_update.html:24
 #: vendors/templates/vendors/order_item_update.html:36 vendors/views.py:1727
 #: vendors/views.py:1753
@@ -2988,7 +2996,7 @@ msgstr "Commande Payée"
 
 #: dashboard/templates/dashboard/payment_method_create.html:8
 #: dashboard/templates/dashboard/payment_method_list.html:18
-#: dashboard/views.py:4177 shipment/views.py:174
+#: dashboard/views.py:4179 shipment/views.py:174
 msgid "New Payment Method"
 msgstr "Nouvelle methode de payment"
 
@@ -3027,7 +3035,7 @@ msgid "New Paymnet Method"
 msgstr "Nouvelle Methode de paiment"
 
 #: dashboard/templates/dashboard/payment_method_update.html:8
-#: dashboard/views.py:4263
+#: dashboard/views.py:4265
 msgid "Edit Payment Method"
 msgstr "Modifier le mode de paiement"
 
@@ -3274,7 +3282,7 @@ msgstr "Limite journaliere"
 msgid "Weekly Limit"
 msgstr "Limite hebdomadaire"
 
-#: dashboard/templates/dashboard/product_create.html:6 dashboard/views.py:307
+#: dashboard/templates/dashboard/product_create.html:6 dashboard/views.py:309
 #: vendors/views.py:438
 msgid "New Product"
 msgstr "Nouveau produit"
@@ -3372,7 +3380,7 @@ msgid "Product List"
 msgstr "Liste de produits"
 
 #: dashboard/templates/dashboard/product_type_attribute_create.html:7
-#: dashboard/views.py:4026 vendors/views.py:1383
+#: dashboard/views.py:4028 vendors/views.py:1383
 msgid "New Product Type Attribute"
 msgstr "Nouvel Attribut de type"
 
@@ -3494,13 +3502,13 @@ msgid "Add new Product Type"
 msgstr "Ajouter"
 
 #: dashboard/templates/dashboard/product_type_update.html:7
-#: dashboard/templates/dashboard/product_update.html:4 dashboard/views.py:1077
+#: dashboard/templates/dashboard/product_update.html:4 dashboard/views.py:1079
 #: vendors/views.py:353
 msgid "Product Update"
 msgstr "Actualiser le produit"
 
 #: dashboard/templates/dashboard/product_type_update.html:41
-#: dashboard/views.py:3864
+#: dashboard/views.py:3866
 #: vendors/templates/vendors/product_type_update.html:18 vendors/views.py:1239
 msgid "ProductType Update"
 msgstr "Actualiser"
@@ -3584,7 +3592,7 @@ msgid "Sold Date"
 msgstr "Date de vente"
 
 #: dashboard/templates/dashboard/sold_product_detail.html:65
-#: dashboard/views.py:2040
+#: dashboard/views.py:2042
 #: vendors/templates/vendors/sold_product_detail.html:62 vendors/views.py:955
 msgid "Product Attributes"
 msgstr "Attribtuts de Produits"
@@ -4019,7 +4027,7 @@ msgid "Click on a user to remove it from the group"
 msgstr "Click sur un utilisateur pour le retirer du groupe"
 
 #: dashboard/templates/tags/policy_group_update_form.html:11
-#: dashboard/views.py:2898 dashboard/views.py:2935
+#: dashboard/views.py:2900 dashboard/views.py:2937
 #: payment/templates/payment_tags/policy_group_update_form.html:11
 #: payment/views.py:448
 msgid "Edit Policy Group"
@@ -4030,7 +4038,7 @@ msgstr "Modifier"
 msgid "Removing Policy"
 msgstr "Supprimer"
 
-#: dashboard/templates/tags/policy_update_form.html:11 dashboard/views.py:2649
+#: dashboard/templates/tags/policy_update_form.html:11 dashboard/views.py:2651
 #: payment/templates/payment_tags/policy_update_form.html:11
 #: payment/views.py:162
 msgid "Edit Policy"
@@ -4099,325 +4107,325 @@ msgstr "Categorie créée"
 msgid "Error when creating new category"
 msgstr "Erreur à la creation de la categorie"
 
-#: dashboard/views.py:193
+#: dashboard/views.py:194
 msgid "Edit Category"
 msgstr "Modification de la catégorie"
 
-#: dashboard/views.py:206
+#: dashboard/views.py:207
 msgid "Category updated"
 msgstr "Catégorie actualisée"
 
-#: dashboard/views.py:210
+#: dashboard/views.py:211
 msgid "Error when updating category"
 msgstr "Erreur à la mise à jour de la categorie"
 
-#: dashboard/views.py:325 vendors/views.py:450
+#: dashboard/views.py:327 vendors/views.py:450
 msgid "New Product created"
 msgstr "Produit crée"
 
-#: dashboard/views.py:329 vendors/views.py:454
+#: dashboard/views.py:331 vendors/views.py:454
 msgid "Product not created"
 msgstr "Produit non crée"
 
-#: dashboard/views.py:370
+#: dashboard/views.py:372
 msgid "Dashboard Orders"
 msgstr "Commandes - Dashboard"
 
-#: dashboard/views.py:403 dashboard/views.py:488 dashboard/views.py:682
+#: dashboard/views.py:405 dashboard/views.py:490 dashboard/views.py:684
 #: orders/views.py:68
 msgid "Order Detail"
 msgstr "Detail - Commande"
 
-#: dashboard/views.py:570 vendors/views.py:1779
+#: dashboard/views.py:572 vendors/views.py:1779
 msgid "Order Item Update"
 msgstr "Mise à jour de l'article de commande"
 
-#: dashboard/views.py:709
+#: dashboard/views.py:711
 msgid "Order Histories"
 msgstr "Historique - Commande"
 
-#: dashboard/views.py:752 dashboard/views.py:1772 dashboard/views.py:1838
-#: dashboard/views.py:1906 vendors/views.py:774 vendors/views.py:833
+#: dashboard/views.py:754 dashboard/views.py:1774 dashboard/views.py:1840
+#: dashboard/views.py:1908 vendors/views.py:774 vendors/views.py:833
 msgid "Attribute formset valid"
 msgstr "formulaire valide"
 
-#: dashboard/views.py:756 dashboard/views.py:1776 vendors/views.py:778
+#: dashboard/views.py:758 dashboard/views.py:1778 vendors/views.py:778
 msgid "Attributes not added"
 msgstr "Attributs non ajoutés "
 
-#: dashboard/views.py:846
+#: dashboard/views.py:848
 msgid "New Highlight created"
 msgstr "Nouveau Highlight créé"
 
-#: dashboard/views.py:850
+#: dashboard/views.py:852
 msgid "Highlight not created"
 msgstr "Highlight non crée"
 
-#: dashboard/views.py:874
+#: dashboard/views.py:876
 msgid "Highlight Detail"
 msgstr "Info sur le Highlight"
 
-#: dashboard/views.py:911
+#: dashboard/views.py:913
 msgid "Highlight updated"
 msgstr "Highlight actualisé"
 
-#: dashboard/views.py:915
+#: dashboard/views.py:917
 msgid "highlight not updated"
 msgstr "Highlight non actualisé"
 
-#: dashboard/views.py:946 dashboard/views.py:967
+#: dashboard/views.py:948 dashboard/views.py:969
 msgid "Highlight deleted"
 msgstr "Highlight supprimé"
 
-#: dashboard/views.py:1091 vendors/views.py:365
+#: dashboard/views.py:1093 vendors/views.py:365
 msgid "Product updated"
 msgstr "produit actualisé"
 
-#: dashboard/views.py:1095 vendors/views.py:369
+#: dashboard/views.py:1097 vendors/views.py:369
 msgid "Product not updated"
 msgstr "produit non actualisé"
 
-#: dashboard/views.py:1222 dashboard/views.py:1941 vendors/views.py:399
+#: dashboard/views.py:1224 dashboard/views.py:1943 vendors/views.py:399
 #: vendors/views.py:865
 msgid "Product deleted"
 msgstr "produit supprimé"
 
-#: dashboard/views.py:1460 vendors/views.py:490
+#: dashboard/views.py:1462 vendors/views.py:490
 msgid "New Product variant created"
 msgstr "Déclinaison de produit créee"
 
-#: dashboard/views.py:1464 dashboard/views.py:1842 dashboard/views.py:1911
+#: dashboard/views.py:1466 dashboard/views.py:1844 dashboard/views.py:1913
 #: vendors/views.py:494 vendors/views.py:560 vendors/views.py:837
 msgid "Product variant not created"
 msgstr "Déclinaison de produit  n'a pas pu etre créee"
 
-#: dashboard/views.py:1504
+#: dashboard/views.py:1506
 msgid "variants created"
 msgstr "Déclinaisons créee"
 
-#: dashboard/views.py:1508
+#: dashboard/views.py:1510
 msgid "variants not created"
 msgstr "Déclinaisons non créee"
 
-#: dashboard/views.py:1569 vendors/views.py:544
+#: dashboard/views.py:1571 vendors/views.py:544
 msgid "Product Variant Update"
 msgstr "Déclinaison actualisée"
 
-#: dashboard/views.py:1585 vendors/views.py:556
+#: dashboard/views.py:1587 vendors/views.py:556
 msgid "Product variant updated"
 msgstr "Déclinaison actualisée"
 
-#: dashboard/views.py:1589
+#: dashboard/views.py:1591
 msgid "variant not created"
 msgstr "Déclinaison non créee"
 
-#: dashboard/views.py:1627
+#: dashboard/views.py:1629
 msgid "variant deleted"
 msgstr "Déclinaison supprimée"
 
-#: dashboard/views.py:1715 vendors/views.py:1585
+#: dashboard/views.py:1717 vendors/views.py:1585
 msgid "SoldProduct deleted"
 msgstr "SoldProduct supprimé"
 
-#: dashboard/views.py:1803 dashboard/views.py:1964 vendors/views.py:801
+#: dashboard/views.py:1805 dashboard/views.py:1966 vendors/views.py:801
 #: vendors/views.py:884
 msgid "Attribute removed"
 msgstr "Attribut retiré"
 
-#: dashboard/views.py:1806 dashboard/views.py:1967 vendors/views.py:804
+#: dashboard/views.py:1808 dashboard/views.py:1969 vendors/views.py:804
 #: vendors/views.py:887
 msgid "Attributes not removed"
 msgstr "Attributs non retiré"
 
-#: dashboard/views.py:1826 vendors/views.py:819
+#: dashboard/views.py:1828 vendors/views.py:819
 msgid "New Attribute"
 msgstr "Nouvel attribut"
 
-#: dashboard/views.py:1876
+#: dashboard/views.py:1878
 msgid "Attributes created"
 msgstr "Attribut crées"
 
-#: dashboard/views.py:1879
+#: dashboard/views.py:1881
 msgid "Attributes not created"
 msgstr "Attributs non crée"
 
-#: dashboard/views.py:1896
+#: dashboard/views.py:1898
 msgid "New Attributes"
 msgstr "Nouvel attribut"
 
-#: dashboard/views.py:2017 vendors/views.py:930
+#: dashboard/views.py:2019 vendors/views.py:930
 msgid "Attribute updated"
 msgstr "Attribut actualisé"
 
-#: dashboard/views.py:2021 vendors/views.py:934
+#: dashboard/views.py:2023 vendors/views.py:934
 msgid "Attribute not updated"
 msgstr "Attribut non actualisé"
 
-#: dashboard/views.py:2127 vendors/views.py:115
+#: dashboard/views.py:2129 vendors/views.py:115
 msgid "New Brand created"
 msgstr "Nouvelle marque créee"
 
-#: dashboard/views.py:2131 vendors/views.py:119
+#: dashboard/views.py:2133 vendors/views.py:119
 msgid "Brand not created"
 msgstr "Nouvelle marque non créee"
 
-#: dashboard/views.py:2153 vendors/views.py:138
+#: dashboard/views.py:2155 vendors/views.py:138
 msgid "Brand Detail"
 msgstr "Info sur la marque"
 
-#: dashboard/views.py:2189 vendors/views.py:171
+#: dashboard/views.py:2191 vendors/views.py:171
 msgid "Brand updated"
 msgstr "Marque actualisée"
 
-#: dashboard/views.py:2193 vendors/views.py:175
+#: dashboard/views.py:2195 vendors/views.py:175
 msgid "Brand not updated"
 msgstr "Marque non actualisée"
 
-#: dashboard/views.py:2224 vendors/views.py:202
+#: dashboard/views.py:2226 vendors/views.py:202
 msgid "Brand deleted"
 msgstr "Marque supprimée"
 
-#: dashboard/views.py:2331
+#: dashboard/views.py:2333
 msgid "Dashboard Users Tokens"
 msgstr "Token des utilisateurs"
 
-#: dashboard/views.py:2360
+#: dashboard/views.py:2362
 msgid "User Token Generation"
 msgstr "Generateur de token"
 
-#: dashboard/views.py:2371
+#: dashboard/views.py:2373
 #, python-brace-format
 msgid "Token successfully generated for user {username}"
 msgstr "Jeton généré avec succès pour {username}"
 
-#: dashboard/views.py:2375
+#: dashboard/views.py:2377
 msgid "The submitted form is not valid"
 msgstr "Le formulaire soumis n'est pas valide"
 
-#: dashboard/views.py:2406
+#: dashboard/views.py:2408
 msgid "Dashboard Reports"
 msgstr "Rapports"
 
-#: dashboard/views.py:2434
+#: dashboard/views.py:2436
 msgid "Dashboard Users"
 msgstr "Utilisateurs"
 
-#: dashboard/views.py:2767 payment/views.py:280
+#: dashboard/views.py:2769 payment/views.py:280
 msgid "Create Policy"
 msgstr "Creer une règle"
 
-#: dashboard/views.py:2861 payment/views.py:374
+#: dashboard/views.py:2863 payment/views.py:374
 msgid "Create Policy Group"
 msgstr "Créer un Groupe"
 
-#: dashboard/views.py:3464
+#: dashboard/views.py:3466
 #, python-brace-format
 msgid "User {name} created"
 msgstr "Utilsateur {name} créé"
 
-#: dashboard/views.py:3631 vendors/views.py:1036
+#: dashboard/views.py:3633 vendors/views.py:1036
 msgid "New Coupon created"
 msgstr "Coupon crée"
 
-#: dashboard/views.py:3635 vendors/views.py:1040
+#: dashboard/views.py:3637 vendors/views.py:1040
 msgid "Coupon not created"
 msgstr "Coupon non crée"
 
-#: dashboard/views.py:3683 vendors/views.py:1080
+#: dashboard/views.py:3685 vendors/views.py:1080
 msgid "Coupon updated"
 msgstr "Coupon actualisé"
 
-#: dashboard/views.py:3687 vendors/views.py:1084
+#: dashboard/views.py:3689 vendors/views.py:1084
 msgid "Coupon not updated"
 msgstr "Coupon non actualisé"
 
-#: dashboard/views.py:3720 vendors/views.py:1113
+#: dashboard/views.py:3722 vendors/views.py:1113
 msgid "Coupon deleted"
 msgstr "Coupon supprimé"
 
-#: dashboard/views.py:3767 vendors/views.py:1154
+#: dashboard/views.py:3769 vendors/views.py:1154
 msgid "ProductTypes"
 msgstr ""
 
-#: dashboard/views.py:3799 vendors/views.py:1183
+#: dashboard/views.py:3801 vendors/views.py:1183
 msgid "New ProductType"
 msgstr ""
 
-#: dashboard/views.py:3808 vendors/views.py:1192
+#: dashboard/views.py:3810 vendors/views.py:1192
 msgid "New ProductType created"
 msgstr ""
 
-#: dashboard/views.py:3812 dashboard/views.py:4039 vendors/views.py:1196
+#: dashboard/views.py:3814 dashboard/views.py:4041 vendors/views.py:1196
 #: vendors/views.py:1396
 msgid "ProductType not created"
 msgstr ""
 
-#: dashboard/views.py:3836 vendors/views.py:1216
+#: dashboard/views.py:3838 vendors/views.py:1216
 msgid "ProductType Detail"
 msgstr ""
 
-#: dashboard/views.py:3874 vendors/views.py:1249
+#: dashboard/views.py:3876 vendors/views.py:1249
 msgid "ProductTyppe updated"
 msgstr ""
 
-#: dashboard/views.py:3878 vendors/views.py:1253
+#: dashboard/views.py:3880 vendors/views.py:1253
 msgid "ProductType not updated"
 msgstr ""
 
-#: dashboard/views.py:3912 vendors/views.py:1284
+#: dashboard/views.py:3914 vendors/views.py:1284
 msgid "ProductType deleted"
 msgstr ""
 
-#: dashboard/views.py:3956 vendors/views.py:1322
+#: dashboard/views.py:3958 vendors/views.py:1322
 msgid "Product Type Products"
 msgstr ""
 
-#: dashboard/views.py:3993 vendors/views.py:1355
+#: dashboard/views.py:3995 vendors/views.py:1355
 msgid "ProductType Attributes"
 msgstr ""
 
-#: dashboard/views.py:4035 vendors/views.py:1392
+#: dashboard/views.py:4037 vendors/views.py:1392
 msgid "New ProductTypeAttribute created"
 msgstr ""
 
-#: dashboard/views.py:4063 vendors/views.py:1417
+#: dashboard/views.py:4065 vendors/views.py:1417
 msgid "ProductTypeAttribute Detail"
 msgstr ""
 
-#: dashboard/views.py:4092 vendors/views.py:1440
+#: dashboard/views.py:4094 vendors/views.py:1440
 msgid "ProductTypeAttribute Update"
 msgstr ""
 
-#: dashboard/views.py:4102 vendors/views.py:1450
+#: dashboard/views.py:4104 vendors/views.py:1450
 msgid "ProductTypeAttribute updated"
 msgstr ""
 
-#: dashboard/views.py:4106 vendors/views.py:1454
+#: dashboard/views.py:4108 vendors/views.py:1454
 msgid "ProductTypeAttribute not updated"
 msgstr ""
 
-#: dashboard/views.py:4140 vendors/views.py:1484
+#: dashboard/views.py:4142 vendors/views.py:1484
 msgid "ProductTypeAttribute deleted"
 msgstr ""
 
-#: dashboard/views.py:4194
+#: dashboard/views.py:4196
 #, python-brace-format
 msgid "New PaymentMethod {payment_method} created"
 msgstr ""
 
-#: dashboard/views.py:4198
+#: dashboard/views.py:4200
 msgid "PaymentMethod not created"
 msgstr "Nouveau PaymentMethod non créee"
 
-#: dashboard/views.py:4212
+#: dashboard/views.py:4214
 msgid "Payment Method List"
 msgstr "Historique des méthodes de paiement"
 
-#: dashboard/views.py:4278
+#: dashboard/views.py:4280
 msgid "PaymentMethod updated"
 msgstr "PaymentMethod actualisé"
 
-#: dashboard/views.py:4282
+#: dashboard/views.py:4284
 msgid "Error when updating PaymentMethod"
 msgstr "Erreur à la mise à jour de  PaymentMethod"
 
