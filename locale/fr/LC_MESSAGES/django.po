@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-05 18:10+0000\n"
+"POT-Creation-Date: 2021-01-05 18:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,8 +54,8 @@ msgstr ""
 #: dashboard/templates/tags/case_close_form.html:41
 #: dashboard/templates/tags/case_update_form.html:42
 #: dashboard/templates/tags/caseissue_form.html:18
-#: dashboard/templates/tags/category_creation_form.html:50
-#: dashboard/templates/tags/category_update_form.html:61
+#: dashboard/templates/tags/category_creation_form.html:53
+#: dashboard/templates/tags/category_update_form.html:63
 #: dashboard/templates/tags/coupon_form.html:47
 #: dashboard/templates/tags/coupon_form_update.html:52
 #: dashboard/templates/tags/group_form.html:17
@@ -130,7 +130,7 @@ msgstr "Annuler"
 #: dashboard/templates/dashboard/product_type_create.html:56
 #: dashboard/templates/dashboard/product_variant_detail.html:134
 #: dashboard/templates/tags/brand_creation_form.html:38
-#: dashboard/templates/tags/category_creation_form.html:51
+#: dashboard/templates/tags/category_creation_form.html:54
 #: dashboard/templates/tags/coupon_form.html:48
 #: dashboard/templates/tags/policy_creation_form.html:35
 #: dashboard/templates/tags/policy_group_creation_form.html:31
@@ -372,7 +372,7 @@ msgstr "Utiliser pour"
 #: dashboard/templates/dashboard/product_type_update.html:79
 #: dashboard/templates/tags/brand_update_form.html:41
 #: dashboard/templates/tags/case_update_form.html:43
-#: dashboard/templates/tags/category_update_form.html:62
+#: dashboard/templates/tags/category_update_form.html:64
 #: dashboard/templates/tags/coupon_form_update.html:53
 #: dashboard/templates/tags/idcard_update_form.html:53
 #: dashboard/templates/tags/policy_group_update_form.html:50
@@ -938,28 +938,28 @@ msgid "added to cart"
 msgstr "ajouté au panier"
 
 #: catalog/constants.py:75
-msgid "Shoes | Ballerinas, Loafer, Pumps | LYSHOP GABON"
-msgstr "Chaussures | Ballerines, Loafer, Escarpins | LYSHOP GABON"
+msgid "Shoes | Ballerinas, Loafer, Pumps | LYSHOP"
+msgstr "Chaussures | Ballerines, Loafer, Escarpins | LYSHOP"
 
 #: catalog/constants.py:76
-msgid "Bags | Handbags for women | Online Shopping | LYSHOP GABON"
-msgstr "Sacs | Sacs à mains pour femmes | Achats en ligne | LYSHOP GABON"
+msgid "Bags | Handbags for women | Online Shopping | LYSHOP"
+msgstr "Sacs | Sacs à mains pour femmes | Achats en ligne | LYSHOP"
 
 #: catalog/constants.py:77
-msgid "Perfumes | Perfumes for Men and Women | LYSHOP GABON"
-msgstr "Parfums | Parfums Hommes et Femmes | LYSHOP GABON"
+msgid "Perfumes | Perfumes for Men and Women | LYSHOP"
+msgstr "Parfums | Parfums Hommes et Femmes | LYSHOP"
 
 #: catalog/constants.py:78
-msgid "Electronics | Smartphones | LYSHOP GABON"
-msgstr "Électroniques | Smartphones | LYSHOP GABON"
+msgid "Electronics | Smartphones | LYSHOP"
+msgstr "Électroniques | Smartphones | LYSHOP"
 
 #: catalog/constants.py:79
-msgid "Fashion | Women and Men | LYSHOP GABON"
-msgstr "Mode | Femmes et hommes | LYSHOP GABON"
+msgid "Fashion | Women and Men | LYSHOP"
+msgstr "Mode | Femmes et hommes | LYSHOP"
 
 #: catalog/constants.py:80
-msgid "Catalog | Fashion for all | LYSHOP GABON"
-msgstr "Catalogue | La mode pour tous | LYSHOP GABON"
+msgid "Catalog | Fashion for all | LYSHOP"
+msgstr "Catalogue | La mode pour tous | LYSHOP"
 
 #: catalog/strings.py:6
 msgid "Bags"
@@ -1705,8 +1705,8 @@ msgstr "Aucun produit disponible pour cet attribut"
 #: dashboard/templates/tags/brand_update_form.html:52
 #: dashboard/templates/tags/case_close_form.html:50
 #: dashboard/templates/tags/case_update_form.html:51
-#: dashboard/templates/tags/category_creation_form.html:60
-#: dashboard/templates/tags/category_update_form.html:71
+#: dashboard/templates/tags/category_creation_form.html:63
+#: dashboard/templates/tags/category_update_form.html:73
 #: dashboard/templates/tags/coupon_form.html:57
 #: dashboard/templates/tags/coupon_form_update.html:62
 #: dashboard/templates/tags/group_form.html:124
@@ -1908,7 +1908,7 @@ msgstr "Nouvelle marque"
 #: dashboard/templates/dashboard/category_list.html:60
 #: dashboard/templates/dashboard/product_type_list.html:51
 #: dashboard/templates/dashboard/product_type_list.html:62
-#: dashboard/templates/tags/category_update_form.html:30
+#: dashboard/templates/tags/category_update_form.html:32
 #: vendors/templates/vendor_tags/category_update_form.html:26
 #: vendors/templates/vendors/brand_detail.html:17
 #: vendors/templates/vendors/brand_list.html:39
@@ -3439,8 +3439,8 @@ msgstr "Code"
 #: dashboard/templates/dashboard/user_list.html:35
 #: dashboard/templates/dashboard/user_list.html:46
 #: dashboard/templates/tags/brand_creation_form.html:30
-#: dashboard/templates/tags/category_creation_form.html:35
-#: dashboard/templates/tags/category_update_form.html:35
+#: dashboard/templates/tags/category_creation_form.html:38
+#: dashboard/templates/tags/category_update_form.html:37
 #: dashboard/templates/tags/coupon_form.html:40
 #: dashboard/templates/tags/coupon_form_update.html:45
 #: vendors/templates/vendor_tags/brand_creation_form.html:30
@@ -3848,21 +3848,27 @@ msgstr "Filter les entrées"
 msgid "Send"
 msgstr "Envoyer"
 
-#: dashboard/templates/tags/category_creation_form.html:30
+#: dashboard/templates/tags/category_creation_form.html:28
+#, fuzzy
+#| msgid "Select a parent Category"
+msgid "Select a page title"
+msgstr "Selectionner une categorie mère"
+
+#: dashboard/templates/tags/category_creation_form.html:33
 msgid "Category Code"
 msgstr "Code"
 
-#: dashboard/templates/tags/category_creation_form.html:40
-#: dashboard/templates/tags/category_update_form.html:40
+#: dashboard/templates/tags/category_creation_form.html:43
+#: dashboard/templates/tags/category_update_form.html:42
 #: vendors/templates/vendor_tags/category_update_form.html:36
 msgid "Parent Category"
 msgstr "Categorie mère"
 
-#: dashboard/templates/tags/category_creation_form.html:42
+#: dashboard/templates/tags/category_creation_form.html:45
 msgid "Select a parent Category"
 msgstr "Selectionner une categorie mère"
 
-#: dashboard/templates/tags/category_update_form.html:48
+#: dashboard/templates/tags/category_update_form.html:50
 #: vendors/templates/vendor_tags/category_update_form.html:44
 msgid "Select Parent category"
 msgstr "Selectionner une categorie mère"
@@ -4186,16 +4192,12 @@ msgid "Product variant not created"
 msgstr "Déclinaison de produit  n'a pas pu etre créee"
 
 #: dashboard/views.py:1504
-#, fuzzy
-#| msgid "Brand not created"
 msgid "variants created"
-msgstr "Nouvelle marque non créee"
+msgstr "Déclinaisons créee"
 
 #: dashboard/views.py:1508
-#, fuzzy
-#| msgid "Brand not created"
 msgid "variants not created"
-msgstr "Nouvelle marque non créee"
+msgstr "Déclinaisons non créee"
 
 #: dashboard/views.py:1569 vendors/views.py:544
 msgid "Product Variant Update"
@@ -4206,14 +4208,10 @@ msgid "Product variant updated"
 msgstr "Déclinaison actualisée"
 
 #: dashboard/views.py:1589
-#, fuzzy
-#| msgid "Brand not created"
 msgid "variant not created"
-msgstr "Nouvelle marque non créee"
+msgstr "Déclinaison non créee"
 
 #: dashboard/views.py:1627
-#, fuzzy
-#| msgid "Product variant deleted"
 msgid "variant deleted"
 msgstr "Déclinaison supprimée"
 
@@ -4443,8 +4441,8 @@ msgstr ""
 "et Port-gentil."
 
 #: lyshop/settings.py:31
-msgid "Fashion and quality for everyone"
-msgstr "Mode et qualité pour  tous"
+msgid "Fashion and quality for everyone | LYSHOP"
+msgstr "Mode et qualité pour  tous | LYSHOP"
 
 #: lyshop/settings.py:304
 msgid "French"

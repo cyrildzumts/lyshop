@@ -72,12 +72,12 @@ PRODUCT_ACTIONS = (
 )
 
 # Category Page Title:
-CATEGORY_SHOES_PAGE_TITLE           = _("Shoes | Ballerinas, Loafer, Pumps | LYSHOP GABON")
-CATEGORY_BAGS_PAGE_TITLE            = _("Bags | Handbags for women | Online Shopping | LYSHOP GABON")
-CATEGORY_PARFUMS_PAGE_TITLE         = _("Perfumes | Perfumes for Men and Women | LYSHOP GABON")
-CATEGORY_ELECTRONICS_PAGE_TITLE     = _("Electronics | Smartphones | LYSHOP GABON")
-CATEGORY_MODE_PAGE_TITLE            = _("Fashion | Women and Men | LYSHOP GABON")
-CATALOG_HOME_PAGE_TITLE             = _("Catalog | Fashion for all | LYSHOP GABON")
+CATEGORY_SHOES_PAGE_TITLE           = _("Shoes | Ballerinas, Loafer, Pumps | LYSHOP")
+CATEGORY_BAGS_PAGE_TITLE            = _("Bags | Handbags for women | Online Shopping | LYSHOP")
+CATEGORY_PARFUMS_PAGE_TITLE         = _("Perfumes | Perfumes for Men and Women | LYSHOP")
+CATEGORY_ELECTRONICS_PAGE_TITLE     = _("Electronics | Smartphones | LYSHOP")
+CATEGORY_MODE_PAGE_TITLE            = _("Fashion | Women and Men | LYSHOP")
+CATALOG_HOME_PAGE_TITLE             = _("Catalog | Fashion for all | LYSHOP")
 
 CATEGORY_SHOES = 0
 CATEGORY_BAGS = 1
