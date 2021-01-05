@@ -2559,7 +2559,9 @@ table tbody tr, .mat-table tbody tr{
 	padding: 0.5em 1em !important;
 }
 .site-panel  .mat-button, .mobile-site-panel .mat-button{
+	min-width: 0;
 	justify-content: start !important;
+	margin: 0;
 }
 
 .highlight{
