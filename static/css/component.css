@@ -1328,17 +1328,17 @@ a {
 }
 
 .badge{
-	color: #6b808c;
 	display: inline-block;
-	margin: 0;
-	margin-left: 0.1em;
+	color: #fafafa;
 	max-width: 100%;
-	min-height: 20px;
+	/*min-height: 20px;*/
 	overflow: hidden;
 	position: relative;
-	padding: 2px;
 	text-decoration: none;
 	text-overflow: ellipsis;
+	padding: 2px;
+	margin: 0;
+	margin-left: 0.1em;
 }
 
 .list-card-members{
@@ -2776,6 +2776,18 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
+	.header--panel{
+		font-size: 0.7em;
+	}
+	.header--panel .mat-button{
+		min-width: 0 !important;
+		padding: 0 !important;
+		margin-right: 0;
+	}
+
+	.header--panel .logo{
+		padding-left: 0.1em;
+	}
 	
 	.registration-success{
 		font-size: 0.6em;
@@ -2821,6 +2833,18 @@ table tbody tr, .mat-table tbody tr{
 	.mobile-site-panel{
 		display: flex;
 		flex-direction: row;
+	}
+	.mobile-site-panel .mat-list-item{
+		border-bottom: none;
+		margin: 0;
+	}
+
+	.mobile-site-panel .mat-list-item:last-child{
+		border-bottom: none;
+		margin: 0;
+	}
+	.mobile-site-panel .mat-button{
+		min-width: 0;
 	}
 	.mat-table thead, table thead{
 		border: none;
