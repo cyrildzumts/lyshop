@@ -3,7 +3,7 @@
 
 {% if root_category_list %}
 <div id="root-category-list" class="category-nav">
-    <ul class="list-md-vertical list-horizontal">
+    <ul class="list-horizontal">
             {% for c in root_category_list %}
                 {% if category.parent and c.id == category.parent.id or c.id == category.id  %}
                 <li class="active"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
@@ -18,7 +18,7 @@
 
 {% if parent_category %}
 <div id="parent-subcategory-list" class="category-nav">
-    <ul class="list-md-vertical list-horizontal">
+    <ul class="list-horizontal">
             {% for c in parent_sub_category_list %}
             {% if c.id == category.id %}
             <li class="active selected"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
@@ -32,7 +32,7 @@
 {% endif %}
 {% if subcategory_list %}
 <div id="subcategory-list" class="category-nav">
-    <ul class="list-md-vertical list-horizontal">
+    <ul class="list-horizontal">
             {% for c in subcategory_list %}
             {% if c.id == category.id %}
             <li class="active current selected"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>

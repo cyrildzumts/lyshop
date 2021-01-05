@@ -2600,9 +2600,18 @@ table tbody tr, .mat-table tbody tr{
 }
 */
 .category-nav{
-
 	width: 100%;
 	padding: 0.5em 1em;
+}
+
+.category-nav ul{
+	display: flex;
+	overflow-x: auto;
+	font-size: 0.8em;
+	margin: 0 auto;
+}
+.category-nav .mat-button{
+	padding: 0 2px !important;
 }
 
 #static-page{
