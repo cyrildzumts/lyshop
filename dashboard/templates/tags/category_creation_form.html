@@ -23,8 +23,8 @@
                 <input id="display_name" type="text"  name="display_name" value="">
             </div>
             <div class="form-group">
-                <label for="page_title">{% trans "Page title" %}</label>
-                <select name="page_title" id="page_title">
+                <label for="page_title_index">{% trans "Page title" %}</label>
+                <select name="page_title_index" id="page_title_index">
                     <option value="">{% trans "Select a page title" %}</option>
                     {% for k,v in CATEGORIES %}<option value="{{k}}">{{v}}</option>{% endfor %}
                 </select>
