@@ -68,7 +68,11 @@ define([
         });
         $('.js-add-address').on('click', function(){
             $('#new-address, #checkout-address').toggleClass('hidden');
-            document.getElementById('address').toggleAttribute('disabled')
+            var addr = document.getElementById('address');
+            if(addr){
+                addr.toggleAttribute('disabled');
+            }
+            
         });
         $('.js-create-address').on('click', function(){
             self.create_address();
