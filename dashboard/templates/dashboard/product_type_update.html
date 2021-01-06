@@ -69,7 +69,7 @@
                         
                         <div class="form-group">
                             <label for="is_active">{% trans "Is Active" %}</label>
-                            <input id="is_active" type="checkbox"  name="is_active" value="{{product_type.is_active}}">
+                            <input id="is_active" type="checkbox"  name="is_active" {% if product_type.is_active %}checked{% endif %}>
                         </div>
                     
                     </div><!-- End of container-->
