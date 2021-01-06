@@ -17,7 +17,7 @@ class UniqueIP(models.Model):
 
 
 class FacebookLinkHit(models.Model):
-    fclid = models.CharField(max_length=256)
+    fbclid = models.CharField(max_length=256)
     ip_address = models.GenericIPAddressField(editable=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(auto_now=True, blank=True, null=True)
