@@ -186,7 +186,7 @@ def product_detail(request, product_uuid=None):
         'product_attrs': product_attrs,
         'OG_TITLE' : page_title,
         'OG_DESCRIPTION': product.short_description,
-        'OG_IMAGE': product.images.first.get_image_url(),
+        'OG_IMAGE': product.images.first().get_image_url(),
         'OG_URL': request.build_absolute_uri()
     }
     return render(request,template_name, context)
