@@ -29,9 +29,9 @@ class FacebookHitCounter:
             client_ip = request.META.get(X_FORWARDED_FOR_HEADER).split(IP_SEP)[0]
         else:
             client_ip = request.META.get(REMOTE_ADDR)
-        logger.info(f"request path : {request.path}")
-        if request.method == 'GET' and request.GET.get(FACEBOOK_REQUEST_QUERY):
-            fbclid = request.GET.get(FACEBOOK_REQUEST_QUERY)
+        logger.info(f"facebookhit middelware : request path : {request.path}")
+        if request.method == 'GET' and FACEBOOK_REQUEST_QUERY in request.GET.copy():
+            fbclid = request.GET.copy().get(FACEBOOK_REQUEST_QUERY)
             fblh, created = FacebookLinkHit.objects.get_or_create(fbclid=fbclid, ip_address=client_ip)
             FacebookLinkHit.objects.filter(pk=fblh.pk).update(hits=F('hits') + 1)
         response = self.get_response(request)
