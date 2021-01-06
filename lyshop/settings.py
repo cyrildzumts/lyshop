@@ -152,6 +152,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'inventory.middleware.VisitorCounter',
     'inventory.middleware.UniqueIPCounter',
+    'inventory.middleware.FacebookHitCounter',
     
 ]
 
