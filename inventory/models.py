@@ -15,3 +15,11 @@ class UniqueIP(models.Model):
     modified_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     hits = models.PositiveIntegerField(default=0)
 
+
+class FacebookLinkHit(models.Model):
+    fclid = models.CharField(max_length=256)
+    ip_address = models.GenericIPAddressField(editable=False)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+    hits = models.PositiveIntegerField(default=0)
+

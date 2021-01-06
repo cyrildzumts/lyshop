@@ -53,7 +53,7 @@ from vendors import vendors_service
 from addressbook.models import Address
 from addressbook import addressbook_service, constants as Addressbook_Constants
 from inventory import inventory_service
-from inventory.models import Visitor, UniqueIP
+from inventory.models import Visitor, UniqueIP, FacebookLinkHit
 from dashboard import analytics
 from itertools import islice
 import json
@@ -76,6 +76,7 @@ def dashboard(request):
     page_title = _('Dashboard') + ' - ' + settings.SITE_NAME
     username = request.user.username
     recent_orders = Order.objects.order_by('-created_at')[:10]
+    fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits'))
     context = {
             'name'          : username,
             'page_title'    : page_title,
@@ -86,6 +87,7 @@ def dashboard(request):
             'users_count' : User.objects.count(),
             'visitors' : Visitor.objects.count(),
             'unique_visitors' : UniqueIP.objects.count(),
+            'facebook_visitors' : fbcount_sum['hits'],
         }
     if not can_view_dashboard :
         logger.warning(f"Dashboard : PermissionDenied to user {username} for path {request.path}")
