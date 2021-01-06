@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
+from django.templatetags.static import static
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.sitemaps import Sitemap
@@ -61,6 +62,10 @@ def home(request):
         'parfum_category' : parfum_category,
         'mode_category': mode_category,
         'electronics_category' : electronics_category,
+        'OG_TITLE' : page_title,
+        'OG_DESCRIPTION': settings.META_DESCRIPTION,
+        'OG_IMAGE': static('assets/lyshop_banner.png'),
+        'OG_URL': request.build_absolute_uri()
     }
     return render(request, template_name,context)
 

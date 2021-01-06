@@ -6,7 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.exceptions import PermissionDenied, SuspiciousOperation
-
+from django.templatetags.static import static
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.http import HttpResponseRedirect
@@ -76,7 +76,11 @@ def catalog_home(request):
         'type_list': ProductType.objects.all(),
         'queryset' : queryset,
         'GENDER' : Constants.GENDER,
-        'SELECTED_FILTERS' : selected_filters
+        'SELECTED_FILTERS' : selected_filters,
+        'OG_TITLE' : Constants.CATALOG_HOME_PAGE_TITLE,
+        'OG_DESCRIPTION': settings.META_DESCRIPTION,
+        'OG_IMAGE': static('assets/lyshop_banner.png'),
+        'OG_URL': request.build_absolute_uri()
     }
 
     return render(request, template_name, context)
@@ -116,7 +120,11 @@ def category_detail(request, category_uuid=None):
         'parent_sub_category_list': Category.objects.filter(parent=category.parent),
         'subcategory_list': subcats,
         'GENDER' : Constants.GENDER,
-        'SELECTED_FILTERS' : selected_filters
+        'SELECTED_FILTERS' : selected_filters,
+        'OG_TITLE' : category.get_page_title(),
+        'OG_DESCRIPTION': settings.META_DESCRIPTION,
+        'OG_IMAGE': static('assets/lyshop_banner.png'),
+        'OG_URL': request.build_absolute_uri()
     }
     return render(request,template_name, context)
 
@@ -175,7 +183,11 @@ def product_detail(request, product_uuid=None):
         'image_list': images,
         'common_attrs' : common_attrs,
         'selective_attrs' : selective_attrs,
-        'product_attrs': product_attrs
+        'product_attrs': product_attrs,
+        'OG_TITLE' : page_title,
+        'OG_DESCRIPTION': product.short_description,
+        'OG_IMAGE': product.images.first.get_image_url(),
+        'OG_URL': request.build_absolute_uri()
     }
     return render(request,template_name, context)
 
