@@ -33,7 +33,7 @@
                       <label for="account_type">{% trans "Account type" %}</label>
                       <select name="account_type" id="account_type">
                         <option value="">{% trans "Select an Account Type" %}</option>
-                        {% for k, v in ACCOUNT_TYPE %} <option value="{{k}}" {% if k==4 %}selected{% endif %}>{% trans v %}</option> {% endfor %}
+                        {% for k, v in ACCOUNT_TYPE %} <option value="{{k}}" {% if k == 4 %}selected{% endif %}>{% trans v %}</option> {% endfor %}
                       </select>
                     </div>
                 </div>
