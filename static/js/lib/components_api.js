@@ -6,6 +6,10 @@ var Tabs = (function(){
     var checked_icon_class = "fas fa-check";
     var tab_title_class = "tab-title";
     var tab_title_checked = "tab-checked";
+    var tab_contents = $('.tab-content');
+    var tab_list = $('.tab');
+    var current_index = 0;
+    var tab_content_validators = [];
 
     function Tabs(){
         this.currentTab     = 0;
@@ -13,6 +17,7 @@ var Tabs = (function(){
         this.tabs           = {};
         this.tab            = {};
         this.tabsCount      = 0;
+
         
     };
 
@@ -24,6 +29,7 @@ var Tabs = (function(){
         if(this.tabCount == 0){
             return;
         }
+        var that = this;
         
         $('div.tab-container').each(function(){
             $(this).find('.tab-content:eq(0)').nextAll().hide();
@@ -37,8 +43,24 @@ var Tabs = (function(){
                 $(current.data('toggle')).show().siblings('div.tab-content').hide();
             }
         });
+        $('.js-tab').on('click', function(){
+            var tab_content = $($(this).data('toggle'));
+            var tab_index = parseInt(tab_content.data('index'));
+            tab_content.addClass('active').siblings().removeClass('active');
+            tab_content.show().siblings('.tab-content').hide();
+        });
         console.log("Tabs initialised");
     };
+
+    Tabs.prototype.add_validator = function(validator, index){
+        if("function" == typeof validator){
+            tab_content_validators[index] = validator;
+        }else{
+            console.warn("validator must be a callable object");
+        }
+        
+    };
+
     Tabs.prototype.toggle_checked = function(index, toggle){
         if(index < 0 || index > this.tabCount){
             console.warn("No tab with index %s", index);

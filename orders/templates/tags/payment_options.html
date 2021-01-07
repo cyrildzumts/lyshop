@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load order_tag %}
-<div id="{{step_id}}" class="tab-content" data-checked="{{icon_parent}} icon">
+<div id="{{step_id}}" class="tab-content" data-index="{{index}}" data-checked="{{icon_parent}} icon">
 
     <div id="payment-option" class="mat-box">
             <div class="title">
@@ -22,4 +22,8 @@
                 {% endfor %}
             </ul>
     </div> 
+    <div class="actions">
+        <span class="mat-button mat-button-outlined js-tab" data-toggle="#step-1" data-icon_parent="step-header-1" data-next-tab-index="1" title="{% trans 'Previous Step' %}"><i class="fas fa-chevron-left"></i></span>
+        <span class="mat-button mat-button-outlined js-tab" data-toggle="#step-3" data-icon_parent="step-header-3" data-next-tab-index="3"  title="{% trans 'Next step' %}"><i class="fas fa-chevron-right"></i></span>
+    </div>
 </div>
