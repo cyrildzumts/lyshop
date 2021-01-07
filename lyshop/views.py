@@ -103,14 +103,3 @@ def customer_usage(request):
     return render(request, template_name,context)
 
 
-
-
-
-class LyshopSiteMap(Sitemap):
-    changefreq = "monthly"
-
-    def items(self):
-        return ["home", "catalog:catalog-home", "about", "faq"]
-    
-    def location(self, item):
-        return reverse(item)

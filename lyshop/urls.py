@@ -20,6 +20,8 @@ from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
+from catalog.sitemaps import CategorySiteMap
+from lyshop.sitemaps import LyshopSiteMap
 from lyshop import views
 '''
 urlpatterns = [
@@ -43,7 +45,8 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 '''
 sitemaps = {
-    'static' : views.LyshopSiteMap,
+    'static' : LyshopSiteMap,
+    'category': CategorySiteMap
 }
 
 urlpatterns = i18n_patterns(
