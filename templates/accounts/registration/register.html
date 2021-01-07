@@ -17,35 +17,33 @@
 {% block MAIN %}
 
 <div class="padded-wrapper-top">
-  <div class="container">
+  <div class="container user-registration">
     <div class="col-m-12 col-6">
-        <div class="title">
-          {%trans 'Registration'%}
-        </div>
+        <h4 class="center">{%trans 'Registration'%}</h4>
     </div>
     <div class="col-m-12 col-6">
       <form class="signup-form full" action="{% url 'accounts:register'%}" method="POST">{% csrf_token %}
-        <div class="flex">
+        <div class="grid">
             <div class="mat-box">
               {% include "tags/form_snippet.html" with form=user_form %}
             </div>
-            <div class="mat-input">
-              <label for="account_type">{% trans "ACCOUNT TYPE" %}</label>
-              <select name="account_type" id="account_type">
-                <option value="">{% trans "Select an Account Type" %}</option>
-                {% for k, v in ACCOUNT_TYPE %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
-              </select>
+            <div class="mat-box">
+                <div class="field-wrapper">
+                    <div class="mat-input">
+                      <label for="account_type">{% trans "Account type" %}</label>
+                      <select name="account_type" id="account_type">
+                        <option value="">{% trans "Select an Account Type" %}</option>
+                        {% for k, v in ACCOUNT_TYPE %} <option value="{{k}}">{% trans v %}</option> {% endfor %}
+                      </select>
+                    </div>
+                </div>
             </div>
-            {% comment %}<div class="mat-box">
-              {% include "tags/form_snippet.html" with form=account_form %}
-            </div>
-            {% endcomment %}
         </div>
-        <div class="actions">
+        <div class="actions flex-right">
           <a class="mat-button mat-button-outlined" href="{%url 'home'%}"> {% trans "Cancel" %} </a>
           <button class="mat-button mat-button-default" type="submit">{%trans 'Create My Account'%} </button>
         </div>
-        <div class="flex">
+        <div class="actions flex-right">
             <span class="register-hint">{% trans "Already have an account ? " %}</span><a class="mat-button mat-button-default register-btn" href="{% url 'accounts:login' %}">{% trans "Sign In" %}</a>
         </div>
       </form>

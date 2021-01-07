@@ -2787,6 +2787,9 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
+	.user-registration{
+		font-size: 0.7em;
+	}
 	.cart-container, .checkout-container{
 		font-size: 0.7em;
 	}
