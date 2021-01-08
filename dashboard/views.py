@@ -4580,6 +4580,8 @@ def refund_update(request, refund_uuid=None):
         form = RefundForm(postdata, instance=refund)
         if form.is_valid():
             refund = form.save()
+            if refund.status == Order_Constants.REFUND_PAID:
+                orders_service.pay_refund(refund_uuid)
             messages.success(request, _('Refund updated'))
             logger.info(f'Refund updated by user \"{username}\"')
             return redirect('dashboard:refund-detail', refund_uuid=refund_uuid)
