@@ -225,7 +225,7 @@ class OrderPayment(models.Model):
 
 class Refund(models.Model):
     amount = models.DecimalField(default=0.0, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order_refunds')
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='order_refunds',blank=True, null=True)
     order = models.ForeignKey(Order, related_name='refunds', on_delete=models.CASCADE, blank=True, null=True)
     status = models.IntegerField(default=commons.REFUND_PENDING, choices=commons.REFUND_STATUS)
     declined_reason = models.IntegerField(blank=True, null=True, choices=commons.REFUND_DECLINED_REASON)
