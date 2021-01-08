@@ -265,14 +265,8 @@ def cancel_order(order, request_user=None):
     
     if not is_cancelable(order):
         return False
-    items_queryset = order.order_items.select_related().all()
-    product_update_list = tuple(items_queryset.values_list('product', 'quantity'))
+
     Order.objects.filter(pk=order.pk).update(is_closed=True, is_active=False, status=commons.ORDER_CANCELED, last_changed_by=request_user)
-    
-    for pk, quantity in product_update_list:
-        ProductVariant.objects.filter(pk=pk).update(quantity=F('quantity') + quantity, is_active=True)
-        Product.objects.filter(variants__in=[pk]).update(quantity=F('quantity') + quantity, is_active=True)
-    SoldProduct.objects.filter(order=order).delete()
     refund_order(order)
     return True
 
