@@ -451,14 +451,18 @@ def refund_order(order):
 def accept_refund(refund_uuid):
     refund = Refund.objects.get(refund_uuid=refund_uuid)
     order = refund.order
-    items_queryset = order.order_items.select_related().all()
-    product_update_list = tuple(items_queryset.values_list('product', 'quantity'))
-    Order.objects.filter(pk=order.pk).update(is_closed=True, is_active=False, status=commons.ORDER_REFUND, last_changed_by=request_user)
+    if refund.status != commons.REFUND_PENDING:
+        logger.warning("Refund was already processing. Only prefund in pending statte can accepted")
+        #return False
     
-    for pk, quantity in product_update_list:
-        ProductVariant.objects.filter(pk=pk).update(quantity=F('quantity') + quantity, is_active=True)
-        Product.objects.filter(variants__in=[pk]).update(quantity=F('quantity') + quantity, is_active=True)
-    SoldProduct.objects.filter(order=order).delete()
+    if not SoldProduct.objects.filter(order=order).exists():
+        items_queryset = order.order_items.select_related().all()
+        product_update_list = tuple(items_queryset.values_list('product', 'quantity'))
+        Order.objects.filter(pk=order.pk).update(is_closed=True, is_active=False, status=commons.ORDER_REFUND, last_changed_by=request_user)
+        for pk, quantity in product_update_list:
+            ProductVariant.objects.filter(pk=pk).update(quantity=F('quantity') + quantity, is_active=True)
+            Product.objects.filter(variants__in=[pk]).update(quantity=F('quantity') + quantity, is_active=True)
+        SoldProduct.objects.filter(order=order).delete()
     return Refund.objects.filter(refund_uuid=refund_uuid).update(status=commons.REFUND_ACCEPTED)
 
 def pay_refund(refund_uuid):
