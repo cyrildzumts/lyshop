@@ -1,32 +1,38 @@
 {% load i18n %}
 
 <div class="footer-content">
-    <div class="footer-catalog">
-    <h6>{% trans "Payment methods" %}</h6>
-    <ul>
-        {% for pm in payment_methods %} <li>{{pm.display_name}}</li> {% endfor %}
-    </ul>
+    <div class="col-xs-6 col-3">
+        <div class="footer-catalog">
+            <h6>{% trans "Payment methods" %}</h6>
+            <ul>
+                {% for pm in payment_methods %} <li>{{pm.display_name}}</li> {% endfor %}
+            </ul>
+        </div>
     </div>
-    <div class="footer-catalog">
-    <h6>{% trans "Shipping" %} (LBV, POG)</h6>
-     <ul>
-         {% for s in ship_modes %} <li>{{s.display_name}}</li> {% endfor %}
-     </ul>
+    <div class="col-xs-6 col-3">
+        <div class="footer-catalog">
+            <h6>{% trans "Shipping" %} (LBV, POG)</h6>
+            <ul>
+                {% for s in ship_modes %} <li>{{s.display_name}}</li> {% endfor %}
+            </ul>
+        </div>
     </div>
-    <div class="footer-catalog">
-        <h6>{% trans "Locations" %}</h6>
-         <ul>
-            <li><i class="fas fa-map-marked-alt icon"></i>LBV : Louis, aux galeries du marché municipal, Box n° 4</li>
-            <li><i class="fas fa-map-marked-alt icon"></i>POG : Grand village, Chez Josy Coiffure, à coté de CECADO, au carréfour Assane</li>
-         </ul>
+    <div class="col-xs-6 col-3">
+        <div class="footer-catalog">
+            <h6>{% trans "Locations" %}</h6>
+            <ul>
+                <li><i class="fas fa-map-marked-alt icon"></i>LBV : Louis, aux galeries du marché municipal, Box n° 4</li>
+                <li><i class="fas fa-map-marked-alt icon"></i>POG : Grand village, Chez Josy Coiffure, à coté de CECADO, au carréfour Assane</li>
+            </ul>
+        </div>
     </div>
-    <div class="footer-catalog">
-        <h6>{% trans "Contact" %}</h6>
-        <ul >
-            <li><i class="fab fa-whatsapp icon"></i><a  href="https://wa.me/+4917625975543/?text=Bonjour%2C+je+suis+interess%C3%A9+par+vos+acticles"></a>WhatsApp</li>
-            <li><i class="fab fa-facebook icon"></i><a  href="https://www.facebook.com/lyshoppinggabao" target="_blank" rel="noopener noreferrer">Lyshop Gabon</a></li>
-         </ul>
+    <div class="col-xs-6 col-3">
+        <div class="footer-catalog">
+            <h6>{% trans "Contact" %}</h6>
+            <ul >
+                <li><i class="fab fa-whatsapp icon"></i><a  href="https://wa.me/+4917625975543/?text=Bonjour%2C+je+suis+interess%C3%A9+par+vos+acticles"></a>WhatsApp</li>
+                <li><i class="fab fa-facebook icon"></i><a  href="https://www.facebook.com/lyshoppinggabao" target="_blank" rel="noopener noreferrer">Lyshop Gabon</a></li>
+            </ul>
+        </div>
     </div>
-
-
 </div>
