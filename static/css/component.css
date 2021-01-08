@@ -2792,6 +2792,7 @@ table tbody tr, .mat-table tbody tr{
 
 .footer-content{
 	display: flex;
+	width: 100%;
 	justify-content: center;
 	font-size: 0.8em;
 	letter-spacing: 0.2em;
@@ -2800,6 +2801,13 @@ table tbody tr, .mat-table tbody tr{
 
 .footer-catalog{
 	padding: 1em;
+}
+
+.footer-catalog li{
+	padding-top: 1em;
+}
+.footer-catalog a{
+	color: #fafafa;
 }
 
 @media only screen and (max-width:40em){
