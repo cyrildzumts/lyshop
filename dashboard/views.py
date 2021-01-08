@@ -4571,7 +4571,7 @@ def refund_update(request, refund_uuid=None):
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
-    @login_required
+@login_required
 def refund_bulk_update(request):
     username = request.user.username
     
