@@ -73,6 +73,11 @@ urlpatterns = [
     path('orders/payment_methods/delete/', views.payment_methods_delete, name='payment-methods-delete'),
     path('orders/payment_methods/create/', views.payment_method_create, name='payment-method-create'),
 
+    path('orders/refunds', views.refunds, name='refunds'),
+    path('orders/refunds/detail/<uuid:refund_uuid>/', views.refund_detail, name='refund-detail'),
+    path('orders/refunds/update/<uuid:refund_uuid>/', views.refund_update, name='refund-update'),
+    path('orders/refunds/bulk-update/', views.refund_bulk_update, name='refund-bulk-update'),
+
     path('products/', views.products, name='products'),
     path('products/detail/<uuid:product_uuid>/', views.product_detail, name='product-detail'),
     path('products/update/<uuid:product_uuid>/', views.product_update, name='product-update'),

@@ -32,8 +32,8 @@ from catalog.models import (
     Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage, ProductType, ProductTypeAttribute,
     Highlight
 )
-from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory, PaymentMethod
-from orders.forms import DashboardOrderUpdateForm, OrderItemUpdateForm, PaymentMethodForm
+from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory, PaymentMethod, Refund, OrderPayment
+from orders.forms import DashboardOrderUpdateForm, OrderItemUpdateForm, PaymentMethodForm, RefundForm
 from orders import orders_service
 from shipment import shipment_service
 from catalog.forms import (BrandForm, ProductAttributeForm, 
@@ -447,6 +447,49 @@ def order_cancel(request, order_uuid):
         messages.error(request, "Error. Your order can no more be canceled")
         
     return redirect('dashboard:order-detail', order_uuid=order_uuid)
+
+
+@login_required
+def accept_refund(request, refund_uuid):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    refund = get_object_or_404(Refund, refund_uuid=refund_uuid)
+    p, v = orders_service.accept_refund(refund_uuid)
+    messages.success(request, "Refund accepted")
+    logger.info(f"Refund Accepted by user {request.user.username}")
+    return redirect(refund.get_dashboard_url())
+
+
+@login_required
+def pay_refund(request, refund_uuid):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    refund = get_object_or_404(Refund, refund_uuid=refund_uuid)
+    p, v = orders_service.pay_refund(refund_uuid)
+    messages.success(request, "Refund paid")
+    logger.info(f"Refund marked as paid by user {request.user.username}")
+    return redirect(refund.get_dashboard_url())
 
 
 @login_required
@@ -4430,3 +4473,127 @@ def addresses_delete(request):
         messages.error(request, f"Addresses \"{id_list}\" could not be deleted")
         logger.error(f"ID list invalid. Error : {id_list}")
     return redirect('dashboard:addressbook')
+
+
+
+@login_required
+def refunds(request):
+    username = request.user.username
+    can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_access_dashboard:
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    can_view_payment = PermissionManager.user_can_view_payment(request.user)
+    if not can_view_payment:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    #current_account = Account.objects.get(user=request.user)
+    queryset = Refund.objects.all().order_by('-created_at')
+    template_name = "dashboard/refund_list.html"
+    page_title = "Refunds - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
+    try:
+        request_set = paginator.page(page)
+    except PageNotAnInteger:
+        request_set = paginator.page(1)
+    except EmptyPage:
+        request_set = None
+    context['page_title'] = page_title
+    context['refund_list'] = request_set
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def refund_detail(request, refund_uuid=None):
+    username = request.user.username
+    can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_access_dashboard:
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    can_view_payment = PermissionManager.user_can_view_payment(request.user)
+    if not can_view_payment:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    refund = get_object_or_404(Refund, refund_uuid=refund_uuid)
+    template_name = "dashboard/refund_detail.html"
+    page_title = "Refund" + " - " + settings.SITE_NAME
+    context['page_title'] = page_title
+    context['refund'] = refund
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
+def refund_update(request, refund_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_payment(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    template_name = 'dashboard/refund_update.html'
+    page_title = 'Refund Update'
+    
+    form = None
+    username = request.user.username
+    refund = get_object_or_404(Refund, refund_uuid=refund_uuid)
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)   
+        form = RefundForm(postdata, instance=refund)
+        if form.is_valid():
+            refund = form.save()
+            messages.success(request, _('Refund updated'))
+            logger.info(f'Refund updated by user \"{username}\"')
+            return redirect('dashboard:refund-detail', refund_uuid=refund_uuid)
+        else:
+            messages.error(request, _('Refund not updated'))
+            logger.error(f'Error on updating Refund. Action requested by user \"{username}\"')
+            logger.error(form.errors)
+    else:
+        form = RefundForm(instance=refund)
+    context = {
+        'page_title': page_title,
+        'form' : form,
+        'refund': refund,
+        'REFUND_STATUS': Order_Constants.REFUND_STATUS,
+        'REFUND_DECLINED_REASON': Order_Constants.REFUND_DECLINED_REASON
+    }
+    context.update(get_view_permissions(request.user))
+    return render(request, template_name, context)
+
+    @login_required
+def refund_bulk_update(request):
+    username = request.user.username
+    
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('refunds')
+    action = None
+    status = None
+    if 'action' in postdata:
+        action = postdata.get('action')
+    if action :
+        if action == 'accepted':
+            status = Order_Constants.REFUND_ACCEPTED
+        elif action == 'paid':
+            status = Order_Constants.REFUND_PAID
+
+        if len(id_list) and status:
+            refund_id_list = list(map(int, id_list))
+            Refund.objects.filter(id__in=refund_id_list).update(status=status)
+            messages.success(request, f"Refunds \"{id_list}\" updated")
+            logger.info(f"Refunds \"{id_list}\" updated by user {username}")
+            
+        else:
+            messages.error(request, f"Refunds \"{id_list}\" could not be updated")
+            logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('dashboard:refunds')

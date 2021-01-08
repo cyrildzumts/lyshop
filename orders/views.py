@@ -14,7 +14,7 @@ from core.filters import filters
 from orders import commons
 from vendors.models import SoldProduct
 from orders.forms import ShippingAddressForm, BillingAddressForm, PaymentRequestForm, PaymentOptionForm, OrderFilterOption
-from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory
+from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory, OrderPayment
 from lyshop import settings, utils, conf as GLOBAL_CONF
 from http import HTTPStatus
 import json
@@ -295,6 +295,8 @@ def checkout_success(request, order_uuid):
         payment_request = queryset.first()
         Order.objects.filter(order_uuid=order_uuid).update(status=commons.ORDER_PAID, is_paid=True)
         OrderStatusHistory.objects.create(order=order, order_status=commons.ORDER_PAID, order_ref_id=order.id, changed_by=request.user)
+        OrderPayment.objects.create(amount=order.total, sender=order.user, order=order, payment_mode=commons.ORDER_PAYMENT_PAY, verification_code=payment_request.verification_code)
+        
 
     orders_service.order_clear_cart(request.user)
     flag = orders_service.mark_product_sold(order)

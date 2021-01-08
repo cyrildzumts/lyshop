@@ -1,6 +1,6 @@
 
 from django import forms
-from orders.models import PaymentRequest, Order, OrderItem, PaymentMethod
+from orders.models import PaymentRequest, Order, OrderItem, PaymentMethod, OrderPayment, Refund
 from core.forms import ListField, IntergerListField
 
 
@@ -71,3 +71,10 @@ class OrderItemUpdateForm(forms.ModelForm):
     class Meta:
         model = OrderItem
         fields = ['changed_by', 'quantity']
+
+
+class RefundForm(forms.ModelForm):
+
+    class Meta:
+        model = Refund
+        fields = Refund.FORM_FIELDS

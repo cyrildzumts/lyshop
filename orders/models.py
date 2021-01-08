@@ -201,6 +201,7 @@ class PaymentRequest(models.Model):
 class OrderPayment(models.Model):
     amount = models.DecimalField(default=0.0, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order_payments')
+    order = models.ForeignKey(Order, related_name='order_payments', on_delete=models.CASCADE, blank=True, null=True)
     verification_code = models.TextField(max_length=80)
     payment_mode = models.IntegerField(choices=commons.ORDER_PAYMENT_MODE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -224,12 +225,15 @@ class OrderPayment(models.Model):
 
 class Refund(models.Model):
     amount = models.DecimalField(default=0.0, max_digits=GLOBAL_CONF.PRODUCT_PRICE_MAX_DIGITS, decimal_places=GLOBAL_CONF.PRODUCT_PRICE_DECIMAL_PLACES)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order_refunds')
+    order = models.ForeignKey(Order, related_name='refunds', on_delete=models.CASCADE, blank=True, null=True)
     status = models.IntegerField(default=commons.REFUND_PENDING, choices=commons.REFUND_STATUS)
     declined_reason = models.IntegerField(blank=True, null=True, choices=commons.REFUND_DECLINED_REASON)
     payment = models.OneToOneField(OrderPayment, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     last_changed_at = models.DateTimeField(auto_now=True)
     refund_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['status', 'declined_reason']
 
     def __str__(self):
         return f"Refund {self.payment.sender.username} : {self.amount} {settings.CURRENCY}"
@@ -237,7 +241,10 @@ class Refund(models.Model):
     def get_absolute_url(self):
         return reverse('orders:refund-detail', kwargs={'refund_uuid':self.refund_uuid})
 
-    def get_dashboard_absolute_url(self):
+    def get_update_url(self):
+        return reverse('dashboard:refund-update', kwargs={'refund_uuid':self.refund_uuid})
+
+    def get_dashboard_url(self):
         return reverse('dashboard:refund-detail', kwargs={'refund_uuid':self.refund_uuid})
 
 

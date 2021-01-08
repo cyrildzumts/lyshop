@@ -8,7 +8,7 @@ from django.utils import timezone
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from orders import commons
-from orders.models import Order, OrderItem,PaymentRequest, OrderStatusHistory, PaymentMethod
+from orders.models import Order, OrderItem,PaymentRequest, OrderStatusHistory, PaymentMethod, OrderPayment, Refund
 from orders.forms import PaymentMethodForm
 from catalog.models import Product, ProductVariant
 from vendors.models import SoldProduct, Balance, BalanceHistory
@@ -266,7 +266,7 @@ def cancel_order(order, request_user=None):
     for pk, quantity in product_update_list:
         ProductVariant.objects.filter(pk=pk).update(quantity=F('quantity') + quantity, is_active=True)
         Product.objects.filter(variants__in=[pk]).update(quantity=F('quantity') + quantity, is_active=True)
-    
+    refund_order(order)
     return True
 
 
@@ -301,6 +301,7 @@ def mark_product_sold(order):
     order_items = order.order_items.select_related().all()
     #sold_products = [SoldProduct(customer=order.user, seller=item.product.product.sold_by, product=item.product, quantity=item.quantity, promotion_price=item.promotion_price, unit_price=item.unit_price, total_price=item.total_price) for item in order_items]
     sold_products_data = [{'customer':order.user, 'seller':item.product.product.sold_by, 'product':item.product, 'quantity': item.quantity, 'promotion_price':item.promotion_price, 'unit_price':item.unit_price, 'total_price':item.total_price} for item in order_items]
+    '''
     balance_updates = ((p['seller'], p['total_price'], p['customer'], p['seller'].balance) for p in sold_products_data)
     with transaction.atomic():
         for s, total, customer, balance in balance_updates:
@@ -308,8 +309,29 @@ def mark_product_sold(order):
             Balance.objects.filter(user=s).update(balance=F('balance') + total)
             BalanceHistory.objects.create(balance=balance, balance_ref_id=balance.pk, current_amount=balance.balance,balance_amount=total, sender=customer, receiver=s)
         Order.objects.filter(id=order.id).update(vendor_balance_updated=True)
-    
+    '''
     SoldProduct.objects.bulk_create([SoldProduct(**data) for data in sold_products_data])
+    return True
+
+
+
+def mark_order_paid(order):
+    if  not isinstance(order, Order) or order.is_paid:
+        return False
+    order_items = order.order_items.select_related().all()
+    sold_products_data = [{'customer':order.user, 'seller':item.product.product.sold_by, 'product':item.product, 'quantity': item.quantity, 'promotion_price':item.promotion_price, 'unit_price':item.unit_price, 'total_price':item.total_price} for item in order_items]
+    balance_updates = ((p['seller'], p['total_price'], p['customer'], p['seller'].balance) for p in sold_products_data)
+    with transaction.atomic():
+        for s, total, customer, balance in balance_updates:
+            balance.refresh_from_db()
+            Balance.objects.filter(user=s).update(balance=F('balance') + total)
+            BalanceHistory.objects.create(balance=balance, balance_ref_id=balance.pk, current_amount=balance.balance,balance_amount=total, sender=customer, receiver=s)
+        Order.objects.filter(id=order.id).update(vendor_balance_updated=True, is_paid=True)
+    
+    payment_mode = order.payment_method.mode
+    if not payment_mode == commons.ORDER_PAYMENT_PAY:
+        OrderPayment.objects.create(amount=order.total, sender=order.user, order=order, payment_mode=payment_mode, verification_code="N/A")
+    
     return True
 
 
@@ -399,12 +421,39 @@ def get_order_shipment(order):
     shipment = None
     return shipment_service.find_order_shipment(order)
 
+
+def is_refundable(order):
+    if not isinstance(order, Order):
+        logger.error("Type Error : order not of Order type")
+        raise TypeError("Type Error : order argument not of type Order.")
+
+    if not order.is_paid:
+        return False
+    #status = Q(status=commons.REFUND_PAID) | Q(status=commons.REFUND_PENDING) | Q(status=commons.REFUND_ACCEPTED) | Q(status=commons.REFUND_CANCELLED)
+    exists = Refund.objects.filter(order=order).exists()
+    return not exists
+
 ## TODO
 def refund_order(order):
     if not isinstance(order, Order):
         logger.error("Type Error : order not of Order type")
         raise TypeError("Type Error : order argument not of type Order.")
+        
+    if not is_refundable(order):
+        msg = "Refund Order - Order is not paid. Refund not possible"
+        logger.warning(msg)
+        return False, msg
 
+    order_payment = OrderPayment.objects.filter(order=order).first()
+    Refund.objects.create(amount=order.amount, user=order.user, payment=order_payment)
+    return True, "Refund order submitted"
+    
+
+def accept_refund(refund_uuid):
+    return Refund.objects.filter(refund_uuid=refund_uuid).update(status=commons.REFUND_ACCEPTED)
+
+def pay_refund(refund_uuid):
+    return Refund.objects.filter(refund_uuid=refund_uuid).update(status=commons.REFUND_PAID)
 
 def get_payment_method(name=""):
     if isinstance(name, str) and len(name) > 0:
