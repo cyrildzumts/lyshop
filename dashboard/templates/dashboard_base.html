@@ -36,6 +36,7 @@
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-methods'%}">{% trans "Payment Methods" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'payment:payment-home'%}">{% trans "Payments" %}</a></li>
                               <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-requests'%}">{% trans "Payment Requests" %}</a></li>
+                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:refunds'%}">{% trans "Refunds" %}</a></li>
                               {% endif %}
                               {% if can_view_shipment %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home'%}">{% trans "Shipments" %}</a></li>{% endif %}
                               {% if can_view_user %}
