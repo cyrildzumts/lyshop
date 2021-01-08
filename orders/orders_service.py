@@ -200,6 +200,7 @@ def order_pay_before_delivery(user, data):
 
 def process_order(user, request):
     postdata = utils.get_postdata(request)
+    address = None
     payment_option = None
     payment_method = None
     result = {'success' : False}
@@ -235,7 +236,13 @@ def process_order(user, request):
         logger.warn(f"process_order : SHIPPING_ADDRESS_FIELD \"{commons.SHIPPING_ADDRESS_FIELD}\" missing for the selected shipping mode {ship_mode}")
         return result
     
-    address = addressbook_service.get_address(int(postdata.get(commons.SHIPPING_ADDRESS_FIELD)))
+    if ship_mode.mode not in shipment_service.constants.IN_STORE_PICK_MODE:
+        try:
+            addr_pk = int(postdata.get(commons.SHIPPING_ADDRESS_FIELD))
+            address = addressbook_service.get_address(addr_pk)
+        except TypeError as e:
+            logger.warning("error while reading address pk from query parameter", e)
+            return result
     if not address:
         logger.warn(f"process_order : no address found with id \"{postdata.get(commons.SHIPPING_ADDRESS_FIELD)}\". shipping mode {ship_mode}")
         #return result
