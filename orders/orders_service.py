@@ -455,7 +455,7 @@ def accept_refund(refund_uuid):
         logger.warning("Refund was already processing. Only prefund in pending statte can accepted")
         #return False
     
-    if not SoldProduct.objects.filter(order=order).exists():
+    if SoldProduct.objects.filter(order=order).exists():
         items_queryset = order.order_items.select_related().all()
         product_update_list = tuple(items_queryset.values_list('product', 'quantity'))
         Order.objects.filter(pk=order.pk).update(is_closed=True, is_active=False, status=commons.ORDER_REFUND, last_changed_by=request_user)
