@@ -332,7 +332,7 @@ def mark_order_paid(order):
             balance.refresh_from_db()
             Balance.objects.filter(user=s).update(balance=F('balance') + total)
             BalanceHistory.objects.create(balance=balance, balance_ref_id=balance.pk, current_amount=balance.balance,balance_amount=total, sender=customer, receiver=s)
-        Order.objects.filter(id=order.id).update(vendor_balance_updated=True, is_paid=True)
+        Order.objects.filter(id=order.id).update(vendor_balance_updated=True, is_paid=True, status=commons.ORDER_PAID)
     
     payment_mode = order.payment_method.mode
     if not payment_mode == commons.ORDER_PAYMENT_PAY:

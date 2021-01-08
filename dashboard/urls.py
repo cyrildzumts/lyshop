@@ -77,7 +77,8 @@ urlpatterns = [
     path('orders/refunds/detail/<uuid:refund_uuid>/', views.refund_detail, name='refund-detail'),
     path('orders/refunds/update/<uuid:refund_uuid>/', views.refund_update, name='refund-update'),
     path('orders/refunds/bulk-update/', views.refund_bulk_update, name='refund-bulk-update'),
-
+    path('orders/mark-order-paid/<uuid:order_uuid>/', views.mark_order_paid, name='mark-order-paid'),
+    
     path('products/', views.products, name='products'),
     path('products/detail/<uuid:product_uuid>/', views.product_detail, name='product-detail'),
     path('products/update/<uuid:product_uuid>/', views.product_update, name='product-update'),

@@ -448,6 +448,32 @@ def order_cancel(request, order_uuid):
         
     return redirect('dashboard:order-detail', order_uuid=order_uuid)
 
+@login_required
+def mark_order_paid(request, order_uuid):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if request.method == "POST":
+        order = get_object_or_404(Order,user=request.user, order_uuid=order_uuid)
+        if orders_service.mark_order_paid(order):
+            OrderStatusHistory.objects.create(order_status=Order_Constants.ORDER_PAID, order=order, order_ref_id=order.id, changed_by=request.user)
+            messages.success(request, "order has been marked as paid")
+            logger.info(f"Order {order.id} marked as paid by user {request.user.username}")
+    else:
+        messages.error(request, "Error. Your order can no more be canceled")
+        
+    return redirect('dashboard:order-detail', order_uuid=order_uuid)
+
 
 @login_required
 def accept_refund(request, refund_uuid):
@@ -465,6 +491,7 @@ def accept_refund(request, refund_uuid):
         raise PermissionDenied
     refund = get_object_or_404(Refund, refund_uuid=refund_uuid)
     p, v = orders_service.accept_refund(refund_uuid)
+    OrderStatusHistory.objects.create(order_status=Order_Constants.ORDER_REFUND, order=refund.order, order_ref_id=refund.order.id, changed_by=request.user)
     messages.success(request, "Refund accepted")
     logger.info(f"Refund Accepted by user {request.user.username}")
     return redirect(refund.get_dashboard_url())
@@ -487,6 +514,7 @@ def pay_refund(request, refund_uuid):
 
     refund = get_object_or_404(Refund, refund_uuid=refund_uuid)
     p, v = orders_service.pay_refund(refund_uuid)
+    OrderStatusHistory.objects.create(order_status=Order_Constants.ORDER_REFUNDED, order=refund.order, order_ref_id=refund.order.id, changed_by=request.user)
     messages.success(request, "Refund paid")
     logger.info(f"Refund marked as paid by user {request.user.username}")
     return redirect(refund.get_dashboard_url())
