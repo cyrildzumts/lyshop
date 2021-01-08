@@ -72,7 +72,7 @@ class Order(models.Model):
 
     @property
     def total_price(self):
-        return (self.solded_price or self.amount) + self.shipping_price
+        return (self.solded_price or self.amount) + self.ship_mode.price
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='order_items', on_delete=models.CASCADE)

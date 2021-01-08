@@ -59,7 +59,7 @@
                   {% for refund in refund_list  %}
                   <tr>
                   <td scope="row" class="checkbox"><label><input class="js-selectable" type="checkbox" name="refunds" value="{{refund.pk}}"><span class="checkbox-label"></span></label></td>
-                  <td data-label="{% trans 'Amount' %}">{{refund.amount}}</td>
+                  <td data-label="{% trans 'Amount' %}">{{refund.amount|floatformat:"-2"}} {% trans CURRENCY %}</td>
                   <td data-label="{% trans 'Customer' %}">{{refund.user.get_full_name}}</td>
                   <td data-label="{% trans 'Order Ref' %}">{{refund.order.order_ref_number}}</td>
                   <td data-label="{% trans 'Status' %}">{{refund.status|refund_status_value}}</td>

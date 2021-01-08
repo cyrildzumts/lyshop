@@ -19,7 +19,7 @@
           <div class="grid">
             <div class="box">
                 <div class="entry">
-                  <span class="key">{% trans "Amount" %}</span> <span class="value">{{refund.amount}}</span>
+                  <span class="key">{% trans "Amount" %}</span> <span class="value">{{refund.amount|floatformat:"-2"}} {% trans CURRENCY %}</span>
                 </div>
                 <div class="entry">
                   <span class="key">{% trans "Customer" %}</span> <span class="value">{{refund.user.get_full_name}}</span>

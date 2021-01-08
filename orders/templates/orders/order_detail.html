@@ -43,14 +43,11 @@
                 <p class="entry"><span class="key">{% trans "Reduction" %}</span><span class="value">{{order.get_reduction|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
                 <p class="entry"><span class="key">{% trans "Coupon" %}</span><span class="value">{{order.coupon}}</span></p>
                 {% endif %}
-                {% if order.ship_mode %}
                 <p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
                 <p class="entry"><span class="key">{% trans "Ship Mode" %}</span><span class="value">{{order.ship_mode.mode|ship_mode_value}}</span></p>
-                {% else %}
-                <p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.shipping_price|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
-                {% endif %}
                 
                 <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total_price|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
+                <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
             </div>
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
