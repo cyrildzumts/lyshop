@@ -2794,6 +2794,7 @@ table tbody tr, .mat-table tbody tr{
 	display: flex;
 	width: 100%;
 	justify-content: center;
+	flex-wrap: wrap;
 	font-size: 0.8em;
 	letter-spacing: 0.2em;
 	padding: 1em;
