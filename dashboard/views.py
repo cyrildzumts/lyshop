@@ -1799,6 +1799,7 @@ def sold_products_delete(request):
     
     postdata = utils.get_postdata(request)
     id_list = postdata.getlist('products')
+    logger.debug(f"Soldproduct delete : id list : {id_list}")
 
     if len(id_list):
         product_list = list(map(int, id_list))
