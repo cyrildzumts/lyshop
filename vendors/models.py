@@ -72,7 +72,7 @@ class VendorPaymentHistory(models.Model):
 
 #TODO make this model filterable
 class SoldProduct(models.Model):
-    order = models.ForeignKey('orders.Order', blank=False, null=True, on_delete=models.SET_NULL)
+    order = models.ForeignKey('orders.Order', blank=False, null=True, on_delete=models.CASCADE)
     order_ref = models.IntegerField(blank=True, null=True)
     seller = models.ForeignKey(User, related_name='vendor_sold_products', blank=False, null=True, on_delete=models.SET_NULL)
     customer = models.ForeignKey(User, related_name='customer_bought_products', blank=False, null=True, on_delete=models.SET_NULL)

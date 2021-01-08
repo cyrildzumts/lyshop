@@ -268,10 +268,11 @@ def cancel_order(order, request_user=None):
     items_queryset = order.order_items.select_related().all()
     product_update_list = tuple(items_queryset.values_list('product', 'quantity'))
     Order.objects.filter(pk=order.pk).update(is_closed=True, is_active=False, status=commons.ORDER_CANCELED, last_changed_by=request_user)
-    ##TODO Send the money back to the user
+    
     for pk, quantity in product_update_list:
         ProductVariant.objects.filter(pk=pk).update(quantity=F('quantity') + quantity, is_active=True)
         Product.objects.filter(variants__in=[pk]).update(quantity=F('quantity') + quantity, is_active=True)
+    SoldProduct.objects.filter(order=order).delete()
     refund_order(order)
     return True
 
@@ -305,17 +306,7 @@ def mark_product_sold(order):
     if  not isinstance(order, Order) or order.vendor_balance_updated:
         return False
     order_items = order.order_items.select_related().all()
-    #sold_products = [SoldProduct(customer=order.user, seller=item.product.product.sold_by, product=item.product, quantity=item.quantity, promotion_price=item.promotion_price, unit_price=item.unit_price, total_price=item.total_price) for item in order_items]
-    sold_products_data = [{'customer':order.user, 'seller':item.product.product.sold_by, 'product':item.product, 'quantity': item.quantity, 'promotion_price':item.promotion_price, 'unit_price':item.unit_price, 'total_price':item.total_price} for item in order_items]
-    '''
-    balance_updates = ((p['seller'], p['total_price'], p['customer'], p['seller'].balance) for p in sold_products_data)
-    with transaction.atomic():
-        for s, total, customer, balance in balance_updates:
-            balance.refresh_from_db()
-            Balance.objects.filter(user=s).update(balance=F('balance') + total)
-            BalanceHistory.objects.create(balance=balance, balance_ref_id=balance.pk, current_amount=balance.balance,balance_amount=total, sender=customer, receiver=s)
-        Order.objects.filter(id=order.id).update(vendor_balance_updated=True)
-    '''
+    sold_products_data = [{'order': order,'customer':order.user, 'seller':item.product.product.sold_by, 'product':item.product, 'quantity': item.quantity, 'promotion_price':item.promotion_price, 'unit_price':item.unit_price, 'total_price':item.total_price} for item in order_items]
     SoldProduct.objects.bulk_create([SoldProduct(**data) for data in sold_products_data])
     return True
 
