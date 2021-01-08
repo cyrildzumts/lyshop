@@ -464,7 +464,7 @@ def mark_order_paid(request, order_uuid):
         raise PermissionDenied
 
     if request.method == "POST":
-        order = get_object_or_404(Order,user=request.user, order_uuid=order_uuid)
+        order = get_object_or_404(Order, order_uuid=order_uuid)
         if orders_service.mark_order_paid(order):
             OrderStatusHistory.objects.create(order_status=Order_Constants.ORDER_PAID, order=order, order_ref_id=order.id, changed_by=request.user)
             messages.success(request, "order has been marked as paid")
