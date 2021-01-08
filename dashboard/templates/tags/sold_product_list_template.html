@@ -47,7 +47,7 @@
                   {% for sold_product in product_list  %}
                   <tr>
                   {% if can_delete_product %}
-                  <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{product.pk}}"><span class="checkbox-label"></span></label></td>
+                  <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{sold_product.pk}}"><span class="checkbox-label"></span></label></td>
                   <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{sold_product.product.image}}" alt="{{sold_product.product.display_name}}"></div></td>
                   <td scope="row" data-label="{% trans 'Name' %}">{{sold_product.product.name}}</td>
                   <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
