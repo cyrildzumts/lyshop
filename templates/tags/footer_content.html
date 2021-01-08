@@ -10,7 +10,7 @@
     <div class="footer-catalog">
     <h4>{% trans "Shippng options" %} (LBV, POG)</h4>
      <ul>
-         {% for k,v in SHIP_MODE %} <li>{{v}}</li> {% endfor %}
+         {% for s in ship_modes %} <li>{{s.display_name}}</li> {% endfor %}
      </ul>
     </div>
     <div class="footer-catalog">
