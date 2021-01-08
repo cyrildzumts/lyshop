@@ -1,6 +1,8 @@
 from lyshop import settings
 from django.contrib.auth.models import User
 from cart import cart_service
+from shipment import constants as Shipment_Constants
+from shipment import shipment_service
 import logging
 
 logger = logging.getLogger(__name__)
@@ -21,5 +23,7 @@ def site_context(request):
         'dev_mode' : settings.DEV_MODE,
         'cart_items_count': cart_items_count,
         'CURRENCY' : settings.CURRENCY,
+        'SHIP_MODE' : Shipment_Constants.SHIP_MODE,
+        'payment_methods' : shipment_service.get_ship_modes(),
     }
     return context
