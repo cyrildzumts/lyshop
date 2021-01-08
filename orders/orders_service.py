@@ -451,7 +451,7 @@ def refund_order(order):
         return False, msg
 
     order_payment = OrderPayment.objects.filter(order=order).first()
-    Refund.objects.create(amount=order.amount, user=order.user, payment=order_payment)
+    Refund.objects.create(amount=order.amount, user=order.user, payment=order_payment, order=order)
     return True, "Refund order submitted"
     
 
@@ -459,7 +459,19 @@ def accept_refund(refund_uuid):
     return Refund.objects.filter(refund_uuid=refund_uuid).update(status=commons.REFUND_ACCEPTED)
 
 def pay_refund(refund_uuid):
-    return Refund.objects.filter(refund_uuid=refund_uuid).update(status=commons.REFUND_PAID)
+    refund = Refund.objects.get(refund_uuid=refund_uuid)
+    order = refund.order
+    order_items = order.order_items.select_related().all()
+    sold_products_data = [{'customer':order.user, 'seller':item.product.product.sold_by, 'product':item.product, 'quantity': item.quantity, 'promotion_price':item.promotion_price, 'unit_price':item.unit_price, 'total_price':item.total_price} for item in order_items]
+    balance_updates = ((p['seller'], p['total_price'], p['customer'], p['seller'].balance) for p in sold_products_data)
+    with transaction.atomic():
+        for s, total, customer, balance in balance_updates:
+            balance.refresh_from_db()
+            Balance.objects.filter(user=s).update(balance=F('balance') - total)
+            BalanceHistory.objects.create(balance=balance, balance_ref_id=balance.pk, current_amount=balance.balance,balance_amount=-total, sender=customer, receiver=s)
+        Order.objects.filter(id=order.id).update(vendor_balance_updated=True, is_paid=True, status=commons.ORDER_REFUNDED)
+    Refund.objects.filter(refund_uuid=refund_uuid).update(status=commons.REFUND_PAID)
+    return True
 
 def get_payment_method(name=""):
     if isinstance(name, str) and len(name) > 0:
