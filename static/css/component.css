@@ -2800,13 +2800,19 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .footer-catalog{
-	padding: 1em;
+	padding: 5em;
+}
+
+.footer-catalog ul{
+	overflow: hidden;
 }
 
 .footer-catalog li{
 	padding-top: 1em;
+	border-bottom: none;
 }
 .footer-catalog a{
+	display: inline-block;
 	color: #fafafa;
 }
 
