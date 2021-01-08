@@ -30,7 +30,7 @@
     </div><!--End of Banner-Actions-->
     <div class="actions">
     <form action="{% url 'dashboard:mark-order-paid' order.order_uuid %}" method="POST">{% csrf_token %}
-        <button class="mat-button-mat-button-default" type="submit">{% trans "Mark order as paid" %}</button>
+        <button class="mat-button mat-button-default" type="submit">{% trans "Mark order as paid" %}</button>
     </form>
     
     </div>
