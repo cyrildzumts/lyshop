@@ -2792,7 +2792,6 @@ table tbody tr, .mat-table tbody tr{
 
 .footer-content{
 	display: flex;
-	align-items: center;
 	justify-content: center;
 	font-size: 0.8em;
 	letter-spacing: 0.2em;
