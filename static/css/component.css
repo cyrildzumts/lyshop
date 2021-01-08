@@ -2803,11 +2803,17 @@ table tbody tr, .mat-table tbody tr{
 	padding: 5em;
 }
 
+.footer-catalog .icon{
+	padding: 1.2em;
+}
+
 .footer-catalog ul{
 	overflow: hidden;
 }
 
 .footer-catalog li{
+	display: flex;
+	align-items: center;
 	padding-top: 1em;
 	border-bottom: none;
 }
