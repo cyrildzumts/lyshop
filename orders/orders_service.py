@@ -448,7 +448,7 @@ def refund_order(order):
     return True, "Refund order submitted"
     
 
-def accept_refund(refund_uuid):
+def accept_refund(refund_uuid, request_user):
     refund = Refund.objects.get(refund_uuid=refund_uuid)
     order = refund.order
     if refund.status != commons.REFUND_PENDING:
