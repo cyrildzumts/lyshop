@@ -71,6 +71,7 @@
             <div class="mat-input">
                 <label for="declined_reason">{% trans "Declined" %}</label>
                 <select name="declined_reason" id="declined_reason">
+                    <option value="">{% trans "Select a Declined reason" %}</option>
                     {% for k,v in REFUND_DECLINED_REASON %} <option value="{{k}}" {% if k == refund.declined_reason %}selected{% endif %}>{% trans v %}</option> {% endfor %}
                 </select>
             </div>
