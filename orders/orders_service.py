@@ -419,6 +419,13 @@ def add_shipment(order):
     return False
 
 
+def order_can_be_deleted(order):
+    if not isinstance(order, Order):
+        logger.error("Type Error : order not of Order type")
+        raise TypeError("Type Error : order argument not of type Order.")
+
+    if order.sta
+
 
 def get_order_shipment(order):
     if not isinstance(order, Order):

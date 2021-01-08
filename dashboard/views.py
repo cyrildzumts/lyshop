@@ -423,6 +423,24 @@ def order_detail(request, order_uuid=None):
     return render(request,template_name, context)
 
 @login_required
+def order_delete(request, order_uuid=None):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_delete_order(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    page_title = _('Order Detail')
+    
+
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    Order.objects.filter(order_uuid=order_uuid).delete()
+    return redirect('dashboard:orders')
+
+@login_required
 def order_cancel(request, order_uuid):
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
