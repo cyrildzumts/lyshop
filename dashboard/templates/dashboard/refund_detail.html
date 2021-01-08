@@ -31,7 +31,7 @@
                   <span class="key">{% trans "Status" %}</span> <span class="value">{{refund.status|refund_status_value}}</span>
                 </div>
                 <div class="entry">
-                  <span class="key">{% trans "Declined Reason" %}</span> <span class="value">{{refund.declined_reason|refund_declined_value}}</span>
+                  <span class="key">{% trans "Declined Reason" %}</span> <span class="value">{{refund.declined_reason|refund_declined_value|default_if_none:'-'}}</span>
                 </div>
                 
             </div>
