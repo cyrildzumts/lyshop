@@ -128,9 +128,7 @@
 {% endblock NOTIFICATIONS %}
 </div>
  <footer class="footer column row">
-        {% block FOOTER %}
-
-        {% endblock FOOTER %}
+        {% include 'tags/footer_content.html' %}
         <div class="footer-list">
                 {% now "Y" as current_year %}
                 <ul class="mat-list">
@@ -144,10 +142,6 @@
                 </ul>
         </div>
 </footer>
-
-
-
-
 {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {% endcomment %}
 <script  src="{% static 'js/vendor/jquery-3.5.1.min.js' %}"></script>
 <script  data-main="{% static 'js/lyshopApp' %}" src="{% static 'js/require.js' %}"></script>        

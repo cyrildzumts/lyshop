@@ -1,0 +1,30 @@
+<div class="footer-content">
+    <div class="footer-catalog">
+    <h4>{% trans "Supported payment methods" %}</h4>
+    <ul>
+        {% for pm in payment_methodes %} <li>{{pm.display_name}}</li> {% endfor %}
+    </ul>
+    </div>
+    <div class="footer-catalog">
+    <h4>{% trans "Shippng options" %} (LBV, POG)</h4>
+     <ul>
+         {% for k,v in SHIP_MODE %} <li>{{v}}</li> {% endfor %}
+     </ul>
+    </div>
+    <div class="footer-catalog">
+        <h4>{% trans "Pick up locations" %}</h4>
+         <ul>
+            <li><i class="fas fa-map-marked-alt icon"></i>LBV : Louis, aux galeries du marché municipal, Box n° 4</li>
+            <li><i class="fas fa-map-marked-alt icon"></i>POG : Grand village, Chez Josy Coiffure, à coté de CECADO, au carréfour Assane</li>
+         </ul>
+    </div>
+    <div class="footer-catalog">
+        <h4>{% trans "You can reach us at" %}</h4>
+        <ul>
+            <li><i class="fab fa-whatsapp icon"></i><a href="https://wa.me/+4917625975543/?text=Bonjour%2C+je+suis+interess%C3%A9+par+vos+acticles"></a></li>
+            <li><i class="fab fa-facebook icon"></i><a class="mat-button mat-button-text" href="https://www.facebook.com/lyshoppinggabao" target="_blank" rel="noopener noreferrer">Lyshop Gabon</a></li>
+         </ul>
+    </div>
+
+
+</div>
