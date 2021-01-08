@@ -168,3 +168,4 @@ def update_ship_mode(postdata, ship_mode):
         logger.warn(f'Ship Mode form invalid. Errors : {form.errors}')
 
     return ship_mode, False
+

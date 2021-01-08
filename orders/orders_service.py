@@ -207,21 +207,21 @@ def process_order(user, request):
         logger.warn(f"process_order : User or postdata has a wrong type. Expecting user type to be User but got a {type(user)} instead ")
         logger.warn(f"process_order : User or postdata has a wrong type. Expecting postdata type to be dict or a descendant of a dict but got a {type(postdata)} instead ")
         return result
-
+    
     if commons.SHIP_MODE_FIELD not in postdata:
         logger.warn(f"process_order : SHIP_MODE_FIELD {commons.SHIP_MODE_FIELD} missing")
         return result
 
+    ship_mode = shipment_service.get_ship_mode_from_id(int(postdata.get(commons.SHIP_MODE_FIELD)))
+
     if commons.PAYMENT_OPTION_FIELD not in postdata:
         logger.warn(f"process_order : PAYMENT_OPTION_FIELD {commons.PAYMENT_OPTION_FIELD} missing")
         return result
-    
+
+    payment_option = int(postdata.get(commons.PAYMENT_OPTION_FIELD))
+
     if commons.PAYMENT_METHOD_FIELD not in postdata:
         logger.warn(f"process_order : PAYMENT_METHOD_FIELD \"{commons.PAYMENT_METHOD_FIELD}\" missing")
-        return result
-    
-    if commons.SHIPPING_ADDRESS_FIELD not in postdata:
-        logger.warn(f"process_order : SHIPPING_ADDRESS_FIELD \"{commons.SHIPPING_ADDRESS_FIELD}\" missing")
         return result
     
     try:
@@ -230,18 +230,17 @@ def process_order(user, request):
         logger.warn(f"process_order : no payment_method found with id \"{postdata.get(commons.PAYMENT_METHOD_FIELD)}\" mode = ORDER_PAYMENT_PAY which is \"{commons.ORDER_PAYMENT_PAY}\"")
         logger.exception(e)
         return result
+
+    if commons.SHIPPING_ADDRESS_FIELD not in postdata and ship_mode.mode not in shipment_service.constants.IN_STORE_PICK_MODE:
+        logger.warn(f"process_order : SHIPPING_ADDRESS_FIELD \"{commons.SHIPPING_ADDRESS_FIELD}\" missing for the selected shipping mode {ship_mode}")
+        return result
     
     address = addressbook_service.get_address(int(postdata.get(commons.SHIPPING_ADDRESS_FIELD)))
     if not address:
-        logger.warn(f"process_order : no address found with id \"{postdata.get(commons.SHIPPING_ADDRESS_FIELD)}\".")
-        return result
+        logger.warn(f"process_order : no address found with id \"{postdata.get(commons.SHIPPING_ADDRESS_FIELD)}\". shipping mode {ship_mode}")
+        #return result
 
-    ship_mode = shipment_service.get_ship_mode_from_id(int(postdata.get(commons.SHIP_MODE_FIELD)))
-    if not address:
-        logger.warn(f"process_order : no ship_mode found with id \"{postdata.get(commons.SHIP_MODE_FIELD)}\".")
-        return result
-
-    payment_option = int(postdata.get(commons.PAYMENT_OPTION_FIELD))
+    
     data = {'postdata': postdata,'request': request, commons.PAYMENT_METHOD_FIELD : payment_method, commons.SHIP_MODE_FIELD : ship_mode ,commons.SHIPPING_ADDRESS_FIELD : address, commons.PAYMENT_OPTION_FIELD : payment_option}
     if payment_option == commons.PAY_BEFORE_DELIVERY:
         result = order_pay_before_delivery(user, data)
