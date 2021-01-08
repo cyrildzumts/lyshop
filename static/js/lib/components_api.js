@@ -46,7 +46,7 @@ var Tabs = (function(){
         $('.js-tab').on('click', function(){
             var tab_content = $($(this).data('toggle'));
             var tab_index = parseInt(tab_content.data('index'));
-            tab_content.addClass('active').siblings().removeClass('active');
+            $('.tab').eq(tab_index).addClass('active').siblings().removeClass('active');
             tab_content.show().siblings('.tab-content').hide();
         });
         console.log("Tabs initialised");
