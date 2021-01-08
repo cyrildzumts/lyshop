@@ -4523,6 +4523,7 @@ def refunds(request):
         request_set = None
     context['page_title'] = page_title
     context['refund_list'] = request_set
+    context['REFUND_STATUS'] = Order_Constants.REFUND_STATUS
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
