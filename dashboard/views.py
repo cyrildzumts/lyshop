@@ -431,10 +431,7 @@ def order_delete(request, order_uuid=None):
 
     if not PermissionManager.user_can_delete_order(request.user):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
-        raise PermissionDenied
-
-    page_title = _('Order Detail')
-    
+        raise PermissionDenied    
 
     order = get_object_or_404(Order, order_uuid=order_uuid)
     Order.objects.filter(order_uuid=order_uuid).delete()
@@ -759,31 +756,6 @@ def add_order_for_shipment(request, order_uuid=None):
     else:
         messages.error(request, 'Order could not be added for shipment')
     return redirect('dashboard:order-detail', order_uuid=order_uuid)
-
-@login_required
-def order_delete(request, order_uuid=None):
-    template_name = 'dashboard/order_detail.html'
-    username = request.user.username
-    if not PermissionManager.user_can_access_dashboard(request.user):
-        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
-        raise PermissionDenied
-
-    if not PermissionManager.user_can_view_order(request.user):
-        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
-        raise PermissionDenied
-
-    page_title = _('Order Detail')
-    
-
-    order = get_object_or_404(Order, order_uuid=order_uuid)
-    orderItems = OrderItem.objects.filter(order=order)
-    context = {
-        'page_title': page_title,
-        'order': order,
-        'orderItems': orderItems,
-    }
-    context.update(get_view_permissions(request.user))
-    return render(request,template_name, context)
 
 
 @login_required
