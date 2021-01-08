@@ -4595,20 +4595,14 @@ def refund_update(request, refund_uuid=None):
 @login_required
 def refund_bulk_update(request):
     username = request.user.username
-    
     postdata = utils.get_postdata(request)
-    id_list = postdata.getlist('refunds')
     action = None
     status = None
-    if 'action' in postdata:
-        action = postdata.get('action')
-    if action :
-        if action == 'accepted':
-            status = Order_Constants.REFUND_ACCEPTED
-        elif action == 'paid':
-            status = Order_Constants.REFUND_PAID
-
-        if len(id_list) and status:
+    if 'status' in postdata:
+        status = int(postdata.get('status'))
+    if 'refunds' in postdata :
+        id_list = postdata.getlist('refunds')
+        if len(id_list):
             refund_id_list = list(map(int, id_list))
             Refund.objects.filter(id__in=refund_id_list).update(status=status)
             messages.success(request, f"Refunds \"{id_list}\" updated")

@@ -42,6 +42,9 @@
             <div class="actions">
                 <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i><span>{% trans "Update Selected Refunds" %}</span></button>
             </div>
+            <ul class="actions">
+             {% for k,v in REFUND_STATUS %}<li><label for=""> <input type="radio" name="status" value="{{k}}"> {% trans v %}</label></li>{% endfor %}
+            </ul>
           <thead>
                   
                   <tr>
