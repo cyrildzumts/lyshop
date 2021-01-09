@@ -2160,7 +2160,7 @@ a.mat-button{
 	padding : 0;
 }
 
-.emphasis, .bold, .em{
+.emphasis{
 	font-weight: 600;
 }
 
