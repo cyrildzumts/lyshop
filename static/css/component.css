@@ -1160,6 +1160,7 @@ button, input, select, textarea{
   flex-shrink: 0;
   font-size: 0.75rem;
   letter-spacing: 0.15em;
+  margin-top: 1em;
 }
 
 .divider {
@@ -2159,7 +2160,7 @@ a.mat-button{
 	padding : 0;
 }
 
-.emphasis{
+.emphasis, .bold, .em{
 	font-weight: 600;
 }
 
@@ -2800,9 +2801,11 @@ table tbody tr, .mat-table tbody tr{
 	padding: 1em;
 }
 
+/*
 .footer-catalog{
-	padding: 5em;
+	padding: 1em;
 }
+*/
 
 .footer-catalog .icon{
 	font-size: 1.2em;
