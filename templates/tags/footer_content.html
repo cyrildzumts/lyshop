@@ -3,7 +3,7 @@
 <div class="footer-content">
     <div class="col-xs-6 col-3">
         <div class="footer-catalog">
-            <h6>{% trans "Payment options" %}</h6>
+            <h6>{% trans "Payment Options" %}</h6>
             <ul>
                 {% for pm in payment_methods %} <li>{{pm.display_name}}</li> {% endfor %}
             </ul>
@@ -21,8 +21,8 @@
         <div class="footer-catalog">
             <h6>{% trans "Pick up Locations" %}</h6>
             <ul>
-                <li><i class="fas fa-map-marked-alt icon"><span class="bold">LBV</span></i> <span>Louis, aux galeries du marché municipal, Box n° 4</span></li>
-                <li><i class="fas fa-map-marked-alt icon"><span class="bold">POG</span></i> <span>Grand village, Chez Josy Coiffure, à coté de CECADO, au carréfour Assane</span></li>
+                <li><i class="fas fa-map-marked-alt icon"><span class="bold">LBV</span></i> <span>{% trans "Louis, in the galleries of the municipal market, Box N ° 4" %}</span></li>
+                <li><i class="fas fa-map-marked-alt icon"><span class="bold">POG</span></i> <span>{% trans "Grand village, at Josy Coiffure, near CECADO, at carréfour Assane" %}</span></li>
             </ul>
         </div>
     </div>
