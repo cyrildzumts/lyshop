@@ -13,7 +13,7 @@
         <div class="footer-catalog">
             <h6>{% trans "Shipping" %}</h6>
             <ul>
-                {% for s in ship_modes %} <li>{{s.display_name}}</li> {% endfor %}
+                {% for s in ship_modes %} <li>{% trans s.display_name %}</li> {% endfor %}
             </ul>
         </div>
     </div>

@@ -5061,11 +5061,11 @@ msgstr "EXPÉDITION EXPRESS"
 
 #: shipment/constants.py:22
 msgid "IN STORE PICK UP(POG)"
-msgstr "RAMASSAGE EN MAGASIN(POG)"
+msgstr "RETRAIT EN MAGASIN(POG)"
 
 #: shipment/constants.py:23
 msgid "IN STORE PICK UP(LBV)"
-msgstr "RAMASSAGE EN MAGASIN(LBV)"
+msgstr "RETRAIT EN MAGASIN(LBV)"
 
 #: shipment/templates/shipment/order_ready_list.html:8
 msgid "Orders ready for shipment"
