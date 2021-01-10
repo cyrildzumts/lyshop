@@ -26,6 +26,7 @@
     </div>
 {% endblock HEADER_BANNER %}
 
+
 {% block SCRIPT_VAR %}
     {% if report %}
     {{report|json_script:"report_script"}}
@@ -50,8 +51,9 @@
 {% endblock MAIN_CONTENT %}
 {% block SCRIPT %}
 <script  type="application/javascript" src="{% static 'js/vendor/Chart.min.js' %}"></script> 
+<script  data-main="{% static 'js/DashboardApp' %}" src="{% static 'js/require.js' %}"></script>        
+<script  type="application/javascript" src="{% static 'js/lib/validators.js' %}"></script>
 <script  type="application/javascript" src="{% static 'js/lib/dashboard.js' %}"></script>
-<script  type="application/javascript" src="{% static 'js/lib/analytics.js' %}"></script>
 
 {% endblock SCRIPT %}
 {% endif %}

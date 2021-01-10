@@ -89,13 +89,15 @@ def analytics_data(request):
     order_price_report = analytics.report_orders_price()
     new_user_report = analytics.report_new_users()
     product_report = analytics.report_products()
+    visitor_report = analytics.report_visitors()
     try:
         data = {
             'report' : order_report,
             'order_price_report' : order_price_report,
             'order_report' : order_report,
             'product_report' : product_report,
-            'new_user_report' : new_user_report
+            'new_user_report' : new_user_report,
+            'visitor_report' : visitor_report
         }
     except ValueError as e:
         data = {

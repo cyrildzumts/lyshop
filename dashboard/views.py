@@ -2458,10 +2458,12 @@ def reports(request):
     if not can_view_order:
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-
+    
+    fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits'))
     context = {
         'visitors' : Visitor.objects.count(),
         'unique_visitors' : UniqueIP.objects.count()
+        'facebook_visitors' : fbcount_sum['hits'],
     }
     qs_orders = Order.objects.all()
     currents_orders = analytics.get_orders()

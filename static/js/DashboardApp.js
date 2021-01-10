@@ -1,15 +1,14 @@
-/*
 requirejs.config({
     baseUrl :'/static/js/lib',
     paths:{
         vendor: '../vendor'
     }
 });
-requirejs(['ajax_api', 'attributes_api','vendor/jquery.min'], function(ajax_api, AttributeManager){
-    console.log("DashboardApp loaded ...");
-    var attribute_manager = new AttributeManager();
-    attribute_manager.init();
+
+requirejs(['attributes_api', 'ajax_api', 'components_api', 'commons', 'image_loader', 'analytics'], function(AttributeManager ,ajax_api, Component){
+    console.log("LyshopApp loaded ...");
+    var attr_manager = new AttributeManager();
+    attr_manager.init();
+    Component.initComponent();
     console.log("JQuery version :", $().jquery);
 });
-
-*/

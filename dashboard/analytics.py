@@ -1,6 +1,7 @@
 from django.db.models import F, Q, Sum, Count
 from catalog.models import ProductVariant, Product
 from orders.models import Order
+from inventory.models import Visitor, UniqueIP, FacebookLinkHit
 from dashboard.models import LoginReport
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -231,3 +232,35 @@ def report_log_users(year=timezone.now().year):
         'data' : data
     }
     return report
+
+
+def report_visitors(year=timezone.now().year):
+    logger.info(f"Report Visitor for date year=\"{year}\"")
+    if year < 0 or year > timezone.now().year :
+        error_str = f"report_visitors : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
+        logger.error(error_str)
+        raise ValueError(error_str)
+    
+    data = []
+    Models = [Visitor, UniqueIP, FacebookLinkHit]
+    if year == timezone.now().year:
+        MONTH_LIMIT = timezone.now().month
+    else :
+        MONTH_LIMIT = YEAR_MONTHS_COUNT
+    
+    months = list(range(1, MONTH_LIMIT + 1))
+    for model in Models:
+        model_data = []
+        for m in months:
+            count = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(count=Sum('hits')).get('count', 0)
+            model_data.append(count or 0)
+        data.append(model_data)
+
+    report = {
+        'labels': ['Visitors', 'Unique Visitors', 'Facebook Visitors'],
+        'year' : year,
+        'months': months,
+        'data' : data
+    }
+    return report
+
