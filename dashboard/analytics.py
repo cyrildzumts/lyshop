@@ -262,9 +262,9 @@ def report_visitors(year=timezone.now().year):
     
     data.append(model_data)
 
-    total_unique_visitors = UniqueIP.objects.count()
-    total_visitors = Visitor.objects.aggregate(count=Sum('hits')).get('count', 0)
-    total_facebook_visitors = FacebookLinkHit.objects.aggregate(count=Sum('hits')).get('count', 0)
+    total_unique_visitors = UniqueIP.objects.aggregate(hits=Sum('hits')).get('hits')
+    total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits')
+    total_facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits')
 
     report = {
         'labels': ['Visitors', 'Facebook Visitors', 'Unique Visitors'],
