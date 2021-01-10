@@ -257,12 +257,12 @@ def report_visitors(year=timezone.now().year):
 
     model_data = []
     for m in months:
-        count = UniqueIP.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits')
+        count = UniqueIP.objects.filter(created_at__year=year, created_at__month=m).count()
         model_data.append(count)
     
     data.append(model_data)
 
-    total_unique_visitors = UniqueIP.objects.aggregate(hits=Sum('hits')).get('hits')
+    total_unique_visitors = UniqueIP.objects.count()
     total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits')
     total_facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits')
 

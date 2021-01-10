@@ -2464,7 +2464,7 @@ def reports(request):
     fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits'))
     context = {
         'visitors' : Visitor.objects.aggregate(hits=Sum('hits')).get('hits'),
-        'unique_visitors' : UniqueIP.objects.aggregate(hits=Sum('hits')).get('hits'),
+        'unique_visitors' : UniqueIP.objects.count(),
         'facebook_visitors' : fbcount_sum['hits'],
     }
     orders_count = Order.objects.count()
