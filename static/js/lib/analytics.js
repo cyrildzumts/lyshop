@@ -227,13 +227,13 @@ function(Chart, ajax){
         visitors_conf.data.labels = visitor_report.months;
         var visitors_datasets = visitors_conf.data.datasets;
         if(visitors_datasets.length == 3){
-            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0]};
-            visitors_conf.data.datasets[1] = {label:visitor_report.labels[1], data: visitor_report.data[1]};
-            visitors_conf.data.datasets[2] = {label:visitor_report.labels[2], data: visitor_report.data[2]};
+            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6'};
+            visitors_conf.data.datasets[1] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71'};
+            visitors_conf.data.datasets[2] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50'};
         }else if (visitors_datasets.length == 1){
-            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0]};
-            visitors_conf.data.datasets.push({label:visitor_report.labels[1], data: visitor_report.data[1]});
-            visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.data[2]});
+            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6'};
+            visitors_conf.data.datasets.push({label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71'});
+            visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50'});
         }
         console.log("Visitor datasets : ", visitors_datasets);
         
