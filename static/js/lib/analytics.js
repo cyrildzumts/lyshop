@@ -2,6 +2,7 @@
 define(['vendor/Chart.min', 'ajax_api'],
 function(Chart, ajax){
     'use strict';
+    var dashboardIntervalHandle;
     var order_chart;
     var product_chart;
     var visitors_charts;
@@ -222,14 +223,23 @@ function(Chart, ajax){
 
 
         visitors_conf.data.labels = visitor_report.months;
-        visitors_conf.data.datasets[0].label = visitor_report.labels[0];
-        visitors_conf.data.datasets[0] = visitor_report.data[0];
+        visitors_datasets = visitors_conf.data.datasets;
+        if(visitors_datasets.length == 3){
+            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0]};
+            visitors_conf.data.datasets[1] = {label:visitor_report.labels[1], data: visitor_report.data[1]};
+            visitors_conf.data.datasets[2] = {label:visitor_report.labels[2], data: visitor_report.data[2]};
+        }else if (visitors_datasets.length == 1){
+            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0]};
+            visitors_conf.data.datasets.push({label:visitor_report.labels[1], data: visitor_report.data[1]});
+            visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.data[2]});
+        }
+        
 
-        visitors_conf.data.datasets[1].label = visitor_report.labels[1];
-        visitors_conf.data.datasets[1] = visitor_report.data[1];
+        //visitors_conf.data.datasets[1].label = visitor_report.labels[1];
+        //visitors_conf.data.datasets[1] = visitor_report.data[1];
 
-        visitors_conf.data.datasets[2].label = visitor_report.labels[2];
-        visitors_conf.data.datasets[2] = visitor_report.data[2];
+        //visitors_conf.data.datasets[2].label = visitor_report.labels[2];
+        //visitors_conf.data.datasets[2] = visitor_report.data[2];
         
         order_chart.update();
         product_chart.update();
