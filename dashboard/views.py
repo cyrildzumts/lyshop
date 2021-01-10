@@ -2470,17 +2470,17 @@ def reports(request):
     orders_count = Order.objects.count()
     currents_orders = analytics.get_orders()
     user_count = User.objects.count()
-    qs_products = ProductVariant.objects.filter(is_active=True)
+    #qs_products = ProductVariant.objects.filter(is_active=True)
     qs_total_product = Product.objects.aggregate(product_count=Sum('quantity'))
     template_name = "dashboard/reports.html"
     page_title = _("Dashboard Reports") + " - " + settings.SITE_NAME
     
     context['page_title'] = page_title
-    context['recent_orders'] = qs_orders[:Constants.MAX_RECENT]
+    #context['recent_orders'] = qs_orders[:Constants.MAX_RECENT]
     context['orders_count'] = orders_count
     context['current_orders'] = currents_orders
     context['users_count'] = user_count
-    context['products'] = qs_products
+    #context['products'] = qs_products
     context['products_count'] = qs_total_product['product_count']
     context['report'] = json.dumps(analytics.report_orders())
     context.update(get_view_permissions(request.user))
