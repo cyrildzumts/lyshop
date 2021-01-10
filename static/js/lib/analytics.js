@@ -1,7 +1,7 @@
 
 define(['vendor/Chart.min'],
 function(Chart){
-
+    'use strict';
     var order_chart;
     var product_chart;
     var visitors_charts;
