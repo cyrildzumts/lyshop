@@ -223,7 +223,7 @@ function(Chart, ajax){
 
 
         visitors_conf.data.labels = visitor_report.months;
-        visitors_datasets = visitors_conf.data.datasets;
+        var visitors_datasets = visitors_conf.data.datasets;
         if(visitors_datasets.length == 3){
             visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0]};
             visitors_conf.data.datasets[1] = {label:visitor_report.labels[1], data: visitor_report.data[1]};
