@@ -317,6 +317,7 @@ function(Chart){
     $(document).ready(function(){
     console.log("analytics ready");
     //report = JSON.parse(JSON.parse(document.getElementById("report_script").textContent));
+    Chart.platform.disableCSSInjection = true;
     Chart.defaults.global.elements.line.fill = false;
     Chart.defaults.global.elements.line.borderWidth = 2;
 
