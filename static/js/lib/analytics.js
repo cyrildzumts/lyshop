@@ -215,13 +215,13 @@ function(Chart, ajax){
         new_users_conf.data.datasets[0].data = new_user_report.data;
 
         visitor_conf.data.labels = visitor_report.months;
-        visitor_conf.data.datasets[0] = visitor_report.data[0];
+        visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0]};
 
         unique_visitor_conf.data.labels = visitor_report.months;
-        unique_visitor_conf.data.datasets[0] = visitor_report.data[1];
+        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.data[2]}
 
         facebook_visitor_conf.data.labels = visitor_report.months;
-        facebook_visitor_conf.data.datasets[0] = visitor_report.data[2];
+        facebook_visitor_conf.data.datasets[0] = {label:visitor_report.labels[1], data: visitor_report.data[1]};
 
 
         visitors_conf.data.labels = visitor_report.months;
