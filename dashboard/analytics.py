@@ -263,10 +263,6 @@ def report_visitors(year=timezone.now().year):
     
     data.append(model_data)
 
-
-    logger.info("Visitor data reports : ")
-    logger.info(data)
-
     report = {
         'labels': ['Visitors', 'Facebook Visitors', 'Unique Visitors'],
         'year' : year,
