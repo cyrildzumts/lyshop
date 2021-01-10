@@ -1,4 +1,7 @@
 
+require(['vendor/Chart.min'],
+function(Chart){
+
     var order_chart;
     var product_chart;
     var visitors_charts;
@@ -338,3 +341,4 @@
     dashboardUpdate();
     dashboardIntervalHandle = setInterval(dashboardUpdate, UPDATE_RATE); // 1000*60*1 = 1min
     });
+});
