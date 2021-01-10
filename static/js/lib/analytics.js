@@ -329,8 +329,8 @@ function(Chart, ajax){
     var ctx_orders_prices = $('#orders-price-diagram');
     var ctx_new_users = $('#users-diagram');
     var ctx_visitor = $('#visitor-diagram');
-    var ctx_unique_vistors_users = $('#unique-vistors-diagram');
-    var ctx_facebook_vistors_users = $('#facebook-vistors-diagram');
+    var ctx_unique_vistors_users = $('#unique-visitors-diagram');
+    var ctx_facebook_vistors_users = $('#facebook-visitors-diagram');
     var ctx_visitors = $('#visitors-diagram');
 
     var empty_conf = {};
