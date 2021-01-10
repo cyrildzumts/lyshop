@@ -13,7 +13,7 @@ EXCLUDES_PATHS = ['/api', '/dashboard']
 
 def contains_paths(path):
     for p in EXCLUDES_PATHS:
-        if path in p:
+        if p in path:
             return True
     return False
 
