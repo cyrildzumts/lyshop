@@ -9,11 +9,18 @@ FACEBOOK_REQUEST_QUERY = "fbclid"
 REMOTE_ADDR = "REMOTE_ADDR"
 IP_SEP = ','
 SERVER_NAMES = ['85.214.155.78', '10.221.168.93']
-EXCLUDES_PATHS = ['/api', '/dashboard']
+EXCLUDES_PATHS = ['/api', '/dashboard', '/favicon.ico']
+ACCEPTED_PATHS = ['/accounts/', '/orders/', '/addressbook/', '/catalog/', '/cart/', '/about/', '/faq/', '/', '/fr/', '/en/']
 
 def contains_paths(path):
     for p in EXCLUDES_PATHS:
         if p in path:
+            return True
+    return False
+
+def is_accepted_path(path):
+    for p in ACCEPTED_PATHS:
+        if p == path or p in path:
             return True
     return False
 
@@ -22,7 +29,7 @@ class VisitorCounter:
         self.get_response = get_response
 
     def __call__(self, request):
-        if  not contains_paths(request.path):
+        if  is_accepted_path(request.path):
             v, created = Visitor.objects.get_or_create(url=request.path)
             Visitor.objects.filter(pk=v.pk).update(hits=F('hits') + 1)
         response = self.get_response(request)
@@ -33,7 +40,7 @@ class FacebookHitCounter:
         self.get_response = get_response
 
     def __call__(self, request):
-        if not contains_paths(request.path):
+        if is_accepted_path(request.path):
 
             if X_FORWARDED_FOR_HEADER in request.META:
                 client_ip = request.META.get(X_FORWARDED_FOR_HEADER).split(IP_SEP)[0]
@@ -52,7 +59,7 @@ class UniqueIPCounter:
         self.get_response = get_response
 
     def __call__(self, request):
-        if not contains_paths(request.path):
+        if is_accepted_path(request.path):
             if X_FORWARDED_FOR_HEADER in request.META:
                 client_ip = request.META.get(X_FORWARDED_FOR_HEADER).split(IP_SEP)[0]
             else:
