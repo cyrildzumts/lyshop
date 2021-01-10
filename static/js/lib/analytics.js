@@ -14,6 +14,8 @@ function(Chart, ajax){
     var analytics_label = 'Orders';
     var analytics_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var chart_type = 'bar';
+    var line_type = 'line';
+
     var UPDATE_RATE = 30000;
     var default_scales = {
         xAxes: [
@@ -95,13 +97,13 @@ function(Chart, ajax){
     };
 
     var visitors_conf = {
-        type : chart_type,
+        type : line_type,
         data : {
             labels : [],
             datasets : [{
                 label: 'Visitors',
-                data: [],
-                backgroundColor : "#D2AE00"
+                data: []
+                //backgroundColor : "#D2AE00"
             }],
         },
         options:{
@@ -110,13 +112,13 @@ function(Chart, ajax){
     };
 
     var visitor_conf = {
-        type : chart_type,
+        type : line_type,
         data : {
             labels : [],
             datasets : [{
                 label: 'Visitors',
-                data: [],
-                backgroundColor : "#D2AE00"
+                data: []
+                //backgroundColor : "#D2AE00"
             }],
         },
         options:{
@@ -125,13 +127,13 @@ function(Chart, ajax){
     };
 
     var unique_visitor_conf = {
-        type : chart_type,
+        type : line_type,
         data : {
             labels : [],
             datasets : [{
                 label: 'Unique Visitors',
-                data: [],
-                backgroundColor : "#D2AE00"
+                data: []
+                //backgroundColor : "#D2AE00"
             }],
         },
         options:{
@@ -140,13 +142,13 @@ function(Chart, ajax){
     };
 
     var facebook_visitor_conf = {
-        type : chart_type,
+        type : line_type,
         data : {
             labels : [],
             datasets : [{
                 label: 'Facebook Visitors',
-                data: [],
-                backgroundColor : "#D2AE00"
+                data: []
+                //backgroundColor : "#D2AE00"
             }],
         },
         options:{
