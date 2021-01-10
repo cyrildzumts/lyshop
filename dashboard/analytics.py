@@ -242,7 +242,7 @@ def report_visitors(year=timezone.now().year):
         raise ValueError(error_str)
     
     data = []
-    Models = [Visitor, UniqueIP, FacebookLinkHit]
+    Models = [Visitor, FacebookLinkHit]
     if year == timezone.now().year:
         MONTH_LIMIT = timezone.now().month
     else :
@@ -255,12 +255,20 @@ def report_visitors(year=timezone.now().year):
             count = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(count=Sum('hits')).get('count', 0)
             model_data.append(count or 0)
         data.append(model_data)
+
+    model_data = []
+        for m in months:
+            count = UniqueIP.objects.filter(created_at__year=year, created_at__month=m).count()
+            model_data.append(count)
     
+    data.append(model_data)
+
+
     logger.info("Visitor data reports : ")
     logger.info(data)
 
     report = {
-        'labels': ['Visitors', 'Unique Visitors', 'Facebook Visitors'],
+        'labels': ['Visitors', 'Facebook Visitors', 'Unique Visitors'],
         'year' : year,
         'months': months,
         'data' : data
