@@ -9,13 +9,14 @@ FACEBOOK_REQUEST_QUERY = "fbclid"
 REMOTE_ADDR = "REMOTE_ADDR"
 IP_SEP = ','
 SERVER_NAMES = ['85.214.155.78', '10.221.168.93']
+EXCLUDES_PATHS = ['/api', '/dashboard', ]
 
 class VisitorCounter:
     def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.META['SERVER_NAME'] not in SERVER_NAMES:
+        if request.path not in EXCLUDES_PATHS:
             v, created = Visitor.objects.get_or_create(url=request.path)
             Visitor.objects.filter(pk=v.pk).update(hits=F('hits') + 1)
         response = self.get_response(request)
@@ -26,7 +27,7 @@ class FacebookHitCounter:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.META['SERVER_NAME'] not in SERVER_NAMES:
+        if request.path not in EXCLUDES_PATHS:
 
             if X_FORWARDED_FOR_HEADER in request.META:
                 client_ip = request.META.get(X_FORWARDED_FOR_HEADER).split(IP_SEP)[0]
@@ -45,7 +46,7 @@ class UniqueIPCounter:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.META['SERVER_NAME'] not in SERVER_NAMES:
+        if request.path not in EXCLUDES_PATHS:
             if X_FORWARDED_FOR_HEADER in request.META:
                 client_ip = request.META.get(X_FORWARDED_FOR_HEADER).split(IP_SEP)[0]
             else:
