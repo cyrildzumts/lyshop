@@ -14,13 +14,11 @@ logger = logging.getLogger(__name__)
 YEAR_MONTHS_COUNT = 12
 
 def get_orders(year=timezone.now().year, month=timezone.now().month):
-    logger.info(f"Analytics get_orders() for date year=\"{year}\" - month=\"{month}\" ")
     qs_orders = Order.objects.filter(created_at__year=year, created_at__month=month)
     return qs_orders
 
 
 def report_orders_for_month(year=timezone.now().year, month=timezone.now().month):
-    logger.info(f"Report Orders for date year=\"{year}\" - month=\"{month}\"")
     if year < 0 or year > timezone.now().year :
         error_str = f"report_orders : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
         logger.error(error_str)
@@ -42,7 +40,6 @@ def report_orders_for_month(year=timezone.now().year, month=timezone.now().month
 
 
 def report_orders(year=timezone.now().year):
-    logger.info(f"Report Orders for date year=\"{year}\"")
     if year < 0 or year > timezone.now().year :
         error_str = f"report_orders_for_year : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
         logger.error(error_str)
@@ -72,7 +69,6 @@ def report_orders(year=timezone.now().year):
 
 
 def report_orders_price(year=timezone.now().year):
-    logger.info(f"Report Orders for date year=\"{year}\"")
     if year < 0 or year > timezone.now().year :
         error_str = f"report_orders_for_year : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
         logger.error(error_str)
@@ -101,7 +97,6 @@ def report_orders_price(year=timezone.now().year):
 
 
 def report_products(year=timezone.now().year):
-    logger.info(f"Report Product for date year=\"{year}\"")
     if year < 0 or year > timezone.now().year :
         error_str = f"report_products : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
         logger.error(error_str)
@@ -132,7 +127,6 @@ def report_products(year=timezone.now().year):
 
 
 def report_for_year(year=timezone.now().year, appName=None, modelName=None, label=None):
-    logger.info(f"Report Product for date year=\"{year}\"")
     if year < 0 or year > timezone.now().year :
         error_str = f"report_products_for_year : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
         logger.error(error_str)
@@ -182,7 +176,6 @@ def report_for_year(year=timezone.now().year, appName=None, modelName=None, labe
 
 
 def report_new_users(year=timezone.now().year):
-    logger.info(f"Report New Users for date year=\"{year}\"")
     if year < 0 or year > timezone.now().year :
         error_str = f"report_new_users : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
         logger.error(error_str)
@@ -216,7 +209,6 @@ def report_online_users():
 
 
 def report_log_users(year=timezone.now().year):
-    logger.info(f"Report Log Users for date year=\"{year}\"")
     if year < 0 or year > timezone.now().year :
         error_str = f"report_new_users : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
         logger.error(error_str)
@@ -243,7 +235,6 @@ def report_log_users(year=timezone.now().year):
 
 
 def report_visitors(year=timezone.now().year):
-    logger.info(f"Report Visitor for date year=\"{year}\"")
     if year < 0 or year > timezone.now().year :
         error_str = f"report_visitors : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
         logger.error(error_str)
