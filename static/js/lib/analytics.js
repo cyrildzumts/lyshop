@@ -1,6 +1,6 @@
 
-define(['vendor/Chart.min'],
-function(Chart){
+define(['vendor/Chart.min', 'ajax_api'],
+function(Chart, ajax){
     'use strict';
     var order_chart;
     var product_chart;
