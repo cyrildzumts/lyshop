@@ -14,7 +14,7 @@ function(Chart, ajax){
     var analytics_label = 'Orders';
     var analytics_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var chart_type = 'bar';
-    var UPDATE_RATE = 15000;
+    var UPDATE_RATE = 30000;
     var default_scales = {
         xAxes: [
             {
@@ -234,13 +234,6 @@ function(Chart, ajax){
             visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.data[2]});
         }
         
-
-        //visitors_conf.data.datasets[1].label = visitor_report.labels[1];
-        //visitors_conf.data.datasets[1] = visitor_report.data[1];
-
-        //visitors_conf.data.datasets[2].label = visitor_report.labels[2];
-        //visitors_conf.data.datasets[2] = visitor_report.data[2];
-        
         order_chart.update();
         product_chart.update();
         new_user_chart.update();
@@ -336,8 +329,8 @@ function(Chart, ajax){
     var ctx_orders_prices = $('#orders-price-diagram');
     var ctx_new_users = $('#users-diagram');
     var ctx_visitor = $('#visitor-diagram');
-    var ctx_unique_vistors_users = $('#unique_vistors-diagram');
-    var ctx_facebook_vistors_users = $('#facebook_vistors-diagram');
+    var ctx_unique_vistors_users = $('#unique-vistors-diagram');
+    var ctx_facebook_vistors_users = $('#facebook-vistors-diagram');
     var ctx_visitors = $('#visitors-diagram');
 
     var empty_conf = {};
