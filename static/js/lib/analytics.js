@@ -216,7 +216,7 @@ function(Chart, ajax){
         new_users_conf.data.labels = new_user_report.months;
         new_users_conf.data.datasets[0].label = new_user_report.label;
         new_users_conf.data.datasets[0].data = new_user_report.data;
-        metrics_data.push({label:'Users', count: new_report.total_count})
+        metrics_data.push({label:'Users', count: new_user_report.total_count})
 
         visitor_conf.data.labels = visitor_report.months;
         metrics_data.push({label:'Visitors', count: visitor_report.total_visitors})
