@@ -58,12 +58,15 @@ def report_orders(year=timezone.now().year):
 
     for m in months:
         data.append(Order.objects.filter(created_at__year=year, created_at__month=m).count())
+    
+    total_orders = Order.objects.count()
 
     report = {
         'label': 'Order',
         'year' : year,
         'months': months,
-        'data' : data
+        'data' : data,
+        'total_count': total_orders
     }
     return report
 
@@ -113,14 +116,16 @@ def report_products(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
 
     for m in months:
-        count = ProductVariant.objects.filter(created_at__year=year, created_at__month=m).aggregate(count=Sum('quantity')).get('count', 0)
+        count = Product.objects.filter(created_at__year=year, created_at__month=m).aggregate(count=Sum('quantity')).get('count', 0)
         data.append(count or 0)
 
+    total_products = Product.objects.aggregate(count=Sum('quantity')).get('count', 0)
     report = {
         'label': 'Products',
         'year' : year,
         'months': months,
-        'data' : data
+        'data' : data,
+        'total_count' : total_products
     }
     return report
 
@@ -193,12 +198,15 @@ def report_new_users(year=timezone.now().year):
 
     for m in months:
         data.append(User.objects.filter(date_joined__year=year, date_joined__month=m).count())
+    
+    total_users = User.objects.count()
 
     report = {
         'label': 'New Users',
         'year' : year,
         'months': months,
-        'data' : data
+        'data' : data,
+        'total_count' : total_users
     }
     return report
 
@@ -263,11 +271,19 @@ def report_visitors(year=timezone.now().year):
     
     data.append(model_data)
 
+    total_unique_visitors = UniqueIP.objects.count()
+    total_visitors = Visitor.objects.aggregate(count=Sum('hits')).get('count', 0)
+    total_facebook_visitors = FacebookLinkHit.objects.aggregate(count=Sum('hits')).get('count', 0)
+
     report = {
         'labels': ['Visitors', 'Facebook Visitors', 'Unique Visitors'],
         'year' : year,
         'months': months,
-        'data' : data
+        'data' : data,
+        'total_unique_visitors' : total_unique_visitors,
+        'total_visitors' : total_visitors,
+        'total_facebook_visitors' : total_facebook_visitors
+
     }
     return report
 

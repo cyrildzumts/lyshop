@@ -76,12 +76,14 @@ def dashboard(request):
     page_title = _('Dashboard') + ' - ' + settings.SITE_NAME
     username = request.user.username
     recent_orders = Order.objects.order_by('-created_at')[:10]
+    currents_orders = analytics.get_orders()
     fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits'))
     context = {
             'name'          : username,
             'page_title'    : page_title,
             'is_allowed'     : can_view_dashboard,
             'order_list' : recent_orders,
+            'currents_orders' : currents_orders,
             'orders_count': Order.objects.count(),
             'products_count': Product.objects.count(),
             'users_count' : User.objects.count(),
@@ -2465,21 +2467,21 @@ def reports(request):
         'unique_visitors' : UniqueIP.objects.count(),
         'facebook_visitors' : fbcount_sum['hits'],
     }
-    qs_orders = Order.objects.all()
+    orders_count = Order.objects.count()
     currents_orders = analytics.get_orders()
-    qs_users = User.objects.all()
+    user_count = User.objects.count()
     qs_products = ProductVariant.objects.filter(is_active=True)
-    qs_total_product = ProductVariant.objects.aggregate(product_count=Sum('quantity'))
+    qs_total_product = Product.objects.aggregate(product_count=Sum('quantity'))
     template_name = "dashboard/reports.html"
     page_title = _("Dashboard Reports") + " - " + settings.SITE_NAME
     
     context['page_title'] = page_title
     context['recent_orders'] = qs_orders[:Constants.MAX_RECENT]
-    context['orders'] = qs_orders
+    context['orders_count'] = orders_count
     context['current_orders'] = currents_orders
-    context['users'] = qs_users
+    context['users_count'] = user_count
     context['products'] = qs_products
-    context['product_count'] = qs_total_product['product_count']
+    context['products_count'] = qs_total_product['product_count']
     context['report'] = json.dumps(analytics.report_orders())
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)

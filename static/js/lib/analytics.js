@@ -196,11 +196,13 @@ function(Chart, ajax){
         let product_report = response.product_report;
         let new_user_report = response.new_user_report;
         let visitor_report = response.visitor_report;
+        var metrics_data = []
 
 
         orders_conf.data.labels = order_report.months;
         orders_conf.data.datasets[0].label = order_report.label;
         orders_conf.data.datasets[0].data = order_report.data;
+        metrics_data.push({label:'Orders', count: order_report.total_count})
 
         orders_price_conf.data.labels = order_price_report.months;
         orders_price_conf.data.datasets[0].label = order_price_report.label;
@@ -209,12 +211,17 @@ function(Chart, ajax){
         products_conf.data.labels = product_report.months;
         products_conf.data.datasets[0].label = product_report.label;
         products_conf.data.datasets[0].data = product_report.data;
+        metrics_data.push({label:'Products', count: product_report.total_count})
 
         new_users_conf.data.labels = new_user_report.months;
         new_users_conf.data.datasets[0].label = new_user_report.label;
         new_users_conf.data.datasets[0].data = new_user_report.data;
+        metrics_data.push({label:'Users', count: new_report.total_count})
 
         visitor_conf.data.labels = visitor_report.months;
+        metrics_data.push({label:'Visitors', count: visitor_report.total_visitors})
+        metrics_data.push({label:'Unique Visitors', count: visitor_report.total_unique_visitors})
+        metrics_data.push({label:'Facebook Visitors', count: visitor_report.total_facebook_visitors})
         visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6'};
 
         unique_visitor_conf.data.labels = visitor_report.months;
@@ -245,6 +252,8 @@ function(Chart, ajax){
         unique_visitor_charts.update();
         facebook_visitor_charts.update();
         visitors_charts.update();
+
+        updateMetrics(metrics_data);
     }
 
 
@@ -282,22 +291,19 @@ function(Chart, ajax){
             return;
         }
         metrics_data.forEach(data =>{
-            if(data.label == "Vouchers"){
-                $('#vouchers .metric-value .sold', container).text(data.sold);
-                $('#vouchers .metric-value .total', container).text(data.count);
-            }else if (data.label == "Orders"){
-                $('#orders .metric-value', container).text(data.count);
+            if (data.label == "Orders"){
+                $('#metric-orders .metric-value', container).text(data.count);
             }else if(data.label == "Products"){
-                $('#products .metric-value', container).text(data.count);
-            }else if(data.label == "Payment Requests"){
-                $('#p_requests .metric-value', container).text(data.count);
+                $('#metric-products .metric-value', container).text(data.count);
             }else if(data.label == "Users"){
-                $('#users .metric-value', container).text(data.count);
-            }else if(data.label == "Services"){
-                $('#services .metric-value', container).text(data.count);
-            }else{
-                console.error("Metrics Error: no target found for label %s.", data.label);
-            } 
+                $('#metric-users .metric-value', container).text(data.count);
+            }else if(data.label == "Visitors"){
+                $('#metric-visitors .metric-value', container).text(data.count);
+            }else if(data.label == "Facebook Visitors"){
+                $('#metric-facebook-visitors .metric-value', container).text(data.count);
+            }else if(data.label == "Unique Visitors"){
+                $('#metric-unique-visitors .metric-value', container).text(data.count);
+            }
         });
     }
 
