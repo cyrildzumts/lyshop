@@ -16,7 +16,7 @@ function(Chart, ajax){
     var chart_type = 'bar';
     var line_type = 'line';
 
-    var UPDATE_RATE = 30000;
+    var UPDATE_RATE = 60000 * 5; // 5min 
     var default_scales = {
         xAxes: [
             {
