@@ -1,6 +1,4 @@
 
-define(['vendor/Chart.min'], function(Chart) {
-    'use strict';
     var order_chart;
     var product_chart;
     var visitors_charts;
@@ -340,5 +338,3 @@ define(['vendor/Chart.min'], function(Chart) {
     dashboardUpdate();
     dashboardIntervalHandle = setInterval(dashboardUpdate, UPDATE_RATE); // 1000*60*1 = 1min
     });
-
-});
