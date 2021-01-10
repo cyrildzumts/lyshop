@@ -251,13 +251,13 @@ def report_visitors(year=timezone.now().year):
     for model in Models:
         model_data = []
         for m in months:
-            count = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(count=Sum('hits')).get('count', 0)
+            count = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits')
             model_data.append(count or 0)
         data.append(model_data)
 
     model_data = []
     for m in months:
-        count = UniqueIP.objects.filter(created_at__year=year, created_at__month=m).count()
+        count = UniqueIP.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits')
         model_data.append(count)
     
     data.append(model_data)
