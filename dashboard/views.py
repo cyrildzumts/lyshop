@@ -2462,7 +2462,7 @@ def reports(request):
     fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits'))
     context = {
         'visitors' : Visitor.objects.count(),
-        'unique_visitors' : UniqueIP.objects.count()
+        'unique_visitors' : UniqueIP.objects.count(),
         'facebook_visitors' : fbcount_sum['hits'],
     }
     qs_orders = Order.objects.all()
