@@ -1,5 +1,5 @@
 
-require(['vendor/Chart.min'],
+define(['vendor/Chart.min'],
 function(Chart){
 
     var order_chart;
