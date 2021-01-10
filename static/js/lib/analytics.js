@@ -235,6 +235,7 @@ function(Chart, ajax){
             visitors_conf.data.datasets.push({label:visitor_report.labels[1], data: visitor_report.data[1]});
             visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.data[2]});
         }
+        console.log("Visitor datasets : ", visitors_datasets);
         
         order_chart.update();
         product_chart.update();
