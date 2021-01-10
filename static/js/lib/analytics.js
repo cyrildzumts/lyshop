@@ -215,13 +215,13 @@ function(Chart, ajax){
         new_users_conf.data.datasets[0].data = new_user_report.data;
 
         visitor_conf.data.labels = visitor_report.months;
-        visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0]};
+        visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6'};
 
         unique_visitor_conf.data.labels = visitor_report.months;
-        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.data[2]}
+        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50'}
 
         facebook_visitor_conf.data.labels = visitor_report.months;
-        facebook_visitor_conf.data.datasets[0] = {label:visitor_report.labels[1], data: visitor_report.data[1]};
+        facebook_visitor_conf.data.datasets[0] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71'};
 
 
         visitors_conf.data.labels = visitor_report.months;
