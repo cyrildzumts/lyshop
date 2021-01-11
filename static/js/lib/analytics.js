@@ -9,6 +9,7 @@ function(Chart, ajax){
     var visitor_charts;
     var unique_visitor_charts;
     var facebook_visitor_charts;
+    var suspicious_visitor_charts;
     var order_price_chart;
     var new_user_chart;
     var analytics_label = 'Orders';
@@ -155,6 +156,20 @@ function(Chart, ajax){
             scales : default_scales
         }
     };
+    var suspicious_visitor_conf = {
+        type : line_type,
+        data : {
+            labels : [],
+            datasets : [{
+                label: 'Suspicious Visitors',
+                data: []
+                //backgroundColor : "#D2AE00"
+            }],
+        },
+        options:{
+            scales : default_scales
+        }
+    };
     var new_users_conf = {
         type : chart_type,
         data : {
@@ -211,36 +226,44 @@ function(Chart, ajax){
         products_conf.data.labels = product_report.months;
         products_conf.data.datasets[0].label = product_report.label;
         products_conf.data.datasets[0].data = product_report.data;
-        metrics_data.push({label:'Products', count: product_report.total_count})
+        metrics_data.push({label:'Products', count: product_report.total_count});
 
         new_users_conf.data.labels = new_user_report.months;
         new_users_conf.data.datasets[0].label = new_user_report.label;
         new_users_conf.data.datasets[0].data = new_user_report.data;
-        metrics_data.push({label:'Users', count: new_user_report.total_count})
+        metrics_data.push({label:'Users', count: new_user_report.total_count});
 
+        metrics_data.push({label:'Visitors', count: visitor_report.total_visitors});
+        metrics_data.push({label:'Unique Visitors', count: visitor_report.total_unique_visitors});
+        metrics_data.push({label:'Facebook Visitors', count: visitor_report.total_facebook_visitors});
+        metrics_data.push({label:'Suspicious Visitors', count: visitor_report.total_suspicious_visitors});
+        
         visitor_conf.data.labels = visitor_report.months;
-        metrics_data.push({label:'Visitors', count: visitor_report.total_visitors})
-        metrics_data.push({label:'Unique Visitors', count: visitor_report.total_unique_visitors})
-        metrics_data.push({label:'Facebook Visitors', count: visitor_report.total_facebook_visitors})
         visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6'};
 
         unique_visitor_conf.data.labels = visitor_report.months;
-        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50'}
+        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db'}
 
         facebook_visitor_conf.data.labels = visitor_report.months;
         facebook_visitor_conf.data.datasets[0] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71'};
 
+        suspicious_visitor_conf.data.labels = visitor_report.months;
+        suspicious_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50'};
+
 
         visitors_conf.data.labels = visitor_report.months;
         var visitors_datasets = visitors_conf.data.datasets;
-        if(visitors_datasets.length == 3){
+        if(visitors_datasets.length == 4){
             visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6'};
             visitors_conf.data.datasets[1] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71'};
             visitors_conf.data.datasets[2] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50'};
+            visitors_conf.data.datasets[3] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db'};
+            
         }else if (visitors_datasets.length == 1){
             visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6'};
             visitors_conf.data.datasets.push({label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71'});
             visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50'});
+            visitors_conf.data.datasets.push({label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db'});
         }
         
         order_chart.update();

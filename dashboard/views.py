@@ -78,6 +78,7 @@ def dashboard(request):
     recent_orders = Order.objects.order_by('-created_at')[:10]
     currents_orders = analytics.get_orders()
     fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits'))
+    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits')
     context = {
             'name'          : username,
             'page_title'    : page_title,
@@ -90,6 +91,7 @@ def dashboard(request):
             'visitors' : Visitor.objects.count(),
             'unique_visitors' : UniqueIP.objects.count(),
             'facebook_visitors' : fbcount_sum['hits'],
+            'total_suspicious_visitors': total_suspicious_visitors
         }
     if not can_view_dashboard :
         logger.warning(f"Dashboard : PermissionDenied to user {username} for path {request.path}")
@@ -2462,10 +2464,12 @@ def reports(request):
         raise PermissionDenied
     
     fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits'))
+    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits')
     context = {
         'visitors' : Visitor.objects.aggregate(hits=Sum('hits')).get('hits'),
         'unique_visitors' : UniqueIP.objects.count(),
         'facebook_visitors' : fbcount_sum['hits'],
+        'total_suspicious_visitors' : total_suspicious_visitors
     }
     orders_count = Order.objects.count()
     currents_orders = analytics.get_orders()

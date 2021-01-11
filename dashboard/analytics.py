@@ -1,7 +1,7 @@
 from django.db.models import F, Q, Sum, Count
 from catalog.models import ProductVariant, Product
 from orders.models import Order
-from inventory.models import Visitor, UniqueIP, FacebookLinkHit
+from inventory.models import Visitor, UniqueIP, FacebookLinkHit, SuspiciousRequest
 from dashboard.models import LoginReport
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -241,7 +241,7 @@ def report_visitors(year=timezone.now().year):
         raise ValueError(error_str)
     
     data = []
-    Models = [Visitor, FacebookLinkHit]
+    Models = [Visitor, FacebookLinkHit, SuspiciousRequest]
     if year == timezone.now().year:
         MONTH_LIMIT = timezone.now().month
     else :
@@ -251,20 +251,21 @@ def report_visitors(year=timezone.now().year):
     for model in Models:
         model_data = []
         for m in months:
-            count = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits')
-            model_data.append(count or 0)
+            hits = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits')
+            model_data.append(hits or 0)
         data.append(model_data)
 
     model_data = []
     for m in months:
-        count = UniqueIP.objects.filter(created_at__year=year, created_at__month=m).count()
-        model_data.append(count)
+        hits = UniqueIP.objects.filter(created_at__year=year, created_at__month=m).count()
+        model_data.append(hits)
     
     data.append(model_data)
 
     total_unique_visitors = UniqueIP.objects.count()
     total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits')
     total_facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits')
+    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits')
 
     report = {
         'labels': ['Visitors', 'Facebook Visitors', 'Unique Visitors'],
@@ -273,7 +274,8 @@ def report_visitors(year=timezone.now().year):
         'data' : data,
         'total_unique_visitors' : total_unique_visitors,
         'total_visitors' : total_visitors,
-        'total_facebook_visitors' : total_facebook_visitors
+        'total_facebook_visitors' : total_facebook_visitors,
+        'total_suspicious_visitors': total_suspicious_visitors
 
     }
     return report
