@@ -251,8 +251,8 @@ def report_visitors(year=timezone.now().year):
     for model in Models:
         model_data = []
         for m in months:
-            hits = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits')
-            model_data.append(hits or 0)
+            hits = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits', 0)
+            model_data.append(hits)
         data.append(model_data)
 
     model_data = []
@@ -263,9 +263,9 @@ def report_visitors(year=timezone.now().year):
     data.append(model_data)
 
     total_unique_visitors = UniqueIP.objects.count()
-    total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits')
-    total_facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits')
-    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits')
+    total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits', 0)
+    total_facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits', 0)
+    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits', 0)
 
     report = {
         'labels': ['Visitors', 'Facebook Visitors', 'Suspicious Visitors', 'Unique Visitors'],
