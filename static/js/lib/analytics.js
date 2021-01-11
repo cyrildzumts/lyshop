@@ -326,6 +326,8 @@ function(Chart, ajax){
                 $('#metric-facebook-visitors .metric-value', container).text(data.count);
             }else if(data.label == "Unique Visitors"){
                 $('#metric-unique-visitors .metric-value', container).text(data.count);
+            }else if(data.label == "Suspicious Visitors"){
+                $('#metric-suspicious-visitors .metric-value', container).text(data.count);
             }
         });
     }
