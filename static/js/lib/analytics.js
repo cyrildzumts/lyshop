@@ -365,6 +365,7 @@ function(Chart, ajax){
     var ctx_unique_vistors_users = $('#unique-visitors-diagram');
     var ctx_facebook_vistors_users = $('#facebook-visitors-diagram');
     var ctx_visitors = $('#visitors-diagram');
+    var ctx_suspicious_visitors = $('#suspicious-visitors-diagram');
 
     var empty_conf = {};
     order_chart = new Chart(ctx_orders, orders_conf);
@@ -375,6 +376,7 @@ function(Chart, ajax){
     visitor_charts = new Chart(ctx_visitor, visitor_conf);
     unique_visitor_charts = new Chart(ctx_unique_vistors_users, unique_visitor_conf);
     facebook_visitor_charts = new Chart(ctx_facebook_vistors_users, facebook_visitor_conf);
+    suspicious_visitor_charts = new Chart(ctx_suspicious_visitors, suspicious_visitor_conf);
     dashboardUpdate();
     dashboardIntervalHandle = setInterval(dashboardUpdate, UPDATE_RATE); // 1000*60*1 = 1min
     });
