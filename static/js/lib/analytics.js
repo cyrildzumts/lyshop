@@ -274,6 +274,7 @@ function(Chart, ajax){
         visitor_charts.update();
         unique_visitor_charts.update();
         facebook_visitor_charts.update();
+        suspicious_visitor_charts.update();
         visitors_charts.update();
 
         updateMetrics(metrics_data);
