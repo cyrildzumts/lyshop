@@ -6,35 +6,35 @@
 
                 <div id="metric-orders" class="metric mat-box">
                         <div class="metric-title">{% trans "Orders" %}</div>
-                        <span class="metric-value">{{orders_count}}</span>
+                        <span class="metric-value">{{orders_count|default_if_none:'0'}}</span>
                 </div>
                 <div id="metric-products" class="metric mat-box">
                         <div class="metric-title">{% trans "Products" %}</div>
-                        <span class="metric-value">{{products_count}}</span>
+                        <span class="metric-value">{{products_count|default_if_none:'0'}}</span>
                 </div>
                 <div id="metric-current-orders" class="metric mat-box">
                         <div class="metric-title">{% trans "Month Orders" %}</div>
-                        <span class="metric-value">{{current_orders.count}}</span>
+                        <span class="metric-value">{{current_orders.count|default_if_none:'0'}}</span>
                 </div>
                 <div id="metric-users" class="metric mat-box">
                         <div class="metric-title">{% trans "Users" %}</div>
-                        <span class="metric-value">{{users_count}}</span>
+                        <span class="metric-value">{{users_count|default_if_none:'0'}}</span>
                 </div>
                 <div id="metric-visitors" class="metric mat-box">
                         <div class="metric-title">{% trans "Visitors" %}</div>
-                        <span class="metric-value">{{visitors}}</span>
+                        <span class="metric-value">{{visitors|default_if_none:'0'}}</span>
                 </div>
                 <div id="metric-unique-visitors" class="metric mat-box">
                         <div class="metric-title">{% trans "Unique Visitors" %}</div>
-                        <span class="metric-value">{{unique_visitors}}</span>
+                        <span class="metric-value">{{unique_visitors|default_if_none:'0'}}</span>
                 </div>
                 <div id="metric-facebook-visitors" class="metric mat-box">
                         <div class="metric-title">{% trans "Facebook Visitors" %}</div>
-                        <span class="metric-value">{{facebook_visitors}}</span>
+                        <span class="metric-value">{{facebook_visitors|default_if_none:'0'}}</span>
                 </div>
                 <div id="metric-suspicious-visitors" class="metric mat-box">
                         <div class="metric-title">{% trans "Suspicious Visitors" %}</div>
-                        <span class="metric-value">{{total_suspicious_visitors}}</span>
+                        <span class="metric-value">{{total_suspicious_visitors|default_if_none:'0'}}</span>
                 </div>
         </div>
   </div>

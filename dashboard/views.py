@@ -2464,7 +2464,7 @@ def reports(request):
         raise PermissionDenied
     
     fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits'))
-    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits')
+    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits', 0)
     context = {
         'visitors' : Visitor.objects.aggregate(hits=Sum('hits')).get('hits'),
         'unique_visitors' : UniqueIP.objects.count(),
