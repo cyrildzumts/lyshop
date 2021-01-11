@@ -268,7 +268,7 @@ def report_visitors(year=timezone.now().year):
     total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits')
 
     report = {
-        'labels': ['Visitors', 'Facebook Visitors', 'Unique Visitors'],
+        'labels': ['Visitors', 'Facebook Visitors', 'Suspicious Visitors', 'Unique Visitors'],
         'year' : year,
         'months': months,
         'data' : data,
