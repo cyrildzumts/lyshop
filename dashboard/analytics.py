@@ -263,9 +263,9 @@ def report_visitors(year=timezone.now().year):
     data.append(model_data)
 
     total_unique_visitors = UniqueIP.objects.count()
-    total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits', 0)
-    total_facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits', 0)
-    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits', 0)
+    total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits') or 0
+    total_facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
+    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     logger.debug(f"total_suspicious_visitors : {total_suspicious_visitors}")
 
     report = {
