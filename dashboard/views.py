@@ -53,7 +53,7 @@ from vendors import vendors_service
 from addressbook.models import Address
 from addressbook import addressbook_service, constants as Addressbook_Constants
 from inventory import inventory_service
-from inventory.models import Visitor, UniqueIP, FacebookLinkHit
+from inventory.models import Visitor, UniqueIP, FacebookLinkHit, SuspiciousRequest
 from dashboard import analytics
 from itertools import islice
 import json
