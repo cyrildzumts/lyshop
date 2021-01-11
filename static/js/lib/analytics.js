@@ -329,6 +329,7 @@ function(Chart, ajax){
                 $('#metric-unique-visitors .metric-value', container).text(data.count);
             }else if(data.label == "Suspicious Visitors"){
                 $('#metric-suspicious-visitors .metric-value', container).text(data.count);
+                console.log("Metrics update : ", data);
             }
         });
     }
