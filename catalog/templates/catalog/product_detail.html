@@ -104,7 +104,7 @@
                 <div class="product-info">
                     <h5>{% trans "Shipping Info" %}</h5>
                     <ul>
-                        {% for s in ship_modes %} <li>{% trans s.display_name %} ({% if s.price == 0 %}{% trans "FREE" %} {% else %}{{s.price}} {% trans CURRENCY %}{% endif %})</li> {% endfor %}
+                        {% for s in ship_modes %} <li>{% trans s.display_name %} ({% if s.price == 0 %}{% trans "FREE" %} {% else %}{{s.price|floatformat:"-2"}} {% trans CURRENCY %}{% endif %})</li> {% endfor %}
                     </ul>
                 </div>
                 <div class="product-info">
