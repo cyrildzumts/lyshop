@@ -107,9 +107,9 @@
                         {% for s in ship_modes %} <li>{% trans s.display_name %} ({% if s.price == 0 %}{% trans "FREE" %} {% else %}{{s.price}} {% trans CURRENCY %}{% endif %})</li> {% endfor %}
                     </ul>
                 </div>
-
-                <p>{% trans "You can also choose to up pick your order yourself at one of our pick up locations below" %}</p>
-              
+                <div class="product-info">
+                  <p>{% trans "You can also choose to up pick your order yourself at one of our pick up locations below" %}</p>
+                </div>
                 <div class="product-info">
                   <h5>{% trans "Pick up Locations" %}</h5>
                   <ul>
@@ -118,10 +118,12 @@
                   </ul>
               </div>
               <div class="shipping-warning">
-                <p>{% blocktrans trimmed %}Home delivery is currently offered in Libreville.{% endblocktrans %}</p>
-                <p>{% blocktrans trimmed %}For customers living in Port-gentil, you can only pick up you order at the mentioned location above.
-                Shipping fee to Port-gentil is added to the order amount.
-                {% endblocktrans %}</p>
+                <div class="product-info">
+                    <p>{% blocktrans trimmed %}Home delivery is currently offered in Libreville.{% endblocktrans %}</p>
+                    <p>{% blocktrans trimmed %}For customers living in Port-gentil, you can only pick up you order at the mentioned location above.
+                    Shipping fee to Port-gentil is added to the order amount.
+                    {% endblocktrans %}</p>
+                </div>
               </div>
             </div><!--End of content-->
         </div><!--End of mat-box-->
