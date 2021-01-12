@@ -1,8 +1,9 @@
 {% load i18n %}
 {% for p in product_list %}
-<a class="product-wrapper-link" href="{{p.get_absolute_url}}">
+
 
 <div class="mat-box filterable product product-card" data-name="{{p.display_name}}" data-brand="{{p.brand.id}}" data-gender="{{p.gender}}" data-price="{{p.price|floatformat:'-2'}}" data-type="{{p.product_type.id}}">
+        <a class="product-wrapper-link" href="{{p.get_absolute_url}}">
         <div class="img-wrapper product-image">
         {% if p.images and p.images.first %}
                 <img class="img-responsive" loading="lazy" data-src="{{p.images.first.get_image_url}}" alt="{{p.display_name}}">
@@ -10,6 +11,7 @@
                 <img class="img-responsive" loading="lazy" data-src="{{p.product.images.first.get_image_url}}" alt="{{p.display_name}}">
         {% endif %}
         </div>
+        </a>
         <div class="product-info">
                 <div class="col-m-12">
                         <div class="product-name left">
@@ -28,12 +30,12 @@
                         </div>
                         {% endif %}
                 </div>
-                
-                
         </div><!--End of details-->
-        <div class="actions">
+        
+        {% comment %}<div class="actions">
                 <a class="mat-button mat-button-default" href="{{p.get_absolute_url}}">{% trans "Details" %}</a>
         </div>
+        {% endcomment %}
 </div>
-</a>
+
 {% endfor %}
