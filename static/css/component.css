@@ -2882,6 +2882,10 @@ table tbody tr, .mat-table tbody tr{
 		font-size: 0.8em;
 	}
 
+	.products .product-wrapper-link{
+		text-decoration: none;
+	}
+
 	.product-card{
 		flex: 1 46%;
 	}

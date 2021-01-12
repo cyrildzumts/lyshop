@@ -1,6 +1,6 @@
 {% load i18n %}
 {% for p in product_list %}
-
+<a class="product-wrapper-link" href="{{p.get_absolute_url}}">
 
 <div class="mat-box filterable product product-card" data-name="{{p.display_name}}" data-brand="{{p.brand.id}}" data-gender="{{p.gender}}" data-price="{{p.price|floatformat:'-2'}}" data-type="{{p.product_type.id}}">
         <div class="img-wrapper product-image">
@@ -35,5 +35,5 @@
                 <a class="mat-button mat-button-default" href="{{p.get_absolute_url}}">{% trans "Details" %}</a>
         </div>
 </div>
-
+</a>
 {% endfor %}
