@@ -2691,6 +2691,10 @@ table tbody tr, .mat-table tbody tr{
 	flex-wrap: wrap;
 }
 
+.products .product-wrapper-link{
+	text-decoration: none;
+}
+
 .product-card{
 	display: flex;
 	flex-direction: column;
@@ -2881,11 +2885,6 @@ table tbody tr, .mat-table tbody tr{
 	#products{
 		font-size: 0.8em;
 	}
-
-	.products .product-wrapper-link{
-		text-decoration: none;
-	}
-
 	.product-card{
 		flex: 1 46%;
 	}
