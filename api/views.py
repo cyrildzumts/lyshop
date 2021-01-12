@@ -83,7 +83,6 @@ class CategoryListView(ListAPIView):
 
 @api_view(['GET'])
 def analytics_data(request):
-    logger.info(f"Report data requested by user \"{request.user.username}\"")
     response_status = status.HTTP_200_OK
     order_report = analytics.report_orders()
     order_price_report = analytics.report_orders_price()

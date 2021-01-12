@@ -58,12 +58,10 @@ define([
         var self = this;
         var addr = document.getElementById('address');
         $('.js-input-payment-option').on('change', function(event){
-            console.log("%s =  %s - checked : %s",this.name, this.value, this.checked);
             self.payment_option = this.value;
             self.validate_pament_options();
         });
         $('.js-input-payment-method').on('change', function(event){
-            console.log("%s =  %s - checked : %s",this.name, this.value, this.checked);
             self.payment_method = this.value;
             self.validate_pament_options();
         });
@@ -84,11 +82,9 @@ define([
         this.validate_address();
         tabs.init();
         $('input.js-input-ship-mode').prop('checked', false);
-        console.log("Checkout initialized");
     };
 
     Checkout.prototype.validate_address = function(){
-        console.log("Validating Address : ");
         var toggle = false;
         var address_input = $('#address').get();
         var inputs_container = $('#new-address').get();
@@ -100,7 +96,6 @@ define([
             var i;
             for(i in inputs){
                 if(i.value == ""){
-                    console.log("%s : %s", i.name, i.value);
                     toggle = false;
                     break;
                 }
@@ -109,8 +104,6 @@ define([
         tabs.toggle_checked(address_tab, toggle);
     };
     Checkout.prototype.validate_pament_options = function(){
-       console.log("Validatin Payment Options : ");
-       console.log("payment_option : %s - payment_method : %s ", this.payment_option, this.payment_method);
        var toggle = false;
        if(this.payment_method == -1 || this.payment_option == -1){
            console.log("Payment Options are invalid");
@@ -153,8 +146,6 @@ define([
             data : data
         }
         var add_promise = ajax(option).then(function(response){
-            console.log("Address Created : %s", response['status']);
-            console.log(response);
             if(response.status){
                 address_inputs.each(function(){
                     this.disabled = 'disabled';

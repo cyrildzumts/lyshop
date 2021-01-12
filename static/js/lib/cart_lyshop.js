@@ -133,7 +133,6 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
                     data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
                 }
                 ajax_api(option).then(function(response){
-                    console.log(response);
                     $(".original-price").text(response.subtotal);
                     $(".final-price").text(response.total);
                     $(".js-cart-reduction").text(response.reduction);
@@ -172,7 +171,6 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         ajax_api(option).then(
             function(response){
                 var data = response;
-                console.log(data);
                 $('#coupon').prop('disabled', false).removeClass('disabled', false).val('');
                 $(".original-price").text(response.subtotal);
                 $(".final-price").text(response.total);
@@ -203,7 +201,6 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         }
         ajax_api(option).then(
             function(response){
-                console.log(response);
                 if(typeof callback == "function"){
                     callback(response);
                 }
@@ -231,7 +228,6 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             data : data
         }
         ajax_api(option).then(function(response){
-            console.log("update_product : ", response);
             self.update_badge(response.count);
             if(response.count == 0){
                 document.location.reload();
@@ -259,7 +255,6 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
     }
 
     Cart.prototype.update_product_quantity = function(item_uuid, quantity, target){
-        console.log("updating item ", item_uuid);
         var data = {};
         data['csrfmiddlewaretoken'] = this.csrfmiddlewaretoken.value;
         data['quantity'] = quantity;
@@ -273,8 +268,6 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             data : data
         }
         ajax_api(option).then(function(response){
-            console.log(response);
-    
             if(response['item_quantity'] == 0){
                 $('#' + target.data('parent')).fadeOut('slow').remove();
             }else{

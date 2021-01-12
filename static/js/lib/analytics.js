@@ -201,7 +201,6 @@ function(Chart, ajax){
     function dispatchChartUpdate(response){
         var label = response.label;
         var datasets = response.datasets;
-        console.log("Dispatching chart update to \"%s\"",label);
         updateOrderChart(order_chart, label, datasets);
     }
 
@@ -329,7 +328,6 @@ function(Chart, ajax){
                 $('#metric-unique-visitors .metric-value', container).text(data.count);
             }else if(data.label == "Suspicious Visitors"){
                 $('#metric-suspicious-visitors .metric-value', container).text(data.count);
-                console.log("Metrics update : ", data);
             }
         });
     }
@@ -342,7 +340,6 @@ function(Chart, ajax){
             dataType: 'json'
         }
         var promise = ajax(options).then(function(response){
-            console.log("analytics fetch succeed");
             //report = response.report;
             refresh_chart(response);
             //updateMetrics(response)

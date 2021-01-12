@@ -269,7 +269,6 @@ def report_visitors(year=timezone.now().year):
     total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     total_facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits') or 0
-    logger.debug(f"total_suspicious_visitors : {total_suspicious_visitors}")
 
     report = {
         'labels': ['Visitors', 'Facebook Visitors', 'Suspicious Visitors', 'Unique Visitors'],
@@ -294,7 +293,6 @@ def refresh_suspicious_request():
         logger.warning("No Suspicious requests find from old visitors")
         return False
     
-    logger.warning("Suspicious requests find from old visitors")
     objs = (SuspiciousRequest(url=entry['url'], hits=entry['hits'], ip_address=ip_address) for entry in queryset)
     while True:
         batch = list(islice(objs, batch_size))

@@ -1,6 +1,5 @@
 define(["ajax_api"],function(ajax) {
     'use strict';
-    console.log("attribute_api creation ...");
     var attr_template;
     function AttributManager(){
         
@@ -17,7 +16,6 @@ define(["ajax_api"],function(ajax) {
         this.id_form_INITIAL_FORMS = $("#id_form-INITIAL_FORMS", this.form);
         this.id_form_MIN_NUM_FORMS = $("#id_form-MIN_NUM_FORMS", this.form);
         this.id_form_MAX_NUM_FORMS = $("#id_form-MAX_MIN_FORMS", this.form);
-        console.log("AttributeManager created ...");
     };
     AttributManager.prototype.init = function(){
         var self = this;
@@ -33,7 +31,6 @@ define(["ajax_api"],function(ajax) {
             url : '/api/attribute-types/'
         }
         ajax(option, true, false).then(function(response){
-            console.log(response);
             attr_template = response;
         }, function(reason){
             console.error(reason);
@@ -74,7 +71,6 @@ define(["ajax_api"],function(ajax) {
     }
 
     AttributManager.prototype.create_attribute = function(){
-        console.log("Adding attribute");
         var self = this;
         var id = `attr-form-${this.total_form}`;
         var div = $('<div/>', {
@@ -95,7 +91,6 @@ define(["ajax_api"],function(ajax) {
             div.remove();
             self.decremente_management_form();
             self.updateFormInputIndex();
-            console.log("Removed attribute with id \"%s\"", id);
         });
         var label_name = $("<label/>").text(attr_template.name + " : ");
         var input_name = $('<input type="text">').attr({
@@ -150,7 +145,6 @@ define(["ajax_api"],function(ajax) {
         div.appendTo(self.form_attr_container);
         self.incremente_management_form();
         self.attrs_inputs.push([input_name, input_display_name, input_value, select_value_type, input_primary, input_form_id]);
-        console.log("[OK] Adding attribute done!");
         return div;
     };
 
