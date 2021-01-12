@@ -2716,13 +2716,13 @@ table tbody tr, .mat-table tbody tr{
 }
 .product-detail-shipping{
 	font-size: 0.7em;
-	margin-top: 1em;
+	margin-top: 1em !important;
 }
 .product-info{
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	padding: 2%;
+	padding: 2% 1%;
 	margin-top: auto;
 }
 .language{
