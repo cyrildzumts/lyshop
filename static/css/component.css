@@ -1717,6 +1717,11 @@ input.editable{
     padding: 0;
     margin: 0;
 }
+.collapsible .mat-button{
+	font-size: 1em !important;
+	padding : 0 !important;
+}
+
 .collapsible .collapse-toggle .icon{
 	font-size: 1.5em;
 	padding-left: 1em;
