@@ -2,11 +2,14 @@ from django.db.models import F, Q, Sum, Count
 from catalog.models import ProductVariant, Product
 from orders.models import Order
 from inventory.models import Visitor, UniqueIP, FacebookLinkHit, SuspiciousRequest
+from inventory import constants as Inventory_Constants
 from dashboard.models import LoginReport
 from django.contrib.auth.models import User
 from django.utils import timezone
 from lyshop import utils
-
+from operator import or_
+from functools import reduce
+from itertools import islice
 import logging
 
 logger = logging.getLogger(__name__)
@@ -280,4 +283,26 @@ def report_visitors(year=timezone.now().year):
 
     }
     return report
+
+
+def refresh_suspicious_request():
+
+    queryset = Visitor.objects.exclude(reduce(or_, (Q(url__icontains=p) for p in Inventory_Constants.VALID_PATHS))).values('url', 'hits')
+    ip_address = '0.0.0.0'
+    batch_size = 100
+    if not queryset.exists():
+        logger.warning("No Suspicious requests find from old visitors")
+        return False
+    
+    logger.warning("Suspicious requests find from old visitors")
+    objs = (SuspiciousRequest(url=entry['url'], hits=entry['hits'], ip_address=ip_address) for entry in queryset)
+    while True:
+        batch = list(islice(objs, batch_size))
+        if not batch:
+            break
+        SuspiciousRequest.objects.bulk_create(batch, batch_size)
+    return True
+
+
+
 

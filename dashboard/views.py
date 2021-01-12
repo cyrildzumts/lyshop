@@ -2452,6 +2452,16 @@ def generate_token(request):
 
 
 @login_required
+def update_suspicious_requests(request):
+    username = request.user.username
+    can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_access_dashboard:
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+    
+    analytics.refresh_suspicious_request()
+    return redirect('dashboard:reports')
+
+@login_required
 def reports(request):
     username = request.user.username
     can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)

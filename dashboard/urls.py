@@ -148,6 +148,7 @@ urlpatterns = [
     path('policy-groups/update/<uuid:group_uuid>/', views.policy_group_update, name='policy-group-update'),
     path('policy-groups/create/', views.policy_group_create, name='policy-group-create'),
     path('reports/', views.reports, name='reports'),
+    path('reports/update-suspicious-requests/', views.update_suspicious_requests, name='update-suspicious-requests'),
 
     path('sold-products/', views.sold_product_list, name='sold-products'),
     path('sold-products/details/<uuid:product_uuid>/', views.sold_product_detail, name='sold-product-detail'),
