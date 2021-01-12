@@ -7,4 +7,4 @@ IP_SEP = ','
 SERVER_NAMES = ['85.214.155.78', '10.221.168.93']
 EXCLUDES_PATHS = ['/api', '/dashboard', '/favicon.ico']
 ACCEPTED_PATHS = ['/accounts/', '/orders/', '/addressbook/', '/catalog/', '/cart/', '/setlang/', '/about/', '/faq/', '/', '/fr/', '/en/']
-VALID_PATHS = ['/api/', '/accounts/','/dashboard/', '/favicon.ico', '/orders/', '/addressbook/', '/catalog/', '/cart/', '/setlang/' ,'/about/', '/faq/', '/fr/', '/en/']
+VALID_PATHS = ['/', '/api/', '/accounts/','/dashboard/', '/favicon.ico', '/orders/', '/addressbook/', '/catalog/', '/cart/', '/setlang/' ,'/about/', '/faq/', '/fr/', '/en/', '/admin/, /sitemap.xml', '/robots.txt']
