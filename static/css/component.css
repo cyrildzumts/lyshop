@@ -2716,6 +2716,7 @@ table tbody tr, .mat-table tbody tr{
 }
 .product-detail-shipping{
 	font-size: 0.7em;
+	margin-top: 1em;
 }
 .product-info{
 	display: flex;
