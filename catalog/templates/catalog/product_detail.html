@@ -100,8 +100,21 @@
                 </div>
             </div><!--End of product detail-->
             </form>
-            <div class="box-content">
-                          
+            <div class="mat-box">
+                <div class="product-info">
+                    <h5>{% trans "Shipping Info" %}</h5>
+                    <ul>
+                        {% for s in ship_modes %} <li>{% trans s.display_name %} ({% if s.price == 0 %}{% trans "FREE" %} {% else %}{{s.price}} {% trans CURRENCY %}{% endif %})</li> {% endfor %}
+                    </ul>
+                </div>
+              
+                <div class="product-info">
+                  <h5>{% trans "Pick up Locations" %}</h5>
+                  <ul>
+                      <li><i class="fas fa-map-marked-alt icon"><span class="bold">LBV</span></i> <span>{% trans "Louis, in the galleries of the municipal market, Box N ° 4" %}</span></li>
+                      <li><i class="fas fa-map-marked-alt icon"><span class="bold">POG</span></i> <span>{% trans "Grand village, at Josy Coiffure, near CECADO, at carréfour Assane" %}</span></li>
+                  </ul>
+              </div>
             </div><!--End of content-->
         </div><!--End of mat-box-->
       </div><!--End of container-->
