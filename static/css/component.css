@@ -1718,7 +1718,7 @@ input.editable{
     margin: 0;
 }
 .collapsible .mat-button{
-	font-size: 0.8em !important;
+	font-size: 1em !important;
 	padding : 0 !important;
 }
 
@@ -2843,11 +2843,9 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
-	/*
-	.footer-content{
-		
+	.collapsible .mat-button{
+		font-size: 0.8em !important;
 	}
-	*/
 	.user-registration, .user-login{
 		font-size: 0.7em;
 	}
