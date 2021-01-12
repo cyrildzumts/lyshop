@@ -14,13 +14,13 @@ def is_excluded_path(path):
 
 def is_accepted_path(path):
     for p in Constants.ACCEPTED_PATHS:
-        if p == path or p in path:
+        if p == path or p in path or path == '/':
             return True
     return False
 
 def is_suspicious_path(path):
     for p in Constants.VALID_PATHS:
-        if p == path or p in path:
+        if p == path or p in path or path == '/':
             return False
     return True
 
