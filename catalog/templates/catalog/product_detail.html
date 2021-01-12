@@ -104,9 +104,10 @@
 
                   <div class="collapsible">
                 
-                      <span class="collapse-toggle mat-button mat-button-text" data-target="detail-shipping"><h5>{% trans "Shipping Info" %}</h5> <i class="fas fa-chevron-down icon"></i></span>
+                      <div class="collapse-toggle mat-button mat-button-text" data-target="detail-shipping">{% trans "Shipping Info" %}<i class="fas fa-chevron-down icon"></i></div>
                       <div id="detail-shipping" class="collapse-content">
                             <div class="product-info">
+
                                 <ul>
                                     {% for s in ship_modes %} <li>{% trans s.display_name %} ({% if s.price == 0 %}{% trans "FREE" %} {% else %}{{s.price|floatformat:"-2"}} {% trans CURRENCY %}{% endif %})</li> {% endfor %}
                                 </ul>
