@@ -1,15 +1,6 @@
 {% extends "catalog_base.html"%}
 {% load i18n %}
 
-{% block NEWS %}
-{% if news %}
-<div class="news">
-    <span class="news-title">{{news.title}}</span>
-    <div class="news-content">{{news.content}}</div>
-</div>
-{% endif %}
-{% endblock NEWS %}
-
 {% if not show_banner %}
 {% block HEADER_BANNER %}
 

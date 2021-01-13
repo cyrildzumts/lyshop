@@ -4,6 +4,14 @@
 {% block META_REDIRECT %}
         
 {% endblock META_REDIRECT %}
+{% block NEWS %}
+{% if news %}
+<div class="news">
+    <span class="news-title">{{news.title}}</span>
+    <div class="news-content">{{news.content}}</div>
+</div>
+{% endif %}
+{% endblock NEWS %}
 {% block MAIN %}
 
 {% block CATEGORIES %}
