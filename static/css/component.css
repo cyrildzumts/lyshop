@@ -2746,6 +2746,23 @@ table tbody tr, .mat-table tbody tr{
 	cursor: pointer !important;
 }
 
+.news{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.news .title{
+	font-size: 1.2em;
+    font-weight: 600;
+}
+
+.news .news-content{
+	font-size: 0.8em;
+}
+
+
 .price{
 	font-weight: 500;
 }

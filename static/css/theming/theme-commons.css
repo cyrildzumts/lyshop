@@ -184,3 +184,12 @@ li.active.selected{
 .product-detail-shipping{
 	color: #4A4B4A;
 }
+
+.news{
+    background-color:#fafafa;
+    color: var(--primary-color);
+}
+
+.news .title{
+    color: var(--secondary-color);
+}
