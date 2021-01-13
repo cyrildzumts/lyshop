@@ -7,8 +7,8 @@
 {% block NEWS %}
 {% if news %}
 <div class="news">
-    <span class="news-title">{{news.title}}</span>
-    <div class="news-content">{{news.content}}</div>
+    <span class="news-title">{% trans news.title %}</span>
+    <div class="news-content">{% trans news.content %}</div>
 </div>
 {% endif %}
 {% endblock NEWS %}

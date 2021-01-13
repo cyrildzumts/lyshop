@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-12 21:36+0000\n"
+"POT-Creation-Date: 2021-01-13 21:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,6 +33,8 @@ msgstr ""
 #: dashboard/templates/dashboard/highlight_update.html:50
 #: dashboard/templates/dashboard/highlight_update.html:104
 #: dashboard/templates/dashboard/new_user.html:29
+#: dashboard/templates/dashboard/news_create.html:57
+#: dashboard/templates/dashboard/news_update.html:57
 #: dashboard/templates/dashboard/order_item_update.html:23
 #: dashboard/templates/dashboard/order_item_update.html:109
 #: dashboard/templates/dashboard/order_update.html:87
@@ -127,6 +129,7 @@ msgstr "Annuler"
 #: dashboard/templates/dashboard/attributes_create.html:51
 #: dashboard/templates/dashboard/create_product_variant.html:74
 #: dashboard/templates/dashboard/highlight_create.html:51
+#: dashboard/templates/dashboard/news_create.html:58
 #: dashboard/templates/dashboard/payment_method_create.html:67
 #: dashboard/templates/dashboard/product_type_attribute_create.html:52
 #: dashboard/templates/dashboard/product_type_create.html:56
@@ -279,6 +282,7 @@ msgstr "Choisissez un type de d'adresse"
 #: dashboard/templates/dashboard/category_detail.html:50
 #: dashboard/templates/dashboard/coupon_detail.html:78
 #: dashboard/templates/dashboard/group_detail.html:15
+#: dashboard/templates/dashboard/news_detail.html:62
 #: dashboard/templates/dashboard/payment_method_detail.html:63
 #: dashboard/templates/dashboard/permission_detail.html:14
 #: dashboard/templates/dashboard/policy_detail.html:15
@@ -313,6 +317,7 @@ msgstr "Éditer"
 #: dashboard/templates/dashboard/group_list.html:43
 #: dashboard/templates/dashboard/group_list.html:84
 #: dashboard/templates/dashboard/highlight_list.html:65
+#: dashboard/templates/dashboard/news_detail.html:64
 #: dashboard/templates/dashboard/order_detail.html:25
 #: dashboard/templates/dashboard/payment_method_detail.html:65
 #: dashboard/templates/dashboard/payment_method_list.html:70
@@ -364,6 +369,7 @@ msgstr "Utiliser pour"
 #: dashboard/templates/dashboard/highlight_update.html:51
 #: dashboard/templates/dashboard/highlight_update.html:105
 #: dashboard/templates/dashboard/idcard_detail.html:21
+#: dashboard/templates/dashboard/news_update.html:58
 #: dashboard/templates/dashboard/order_detail.html:24
 #: dashboard/templates/dashboard/order_detail.html:111
 #: dashboard/templates/dashboard/order_item.html:24
@@ -499,6 +505,7 @@ msgstr "Nouvelle adresse non créee"
 #: dashboard/templates/dashboard/highlight_list.html:61
 #: dashboard/templates/dashboard/highlight_update.html:29
 #: dashboard/templates/dashboard/highlight_update.html:58
+#: dashboard/templates/dashboard/news_detail.html:21
 #: dashboard/templates/dashboard/order_item.html:79
 #: dashboard/templates/dashboard/order_item_update.html:81
 #: dashboard/templates/dashboard/payment_method_create.html:34
@@ -621,6 +628,7 @@ msgstr "Nom"
 #: dashboard/templates/dashboard/highlight_list.html:62
 #: dashboard/templates/dashboard/highlight_update.html:30
 #: dashboard/templates/dashboard/highlight_update.html:62
+#: dashboard/templates/dashboard/news_detail.html:24
 #: dashboard/templates/dashboard/order_detail.html:89
 #: dashboard/templates/dashboard/order_item.html:82
 #: dashboard/templates/dashboard/order_item_update.html:84
@@ -1201,15 +1209,23 @@ msgstr "Blanc"
 msgid "Yellow"
 msgstr "Jaune"
 
-#: catalog/templates/catalog/catalog_home.html:21
+#: catalog/strings.py:66
+msgid "Free shipping"
+msgstr "Livraison gratuite"
+
+#: catalog/strings.py:67
+msgid "LYSHOP is offering free shipping for members"
+msgstr "LYSHOP offre la livraison gratuite aux membres"
+
+#: catalog/templates/catalog/catalog_home.html:22
 msgid "There are no products to display yet."
 msgstr "Il n'y a pas encore de produits à afficher."
 
-#: catalog/templates/catalog/catalog_home.html:22
+#: catalog/templates/catalog/catalog_home.html:23
 msgid "As soon as Products are available, they will be displayed here."
 msgstr "Dès que les produits seront disponibles, ils seront affichés ici."
 
-#: catalog/templates/catalog/catalog_home.html:23
+#: catalog/templates/catalog/catalog_home.html:24
 #: catalog/templates/catalog/category_detail.html:22
 msgid "Please try again later"
 msgstr "Veuillez reesayer pus tard"
@@ -1258,16 +1274,16 @@ msgstr ""
 msgid "Description"
 msgstr "Description"
 
-#: catalog/templates/catalog/product_detail.html:105
+#: catalog/templates/catalog/product_detail.html:107
 #: orders/templates/orders/checkout.html:11
 msgid "Shipping Info"
 msgstr "Information sur l'envoi"
 
-#: catalog/templates/catalog/product_detail.html:107
+#: catalog/templates/catalog/product_detail.html:112
 msgid "FREE"
 msgstr "GRATUIT"
 
-#: catalog/templates/catalog/product_detail.html:111
+#: catalog/templates/catalog/product_detail.html:116
 msgid ""
 "You can also choose to up pick your order yourself at one of our pick up "
 "locations below"
@@ -1275,27 +1291,27 @@ msgstr ""
 "Vous pouvez également choisir de récupérer votre commande vous-même dans "
 "l'un de nos points de retrait ci-dessous"
 
-#: catalog/templates/catalog/product_detail.html:114
+#: catalog/templates/catalog/product_detail.html:119
 #: templates/tags/footer_content.html:22
 msgid "Pick up Locations"
 msgstr "Lieux de retraits"
 
-#: catalog/templates/catalog/product_detail.html:116
+#: catalog/templates/catalog/product_detail.html:121
 #: templates/tags/footer_content.html:24
 msgid "Louis, in the galleries of the municipal market, Box N ° 4"
 msgstr "Louis, aux galeries du marché municipal, Box N° 4"
 
-#: catalog/templates/catalog/product_detail.html:117
+#: catalog/templates/catalog/product_detail.html:122
 #: templates/tags/footer_content.html:25
 msgid "Grand village, at Josy Coiffure, near CECADO, at carréfour Assane"
 msgstr ""
 "Au Grand village, chez Josy Coiffure, à coté de CECADO, au carréfour Assane"
 
-#: catalog/templates/catalog/product_detail.html:122
+#: catalog/templates/catalog/product_detail.html:127
 msgid "Home delivery is currently offered in Libreville."
 msgstr "La livraison à domicile est actuellement proposée à Libreville."
 
-#: catalog/templates/catalog/product_detail.html:123
+#: catalog/templates/catalog/product_detail.html:128
 msgid ""
 "For customers living in Port-gentil, you can only pick up you order at the "
 "mentioned location above. Shipping fee to Port-gentil is added to the order "
@@ -1305,7 +1321,7 @@ msgstr ""
 "commande qu'à l'endroit mentionné ci-dessus. Les frais d'expédition à Port-"
 "gentil sont ajoutés au montant de la commande."
 
-#: catalog/templates/catalog/product_detail.html:136
+#: catalog/templates/catalog/product_detail.html:142
 #: catalog/templates/catalog/product_variant_detail.html:100
 msgid "Variants"
 msgstr "Déclinaisons"
@@ -1354,6 +1370,8 @@ msgstr "En rupture de stock"
 #: dashboard/templates/dashboard/highlight_detail.html:98
 #: dashboard/templates/dashboard/highlight_list.html:53
 #: dashboard/templates/dashboard/highlight_list.html:64
+#: dashboard/templates/dashboard/news_list.html:52
+#: dashboard/templates/dashboard/news_list.html:63
 #: dashboard/templates/dashboard/order_detail.html:95
 #: dashboard/templates/dashboard/order_list.html:52
 #: dashboard/templates/dashboard/order_list.html:66
@@ -1619,6 +1637,10 @@ msgstr "Utilsateur"
 #: dashboard/templates/dashboard/highlight_update.html:24
 #: dashboard/templates/dashboard/idcard_detail.html:22
 #: dashboard/templates/dashboard/new_user.html:14
+#: dashboard/templates/dashboard/news_create.html:15
+#: dashboard/templates/dashboard/news_detail.html:66
+#: dashboard/templates/dashboard/news_list.html:19
+#: dashboard/templates/dashboard/news_update.html:15
 #: dashboard/templates/dashboard/order_detail.html:28
 #: dashboard/templates/dashboard/order_item.html:27
 #: dashboard/templates/dashboard/order_item_update.html:26
@@ -1758,6 +1780,10 @@ msgstr "Aucun produit disponible pour cet attribut"
 #: dashboard/templates/dashboard/highlight_update.html:115
 #: dashboard/templates/dashboard/idcard_detail.html:37
 #: dashboard/templates/dashboard/new_user.html:37
+#: dashboard/templates/dashboard/news_create.html:65
+#: dashboard/templates/dashboard/news_detail.html:73
+#: dashboard/templates/dashboard/news_list.html:76
+#: dashboard/templates/dashboard/news_update.html:65
 #: dashboard/templates/dashboard/order_detail.html:125
 #: dashboard/templates/dashboard/order_item.html:112
 #: dashboard/templates/dashboard/order_item_update.html:118
@@ -1878,6 +1904,7 @@ msgstr ""
 #: dashboard/templates/dashboard/coupon_list.html:43
 #: dashboard/templates/dashboard/group_list.html:62
 #: dashboard/templates/dashboard/highlight_list.html:43
+#: dashboard/templates/dashboard/news_list.html:42
 #: dashboard/templates/dashboard/payment_method_list.html:43
 #: dashboard/templates/dashboard/policy_group_list.html:45
 #: dashboard/templates/dashboard/policy_list.html:41
@@ -1898,6 +1925,7 @@ msgstr "Supprimer la sélection"
 #: dashboard/templates/dashboard/coupon_list.html:49
 #: dashboard/templates/dashboard/create_product_variant.html:33
 #: dashboard/templates/dashboard/highlight_list.html:49
+#: dashboard/templates/dashboard/news_list.html:47
 #: dashboard/templates/dashboard/payment_method_list.html:48
 #: dashboard/templates/dashboard/policy_list.html:46
 #: dashboard/templates/dashboard/product_type_attribute_detail.html:47
@@ -2371,6 +2399,11 @@ msgstr "Coupons"
 #: dashboard/templates/dashboard/highlight_list.html:63
 #: dashboard/templates/dashboard/highlight_update.html:31
 #: dashboard/templates/dashboard/highlight_update.html:66
+#: dashboard/templates/dashboard/news_create.html:50
+#: dashboard/templates/dashboard/news_detail.html:51
+#: dashboard/templates/dashboard/news_list.html:50
+#: dashboard/templates/dashboard/news_list.html:61
+#: dashboard/templates/dashboard/news_update.html:50
 #: dashboard/templates/dashboard/payment_method_create.html:59
 #: dashboard/templates/dashboard/payment_method_detail.html:52
 #: dashboard/templates/dashboard/payment_method_list.html:53
@@ -2404,6 +2437,7 @@ msgid "Merchant"
 msgstr "Vendeur"
 
 #: dashboard/templates/dashboard/coupon_detail.html:40
+#: dashboard/templates/dashboard/news_detail.html:37
 #: dashboard/templates/dashboard/payment_method_detail.html:41
 #: dashboard/templates/dashboard/refund_detail.html:41
 #: dashboard/templates/dashboard/refund_update.html:41
@@ -2441,6 +2475,7 @@ msgid "Max Usage"
 msgstr "Utilisation maximum"
 
 #: dashboard/templates/dashboard/coupon_detail.html:69
+#: dashboard/templates/dashboard/news_detail.html:40
 #: dashboard/templates/dashboard/payment_method_detail.html:44
 #: shipment/templates/shipment/ship_mode_detail.html:41
 #: vendors/templates/vendors/coupon_detail.html:46
@@ -2463,6 +2498,7 @@ msgid "Add new Coupon"
 msgstr "Ajouter un nouveau coupon"
 
 #: dashboard/templates/dashboard/coupon_list.html:52
+#: dashboard/templates/dashboard/news_list.html:51
 #: dashboard/templates/dashboard/payment_method_list.html:54
 #: dashboard/templates/dashboard/refund_list.html:57
 #: shipment/templates/shipment/ship_mode_list.html:32
@@ -2515,6 +2551,7 @@ msgid "Status"
 msgstr "Statut"
 
 #: dashboard/templates/dashboard/coupon_list.html:65
+#: dashboard/templates/dashboard/news_list.html:62
 #: dashboard/templates/dashboard/payment_method_list.html:68
 #: dashboard/templates/dashboard/refund_list.html:70
 #: shipment/templates/shipment/ship_mode_list.html:44
@@ -2845,7 +2882,7 @@ msgstr "Nouvel utilisateur"
 #: dashboard/templates/dashboard/user_detail.html:13
 #: dashboard/templates/dashboard/user_list.html:7
 #: dashboard/templates/dashboard/user_list.html:29
-#: dashboard/templates/dashboard_base.html:44
+#: dashboard/templates/dashboard_base.html:45
 #: dashboard/templates/tags/dashboard_summary.html:20
 msgid "Users"
 msgstr "Utilisateurs"
@@ -2855,6 +2892,92 @@ msgstr "Utilisateurs"
 #: templates/accounts/registration/vendor_register.html:46
 msgid "Create My Account"
 msgstr "Créer mon compte"
+
+#: dashboard/templates/dashboard/news_create.html:7
+#: dashboard/templates/dashboard/news_detail.html:63
+#: dashboard/templates/dashboard/news_list.html:17
+#: dashboard/templates/dashboard/news_update.html:7 dashboard/views.py:4664
+#, fuzzy
+#| msgid "New Address"
+msgid "New News"
+msgstr "Nouvelle Adresse"
+
+#: dashboard/templates/dashboard/news_create.html:14
+#: dashboard/templates/dashboard/news_detail.html:65
+#: dashboard/templates/dashboard/news_list.html:8
+#: dashboard/templates/dashboard/news_list.html:36
+#: dashboard/templates/dashboard/news_update.html:14
+#: dashboard/templates/dashboard_base.html:33 dashboard/views.py:4645
+#: dashboard/views.py:4696
+msgid "News"
+msgstr ""
+
+#: dashboard/templates/dashboard/news_create.html:33
+#: dashboard/templates/dashboard/news_list.html:48
+#: dashboard/templates/dashboard/news_list.html:59
+#: dashboard/templates/dashboard/news_update.html:33
+msgid "Title"
+msgstr ""
+
+#: dashboard/templates/dashboard/news_create.html:37
+#: dashboard/templates/dashboard/news_update.html:37
+#, fuzzy
+#| msgid "Contact"
+msgid "Content"
+msgstr "Contact"
+
+#: dashboard/templates/dashboard/news_create.html:42
+#: dashboard/templates/dashboard/news_list.html:49
+#: dashboard/templates/dashboard/news_list.html:60
+#: dashboard/templates/dashboard/news_update.html:42
+#, fuzzy
+#| msgid "Start on"
+msgid "Start"
+msgstr "Commence le"
+
+#: dashboard/templates/dashboard/news_create.html:46
+#: dashboard/templates/dashboard/news_update.html:46
+msgid "End"
+msgstr ""
+
+#: dashboard/templates/dashboard/news_detail.html:7
+#: dashboard/templates/dashboard/order_detail.html:45
+#: dashboard/templates/dashboard/payment_method_detail.html:8
+#: dashboard/views.py:4326 orders/templates/orders/order_detail.html:37
+msgid "Payment Method"
+msgstr "Methodes de payment"
+
+#: dashboard/templates/dashboard/news_detail.html:27
+#: dashboard/templates/dashboard/payment_method_create.html:43
+#: dashboard/templates/dashboard/payment_method_detail.html:28
+#: dashboard/templates/dashboard/payment_method_list.html:51
+#: dashboard/templates/dashboard/payment_method_list.html:65
+#: dashboard/templates/dashboard/payment_method_update.html:41
+#: orders/templates/tags/tags_payment_method.html:11
+msgid "Provider"
+msgstr "Fournisseur"
+
+#: dashboard/templates/dashboard/news_detail.html:30
+#: dashboard/templates/dashboard/payment_method_create.html:55
+#: dashboard/templates/dashboard/payment_method_detail.html:31
+#: dashboard/templates/dashboard/payment_method_update.html:45
+#: orders/templates/tags/tags_payment_method.html:14
+msgid "Credential"
+msgstr "Identifiant"
+
+#: dashboard/templates/dashboard/news_detail.html:44
+#: dashboard/templates/dashboard/payment_method_detail.html:48
+#: shipment/templates/shipment/ship_mode_detail.html:45
+msgid "Last changed by"
+msgstr "Dernière modification par"
+
+#: dashboard/templates/dashboard/news_detail.html:47
+#: dashboard/templates/dashboard/refund_detail.html:44
+#: dashboard/templates/dashboard/refund_update.html:44
+#, fuzzy
+#| msgid "Last changed by"
+msgid "Last changed"
+msgstr "Dernière modification par"
 
 #: dashboard/templates/dashboard/order_detail.html:9
 #: dashboard/templates/dashboard/order_item.html:10
@@ -2895,7 +3018,7 @@ msgstr "Historique de la commande"
 #: dashboard/templates/dashboard/order_list.html:8
 #: dashboard/templates/dashboard/order_update.html:26
 #: dashboard/templates/dashboard/refund_list.html:18
-#: dashboard/templates/dashboard_base.html:34
+#: dashboard/templates/dashboard_base.html:35
 #: dashboard/templates/tags/analytics.html:8
 #: dashboard/templates/tags/dashboard_summary.html:8
 #: orders/templates/order_base.html:9
@@ -2983,12 +3106,6 @@ msgstr "PAYÉ"
 #: orders/templates/orders/order_detail.html:36
 msgid "NOT PAID"
 msgstr "NON PAYÉ"
-
-#: dashboard/templates/dashboard/order_detail.html:45
-#: dashboard/templates/dashboard/payment_method_detail.html:8
-#: dashboard/views.py:4326 orders/templates/orders/order_detail.html:37
-msgid "Payment Method"
-msgstr "Methodes de payment"
 
 #: dashboard/templates/dashboard/order_detail.html:46
 #: orders/templates/orders/order_detail.html:55
@@ -3121,31 +3238,10 @@ msgstr "Nouvelle methode de payment"
 #: dashboard/templates/dashboard/payment_method_list.html:9
 #: dashboard/templates/dashboard/payment_method_list.html:37
 #: dashboard/templates/dashboard/payment_method_update.html:15
-#: dashboard/templates/dashboard_base.html:36
+#: dashboard/templates/dashboard_base.html:37
 #: orders/templates/tags/payment_options.html:17
 msgid "Payment Methods"
 msgstr "Methodes de paiement"
-
-#: dashboard/templates/dashboard/payment_method_create.html:43
-#: dashboard/templates/dashboard/payment_method_detail.html:28
-#: dashboard/templates/dashboard/payment_method_list.html:51
-#: dashboard/templates/dashboard/payment_method_list.html:65
-#: dashboard/templates/dashboard/payment_method_update.html:41
-#: orders/templates/tags/tags_payment_method.html:11
-msgid "Provider"
-msgstr "Fournisseur"
-
-#: dashboard/templates/dashboard/payment_method_create.html:55
-#: dashboard/templates/dashboard/payment_method_detail.html:31
-#: dashboard/templates/dashboard/payment_method_update.html:45
-#: orders/templates/tags/tags_payment_method.html:14
-msgid "Credential"
-msgstr "Identifiant"
-
-#: dashboard/templates/dashboard/payment_method_detail.html:48
-#: shipment/templates/shipment/ship_mode_detail.html:45
-msgid "Last changed by"
-msgstr "Dernière modification par"
 
 #: dashboard/templates/dashboard/payment_method_detail.html:64
 msgid "New Paymnet Method"
@@ -3172,7 +3268,7 @@ msgid "Payment"
 msgstr "Paiement"
 
 #: dashboard/templates/dashboard/payment_request_detail.html:13
-#: dashboard/templates/dashboard_base.html:37
+#: dashboard/templates/dashboard_base.html:38
 #: payment/templates/payment_base.html:61 vendors/templates/vendor_base.html:27
 #: vendors/templates/vendor_base.html:51
 #: vendors/templates/vendor_tags/payment_report.html:5
@@ -3202,7 +3298,7 @@ msgid "REQUEST ID"
 msgstr ""
 
 #: dashboard/templates/dashboard/payment_request_list.html:8
-#: dashboard/templates/dashboard_base.html:38
+#: dashboard/templates/dashboard_base.html:39
 msgid "Payment Requests"
 msgstr "Demandes de paiement"
 
@@ -3699,13 +3795,6 @@ msgstr "Remboursement"
 msgid "Declined Reason"
 msgstr "Motif de refus"
 
-#: dashboard/templates/dashboard/refund_detail.html:44
-#: dashboard/templates/dashboard/refund_update.html:44
-#, fuzzy
-#| msgid "Last changed by"
-msgid "Last changed"
-msgstr "Dernière modification par"
-
 #: dashboard/templates/dashboard/refund_detail.html:47
 #: dashboard/templates/dashboard/refund_update.html:47
 #: payment/templates/payment/payment_detail.html:40
@@ -3718,7 +3807,7 @@ msgstr "Mode de Paiement"
 #: dashboard/templates/dashboard/refund_list.html:9
 #: dashboard/templates/dashboard/refund_list.html:37
 #: dashboard/templates/dashboard/refund_update.html:58
-#: dashboard/templates/dashboard_base.html:39
+#: dashboard/templates/dashboard_base.html:40
 #, fuzzy
 #| msgid "Refund"
 msgid "Refunds"
@@ -3885,7 +3974,7 @@ msgid "No"
 msgstr "Non"
 
 #: dashboard/templates/dashboard_base.html:18
-#: dashboard/templates/dashboard_base.html:48 templates/base.html:65
+#: dashboard/templates/dashboard_base.html:49 templates/base.html:65
 #: vendors/templates/vendor_base.html:60
 msgid "Logout"
 msgstr "Se déconnecter"
@@ -3906,7 +3995,7 @@ msgstr "Attributs de Type de Produit"
 msgid "Products Attributes"
 msgstr "Attributs de produits"
 
-#: dashboard/templates/dashboard_base.html:41
+#: dashboard/templates/dashboard_base.html:42
 #: shipment/templates/shipment/ship_mode_create.html:11
 #: shipment/templates/shipment/ship_mode_update.html:23
 #: shipment/templates/shipment/shipment_detail.html:26
@@ -3917,15 +4006,15 @@ msgstr "Attributs de produits"
 msgid "Shipments"
 msgstr "Envoies"
 
-#: dashboard/templates/dashboard_base.html:43
+#: dashboard/templates/dashboard_base.html:44
 msgid "Reports"
 msgstr "Rapport"
 
-#: dashboard/templates/dashboard_base.html:45
+#: dashboard/templates/dashboard_base.html:46
 msgid "Token"
 msgstr "Token"
 
-#: dashboard/templates/dashboard_base.html:47
+#: dashboard/templates/dashboard_base.html:48
 msgid "Token AUTH API"
 msgstr "Token AUTH API"
 
@@ -4638,6 +4727,42 @@ msgstr "Marque actualisée"
 #| msgid "Brand not updated"
 msgid "Refund not updated"
 msgstr "Marque non actualisée"
+
+#: dashboard/views.py:4680
+#, fuzzy, python-brace-format
+#| msgid "User {name} created"
+msgid "News {news} created"
+msgstr "Utilsateur {name} créé"
+
+#: dashboard/views.py:4684
+#, fuzzy
+#| msgid "Address not created"
+msgid "News not created"
+msgstr "Nouvelle adresse non créee"
+
+#: dashboard/views.py:4710
+#, fuzzy
+#| msgid "Last Update"
+msgid "News Update"
+msgstr "Dernière mise à jour"
+
+#: dashboard/views.py:4720
+#, fuzzy
+#| msgid "Address updated"
+msgid "News updated"
+msgstr "Adresse actualisée"
+
+#: dashboard/views.py:4724
+#, fuzzy
+#| msgid "Address not updated"
+msgid "News not updated"
+msgstr "Adresse non actualisée"
+
+#: dashboard/views.py:4737
+#, fuzzy
+#| msgid "Address deleted"
+msgid "News deleted"
+msgstr "Adresse supprimée"
 
 #: lyshop/settings.py:29
 msgid ""
@@ -5774,15 +5899,15 @@ msgstr "Espace Vendeur"
 msgid "Enable Grid"
 msgstr "Activer la Grille"
 
-#: templates/base.html:135
+#: templates/base.html:138
 msgid "ONLINE SHOP"
 msgstr "MAGASIN EN LIGNE"
 
-#: templates/base.html:138
+#: templates/base.html:141
 msgid "About us"
 msgstr "À propos de nous"
 
-#: templates/base.html:139
+#: templates/base.html:142
 msgid "FAQ"
 msgstr "FAQ"
 
