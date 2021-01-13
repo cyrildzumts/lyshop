@@ -4653,6 +4653,7 @@ def news(request):
         list_set = None
     context['page_title'] = page_title
     context['news_list'] = list_set
+    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 
