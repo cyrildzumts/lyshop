@@ -2723,10 +2723,15 @@ table tbody tr, .mat-table tbody tr{
 	filter: blur(0em);
 	transition: filter 0.5s;
 }
+
+.product-detail-wrapper{
+	font-size: 0.75em;
+}
 .product-detail-shipping{
-	font-size: 0.6em;
+	font-size: 0.9em;
 	margin-top: 1em !important;
 }
+
 .product-info{
 	display: flex;
 	flex-direction: column;

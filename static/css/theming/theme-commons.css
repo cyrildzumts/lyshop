@@ -180,3 +180,7 @@ li.active.selected{
     background-color:var(--notification-bg);
     color: var(--notification-color);
 }
+
+.product-detail-shipping{
+	color: #4A4B4A;
+}

@@ -6,7 +6,7 @@
 {% endblock HEADER_BANNER_TITLE %}
 
 {% block MAIN %}
-<div class="container">
+<div class="container product-detail-wrapper">
   <ul class="row">
     {% if product.category.parent %}
     <li class="mat-button"><a href="{{product.category.parent.get_absolute_url}}"><span>{% trans product.category.parent.display_name %}</span><span></span></a></li>
@@ -100,7 +100,7 @@
                 </div>
             </div><!--End of product detail-->
             </form>
-            <div class="mat-box product-detail-shipping">
+            <div class="product-detail-shipping">
 
                   <div class="collapsible">
                 
