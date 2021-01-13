@@ -2751,15 +2751,16 @@ table tbody tr, .mat-table tbody tr{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	font-size: 0.8em;
 }
 
-.news .title{
-	font-size: 1.2em;
+.news .news-title{
+	font-size: 1em;
     font-weight: 600;
 }
 
 .news .news-content{
-	font-size: 0.8em;
+	font-size: 1em;
 }
 
 

@@ -190,6 +190,6 @@ li.active.selected{
     color: var(--primary-color);
 }
 
-.news .title{
+.news .news-title{
     color: var(--secondary-color);
 }
