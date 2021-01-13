@@ -14,7 +14,7 @@
             <div class="col col-9">
                 <div class="banner--actions">
                     {% if can_add_product %}
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:new-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "New News" %}</span></a>
+                    <a class="mat-button mat-button-default" href="{% url 'dashboard:news-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "New News" %}</span></a>
                     {% endif %}
                     <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                         
