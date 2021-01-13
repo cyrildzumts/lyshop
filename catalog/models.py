@@ -539,10 +539,10 @@ class News(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("dashboard:news-detail", kwargs={"pk": self.pk})
+        return reverse("dashboard:news-detail", kwargs={"news_uuid": self.news_uuid})
     
     def get_delete_url(self):
-        return reverse("dashboard:news-delete", kwargs={"pk": self.pk})
+        return reverse("dashboard:news-delete", kwargs={"news_uuid": self.news_uuid})
 
     def get_update_url(self):
-        return reverse("dashboard:news-update", kwargs={"pk": self.pk})
+        return reverse("dashboard:news-update", kwargs={"news_uuid": self.news_uuid})
