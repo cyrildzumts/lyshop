@@ -520,3 +520,29 @@ class Highlight(models.Model):
     
     def get_vendor_delete_url(self):
         return reverse("vendors:highlight-delete", kwargs={"highlight_uuid": self.highlight_uuid})
+
+
+class News(models.Model):
+    title = models.CharField(max_length=128)
+    content = models.CharField(max_length=256)
+    is_active = models.BooleanField(default=False)
+    added_by = models.ForeignKey(User, related_name='added_news', blank=True, null=True, on_delete=models.SET_NULL)
+    changed_by = models.ForeignKey(User, related_name='edited_news', blank=True, null=True, on_delete=models.SET_NULL)
+    created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False, editable=False)
+    last_changed_at = models.DateTimeField(auto_now=True)
+    start_at = models.DateTimeField()
+    end_at = models.DateTimeField()
+    news_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    FORM_FIELDS = ['title', 'content', 'is_active', 'added_by', 'changed_by', 'start_at', 'end_at']
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("dashboard:news-detail", kwargs={"pk": self.pk})
+    
+    def get_delete_url(self):
+        return reverse("dashboard:news-delete", kwargs={"pk": self.pk})
+
+    def get_update_url(self):
+        return reverse("dashboard:news-update", kwargs={"pk": self.pk})

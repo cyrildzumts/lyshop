@@ -1,6 +1,8 @@
 from django.db.models import Q, Count
-from catalog.models import Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute
+from catalog.models import Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute, News
+from catalog.forms import NewsForm
 from catalog import constants as Constants
+from core import core_tools
 import logging
 
 logger = logging.getLogger(__name__)
@@ -168,3 +170,20 @@ def toggle_attributes_primary(name_list=[], primary=True):
     if not isinstance(name_list, list) or not isinstance(primary, bool):
         return 0
     return ProductAttribute.objects.filter(Q(name__in=name_list)|Q(display_name__in=name_list), is_primary=False).update(is_primary=primary)
+
+
+
+def create_news(data):
+    news = core_tools.create_instance(model=News, data=data)
+    if news:
+        logger.info("News created")
+    
+    return news
+
+
+def update_news(news, data):
+    updated_news = core_tools.update_instance(model=News, instance=news, data=data)
+    if updated_news:
+        logger.info("News updated")
+    
+    return updated_news

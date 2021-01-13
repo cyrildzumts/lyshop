@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from catalog.models import Category, Product, ProductAttribute, ProductVariant, Brand, Policy, PolicyGroup, ProductImage, ProductType, ProductTypeAttribute, Highlight
+from catalog.models import Category, Product, ProductAttribute, ProductVariant, Brand, Policy, PolicyGroup, ProductImage, ProductType, ProductTypeAttribute, Highlight, News
 from catalog import constants
 
 class CategoryForm(forms.ModelForm):
@@ -120,3 +120,9 @@ class HighlightForm(forms.ModelForm):
     class Meta:
         model = Highlight
         fields = ['name', 'display_name', 'gender', 'products', 'is_active', 'description']
+
+
+class NewsForm(forms.ModelForm):
+    class Meta:
+        model = News
+        fields = News.FORM_FIELDS

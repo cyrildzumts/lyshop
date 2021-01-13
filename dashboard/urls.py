@@ -79,6 +79,13 @@ urlpatterns = [
     path('orders/refunds/update/<uuid:refund_uuid>/', views.refund_update, name='refund-update'),
     path('orders/refunds/bulk-update/', views.refund_bulk_update, name='refund-bulk-update'),
     path('orders/mark-order-paid/<uuid:order_uuid>/', views.mark_order_paid, name='mark-order-paid'),
+
+    path('news/',views.news, name='news'),
+    path('news/news-create/',views.news_create, name='news-create'),
+    path('news/news-detail/<uuid:news_uuid>/',views.news_detail, name='news-detail'),
+    path('news/news-delete/<uuid:news_uuid>/',views.news_delete, name='news-delete'),
+    path('news/news-update/<uuid:news_uuid>/',views.news_update, name='news-update'),
+    path('news/news-bulk-delete/',views.news_bulk_delete, name='news-bulk-delete'),
     
     path('products/', views.products, name='products'),
     path('products/detail/<uuid:product_uuid>/', views.product_detail, name='product-detail'),

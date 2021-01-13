@@ -30,3 +30,6 @@ class SuspiciousRequest(models.Model):
     modified_at = models.DateTimeField(auto_now=True, editable=False)
     hits = models.PositiveIntegerField(default=0)
 
+
+    
+

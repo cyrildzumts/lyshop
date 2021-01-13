@@ -30,7 +30,7 @@ from accounts.forms import AccountCreationForm, UserCreationForm
 from accounts.account_services import AccountService
 from catalog.models import (
     Product, Brand, Category, ProductAttribute, ProductVariant, Policy, PolicyGroup, PolicyMembership, ProductImage, ProductType, ProductTypeAttribute,
-    Highlight
+    Highlight, News
 )
 from orders.models import Order, OrderItem, PaymentRequest, OrderStatusHistory, PaymentMethod, Refund, OrderPayment
 from orders.forms import DashboardOrderUpdateForm, OrderItemUpdateForm, PaymentMethodForm, RefundForm
@@ -38,7 +38,7 @@ from orders import orders_service
 from shipment import shipment_service
 from catalog.forms import (BrandForm, ProductAttributeForm, 
     ProductForm, ProductVariantForm, ProductVariantUpdateForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
-    DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm, HighlightForm
+    DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm, HighlightForm, NewsForm
 )
 from cart.models import Coupon
 from cart.forms import CouponForm
@@ -4633,3 +4633,124 @@ def refund_bulk_update(request):
             messages.error(request, f"Refunds \"{id_list}\" could not be updated")
             logger.error(f"ID list invalid. Error : {id_list}")
     return redirect('dashboard:refunds')
+
+
+
+@login_required
+def news(request):
+    template_name = "dashboard/news_list.html"
+    username = request.user.username
+    context = {}
+    queryset = News.objects.all().order_by('-created_at')
+    page_title = _("News") + " - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['news_list'] = list_set
+    return render(request,template_name, context)
+
+
+
+@login_required
+def news_create(request):
+    template_name = 'dashboard/news_create.html'
+    page_title = _('New News')
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_add_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    context = {
+        'page_title': page_title,
+    }
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        news = catalog_service.create_news(postdata)
+        if news:
+            messages.success(request,_('News {news} created'))
+            logger.info(f'[ OK ] News {news} added by user {request.user.username}' )
+            return redirect('dashboard:news')
+        else:
+            messages.error(request,_('News not created'))
+            logger.error(f'[ NOT OK ] Error on adding News by user {request.user.username}.' )
+
+    form = PaymentMethodForm()
+    context['form'] = form
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+@login_required
+def news_detail(request, news_uuid=None):
+    template_name = 'dashboard/news_detail.html'
+    username = request.user.username
+    page_title = _('News')
+
+    news = get_object_or_404(News, news_uuid=news_uuid)
+    context = {
+        'page_title': page_title,
+        'news': news,
+    }
+    return render(request,template_name, context)
+
+
+@login_required
+def news_update(request, news_uuid=None):
+    username = request.user.username
+    template_name = 'dashboard/news_update.html'
+    page_title = _('News Update')
+    context = {
+        'page_title': page_title,
+    }
+    obj = get_object_or_404(News, news_uuid=news_uuid)
+    username = request.user.username
+    if request.method == 'POST':
+        postdata = utils.get_postdata(request)
+        updated_news = catalog_service.update_news(obj, postdata)
+        if updated_news:
+            messages.success(request, _('News updated'))
+            logger.info(f'news {updated_news} updated by user \"{username}\"')
+            return redirect('dashboard:news-detail', news_uuid=news_uuid)
+        else:
+            messages.error(request, _('News not updated'))
+            logger.error(f'Error on updating news. Action requested by user \"{username}\"')
+
+    context['news'] = obj
+    return render(request, template_name, context)
+
+
+@login_required
+def news_delete(request, news_uuid=None):
+    username = request.user.username
+    obj = get_object_or_404(News, news_uuid=news_uuid)
+    News.objects.filter(pk=obj.pk).delete()
+    logger.info(f'News \"{obj}\" deleted by user \"{request.user.username}\"')
+    messages.success(request, _('News deleted'))
+    return redirect('dashboard:news')
+
+
+@login_required
+def news_bulk_delete(request):
+    username = request.user.username
+    
+    postdata = utils.get_postdata(request)
+    id_list = postdata.getlist('news-list')
+
+    if len(id_list):
+        news_id_list = list(map(int, id_list))
+        News.objects.filter(id__in=news_id_list).delete()
+        messages.success(request, f"News \"{id_list}\" deleted")
+        logger.info(f"News \"{id_list}\" deleted by user {username}")
+        
+    else:
+        messages.error(request, f"News \"{id_list}\" could not be deleted")
+        logger.error(f"ID list invalid. Error : {id_list}")
+    return redirect('dashboard:news')
