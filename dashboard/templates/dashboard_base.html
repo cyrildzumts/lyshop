@@ -23,14 +23,22 @@
                               {% if can_view_category %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}">{% trans "Categories" %}</a></li>{% endif %}
                               {% if can_view_coupon %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:coupons'%}">{% trans "Coupons" %}</a></li>{% endif %}
                               {% if can_view_product %}
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home'%}">{% trans "Vendor" %}</a></li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:highlights'%}">{% trans "Highlights" %}</a></li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:sold-products'%}">{% trans "Sold Products" %}</a></li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}">{% trans "Product Type" %}</a></li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes'%}">{% trans "Product Type Attributes" %}</a></li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}">{% trans "Products Attributes" %}</a></li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:news'%}">{% trans "News" %}</a></li>
+                              <li class="docklet">
+                                    <div class="collapsible">
+                                          <span class="collapse-toggle" data-target="docktlet-products">{% trans "Products Settings" %}</span>
+                                          <ul id="docklet-products" class="collapse-content">
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home'%}">{% trans "Vendor" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:highlights'%}">{% trans "Highlights" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:sold-products'%}">{% trans "Sold Products" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}">{% trans "Product Type" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes'%}">{% trans "Product Type Attributes" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}">{% trans "Products Attributes" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:news'%}">{% trans "News" %}</a></li>
+                                          </ul>
+                                    </div>
+                              </li>
+                              
                               {% endif %}
                                {% if can_view_order %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:orders'%}">{% trans "Orders" %}</a></li>{% endif %}
                               {% if can_view_payment %} 
