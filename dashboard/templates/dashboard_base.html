@@ -25,7 +25,7 @@
                               {% if can_view_product %}
                               <li class="docklet">
                                     <div class="collapsible">
-                                          <span class="collapse-toggle" data-target="docktlet-products">{% trans "Products Settings" %}</span>
+                                          <span class="collapse-toggle mat-button mat-button-text" data-target="docklet-products">{% trans "Products Settings" %}</span>
                                           <ul id="docklet-products" class="collapse-content">
                                                 <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home'%}">{% trans "Vendor" %}</a></li>
                                                 <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
