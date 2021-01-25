@@ -2725,7 +2725,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .product-detail-wrapper{
-	font-size: 0.9em;
+	font-size: 0.8em !important;
 }
 .product-detail-shipping{
 	font-size: 0.85em;
