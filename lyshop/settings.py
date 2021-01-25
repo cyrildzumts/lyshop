@@ -63,8 +63,8 @@ EMAIL_HOST_PASSWORD = os.environ.get('LYSHOP_EMAIL_PASSWORD')
 EMAIL_HOST_USER = os.environ.get('LYSHOP_EMAIL_USER')
 CONTACT_MAIL =  os.environ.get('LYSHOP_CONTACT_MAIL')
 EMAIL_USE_SSL = True
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNTS = {
     'ACCOUNT_TYPE' :  (
