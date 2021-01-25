@@ -2726,7 +2726,6 @@ table tbody tr, .mat-table tbody tr{
 .product-detail-properties{
 	/*background-color: #fafafa;*/
 	padding: 1em;
-	font-size: 0.8em;
 	margin-top: 2em;
 }
 .product-detail-wrapper{
@@ -2880,6 +2879,10 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
+	.product-detail-properties{
+		font-size: 0.8em;
+		margin-top: 1em;
+	}
 	.collapsible .mat-button{
 		font-size: 0.8em !important;
 	}
