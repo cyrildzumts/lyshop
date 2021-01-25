@@ -2723,7 +2723,12 @@ table tbody tr, .mat-table tbody tr{
 	filter: blur(0em);
 	transition: filter 0.5s;
 }
-
+.product-detail-properties{
+	/*background-color: #fafafa;*/
+	padding: 1em;
+	font-size: 0.8em;
+	margin-top: 2em;
+}
 .product-detail-wrapper{
 	font-size: 0.8em !important;
 }
