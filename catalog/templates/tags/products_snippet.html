@@ -2,7 +2,7 @@
 {% for p in product_list %}
 
 
-<div class="mat-box filterable product product-card" data-name="{{p.display_name}}" data-brand="{{p.brand.id}}" data-gender="{{p.gender}}" data-price="{{p.price|floatformat:'-2'}}" data-type="{{p.product_type.id}}">
+<div class="filterable product product-card" data-name="{{p.display_name}}" data-brand="{{p.brand.id}}" data-gender="{{p.gender}}" data-price="{{p.price|floatformat:'-2'}}" data-type="{{p.product_type.id}}">
         <a class="product-wrapper-link" href="{{p.get_absolute_url}}">
         <div class="img-wrapper product-image">
         {% if p.images and p.images.first %}
@@ -31,11 +31,6 @@
                         {% endif %}
                 </div>
         </div><!--End of details-->
-        
-        {% comment %}<div class="actions">
-                <a class="mat-button mat-button-default" href="{{p.get_absolute_url}}">{% trans "Details" %}</a>
-        </div>
-        {% endcomment %}
 </div>
 
 {% endfor %}

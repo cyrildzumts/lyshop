@@ -2773,8 +2773,15 @@ table tbody tr, .mat-table tbody tr{
 #products .wrapper, .highlight .wrapper, .products .wrapper{
 	padding: 0 !important;
 }
- #products .mat-box,  .products .mat-box{
+/*
+#products .mat-box,  .products .mat-box{
 	padding: 0.2em !important;
+}
+*/
+.products .product{
+	font-size: 0.8em;
+	padding: 0.2em !important;
+	margin: 4px auto;
 }
 /*
 .products .product-card:first-child, 
