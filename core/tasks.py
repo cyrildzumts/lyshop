@@ -1,6 +1,7 @@
 from django.core.mail import send_mail
 from celery import shared_task
 import django.template.loader as loader
+from lyshop import settings
 from orders import orders_service
 import logging
 
@@ -21,7 +22,7 @@ def send_mail_task(email_context=None):
         send_mail(
             email_context['title'],
             None,
-            'LYSHOP <info@lyshoping.com>',
+            settings.DEFAULT_FROM_EMAIL,
             [email_context['recipient_email']],
             html_message=html_message
         )
@@ -34,4 +35,3 @@ def cancel_unpaid_orders_task():
     logger.info("Starting cancel_unpaid_orders_task")
     orders_service.clean_unpaid_orders()
     logger.info("Finished cancel_unpaid_orders_task")
-

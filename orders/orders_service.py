@@ -5,6 +5,7 @@ from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.utils import timezone
+from core.tasks import send_mail_task
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from orders import commons
@@ -520,3 +521,30 @@ def update_payment_method(postdata, payment_method):
         return payment_method, False
 
 
+
+
+def send_order_mail_confirmation(order):
+    send_mail_task.apply_async(
+        args=[{
+                'order_id' : order.pk,
+                'template_name' : commons.ORDER_CONFIRMATION_MAIL_TEMPLATE,
+                'title': commons.ORDER_CONFIRMATION_MAIL_TITLE,
+                'recipient_email': order.user.email
+            }],
+        queue=settings.CELERY_OUTGOING_MAIL_EXCHANGE,
+        routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
+    )
+
+
+
+def send_shipment_mail_confirmation(order):
+    send_mail_task.apply_async(
+        args=[{
+                'order_id' : order.pk,
+                'template_name' : commons.SHIPMENT_CONFIRMATION_MAIL_TEMPLATE,
+                'title': commons.SHIPMENT_CONFIRMATION_MAIL_TITLE,
+                'recipient_email': order.user.email
+            }],
+        queue=settings.CELERY_OUTGOING_MAIL_EXCHANGE,
+        routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
+    )

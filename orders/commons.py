@@ -177,6 +177,11 @@ REFUND_DECLINED_REASON = (
     (REFUND_DECLINED_NOT_RETURNED_ON_TIME, _('ARTICLE NOT RETURNED ON TIME')),
 )
 
+ORDER_CONFIRMATION_MAIL_TITLE = _("Order Confirmation")
+ORDER_CONFIRMATION_MAIL_TEMPLATE = 'orders/order_mail_confirmation.html'
+
+SHIPMENT_CONFIRMATION_MAIL_TITLE = _("Shipment Confirmation")
+SHIPMENT_CONFIRMATION_MAIL_TEMPLATE = 'orders/shipment_mail_confirmation.html'
 
 def get_order_status_name(order_status=None):
     key, value = utils.find_element_by_key_in_tuples(order_status, ORDER_STATUS)
