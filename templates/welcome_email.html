@@ -1,0 +1,22 @@
+{% load i18n %}
+
+{% include "template_email.html" %}
+
+{% block EMAIL_BODY %}
+
+<tr><!--EMAIL_BODY-->
+    <td>
+        <table>
+            <tr>
+                <td>
+                    <p>Bienvenue chez {{SITE_NAME}}</p>
+                    <p>Votre compte a été crée avec succès</p>
+                    <p>Vous pouvez dès maintenant créer des commandes en vous connectant à votre compte</p>
+                    <p> Visitéz notre site pour passer votre première commande en cliquant sur ce lien : <a class="mat-button-mat-button-text" href="{% url 'home' %}">Découvrir  {{SITE_NAME}}</a></p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+
+{% endblock EMAIL_BODY %}
