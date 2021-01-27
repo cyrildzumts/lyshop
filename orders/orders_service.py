@@ -526,10 +526,22 @@ def update_payment_method(postdata, payment_method):
 def send_order_mail_confirmation(order):
     send_mail_task.apply_async(
         args=[{
-                'order_id' : order.pk,
+                'order' : order.pk,
                 'template_name' : commons.ORDER_CONFIRMATION_MAIL_TEMPLATE,
                 'title': commons.ORDER_CONFIRMATION_MAIL_TITLE,
-                'recipient_email': order.user.email
+                'recipient_email': order.user.email,
+                'user': order.user.pk,
+                'context' : {
+                    'SITE_NAME': settings.SITE_NAME,
+                    'SITE_HOST': settings.SITE_HOST,
+                    'FULL_NAME': order.user.get_full_name(),
+                    'AMOUNT': order.amount,
+                    'SHIPPING_PRICE': order.ship_mode.price,
+                    'ADDRESS' : order.address.to_str(),
+                    'COUPON' : '',
+                    'TOTAL' : order.total,
+                    'REFERENCE_NUMBER' : order.order_ref_number
+                }
             }],
         queue=settings.CELERY_OUTGOING_MAIL_EXCHANGE,
         routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY

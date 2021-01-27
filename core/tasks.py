@@ -1,6 +1,9 @@
 from django.core.mail import send_mail
 from celery import shared_task
-import django.template.loader as loader
+from django.template.loader import render_to_string
+from django.db.models.signals import pre_save, post_save
+from django.contrib.auth.models import User
+from django.dispatch import receiver
 from lyshop import settings
 from orders import orders_service
 import logging
@@ -8,6 +11,25 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+@receiver(post_save, sender=User)
+def send_welcome_mail(sender, instance, created, **kwargs):
+    if created:
+        logger.debug("new user created, sending welcome mail ...")
+        email_context = {
+            'template_name': settings.DJANGO_WELCOME_EMAIL_TEMPLATE,
+            'title': 'Bienvenu chez LYSHOP',
+            'recipient_email': instance.email,
+            'context':{
+                'SITE_NAME': settings.SITE_NAME,
+                'SITE_HOST': settings.SITE_HOST,
+                'FULL_NAME': instance.get_full_name()
+            }
+        }
+        send_mail_task.apply_async(
+            args=[email_context],
+            queue=settings.CELERY_OUTGOING_MAIL_EXCHANGE,
+            routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
+        )
 
 
 @shared_task
@@ -18,7 +40,7 @@ def send_mail_task(email_context=None):
         logger.debug("email_context available. Running send_mail now")
         template_name = email_context['template_name']
         #message = loader.render_to_string(template_name, {'email': email_context})
-        html_message = loader.get_template(template_name=template_name).render({'email': email_context})
+        html_message = render_to_string(template_name, email_context['context'])
         send_mail(
             email_context['title'],
             None,

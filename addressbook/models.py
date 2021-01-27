@@ -27,6 +27,9 @@ class Address(models.Model):
 
     def __str__(self):
         return f"{self.firstname} {self.lastname}  - {self.street} - {self.postal_code} - {self.city} - {self.country}"
+
+    def to_str(self):
+        return f"{self.firstname} {self.lastname}  - {self.street} - {self.postal_code} - {self.city} - {self.country}"
     
     def get_absolute_url(self):
         return reverse("addressbook:address-detail", kwargs={"address_uuid": self.address_uuid})

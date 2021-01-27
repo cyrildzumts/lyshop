@@ -298,7 +298,7 @@ def checkout_success(request, order_uuid):
         OrderPayment.objects.create(amount=order.total, sender=order.user, order=order, payment_mode=commons.ORDER_PAYMENT_PAY, verification_code=payment_request.verification_code)
         
 
-    #orders_service.order_clear_cart(request.user)
+    orders_service.order_clear_cart(request.user)
     flag = orders_service.mark_product_sold(order)
     p_mode = order.payment_method.mode
     if p_mode == commons.ORDER_PAYMENT_CASH:

@@ -32,9 +32,7 @@
                 <table>
                     <tr>
                         <td>
-                            <ul>
-                                {% for c in categories %} <li><a class="mat-button mat-button-text" href="{{SITE_HOST}}{{c.get_absolute_url}}" class="mat-button mat-button-default">{{c.display_name}}</a></li> {% endfor %}
-                            </ul>
+                            
                         </td>
                     </tr>
                 </table>
@@ -48,13 +46,11 @@
                 <table>
                     <tr>
                         <td>
-                            <ul style="">
-                                <li>{{SITE_NAME}}</li>
-                                <li><i>Mode et qualité pour tous</i></li>
-                                <li><i>Votre magasin de vente en ligne au gabon</i></li>
-                                <li><i><b>Tel: +24107433646</b></i></li>
-                                <li><a href="{{SITE_HOST}}" class="mat-button mat-button-text">Visitez nous !</a></li>
-                            </ul>
+                                <p>{{SITE_NAME}}</p>
+                                <p><i>Mode et qualité pour tous</i></p>
+                                <p><i>Votre magasin de vente en ligne au gabon</i></p>
+                                <p><i><b>Tel: +24107433646</b></i></p>
+                                <p><a href="{{SITE_HOST}}">Visitez nous !</a></p>
                         </td>
                     </tr>
                 </table>
