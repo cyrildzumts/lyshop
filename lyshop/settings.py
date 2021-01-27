@@ -55,6 +55,7 @@ CELERY_APP_NAME = 'lyshop'
 #)
 
 ALLOWED_HOSTS = [os.getenv('LYSHOP_ALLOWED_HOST')]
+SITE_HOST = os.getenv('LYSHOP_HOST')
 
 #EMAIL SETTINGS
 EMAIL_HOST = os.environ.get('LYSHOP_EMAIL_HOST')

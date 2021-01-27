@@ -22,7 +22,7 @@
             <td>
                 <table>
                     <tr>
-                        <td><h1><a class="mat-button mat-button-text" href="https://lyshoping.com">{{site_name}}</a></h1></td>
+                        <td><h1><a class="mat-button mat-button-text" href="{{SITE_HOST}}">{{site_name}}</a></h1></td>
                     </tr>
                 </table>
             </td>
@@ -33,7 +33,7 @@
                     <tr>
                         <td>
                             <ul>
-                                {% for c in categories %} <li><a class="mat-button mat-button-text" href="{{c.get_absolute_url}}" class="mat-button mat-button-default">{{c.display_name}}</a></li> {% endfor %}
+                                {% for c in categories %} <li><a class="mat-button mat-button-text" href="{{SITE_HOST}}{{c.get_absolute_url}}" class="mat-button mat-button-default">{{c.display_name}}</a></li> {% endfor %}
                             </ul>
                         </td>
                     </tr>
@@ -48,12 +48,12 @@
                 <table>
                     <tr>
                         <td>
-                            <ul>
+                            <ul style="">
                                 <li>{{SITE_NAME}}</li>
-                                <li>Mode et qualité pour tous</li>
-                                <li>Votre magasin de vente en ligne au gabon</li>
-                                <li>Tel: +24107433646</li>
-                                <li><a href="https://lyshoping.com" class="mat-button mat-button-text">Visitez nous !</a></li>
+                                <li><i>Mode et qualité pour tous</i></li>
+                                <li><i>Votre magasin de vente en ligne au gabon</i></li>
+                                <li><i><b>Tel: +24107433646</b></i></li>
+                                <li><a href="{{SITE_HOST}}" class="mat-button mat-button-text">Visitez nous !</a></li>
                             </ul>
                         </td>
                     </tr>

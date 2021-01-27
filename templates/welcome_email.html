@@ -9,10 +9,10 @@
         <table>
             <tr>
                 <td>
-                    <p>Bienvenue chez {{SITE_NAME}}</p>
+                    <h3>Bienvenue chez {{SITE_NAME}}</h3>
                     <p>Votre compte a été crée avec succès</p>
                     <p>Vous pouvez dès maintenant créer des commandes en vous connectant à votre compte</p>
-                    <p> Visitéz notre site pour passer votre première commande en cliquant sur ce lien : <a class="mat-button-mat-button-text" href="{% url 'home' %}">Découvrir  {{SITE_NAME}}</a></p>
+                    <p> Visitéz notre site pour passer votre première commande en cliquant sur ce lien : <a class="mat-button-mat-button-text" href="{{SITE_HOST}}{% url 'catalog:catalog-home' %}">Découvrir notre catalogue</a></p>
                 </td>
             </tr>
         </table>

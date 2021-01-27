@@ -17,6 +17,7 @@ def site_context(request):
     context = {
         'site_name' : settings.SITE_NAME,
         'SITE_NAME' : settings.SITE_NAME,
+        'SITE_HOST' : settings.SITE_HOST,
         'META_KEYWORDS': settings.META_KEYWORDS,
         'META_DESCRIPTION': settings.META_DESCRIPTION,
         'redirect_to' : '/',
