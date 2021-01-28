@@ -1,11 +1,9 @@
 from django.core.mail import send_mail
 from celery import shared_task
 from django.template.loader import render_to_string
-from django.db.models.signals import pre_save, post_save
-from django.contrib.auth.models import User
 from django.dispatch import receiver
 from lyshop import settings
-from orders import orders_service
+
 import logging
 
 
@@ -29,10 +27,3 @@ def send_mail_task(email_context=None):
         )
     else:
         logger.debug("email_context or template_name not available")
-
-
-@shared_task
-def cancel_unpaid_orders_task():
-    logger.info("Starting cancel_unpaid_orders_task")
-    orders_service.clean_unpaid_orders()
-    logger.info("Finished cancel_unpaid_orders_task")
