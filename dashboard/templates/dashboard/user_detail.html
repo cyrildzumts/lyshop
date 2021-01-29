@@ -1,5 +1,6 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
+{% load core_tags %}
 {% block HEADER_BANNER %}
     <div class="banner banner-align-left">
         <div class="full welcome-text center">
@@ -12,6 +13,7 @@
                 <div class="banner--actions">
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}"><i class="fas fa-users icon"></i><span>{% trans "Users" %}</span></a>
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:user-delete' user_instance.pk %}"><i class="fas fa-remove icon"></i><span>{% trans "Delete" %}</span></a>
                     {% if not has_balance and can_have_balance %}
                         <a class="mat-button mat-button-text" href="{% url 'dashboard:create-vendor-balance' user_instance.pk %}"><i class="fas fa-plus icon"></i><span>{% trans "Add Balance" %}</span></a>
                     {% endif %}
@@ -66,7 +68,7 @@
                                         <span class="key">{% trans "Telefon" %}</span> <span class="value">{{user_instance.account.telefon}}</span>
                                 </div>
                                 <div class="entry">
-                                        <span class="key">{% trans "Account Type" %}</span> <span class="value">{{user_instance.account.account_type}}</span>
+                                        <span class="key">{% trans "Account Type" %}</span> <span class="value">{{user_instance.account.account_type|account_type_value}}</span>
                                 </div>
                         </div>
                         {% endif %}
@@ -102,6 +104,22 @@
         </div>
 
 </div>
+{% if cart_items %}
+<div class="col-m-12 col-8">
+        <div class="mat-list-wrapper wrapper">
+                <ul class="mat-list">
+                {% for item in cart_items %}
+                <li class="mat-list-item" id="item-{{item.id}}">
+                        {% include "tags/user_cart.html" %}
+                </li>
+                {% endfor %}
+                </ul>
+                
+        </div><!--End mat-list-wrapper-->
+</div>
+
+{% else %}
+{% endif %}
 {% if is_seller %}
 <div class="container wrapper">
         <div class="full">

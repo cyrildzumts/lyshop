@@ -171,7 +171,7 @@ def get_cartitems(user):
     cart = get_cart(user)
     cartitems_queryset = None
     if cart:
-        cartitems_queryset = CartItem.objects.filter(cart=cart)
+        cartitems_queryset = CartItem.objects.select_related('product').prefetch_related('product__attributes').filter(cart=cart)
     return cartitems_queryset
 
 def is_valid_coupon(coupon):

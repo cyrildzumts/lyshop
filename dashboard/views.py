@@ -40,6 +40,7 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
     ProductForm, ProductVariantForm, ProductVariantUpdateForm, CategoryForm, ProductImageForm, AttributeForm, AddAttributeForm,
     DeleteAttributeForm, CategoriesDeleteForm, ProductTypeForm, ProductTypeAttributeForm, HighlightForm, NewsForm
 )
+from cart import cart_service
 from cart.models import Coupon
 from cart.forms import CouponForm
 from catalog import models
@@ -2548,6 +2549,7 @@ def user_details(request, pk=None):
     seller_group = None
     is_seller = vendors_service.is_vendor(user)
     can_have_balance = vendors_service.can_have_balance(user)
+    cart_items = cart_service.get_cartitems(user)
 
     template_name = "dashboard/user_detail.html"
     page_title = "User Details - " + settings.SITE_NAME
@@ -2560,6 +2562,8 @@ def user_details(request, pk=None):
     context.update(get_view_permissions(request.user))
     context['can_delete'] = PermissionManager.user_can_delete_user(request.user)
     context['can_update'] = PermissionManager.user_can_change_user(request.user)
+    context['cart_items'] = cart_items
+    context['ACCOUNT_TYPE'] = Account_Constants.ACCOUNT_TYPE
     return render(request,template_name, context)
 
 
