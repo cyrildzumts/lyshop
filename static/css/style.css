@@ -216,7 +216,15 @@
 
 .dock-left .docklet{
     width: 100%;
-    font-size: 1.2em;
+    font-size: 0.8em;
+    font-weight: 500;
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+}
+
+.docklet .collapsible{
+    width: 100%;
+    font-size: 0.8em;
     font-weight: 500;
     border-bottom: 1px solid #ccc;
     padding: 8px;
