@@ -26,6 +26,6 @@ def send_welcome_mail(sender, instance, created, **kwargs):
         }
         send_mail_task.apply_async(
             args=[email_context],
-            queue=settings.CELERY_OUTGOING_MAIL_EXCHANGE,
+            queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
             routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
         )

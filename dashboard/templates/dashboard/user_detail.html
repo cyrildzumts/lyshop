@@ -14,6 +14,7 @@
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}"><i class="fas fa-users icon"></i><span>{% trans "Users" %}</span></a>
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:user-delete' user_instance.pk %}"><i class="fas fa-remove icon"></i><span>{% trans "Delete" %}</span></a>
+                    <a class="mat-button mat-button-text" href="{% url 'dashboard:send-welcome-mail' user_instance.pk %}"><i class="fas fa-envelope icon"></i><span>{% trans "Send Welcome Mail" %}</span></a>
                     {% if not has_balance and can_have_balance %}
                         <a class="mat-button mat-button-text" href="{% url 'dashboard:create-vendor-balance' user_instance.pk %}"><i class="fas fa-plus icon"></i><span>{% trans "Add Balance" %}</span></a>
                     {% endif %}

@@ -166,6 +166,7 @@ urlpatterns = [
     path('users/', views.users, name='users'),
     path('users/create-user/', views.create_account, name='create-user'),
     path('users/detail/<int:pk>', views.user_details, name='user-detail'),
+    path('users/send-welcome-mail/<int:pk>', views.send_welcome_mail, name='send-welcome-mail'),
     path('users/delete/<int:pk>', views.user_delete, name='user-delete'),
     path('users/users-delete/', views.users_delete, name='users-delete'),
     path('users/create-balance/<int:pk>', views.create_vendor_balance, name='create-vendor-balance'),
