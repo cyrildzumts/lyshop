@@ -36,7 +36,7 @@ def send_mail_task(email_context=None):
 
 
 @shared_task
-def send_mass_mail_task(email_context=None, recipients):
+def send_mass_mail_task(email_context=None):
     
     # TODO : make sending email based on Django Template System.
     if email_context is not None and recipients:
