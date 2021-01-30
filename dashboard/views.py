@@ -4779,7 +4779,7 @@ def send_welcome_mail(request, pk):
                 'SITE_HOST': settings.SITE_HOST,
                 'FULL_NAME': user.get_full_name()
             }
-        }
+    }
     send_mail_task.apply_async(
         args=[email_context],
         queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
