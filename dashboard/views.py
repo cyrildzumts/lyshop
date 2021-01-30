@@ -4780,8 +4780,8 @@ def send_welcome_mail(request, pk):
                 'FULL_NAME': user.get_full_name()
             }
         }
-        send_mail_task.apply_async(
-            args=[email_context],
-            queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
-            routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
-        )
+    send_mail_task.apply_async(
+        args=[email_context],
+        queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
+        routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
+    )
