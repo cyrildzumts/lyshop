@@ -4785,3 +4785,5 @@ def send_welcome_mail(request, pk):
         queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
         routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
     )
+
+    return redirect('dashboard:user-detail', pk=pk)
