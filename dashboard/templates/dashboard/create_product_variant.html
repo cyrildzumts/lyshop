@@ -27,6 +27,21 @@
                 <div class="mat-table-title">
                     {% trans "Available Attributes" %}
                 </div>
+                <div class="container">
+                    {% regroup attribute_list by name as name_list %}
+                    <ul>
+                        {% for attr in name_list %}
+                            <li>{{ attr.grouper }}
+                            <ul>
+                                {% for obj in attr.list %}
+                                    <li>{{ obj.value }}</li>
+                                {% endfor %}
+                            </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
                 <table id="attr-list" class="mat-table js-filter-table">
                     <thead>
                             <tr>

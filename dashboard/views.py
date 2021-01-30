@@ -1582,11 +1582,13 @@ def create_product_variant(request, product_uuid=None):
     page_title = _('New Product Variant')
     form = ProductVariantForm()
     attribute_formset = modelformset_factory(ProductAttribute, form=ProductAttributeForm)
+    attribute_list = inventory_service.get_product_type_attributes(product)
+    #attribute_dict_list = attribute_list.values_list('')
     context = {
         'page_title': page_title,
         'form' : form,
         'product' : product,
-        'attribute_list' : inventory_service.get_product_type_attributes(product),
+        'attribute_list' : attribute_list,
         'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
     }
     context['attribute_formset'] = attribute_formset
