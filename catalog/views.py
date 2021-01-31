@@ -70,7 +70,7 @@ def catalog_home(request, sale=None,):
     field_filter = filters.Filter(Product, queryDict)
     queryset = field_filter.apply_filter().filter(is_active=True, sale=sale=='sale')
     selected_filters = field_filter.selected_filters
-    sale_category = sale == 'sale' and Product.objects.filter(sale=True).exists()
+    sale_category = Product.objects.filter(is_active=True, sale=True).exists()
     context = {
         'page_title' : Constants.CATALOG_HOME_PAGE_TITLE,
         'product_list': recent_products,
@@ -94,7 +94,7 @@ def category_detail(request, sale=None, category_uuid=None):
         raise HttpResponseBadRequest
 
     category = get_object_or_404(Category, category_uuid=category_uuid)
-    sale_category = sale == 'sale' and Product.objects.filter(sale=True).exists()
+    sale_category = Product.objects.filter(is_active=True, sale=True).exists()
     subcats = category.get_children()
     filterquery = Q(category__category_uuid=category_uuid)
     subcatquery = Q(category__id__in=subcats.values_list('id'))
