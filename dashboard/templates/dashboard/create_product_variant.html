@@ -33,7 +33,7 @@
                         {% for attr in name_list %}
                             <div class="mat-input">
                                 <label>{{ attr.grouper }}</label>
-                                <select>
+                                <select name="attributes" multiple>
                                     {% for obj in attr.list %}
                                         <option value="{{ obj.pk }}">{{ obj.value }}</option>
                                     {% endfor %}
@@ -41,7 +41,7 @@
                             </div>
                         {% endfor %}
                 </div>
-
+                {% comment "" %}
                 <table id="attr-list" class="mat-table js-filter-table">
                     <thead>
                             <tr>
@@ -67,6 +67,7 @@
                             
                     </tbody>
                 </table>
+                {% endcomment %}
         
         </div>
 
