@@ -29,9 +29,10 @@
                 </div>
                 
                 <div class="container">
-                    {% regroup attribute_list by name as name_list %}
+                    {% regroup attribute_list by display_name as name_list %}
+                        <span class="hint">{% trans "Press Ctrl to select multiple values" %}</span>
                         {% for attr in name_list %}
-                            <div class="mat-input">
+                            <div class="mat-input flex flex-left">
                                 <label>{{ attr.grouper }}</label>
                                 <select name="attributes" multiple>
                                     {% for obj in attr.list %}
