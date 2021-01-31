@@ -259,6 +259,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category,related_name='products', on_delete=models.SET_NULL, blank=True, null=True)
     brand = models.ForeignKey(Brand,related_name='products', on_delete=models.SET_NULL, blank=True, null=True)
     is_active = models.BooleanField(default=False)
+    sale = models.BooleanField(default=False)
     price = models.DecimalField(blank=False, null=False, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     promotion_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     quantity = models.IntegerField(default=0)

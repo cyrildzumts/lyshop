@@ -1206,6 +1206,10 @@ def products_changes(request):
         pid_list, succeed = inventory_service.products_toggle_active(id_list, True)
     elif action == Catalog_Constants.PRODUCT_ACTION_DEACTIVATE:
         pid_list, succeed = inventory_service.products_toggle_active(id_list, False)
+    elif action == Catalog_Constants.PRODUCT_ACTION_SALE_ON:
+        pid_list, succeed = inventory_service.products_toggle_sale(id_list, True)
+    elif action == Catalog_Constants.PRODUCT_ACTION_SALE_OFF:
+        pid_list, succeed = inventory_service.products_toggle_sale(id_list, False)
     if succeed:
         logger.info(f'Products \"{id_list}\" active status updated by user \"{request.user.username}\"')
         messages.success(request, f'Products \"{id_list}\" updated')

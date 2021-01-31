@@ -2654,7 +2654,7 @@ table tbody tr, .mat-table tbody tr{
 .category-nav ul{
 	display: flex;
 	overflow-x: auto;
-	font-size: 0.65em;
+	font-size: 0.75em;
 	margin: 0 auto;
 }
 .category-nav .mat-button{

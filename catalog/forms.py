@@ -73,7 +73,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ['name', 'display_name','is_active','added_by', 'sold_by' ,'category', 'brand', 'product_type' ,'price', 'promotion_price', 'quantity', 'short_description','description', 'gender']
+        fields = ['name', 'display_name','is_active','added_by','sale' ,'sold_by' ,'category', 'brand', 'product_type' ,'price', 'promotion_price', 'quantity', 'short_description','description', 'gender']
 
 
 class AddAttributeForm(forms.ModelForm):

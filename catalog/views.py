@@ -63,13 +63,14 @@ class ProductDetailView(DetailView):
     
 
 
-def catalog_home(request):
+def catalog_home(request, sale=None,):
     template_name = GLOBAL_CONF.CATALOG_HOME_TEMPLATE_NAME
     recent_products = Product.objects.filter(is_active=True)[:GLOBAL_CONF.LATEST_QUERYSET_LIMIT]
     queryDict = request.GET.copy()
     field_filter = filters.Filter(Product, queryDict)
-    queryset = field_filter.apply_filter().filter(is_active=True)
+    queryset = field_filter.apply_filter().filter(is_active=True, sale=sale=='sale')
     selected_filters = field_filter.selected_filters
+    sale_category = sale == 'sale' and Product.objects.filter(sale=True).exists()
     context = {
         'page_title' : Constants.CATALOG_HOME_PAGE_TITLE,
         'product_list': recent_products,
@@ -80,18 +81,20 @@ def catalog_home(request):
         'OG_TITLE' : Constants.CATALOG_HOME_PAGE_TITLE,
         'OG_DESCRIPTION': settings.META_DESCRIPTION,
         'OG_IMAGE': static('assets/lyshop_banner.png'),
-        'OG_URL': request.build_absolute_uri()
+        'OG_URL': request.build_absolute_uri(),
+        'sale_category' : sale_category
     }
 
     return render(request, template_name, context)
 
 
-def category_detail(request, category_uuid=None):
+def category_detail(request, sale=None, category_uuid=None):
     template_name = 'catalog/category_detail.html'
     if request.method != 'GET':
         raise HttpResponseBadRequest
 
     category = get_object_or_404(Category, category_uuid=category_uuid)
+    sale_category = sale == 'sale' and Product.objects.filter(sale=True).exists()
     subcats = category.get_children()
     filterquery = Q(category__category_uuid=category_uuid)
     subcatquery = Q(category__id__in=subcats.values_list('id'))
@@ -99,7 +102,7 @@ def category_detail(request, category_uuid=None):
 
     queryDict = request.GET.copy()
     field_filter = filters.Filter(Product, queryDict)
-    queryset = field_filter.apply_filter().filter(is_active=True)
+    queryset = field_filter.apply_filter().filter(is_active=True, , sale=sale=='sale')
     selected_filters = field_filter.selected_filters
     queryset = queryset.filter(filterquery | subcatquery)
     page = request.GET.get('page', 1)
@@ -124,7 +127,8 @@ def category_detail(request, category_uuid=None):
         'OG_TITLE' : category.get_page_title(),
         'OG_DESCRIPTION': settings.META_DESCRIPTION,
         'OG_IMAGE': static('assets/lyshop_banner.png'),
-        'OG_URL': request.build_absolute_uri()
+        'OG_URL': request.build_absolute_uri(),
+        'sale_category' : sale_category
     }
     return render(request,template_name, context)
 

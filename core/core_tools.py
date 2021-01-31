@@ -43,6 +43,11 @@ def instances_active_toggle(model, id_list, toggle=True):
     return model.objects.filter(id__in=id_list).exclude(is_active=toggle).update(is_active=toggle)
 
 
+def instances_sale_toggle(model, id_list, toggle=True):
+    logger.warn(f"Updating active status for  instances of {model} with id in : {id_list}. new active status : {toggle}")
+    return model.objects.filter(id__in=id_list).exclude(sale=toggle).update(sale=toggle)
+
+
 def core_send_mail(recipient_list, subject, message):
     send_mail(subject, message, recipient_list)
 

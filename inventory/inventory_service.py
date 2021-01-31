@@ -94,6 +94,24 @@ def products_toggle_active(id_list, toggle=True):
     return id_list, False
 
 
+def products_toggle_sale(id_list, toggle=True):
+    if not isinstance(id_list, list):
+        return [], False
+    if toggle:
+        msg = f"Products \"{id_list}\" marked for sale"
+    else:
+        msg = f"Products \"{id_list}\" removed from sale"
+
+    updated_row = core_tools.instances_sale_toggle(models.Product, id_list, toggle)
+    if updated_row > 0:
+        logger.info(msg)
+        return id_list, True
+        
+    else:
+        logger.error(f"Products \"{id_list}\" could not update active status")
+    return id_list, False
+
+
 def update_product(postdata, product):
     if not isinstance(postdata, dict) or not isinstance(product, models.Product):
         return product, False
@@ -101,6 +119,9 @@ def update_product(postdata, product):
     p = product
     form = forms.ProductForm(postdata, instance=p)
     if form.is_valid():
+        sale = form.cleaned_data.get('sale')
+        if sale is None:
+            form.cleaned_data['sale'] = form.cleaned_data.get('promotion_price') > 0
         p = form.save()
         logger.info(f"update_product : Product {p.name} updated")
         updated = True
