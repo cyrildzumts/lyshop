@@ -120,6 +120,7 @@ def update_product(postdata, product):
     form = forms.ProductForm(postdata, instance=p)
     if form.is_valid():
         sale = form.cleaned_data.get('sale')
+        logger.debug(f"update_product - sale : {sale}")
         if sale is None:
             form.cleaned_data['sale'] = form.cleaned_data.get('promotion_price') > 0
         p = form.save()
