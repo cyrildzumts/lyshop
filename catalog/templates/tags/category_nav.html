@@ -4,7 +4,7 @@
 {% if root_category_list %}
 <div id="root-category-list" class="category-nav">
     <ul class="list-horizontal">
-            {% if sale_category %}<li><a class="mat-button" href="{% url 'catalog:sale-catalog-home' %}">{% trans "Sale" %}</a></li>{% endif %}
+            {% if sale_category %}<li><a class="mat-button" href="{% url 'catalog:sale-catalog-home' 'sale' %}">{% trans "Sale" %}</a></li>{% endif %}
             {% for c in root_category_list %}
                 {% if category.parent and c.id == category.parent.id or c.id == category.id  %}
                 <li class="active"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
