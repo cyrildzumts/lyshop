@@ -98,7 +98,7 @@ def category_detail(request, sale=None, category_uuid=None):
 
     category = get_object_or_404(Category, category_uuid=category_uuid)
     sale_category = Product.objects.filter(is_active=True, sale=True).exists()
-    subcats = category.get_children()
+    subcats = category.get_children().exclude(products=None)
     filterquery = Q(category__category_uuid=category_uuid)
     subcatquery = Q(category__id__in=subcats.values_list('id'))
     queryDict = request.GET.copy()
@@ -123,7 +123,7 @@ def category_detail(request, sale=None, category_uuid=None):
         'parent_category' : category.parent,
         'product_list': list_set,
         'type_list': ProductType.objects.all(),
-        'parent_sub_category_list': Category.objects.filter(parent=category.parent),
+        'parent_sub_category_list': Category.objects.exclude(products=None).filter(parent=category.parent),
         'subcategory_list': subcats,
         'GENDER' : Constants.GENDER,
         'SELECTED_FILTERS' : selected_filters,
