@@ -18,7 +18,7 @@ catalog_patterns = [
 
 urlpatterns = [
     path('', include(catalog_patterns)),
-    path('<str:sale>/', include(catalog_patterns), name='sale'),
+    path('<str:sale>/', include((catalog_patterns,app_name), namespace='sale')),
     path('brands/detail/<uuid:brand_uuid>/', views.brand_detail, name='brand-detail'),
     
     #path('products/<uuid:product_uuid>', views.ProductDetailView.as_view(), name='product-detail'),
