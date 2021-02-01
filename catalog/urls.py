@@ -9,7 +9,6 @@ from catalog import views
 app_name = 'catalog'
 catalog_patterns = [
     path('', views.catalog_home, name='catalog-home'),
-    path('categories/detail/<uuid:category_uuid>/', views.category_detail, name='sale-category-detail'),
     path('categories/detail/<uuid:category_uuid>/', views.category_detail, name='category-detail'),
     path('categories/products/detail/<uuid:product_uuid>/', views.product_detail, name='product-detail'),
     path('categories/products/variant/detail/<uuid:variant_uuid>/', views.product_variant_detail, name='product-variant-detail'),
