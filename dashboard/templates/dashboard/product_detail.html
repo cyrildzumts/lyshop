@@ -41,6 +41,9 @@
           <div class="entry">
             <span class="key">{% trans "Active" %}</span> <span class="value">{{product.is_active|yesno:_('yes,no')}}</span>
           </div>
+          <div class="entry">
+            <span class="key">{% trans "Sale" %}</span> <span class="value">{{product.sale|yesno:_('yes,no')}}</span>
+          </div>
           
         </div>
         <div class="box">
