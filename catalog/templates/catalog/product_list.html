@@ -3,11 +3,23 @@
 {% extends "catalog_base.html"%}
 {% load i18n %}
 {% load l10n %}
+{% if not show_banner %}
+{% block HEADER_BANNER %}
 
+{% endblock HEADER_BANNER %}
+{% endif %}
 {% block MAIN_CONTENT %}
 <div class="container">
-        <div id="products" class="js-product-list products">
-               {% include "tags/products_snippet.html" with product_list=product_list %}
+        {% if product_list %}
+        <div id="products" class="products js-product-list">
+                {% include "tags/products_snippet.html" with product_list=product_list %}
         </div>
+        {% else %}
+        <div class="mat-box">
+        <p>{% trans "There are no products to display." %}</p>
+        <p>{% trans "As soon as Product are available, they will be listed here." %}</p>
+        <p>{% trans "Please try again later" %}</p>
+        </div>
+        {% endif %}
 </div>
 {% endblock MAIN_CONTENT %}
