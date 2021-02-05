@@ -24,7 +24,7 @@ function(Chart, ajax){
                 type: 'time',
                 time : {
                     unit: "month",
-                    format : "DD/MM/YYYY",
+                    parser : "DD/MM/YYYY",
                     displayFormats: {
                         month : "MM YYYY"
                     }
@@ -201,6 +201,7 @@ function(Chart, ajax){
             return  dataList;
         }else{
             for (var i = 0; i < data.length; i++){
+                console.log("x : %s - y : %s", months[i], data[i]);
                 dataList.push({x:months[i], y:data[i]})
             }
         }
@@ -236,7 +237,7 @@ function(Chart, ajax){
         var metrics_data = []
 
 
-        orders_conf.data.labels = order_report.months;
+       // orders_conf.data.labels = order_report.months;
         orders_conf.data.datasets[0].label = order_report.label;
         orders_conf.data.datasets[0].data = createDataList(order_report.data, order_report.months);
         metrics_data.push({label:'Orders', count: order_report.total_count})
