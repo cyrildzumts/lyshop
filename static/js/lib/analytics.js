@@ -35,7 +35,7 @@ function(Chart, ajax){
                     labelString : "Months"
                 }
             }
-        ],
+        ]/* ,
         yAxes: [
             {
                 scaleLabel: {
@@ -44,6 +44,7 @@ function(Chart, ajax){
                 }
             }
         ]
+        */
     }
     var orders_conf = {
         type : line_type,
