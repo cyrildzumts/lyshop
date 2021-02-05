@@ -24,9 +24,9 @@ function(Chart, ajax){
                 type: 'time',
                 time : {
                     unit: "month",
-                    parser : "DD/MM/YYYY",
+                    parser : "MM",
                     displayFormats: {
-                        month : "MM YYYY"
+                        month : "MM"
                     }
                 },
                 distribution: 'series',
