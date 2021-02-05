@@ -23,10 +23,7 @@ function(Chart, ajax){
             {
                 type: 'time',
                 time : {
-                    unit: "month",
-                    displayFormats: {
-                        month : "MMM YYYY"
-                    }
+                    unit: "month"
                 },
                 distribution: 'series',
                 scaleLabel: {
