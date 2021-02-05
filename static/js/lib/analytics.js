@@ -37,7 +37,7 @@ function(Chart, ajax){
         ]
     }
     var orders_conf = {
-        type : chart_type,
+        type : line_type,
         data : {
             labels : [],
             datasets : [{
@@ -51,7 +51,7 @@ function(Chart, ajax){
         }
     };
     var orders_price_conf = {
-        type : chart_type,
+        type : line_type,
         data : {
             labels : [],
             datasets : [{
