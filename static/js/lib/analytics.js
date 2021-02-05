@@ -193,6 +193,20 @@ function(Chart, ajax){
         }
     };
     var report;
+
+    function createDataList(data, months){
+        var dataList = [];
+        if(data.length != months.length){
+            console.warn("inconsistent length");
+            return  dataList;
+        }else{
+            for (var i = 0; i < data.length; i++){
+                dataList.push({x:months[i], y:data[i]})
+            }
+        }
+        return dataList;
+    }
+
     function updateChart(){
         var options = {
             url:'/api/analytics/',
@@ -224,7 +238,7 @@ function(Chart, ajax){
 
         orders_conf.data.labels = order_report.months;
         orders_conf.data.datasets[0].label = order_report.label;
-        orders_conf.data.datasets[0].data = order_report.data;
+        orders_conf.data.datasets[0].data = createDataList(order_report.data, order_report.months);
         metrics_data.push({label:'Orders', count: order_report.total_count})
 
         orders_price_conf.data.labels = order_price_report.months;
