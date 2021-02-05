@@ -83,7 +83,7 @@ function(Chart, ajax){
     };
 
     var products_conf = {
-        type : chart_type,
+        type : line_type,
         data : {
             labels : [],
             datasets : [{
