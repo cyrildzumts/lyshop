@@ -29,11 +29,7 @@ function(Chart, ajax){
                         month : "MM"
                     }
                 },
-                distribution: 'series',
-                scaleLabel: {
-                    display : true,
-                    labelString : "Months"
-                }
+                distribution: 'series'
             }
         ]/* ,
         yAxes: [
