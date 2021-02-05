@@ -24,7 +24,6 @@ function(Chart, ajax){
                 type: 'time',
                 time : {
                     unit: "month",
-                    parser : "MM",
                     displayFormats: {
                         month : "MM"
                     }
