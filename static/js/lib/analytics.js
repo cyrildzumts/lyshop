@@ -21,6 +21,14 @@ function(Chart, ajax){
     var default_scales = {
         xAxes: [
             {
+                type: 'time',
+                time : {
+                    unit: "month",
+                    displayFormats: {
+                        month : "'MMM YYYY"
+                    }
+                },
+                distribution: 'series',
                 scaleLabel: {
                     display : true,
                     labelString : "Months"
