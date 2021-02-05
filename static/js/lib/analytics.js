@@ -1,5 +1,5 @@
 
-define(['vendor/Chart.min', 'ajax_api'],
+define(['vendor/Chart.bundle.min', 'ajax_api'],
 function(Chart, ajax){
     'use strict';
     var dashboardIntervalHandle;
@@ -23,7 +23,10 @@ function(Chart, ajax){
             {
                 type: 'time',
                 time : {
-                    unit: "month"
+                    unit: "month",
+                    displayFormats: {
+                        month : "MMM"
+                    }
                 },
                 distribution: 'series',
                 scaleLabel: {
