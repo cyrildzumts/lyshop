@@ -235,7 +235,8 @@ function(Chart, ajax){
 
        // orders_conf.data.labels = order_report.months;
         orders_conf.data.datasets[0].label = order_report.label;
-        orders_conf.data.datasets[0].data = createDataList(order_report.data, order_report.months);
+        orders_conf.data.datasets[0].data = order_report.dataList;
+        //orders_conf.data.datasets[0].data = createDataList(order_report.data, order_report.months);
         metrics_data.push({label:'Orders', count: order_report.total_count})
 
         orders_price_conf.data.labels = order_price_report.months;
