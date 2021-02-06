@@ -384,6 +384,7 @@ function(Chart, ajax){
     Chart.defaults.global.elements.line.fill = false;
     Chart.defaults.global.elements.line.borderWidth = 2;
     Chart.defaults.line.showLines = true;
+    Chart.defaults.line.lineTension = 0.5;
 
     var ctx_orders = $('#orders-diagram');
     var ctx_products = $('#products-diagram');
