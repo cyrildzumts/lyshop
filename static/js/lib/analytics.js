@@ -48,7 +48,10 @@ function(Chart, ajax){
             datasets : [{
                 label: '',
                 data: [],
-                backgroundColor: '#0A0A0A'
+                backgroundColor: '#0A0A0A',
+                borderColor : '#0A0A0A',
+                showLine : true
+
             }],
         },
         options:{
