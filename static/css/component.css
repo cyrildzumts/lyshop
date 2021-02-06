@@ -152,9 +152,21 @@ li a{
 }
 
 .filter-body{
-	max-height: 12em;
-	max-width: 15em;
+	max-height: 22em;
+	max-width: 18em;
 	overflow: auto;
+}
+
+.filter-body .list-filter{
+	padding: 0.5em;
+	margin: 0.2;
+}
+
+.list-filter .form-group{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
 }
 
 .header {
