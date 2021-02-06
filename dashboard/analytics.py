@@ -58,7 +58,7 @@ def report_orders(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
 
     for m in months:
-        dataList.append({'x': m, 'y' : Order.objects.filter(created_at__year=year, created_at__month=m).count()})
+        dataList.append({'x': f"{year}-{m:02}", 'y' : Order.objects.filter(created_at__year=year, created_at__month=m).count()})
         data.append(Order.objects.filter(created_at__year=year, created_at__month=m).count())
     
     total_orders = Order.objects.count()
