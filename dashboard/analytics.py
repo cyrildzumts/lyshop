@@ -64,7 +64,7 @@ def report_orders(year=timezone.now().year):
     total_orders = Order.objects.count()
 
     report = {
-        'label': 'Order',
+        'label': f"Orders {year}",
         'year' : year,
         'months': months,
         'data' : data,
@@ -93,7 +93,7 @@ def report_orders_price(year=timezone.now().year):
         data.append(amount or 0)
 
     report = {
-        'label': 'Order Price',
+        'label': f"Orders Prices {year}",
         'year' : year,
         'months': months,
         'data' : data
@@ -122,7 +122,7 @@ def report_products(year=timezone.now().year):
 
     total_products = Product.objects.aggregate(count=Sum('quantity')).get('count', 0)
     report = {
-        'label': 'Products',
+        'label': f"Products {year}",
         'year' : year,
         'months': months,
         'data' : data,
@@ -281,7 +281,7 @@ def report_visitors(year=timezone.now().year):
     total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits') or 0
 
     report = {
-        'labels': ['Visitors', 'Facebook Visitors', 'Suspicious Visitors', 'Unique Visitors'],
+        'labels': [f"Vistors {year}", f"Facebook Vistors {year}", f"Suspicious Vistors {year}", f"Unique Vistors {year}"],
         'year' : year,
         'months': months,
         'data' : data,

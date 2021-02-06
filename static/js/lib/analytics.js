@@ -253,8 +253,8 @@ function(Chart, ajax){
         new_users_conf.data.datasets[0].data = new_user_report.data;
         metrics_data.push({label:'Users', count: new_user_report.total_count});
 
-        metrics_data.push({label:'Visitors', count: visitor_report.total_visitors});
-        metrics_data.push({label:'Unique Visitors', count: visitor_report.total_unique_visitors});
+        metrics_data.push({label:'Visitors' + visitor_report.year, count: visitor_report.total_visitors});
+        metrics_data.push({label:'Unique Visitors' + visitor_report.year, count: visitor_report.total_unique_visitors});
         metrics_data.push({label:'Facebook Visitors', count: visitor_report.total_facebook_visitors});
         metrics_data.push({label:'Suspicious Visitors', count: visitor_report.total_suspicious_visitors});
         
