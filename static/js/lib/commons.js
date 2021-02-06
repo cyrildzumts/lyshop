@@ -70,7 +70,7 @@ define([
                 var value = this.value.trim().toLowerCase();
                 console.log("filter changed ... %s", value);
                 var fieldname = $(this).data('field');
-                var target = $($(this).data('target'));
+                var target = $("#" + $(this).data('target'));
                 
                 target.children().filter(function(){
                     console.log("this filter : ", this);
