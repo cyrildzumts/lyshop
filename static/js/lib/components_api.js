@@ -125,6 +125,7 @@ var Collapsible = (function(){
                 $('.collapsible .collapse-content').not(content).hide();
             }
             content.toggle();
+            $('input.clearable', content).val('');
         });
         $(this.$collapsible).on("click", ".open", function(event){
             var target =$(event.target).data("target");

@@ -414,7 +414,7 @@ define([
             var parent = $(this).parent();
             var target = $('.' + this.getAttribute('data-toggle'), parent);
             $('input', parent).val('');
-            $('input.clearable').val('');
+            
             target.toggle();
         });
         $('.js-filter-btn').on('click', function(event){
