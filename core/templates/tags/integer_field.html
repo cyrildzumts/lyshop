@@ -5,7 +5,7 @@
         <input id="{{field_name}}-id" class="filter-input" type="text" name="{{field_name}}" value="{{FILTER.value}}">
     </div>
     {% if SELECTION %}
-    {% include "tags/list_filter.html" with target=field_name"-list" field=field_name%}
+    {% include "tags/list_filter.html" with target=field_name|add:"-list" field=field_name%}
     <div id="{{field_name}}-list" class="flex flex-column align-left">
     
     {% if FIELD_FILTER.queryset %}
