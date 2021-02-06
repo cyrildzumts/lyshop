@@ -157,12 +157,12 @@ li a{
 	overflow: auto;
 }
 
-.filter-body .list-filter{
+.filter-body .option-list-filter{
 	padding: 0.5em;
 	margin: 0.2;
 }
 
-.list-filter .form-group{
+.option-list-filter .form-group{
 	display: flex;
 	align-items: center;
 	justify-content: center;
