@@ -258,32 +258,32 @@ function(Chart, ajax){
         metrics_data.push({label:'Facebook Visitors', count: visitor_report.total_facebook_visitors});
         metrics_data.push({label:'Suspicious Visitors', count: visitor_report.total_suspicious_visitors});
         
-        visitor_conf.data.labels = visitor_report.months;
-        visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6'};
+        //visitor_conf.data.labels = visitor_report.months;
+        visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.dataList[0], backgroundColor: '#9b59b6'};
 
         unique_visitor_conf.data.labels = visitor_report.months;
-        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db'}
+        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[3], data: visitor_report.dataList[3], backgroundColor: '#3498db'}
 
         facebook_visitor_conf.data.labels = visitor_report.months;
-        facebook_visitor_conf.data.datasets[0] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71'};
+        facebook_visitor_conf.data.datasets[0] = {label:visitor_report.labels[1], data: visitor_report.dataList[1], backgroundColor: '#2ecc71'};
 
         suspicious_visitor_conf.data.labels = visitor_report.months;
-        suspicious_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50'};
+        suspicious_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.dataList[2], backgroundColor: '#2c3e50'};
 
 
         visitors_conf.data.labels = visitor_report.months;
         var visitors_datasets = visitors_conf.data.datasets;
         if(visitors_datasets.length == 4){
-            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6'};
-            visitors_conf.data.datasets[1] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71'};
-            visitors_conf.data.datasets[2] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50'};
-            visitors_conf.data.datasets[3] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db'};
+            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.dataList[0], backgroundColor: '#9b59b6'};
+            visitors_conf.data.datasets[1] = {label:visitor_report.labels[1], data: visitor_report.dataList[1], backgroundColor: '#2ecc71'};
+            visitors_conf.data.datasets[2] = {label:visitor_report.labels[2], data: visitor_report.dataList[2], backgroundColor: '#2c3e50'};
+            visitors_conf.data.datasets[3] = {label:visitor_report.labels[3], data: visitor_report.dataList[3], backgroundColor: '#3498db'};
             
         }else if (visitors_datasets.length == 1){
-            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6'};
-            visitors_conf.data.datasets.push({label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71'});
-            visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50'});
-            visitors_conf.data.datasets.push({label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db'});
+            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.dataList[0], backgroundColor: '#9b59b6'};
+            visitors_conf.data.datasets.push({label:visitor_report.labels[1], data: visitor_report.dataList[1], backgroundColor: '#2ecc71'});
+            visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.dataList[2], backgroundColor: '#2c3e50'});
+            visitors_conf.data.datasets.push({label:visitor_report.labels[3], data: visitor_report.dataList[3], backgroundColor: '#3498db'});
         }
         
         order_chart.update();
