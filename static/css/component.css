@@ -163,9 +163,6 @@ li a{
 }
 
 .option-list-filter .form-group{
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	text-transform: capitalize;
 }
 

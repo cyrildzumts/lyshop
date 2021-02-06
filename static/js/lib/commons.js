@@ -68,12 +68,10 @@ define([
             $('.js-list-filter').on('keyup', function(event){
                 event.stopPropagation();
                 var value = this.value.trim().toLowerCase();
-                console.log("filter changed ... %s", value);
                 var fieldname = $(this).data('field');
                 var target = $("#" + $(this).data('target'));
                 
                 target.children().filter(function(){
-                    console.log("this filter : ", this);
                     self = $(this)
                     self.toggle(self.data(fieldname).toLowerCase().includes(value));
                 });
