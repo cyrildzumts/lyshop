@@ -259,18 +259,21 @@ def report_visitors(year=timezone.now().year):
         model_data = []
         data_model = []
         for m in months:
-            hits = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits', 0)
+            hits = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits') or 0
             model_data.append(hits)
             data_model.append({'x' : f"{year}-{m:02}", 'y': hits})
         data.append(model_data)
         dataList.append(data_model)
 
     model_data = []
+    data_model = []
     for m in months:
         hits = UniqueIP.objects.filter(created_at__year=year, created_at__month=m).count()
+        data_model.append({'x' : f"{year}-{m:02}", 'y': hits})
         model_data.append(hits)
     
     data.append(model_data)
+    dataList.append(data_model)
 
     total_unique_visitors = UniqueIP.objects.count()
     total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits') or 0
