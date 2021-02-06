@@ -48,7 +48,6 @@ def report_orders(year=timezone.now().year):
         logger.error(error_str)
         raise ValueError(error_str)
     
-    dataList = []
     data = []
     if year == timezone.now().year:
         MONTH_LIMIT = timezone.now().month
@@ -58,8 +57,7 @@ def report_orders(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
 
     for m in months:
-        dataList.append({'x': f"{year}-{m:02}", 'y' : Order.objects.filter(created_at__year=year, created_at__month=m).count()})
-        data.append(Order.objects.filter(created_at__year=year, created_at__month=m).count())
+        data.append({'x': f"{year}-{m:02}", 'y' : Order.objects.filter(created_at__year=year, created_at__month=m).count()})
     
     total_orders = Order.objects.count()
 
@@ -68,7 +66,6 @@ def report_orders(year=timezone.now().year):
         'year' : year,
         'months': months,
         'data' : data,
-        'dataList' : dataList,
         'total_count': total_orders
     }
     return report
@@ -90,7 +87,7 @@ def report_orders_price(year=timezone.now().year):
 
     for m in months:
         amount = Order.objects.filter(created_at__year=year, created_at__month=m).aggregate(amount=Sum('amount')).get('amount', 0)
-        data.append(amount or 0)
+        data.append({'x': f"{year}-{m:02}", 'y' : amount})
 
     report = {
         'label': f"Orders Prices {year}",
@@ -117,8 +114,8 @@ def report_products(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
 
     for m in months:
-        count = Product.objects.filter(created_at__year=year, created_at__month=m).aggregate(count=Sum('quantity')).get('count', 0)
-        data.append(count or 0)
+        count = Product.objects.filter(created_at__year=year, created_at__month=m).aggregate(count=Sum('quantity')).get('count') or 0
+        data.append({'x': f"{year}-{m:02}", 'y' : count})
 
     total_products = Product.objects.aggregate(count=Sum('quantity')).get('count', 0)
     report = {
@@ -196,7 +193,7 @@ def report_new_users(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
 
     for m in months:
-        data.append(User.objects.filter(date_joined__year=year, date_joined__month=m).count())
+        data.append( {'x': f"{year}-{m:02}", 'y' : User.objects.filter(date_joined__year=year, date_joined__month=m).count()})
     
     total_users = User.objects.count()
 
@@ -247,7 +244,6 @@ def report_visitors(year=timezone.now().year):
         raise ValueError(error_str)
     
     data = []
-    dataList = []
     Models = [Visitor, FacebookLinkHit, SuspiciousRequest]
     if year == timezone.now().year:
         MONTH_LIMIT = timezone.now().month
@@ -256,24 +252,17 @@ def report_visitors(year=timezone.now().year):
     
     months = list(range(1, MONTH_LIMIT + 1))
     for model in Models:
-        model_data = []
         data_model = []
         for m in months:
             hits = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits') or 0
-            model_data.append(hits)
             data_model.append({'x' : f"{year}-{m:02}", 'y': hits})
-        data.append(model_data)
-        dataList.append(data_model)
+        data.append(data_model)
 
-    model_data = []
     data_model = []
     for m in months:
         hits = UniqueIP.objects.filter(created_at__year=year, created_at__month=m).count()
         data_model.append({'x' : f"{year}-{m:02}", 'y': hits})
-        model_data.append(hits)
-    
-    data.append(model_data)
-    dataList.append(data_model)
+    data.append(data_model)
 
     total_unique_visitors = UniqueIP.objects.count()
     total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits') or 0
@@ -285,7 +274,6 @@ def report_visitors(year=timezone.now().year):
         'year' : year,
         'months': months,
         'data' : data,
-        'dataList': dataList,
         'total_unique_visitors' : total_unique_visitors,
         'total_visitors' : total_visitors,
         'total_facebook_visitors' : total_facebook_visitors,
