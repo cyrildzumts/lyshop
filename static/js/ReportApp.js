@@ -5,10 +5,7 @@ requirejs.config({
     }
 });
 
-requirejs(['attributes_api', 'ajax_api', 'components_api', 'commons', 'image_loader', 'analytics'], function(AttributeManager ,ajax_api, Component){
+requirejs(['ajax_api', 'analytics'], function(ajax_api){
     console.log("ReportApp loaded ...");
-    var attr_manager = new AttributeManager();
-    attr_manager.init();
-    Component.initComponent();
     console.log("JQuery version :", $().jquery);
 });
