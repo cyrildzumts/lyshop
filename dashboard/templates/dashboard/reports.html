@@ -50,8 +50,11 @@
     
 </div>
 {% endblock MAIN_CONTENT %}
+
+{% block BASE_SCRIPT %}
+<script  data-main="{% static 'js/ReportApp' %}" src="{% static 'js/require.js' %}"></script>        
+{% endblock BASE_SCRIPT %}
 {% block SCRIPT %}
-<script  data-main="{% static 'js/lib/analytics' %}" src="{% static 'js/require.js' %}"></script>
 <script  type="application/javascript" src="{% static 'js/lib/validators.js' %}"></script>
 <script  type="application/javascript" src="{% static 'js/lib/dashboard.js' %}"></script>
 {% endblock SCRIPT %}
