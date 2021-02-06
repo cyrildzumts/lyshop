@@ -49,8 +49,7 @@ function(Chart, ajax){
                 label: '',
                 data: [],
                 backgroundColor: '#0A0A0A',
-                borderColor : '#0A0A0A',
-                showLine : true
+                borderColor : '#0A0A0A'
 
             }],
         },
@@ -66,8 +65,7 @@ function(Chart, ajax){
                 label: '',
                 data: [],
                 backgroundColor: '#0A0A0A',
-                borderColor : '#0A0A0A',
-                showLine : true
+                borderColor : '#0A0A0A'
             }],
         },
         options:{
@@ -104,8 +102,7 @@ function(Chart, ajax){
                 label: '',
                 data: [],
                 backgroundColor : "#D2AE00",
-                borderColor : "#D2AE00",
-                showLine: true
+                borderColor : "#D2AE00"
             }],
         },
         options:{
@@ -269,31 +266,31 @@ function(Chart, ajax){
         metrics_data.push({label:'Suspicious Visitors', count: visitor_report.total_suspicious_visitors});
         
         //visitor_conf.data.labels = visitor_report.months;
-        visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6', borderColor: '#9b59b6', showLine:true};
+        visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6', borderColor: '#9b59b6'};
 
         //unique_visitor_conf.data.labels = visitor_report.months;
-        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db', borderColor: '#3498db', showLine:true};
+        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db', borderColor: '#3498db'};
 
         //facebook_visitor_conf.data.labels = visitor_report.months;
-        facebook_visitor_conf.data.datasets[0] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71' , borderColor: '#2ecc71', showLine:true};
+        facebook_visitor_conf.data.datasets[0] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71' , borderColor: '#2ecc71'};
 
         //suspicious_visitor_conf.data.labels = visitor_report.months;
-        suspicious_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50' , borderColor: '#2c3e50', showLine:true};
+        suspicious_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50' , borderColor: '#2c3e50'};
 
 
         //visitors_conf.data.labels = visitor_report.months;
         var visitors_datasets = visitors_conf.data.datasets;
         if(visitors_datasets.length == 4){
-            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6' , borderColor: '#9b59b6', showLine:true};
-            visitors_conf.data.datasets[1] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71' , borderColor: '#2ecc71', showLine:true};
-            visitors_conf.data.datasets[2] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50' , borderColor: '#2c3e50', showLine:true};
-            visitors_conf.data.datasets[3] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db' , borderColor: '#3498db', showLine:true};
+            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6' , borderColor: '#9b59b6'};
+            visitors_conf.data.datasets[1] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71' , borderColor: '#2ecc71'};
+            visitors_conf.data.datasets[2] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50' , borderColor: '#2c3e50'};
+            visitors_conf.data.datasets[3] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db' , borderColor: '#3498db'};
             
         }else if (visitors_datasets.length == 1){
-            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6' , borderColor: '#9b59b6', showLine:true};
-            visitors_conf.data.datasets.push({label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71' , borderColor: '#2ecc71', showLine:true});
-            visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50', borderColor: '#2c3e50', showLine:true});
-            visitors_conf.data.datasets.push({label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db' , borderColor: '#3498db', showLine:true});
+            visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6' , borderColor: '#9b59b6'};
+            visitors_conf.data.datasets.push({label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71' , borderColor: '#2ecc71'});
+            visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50', borderColor: '#2c3e50'});
+            visitors_conf.data.datasets.push({label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db' , borderColor: '#3498db'});
         }
         
         order_chart.update();
@@ -386,6 +383,7 @@ function(Chart, ajax){
     Chart.platform.disableCSSInjection = true;
     Chart.defaults.global.elements.line.fill = false;
     Chart.defaults.global.elements.line.borderWidth = 2;
+    Chart.defaults.line.showLines = true;
 
     var ctx_orders = $('#orders-diagram');
     var ctx_products = $('#products-diagram');
