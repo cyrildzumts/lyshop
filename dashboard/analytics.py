@@ -261,7 +261,7 @@ def report_visitors(year=timezone.now().year):
         for m in months:
             hits = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits', 0)
             model_data.append(hits)
-            data_model.append({'x' : m, 'y': hits})
+            data_model.append({'x' : f"{year}-{m:02}", 'y': hits})
         data.append(model_data)
         dataList.append(data_model)
 
