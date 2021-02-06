@@ -65,7 +65,7 @@ define([
         ListFilter.prototype.init = function(){
             console.log("ListFilter instance initializing");
             var self;
-            $('.js-list-filter').on('change', function(event){
+            $('.js-list-filter').on('keyup', function(event){
                 event.stopPropagation();
                 var value = this.value.trim().toLowerCase();
                 console.log("filter changed ... %s", value);
@@ -73,6 +73,7 @@ define([
                 var target = $($(this).data('target'));
                 
                 target.children().filter(function(){
+                    console.log("this filter : ", this);
                     self = $(this)
                     self.toggle(self.data(fieldname).toLowerCase().includes(value));
                 });
