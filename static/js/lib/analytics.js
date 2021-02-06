@@ -261,17 +261,17 @@ function(Chart, ajax){
         //visitor_conf.data.labels = visitor_report.months;
         visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.dataList[0], backgroundColor: '#9b59b6'};
 
-        unique_visitor_conf.data.labels = visitor_report.months;
+        //unique_visitor_conf.data.labels = visitor_report.months;
         unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[3], data: visitor_report.dataList[3], backgroundColor: '#3498db'}
 
-        facebook_visitor_conf.data.labels = visitor_report.months;
+        //facebook_visitor_conf.data.labels = visitor_report.months;
         facebook_visitor_conf.data.datasets[0] = {label:visitor_report.labels[1], data: visitor_report.dataList[1], backgroundColor: '#2ecc71'};
 
-        suspicious_visitor_conf.data.labels = visitor_report.months;
+        //suspicious_visitor_conf.data.labels = visitor_report.months;
         suspicious_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.dataList[2], backgroundColor: '#2c3e50'};
 
 
-        visitors_conf.data.labels = visitor_report.months;
+        //visitors_conf.data.labels = visitor_report.months;
         var visitors_datasets = visitors_conf.data.datasets;
         if(visitors_datasets.length == 4){
             visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.dataList[0], backgroundColor: '#9b59b6'};
