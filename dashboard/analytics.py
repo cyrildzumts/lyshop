@@ -48,6 +48,7 @@ def report_orders(year=timezone.now().year):
         logger.error(error_str)
         raise ValueError(error_str)
     
+    dataList = []
     data = []
     if year == timezone.now().year:
         MONTH_LIMIT = timezone.now().month
@@ -57,6 +58,7 @@ def report_orders(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
 
     for m in months:
+        dataList.append({'x': m, 'y' : Order.objects.filter(created_at__year=year, created_at__month=m).count()})
         data.append(Order.objects.filter(created_at__year=year, created_at__month=m).count())
     
     total_orders = Order.objects.count()
@@ -66,6 +68,7 @@ def report_orders(year=timezone.now().year):
         'year' : year,
         'months': months,
         'data' : data,
+        'dataList' : dataList,
         'total_count': total_orders
     }
     return report
@@ -244,6 +247,7 @@ def report_visitors(year=timezone.now().year):
         raise ValueError(error_str)
     
     data = []
+    dataList = []
     Models = [Visitor, FacebookLinkHit, SuspiciousRequest]
     if year == timezone.now().year:
         MONTH_LIMIT = timezone.now().month
@@ -253,10 +257,13 @@ def report_visitors(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
     for model in Models:
         model_data = []
+        data_model = []
         for m in months:
             hits = model.objects.filter(created_at__year=year, created_at__month=m).aggregate(hits=Sum('hits')).get('hits', 0)
             model_data.append(hits)
+            data_model.append({'x' : m, 'y': hits})
         data.append(model_data)
+        dataList.append(data_model)
 
     model_data = []
     for m in months:
@@ -275,6 +282,7 @@ def report_visitors(year=timezone.now().year):
         'year' : year,
         'months': months,
         'data' : data,
+        'dataList': dataList,
         'total_unique_visitors' : total_unique_visitors,
         'total_visitors' : total_visitors,
         'total_facebook_visitors' : total_facebook_visitors,
