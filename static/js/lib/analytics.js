@@ -25,7 +25,7 @@ function(Chart, ajax){
                 time : {
                     unit: "month",
                     displayFormats: {
-                        month : "MM"
+                        month : "MM YYYY"
                     }
                 },
                 distribution: 'series'
@@ -69,10 +69,14 @@ function(Chart, ajax){
             scales : {
                 xAxes: [
                     {
-                        scaleLabel: {
-                            display : true,
-                            labelString : "Months"
-                        }
+                        type: 'time',
+                        time : {
+                            unit: "month",
+                            displayFormats: {
+                                month : "MM YYYY"
+                            }
+                        },
+                        distribution: 'series'
                     }
                 ],
                 yAxes: [
@@ -176,7 +180,7 @@ function(Chart, ajax){
         }
     };
     var new_users_conf = {
-        type : chart_type,
+        type : line_type,
         data : {
             labels : [],
             datasets : [{
