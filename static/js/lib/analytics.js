@@ -25,7 +25,7 @@ function(Chart, ajax){
                 time : {
                     unit: "month",
                     displayFormats: {
-                        month : "MMM"
+                        month : "MMMM"
                     }
                 },
                 distribution: 'series'
@@ -73,7 +73,7 @@ function(Chart, ajax){
                         time : {
                             unit: "month",
                             displayFormats: {
-                                month : "MMM"
+                                month : "MMMM"
                             }
                         },
                         distribution: 'series'
@@ -401,6 +401,6 @@ function(Chart, ajax){
     facebook_visitor_charts = new Chart(ctx_facebook_vistors_users, facebook_visitor_conf);
     suspicious_visitor_charts = new Chart(ctx_suspicious_visitors, suspicious_visitor_conf);
     dashboardUpdate();
-    dashboardIntervalHandle = setInterval(dashboardUpdate, UPDATE_RATE); // 1000*60*1 = 1min
+    dashboardIntervalHandle = setInterval(dashboardUpdate, UPDATE_RATE);
     });
 });
