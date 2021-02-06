@@ -247,7 +247,7 @@ function(Chart, ajax){
         products_conf.data.datasets[0].data = product_report.data;
         metrics_data.push({label:'Products', count: product_report.total_count});
 
-        new_users_conf.data.labels = new_user_report.months;
+        //new_users_conf.data.labels = new_user_report.months;
         new_users_conf.data.datasets[0].label = new_user_report.label;
         new_users_conf.data.datasets[0].data = new_user_report.data;
         metrics_data.push({label:'Users', count: new_user_report.total_count});

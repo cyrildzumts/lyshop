@@ -86,7 +86,7 @@ def report_orders_price(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
 
     for m in months:
-        amount = Order.objects.filter(created_at__year=year, created_at__month=m).aggregate(amount=Sum('amount')).get('amount', 0)
+        amount = Order.objects.filter(created_at__year=year, created_at__month=m).aggregate(amount=Sum('amount')).get('amount') or 0
         data.append({'x': f"{year}-{m:02}", 'y' : amount})
 
     report = {
@@ -198,7 +198,7 @@ def report_new_users(year=timezone.now().year):
     total_users = User.objects.count()
 
     report = {
-        'label': 'New Users',
+        'label': f"New Users {year}",
         'year' : year,
         'months': months,
         'data' : data,
@@ -226,10 +226,10 @@ def report_log_users(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
 
     for m in months:
-        data.append(LoginReport.objects.filter(date_login__year=year, date_login__month=m).count())
+        data.append({'x': f"{year}-{m:02}", 'y' : LoginReport.objects.filter(date_login__year=year, date_login__month=m).count()})
 
     report = {
-        'label': 'Users Log',
+        'label': f"Log users {year}",
         'year' : year,
         'months': months,
         'data' : data
