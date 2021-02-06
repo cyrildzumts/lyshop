@@ -68,6 +68,7 @@ define([
             $('.js-list-filter').on('change', function(event){
                 event.stopPropagation();
                 var value = this.value.trim().toLowerCase();
+                console.log("filter changed ... %s", value);
                 var fieldname = $(this).data('field');
                 var target = $($(this).data('target'));
                 
