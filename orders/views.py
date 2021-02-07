@@ -86,6 +86,7 @@ def cancel_order(request, order_uuid):
     canceled = orders_service.cancel_order(order, request.user)
     if canceled:
         messages.success(request, "Order canceled")
+        orders_service.send_order_mail_confirmation(order, True)
     else:
         messages.error(request, "Order could not be canceled")
 
@@ -100,6 +101,7 @@ def order_cancel(request, order_uuid):
         orders_service.cancel_order(order, request.user)
         OrderStatusHistory.objects.create(order_status=commons.ORDER_CANCELED, order=order, order_ref_id=order.id, changed_by=request.user)
         messages.success(request, "Your order has been canceled")
+        orders_service.send_order_mail_confirmation(order, True)
         logger.info(f"Order {order.id} canceled by user {request.user.username}")
     else:
         messages.error(request, "Error. Your order can no more be canceled")

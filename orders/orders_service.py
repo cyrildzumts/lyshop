@@ -5,7 +5,7 @@ from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.utils import timezone
-from core.tasks import send_mail_task
+from core.tasks import send_mail_task, send_order_mail_task
 from cart.models import CartItem, CartModel
 from cart import cart_service
 from orders import commons
@@ -281,6 +281,7 @@ def clean_unpaid_orders():
     for order in queryset:
         logger.info(f"Cancelling order {order}")
         cancel_order(order, request_user)
+        send_order_mail_confirmation(order, True)
     
     logger.info(f"Clean unpaid orders : updated {orders_count} unpaid orders")
     
@@ -523,12 +524,19 @@ def update_payment_method(postdata, payment_method):
 
 
 
-def send_order_mail_confirmation(order):
-    send_mail_task.apply_async(
+def send_order_mail_confirmation(order, cancellation=False):
+    if cancellation:
+        TEMPLATE_NAME = commons.ORDER_CANCEL_CONFIRMATION_MAIL_TEMPLATE
+        TEMPLATE_TITLE = commons.ORDER_CANCEL_CONFIRMATION_MAIL_TITLE
+    else:
+        TEMPLATE_NAME = commons.ORDER_CONFIRMATION_MAIL_TEMPLATE
+        TEMPLATE_TITLE = commons.ORDER_CONFIRMATION_MAIL_TITLE
+
+    send_order_mail_task.apply_async(
         args=[{
                 'order' : order.pk,
-                'template_name' : commons.ORDER_CONFIRMATION_MAIL_TEMPLATE,
-                'title': commons.ORDER_CONFIRMATION_MAIL_TITLE,
+                'template_name' : TEMPLATE_NAME,
+                'title': TEMPLATE_TITLE,
                 'recipient_email': order.user.email,
                 'user': order.user.pk,
                 'context' : {
@@ -539,6 +547,9 @@ def send_order_mail_confirmation(order):
                     'SHIPPING_PRICE': order.ship_mode.price,
                     'ADDRESS' : order.address.to_str(),
                     'COUPON' : '',
+                    'PAYMENT_OPTION' : commons.get_payment_option_name(order.payment_option),
+                    'ORDER_STATUS': commons.get_order_status_name(order.status),
+                    'CURRENCY': settings.CURRENCY,
                     'TOTAL' : order.total,
                     'REFERENCE_NUMBER' : order.order_ref_number
                 }

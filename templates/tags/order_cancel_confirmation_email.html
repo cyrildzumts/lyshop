@@ -8,36 +8,35 @@
     <td>
         <table>
             <tr>
-                <td>{% trans "Order Cancellation" %}</td>
+                <td><p>Confirmation de l'annulation de la commande</p></td>
             </tr>
             <tr>
                 <td>
-                    <h3>{% blocktrans trimmed %}
-                    Thank you for shopping at LYSHOP!
-                    {% endblocktrans %}, </h3>
-                    <p>{% blocktrans trimmed %}
-Thank you for shopping at LYSHOP. 
-We have received your order cancellation and this mail is a cancellation confirmation. Here is the information about your order.
-We hope will find other interresting product at LYSHOP.
-                    {% endblocktrans %}</p>
+                    <h3>Merci pour vos achats chez LYSHOP!</h3>
+                    <p>Merci de faire vos achats chez LYSHOP,
+Nous avons bien reçu l'annulation de votre commande et nous vous confirmons son annulation. Voici les informations relatives à votre commande.</p>
+                    <p>Si votre commande a été déjà payé, alors vous serez renbourser dans les jours qui suivent.</p>
 
                 </td>
             </tr>
             <tr>
-                <td><p>{% trans "Your information" %}</p></td>
+                <td><p>Vos Informations</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>{% trans "Order number" %} :  {{order.order_ref_number}}</p>
-                    <p>{% trans "Order Date" %}  : {{order.created_at|date:"F j, Y"}}</p>
-                    <p>{% trans "Name" %} : {{order.user.get_full_name}}</p>
-                    <p>{% trans "Payment Method" %} : {{order.payment_method}}</p>
-                    <p>{% trans "Ship Mode" %} : {{order.ship_mode}}</p>
+                    <p>Numéro de commande :  {{REFERENCE_NUMBER}}</p>
+                    <p>Date de commande  : {{order.created_at|date:"F j, Y"}}</p>
+                    <p>Nom : {{FULL_NAME}}</p>
+                    <p>Méthode de paiement : {{order.payment_method}}</p>
+                    <p>Envoi : {{order.ship_mode}}</p>
+                    <p>Option de paiement : {{PAYMENT_OPTION}}</p>
+                    <p>Statut de la commande : {{ORDER_STATUS}}</p>
+                    <p>Adresse : {{ADDRESS}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    {% trans "Order overview" %}
+                    <p>Aperçu de la commande</p>
                 </td>
             </tr>
             <tr>
@@ -46,13 +45,13 @@ We hope will find other interresting product at LYSHOP.
                         <thead>
                             <tr>
                                 <th>{% trans "Image" %}</th>
-                                <th>{% trans "Art. Nr" %}</th>
-                                <th>{% trans "Name" %}</th>
-                                <th>{% trans "Attributes" %}</th>
-                                <th>{% trans "Quantity" %}</th>
-                                <th>{% trans "Price" %}</th>
-                                <th>{% trans "Reduction" %}</th>
-                                <th>{% trans "Total" %}</th>
+                                <th>Nr. Art.</th>
+                                <th>Article</th>
+                                <th>Attributs</th>
+                                <th>Quantité</th>
+                                <th>Prix</th>
+                                <th>Réduction</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,9 +75,9 @@ We hope will find other interresting product at LYSHOP.
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>{% trans "Total Sum" %} : </td>
-                                <td>{% trans "Shipping" %}</td>
-                                <td>{% trans "Grand Total" %}</td>
+                                <td>Somme Totale : </td>
+                                <td>Frai d'envoi</td>
+                                <td>Grand Total</td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -86,9 +85,9 @@ We hope will find other interresting product at LYSHOP.
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td> {{order.amount|floatformat:"-2"}} {% trans CURRENCY %} : </td>
-                                <td>{{order.ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</td>
-                                <td>{{order.total|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                                <td> {{AMOUNT|floatformat:"-2"}} {% trans CURRENCY %} : </td>
+                                <td>{{SHIPPING_PRICE|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                                <td>{{TOTAL|floatformat:"-2"}} {% trans CURRENCY %}</td>
                             </tr>
                         </tfoot>
                     </table>
