@@ -261,7 +261,7 @@ def process_order(user, request):
     
 def restore_product(order):
     item_queryset = order.order_items.all()
-    product_update_list = items_queryset.values_list('product', 'quantity')
+    product_update_list = item_queryset.values_list('product', 'quantity')
     logger.debug(f"restore_product {product_update_list}")
     for pk, quantity in product_update_list:
         ProductVariant.objects.filter(pk=pk).update(quantity=F('quantity') + quantity, is_active=True)
