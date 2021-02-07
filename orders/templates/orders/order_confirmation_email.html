@@ -43,7 +43,7 @@ Nous avons bien reçu votre commande et vous en informerons dès que votre colis
                     <table>
                         <thead>
                             <tr>
-                                <th>{% trans "Image" %}</th>
+                                
                                 <th>Nr. Art.</th>
                                 <th>Article</th>
                                 <th>Attributs</th>
@@ -56,8 +56,8 @@ Nous avons bien reçu votre commande et vous en informerons dès que votre colis
                         <tbody>
                             {% for item in order_items %}
                             <tr>
-                                <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{SITE_HOST}}{{item.image}}" alt="{{item.display_name}}"></div></td>
-                                <td>{{item.product.product.article_number}}</td>
+                                
+                                <td>{{item.product.article_number}}</td>
                                 <td>{{item.product.display_name}}</td>
                                 <td><div class="row">{% for attr in item.product.attributes.all %} <span>{{attr}} ; </span> {% endfor %}</div></td>
                                 <td>{{item.quantity}}</td>
@@ -69,17 +69,18 @@ Nous avons bien reçu votre commande et vous en informerons dès que votre colis
                         </tbody>
                         <tfoot>
                             <tr>
+                                
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td>Somme Totale : </td>
+                                <td style="">Somme Totale : </td>
                                 <td>{{AMOUNT|floatformat:"-2"}} {% trans CURRENCY %}</td>
                                 <td></td>
                             </tr>
                             
                             <tr>
+                                
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -89,7 +90,7 @@ Nous avons bien reçu votre commande et vous en informerons dès que votre colis
                                 <td></td>
                             </tr>
                             <tr>
-                                <td></td>
+                                
                                 <td></td>
                                 <td></td>
                                 <td></td>

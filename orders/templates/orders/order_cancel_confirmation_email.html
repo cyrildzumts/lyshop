@@ -44,7 +44,7 @@ Nous avons bien reçu l'annulation de votre commande et nous vous confirmons son
                     <table>
                         <thead>
                             <tr>
-                                <th>{% trans "Image" %}</th>
+                            
                                 <th>Nr. Art.</th>
                                 <th>Article</th>
                                 <th>Attributs</th>
@@ -57,8 +57,8 @@ Nous avons bien reçu l'annulation de votre commande et nous vous confirmons son
                         <tbody>
                             {% for item in order_items %}
                             <tr>
-                                <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{item.image}}" alt="{{item.display_name}}"></div></td>
-                                <td>{{item.product.product.article_number}}</td>
+                                
+                                <td>{{item.product.article_number}}</td>
                                 <td>{{item.product.display_name}}</td>
                                 <td><div class="row">{% for attr in item.product.attributes.all %} <span>{{attr}} ; </span> {% endfor %}</div></td>
                                 <td>{{item.quantity}}</td>
@@ -70,7 +70,7 @@ Nous avons bien reçu l'annulation de votre commande et nous vous confirmons son
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td></td>
+                                
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -81,6 +81,7 @@ Nous avons bien reçu l'annulation de votre commande et nous vous confirmons son
                             </tr>
                             
                             <tr>
+                                
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -90,7 +91,7 @@ Nous avons bien reçu l'annulation de votre commande et nous vous confirmons son
                                 <td></td>
                             </tr>
                             <tr>
-                                <td></td>
+                               
                                 <td></td>
                                 <td></td>
                                 <td></td>
