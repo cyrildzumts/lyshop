@@ -531,7 +531,10 @@ def send_order_mail_confirmation(order, cancellation=False):
     else:
         TEMPLATE_NAME = commons.ORDER_CONFIRMATION_MAIL_TEMPLATE
         TEMPLATE_TITLE = commons.ORDER_CONFIRMATION_MAIL_TITLE
+    
 
+    order_status_key, order_status_value = commons.get_order_status_name(order.status)
+    payment_option_key, payment_option_value = commons.get_payment_option_name(order.payment_option)
     send_order_mail_task.apply_async(
         args=[{
                 'order' : order.pk,
@@ -547,8 +550,8 @@ def send_order_mail_confirmation(order, cancellation=False):
                     'SHIPPING_PRICE': order.ship_mode.price,
                     'ADDRESS' : order.address.to_str(),
                     'COUPON' : '',
-                    'PAYMENT_OPTION' : commons.get_payment_option_name(order.payment_option),
-                    'ORDER_STATUS': commons.get_order_status_name(order.status),
+                    'PAYMENT_OPTION' : payment_option_value,
+                    'ORDER_STATUS': order_status_value,
                     'CURRENCY': settings.CURRENCY,
                     'TOTAL' : order.total,
                     'REFERENCE_NUMBER' : order.order_ref_number

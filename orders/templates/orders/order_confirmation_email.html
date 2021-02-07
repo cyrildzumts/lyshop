@@ -8,7 +8,7 @@
     <td>
         <table>
             <tr>
-                <td><p>Confirmation de la commande</p></td>
+                <td><p><h2>Confirmation de la commande</h2></p></td>
             </tr>
             <tr>
                 <td>
@@ -56,7 +56,7 @@ Nous avons bien reçu votre commande et vous en informerons dès que votre colis
                         <tbody>
                             {% for item in order_items %}
                             <tr>
-                                <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{item.image}}" alt="{{item.display_name}}"></div></td>
+                                <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{SITE_HOST}}{{item.image}}" alt="{{item.display_name}}"></div></td>
                                 <td>{{item.product.product.article_number}}</td>
                                 <td>{{item.product.display_name}}</td>
                                 <td><div class="row">{% for attr in item.product.attributes.all %} <span>{{attr}} ; </span> {% endfor %}</div></td>
@@ -75,8 +75,18 @@ Nous avons bien reçu votre commande et vous en informerons dès que votre colis
                                 <td></td>
                                 <td></td>
                                 <td>Somme Totale : </td>
-                                <td>Frai d'envoi</td>
-                                <td>Grand Total</td>
+                                <td>{{AMOUNT|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                                <td></td>
+                            </tr>
+                            
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td> Frai d'envoi : </td>
+                                <td>{{SHIPPING_PRICE|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -84,9 +94,9 @@ Nous avons bien reçu votre commande et vous en informerons dès que votre colis
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td> {{AMOUNT|floatformat:"-2"}} {% trans CURRENCY %} : </td>
-                                <td>{{SHIPPING_PRICE|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                                <td>Grand Total : </td>
                                 <td>{{TOTAL|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                                <td></td>
                             </tr>
                         </tfoot>
                     </table>

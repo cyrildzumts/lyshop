@@ -76,8 +76,18 @@ Nous avons bien reçu l'annulation de votre commande et nous vous confirmons son
                                 <td></td>
                                 <td></td>
                                 <td>Somme Totale : </td>
-                                <td>Frai d'envoi</td>
-                                <td>Grand Total</td>
+                                <td>{{AMOUNT|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                                <td></td>
+                            </tr>
+                            
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td> Frai d'envoi : </td>
+                                <td>{{SHIPPING_PRICE|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -85,9 +95,9 @@ Nous avons bien reçu l'annulation de votre commande et nous vous confirmons son
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td> {{AMOUNT|floatformat:"-2"}} {% trans CURRENCY %} : </td>
-                                <td>{{SHIPPING_PRICE|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                                <td>Grand Total : </td>
                                 <td>{{TOTAL|floatformat:"-2"}} {% trans CURRENCY %}</td>
+                                <td></td>
                             </tr>
                         </tfoot>
                     </table>
