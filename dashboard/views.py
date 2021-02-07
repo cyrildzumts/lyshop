@@ -4793,3 +4793,15 @@ def send_welcome_mail(request, pk):
     )
 
     return redirect('dashboard:user-detail', pk=pk)
+
+
+@login_required
+def send_order_confirmation_mail(request, order_uuid):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    order = get_object_or_404(Order, order_uuid=order_uuid)
+    orders_service.send_order_mail_confirmation(order)
+
+    return redirect('dashboard:order-detail', order_uuid=order_uuid)

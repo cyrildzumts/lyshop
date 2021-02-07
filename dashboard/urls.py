@@ -73,6 +73,7 @@ urlpatterns = [
     path('orders/payment_methods/delete/<uuid:method_uuid>/', views.payment_method_delete, name='payment-method-delete'),
     path('orders/payment_methods/delete/', views.payment_methods_delete, name='payment-methods-delete'),
     path('orders/payment_methods/create/', views.payment_method_create, name='payment-method-create'),
+    path('orders/send-order-mail/<uuid:order_uuid>/', views.send_order_confirmation_mail, name='send-order-mail'),
 
     path('orders/refunds', views.refunds, name='refunds'),
     path('orders/refunds/detail/<uuid:refund_uuid>/', views.refund_detail, name='refund-detail'),
@@ -165,13 +166,13 @@ urlpatterns = [
     path('tokens/', views.tokens, name='tokens'),
     path('users/', views.users, name='users'),
     path('users/create-user/', views.create_account, name='create-user'),
-    path('users/detail/<int:pk>', views.user_details, name='user-detail'),
-    path('users/send-welcome-mail/<int:pk>', views.send_welcome_mail, name='send-welcome-mail'),
-    path('users/delete/<int:pk>', views.user_delete, name='user-delete'),
+    path('users/detail/<int:pk>/', views.user_details, name='user-detail'),
+    path('users/send-welcome-mail/<int:pk>/', views.send_welcome_mail, name='send-welcome-mail'),
+    path('users/delete/<int:pk>/', views.user_delete, name='user-delete'),
     path('users/users-delete/', views.users_delete, name='users-delete'),
-    path('users/create-balance/<int:pk>', views.create_vendor_balance, name='create-vendor-balance'),
-    path('users/reset/<int:pk>', views.reset_vendor, name='reset-vendor'),
-    path('users/update-vendor-sold-product/<int:pk>', views.update_vendor_products, name='update-vendors-products'),
+    path('users/create-balance/<int:pk>/', views.create_vendor_balance, name='create-vendor-balance'),
+    path('users/reset/<int:pk>/', views.reset_vendor, name='reset-vendor'),
+    path('users/update-vendor-sold-product/<int:pk>/', views.update_vendor_products, name='update-vendors-products'),
     
     
 ]

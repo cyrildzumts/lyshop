@@ -25,6 +25,7 @@
         <a class="mat-button mat-button-default" href="{{order.get_delete_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Delete" %}</span></a>
         <a class="mat-button mat-button-default" href="{{order.get_history_url}}"><i class="fas fa-history icon"></i><span>{% trans "Order History" %}</span></a>   
         <a class="mat-button mat-button-default" href="{% url 'dashboard:orders' %}"><i class="fas fa-list icon"></i><span>{% trans "Orders" %}</span></a>
+        <a class="mat-button mat-button-default" href="{% url 'dashboard:send-order-mail' order.order_uuid  %}"><i class="fas fa-envelope icon"></i><span>{% trans "Order Confirmation Mail" %}</span></a>
         <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>   
         
     </div><!--End of Banner-Actions-->
