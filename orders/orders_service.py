@@ -259,6 +259,13 @@ def process_order(user, request):
 
     return result
     
+def restore_product(order):
+    item_queryset = order.order_items.all()
+    product_update_list = items_queryset.values_list('product', 'product__quantity', 'quantity')
+    
+    for pk, available_quantity, quantity in product_update_list:
+        ProductVariant.objects.filter(pk=pk).update(quantity=F('quantity') + quantity, is_active=True)
+        Product.objects.filter(variants__in=[pk]).update(quantity=F('quantity') + quantity)
 
 def cancel_order(order, request_user=None):
     if  not isinstance(order, Order):
@@ -268,6 +275,7 @@ def cancel_order(order, request_user=None):
         return False
 
     Order.objects.filter(pk=order.pk).update(is_closed=True, is_active=False, status=commons.ORDER_CANCELED, last_changed_by=request_user)
+    restore_product(order)
     refund_order(order)
     return True
 
