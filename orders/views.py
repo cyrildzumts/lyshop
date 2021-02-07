@@ -98,11 +98,16 @@ def order_cancel(request, order_uuid):
     order = get_object_or_404(Order,user=request.user, order_uuid=order_uuid)
         
     if orders_service.is_cancelable(order):
-        orders_service.cancel_order(order, request.user)
-        OrderStatusHistory.objects.create(order_status=commons.ORDER_CANCELED, order=order, order_ref_id=order.id, changed_by=request.user)
-        messages.success(request, "Your order has been canceled")
-        orders_service.send_order_mail_confirmation(order, True)
-        logger.info(f"Order {order.id} canceled by user {request.user.username}")
+        cancelled = orders_service.cancel_order(order, request.user)
+        
+        if cancelled:
+            OrderStatusHistory.objects.create(order_status=commons.ORDER_CANCELED, order=order, order_ref_id=order.id, changed_by=request.user)
+            messages.success(request, "Your order has been canceled")
+            orders_service.send_order_mail_confirmation(order, cancellation=True)
+            logger.info(f"Order {order.id} canceled by user {request.user.username}")
+        else:
+            messages.error(request, "Error. Your order  has not been canceled")
+
     else:
         messages.error(request, "Error. Your order can no more be canceled")
     

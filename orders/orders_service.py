@@ -280,8 +280,8 @@ def clean_unpaid_orders():
     logger.info(f"Clean unpaid orders : updating unpaid orders")
     for order in queryset:
         logger.info(f"Cancelling order {order}")
-        cancel_order(order, request_user)
-        send_order_mail_confirmation(order, True)
+        if cancel_order(order, request_user):
+            send_order_mail_confirmation(order=order, cancellation=True)
     
     logger.info(f"Clean unpaid orders : updated {orders_count} unpaid orders")
     

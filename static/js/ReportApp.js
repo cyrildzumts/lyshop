@@ -5,7 +5,8 @@ requirejs.config({
     }
 });
 
-requirejs(['ajax_api', 'analytics'], function(ajax_api){
+requirejs(['ajax_api','components_api', 'commons' ,'analytics'], function(ajax_api, Component){
     console.log("ReportApp loaded ...");
+    Component.initComponent();
     console.log("JQuery version :", $().jquery);
 });
