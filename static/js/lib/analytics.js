@@ -9,6 +9,7 @@ function(Chart, ajax){
     var visitor_charts;
     var unique_visitor_charts;
     var facebook_visitor_charts;
+    var google_visitor_charts;
     var suspicious_visitor_charts;
     var order_price_chart;
     var new_user_chart;
@@ -277,6 +278,7 @@ function(Chart, ajax){
         metrics_data.push({label:'Visitors' + visitor_report.year, count: visitor_report.total_visitors});
         metrics_data.push({label:'Unique Visitors' + visitor_report.year, count: visitor_report.total_unique_visitors});
         metrics_data.push({label:'Facebook Visitors', count: visitor_report.total_facebook_visitors});
+        metrics_data.push({label:'Google Visitors', count: visitor_report.total_google_visitors});
         metrics_data.push({label:'Suspicious Visitors', count: visitor_report.total_suspicious_visitors});
         
         visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6', borderColor: '#9b59b6'};
