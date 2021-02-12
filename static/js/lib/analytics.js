@@ -309,6 +309,7 @@ function(Chart, ajax){
         visitor_charts.update();
         unique_visitor_charts.update();
         facebook_visitor_charts.update();
+        google_visitor_charts.update();
         suspicious_visitor_charts.update();
         visitors_charts.update();
 
@@ -403,6 +404,7 @@ function(Chart, ajax){
     var ctx_visitor = $('#visitor-diagram');
     var ctx_unique_vistors_users = $('#unique-visitors-diagram');
     var ctx_facebook_vistors_users = $('#facebook-visitors-diagram');
+    var ctx_google_vistors_users = $('#google-visitors-diagram');
     var ctx_visitors = $('#visitors-diagram');
     var ctx_suspicious_visitors = $('#suspicious-visitors-diagram');
 
@@ -415,6 +417,7 @@ function(Chart, ajax){
     visitor_charts = new Chart(ctx_visitor, visitor_conf);
     unique_visitor_charts = new Chart(ctx_unique_vistors_users, unique_visitor_conf);
     facebook_visitor_charts = new Chart(ctx_facebook_vistors_users, facebook_visitor_conf);
+    google_visitor_charts = new Chart(ctx_google_vistors_users, google_visitor_conf);
     suspicious_visitor_charts = new Chart(ctx_suspicious_visitors, suspicious_visitor_conf);
     dashboardUpdate();
     dashboardIntervalHandle = setInterval(dashboardUpdate, UPDATE_RATE);
