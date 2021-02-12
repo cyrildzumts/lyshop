@@ -169,6 +169,20 @@ function(Chart, ajax){
             scales : default_scales
         }
     };
+    var google_visitor_conf = {
+        type : line_type,
+        data : {
+            labels : [],
+            datasets : [{
+                label: 'Google Visitors',
+                data: []
+                //backgroundColor : "#D2AE00"
+            }],
+        },
+        options:{
+            scales : default_scales
+        }
+    };
     var suspicious_visitor_conf = {
         type : line_type,
         data : {
@@ -265,32 +279,26 @@ function(Chart, ajax){
         metrics_data.push({label:'Facebook Visitors', count: visitor_report.total_facebook_visitors});
         metrics_data.push({label:'Suspicious Visitors', count: visitor_report.total_suspicious_visitors});
         
-        //visitor_conf.data.labels = visitor_report.months;
         visitor_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6', borderColor: '#9b59b6'};
-
-        //unique_visitor_conf.data.labels = visitor_report.months;
-        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db', borderColor: '#3498db'};
-
-        //facebook_visitor_conf.data.labels = visitor_report.months;
         facebook_visitor_conf.data.datasets[0] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71' , borderColor: '#2ecc71'};
-
-        //suspicious_visitor_conf.data.labels = visitor_report.months;
         suspicious_visitor_conf.data.datasets[0] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50' , borderColor: '#2c3e50'};
+        google_visitor_conf.data.datasets[0] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#d35400' , borderColor: '#d35400'};
+        unique_visitor_conf.data.datasets[0] = {label:visitor_report.labels[4], data: visitor_report.data[4], backgroundColor: '#3498db', borderColor: '#3498db'};
 
-
-        //visitors_conf.data.labels = visitor_report.months;
         var visitors_datasets = visitors_conf.data.datasets;
-        if(visitors_datasets.length == 4){
+        if(visitors_datasets.length == 5){
             visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6' , borderColor: '#9b59b6'};
             visitors_conf.data.datasets[1] = {label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71' , borderColor: '#2ecc71'};
             visitors_conf.data.datasets[2] = {label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50' , borderColor: '#2c3e50'};
             visitors_conf.data.datasets[3] = {label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db' , borderColor: '#3498db'};
+            visitors_conf.data.datasets[4] = {label:visitor_report.labels[4], data: visitor_report.data[4], backgroundColor: '#d35400' , borderColor: '#d35400'};
             
         }else if (visitors_datasets.length == 1){
             visitors_conf.data.datasets[0] = {label:visitor_report.labels[0], data: visitor_report.data[0], backgroundColor: '#9b59b6' , borderColor: '#9b59b6'};
             visitors_conf.data.datasets.push({label:visitor_report.labels[1], data: visitor_report.data[1], backgroundColor: '#2ecc71' , borderColor: '#2ecc71'});
             visitors_conf.data.datasets.push({label:visitor_report.labels[2], data: visitor_report.data[2], backgroundColor: '#2c3e50', borderColor: '#2c3e50'});
             visitors_conf.data.datasets.push({label:visitor_report.labels[3], data: visitor_report.data[3], backgroundColor: '#3498db' , borderColor: '#3498db'});
+            visitors_conf.data.datasets.push({label:visitor_report.labels[4], data: visitor_report.data[4], backgroundColor: '#d35400' , borderColor: '#d35400'});
         }
         
         order_chart.update();
@@ -356,6 +364,8 @@ function(Chart, ajax){
                 $('#metric-unique-visitors .metric-value', container).text(data.count);
             }else if(data.label == "Suspicious Visitors"){
                 $('#metric-suspicious-visitors .metric-value', container).text(data.count);
+            }else if(data.label == "Google Visitors"){
+                $('#metric-google-visitors .metric-value', container).text(data.count);
             }
         });
     }

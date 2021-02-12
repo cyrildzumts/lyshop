@@ -1,7 +1,7 @@
 from django.db.models import F, Q, Sum, Count
 from catalog.models import ProductVariant, Product
 from orders.models import Order
-from inventory.models import Visitor, UniqueIP, FacebookLinkHit, SuspiciousRequest
+from inventory.models import Visitor, UniqueIP, FacebookLinkHit, SuspiciousRequest, GoogleAdsHit
 from inventory import constants as Inventory_Constants
 from dashboard.models import LoginReport
 from django.contrib.auth.models import User
@@ -244,7 +244,7 @@ def report_visitors(year=timezone.now().year):
         raise ValueError(error_str)
     
     data = []
-    Models = [Visitor, FacebookLinkHit, SuspiciousRequest]
+    Models = [Visitor, FacebookLinkHit, SuspiciousRequest, GoogleAdsHit]
     if year == timezone.now().year:
         MONTH_LIMIT = timezone.now().month
     else :
@@ -267,16 +267,19 @@ def report_visitors(year=timezone.now().year):
     total_unique_visitors = UniqueIP.objects.count()
     total_visitors = Visitor.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     total_facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
+    total_google_visitors = GoogleAdsHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits') or 0
 
     report = {
-        'labels': [f"Vistors {year}", f"Facebook Vistors {year}", f"Suspicious Vistors {year}", f"Unique Vistors {year}"],
+        #'labels': [f"Vistors {year}", f"Facebook Vistors {year}", f"Suspicious Vistors {year}",f"Google Vistors {year}", f"Unique Vistors {year}"],
+        'labels': [f"Vistors", f"Facebook Vistors", f"Suspicious Vistors", f"Google Vistors", f"Unique Vistors"],
         'year' : year,
         'months': months,
         'data' : data,
         'total_unique_visitors' : total_unique_visitors,
         'total_visitors' : total_visitors,
         'total_facebook_visitors' : total_facebook_visitors,
+        'total_google_visitors' : total_google_visitors,
         'total_suspicious_visitors': total_suspicious_visitors
 
     }

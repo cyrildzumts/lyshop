@@ -32,6 +32,10 @@
                         <div class="metric-title">{% trans "Facebook Visitors" %}</div>
                         <span class="metric-value">{{facebook_visitors|default_if_none:'0'}}</span>
                 </div>
+                <div id="metric-google-visitors" class="metric mat-box">
+                        <div class="metric-title">{% trans "Google Visitors" %}</div>
+                        <span class="metric-value">{{google_visitors|default_if_none:'0'}}</span>
+                </div>
                 <div id="metric-suspicious-visitors" class="metric mat-box">
                         <div class="metric-title">{% trans "Suspicious Visitors" %}</div>
                         <span class="metric-value">{{total_suspicious_visitors|default_if_none:'0'}}</span>

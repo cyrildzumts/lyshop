@@ -55,7 +55,7 @@ from vendors import vendors_service
 from addressbook.models import Address
 from addressbook import addressbook_service, constants as Addressbook_Constants
 from inventory import inventory_service
-from inventory.models import Visitor, UniqueIP, FacebookLinkHit, SuspiciousRequest
+from inventory.models import Visitor, UniqueIP, FacebookLinkHit, SuspiciousRequest, GoogleAdsHit
 from dashboard import analytics
 from itertools import islice
 import json
@@ -79,8 +79,9 @@ def dashboard(request):
     username = request.user.username
     recent_orders = Order.objects.order_by('-created_at')[:10]
     currents_orders = analytics.get_orders()
-    fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits'))
-    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits')
+    facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
+    google_visitors = GoogleAdsHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
+    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     context = {
             'name'          : username,
             'page_title'    : page_title,
@@ -92,7 +93,8 @@ def dashboard(request):
             'users_count' : User.objects.count(),
             'visitors' : Visitor.objects.count(),
             'unique_visitors' : UniqueIP.objects.count(),
-            'facebook_visitors' : fbcount_sum['hits'],
+            'facebook_visitors' : facebook_visitors,
+            'google_visitors' : google_visitors,
             'total_suspicious_visitors': total_suspicious_visitors
         }
     if not can_view_dashboard :
@@ -2481,12 +2483,14 @@ def reports(request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     
-    fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits'))
-    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits', 0)
+    fbcount_sum = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
+    total_google_visitors = GoogleAdsHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
+    total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     context = {
-        'visitors' : Visitor.objects.aggregate(hits=Sum('hits')).get('hits'),
+        'visitors' : Visitor.objects.aggregate(hits=Sum('hits')).get('hits') or 0,
         'unique_visitors' : UniqueIP.objects.count(),
-        'facebook_visitors' : fbcount_sum['hits'],
+        'facebook_visitors' : fbcount_sum,
+        'google_visitors': total_google_visitors,
         'total_suspicious_visitors' : total_suspicious_visitors
     }
     orders_count = Order.objects.count()

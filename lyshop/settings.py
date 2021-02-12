@@ -162,6 +162,7 @@ MIDDLEWARE = [
     'inventory.middleware.VisitorCounter',
     'inventory.middleware.UniqueIPCounter',
     'inventory.middleware.FacebookHitCounter',
+    'inventory.middleware.GoogleADSHitCounter',
     'inventory.middleware.SuspiciousRequestCounter',
     
 ]
