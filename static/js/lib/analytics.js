@@ -353,6 +353,7 @@ function(Chart, ajax){
             return;
         }
         metrics_data.forEach(data =>{
+            console.info("metrics update : data : ", data);
             if (data.label == "Orders"){
                 $('#metric-orders .metric-value', container).text(data.count);
             }else if(data.label == "Products"){
