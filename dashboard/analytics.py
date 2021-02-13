@@ -237,6 +237,7 @@ def report_log_users(year=timezone.now().year):
     return report
 
 
+
 def report_visitors(year=timezone.now().year):
     if year < 0 or year > timezone.now().year :
         error_str = f"report_visitors : invalid year \"{year}\". Only years between 1 and {timezone.now().year} accepted"
@@ -269,10 +270,9 @@ def report_visitors(year=timezone.now().year):
     total_facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     total_google_visitors = GoogleAdsHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits') or 0
-
     report = {
-        #'labels': [f"Vistors {year}", f"Facebook Vistors {year}", f"Suspicious Vistors {year}",f"Google Vistors {year}", f"Unique Vistors {year}"],
-        'labels': [f"Vistors", f"Facebook Vistors", f"Suspicious Vistors", f"Google Vistors", f"Unique Vistors"],
+        'labels': [f"Vistors {year}", f"Facebook Vistors {year}", f"Suspicious Vistors {year}",f"Google Vistors {year}", f"Unique Vistors {year}"],
+        #'labels': [f"Vistors", f"Facebook Vistors", f"Suspicious Vistors", f"Google Vistors", f"Unique Vistors"],
         'year' : year,
         'months': months,
         'data' : data,
@@ -281,7 +281,6 @@ def report_visitors(year=timezone.now().year):
         'total_facebook_visitors' : total_facebook_visitors,
         'total_google_visitors' : total_google_visitors,
         'total_suspicious_visitors': total_suspicious_visitors
-
     }
     return report
 
