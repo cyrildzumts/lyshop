@@ -1,11 +1,20 @@
 {% extends "wishlist_base.html"%}
 {% load i18n %}
 
-{% if not show_banner %}
 {% block HEADER_BANNER %}
+<div>
+<h1>{% trans "Shopping List" %}</h1>
+<h3>{{queryset.count}}</h3>
+</div>
 
+<div class="container">
+    <div class="actions xs-column">
+            <a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-create' %}"><i class="fas fa-plus icon"></i>  {% trans "Add new wishlist" %}</a>
+            <a class="mat-button mat-button-text" href="{% url 'catalog:catalog-home' %}"> {% trans "Continue Shopping" %}</a>
+    </div><!--End of Banner-Actions-->
+</div><!--End of Container-->
+    
 {% endblock HEADER_BANNER %}
-{% endif %}
 
 {% block MAIN_CONTENT %}
 <div class="container">
@@ -19,8 +28,7 @@
         <p>{% trans "As soon as you have one, they will be displayed here." %}</p>
         <p>{% trans "Please add wishlist and try again later" %}</p>
         </div>
-        {% endif %}
-        
+        {% endif %} 
 </div>
 
 {% endblock MAIN_CONTENT %}

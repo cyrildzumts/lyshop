@@ -1,7 +1,6 @@
 {% extends "wishlist_base.html"%}
 {% load i18n %}
 
-{% if not show_banner %}
 {% block HEADER_BANNER %}
 <div>
 <h1>{{wishlist.name}}</h1>
@@ -18,7 +17,6 @@
 </div><!--End of Container-->
     
 {% endblock HEADER_BANNER %}
-{% endif %}
 
 {% block MAIN_CONTENT %}
 <div class="container">
