@@ -33,7 +33,7 @@ class Wishlist(models.Model):
 
 class WishlistItem(models.Model):
     wishlists = models.ManyToManyField(Wishlist, related_name=constants.WISHLIST_MANY_TO_MANY_RELATED_NAME)
-    product = models.ForeignKey(constants.WISHLIST_ITEM_FOREIGN_KEY, related_name=constants.WISHLIST_ITEM_RELATED_NAME)
+    product = models.ForeignKey(constants.WISHLIST_ITEM_FOREIGN_KEY, related_name=constants.WISHLIST_ITEM_RELATED_NAME, on_delete=models.CASCADE)
 
 
     def __str__(self):
