@@ -65,9 +65,9 @@
         </li>
         <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-heart icon"></i></a></li>
         <li class="mat-list-item"><a class="signout-btn mat-button mat-button-text signout" href="{% url 'accounts:logout' %}">{% trans 'Logout' %}</a></li>
-        
-        {% endif %}
+        {% else %}
         <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:login' %}?next={{request.path}}"><i class="fas fa-user icon"></i>{% trans 'Login' %}</a></li>
+        {% endif %}
       
       {% endif %}
       <li  class="mat-list-item">

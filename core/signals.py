@@ -11,8 +11,9 @@ logger = logging.getLogger(__name__)
 
 @receiver(post_save, sender=User)
 def send_welcome_mail(sender, instance, created, **kwargs):
-    logger.debug("sending welcome mail ...")
+    
     if created:
+        logger.debug("sending welcome mail ...")
         logger.debug("new user created, sending welcome mail ...")
         email_context = {
             'template_name': settings.DJANGO_WELCOME_EMAIL_TEMPLATE,
