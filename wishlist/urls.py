@@ -1,4 +1,3 @@
-from catalog import views
 from django.conf.urls import  include
 from django.urls import path, reverse_lazy
 from wishlist import views
