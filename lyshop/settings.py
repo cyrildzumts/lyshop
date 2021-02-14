@@ -130,6 +130,7 @@ INSTALLED_APPS = [
     'addressbook.apps.AddressbookConfig',
     'core.apps.CoreConfig',
     'inventory.apps.InventoryConfig',
+    'wishlist.apps.WishlistConfig',
 ]
 
 # RESTFRAMEWORK SETTINGS

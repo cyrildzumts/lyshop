@@ -1,0 +1,18 @@
+{% load i18n %}
+    
+<div class="mat-box">
+        <form class="form" name="add-wishlist" action="{% url 'wishlist:wishlist-create' %}" method="POST">{% csrf_token %}
+            <input type="hidden" name="customer" value="{{request.user.pk}}">
+            <input type="hidden" name="next_url" value="{{request.path}}">
+            <div class="container">
+                <div class="form-group">
+                    <label for="name">{% trans "Name" %}</label>
+                    <input id="name" type="text"  name="name" value="">
+                </div>
+            </div><!-- End of container-->
+            <div class="actions">
+                    <a class="mat-button mat-button-text js-cancel" href="{% url 'wishlist:wishlist-home' %}">{% trans "Cancel" %}</a>
+                    <button class="mat-button mat-button-default js-submit" type="submit">{% trans "Create" %}</button>
+            </div> 
+        </form>
+</div>
