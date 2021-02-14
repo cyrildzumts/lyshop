@@ -67,6 +67,7 @@ urlpatterns = i18n_patterns(
     path('payment/', include('payment.urls')),
     path('shipment/', include('shipment.urls')),
     path('vendors/', include('vendors.urls')),
+    path('wishlist/', include('wishlist.urls')),
 ]
 )
 
