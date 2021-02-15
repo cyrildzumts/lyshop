@@ -22,6 +22,5 @@ class WishlistForm(forms.ModelForm):
         if Wishlist.objects.filter(name=name, customer=customer).exists():
             raise ValidationError("Name already in use.")
 
-        return name
 
 
