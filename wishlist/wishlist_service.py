@@ -1,4 +1,5 @@
 from wishlist.models import Wishlist, WishlistItem
+from django.utils.translation import gettext_lazy as _
 from wishlist.forms import WishlistForm
 from wishlist import constants
 import logging

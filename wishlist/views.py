@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from wishlist import wishlist_service
 from wishlist import constants
