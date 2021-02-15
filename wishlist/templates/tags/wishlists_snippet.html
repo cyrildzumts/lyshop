@@ -26,7 +26,7 @@
                   <td data-label="{% trans 'Name' %}">{{w.name}}</td>
                   <td data-label="{% trans 'Article Count' %}">{{w}}</td>
                   
-                  <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{% url 'wishlist:wishlist w.wishlist_uuid %}"><i class="fas fa-eye icon"></i><span>{% trans "Open" %}</span></a></td>
+                  <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{{w.get_absolute_url}}"><i class="fas fa-eye icon"></i><span>{% trans "Open" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   
