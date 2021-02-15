@@ -93,9 +93,14 @@ def wishlist_create(request):
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
         w = wishlist_service.create_wishlist(postdata)
-        messages.success(request, _('Shopping list created'))
-        logger.info(f'Wishlist {w.name} created by user \"{username}\"')
-        return redirect('wishlist:wishlist-home')
+        if w is not None:
+            messages.success(request, _('Shopping list created'))
+            logger.info(f'Wishlist {w.name} created by user \"{username}\"')
+            return redirect('wishlist:wishlist-home')
+        else:
+            messages.warn(request, _('Shopping list not created'))
+            logger.warn(f'Wishlist not created by user \"{username}\"')
+            return redirect('wishlist:wishlist-home')
     else:
         form = WishlistForm()
     context = {
