@@ -34,6 +34,12 @@ def update_wishlist(w, data):
     return w
 
 
+def delete_wishlist(w):
+    if not isinstance(w, Wishlist):
+        return
+    Wishlist.objects.filter(pk=w.pk).delete()
+    return
+
 def delete_wishlists(id_list):
     if not isinstance(id_list, list)  or not len(id_list):
         return False

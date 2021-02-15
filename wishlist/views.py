@@ -130,6 +130,16 @@ def wishlist_remove(request, wishlist_uuid, product_uuid):
     added = wishlist_service.remove_from_wishlist(w, p)
     return redirect(next_url)
 
+
+@login_required
+def wishlist_delete(request, wishlist_uuid):
+    if request.method != "POST":
+        messages.add_message(request, messages.WARNING, "BAD REQUEST")
+        return redirect("catalog:catalog-home")
+    w = get_object_or_404('wishlist.Wishlist', customer=request.user, wishlist_uuid=wishlist_uuid)
+    wishlist_service.delete_wishlist(w)
+    return redirect("wishlist:wishlist-home")
+
 @login_required
 def wishlist_move_to_cart(request, wishlist_uuid):
     pass
