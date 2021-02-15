@@ -18,7 +18,7 @@ class WishlistForm(forms.ModelForm):
         super().clean()
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
-        logger.debug(f"Wishlist clean : {customer} - typeof {type(customer)}")
+        logger.debug(f"Wishlist clean  : name \"{name}\" : customer : \"{customer}\" - typeof customer {type(customer)} -  typeof name {type(name)}")
         if Wishlist.objects.filter(name=name, customer=customer).exists():
             raise ValidationError("Name already in use.")
 
