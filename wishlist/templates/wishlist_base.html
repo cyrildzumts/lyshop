@@ -12,13 +12,12 @@
 </div>
 {% endif %}
 {% endblock NEWS %}
+
 {% block MAIN %}
 
 <div class="main container">
-    {% if queryset or wishlist_list %}
-    
-    {% endif %}
-    <div class="col-m-12 col-12">
+
+    <div class="full">
         {% block MAIN_CONTENT %}
         {% endblock MAIN_CONTENT %}
     </div>
