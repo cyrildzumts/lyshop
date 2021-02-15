@@ -1,0 +1,39 @@
+<div class="container">
+<div class="full">
+    <div class="mat-table-wrapper">
+        <div class="row">
+            <div class="mat-table-title">
+                {% trans "Shopping List" %}
+            </div>
+        </div><!--End of Row-->
+        <form action="{% url 'wishlist:wishlists-delete' %}" method="POST">{% csrf_token %}
+        <table id="wishlist-list" class="mat-table js-filter-table">
+            <div class="actions">
+                    <button class="js-activable mat-button mat-button-outlined" disabled><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button>
+            </div>
+          <thead>
+                  
+                  <tr>
+                        <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
+                        <th scope="col">{% trans "Name" %}</th>
+                        <th scope="col">{% trans "Article Count" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for w in wishlist_list  %}
+                  <tr>
+                  <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="wishlists" value="{{w.pk}}"><span class="checkbox-label"></span></label></td>
+                  <td data-label="{% trans 'Name' %}">{{w.name}}</td>
+                  <td data-label="{% trans 'Article Count' %}">{{w}}</td>
+                  
+                  <!-- <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'wishlist:wishlist-delete' w.wishlist_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>-->
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+        </table>
+        </form>
+    {% include "tags/pagination.html" with page_set=wishlist_list %}
+    </div><!--End of Table Wrapper-->
+  </div>
+</div>

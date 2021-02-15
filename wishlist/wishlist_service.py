@@ -23,6 +23,28 @@ def create_wishlist(data):
         logger.warn(f"Wishlist could not be created with data \"{data}\". Errors : {form.errors}" )
     return w
 
+
+def update_wishlist(w, data):
+    form = WishlistForm(data, instance=w)
+    if form.is_valid():
+        w = form.save()
+        logger.info(f"Wishlist {w} updated with data \"{data}\"." )
+    else:
+        logger.warn(f"Wishlist could not be updated with data \"{data}\". Errors : {form.errors}" )
+    return w
+
+
+def delete_wishlists(id_list):
+    if not isinstance(id_list, list)  or not len(id_list):
+        return False
+
+    wishlist_list = list(map(int, id_list))
+    Wishlist.objects.filter(id__in=wishlist_list).delete()
+    logger.info(f"Wishlists \"{wishlist_list}\" deleted")
+    return True
+
+
+
 def add_to_wishlist(w, product):
     if WishlistItem.objects.filter(product=product, wishlists__in=[w]).exists():
         logger.warn(f"Produc {product} already presents in wishlist {wishlist}")
