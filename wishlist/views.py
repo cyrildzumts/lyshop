@@ -7,7 +7,9 @@ from wishlist import wishlist_service
 from wishlist import constants
 from wishlist.forms import WishlistForm
 from lyshop import utils, settings, conf as GLOBAL_CONF
+import logging
 
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 @login_required
