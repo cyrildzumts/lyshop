@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.wishlist_home, name='wishlist-home'),
     path('wishlists/<uuid:wishlist_uuid>/', views.wishlist, name='wishlist'),
     path('wishlists/delete/<uuid:wishlist_uuid>/', views.wishlist_delete, name='wishlist-delete'),
+    path('wishlists/delete/', views.wishlists_delete, name='wishlists-delete'),
     path('wishlists/create/', views.wishlist_create, name='wishlist-create'),
     path('wishlists/<uuid:wishlist_uuid>/add/<uuid:product_uuid>/', views.wishlist_add, name='wishlist-item-add'),
     path('wishlists/<uuid:wishlist_uuid>/delete/<uuid:item_uuid>/', views.wishlist_remove, name='wishlist-item-delete'),
