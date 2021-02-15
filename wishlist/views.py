@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from wishlist import wishlist_service
 from wishlist import constants
+from wishlist.models import Wishlist, WishlistItem
+from catalog.models import Product
 from wishlist.forms import WishlistForm
 from lyshop import utils, settings, conf as GLOBAL_CONF
 import logging
@@ -30,7 +32,7 @@ def wishlist(request, wishlist_uuid):
     if request.method != "GET":
         raise SuspiciousOperation('Bad request')
 
-    w = get_object_or_404('wishlist.Wishlist', customer=request.user, wishlist_uuid=wishlist_uuid)
+    w = get_object_or_404(Wishlist, customer=request.user, wishlist_uuid=wishlist_uuid)
     items = w.wishlist_items.all()
     context = {
         'page_title' : w.name + "|" + settings.SITE_NAME,
@@ -48,7 +50,7 @@ def wishlist_update(request, wishlist_uuid=None):
     page_title = _('Wishlist Update')
     
     form = None
-    w = get_object_or_404('wishlist.Wishlist', customer=request.user, wishlist_uuid=wishlist_uuid)
+    w = get_object_or_404(Wishlist, customer=request.user, wishlist_uuid=wishlist_uuid)
     old_name = w.name
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
@@ -120,8 +122,8 @@ def wishlist_add(request, wishlist_uuid, product_uuid):
     if request.method != "POST":
         messages.add_message(request, messages.WARNING, "BAD REQUEST")
         return redirect("catalog:catalog-home")
-    w = get_object_or_404('wishlist.Wishlist', customer=request.user, wishlist_uuid=wishlist_uuid)
-    p = get_object_or_404('catalog.Product', product_uuid=product_uuid)
+    w = get_object_or_404(Wishlist, customer=request.user, wishlist_uuid=wishlist_uuid)
+    p = get_object_or_404(Product, product_uuid=product_uuid)
     next_url = request.POST.copy().get('next_url')
     added = wishlist_service.add_to_wishlist(w, p)
     return redirect(next_url)
@@ -132,8 +134,8 @@ def wishlist_remove(request, wishlist_uuid, product_uuid):
     if request.method != "POST":
         messages.add_message(request, messages.WARNING, "BAD REQUEST")
         return redirect("catalog:catalog-home")
-    w = get_object_or_404('wishlist.Wishlist', customer=request.user, wishlist_uuid=wishlist_uuid)
-    p = get_object_or_404('catalog.Product', product_uuid=product_uuid)
+    w = get_object_or_404(Wishlist, customer=request.user, wishlist_uuid=wishlist_uuid)
+    p = get_object_or_404(Product, product_uuid=product_uuid)
     next_url = request.POST.copy().get('next_url')
     added = wishlist_service.remove_from_wishlist(w, p)
     return redirect(next_url)
@@ -144,7 +146,7 @@ def wishlist_delete(request, wishlist_uuid):
     if request.method != "POST":
         messages.add_message(request, messages.WARNING, "BAD REQUEST")
         return redirect("catalog:catalog-home")
-    w = get_object_or_404('wishlist.Wishlist', customer=request.user, wishlist_uuid=wishlist_uuid)
+    w = get_object_or_404(Wishlist, customer=request.user, wishlist_uuid=wishlist_uuid)
     wishlist_service.delete_wishlist(w)
     return redirect("wishlist:wishlist-home")
 
