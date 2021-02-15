@@ -98,8 +98,7 @@ def wishlist_create(request):
         form = WishlistForm()
     context = {
         'page_title': page_title,
-        'form' : form,
-        'wishlist': w
+        'form' : form
     }
     return render(request, template_name, context)
 
