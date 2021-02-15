@@ -28,7 +28,7 @@ def wishlist_home(request):
 
 @login_required
 def wishlist(request, wishlist_uuid):
-    template_name = constants.HOME_TEMPLATE
+    template_name = constants.WISHLIST_TEMPLATE
     if request.method != "GET":
         raise SuspiciousOperation('Bad request')
 
