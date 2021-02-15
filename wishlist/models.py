@@ -21,6 +21,9 @@ class Wishlist(models.Model):
 
     def get_absolute_url(self):
         return reverse("wishlist:wishlist", kwargs={"wishlist_uuid": self.wishlist_uuid})
+    
+    def get_update_url(self):
+        return reverse("wishlist:wishlist-update", kwargs={"wishlist_uuid": self.wishlist_uuid})
 
     def get_clear_url(self):
         return reverse("wishlist:wishlist-clear", kwargs={"wishlist_uuid": self.wishlist_uuid})

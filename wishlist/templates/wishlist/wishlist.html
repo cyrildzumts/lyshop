@@ -11,7 +11,7 @@
     <div class="actions xs-column">
             <a class="mat-button mat-button-text" href="{{wishlist.get_clear_url}}"> {% trans "Clear" %}</a>
             <a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-create' %}"><i class="fas fa-plus icon"></i>  {% trans "Add new wishlist" %}</a>
-            <a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-update' %}"><i class="fas fa-pen icon"></i>  {% trans "Rename" %}</a>
+            <a class="mat-button mat-button-text" href="{{wishlist.get_update_url}}"><i class="fas fa-pen icon"></i>  {% trans "Rename" %}</a>
             <a class="mat-button mat-button-text" href="{% url 'catalog:catalog-home' %}"> {% trans "Continue Shopping" %}</a>
     </div><!--End of Banner-Actions-->
 </div><!--End of Container-->
