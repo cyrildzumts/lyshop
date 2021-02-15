@@ -98,7 +98,7 @@ def wishlist_create(request):
             logger.info(f'Wishlist {w.name} created by user \"{username}\"')
             return redirect('wishlist:wishlist-home')
         else:
-            messages.warn(request, _('Shopping list not created'))
+            messages.warning(request, _('Shopping list not created'))
             logger.warn(f'Wishlist not created by user \"{username}\"')
             return redirect('wishlist:wishlist-home')
     else:
