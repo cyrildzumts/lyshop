@@ -197,6 +197,12 @@ li.active.selected{
     background-color: #fafafa;
     color: var(--primary-color);
 }
+
+.modal-container .mat-list .mat-list-item:hover{
+	background-color: #ccc;
+    color: var(--primary-color);
+}
+
 .dialog{
     background-color: #fafafa;
     color: var(--primary-color);
