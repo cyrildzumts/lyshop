@@ -28,10 +28,11 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             var item = $(this);
             
             var data = {
-                'csrfmiddlewaretoken': self.csrfmiddlewaretoken,
+                'csrfmiddlewaretoken': self.csrfmiddlewaretoken.val(),
                 'wishlist_uuid' : item.data('list'),
                 'product_uuid' : item.data('product')
             }
+            console.log("Adding new product to shop list with data : ", data);
             self.add(data, item.data('name'));
         });
 
