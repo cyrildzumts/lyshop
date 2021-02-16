@@ -1580,7 +1580,6 @@ input.editable{
 }
 
 .modal-container{
-	width: 50%;
 	position: relative;
 	top: 30vh;
 	padding: 2em !important;
