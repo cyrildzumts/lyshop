@@ -187,7 +187,7 @@ def wishlist_ajax_remove(request):
                 context['success'] = True
                 context['status'] = True
                 context['quantity'] = WishlistItem.objects.filter(wishlists__in=[w]).count()
-                context['message'] =  prefix + " " + str(_('removed from list')) + w.name
+                context['message'] =  prefix + " " + str(_('removed from list ')) + w.name
                 return JsonResponse(context)
         else:
             logger.error(f"Form is invalid. {form.errors}")
