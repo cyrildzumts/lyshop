@@ -10,7 +10,7 @@ urlpatterns = [
     path('wishlists/delete/<uuid:wishlist_uuid>/', views.wishlist_delete, name='wishlist-delete'),
     path('wishlists/delete/', views.wishlists_delete, name='wishlists-delete'),
     path('wishlists/create/', views.wishlist_create, name='wishlist-create'),
-
+    path('wishlists/ajax-add-to-wishlist/', views.wishlist_ajax_add, name="ajax-add-to-wishlist"),
     path('wishlists/<uuid:wishlist_uuid>/add/<uuid:product_uuid>/', views.wishlist_add, name='wishlist-item-add'),
     path('wishlists/update/<uuid:wishlist_uuid>/', views.wishlist_update, name='wishlist-update'),
     path('wishlists/<uuid:wishlist_uuid>/delete/<uuid:item_uuid>/', views.wishlist_remove, name='wishlist-item-delete'),
