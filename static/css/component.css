@@ -2717,7 +2717,7 @@ table tbody tr, .mat-table tbody tr{
 	display: flex;
 	flex-direction: column;
 	padding: 2%;
-	flex: 1 23%;
+	flex: 1 13%;
 }
 
 .product-image img{
