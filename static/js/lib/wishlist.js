@@ -116,7 +116,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/wishlist/ajax-remove-from-wishlist/',
+            url : '/wishlist/wishlists/ajax-remove-from-wishlist/',
             data : data
         }
         ajax_api(option, false).then(function(response){
