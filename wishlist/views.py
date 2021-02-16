@@ -3,11 +3,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
+from django.http import HttpResponseBadRequest
+from django.http import HttpResponse, JsonResponse
 from wishlist import wishlist_service
 from wishlist import constants
 from wishlist.models import Wishlist, WishlistItem
 from catalog.models import Product
-from wishlist.forms import WishlistForm
+from wishlist.forms import WishlistForm, AddToWishlistForm
 from lyshop import utils, settings, conf as GLOBAL_CONF
 import logging
 
@@ -126,8 +128,41 @@ def wishlist_add(request, wishlist_uuid, product_uuid):
     p = get_object_or_404(Product, product_uuid=product_uuid)
     next_url = request.POST.copy().get('next_url')
     added = wishlist_service.add_to_wishlist(w, p)
+
     return redirect(next_url)
 
+@login_required
+def wishlist_ajax_add(request):
+    context = {}
+    if request.method != "POST":
+        context['error'] = 'Bad Request. POST method required'
+        context['status'] = False
+        return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
+    
+    
+    form = AddToWishlistForm(utils.get_postdata(request))
+    if form.is_valid():
+        wishlist_uuid = form.cleaned_data.get('wishlist_uuid')
+        product_uuid = form.cleaned_data.get('product_uuid')
+        w = get_object_or_404(Wishlist, customer=request.user, wishlist_uuid=wishlist_uuid)
+        p = get_object_or_404(Product, product_uuid=product_uuid)
+        added = wishlist_service.add_to_wishlist(w, p)
+        if added:
+                prefix = p.display_name 
+                context['success'] = True
+                context['status'] = True
+                context['quantity'] = WishlistItem.objects.filter(wishlists__in=[w]).count()
+                context['message'] =  prefix + " " + str(_('added to list')) + w.name
+                return JsonResponse(context)
+        else:
+            logger.error(f"Form is invalid. {form.errors}")
+            context['error'] = 'Bad Request. product missing'
+            context['status'] = False
+            return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
+    
+    context['error'] = 'Bad Request. submitted data invalid'
+    context['status'] = False
+    return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
 
 @login_required
 def wishlist_remove(request, wishlist_uuid, product_uuid):

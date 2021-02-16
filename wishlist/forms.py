@@ -23,4 +23,6 @@ class WishlistForm(forms.ModelForm):
             raise ValidationError("Name already in use.")
 
 
-
+class AddToWishlistForm(forms.Form):
+    product_uuid = forms.UUIDField()
+    wishlist_uuid = forms.UUIDField()
