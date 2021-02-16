@@ -1586,6 +1586,14 @@ input.editable{
 	padding: 2em !important;
 }
 
+.modal-container .mat-list{
+	padding: 1em !important;
+}
+
+.modal-container .mat-list .mat-list-item{
+	padding-left: 1em !important;
+}
+
 .modal-dialog{
 	position: relative;
 	width: auto;
