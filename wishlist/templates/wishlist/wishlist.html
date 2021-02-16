@@ -21,7 +21,7 @@
 {% block MAIN_CONTENT %}
 <div class="container">
         {% if queryset %}
-        <div id="products" class="products js-product-list">
+        <div id="products" class="products js-product-list grid">
                 {% include "tags/wishlist_item_snipet.html" with product_list=queryset %}
         </div>
         {% else %}
