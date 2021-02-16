@@ -1,0 +1,29 @@
+{% load i18n %}
+<div id="wishlist-dialog" class="select-dialog dialog">
+    <ul class="select-menu mat-list">
+        <li class="js-create-shop-list js-pick" data-product="{{product.product_uuid}}" data-target="create-box-wrapper"><span>{% trans "Create a new shopping list" %}</span></li>
+        {% for entry in wishlist_list %}
+        <li class="js-pick" data-list-id="{{entry.wishlist_uuid}}"><span>{{entry.name}}</span></li>
+        {% endfor %}
+    </ul>
+    <div id="create-box-wrapper" class="create-list-wrapper hidden">
+        <div class="mat-box">
+                <form class="form" name="add-wishlist" action="{% url 'wishlist:wishlist-create' %}" method="POST">{% csrf_token %}
+                    <input type="hidden" name="customer" value="{{request.user.pk}}">
+                    <input type="hidden" name="next_url" value="{{request.path}}">
+                    <input type="hidden" name="product"  value="{{product.pk}}">
+                    <div class="form-group">
+                        <label for="name">{% trans "Name" %}</label>
+                        <input id="name" type="text"  name="name" value="">
+                    </div>
+                    <div class="actions">
+                            <span class="mat-button mat-button-text js-close" data-target="create-box-wrapper">{% trans "Cancel" %}</span>
+                            <button class="mat-button mat-button-default js-submit" type="submit">{% trans "Create" %}</button>
+                    </div> 
+                </form>
+        </div>
+    </div>
+    <div class="actions">
+        <span class="mat-button mat-button-text js-dialog-close" data-target="wishlist-dialog">{% trans "Close" %}</span>
+    </div>
+</div>

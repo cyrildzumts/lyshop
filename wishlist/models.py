@@ -84,4 +84,4 @@ class WishlistItem(models.Model):
         """
         Return the image URL of the associated Product
         """
-        return self.product.image.url
+        return self.product.images.first.get_image_url()
