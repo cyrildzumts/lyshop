@@ -28,7 +28,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             var item = $(this);
             
             var data = {
-                'csrfmiddlewaretoken': self.csrfmiddlewaretoken.val(),
+                'csrfmiddlewaretoken': self.csrfmiddlewaretoken.value,
                 'wishlist_uuid' : item.data('list'),
                 'product_uuid' : item.data('product')
             }
