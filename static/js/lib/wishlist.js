@@ -161,5 +161,5 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         $('.cart .badge').text(quantity);
     }
 
-    return Cart;
+    return Wishlist;
 });
