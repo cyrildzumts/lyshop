@@ -38,7 +38,7 @@ class Wishlist(models.Model):
 class WishlistItem(models.Model):
     wishlists = models.ManyToManyField(Wishlist, related_name=constants.WISHLIST_MANY_TO_MANY_RELATED_NAME)
     product = models.ForeignKey(constants.WISHLIST_ITEM_FOREIGN_KEY, related_name=constants.WISHLIST_ITEM_RELATED_NAME, on_delete=models.CASCADE)
-
+    item_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):
         return f"WishlistItem - {self.product.display_name}"

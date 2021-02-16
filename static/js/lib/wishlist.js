@@ -35,6 +35,18 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             console.log("Adding new product to shop list with data : ", data);
             self.add(data, item.data('name'));
         });
+        $('.js-remove-from-list').on('click', function(){
+            var item = $(this);
+            
+            var data = {
+                'csrfmiddlewaretoken': self.csrfmiddlewaretoken.value,
+                'wishlist_uuid' : item.data('list'),
+                'product_uuid' : item.data('product')
+            }
+            console.log("Adding new product to shop list with data : ", data);
+            self.remove(data, item.data('name'), item.data('target'));
+        });
+        
 
 
         console.log("Wishlist initialized");
@@ -44,6 +56,27 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
 
     }
 
+    Wishlist.prototype.rename = function(data, old_name){
+        var self = this;
+        if(!data){
+            console.warn("No data for renaming wishlist");
+            return;
+        }
+        console.log("Wishlist rename : Form Data : ", data);
+        var option = {
+            type:'POST',
+            method: 'POST',
+            dataType: 'json',
+            url : '/wishlist/wishlists/ajax-rename-wishlist/',
+            data : data
+        }
+        ajax_api(option, false).then(function(response){
+            notify({level:'info', content: response.message});
+        }, function(reason){
+            console.error(reason);
+            notify({level:'warn', content:'product could not be added'});
+        });
+    }
 
     Wishlist.prototype.add = function(data, product_name){
         var self = this;
@@ -67,8 +100,9 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         });
     }
 
-    Wishlist.prototype.remove = function(data, product_name){
+    Wishlist.prototype.remove = function(data, product_name, target){
         var self = this;
+        var p_target = $('#' + target);
         if(!this.csrfmiddlewaretoken || !this.csrfmiddlewaretoken.value){
             console.warning("Wishlist add oporation not allowed: csrf_token missing");
             return;
@@ -87,6 +121,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         }
         ajax_api(option, false).then(function(response){
             notify({level:'info', content: response.message});
+            p_target.remove();
         }, function(reason){
             console.error(reason);
             notify({level:'warn', content:'product could not be added'});

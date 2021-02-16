@@ -1,9 +1,9 @@
 {% load i18n %}
 {% for p in product_list %}
 
-<div class="col-xs-6 col-2">
+<div id="id-item-{{p.pk}}" class="col-xs-6 col-2">
 
-<div class="filterable product product-card" data-name="{{p.display_name}}" data-brand="{{p.brand.id}}" data-gender="{{p.gender}}" data-price="{{p.price|floatformat:'-2'}}" data-type="{{p.product_type.id}}">
+<div class="filterable product product-card" data-name="{{p.display_name}}" data-brand="{{p.brand.id}}" data-gender="{{p.gender}}" data-price="{{p.price|floatformat:'-2'}}">
         <a class="product-wrapper-link" href="{{p.get_absolute_url}}">
         <div class="img-wrapper product-image">
         {% if p.images and p.images.first %}
@@ -16,20 +16,23 @@
         <div class="product-info">
                 <div class="col-m-12">
                         <div class="product-name left">
-                                <span class="full emphasis">{{p.brand.display_name}}</span> 
-                                <span class="full">{{p.display_name}}</span>
+                                <span class="full emphasis">{{p.product.brand.display_name}}</span> 
+                                <span class="full">{{p.product.display_name}}</span>
                         </div>
                 </div>
                 <div class="col-m-12">
-                        {% if p.is_promoted %}
+                        {% if p.product.is_promoted %}
                         <div class="price">
-                                <span class="emphasis sale-price">{{p.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span> <span class="old-price">{{p.price|floatformat:"-2"}} {% trans CURRENCY %}</span>
+                                <span class="emphasis sale-price">{{p.product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span> <span class="old-price">{{p.product.price|floatformat:"-2"}} {% trans CURRENCY %}</span>
                         </div>
                         {% else %}
                         <div class="price">
-                                <span class="emphasis">{{p.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
+                                <span class="emphasis">{{p.product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
                         </div>
                         {% endif %}
+                </div>
+                <div class="col-m-12">
+                        <span class="mat-button js-remove-from-list" data-list="{{wishlist.wishlist_uuid}}" data-name="{{p.product.display_name}}" data-product="{{p.product.product_uuid}}" data-target="id-item-{{p.pk}}" title="{% trans 'Remove from this list' %}"><i class="fas fa-trash icon"></i></span>
                 </div>
         </div><!--End of details-->
 </div>
