@@ -193,7 +193,10 @@ li.active.selected{
 .news .news-title{
     color: var(--secondary-color);
 }
-
+.modal-container{
+    background-color: #fafafa;
+    color: var(--primary-color);
+}
 .dialog{
     background-color: #fafafa;
     color: var(--primary-color);

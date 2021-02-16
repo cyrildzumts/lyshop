@@ -6,9 +6,9 @@
         </div>
         <div class="modal-content mat-box">
             <ul class="select-menu mat-list">
-                <li class="js-create-shop-list js-pick" data-product="{{product.product_uuid}}" data-target="create-box-wrapper"><span>{% trans "Create a new shopping list" %}</span></li>
+                <li class="js-create-shop-list js-pick mat-list-item" data-product="{{product.product_uuid}}" data-target="create-box-wrapper"><span>{% trans "Create a new shopping list" %}</span></li>
                 {% for entry in wishlist_list %}
-                <li class="js-pick" data-list-id="{{entry.wishlist_uuid}}" data-product="{{product.product_uuid}}"><span>{{entry.name}}</span></li>
+                <li class="js-pick mat-list-item" data-list-id="{{entry.wishlist_uuid}}" data-product="{{product.product_uuid}}"><span>{{entry.name}}</span></li>
                 {% endfor %}
             </ul>
             <div id="create-box-wrapper" class="create-list-wrapper hidden">
