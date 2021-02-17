@@ -228,10 +228,12 @@ def wishlist_ajax_create_add(request):
         else:
             logger.error(f"Form is invalid. {form.errors}")
             context['error'] = 'Bad Request. product missing'
+            
             context['status'] = False
             return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
-    logger.warning(f"Wishlist creation errors : {form.errors}")
+    logger.warning(f"Wishlist creation errors : {form.errors.get_json_data()}")
     context['error'] = 'Bad Request. submitted data invalid'
+    context['message'] = form.errors.get_json_data()
     context['status'] = False
     return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
 
