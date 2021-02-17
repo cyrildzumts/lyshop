@@ -46,6 +46,26 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             console.log("Adding new product to shop list with data : ", data);
             self.remove(data, item.data('name'), item.data('target'));
         });
+        $(".js-create-shop-list").on('click', function(){
+            var item = $(this);
+            var target = $('#' + item.data('target'));
+            item.parent().hide();
+            target.show();
+        });
+        $(".js-close-box-wrapper").on('click', function(){
+            var item = $(this);
+            var target = $('#' + item.data('target'));
+            var target_show = $('#' + item.data('show'));
+            target.hide();
+            target_show.show();
+        });
+
+        $('#add-wishlist-form').on('submit', function(event){
+            event.stopPropagation();
+            event.preventDefault();
+            console.log("simulation shoplist creation ...");
+            self.create_and_add($(this).serialize());
+        });
         
 
 
@@ -68,6 +88,28 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             method: 'POST',
             dataType: 'json',
             url : '/wishlist/wishlists/ajax-rename-wishlist/',
+            data : data
+        }
+        ajax_api(option, false).then(function(response){
+            notify({level:'info', content: response.message});
+        }, function(reason){
+            console.error(reason);
+            notify({level:'warn', content:'product could not be added'});
+        });
+    }
+
+    Wishlist.prototype.create_and_add = function(data){
+        var self = this;
+        if(!data){
+            console.warn("No data for to add to to wishlist");
+            return;
+        }
+        console.log("Add To Wishlist : Form Data : ", data);
+        var option = {
+            type:'POST',
+            method: 'POST',
+            dataType: 'json',
+            url : '/wishlist/wishlists/ajax-create-add-wishlist/',
             data : data
         }
         ajax_api(option, false).then(function(response){

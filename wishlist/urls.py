@@ -11,6 +11,7 @@ urlpatterns = [
     path('wishlists/delete/', views.wishlists_delete, name='wishlists-delete'),
     path('wishlists/create/', views.wishlist_create, name='wishlist-create'),
     path('wishlists/ajax-add-to-wishlist/', views.wishlist_ajax_add, name="ajax-add-to-wishlist"),
+    path('wishlists/ajax-create-add-wishlist/', views.wishlist_ajax_create_add, name="ajax-create-add-wishlist"),
     path('wishlists/ajax-rename-wishlist/', views.wishlist_ajax_rename, name="ajax-rename-wishlist"),
     path('wishlists/ajax-remove-from-wishlist/', views.wishlist_ajax_remove, name="ajax-remove-from-wishlist"),
     path('wishlists/<uuid:wishlist_uuid>/add/<uuid:product_uuid>/', views.wishlist_add, name='wishlist-item-add'),
