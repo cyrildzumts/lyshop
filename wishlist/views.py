@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponse, JsonResponse
+from http import HTTPStatus
 from wishlist import wishlist_service
 from wishlist import constants
 from wishlist.models import Wishlist, WishlistItem
@@ -229,7 +230,7 @@ def wishlist_ajax_create_add(request):
             context['error'] = 'Bad Request. product missing'
             context['status'] = False
             return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
-    
+    logger.warning(f"Wishlist creation errors : {form.errors}")
     context['error'] = 'Bad Request. submitted data invalid'
     context['status'] = False
     return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)

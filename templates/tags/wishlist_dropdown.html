@@ -17,7 +17,7 @@
                             <form id="add-wishlist-form" class="form" name="add-wishlist" action="{% url 'wishlist:wishlist-create' %}" method="POST">{% csrf_token %}
                                 <input type="hidden" name="customer" value="{{request.user.pk}}">
                                 <input type="hidden" name="next_url" value="{{request.path}}">
-                                <input type="hidden" name="product"  value="{{product.product_uuid}}">
+                                <input type="hidden" name="product_uuid"  value="{{product.product_uuid}}">
                                 <div class="form-group">
                                     <label for="name">{% trans "Name" %}</label>
                                     <input id="name" type="text"  name="name" value="">
