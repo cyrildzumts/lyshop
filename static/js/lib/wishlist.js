@@ -100,6 +100,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
 
     Wishlist.prototype.create_and_add = function(data){
         var self = this;
+
         if(!data){
             console.warn("No data for to add to to wishlist");
             return;
@@ -112,8 +113,12 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             url : '/wishlist/wishlists/ajax-create-add-wishlist/',
             data : data
         }
+        var wishlist_dialog = $('#wishlist-dialog');
+        var input_name = $('#name', wishlist_dialog);
         ajax_api(option, false).then(function(response){
             notify({level:'info', content: response.message});
+            input_name.val('');
+            wishlist_dialog.hide();
         }, function(reason){
             console.error(reason);
             notify({level:'warn', content:'product could not be added'});
@@ -134,8 +139,10 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             url : '/wishlist/wishlists/ajax-add-to-wishlist/',
             data : data
         }
+        var wishlist_dialog = $('#wishlist-dialog');
         ajax_api(option, false).then(function(response){
             notify({level:'info', content: response.message});
+            wishlist_dialog.hide();
         }, function(reason){
             console.error(reason);
             notify({level:'warn', content:'product could not be added'});
