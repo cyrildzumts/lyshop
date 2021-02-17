@@ -214,9 +214,9 @@ def wishlist_ajax_create_add(request):
         name = form.cleaned_data.get('name')
         product_uuid = form.cleaned_data.get('product_uuid')
         customer = User.objects.get(pk=form.cleaned_data.get('customer'))
+        p = get_object_or_404(Product, product_uuid=form.cleaned_data.get('product_uuid'))
 
         w = wishlist_service.create_wishlist({'name': name, 'customer': customer})
-        p = get_object_or_404(Product, form.cleaned_data.get('product_uuid'))
         added = wishlist_service.add_to_wishlist(w, p)
         if added:
                 prefix = p.display_name 
