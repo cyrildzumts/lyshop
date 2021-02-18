@@ -65,10 +65,9 @@
         </li>
         <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-heart icon"></i></a></li>
         <li class="mat-list-item"><a class="signout-btn mat-button mat-button-text signout" href="{% url 'accounts:logout' %}">{% trans 'Logout' %}</a></li>
-        {% else %}
-        <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:login' %}?next={{request.path}}"><i class="fas fa-user icon"></i>{% trans 'Login' %}</a></li>
+        
         {% endif %}
-      
+      <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:login' %}?next={{request.path}}"><i class="fas fa-user icon"></i>{% trans 'Login' %}</a></li>
       {% endif %}
       <li  class="mat-list-item">
         {% include "tags/language.html" %}
@@ -81,11 +80,12 @@
     </ul>
     <ul class="mat-list mobile-site-panel hidden-xl">
         {% if request.user.is_authenticated %}
-        {% if account %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}"><i class="fas fa-user icon"></i></a></li>{% endif %}
-        <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}">
-             <div class="row align-center cart"><i class="fas fa-shopping-cart icon"></i>(<span class="badge">{{cart_items_count}}</span>)</div></a>
-        </li>
-        <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-heart icon"></i></a></li>
+                {% if account %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}"><i class="fas fa-user icon"></i></a></li>{% endif %}
+                <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}">
+                        <div class="row align-center cart"><i class="fas fa-shopping-cart icon"></i>(<span class="badge">{{cart_items_count}}</span>)</div></a>
+                </li>
+                <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-heart icon"></i></a></li>
+                <li class="mat-list-item"><a class="signout-btn mat-button mat-button-text signout" href="{% url 'accounts:logout' %}">{% trans 'Logout' %}</a></li>
         {% else %}
         <li class="mat-list-item"><a class="dialog-btn mat-button mat-button-text" href="{% url 'accounts:login' %}?next={{request.path}}" data-tab="0" data-target="#signup-dialog">{% trans 'Login' %}</a></li>
        {% endif %}
