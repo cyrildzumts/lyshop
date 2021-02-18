@@ -72,6 +72,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DJANGO_EMAIL_TEMPLATE = "tags/template_email.html"
 DJANGO_EMAIL_TEMPLATE_TXT = "tags/template_email.txt"
 DJANGO_WELCOME_EMAIL_TEMPLATE = "welcome_email.html"
+DJANGO_VALIDATION_EMAIL_TEMPLATE = "validation_email.html"
 DJANGO_ORDER_CONFIRMATION_EMAIL_TEMPLATE = "tags/order_confirmation_email.html"
 
 
