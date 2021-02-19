@@ -47,7 +47,7 @@ def send_validation_mail(sender, instance, created, **kwargs):
                 'SITE_NAME': settings.SITE_NAME,
                 'SITE_HOST': settings.SITE_HOST,
                 'FULL_NAME': instance.user.get_full_name(),
-                'validation_url' : settings.SITE_HOST.join(instance.get_validation_url()) 
+                'validation_url' : settings.SITE_HOST + instance.get_validation_url()
             }
         }
         send_mail_task.apply_async(
