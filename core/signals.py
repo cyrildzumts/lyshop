@@ -41,7 +41,7 @@ def send_validation_mail(sender, instance, created, **kwargs):
         logger.debug("new user created, sending validation mail ...")
         email_context = {
             'template_name': settings.DJANGO_VALIDATION_EMAIL_TEMPLATE,
-            'title': 'Validation de votre address mail',
+            'title': 'Validation de votre adresse mail',
             'recipient_email': instance.user.email,
             'context':{
                 'SITE_NAME': settings.SITE_NAME,

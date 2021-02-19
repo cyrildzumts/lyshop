@@ -66,8 +66,7 @@ DEFAULT_FROM_EMAIL = os.environ.get('LYSHOP_DEFAULT_FROM_EMAIL', 'LYSHOP <info@l
 CONTACT_MAIL =  os.environ.get('LYSHOP_CONTACT_MAIL')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = os.environ.get('LYSHOP_EMAIL_BACKEND')
 
 DJANGO_EMAIL_TEMPLATE = "tags/template_email.html"
 DJANGO_EMAIL_TEMPLATE_TXT = "tags/template_email.txt"
