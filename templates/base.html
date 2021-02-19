@@ -66,8 +66,10 @@
                 <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-heart icon"></i></a></li>
                 {% endif %}
                 <li class="mat-list-item"><a class="signout-btn mat-button mat-button-text signout" href="{% url 'accounts:logout' %}">{% trans 'Logout' %}</a></li>
-       {% else %}
-       <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:login' %}?next={{request.path}}"><i class="fas fa-user icon"></i>{% trans 'Login' %}</a></li>
+
+        {% else %}
+        <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:login' %}?next={{request.path}}"><i class="fas fa-user icon"></i>{% trans 'Login' %}</a></li>
+
       {% endif %}
       <li  class="mat-list-item">
         {% include "tags/language.html" %}
@@ -89,7 +91,6 @@
         {% else %}
         <li class="mat-list-item"><a class="dialog-btn mat-button mat-button-text" href="{% url 'accounts:login' %}?next={{request.path}}" data-tab="0" data-target="#signup-dialog">{% trans 'Login' %}</a></li>
        {% endif %}
-        
     </ul>
 </div>
 {% endblock HEADER_PANEL %}           
