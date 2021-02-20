@@ -50,7 +50,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             var item = $(this);
             var target = $('#' + item.data('target'));
             $('#wishlist-create-error', target).text('');
-            $('#name', wishlist_dialog).val('');
+            $('#name', target).val('');
             item.parent().hide();
             target.show();
         });
@@ -60,7 +60,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             var target_show = $('#' + item.data('show'));
             target.hide();
             $('#wishlist-create-error', target).text('');
-            $('#name', wishlist_dialog).val('');
+            $('#name', target).val('');
             target_show.show();
         });
 
