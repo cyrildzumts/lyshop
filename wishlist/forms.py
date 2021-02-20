@@ -36,11 +36,8 @@ class CreateAndAddWishlistForm(forms.Form):
         super().clean()
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
-        logger.debug(f"Validating CreateAndAddWishlistForm: name : {name} - customer : {customer}")
         if Wishlist.objects.filter(name=name, customer__id=customer).exists():
-            logger.debug(f"Validating CreateAndAddWishlistForm: name : {name} - customer : {customer}")
             raise ValidationError("Name already in use.")
-        logger.debug(f"Validating CreateAndAddWishlistForm: name : {name} - customer : {customer}- Wishlist does not exist.")
 
 
 
