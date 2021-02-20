@@ -74,4 +74,7 @@ def remove_from_wishlist(w, product):
     return True
 
 def wishlist_clear(wishlist):
-    pass
+    if not isinstance(wishlist, Wishlist):
+        return False
+    wishlist.wishlist_items.clear()
+    return True

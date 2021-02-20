@@ -118,7 +118,14 @@ def wishlist_create(request):
 
 @login_required
 def wishlist_clear(request, wishlist_uuid):
-    pass
+    w = get_object_or_404(Wishlist, customer=request.user, wishlist_uuid=wishlist_uuid)
+    deleted = wishlist_service.wishlist_clear(w)
+    if deleted:
+        messages.add_message(request, messages.INFO, _("List cleared"))
+    else:
+        messages.add_message(request, messages.WARNING, _("List not cleared"))
+    
+    return redirect(w)
 
 
 @login_required
