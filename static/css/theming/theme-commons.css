@@ -207,3 +207,7 @@ li.active.selected{
     background-color: #fafafa;
     color: var(--primary-color);
 }
+
+.action{
+    color: var(--action-color);
+}
