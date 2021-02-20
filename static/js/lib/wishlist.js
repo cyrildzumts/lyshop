@@ -115,12 +115,16 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         }
         var wishlist_dialog = $('#wishlist-dialog');
         var input_name = $('#name', wishlist_dialog);
+        var error_hint = $('#wishlist-create-error', wishlist_dialog);
+
         ajax_api(option, false).then(function(response){
             notify({level:'info', content: response.message});
             input_name.val('');
             wishlist_dialog.hide();
+            error_hint.text('');
         }, function(reason){
             console.error(reason);
+            error_hint.text(reason.responseJSON.message);
             notify({level:'warn', content:'product could not be added'});
         });
     }

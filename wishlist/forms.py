@@ -32,12 +32,13 @@ class CreateAndAddWishlistForm(forms.Form):
     name = forms.CharField(max_length=64)
     customer = forms.IntegerField()
 
-    def clean(self):
+    def clean_name(self):
         super().clean()
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
         if Wishlist.objects.filter(name=name, customer__pk=customer).exists():
             raise ValidationError("Name already in use.")
+        return name
 
 
 
@@ -46,9 +47,10 @@ class RenameWishlistForm(forms.Form):
     wishlist_uuid = forms.UUIDField()
     customer = forms.IntegerField()
 
-    def clean(self):
+    def clean_name(self):
         super().clean()
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
         if Wishlist.objects.filter(name=name, customer__pk=customer).exists():
             raise ValidationError("Name already in use.")
+        return name
