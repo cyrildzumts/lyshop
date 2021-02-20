@@ -1582,7 +1582,7 @@ input.editable{
 .modal-container{
 	position: relative;
 	top: 30vh;
-	padding: 2em !important;
+	padding: 1em !important;
 }
 
 .modal-container .mat-list{
@@ -1619,7 +1619,7 @@ input.editable{
 	background-color: #fff;
 	background-clip: padding-box;
 	background-color: #fefefe;
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	/*border: 1px solid rgba(0, 0, 0, 0.2);*/
 	border-radius: .3rem;
 	outline: 0;
 	padding: 16px;
@@ -1630,8 +1630,8 @@ input.editable{
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
-	padding: 1rem 0;
-	border-bottom: 1px solid #e9ecef;
+	padding: 1em 0;
+	/*border-bottom: 1px solid #e9ecef;*/
 	border-top-left-radius: 0.3rem;
 	border-top-right-radius: 0.3rem;
 }
@@ -1639,15 +1639,15 @@ input.editable{
 .modal-body{
 	position: relative;
 	flex: 1 1 auto;
-	padding: 1rem;
+	padding: 1em;
 }
 
 .modal-footer{
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	padding: 1rem;
-	border-top: 1px solid #e9ecef;
+	padding: 1em;
+	/*border-top: 1px solid #e9ecef;*/
 }
 
 .close-modal{
