@@ -2025,8 +2025,10 @@ a.mat-button{
 	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
 				0px 1px 1px 0px rgba(0, 0, 0, 0.14),
 				0px 1px 3px 0px rgba(0,0,0,.12);
-	padding: 8px;
-	margin: 16px auto;
+
+	padding: 0.5em;
+	margin: 1em auto;
+
 }
 
 .list-links{
@@ -2059,14 +2061,11 @@ a.mat-button{
 	padding: 0 1em;
 }
 
-
-
-
 .mat-list{
 	display: block;
 	position: relative;
 	width: 100%;
-	max-height: 70em;
+	max-height: 40em;
 	overflow: auto;
 	font-size: 1em;
 	font-weight: 400;
@@ -2078,6 +2077,12 @@ a.mat-button{
 	margin: 0;
 	padding: 16px 0;
 
+}
+.select-menu.mat-list{
+	max-height: 20em !important;
+}
+.select-menu{
+	font-weight: 600;
 }
 
 .mat-list-header{
