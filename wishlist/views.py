@@ -161,7 +161,7 @@ def wishlist_ajax_add(request):
                 context['success'] = True
                 context['status'] = True
                 context['quantity'] = WishlistItem.objects.filter(wishlists__in=[w]).count()
-                context['message'] =  prefix + " " + str(_('added to list')) + w.name
+                context['message'] =  prefix + " " + str(_('added to list')) + " " + w.name
                 return JsonResponse(context)
         else:
             logger.error(f"Form is invalid. {form.errors}")
@@ -232,7 +232,7 @@ def wishlist_ajax_create_add(request):
                 context['success'] = True
                 context['wishlist'] = w.name
                 context['status'] = True
-                context['message'] =  prefix + " " + str(_('added to list')) + w.name
+                context['message'] =  prefix + " " + str(_('added to list')) + f" {w.name}"
                 return JsonResponse(context)
         else:
             logger.error(f"Form is invalid. {form.non_field_errors()}")
@@ -265,7 +265,7 @@ def wishlist_ajax_rename(request):
                 prefix = w.name
                 context['success'] = True
                 context['status'] = True
-                context['message'] =  prefix + " " + str(_('shop list renamed to')) + name
+                context['message'] =  prefix + " " + str(_('shop list renamed to')) + f" {name}"
                 return JsonResponse(context)
         else:
             logger.error(f"Form is invalid. {form.errors}")
