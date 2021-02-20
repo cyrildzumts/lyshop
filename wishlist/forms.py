@@ -36,7 +36,7 @@ class CreateAndAddWishlistForm(forms.Form):
         #super().clean()
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
-        if Wishlist.objects.filter(name=name, customer__pk=customer).exists():
+        if Wishlist.objects.filter(name=name, customer__id=customer).exists():
             raise ValidationError("Name already in use.")
         return name
 
@@ -51,6 +51,6 @@ class RenameWishlistForm(forms.Form):
         #super().clean()
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
-        if Wishlist.objects.filter(name=name, customer__pk=customer).exists():
+        if Wishlist.objects.filter(name=name, customer__id=customer).exists():
             raise ValidationError("Name already in use.")
         return name
