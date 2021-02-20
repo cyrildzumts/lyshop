@@ -49,6 +49,8 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         $(".js-create-shop-list").on('click', function(){
             var item = $(this);
             var target = $('#' + item.data('target'));
+            $('#wishlist-create-error', target).text('');
+            $('#name', wishlist_dialog).val('');
             item.parent().hide();
             target.show();
         });
@@ -57,6 +59,8 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             var target = $('#' + item.data('target'));
             var target_show = $('#' + item.data('show'));
             target.hide();
+            $('#wishlist-create-error', target).text('');
+            $('#name', wishlist_dialog).val('');
             target_show.show();
         });
 
