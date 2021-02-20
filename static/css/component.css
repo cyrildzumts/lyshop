@@ -3044,7 +3044,11 @@ table tbody tr, .mat-table tbody tr{
 	}
 	table td:last-child {
 		border-bottom: 0;
-	  }
+	}
+
+	.modal-container{
+		width: 70%;
+	}
 }
 
 

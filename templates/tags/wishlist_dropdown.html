@@ -1,6 +1,5 @@
 {% load i18n %}
 <div id="wishlist-dialog" class="select-dialog modal">
-    <div class="col-xs-12 col-3">
         <div class="mat-box modal-container">
             <div class="modal-header">
                 <h4>{% trans "My List" %}</h4>
@@ -13,7 +12,7 @@
                     {% endfor %}
                 </ul>
                 <div id="create-box-wrapper" class="create-list-wrapper hidden">
-                    <div class="mat-box">
+                    <div>
                             <form id="add-wishlist-form" class="form" name="add-wishlist" action="{% url 'wishlist:wishlist-create' %}" method="POST">{% csrf_token %}
                                 <input type="hidden" name="customer" value="{{request.user.pk}}">
                                 <input type="hidden" name="next_url" value="{{request.path}}">
@@ -41,5 +40,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
