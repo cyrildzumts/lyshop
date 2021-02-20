@@ -33,7 +33,7 @@ class CreateAndAddWishlistForm(forms.Form):
     customer = forms.IntegerField()
 
     def clean_name(self):
-        super().clean()
+        #super().clean()
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
         if Wishlist.objects.filter(name=name, customer__pk=customer).exists():
@@ -48,7 +48,7 @@ class RenameWishlistForm(forms.Form):
     customer = forms.IntegerField()
 
     def clean_name(self):
-        super().clean()
+        #super().clean()
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
         if Wishlist.objects.filter(name=name, customer__pk=customer).exists():

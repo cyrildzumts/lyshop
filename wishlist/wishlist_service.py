@@ -53,8 +53,11 @@ def delete_wishlists(id_list):
 
 
 def add_to_wishlist(w, product):
+    if not isinstance(w, Wishlist) or product is None:
+        logger.warn(f"Product {product} or wishlist {w} invalid")
+        return False
     if WishlistItem.objects.filter(product=product, wishlists__in=[w]).exists():
-        logger.warn(f"Produc {product} already presents in wishlist {wishlist}")
+        logger.warn(f"Product {product} already presents in wishlist {wishlist}")
         return False
     item, created = WishlistItem.objects.get_or_create(product=product)
     item.wishlists.add(w)
