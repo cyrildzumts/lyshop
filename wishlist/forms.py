@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from wishlist.models import Wishlist, WishlistItem
@@ -19,7 +20,7 @@ class WishlistForm(forms.ModelForm):
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
         if Wishlist.objects.filter(name=name, customer=customer).exists():
-            raise ValidationError("Name already in use.")
+            raise ValidationError(_("Name already in use."))
 
 
 class AddToWishlistForm(forms.Form):
@@ -37,7 +38,7 @@ class CreateAndAddWishlistForm(forms.Form):
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
         if Wishlist.objects.filter(name=name, customer__id=customer).exists():
-            raise ValidationError("Name already in use.")
+            raise ValidationError(_("Name already in use."))
 
 
 
@@ -52,4 +53,4 @@ class RenameWishlistForm(forms.Form):
         name = self.cleaned_data.get('name')
         customer = self.cleaned_data.get('customer')
         if Wishlist.objects.filter(name=name, customer__id=customer).exists():
-            raise ValidationError("Name already in use.")
+            raise ValidationError(_("Name already in use."))

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-21 00:45+0000\n"
+"POT-Creation-Date: 2021-02-21 00:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6836,10 +6836,12 @@ msgid "Balance Histories"
 msgstr "Historique du solde"
 
 #: wishlist/constants.py:13
-#, fuzzy
-#| msgid "Wishlist"
 msgid "Wishlists"
 msgstr "Liste de souhaits"
+
+#: wishlist/forms.py:23 wishlist/forms.py:41 wishlist/forms.py:56
+msgid "Name already in use."
+msgstr "Nom déjà utilsé"
 
 #: wishlist/templates/tags/wishlist_item_snipet.html:35
 msgid "Remove from this list"
@@ -6904,6 +6906,14 @@ msgstr "Actualiser"
 msgid "Shopping list updated"
 msgstr "Liste actualisée"
 
+#: wishlist/views.py:86
+msgid "Shopping List deleted"
+msgstr "Liste d'achat supprimée"
+
+#: wishlist/views.py:88
+msgid "Shopping List could not be deleted"
+msgstr "Liste d'achat n'a pas pu être créee"
+
 #: wishlist/views.py:103
 msgid "Shopping list created"
 msgstr "Liste d'achat créee"
@@ -6925,9 +6935,7 @@ msgid "added to list"
 msgstr "ajouté à la liste"
 
 #: wishlist/views.py:198
-#, fuzzy
-#| msgid "removed from list"
-msgid "removed from list "
+msgid "removed from list"
 msgstr "Retirée de la liste"
 
 #: wishlist/views.py:268

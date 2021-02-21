@@ -83,9 +83,9 @@ def wishlists_delete(request):
     id_list = postdata.getlist('wishlists')
     deleted = wishlist_service.delete_wishlists(id_list)
     if deleted:
-        messages.success(request, f"Shopping List  deleted")
+        messages.success(request, _("Shopping List deleted"))
     else:
-        messages.error(request, f"Shopping List could not be deleted")
+        messages.error(request, _("Shopping List could not be deleted"))
         logger.error(f"ID list invalid. Error : {id_list}")
     return redirect('wishlist:wishlist-home')
 
@@ -195,7 +195,7 @@ def wishlist_ajax_remove(request):
                 context['success'] = True
                 context['status'] = True
                 context['quantity'] = WishlistItem.objects.filter(wishlists__in=[w]).count()
-                context['message'] =  prefix + " " + str(_('removed from list ')) + w.name
+                context['message'] =  prefix + " " + str(_('removed from list')) + f" {w.name}"
                 return JsonResponse(context)
         else:
             logger.error(f"Form is invalid. {form.errors}")
