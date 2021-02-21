@@ -5745,32 +5745,25 @@ msgid "Your recent orders will be shown here."
 msgstr "Vos commandes récentes seront affichées ici."
 
 #: templates/accounts/account_details.html:9
-#, fuzzy
-#| msgid "ID card Picture"
 msgid "User Picture"
-msgstr "Image de la carte"
+msgstr "Image d'utilsateur"
 
 #: templates/accounts/account_details.html:16
-#, fuzzy
-#| msgid "Update my Account"
 msgid "Delete my Account"
-msgstr "Actualiser mon compte"
+msgstr "Suprimer mon compte"
 
 #: templates/accounts/account_details.html:42
-#, fuzzy
-#| msgid "Date of birth"
 msgid "Date of Birth"
 msgstr "Date de naissance"
 
 #: templates/accounts/account_details.html:46
 msgid "Phone"
-msgstr ""
+msgstr "Téléphone"
 
 #: templates/accounts/account_details.html:50
-#, fuzzy
-#| msgid "Delete Action"
+
 msgid "Newsletter Subscribtion"
-msgstr "Action de suppression"
+msgstr "Inscription à la Newsletter"
 
 #: templates/accounts/registration/email_validation.html:7
 #: templates/accounts/registration/registration_complete.html:7
@@ -5778,22 +5771,16 @@ msgid "Registration successful"
 msgstr "Inscription réussie"
 
 #: templates/accounts/registration/email_validation.html:17
-#, fuzzy
-#| msgid "Great !  Your email address has been verified."
-msgid ""
-"Great ! Your email address has been verified. You can now log to your "
-"account."
-msgstr "Génial ! Votre adresse e-mail a été vérifiée."
+msgid "Great! Your email address has been verified. You can now log to your account."
+msgstr "Génial! Votre adresse e-mail a été vérifiée. Vous pouvez maintenant vous connecter à votre compte."
 
 #: templates/accounts/registration/email_validation.html:18
 msgid "Go to your Account by folowing this Link "
 msgstr "Accédez à votre compte en suivant ce lien"
 
 #: templates/accounts/registration/email_validation.html:21
-#, fuzzy
-#| msgid "Soory !  Your email address could not be verified."
-msgid "Sorry ! Your email address could not be verified."
-msgstr "Désolé ! Votre adresse e-mail n'a pas pu être vérifiée."
+msgid "Sorry! Your email address could not be verified."
+msgstr "Désolé! Votre adresse e-mail n'a pas pu être vérifiée."
 
 #: templates/accounts/registration/email_validation.html:22
 msgid "Click on this link to get a new activation link "
