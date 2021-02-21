@@ -22,13 +22,14 @@
         <h4 class="center">{%trans 'Registration'%}</h4>
     </div>
     <div class="col-m-12 col-6">
+      <div>
+          <h3>{{SITE_NAME}}</h3>
+      </div>
       <form class="signup-form full" action="{% url 'accounts:register'%}" method="POST">{% csrf_token %}
         <div class="grid">
             <div class="mat-box">
               {% include "tags/form_snippet.html" with form=user_form %}
-            </div>
-            <div class="mat-box">
-                <div class="field-wrapper">
+              <div class="field-wrapper">
                     <div class="mat-input">
                       <label for="account_type">{% trans "Account type" %}</label>
                       <select name="account_type" id="account_type">
