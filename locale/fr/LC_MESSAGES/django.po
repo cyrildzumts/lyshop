@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-21 00:53+0000\n"
+"POT-Creation-Date: 2021-02-21 01:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6113,8 +6113,7 @@ msgid "You can sell your products on %(site_name)s"
 msgstr "Vous pouvez vendre vos produits chez %(site_name)s"
 
 #: templates/business_overview.html:24 templates/business_overview.html:57
-#: templates/customer_overview.html:24 templates/home.html:38
-#: templates/home.html:42
+#: templates/customer_overview.html:24
 msgid "Discover"
 msgstr "Découvrir"
 
@@ -6426,6 +6425,14 @@ msgstr "Vous pouvez l'obtenir chez %(site_name)s"
 #: templates/home.html:33
 msgid "Your online shop in Gabon"
 msgstr "Votre boutique en ligne au Gabon"
+
+#: templates/home.html:38
+msgid "Our catalog"
+msgstr "Notre Catalogue"
+
+#: templates/home.html:42
+msgid "Discover Our Catalog"
+msgstr "Découvrez nos Catalogue"
 
 #: templates/home.html:50
 msgid "Perfumes"
