@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-21 10:04+0000\n"
+"POT-Creation-Date: 2021-02-21 10:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3973,17 +3973,13 @@ msgid "User Information"
 msgstr "Information sur l'utilisateur"
 
 #: dashboard/templates/dashboard/user_detail.html:17
-#, fuzzy
-#| msgid "Send Mail"
 msgid "Send Welcome Mail"
-msgstr "Envoyer un Mail"
+msgstr "Envoyer un Mail de Bienvenu"
 
 #: dashboard/templates/dashboard/user_detail.html:19
 #: templates/accounts/account.html:15
-#, fuzzy
-#| msgid "Send me a Validation link"
 msgid "Send Validation Link"
-msgstr "Envoyez-moi un lien de validation"
+msgstr "Envoyer le lien de validation"
 
 #: dashboard/templates/dashboard/user_detail.html:22
 msgid "Add Balance"
