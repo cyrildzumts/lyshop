@@ -15,6 +15,9 @@
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:user-delete' user_instance.pk %}"><i class="fas fa-remove icon"></i><span>{% trans "Delete" %}</span></a>
                     <a class="mat-button mat-button-text" href="{% url 'dashboard:send-welcome-mail' user_instance.pk %}"><i class="fas fa-envelope icon"></i><span>{% trans "Send Welcome Mail" %}</span></a>
+                    {% if user_instance.account and not user_instance.account.email_validated %}
+                        <a class="mat-button mat-button-text" href="{% url 'accounts:send-validation' user_instance.account.account_uuid %}">{% trans "Send Validation Link" %}</a>
+                    {% endif %}
                     {% if not has_balance and can_have_balance %}
                         <a class="mat-button mat-button-text" href="{% url 'dashboard:create-vendor-balance' user_instance.pk %}"><i class="fas fa-plus icon"></i><span>{% trans "Add Balance" %}</span></a>
                     {% endif %}
@@ -54,6 +57,9 @@
                                 <div class="entry">
                                         <span class="key">{% trans "E-Mail" %}</span> <span class="value">{{user_instance.email}}</span>
                                 </div>
+                                <div class="entry">
+                                        <span class="key">{% trans "User is Active" %}</span> <span class="value">{{user_instance.is_active|yesno}}</span>
+                                </div>
                                 
                         </div>
                         
@@ -70,6 +76,12 @@
                                 </div>
                                 <div class="entry">
                                         <span class="key">{% trans "Account Type" %}</span> <span class="value">{{user_instance.account.account_type|account_type_value}}</span>
+                                </div>
+                                <div class="entry">
+                                        <span class="key">{% trans "Email is Validated" %}</span> <span class="value">{{user_instance.account.email_validated|yesno}}</span>
+                                </div>
+                                <div class="entry">
+                                        <span class="key">{% trans "Account is Active" %}</span> <span class="value">{{user_instance.account.is_active|yesno}}</span>
                                 </div>
                         </div>
                         {% endif %}

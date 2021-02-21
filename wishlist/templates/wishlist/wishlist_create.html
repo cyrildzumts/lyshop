@@ -1,0 +1,17 @@
+{% extends "wishlist_base.html"%}
+{% load i18n %}
+{% block HEADER_BANNER %}
+
+
+<div class="container">
+    <div class="actions xs-column">
+            <a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-plus icon"></i>  {% trans "Shopping List" %}</a>
+            <a class="mat-button mat-button-text" href="{% url 'catalog:catalog-home' %}"> {% trans "Continue Shopping" %}</a>
+    </div><!--End of Banner-Actions-->
+</div><!--End of Container-->
+    
+{% endblock HEADER_BANNER %}
+
+{% block MAIN_CONTENT %}
+{% include "tags/wishlist_form.html" %}
+{% endblock MAIN_CONTENT %}

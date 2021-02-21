@@ -1,0 +1,32 @@
+{% load i18n %}
+    <div class="mat-table-wrapper">
+        <form action="{% url 'wishlist:wishlists-delete' %}" method="POST">{% csrf_token %}
+        <table id="wishlist-list" class="mat-table js-filter-table">
+            <div class="actions">
+                    <button class="js-activable mat-button mat-button-outlined" disabled><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button>
+            </div>
+          <thead>
+                  
+                  <tr>
+                        <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
+                        <th scope="col">{% trans "Name" %}</th>
+                        <th scope="col">{% trans "Article Count" %}</th>
+                        <th scope="col"></th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for w in wishlist_list  %}
+                  <tr>
+                  <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="wishlists" value="{{w.pk}}"><span class="checkbox-label"></span></label></td>
+                  <td data-label="{% trans 'Name' %}">{{w.name}}</td>
+                  <td data-label="{% trans 'Article Count' %}">{{w}}</td>
+                  
+                  <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{{w.get_absolute_url}}"><i class="fas fa-eye icon"></i><span>{% trans "Open" %}</span></a></td>
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+        </table>
+        </form>
+    {% include "tags/pagination.html" with page_set=wishlist_list %}
+    </div><!--End of Table Wrapper-->

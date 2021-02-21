@@ -1,0 +1,38 @@
+{% extends "wishlist_base.html"%}
+{% load i18n %}
+
+{% block HEADER_BANNER %}
+<div>
+<h1>{{wishlist.name}}</h1>
+<h3>{% trans "Articles" %} : {{queryset.count}}</h3>
+</div>
+
+<div class="container">
+    <div class="actions xs-column">
+            <a class="mat-button mat-button-text" href="{{wishlist.get_clear_url}}"> {% trans "Clear" %}</a>
+            <a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-create' %}"><i class="fas fa-plus icon"></i>  {% trans "Add new wishlist" %}</a>
+            <a class="mat-button mat-button-text" href="{{wishlist.get_update_url}}"><i class="fas fa-pen icon"></i>  {% trans "Rename" %}</a>
+            <a class="mat-button mat-button-text" href="{% url 'catalog:catalog-home' %}"> {% trans "Continue Shopping" %}</a>
+            <a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-shopping-cart icon"></i>{% trans "Shopping List" %}</a>
+    </div><!--End of Banner-Actions-->
+</div><!--End of Container-->
+    
+{% endblock HEADER_BANNER %}
+
+{% block MAIN_CONTENT %}
+<div class="container wishlist-component">
+        {% if queryset %}
+        <div id="products" class="products js-product-list grid">
+                {% include "tags/wishlist_item_snipet.html" with product_list=queryset %}
+        </div>
+        {% else %}
+        <div class="mat-box">
+        <p>{% trans "You have no product in your wishlist to display yet." %}</p>
+        <p>{% trans "As soon as you add products, they will be displayed here." %}</p>
+        <p>{% trans "Please add product into your wishlist and try again later" %}</p>
+        </div>
+        {% endif %}
+        
+</div>
+
+{% endblock MAIN_CONTENT %}

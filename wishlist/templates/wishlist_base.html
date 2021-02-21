@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+{% load i18n %}
+{% load static %} 
+{% block META_REDIRECT %}
+        
+{% endblock META_REDIRECT %}
+{% block NEWS %}
+{% if news %}
+<div class="news">
+    <span class="news-title">{% trans news.title %}</span>
+    <div class="news-content">{% trans news.content %}</div>
+</div>
+{% endif %}
+{% endblock NEWS %}
+
+{% block MAIN %}
+
+<div class="main container">
+
+    <div class="full">
+        {% block MAIN_CONTENT %}
+        {% endblock MAIN_CONTENT %}
+    </div>
+</div>
+{% endblock MAIN %}
+
+{% block SCRIPT %}
+
+{% endblock SCRIPT %}

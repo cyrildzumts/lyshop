@@ -31,6 +31,7 @@ from cart.forms import AddCartForm
 from core.filters import filters
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from wishlist import wishlist_service
 
 from operator import itemgetter
 from catalog import catalog_service, constants as Constants
@@ -182,6 +183,7 @@ def product_detail(request, product_uuid=None):
     images = ProductImage.objects.filter(product=product)
     common_attrs, selective_attrs = catalog_service.get_product_attributes(product.id)
     product_attrs = catalog_service.product_attributes(product.id)
+    wishlist_list = wishlist_service.get_wishlists({'customer': request.user})
 
     context = {
         'page_title': page_title,
@@ -193,7 +195,8 @@ def product_detail(request, product_uuid=None):
         'OG_TITLE' : page_title,
         'OG_DESCRIPTION': product.short_description,
         'OG_IMAGE': request.build_absolute_uri(product.images.first().get_image_url()),
-        'OG_URL': request.build_absolute_uri()
+        'OG_URL': request.build_absolute_uri(),
+        'wishlist_list' : wishlist_list
     }
     return render(request,template_name, context)
 

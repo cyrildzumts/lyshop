@@ -1,0 +1,43 @@
+{% load i18n %}
+<div id="wishlist-dialog" class="select-dialog modal">
+        <div class="mat-box modal-container">
+            <div class="modal-header">
+                <h4>{% trans "Shopping List" %}</h4>
+            </div>
+            <div class="modal-content mat-box mat-list-wrapper">
+                <ul id="select-menu-list" class="select-menu mat-list">
+                    <li class="js-create-shop-list js-pick mat-list-item action" data-product="{{product.product_uuid}}" data-target="create-box-wrapper"><span>{% trans "Create a new shopping list" %}</span></li>
+                    {% for entry in wishlist_list %}
+                    <li class="js-add-to-wishlist js-pick mat-list-item" data-list="{{entry.wishlist_uuid}}" data-product="{{product.product_uuid}}" data-name="{{product.display_name}}"><span>{{entry.name}}</span></li>
+                    {% endfor %}
+                </ul>
+                <div id="create-box-wrapper" class="create-list-wrapper hidden">
+                    <div>
+                            <form id="add-wishlist-form" class="form" name="add-wishlist" action="{% url 'wishlist:wishlist-create' %}" method="POST">{% csrf_token %}
+                                <input type="hidden" name="customer" value="{{request.user.pk}}">
+                                <input type="hidden" name="next_url" value="{{request.path}}">
+                                <input type="hidden" name="product_uuid"  value="{{product.product_uuid}}">
+                                <div class="form-group">
+                                    <label for="name">{% trans "Name" %}</label>
+                                    <input id="name" type="text"  name="name" value="">
+                                    <span id="wishlist-create-error" class="error hidden"></span>
+                                </div>
+                                <div class="description">
+                                <p>{% trans "Use the lists to save the articles that interest you to find them later." %}</p>
+                                <p>{% trans "You can find your lists in the shopping list category in your account." %}</p>
+                                </div>
+                                <div class="actions">
+                                        <span class="mat-button mat-button-text js-close-box-wrapper" data-target="create-box-wrapper" data-show="select-menu-list">{% trans "Cancel" %}</span>
+                                        <button class="mat-button mat-button-default js-submit " type="submit">{% trans "Create" %}</button>
+                                </div> 
+                            </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="actions">
+                    <span class="mat-button mat-button-text close-modal js-close-modal" data-target="wishlist-dialog">{% trans "Close" %}</span>
+                </div>
+            </div>
+        </div>
+</div>

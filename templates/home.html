@@ -35,11 +35,11 @@
     </div><!--End of Banner Content-->
   {% if discover %}
    <div class="banner--actions">
-    <a class="mat-button mat-button-default" href="#"> {% trans 'Discover' %} {{site_name}}</a>
+    <a class="mat-button mat-button-default" href="#"> {% trans 'Our catalog' %} {{site_name}}</a>
   </div><!--End of Banner Actions-->
   {% else %}
   <div class="banner--actions">
-    <a class="mat-button mat-button-default" href="{% url 'catalog:catalog-home' %}"> {% trans 'Discover' %} {{site_name}}</a>
+    <a class="mat-button mat-button-default" href="{% url 'catalog:catalog-home' %}"> {% trans 'Discover Our Catalog' %}</a>
   </div><!--End of Banner Actions-->
   {% endif %}
   <div class="container banner-container">

@@ -25,6 +25,7 @@ def site_context(request):
         'dev_mode' : settings.DEV_MODE,
         'cart_items_count': cart_items_count,
         'CURRENCY' : settings.CURRENCY,
+        'next_url' : request.path,
         'ship_modes' : shipment_service.get_ship_modes(),
         'payment_methods' : orders_service.get_payment_methods(),
     }
