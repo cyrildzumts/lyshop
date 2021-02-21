@@ -4,6 +4,19 @@
 {% load order_tag %}
 {% block MAIN %}
 
+
+{% if not account.email_validated %}
+<div class="container">
+        <div class="mat-box">
+                <p>{% trans "You have not yet validated your email address." %}</p>
+                <p>{% trans "We have already sent you a validation link to your email address." %}</p>
+                <p>{% trans "Please click on the validation link sent to you." %}</p>
+                <p>{% trans "Click on the link below to receive a new activation link." %}</p>
+                <p><a class="mat-button mat-button-text" href="{% url 'accounts:send-validation' account.account_uuid %}">{% trans "Send Validation Link" %}</a></p>
+        </div>
+</div>
+
+{% else %}
 <div class="flex">
     <h3>{% trans "Account Summary" %}</h3>
 </div>
@@ -54,4 +67,8 @@
    {% endif %}
    
 </div>
+
+
+
+{% endif %}
 {% endblock MAIN %}

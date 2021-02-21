@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-21 02:14+0000\n"
+"POT-Creation-Date: 2021-02-21 10:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1461,7 +1461,7 @@ msgstr "Solde"
 #: shipment/templates/shipment/shipment_home.html:31
 #: shipment/templates/shipment/shipment_list.html:41
 #: shipment/templates/shipment/shipment_list.html:51
-#: templates/accounts/account.html:23 templates/accounts/account.html:38
+#: templates/accounts/account.html:36 templates/accounts/account.html:51
 #: vendors/templates/vendor_tags/product_list_template.html:30
 #: vendors/templates/vendor_tags/product_list_template.html:48
 #: vendors/templates/vendor_tags/sold_product_list_template.html:24
@@ -2269,7 +2269,7 @@ msgstr "Catégorie"
 #: orders/templates/orders/order_list.html:33
 #: payment/templates/payment/payment_home.html:28
 #: payment/templates/payment/payment_home.html:37
-#: templates/accounts/account.html:19 templates/accounts/account.html:30
+#: templates/accounts/account.html:32 templates/accounts/account.html:43
 #: vendors/templates/vendors/brand_product_detail.html:70
 msgid "Amount"
 msgstr "Montant"
@@ -2381,7 +2381,7 @@ msgstr "description"
 #: shipment/templates/shipment/shipment_home.html:30
 #: shipment/templates/shipment/shipment_list.html:40
 #: shipment/templates/shipment/shipment_list.html:50
-#: templates/accounts/account.html:22 templates/accounts/account.html:37
+#: templates/accounts/account.html:35 templates/accounts/account.html:50
 #: vendors/templates/vendors/balance_histories.html:38
 #: vendors/templates/vendors/balance_histories.html:47
 #: vendors/templates/vendors/payment_list.html:30
@@ -2417,7 +2417,7 @@ msgstr "Ouvert"
 #: payment/templates/payment/policy_list.html:54
 #: shipment/templates/shipment/shipment_home.html:31
 #: shipment/templates/shipment/shipment_list.html:51
-#: templates/accounts/account.html:38
+#: templates/accounts/account.html:51
 #: vendors/templates/vendors/payment_list.html:41
 #: vendors/templates/vendors/product_detail.html:92
 #: vendors/templates/vendors/product_detail.html:101
@@ -2598,7 +2598,7 @@ msgstr "Vendeur"
 #: shipment/templates/shipment/shipment_home.html:29
 #: shipment/templates/shipment/shipment_list.html:39
 #: shipment/templates/shipment/shipment_list.html:49
-#: templates/accounts/account.html:20 templates/accounts/account.html:31
+#: templates/accounts/account.html:33 templates/accounts/account.html:44
 #: vendors/templates/vendors/coupon_detail.html:19
 #: vendors/templates/vendors/coupon_list.html:36
 #: vendors/templates/vendors/coupon_list.html:49
@@ -2656,7 +2656,7 @@ msgid "Create User Account"
 msgstr "Créer un compte utilisateur"
 
 #: dashboard/templates/dashboard/dashboard.html:20
-#: templates/accounts/account.html:13
+#: templates/accounts/account.html:26
 msgid "Recent Orders"
 msgstr "Commandes recentes"
 
@@ -3979,6 +3979,7 @@ msgid "Send Welcome Mail"
 msgstr "Envoyer un Mail"
 
 #: dashboard/templates/dashboard/user_detail.html:19
+#: templates/accounts/account.html:15
 #, fuzzy
 #| msgid "Send me a Validation link"
 msgid "Send Validation Link"
@@ -5414,7 +5415,7 @@ msgid "Shipment Home"
 msgstr "Accueil d'expédition"
 
 #: shipment/templates/shipment/order_ready_list.html:37
-#: templates/accounts/account.html:18
+#: templates/accounts/account.html:31
 #: vendors/templates/vendors/order_list.html:42
 msgid "Order Reference"
 msgstr "Reference de la commande"
@@ -5533,8 +5534,8 @@ msgid "Shipment Update"
 msgstr "Actualiser"
 
 #: shipment/templates/shipment/shipment_update.html:42
-#: templates/accounts/account.html:21 templates/accounts/account.html:33
-#: templates/accounts/account.html:35
+#: templates/accounts/account.html:34 templates/accounts/account.html:46
+#: templates/accounts/account.html:48
 msgid "Shipment Status"
 msgstr "Statut d'Expédition"
 
@@ -5728,19 +5729,37 @@ msgstr "Les articles commandés ont été retournés à temps."
 msgid "max. 7 days after delivery"
 msgstr "Max. 7 jours après la livraison"
 
-#: templates/accounts/account.html:8
+#: templates/accounts/account.html:11
+msgid "You have not yet validated your email address."
+msgstr "Vous n'avez encore validé votre adresse email."
+
+#: templates/accounts/account.html:12
+msgid "We have already sent you a validation link to your email address."
+msgstr ""
+"Nous vous avons déjà envoyé un lien de validation à votre adresse email."
+
+#: templates/accounts/account.html:13
+msgid "Please click on the validation link sent to you."
+msgstr "Veuillez cliquer sur le lien de validation qui vous a été envoyé."
+
+#: templates/accounts/account.html:14
+msgid "Click on the link below to receive a new activation link."
+msgstr ""
+"Cliquer sur le lien ci-dessous pour recevoir un nouveau lien d'activation."
+
+#: templates/accounts/account.html:21
 msgid "Account Summary"
 msgstr "Information sur le compte"
 
-#: templates/accounts/account.html:35
+#: templates/accounts/account.html:48
 msgid "No shipment information"
 msgstr "Aucune information d'expédition"
 
-#: templates/accounts/account.html:51
+#: templates/accounts/account.html:64
 msgid "You have not order any product yet."
 msgstr "Vous n'avez encore commandé aucun produit"
 
-#: templates/accounts/account.html:52
+#: templates/accounts/account.html:65
 msgid "Your recent orders will be shown here."
 msgstr "Vos commandes récentes seront affichées ici."
 
@@ -5761,7 +5780,6 @@ msgid "Phone"
 msgstr "Téléphone"
 
 #: templates/accounts/account_details.html:50
-
 msgid "Newsletter Subscribtion"
 msgstr "Inscription à la Newsletter"
 
@@ -5771,8 +5789,11 @@ msgid "Registration successful"
 msgstr "Inscription réussie"
 
 #: templates/accounts/registration/email_validation.html:17
-msgid "Great! Your email address has been verified. You can now log to your account."
-msgstr "Génial! Votre adresse e-mail a été vérifiée. Vous pouvez maintenant vous connecter à votre compte."
+msgid ""
+"Great! Your email address has been verified. You can now log to your account."
+msgstr ""
+"Génial! Votre adresse e-mail a été vérifiée. Vous pouvez maintenant vous "
+"connecter à votre compte."
 
 #: templates/accounts/registration/email_validation.html:18
 msgid "Go to your Account by folowing this Link "
