@@ -22,8 +22,10 @@
         
     </div>
     <div class="col-m-12 col-6">
-      <div class="row">
+      <div class="row padding-1x">
           <h3>{{SITE_NAME}}</h3>
+      </div>
+      <div class="row padding-1x">
           <h4>{%trans 'Registration'%}</h4>
       </div>
       <form class="signup-form full" action="{% url 'accounts:register'%}" method="POST">{% csrf_token %}
