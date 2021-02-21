@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-21 10:10+0000\n"
+"POT-Creation-Date: 2021-02-21 16:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,12 +89,17 @@ msgstr ""
 #: shipment/templates/shipment/ship_mode_create.html:50
 #: shipment/templates/shipment/ship_mode_update.html:62
 #: shipment/templates/shipment/shipment_update.html:64
-#: templates/accounts/account_details.html:77
-#: templates/accounts/registration/password_change.html:38
+#: templates/accounts/account_details.html:78
+#: templates/accounts/registration/password_change.html:37
 #: templates/accounts/registration/password_reset_confirm.html:28
 #: templates/accounts/registration/password_reset_form.html:36
 #: templates/accounts/registration/register.html:43
 #: templates/accounts/registration/vendor_register.html:45
+#: templates/registration/password_change.html:37
+#: templates/registration/password_reset_confirm.html:28
+#: templates/registration/password_reset_form.html:32
+#: templates/registration/register.html:43
+#: templates/registration/vendor_register.html:45
 #: templates/tags/signup_dialog.html:35 templates/tags/signup_dialog.html:57
 #: templates/tags/wishlist_dropdown.html:30
 #: vendors/templates/vendor_tags/brand_creation_form.html:37
@@ -169,7 +174,7 @@ msgstr "Créer"
 #: dashboard/templates/dashboard/address_update.html:24
 #: dashboard/templates/dashboard/addressbook.html:46
 #: dashboard/templates/dashboard/user_detail.html:55
-#: templates/accounts/account_details.html:30
+#: templates/accounts/account_details.html:31
 #: templates/tags/registration_form.html:11
 #: templates/tags/signup_dialog.html:48
 msgid "Firstname"
@@ -184,7 +189,7 @@ msgstr "Prénom"
 #: dashboard/templates/dashboard/address_update.html:28
 #: dashboard/templates/dashboard/addressbook.html:49
 #: dashboard/templates/dashboard/user_detail.html:52
-#: templates/accounts/account_details.html:34
+#: templates/accounts/account_details.html:35
 #: templates/tags/registration_form.html:15
 #: templates/tags/signup_dialog.html:49
 msgid "Lastname"
@@ -907,7 +912,8 @@ msgstr ""
 msgid "Your shopping cart is empty"
 msgstr "Votre panier est vide"
 
-#: cart/templates/cart_base.html:12
+#: cart/templates/cart_base.html:12 templates/base.html:63
+#: templates/base.html:87
 msgid "Cart"
 msgstr "Panier"
 
@@ -2647,6 +2653,8 @@ msgstr "Appuyez sur Ctrl pour sélectionner plusieurs valeurs"
 #: dashboard/templates/dashboard/create_user.html:22
 #: templates/accounts/registration/register.html:22
 #: templates/accounts/registration/vendor_register.html:22
+#: templates/registration/register.html:22
+#: templates/registration/vendor_register.html:22
 #: templates/tags/signup_dialog.html:7
 msgid "Registration"
 msgstr "Enrégistrement"
@@ -2951,6 +2959,8 @@ msgstr "Utilisateurs"
 #: dashboard/templates/dashboard/new_user.html:30
 #: templates/accounts/registration/register.html:44
 #: templates/accounts/registration/vendor_register.html:46
+#: templates/registration/register.html:44
+#: templates/registration/vendor_register.html:46
 msgid "Create My Account"
 msgstr "Créer mon compte"
 
@@ -4000,10 +4010,10 @@ msgstr "Vendeur Pay"
 #: dashboard/templates/dashboard/user_detail.html:49
 #: dashboard/templates/dashboard/user_list.html:37
 #: dashboard/templates/dashboard/user_list.html:48
-#: templates/accounts/account_details.html:26
+#: templates/accounts/account_details.html:27
 #: templates/accounts/registration/login.html:26
-#: templates/tags/registration_form.html:7 templates/tags/signup_dialog.html:30
-#: templates/tags/signup_dialog.html:47
+#: templates/registration/login.html:26 templates/tags/registration_form.html:7
+#: templates/tags/signup_dialog.html:30 templates/tags/signup_dialog.html:47
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
@@ -4044,12 +4054,12 @@ msgid "Balance"
 msgstr "Solde"
 
 #: dashboard/templates/dashboard/user_detail.html:100
-#: templates/accounts/account_details.html:69
+#: templates/accounts/account_details.html:70
 msgid "Date joined"
 msgstr "Date d'arrivée"
 
 #: dashboard/templates/dashboard/user_detail.html:103
-#: templates/accounts/account_details.html:60
+#: templates/accounts/account_details.html:61
 msgid "Last login"
 msgstr "Dernière connexion"
 
@@ -4071,8 +4081,8 @@ msgid "No"
 msgstr "Non"
 
 #: dashboard/templates/dashboard_base.html:18
-#: dashboard/templates/dashboard_base.html:71 templates/base.html:68
-#: templates/base.html:90 vendors/templates/vendor_base.html:60
+#: dashboard/templates/dashboard_base.html:71 templates/base.html:69
+#: templates/base.html:92 vendors/templates/vendor_base.html:60
 msgid "Logout"
 msgstr "Se déconnecter"
 
@@ -4271,7 +4281,7 @@ msgstr "Filter les entrées"
 
 #: dashboard/templates/tags/caseissue_form.html:17
 #: dashboard/templates/tags/idcard_form.html:19
-#: templates/accounts/account_details.html:78
+#: templates/accounts/account_details.html:79
 msgid "Send"
 msgstr "Envoyer"
 
@@ -5097,6 +5107,8 @@ msgstr "Vérifcation"
 #: orders/templates/orders/checkout.html:30
 #: templates/accounts/registration/password_reset_confirm.html:7
 #: templates/accounts/registration/password_reset_done.html:8
+#: templates/registration/password_reset_confirm.html:7
+#: templates/registration/password_reset_done.html:8
 msgid "Confirmation"
 msgstr "Confirmation"
 
@@ -5168,8 +5180,9 @@ msgid "Shipping Mode"
 msgstr "Mode de livraison"
 
 #: orders/templates/tags/checkout_address.html:25
-#: templates/accounts/account_details.html:38
+#: templates/accounts/account_details.html:39
 #: templates/accounts/registration/password_reset_form.html:31
+#: templates/registration/password_reset_form.html:27
 msgid "Email"
 msgstr "Email"
 
@@ -5199,6 +5212,8 @@ msgstr ""
 #: orders/templates/tags/checkout_failed_content.html:6
 #: orders/templates/tags/checkout_success_content.html:8
 #: templates/accounts/registration/email_validation.html:19
+#: templates/base.html:62 templates/base.html:86
+#: templates/registration/email_validation.html:19
 msgid "My Account"
 msgstr "Mon compte"
 
@@ -5764,27 +5779,36 @@ msgid "User Picture"
 msgstr "Image d'utilsateur"
 
 #: templates/accounts/account_details.html:16
+#, fuzzy
+#| msgid "Change Password"
+msgid "Change password"
+msgstr "Modifier le mot de passe"
+
+#: templates/accounts/account_details.html:17
 msgid "Delete my Account"
 msgstr "Suprimer mon compte"
 
-#: templates/accounts/account_details.html:42
+#: templates/accounts/account_details.html:43
 msgid "Date of Birth"
 msgstr "Date de naissance"
 
-#: templates/accounts/account_details.html:46
+#: templates/accounts/account_details.html:47
 msgid "Phone"
 msgstr "Téléphone"
 
-#: templates/accounts/account_details.html:50
+#: templates/accounts/account_details.html:51
 msgid "Newsletter Subscribtion"
 msgstr "Inscription à la Newsletter"
 
 #: templates/accounts/registration/email_validation.html:7
 #: templates/accounts/registration/registration_complete.html:7
+#: templates/registration/email_validation.html:7
+#: templates/registration/registration_complete.html:7
 msgid "Registration successful"
 msgstr "Inscription réussie"
 
 #: templates/accounts/registration/email_validation.html:17
+#: templates/registration/email_validation.html:17
 msgid ""
 "Great! Your email address has been verified. You can now log to your account."
 msgstr ""
@@ -5792,26 +5816,32 @@ msgstr ""
 "connecter à votre compte."
 
 #: templates/accounts/registration/email_validation.html:18
+#: templates/registration/email_validation.html:18
 msgid "Go to your Account by folowing this Link "
 msgstr "Accédez à votre compte en suivant ce lien"
 
 #: templates/accounts/registration/email_validation.html:21
+#: templates/registration/email_validation.html:21
 msgid "Sorry! Your email address could not be verified."
 msgstr "Désolé! Votre adresse e-mail n'a pas pu être vérifiée."
 
 #: templates/accounts/registration/email_validation.html:22
+#: templates/registration/email_validation.html:22
 msgid "Click on this link to get a new activation link "
 msgstr "Cliquez sur ce lien pour obtenir un nouveau lien d'activation"
 
 #: templates/accounts/registration/email_validation.html:23
+#: templates/registration/email_validation.html:23
 msgid "Send me a Validation link"
 msgstr "Envoyez-moi un lien de validation"
 
 #: templates/accounts/registration/email_validation.html:24
+#: templates/registration/email_validation.html:24
 msgid "Home Page"
 msgstr "Page d'accueille"
 
 #: templates/accounts/registration/login.html:32
+#: templates/registration/login.html:32
 #: templates/tags/registration_form.html:23
 #: templates/tags/signup_dialog.html:31
 msgid "Password"
@@ -5819,105 +5849,130 @@ msgstr "Mot de passe"
 
 #: templates/accounts/registration/login.html:37
 #: templates/accounts/registration/password_reset_form.html:17
+#: templates/registration/login.html:37
+#: templates/registration/password_reset_form.html:16
 msgid "Forgot your password ?"
 msgstr "Mot de passe oublié ?"
 
 #: templates/accounts/registration/login.html:40
 #: templates/accounts/registration/password_reset_complete.html:11
-#: templates/base.html:71 templates/base.html:92
+#: templates/base.html:72 templates/base.html:94
+#: templates/registration/login.html:40
+#: templates/registration/password_reset_complete.html:11
 #: templates/tags/signup_dialog.html:34
 msgid "Login"
 msgstr "Connexion"
 
 #: templates/accounts/registration/login.html:43
+#: templates/registration/login.html:43
 msgid "New here ? "
 msgstr "Vous êtes nouveau ?"
 
 #: templates/accounts/registration/login.html:43
+#: templates/registration/login.html:43
 msgid "Register"
 msgstr "S'enregistrer"
 
-#: templates/accounts/registration/password_change.html:6
+#: templates/accounts/registration/password_change.html:7
+#: templates/registration/password_change.html:7
 msgid "CHANGE PASSWORD"
 msgstr "CHANGER LE MOT DE PASSE"
 
-#: templates/accounts/registration/password_change.html:8
-msgid "Change your password"
-msgstr "Modifier votre mot de passe"
-
-#: templates/accounts/registration/password_change.html:20
+#: templates/accounts/registration/password_change.html:19
+#: templates/registration/password_change.html:19
 msgid ""
 "Your password should not be too similar to your other personal information"
 msgstr ""
 "Votre mot de passe ne doit pas trop ressembler à vos autres information "
 "personnelles"
 
-#: templates/accounts/registration/password_change.html:21
+#: templates/accounts/registration/password_change.html:20
+#: templates/registration/password_change.html:20
 msgid "Your password must contain at least 8 characters"
 msgstr "Votre mot de passe doit contenir au moins 8 caractères"
 
-#: templates/accounts/registration/password_change.html:22
+#: templates/accounts/registration/password_change.html:21
+#: templates/registration/password_change.html:21
 msgid "Your password cannot be a commonly used password"
 msgstr "Votre mot de passe ne peut pas être un mot de passe couramment utilisé"
 
-#: templates/accounts/registration/password_change.html:23
+#: templates/accounts/registration/password_change.html:22
+#: templates/registration/password_change.html:22
 msgid "Your password must not be entirely numeric"
 msgstr "Votre mot de passe ne doit pas être entièrement numerique"
 
-#: templates/accounts/registration/password_change.html:28
+#: templates/accounts/registration/password_change.html:27
+#: templates/registration/password_change.html:27
 msgid "Old password"
 msgstr "Ancien mot de passe"
 
-#: templates/accounts/registration/password_change.html:31
+#: templates/accounts/registration/password_change.html:30
 #: templates/accounts/registration/password_reset_confirm.html:20
+#: templates/registration/password_change.html:30
+#: templates/registration/password_reset_confirm.html:20
 msgid "New password"
 msgstr "Nouveau mot de passe"
 
-#: templates/accounts/registration/password_change.html:34
+#: templates/accounts/registration/password_change.html:33
 #: templates/accounts/registration/password_reset_confirm.html:24
+#: templates/registration/password_change.html:33
+#: templates/registration/password_reset_confirm.html:24
 msgid "Confirm password"
 msgstr "Confirmez le mot de passe"
 
-#: templates/accounts/registration/password_change.html:39
+#: templates/accounts/registration/password_change.html:38
+#: templates/registration/password_change.html:38
 msgid "Change Password"
 msgstr "Modifier le mot de passe"
 
 #: templates/accounts/registration/password_change_done.html:6
+#: templates/registration/password_change_done.html:7
 msgid "PASSWORD CHANGED"
 msgstr "MOT DE PASSE CHANGÉ"
 
 #: templates/accounts/registration/password_change_done.html:8
+#: templates/registration/password_change_done.html:16
 msgid "Your password has been changed successfully"
 msgstr "Votre mot de passe a été modifié avec succèss"
 
 #: templates/accounts/registration/password_change_done.html:9
 #: templates/accounts/registration/password_reset_complete.html:7
+#: templates/registration/password_change_done.html:17
+#: templates/registration/password_reset_complete.html:7
 msgid "Back to home page"
 msgstr "Retour à la page d'acceuille"
 
 #: templates/accounts/registration/password_reset_complete.html:6
+#: templates/registration/password_reset_complete.html:6
 msgid "Password changed"
 msgstr "Mot de passe modifié"
 
 #: templates/accounts/registration/password_reset_confirm.html:5
+#: templates/registration/password_reset_confirm.html:5
 msgid "Password reset confirmation"
 msgstr "Confirmation de réinitialisation de mot de passe"
 
 #: templates/accounts/registration/password_reset_confirm.html:8
 #: templates/accounts/registration/password_reset_done.html:9
 #: templates/accounts/registration/password_reset_form.html:9
+#: templates/registration/password_reset_confirm.html:8
+#: templates/registration/password_reset_done.html:9
+#: templates/registration/password_reset_form.html:9
 msgid "Home page"
 msgstr "Page d'accueille"
 
 #: templates/accounts/registration/password_reset_confirm.html:17
+#: templates/registration/password_reset_confirm.html:17
 msgid "Please enter your new password twice."
 msgstr "Veuillez entrer votre nouveau mot de passe deux fois s'il vous plaît."
 
 #: templates/accounts/registration/password_reset_confirm.html:29
+#: templates/registration/password_reset_confirm.html:29
 msgid "Change"
 msgstr "Modifier"
 
 #: templates/accounts/registration/password_reset_confirm.html:34
+#: templates/registration/password_reset_confirm.html:34
 msgid ""
 "The reset password link is invalid. Make a new request if you want to reset "
 "your password"
@@ -5927,10 +5982,14 @@ msgstr ""
 
 #: templates/accounts/registration/password_reset_done.html:6
 #: templates/accounts/registration/password_reset_form.html:8
+#: templates/registration/password_reset_done.html:6
+#: templates/registration/password_reset_form.html:8
+#: templates/registration/password_reset_subject.txt:2
 msgid "Password reset"
 msgstr "Réinitialisation du mot de passe"
 
 #: templates/accounts/registration/password_reset_done.html:17
+#: templates/registration/password_reset_done.html:17
 msgid ""
 "We have sent you an email with instructions on how to reset your password."
 msgstr ""
@@ -5938,10 +5997,12 @@ msgstr ""
 "votre mot de passe."
 
 #: templates/accounts/registration/password_reset_done.html:18
+#: templates/registration/password_reset_done.html:18
 msgid "You should receive it in a moment."
 msgstr "Vous devriez le recevoir dans un instant."
 
 #: templates/accounts/registration/password_reset_done.html:20
+#: templates/registration/password_reset_done.html:20
 msgid ""
 "Check that you have given the correct email address, the one with which you "
 "registered with us."
@@ -5950,6 +6011,7 @@ msgstr ""
 "vous vous êtes enrégistré chez nous."
 
 #: templates/accounts/registration/password_reset_done.html:22
+#: templates/registration/password_reset_done.html:22
 msgid "Also check your spam."
 msgstr "Vérifier aussi vos spams."
 
@@ -5988,14 +6050,17 @@ msgstr ""
 "mot de passe à l'adresse"
 
 #: templates/accounts/registration/password_reset_email.html:25
+#: templates/registration/password_reset_email.html:7
 msgid "Please follow this link and choose a new password"
 msgstr "Veuillez suivre ce lien et choisissez un nouveau mot de passe"
 
 #: templates/accounts/registration/password_reset_email.html:29
+#: templates/registration/password_reset_email.html:10
 msgid "Your username, in case you forgot it"
 msgstr "Votre nom d'utilisateur, au cas où vous l'aurez oublié"
 
 #: templates/accounts/registration/password_reset_email.html:31
+#: templates/registration/password_reset_email.html:12
 msgid "Thank you for using our site!"
 msgstr "Merci d'utiliser notre site!"
 
@@ -6005,6 +6070,7 @@ msgid "Team %(site_name)s"
 msgstr "L'équipe %(site_name)s"
 
 #: templates/accounts/registration/password_reset_form.html:18
+#: templates/registration/password_reset_form.html:17
 msgid ""
 "Fill in your Email address in the field below and we'll send you "
 "instructions on how to reset your password."
@@ -6013,58 +6079,79 @@ msgstr ""
 "enverrons des instructions sur comment remettre votre mot de passe à zero"
 
 #: templates/accounts/registration/password_reset_form.html:26
+#: templates/registration/password_reset_form.html:22
 msgid "We will never ask you for your password."
 msgstr "Nous ne vous demanderons jamais votre mot passe."
 
 #: templates/accounts/registration/password_reset_form.html:37
+#: templates/registration/password_reset_form.html:33
 msgid "Reset"
 msgstr "Reinitialiser"
 
 #: templates/accounts/registration/register.html:33
 #: templates/accounts/registration/vendor_register.html:33
+#: templates/registration/register.html:33
+#: templates/registration/vendor_register.html:33
 #: templates/tags/registration_form.html:45
 msgid "Account type"
 msgstr "Type de compte"
 
 #: templates/accounts/registration/register.html:35
 #: templates/accounts/registration/vendor_register.html:35
+#: templates/registration/register.html:35
+#: templates/registration/vendor_register.html:35
 #: templates/tags/registration_form.html:47
 msgid "Select an Account Type"
 msgstr "Choisissez un type de compte"
 
 #: templates/accounts/registration/register.html:47
 #: templates/accounts/registration/vendor_register.html:49
+#: templates/registration/register.html:47
+#: templates/registration/vendor_register.html:49
 msgid "Already have an account ? "
 msgstr "Vous avez déjà un compte ?"
 
 #: templates/accounts/registration/register.html:47
 #: templates/accounts/registration/vendor_register.html:49
+#: templates/registration/register.html:47
+#: templates/registration/vendor_register.html:49
 msgid "Sign In"
 msgstr "Se connecter"
 
 #: templates/accounts/registration/registration_complete.html:15
+#: templates/registration/registration_complete.html:15
 msgid "You account has been successfully created."
 msgstr "Votre compte a été créé avec succès."
 
 #: templates/accounts/registration/registration_complete.html:16
+#: templates/registration/registration_complete.html:16
 msgid "A verification mail has been sent to your email"
 msgstr "Un E-mail de vérification a été envoyé à votre e-mail"
 
 #: templates/accounts/registration/registration_complete.html:17
+#: templates/registration/registration_complete.html:17
 msgid "Please open email and follows the described steps"
 msgstr "Ouvrer votre E-mail, suivez les étapes affichées"
 
 #: templates/accounts/registration/registration_complete.html:18
+#: templates/registration/registration_complete.html:18
 msgid "Once your email has been verified, you will able to place orders."
 msgstr "Une fois votre email vérifié, vous pourrez passer des commandes."
 
 #: templates/accounts/registration/registration_complete.html:19
+#: templates/registration/registration_complete.html:19
 msgid "Discover our Products"
 msgstr "Découvrez nos produits"
 
 #: templates/base.html:54
 msgid "Catalog"
 msgstr "Catalogue"
+
+#: templates/base.html:60
+#, fuzzy
+#| msgid "Vendor Panel"
+msgid "Vendor Panal"
+msgstr "Espace Vendeur"
 
 #: templates/base.html:60 vendors/templates/vendors/brand_detail.html:25
 #: vendors/templates/vendors/brand_list.html:14
@@ -6079,19 +6166,19 @@ msgstr "Catalogue"
 msgid "Vendor Panel"
 msgstr "Espace Vendeur"
 
-#: templates/base.html:79
+#: templates/base.html:80
 msgid "Enable Grid"
 msgstr "Activer la Grille"
 
-#: templates/base.html:143
+#: templates/base.html:145
 msgid "ONLINE SHOP"
 msgstr "MAGASIN EN LIGNE"
 
-#: templates/base.html:146
+#: templates/base.html:148
 msgid "About us"
 msgstr "À propos de nous"
 
-#: templates/base.html:147
+#: templates/base.html:149
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -6443,6 +6530,17 @@ msgstr "Parfums"
 #: templates/home.html:79 templates/home.html:84
 msgid "Electronics"
 msgstr "Electronique"
+
+#: templates/registration/password_reset_email.html:5
+msgid ""
+"You are receiving this email because you requested to reset your password"
+msgstr ""
+"Vous recevez cet e-mail, car vous avez demandé la réinitialisation de votre "
+"mot de passe"
+
+#: templates/registration/password_reset_email.html:14
+msgid "Sincerely"
+msgstr ""
 
 #: templates/site_account_base.html:10
 msgid "Welcome"
@@ -6942,6 +7040,9 @@ msgstr "Retirée de la liste"
 #: wishlist/views.py:268
 msgid "shop list renamed to"
 msgstr "liste d'achat renommée en"
+
+#~ msgid "Change your password"
+#~ msgstr "Modifier votre mot de passe"
 
 #, fuzzy
 #~| msgid "Category List"
