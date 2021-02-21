@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-21 02:08+0000\n"
+"POT-Creation-Date: 2021-02-21 02:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6430,7 +6430,7 @@ msgstr "Notre Catalogue"
 
 #: templates/home.html:42
 msgid "Discover Our Catalog"
-msgstr "Découvrez notre Catalogue"
+msgstr "Découvrir notre Catalogue"
 
 #: templates/home.html:50
 msgid "Perfumes"
