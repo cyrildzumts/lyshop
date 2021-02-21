@@ -4,7 +4,7 @@
 {% block HEADER_BANNER %}
 <div>
 <h1>{{wishlist.name}}</h1>
-<h3>{{queryset.count}}</h3>
+<h3>{% trans "Articles" %} : {{queryset.count}}</h3>
 </div>
 
 <div class="container">
@@ -13,6 +13,7 @@
             <a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-create' %}"><i class="fas fa-plus icon"></i>  {% trans "Add new wishlist" %}</a>
             <a class="mat-button mat-button-text" href="{{wishlist.get_update_url}}"><i class="fas fa-pen icon"></i>  {% trans "Rename" %}</a>
             <a class="mat-button mat-button-text" href="{% url 'catalog:catalog-home' %}"> {% trans "Continue Shopping" %}</a>
+            <a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-shopping-cart icon"></i>{% trans "Shopping List" %}</a>
     </div><!--End of Banner-Actions-->
 </div><!--End of Container-->
     
