@@ -442,6 +442,7 @@ a.button{
 .header .header--panel{
   display: flex;
   flex-direction: row;
+  align-items: center;
   position: relative;
   width: 100%;
   padding: 0;
