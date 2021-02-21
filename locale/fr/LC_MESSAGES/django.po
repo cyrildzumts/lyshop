@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-21 01:05+0000\n"
+"POT-Creation-Date: 2021-02-21 01:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1392,10 +1392,8 @@ msgid "Out of Stock"
 msgstr "En rupture de stock"
 
 #: catalog/templates/tags/add_to_wishlist.html:3
-#, fuzzy
-#| msgid "Add to Cart"
-msgid "Add to a list"
-msgstr "Ajouter au panier"
+msgid "Add to my list"
+msgstr "Ajouter à mes listes"
 
 #: catalog/templates/tags/category_nav.html:7
 #: dashboard/templates/dashboard/product_detail.html:45
@@ -6450,7 +6448,7 @@ msgstr "Bienvenu"
 msgid "Account Details"
 msgstr "Détails du compte"
 
-#: templates/site_account_base.html:25
+#: templates/site_account_base.html:25 templates/tags/wishlist_dropdown.html:5
 #: wishlist/templates/wishlist/wishlist.html:16
 #: wishlist/templates/wishlist/wishlist_create.html:8
 #: wishlist/templates/wishlist/wishlist_home.html:6
@@ -6638,12 +6636,6 @@ msgstr "Airtel Money"
 #: templates/tags/unauthorized.html:4
 msgid "The requested Page was not found."
 msgstr "La page demandée est introuvable."
-
-#: templates/tags/wishlist_dropdown.html:5
-#, fuzzy
-#| msgid "Category List"
-msgid "My List"
-msgstr "Liste de catégories"
 
 #: templates/tags/wishlist_dropdown.html:9
 #, fuzzy
@@ -6948,6 +6940,11 @@ msgstr "Retirée de la liste"
 #: wishlist/views.py:268
 msgid "shop list renamed to"
 msgstr "liste d'achat renommée en"
+
+#, fuzzy
+#~| msgid "Category List"
+#~ msgid "My List"
+#~ msgstr "Liste de catégories"
 
 #~ msgid "Please log in to your account"
 #~ msgstr "Veuillez vous connecter à votre compte"
