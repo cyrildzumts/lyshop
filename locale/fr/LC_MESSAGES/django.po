@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-21 00:23+0000\n"
+"POT-Creation-Date: 2021-02-21 00:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6448,10 +6448,8 @@ msgstr "Détails du compte"
 #: wishlist/templates/wishlist/wishlist_create.html:8
 #: wishlist/templates/wishlist/wishlist_home.html:6
 #: wishlist/templates/wishlist/wishlist_update.html:8 wishlist/views.py:97
-#, fuzzy
-#| msgid "Shipping Date"
 msgid "Shopping List"
-msgstr "Date d'expédition"
+msgstr "Liste d'achat"
 
 #: templates/tags/amount_filter.html:4
 msgid "Filter the list by Amount field"
@@ -6650,11 +6648,15 @@ msgstr "Créer un compte"
 #: wishlist/templates/wishlist/wishlist_home.html:9
 msgid ""
 "Use the lists to save the articles that interest you to find them later."
-msgstr "Utiliser les listes pour sauvegarder les articles qui vous intéressent pour les rétrouver plus tard."
+msgstr ""
+"Utiliser les listes pour sauvegarder les articles qui vous intéressent pour "
+"les rétrouver plus tard."
 
 #: templates/tags/wishlist_dropdown.html:27
 msgid "You can find your lists in the shopping list category in your account."
-msgstr "Vous pouvez retrouver vos listes dans la catégorie liste d'achats dans votre compte."
+msgstr ""
+"Vous pouvez retrouver vos listes dans la catégorie liste d'achats dans votre "
+"compte."
 
 #: vendors/templates/vendor_base.html:26
 #: vendors/templates/vendors/vendor_home.html:27
@@ -6845,7 +6847,6 @@ msgstr "Retirer de cette liste"
 
 #: wishlist/templates/tags/wishlists_snippet.html:13
 #: wishlist/templates/tags/wishlists_snippet.html:22
-
 msgid "Article Count"
 msgstr "Nombre d'article"
 
@@ -6859,17 +6860,14 @@ msgstr "Articles"
 
 #: wishlist/templates/wishlist/wishlist.html:13
 #: wishlist/templates/wishlist/wishlist_home.html:15
-
 msgid "Add new wishlist"
 msgstr "Ajouter une nouvelle liste"
 
 #: wishlist/templates/wishlist/wishlist.html:14
-
 msgid "Rename"
 msgstr "Renommer"
 
 #: wishlist/templates/wishlist/wishlist.html:30
-
 msgid "You have no product in your wishlist to display yet."
 msgstr "Il n'y a pas encore de produits à afficher."
 
@@ -6879,7 +6877,8 @@ msgstr "Dès que les produits seront disponibles, ils seront affichés ici."
 
 #: wishlist/templates/wishlist/wishlist.html:32
 msgid "Please add product into your wishlist and try again later"
-msgstr "Veuillez ajouter le produit à votre liste de souhaits et réessayer plus tard"
+msgstr ""
+"Veuillez ajouter le produit à votre liste de souhaits et réessayer plus tard"
 
 #: wishlist/templates/wishlist/wishlist_home.html:7
 msgid "Lists"
@@ -6910,7 +6909,6 @@ msgid "Shopping list created"
 msgstr "Liste d'achat créee"
 
 #: wishlist/views.py:107
-
 msgid "Shopping list not created"
 msgstr "Liste d'achat non crée"
 
@@ -6919,7 +6917,6 @@ msgid "List cleared"
 msgstr "Liste effacée"
 
 #: wishlist/views.py:126
-
 msgid "List not cleared"
 msgstr "Liste non effacée"
 
@@ -6928,7 +6925,9 @@ msgid "added to list"
 msgstr "ajouté à la liste"
 
 #: wishlist/views.py:198
-msgid "removed from list"
+#, fuzzy
+#| msgid "removed from list"
+msgid "removed from list "
 msgstr "Retirée de la liste"
 
 #: wishlist/views.py:268
