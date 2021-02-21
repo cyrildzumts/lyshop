@@ -2614,6 +2614,11 @@ table tbody tr, .mat-table tbody tr{
 	font-size: 0.875em !important;
 	padding: 0.5em 1em !important;
 }
+
+.mobile-site-panel .mat-list-item{
+	padding-left: 1em;
+}
+
 .site-panel  .mat-button, .mobile-site-panel .mat-button{
 	min-width: 0;
 	justify-content: start !important;
