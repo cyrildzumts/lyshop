@@ -31,3 +31,9 @@ body {
   padding: 0;
 }
 
+p{
+  padding: 1em;
+  text-decoration: none;
+  text-align: left;
+}
+
