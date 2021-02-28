@@ -57,7 +57,7 @@
       {% endif %}
       
       {% if request.user.is_authenticated %}
-                {% if is_seller %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}" title="{% trans 'Vendor Panal' %}"><i class="fas fa-handshake icon"></i> {% trans "Vendor Panel" %}</a></li>{% endif %}
+                {% if is_seller %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}" title="{% trans 'Vendor Panel' %}"><i class="fas fa-handshake icon"></i> {% trans "Vendor Panel" %}</a></li>{% endif %}
                 {% if account %}
                 <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}" title="{% trans 'My Account' %}"><i class="fas fa-user"></i></a></li>
                 <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}" title="{% trans 'Cart' %}">

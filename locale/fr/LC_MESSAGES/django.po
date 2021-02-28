@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-27 11:46+0000\n"
+"POT-Creation-Date: 2021-02-28 21:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1032,8 +1032,6 @@ msgid "Mocassins | Buy online | LYSHOP"
 msgstr "Mocassins | Acheter en ligne | LYSHOP"
 
 #: catalog/constants.py:92
-#, fuzzy
-#| msgid "Eau De Toilette | Buy online | LYSHOP"
 msgid "Sneakers | Sport shoes | Buy online | LYSHOP"
 msgstr "Sneakers | Chaussures de sport | Acheter en ligne | LYSHOP"
 
@@ -1372,14 +1370,10 @@ msgid "Back"
 msgstr "Retour"
 
 #: catalog/templates/catalog/product_list.html:19
-#, fuzzy
-#| msgid "There are no products to display yet."
 msgid "There are no products to display."
 msgstr "Il n'y a pas encore de produits à afficher."
 
 #: catalog/templates/catalog/product_list.html:20
-#, fuzzy
-#| msgid "As soon as Products are available, they will be displayed here."
 msgid "As soon as Product are available, they will be listed here."
 msgstr "Dès que les produits seront disponibles, ils seront affichés ici."
 
@@ -2968,10 +2962,8 @@ msgstr "Créer mon compte"
 #: dashboard/templates/dashboard/news_detail.html:63
 #: dashboard/templates/dashboard/news_list.html:17
 #: dashboard/templates/dashboard/news_update.html:7 dashboard/views.py:4679
-#, fuzzy
-#| msgid "New Address"
 msgid "New News"
-msgstr "Nouvelle Adresse"
+msgstr "Nouvelle News"
 
 #: dashboard/templates/dashboard/news_create.html:14
 #: dashboard/templates/dashboard/news_detail.html:65
@@ -2992,19 +2984,15 @@ msgstr "Titre"
 
 #: dashboard/templates/dashboard/news_create.html:37
 #: dashboard/templates/dashboard/news_update.html:37
-#, fuzzy
-#| msgid "Contact"
 msgid "Content"
-msgstr "Contact"
+msgstr "Contenu"
 
 #: dashboard/templates/dashboard/news_create.html:42
 #: dashboard/templates/dashboard/news_list.html:49
 #: dashboard/templates/dashboard/news_list.html:60
 #: dashboard/templates/dashboard/news_update.html:42
-#, fuzzy
-#| msgid "Start on"
 msgid "Start"
-msgstr "Commence le"
+msgstr "Début"
 
 #: dashboard/templates/dashboard/news_create.html:46
 #: dashboard/templates/dashboard/news_update.html:46
@@ -3045,10 +3033,8 @@ msgstr "Dernière modification par"
 #: dashboard/templates/dashboard/news_detail.html:47
 #: dashboard/templates/dashboard/refund_detail.html:44
 #: dashboard/templates/dashboard/refund_update.html:44
-#, fuzzy
-#| msgid "Last changed by"
 msgid "Last changed"
-msgstr "Dernière modification par"
+msgstr "Dernière modification"
 
 #: dashboard/templates/dashboard/order_detail.html:9
 #: dashboard/templates/dashboard/order_item.html:10
@@ -3105,10 +3091,9 @@ msgid "Orders"
 msgstr "Commandes"
 
 #: dashboard/templates/dashboard/order_detail.html:28
-#, fuzzy
-#| msgid "Confirmation"
+
 msgid "Order Confirmation Mail"
-msgstr "Confirmation"
+msgstr "Email de Confirmation de commande"
 
 #: dashboard/templates/dashboard/order_detail.html:34
 msgid "Mark order as paid"
@@ -3885,10 +3870,9 @@ msgstr "Mode de Paiement"
 #: dashboard/templates/dashboard/refund_list.html:37
 #: dashboard/templates/dashboard/refund_update.html:58
 #: dashboard/templates/dashboard_base.html:51
-#, fuzzy
-#| msgid "Refund"
+
 msgid "Refunds"
-msgstr "Remboursement"
+msgstr "Remboursements"
 
 #: dashboard/templates/dashboard/refund_list.html:43
 msgid "Update Selected Refunds"
@@ -3896,22 +3880,16 @@ msgstr "Actualiser la selection"
 
 #: dashboard/templates/dashboard/refund_list.html:54
 #: dashboard/templates/dashboard/refund_list.html:67
-#, fuzzy
-#| msgid "Order Reference"
 msgid "Order Ref"
 msgstr "Reference de la commande"
 
 #: dashboard/templates/dashboard/refund_update.html:72
-#, fuzzy
-#| msgid "Date joined"
 msgid "Declined"
-msgstr "Date d'arrivée"
+msgstr "Réfusé(é)"
 
 #: dashboard/templates/dashboard/refund_update.html:74
-#, fuzzy
-#| msgid "Select a Gender"
 msgid "Select a Declined reason"
-msgstr "Choisissez un genre"
+msgstr "Choisissez la raison du réfus"
 
 #: dashboard/templates/dashboard/reports.html:12
 msgid "REPORTS"
@@ -4024,26 +4002,20 @@ msgid "E-Mail"
 msgstr "E-Mail"
 
 #: dashboard/templates/dashboard/user_detail.html:61
-#, fuzzy
-#| msgid "Is Active"
 msgid "User is Active"
-msgstr "Est actif"
+msgstr "L'utilisateur est actif"
 
 #: dashboard/templates/dashboard/user_detail.html:78
 msgid "Account Type"
 msgstr "type de compte"
 
 #: dashboard/templates/dashboard/user_detail.html:81
-#, fuzzy
-#| msgid "Validate"
 msgid "Email is Validated"
-msgstr "Valider"
+msgstr "Email validée"
 
 #: dashboard/templates/dashboard/user_detail.html:84
-#, fuzzy
-#| msgid "Account type"
 msgid "Account is Active"
-msgstr "Type de compte"
+msgstr "Le compte est actif"
 
 #: dashboard/templates/dashboard/user_detail.html:91
 #: templates/site_account_base.html:18 vendors/templates/vendor_base.html:17
@@ -4087,10 +4059,8 @@ msgid "Logout"
 msgstr "Se déconnecter"
 
 #: dashboard/templates/dashboard_base.html:24
-#, fuzzy
-#| msgid "Product Details"
 msgid "Products Settings"
-msgstr "Détails du produit"
+msgstr "Réglages des produits"
 
 #: dashboard/templates/dashboard_base.html:32
 #: vendors/templates/vendor_base.html:55
@@ -4109,10 +4079,8 @@ msgid "Products Attributes"
 msgstr "Attributs de produits"
 
 #: dashboard/templates/dashboard_base.html:44
-#, fuzzy
-#| msgid "Average Payments"
 msgid "Orders & Payments"
-msgstr "Moyenne de Paiements"
+msgstr "Commandes & Paiements"
 
 #: dashboard/templates/dashboard_base.html:53
 #: shipment/templates/shipment/ship_mode_create.html:11
@@ -4126,10 +4094,8 @@ msgid "Shipments"
 msgstr "Envoies"
 
 #: dashboard/templates/dashboard_base.html:59
-#, fuzzy
-#| msgid "Update Group"
 msgid "Users & Groups"
-msgstr "Actualiser"
+msgstr "Utilisateurs & Groupes"
 
 #: dashboard/templates/dashboard_base.html:64
 msgid "Token"
@@ -4185,30 +4151,24 @@ msgstr "Visiteurs unique"
 
 #: dashboard/templates/tags/analytics.html:60
 #: dashboard/templates/tags/dashboard_summary.html:30
-#, fuzzy
-#| msgid "Visitors"
 msgid "Facebook Visitors"
-msgstr "Visiteurs"
+msgstr "Visiteurs Facebook"
 
 #: dashboard/templates/tags/analytics.html:69
 #: dashboard/templates/tags/dashboard_summary.html:34
-#, fuzzy
-#| msgid "Visitors"
 msgid "Google Visitors"
-msgstr "Visiteurs"
+msgstr "Visiteurs Google"
 
 #: dashboard/templates/tags/analytics.html:78
-#, fuzzy
-#| msgid "Visitors"
+
 msgid "Visitors Chart"
-msgstr "Visiteurs"
+msgstr "Diagrame de Visiteurs"
 
 #: dashboard/templates/tags/analytics.html:86
 #: dashboard/templates/tags/dashboard_summary.html:38
-#, fuzzy
-#| msgid "Unique Visitors"
+
 msgid "Suspicious Visitors"
-msgstr "Visiteurs unique"
+msgstr "Visiteurs suspects"
 
 #: dashboard/templates/tags/attribute_form.html:6
 #: dashboard/templates/tags/bulk_attributes_form.html:6
@@ -4286,10 +4246,9 @@ msgid "Send"
 msgstr "Envoyer"
 
 #: dashboard/templates/tags/category_creation_form.html:28
-#, fuzzy
-#| msgid "Select a parent Category"
+
 msgid "Select a page title"
-msgstr "Selectionner une categorie mère"
+msgstr "Selectionner le titre"
 
 #: dashboard/templates/tags/category_creation_form.html:33
 msgid "Category Code"
@@ -4851,52 +4810,36 @@ msgid "Error when updating PaymentMethod"
 msgstr "Erreur à la mise à jour de  PaymentMethod"
 
 #: dashboard/views.py:4612
-#, fuzzy
-#| msgid "Brand updated"
 msgid "Refund updated"
-msgstr "Marque actualisée"
+msgstr "Remboursement actualisée"
 
 #: dashboard/views.py:4616
-#, fuzzy
-#| msgid "Brand not updated"
 msgid "Refund not updated"
-msgstr "Marque non actualisée"
+msgstr "Remboursement non actualisé"
 
 #: dashboard/views.py:4695
-#, fuzzy, python-brace-format
-#| msgid "User {name} created"
 msgid "News {news} created"
-msgstr "Utilsateur {name} créé"
+msgstr "News {news} créé"
 
 #: dashboard/views.py:4699
-#, fuzzy
-#| msgid "Address not created"
 msgid "News not created"
-msgstr "Nouvelle adresse non créee"
+msgstr "News non créee"
 
 #: dashboard/views.py:4725
-#, fuzzy
-#| msgid "Last Update"
 msgid "News Update"
-msgstr "Dernière mise à jour"
+msgstr "Actualisation de la News"
 
 #: dashboard/views.py:4735
-#, fuzzy
-#| msgid "Address updated"
 msgid "News updated"
-msgstr "Adresse actualisée"
+msgstr "News actualisée"
 
 #: dashboard/views.py:4739
-#, fuzzy
-#| msgid "Address not updated"
 msgid "News not updated"
-msgstr "Adresse non actualisée"
+msgstr "News non actualisée"
 
 #: dashboard/views.py:4752
-#, fuzzy
-#| msgid "Address deleted"
 msgid "News deleted"
-msgstr "Adresse supprimée"
+msgstr "News supprimée"
 
 #: lyshop/settings.py:29
 msgid ""
@@ -5082,22 +5025,16 @@ msgid "ARTICLE NOT RETURNED ON TIME"
 msgstr "ARTICLE NON RETOURNÉ À TEMPS"
 
 #: orders/commons.py:180
-#, fuzzy
-#| msgid "Confirmation"
 msgid "Order Confirmation"
-msgstr "Confirmation"
+msgstr "Confirmation de la commande"
 
 #: orders/commons.py:183
-#, fuzzy
-#| msgid "Group Delete Confirmation"
 msgid "Order Cancell Confirmation"
-msgstr "Confirmation de suppression de groupe"
+msgstr "Confirmation de l'annulation de la commande"
 
 #: orders/commons.py:186
-#, fuzzy
-#| msgid "No shipment information"
 msgid "Shipment Confirmation"
-msgstr "Aucune information d'expédition"
+msgstr "Confirmation de l'envoi"
 
 #: orders/templates/orders/checkout.html:17
 msgid "Verification"
@@ -5779,8 +5716,6 @@ msgid "User Picture"
 msgstr "Image d'utilsateur"
 
 #: templates/accounts/account_details.html:16
-#, fuzzy
-#| msgid "Change Password"
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
@@ -5816,7 +5751,6 @@ msgstr ""
 "connecter à votre compte."
 
 #: templates/accounts/registration/email_validation.html:18
-#: templates/registration/email_validation.html:18
 msgid "Go to your Account by folowing this Link "
 msgstr "Accédez à votre compte en suivant ce lien"
 
@@ -5826,7 +5760,6 @@ msgid "Sorry! Your email address could not be verified."
 msgstr "Désolé! Votre adresse e-mail n'a pas pu être vérifiée."
 
 #: templates/accounts/registration/email_validation.html:22
-#: templates/registration/email_validation.html:22
 msgid "Click on this link to get a new activation link "
 msgstr "Cliquez sur ce lien pour obtenir un nouveau lien d'activation"
 
@@ -6148,21 +6081,6 @@ msgid "Catalog"
 msgstr "Catalogue"
 
 #: templates/base.html:60
-#, fuzzy
-#| msgid "Vendor Panel"
-msgid "Vendor Panal"
-msgstr "Espace Vendeur"
-
-#: templates/base.html:60 vendors/templates/vendors/brand_detail.html:25
-#: vendors/templates/vendors/brand_list.html:14
-#: vendors/templates/vendors/brand_product_detail.html:13
-#: vendors/templates/vendors/brand_update.html:12
-#: vendors/templates/vendors/coupon_create.html:13
-#: vendors/templates/vendors/coupon_list.html:11
-#: vendors/templates/vendors/order_item.html:27
-#: vendors/templates/vendors/order_item_update.html:26
-#: vendors/templates/vendors/product_detail.html:72
-#: vendors/templates/vendors/product_variant_detail.html:62
 msgid "Vendor Panel"
 msgstr "Espace Vendeur"
 
@@ -6277,8 +6195,6 @@ msgid "Are you looking for something new ?"
 msgstr "Recherchez-vous quelque chose de nouveau ?"
 
 #: templates/customer_overview.html:17
-#, fuzzy, python-format
-#| msgid "You can get it at %(site_name)s"
 msgid "You can get it by %(site_name)s"
 msgstr "Vous pouvez l'obtenir chez %(site_name)s"
 
@@ -6531,6 +6447,14 @@ msgstr "Parfums"
 msgid "Electronics"
 msgstr "Electronique"
 
+#: templates/registration/email_validation.html:18
+msgid "Go to your Account by following this link"
+msgstr "Accédez à votre compte en suivant ce lien"
+
+#: templates/registration/email_validation.html:22
+msgid "Click on this link to get a new activation link"
+msgstr "Cliquez sur ce lien pour obtenir un nouveau lien d'activation"
+
 #: templates/registration/password_reset_email.html:5
 msgid ""
 "You are receiving this email because you requested to reset your password"
@@ -6540,7 +6464,7 @@ msgstr ""
 
 #: templates/registration/password_reset_email.html:14
 msgid "Sincerely"
-msgstr ""
+msgstr "Cordialement"
 
 #: templates/site_account_base.html:10
 msgid "Welcome"
@@ -6784,22 +6708,16 @@ msgid "Max Payments"
 msgstr "Paiements maximum"
 
 #: vendors/templates/vendor_tags/product_attribute_creation_form.html:10
-#, fuzzy
-#| msgid "Enter the percent to apply"
 msgid "Enter the service category"
-msgstr "Saisir lle pourcentage à appliquer"
+msgstr "Saisir la categorie"
 
 #: vendors/templates/vendor_tags/product_attribute_creation_form.html:11
-#, fuzzy
-#| msgid "Enter the Operator name"
 msgid "Enter the category name"
-msgstr "Saisir le nom vendeur"
+msgstr "Saisir le nom"
 
 #: vendors/templates/vendor_tags/product_attribute_creation_form.html:16
-#, fuzzy
-#| msgid "Create at"
 msgid "Create category"
-msgstr "Crée le"
+msgstr "Créer"
 
 #: vendors/templates/vendor_tags/product_creation_form.html:34
 #: vendors/templates/vendors/product_create.html:42
@@ -7041,101 +6959,3 @@ msgstr "Retirée de la liste"
 msgid "shop list renamed to"
 msgstr "liste d'achat renommée en"
 
-#~ msgid "Change your password"
-#~ msgstr "Modifier votre mot de passe"
-
-#, fuzzy
-#~| msgid "Category List"
-#~ msgid "My List"
-#~ msgstr "Liste de catégories"
-
-#~ msgid "Please log in to your account"
-#~ msgstr "Veuillez vous connecter à votre compte"
-
-#~ msgid "You can now place orders."
-#~ msgstr "Vous pouvez maintenant passer des commandes."
-
-#~ msgid "Current Month Orders"
-#~ msgstr "Commandes du mois en cours"
-
-#~ msgid "Product sold"
-#~ msgstr "Produits vendus"
-
-#~ msgid "IN STORE PICK UP"
-#~ msgstr "RETRAIT AU MAGASIN"
-
-#~ msgid "ACCOUNT TYPE"
-#~ msgstr "TYPE DE COMPTE"
-
-#~ msgid "Catalog Home"
-#~ msgstr "Accueil"
-
-#~ msgid ""
-#~ "LYSHOP is your online shop in Gabon. You can buy shoes, perfumes, "
-#~ "electronics and others products from LYSHOP."
-#~ msgstr ""
-#~ "LYSHOP est votre boutique en ligne au Gabon. Vous pouvez acheter des "
-#~ "chaussures, des parfums, de l'électronique et d'autres produits chez "
-#~ "LYSHOP."
-
-#~ msgid "Menu"
-#~ msgstr "Menu"
-
-#~ msgid "New Product variants({count}) created"
-#~ msgstr "{count} Déclinaison de produit créee"
-
-#~ msgid "Your address"
-#~ msgstr "Votre addresse"
-
-#~ msgid "As of now, we support only mobile payment through Airtel Money."
-#~ msgstr ""
-#~ "Actuellement, nous ne prenons en charge que le paiement mobile via Airtel "
-#~ "Money."
-
-#~ msgid "Items"
-#~ msgstr "Articles"
-
-#~ msgid "CATALOG"
-#~ msgstr "CATALOGUE"
-
-#~ msgid "Activated on"
-#~ msgstr "Activé le"
-
-#~ msgid "Delivered on "
-#~ msgstr "Délivré le"
-
-#~ msgid "Expire on "
-#~ msgstr "Expire le"
-
-#~ msgid "Number of Unique  Product"
-#~ msgstr "Nombre de produit unique"
-
-#~ msgid "Price(XAF)"
-#~ msgstr "Prix(FCFA)"
-
-#~ msgid "User Info"
-#~ msgstr "Information sur l'utilisateur"
-
-#~ msgid "use my Shipping Address"
-#~ msgstr "Utiliser mon addresse d'envoie"
-
-#~ msgid "Pay with Pay"
-#~ msgstr "Payez avec PAY"
-
-#~ msgid "My account"
-#~ msgstr "Mon compte"
-
-#~ msgid "Order List"
-#~ msgstr "Liste de commande"
-
-#~ msgid "Confirmation of password change"
-#~ msgstr "Confirmation de changement du mot de passe"
-
-#~ msgid "INFO"
-#~ msgstr "INFO"
-
-#~ msgid "Knowledge Base"
-#~ msgstr "Base de connaissances"
-
-#~ msgid "Number of products"
-#~ msgstr "Nombre de produits"
