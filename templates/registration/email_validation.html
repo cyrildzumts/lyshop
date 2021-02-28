@@ -15,7 +15,7 @@
     {% autoescape off %}
         {% if validated %}
             <p>{% blocktrans %}Great! Your email address has been verified. You can now log to your account.{% endblocktrans %}</p>
-            <p>{% blocktrans %}Go to your Account by folowing this Link {% endblocktrans %} :</p>
+            <p>{% blocktrans %}Go to your Account by following this Link {% endblocktrans %} :</p>
             <p><a href="{% url 'accounts:account' %}">{% trans "My Account" %}</a></p>
         {% else %}
             <p>{% blocktrans %}Sorry! Your email address could not be verified.{% endblocktrans %}</p>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-21 16:16+0000\n"
+"POT-Creation-Date: 2021-02-27 11:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgstr ""
 #: templates/registration/password_change.html:37
 #: templates/registration/password_reset_confirm.html:28
 #: templates/registration/password_reset_form.html:32
-#: templates/registration/register.html:43
+#: templates/registration/register.html:48
 #: templates/registration/vendor_register.html:45
 #: templates/tags/signup_dialog.html:35 templates/tags/signup_dialog.html:57
 #: templates/tags/wishlist_dropdown.html:30
@@ -2653,7 +2653,7 @@ msgstr "Appuyez sur Ctrl pour sélectionner plusieurs valeurs"
 #: dashboard/templates/dashboard/create_user.html:22
 #: templates/accounts/registration/register.html:22
 #: templates/accounts/registration/vendor_register.html:22
-#: templates/registration/register.html:22
+#: templates/registration/register.html:29
 #: templates/registration/vendor_register.html:22
 #: templates/tags/signup_dialog.html:7
 msgid "Registration"
@@ -2959,7 +2959,7 @@ msgstr "Utilisateurs"
 #: dashboard/templates/dashboard/new_user.html:30
 #: templates/accounts/registration/register.html:44
 #: templates/accounts/registration/vendor_register.html:46
-#: templates/registration/register.html:44
+#: templates/registration/register.html:49
 #: templates/registration/vendor_register.html:46
 msgid "Create My Account"
 msgstr "Créer mon compte"
@@ -4012,7 +4012,7 @@ msgstr "Vendeur Pay"
 #: dashboard/templates/dashboard/user_list.html:48
 #: templates/accounts/account_details.html:27
 #: templates/accounts/registration/login.html:26
-#: templates/registration/login.html:26 templates/tags/registration_form.html:7
+#: templates/registration/login.html:29 templates/tags/registration_form.html:7
 #: templates/tags/signup_dialog.html:30 templates/tags/signup_dialog.html:47
 msgid "Username"
 msgstr "Nom d'utilisateur"
@@ -5841,7 +5841,7 @@ msgid "Home Page"
 msgstr "Page d'accueille"
 
 #: templates/accounts/registration/login.html:32
-#: templates/registration/login.html:32
+#: templates/registration/login.html:33
 #: templates/tags/registration_form.html:23
 #: templates/tags/signup_dialog.html:31
 msgid "Password"
@@ -6090,7 +6090,7 @@ msgstr "Reinitialiser"
 
 #: templates/accounts/registration/register.html:33
 #: templates/accounts/registration/vendor_register.html:33
-#: templates/registration/register.html:33
+#: templates/registration/register.html:37
 #: templates/registration/vendor_register.html:33
 #: templates/tags/registration_form.html:45
 msgid "Account type"
@@ -6098,7 +6098,7 @@ msgstr "Type de compte"
 
 #: templates/accounts/registration/register.html:35
 #: templates/accounts/registration/vendor_register.html:35
-#: templates/registration/register.html:35
+#: templates/registration/register.html:39
 #: templates/registration/vendor_register.html:35
 #: templates/tags/registration_form.html:47
 msgid "Select an Account Type"
@@ -6106,14 +6106,14 @@ msgstr "Choisissez un type de compte"
 
 #: templates/accounts/registration/register.html:47
 #: templates/accounts/registration/vendor_register.html:49
-#: templates/registration/register.html:47
+#: templates/registration/register.html:52
 #: templates/registration/vendor_register.html:49
 msgid "Already have an account ? "
 msgstr "Vous avez déjà un compte ?"
 
 #: templates/accounts/registration/register.html:47
 #: templates/accounts/registration/vendor_register.html:49
-#: templates/registration/register.html:47
+#: templates/registration/register.html:52
 #: templates/registration/vendor_register.html:49
 msgid "Sign In"
 msgstr "Se connecter"
