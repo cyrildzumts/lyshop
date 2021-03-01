@@ -165,21 +165,23 @@ def product_detail(request, product_uuid=None):
     product = get_object_or_404(Product, product_uuid=product_uuid)
     page_title = product.display_name 
     if request.method == "POST":
-        if not request.user.is_authenticated:
-            break
-        form = AddCartForm(utils.get_postdata(request))
-        if form.is_valid():
-            variant = get_object_or_404(ProductVariant, product_uuid=form.cleaned_data['variant_uuid'])
-            item, cart = cart_service.add_to_cart(cart_service.get_cart(request.user), variant)
-            if item:
-                messages.success(request, message="Product added")
-                logger.info("Product added")
+        if request.user.is_authenticated:  
+            form = AddCartForm(utils.get_postdata(request))
+            if form.is_valid():
+                variant = get_object_or_404(ProductVariant, product_uuid=form.cleaned_data['variant_uuid'])
+                item, cart = cart_service.add_to_cart(cart_service.get_cart(request.user), variant)
+                if item:
+                    messages.success(request, message=_("Product added"))
+                    logger.info("Product added")
+                else:
+                    messages.success(request, message=_("Product not added"))
+                    logger.info("Product not added")
             else:
-                messages.success(request, message="Product not added")
-                logger.info("Product not added")
+                    messages.warning(request, message=_("Invalid form"))
+                    logger.info(f"Product not added. Form is not valid : {form.errors} ")
         else:
-                messages.success(request, message="Invalid form")
-                logger.info(f"Product not added. Form is not valid : {form.errors} ")
+            messages.warning(request, message=_("You must firt log in before you can add item to your cart"))
+            logger.info(f"product_details : Product not added. anonyme user")
                 
     Product.objects.filter(product_uuid=product_uuid).update(view_count=F('view_count') + 1)
     images = ProductImage.objects.filter(product=product)
