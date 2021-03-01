@@ -165,6 +165,8 @@ def product_detail(request, product_uuid=None):
     product = get_object_or_404(Product, product_uuid=product_uuid)
     page_title = product.display_name 
     if request.method == "POST":
+        if not request.user.is_authenticated:
+            break
         form = AddCartForm(utils.get_postdata(request))
         if form.is_valid():
             variant = get_object_or_404(ProductVariant, product_uuid=form.cleaned_data['variant_uuid'])
@@ -183,7 +185,10 @@ def product_detail(request, product_uuid=None):
     images = ProductImage.objects.filter(product=product)
     common_attrs, selective_attrs = catalog_service.get_product_attributes(product.id)
     product_attrs = catalog_service.product_attributes(product.id)
-    wishlist_list = wishlist_service.get_wishlists({'customer': request.user})
+    if request.user.is_authenticated:
+        wishlist_list = wishlist_service.get_wishlists({'customer': request.user})
+    else:
+        wishlist_list = None
 
     context = {
         'page_title': page_title,
