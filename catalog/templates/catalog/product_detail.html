@@ -100,9 +100,12 @@
                 </div>
             </div><!--End of product detail-->
             </form>
-            <div class="actions">
+            {% if user.is_authenticated %}
+                <div class="actions">
                   {% include "tags/add_to_wishlist.html" %}
                 </div>
+            {% endif %}
+            
             <div class="product-detail-shipping">
 
                   <div class="collapsible">
