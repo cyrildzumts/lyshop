@@ -35,10 +35,6 @@ urlpatterns = [
     path('coupon-update/<uuid:coupon_uuid>/',views.coupon_update, name='coupon-update'),
     path('coupons/',views.coupons, name='coupons'),
     path('coupons/delete/',views.coupons_delete, name='coupons-delete'),
-
-    #path('cases/', views.cases, name='cases'),
-    #path('cases/detail/<issue_uuid>/', views.case_details, name='case-detail'),
-    #path('cases/close/<issue_uuid>/', views.case_close, name='case-close'),
     path('create-account/',views.create_account, name='create-account'),
     path('generate-token/', views.generate_token, name='generate-token'),
     path('group-create/',views.group_create, name='group-create'),
