@@ -153,9 +153,9 @@
 }
 
 .entry{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    /*display: flex;*/
+    /*align-items: center;
+    justify-content: space-between;*/
     width: 100%;
     min-height: 3em;
     font-size: 1em;

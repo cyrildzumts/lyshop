@@ -7,7 +7,7 @@
 <div id="main-content">
 
     <div class="mat-box full">
-        <div class="grid">
+        <div class="">
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
                 <p class="entry"><span class="key">{% trans "Payment Option" %}</span> <span class="value">{{order.payment_option|payment_option_value}}</span></p>
@@ -52,12 +52,12 @@
                 {% for item in order.order_items.all  %}
                 <tr>
                     <td class="bold">{{forloop.revcounter}}</td>
-                    <td>{{item.product.product.article_number}}</td>
+                    <td>{{item.product.article_number}}</td>
                     <td>{{item.product.display_name}}</td>
                     <td>{% for attr in item.product.attributes.all %} <span>{{attr}};</span> {% endfor %}</td>
                     <td>{{item.quantity}}</td>
                     <td><span>{{item.unit_price}}</span> <span>{% trans CURRENCY %}</span></td>
-                    <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                    <td><span>{{item.promotion_price|default_if_none:'0'|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                     <td><span>{{item.active_total_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                 </tr>
                 {% endfor %}
