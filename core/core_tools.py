@@ -80,8 +80,9 @@ def send_refund_confirmation(order):
 
 
 
-def generate_invoice(template_name, output_name, order):
-    template_name = template_name or "invoice.html"
+def generate_invoice(order, template_name=None, output_name=None):
+    template_name = template_name or "invoices/invoice.html"
+    
     now = datetime.datetime.now()
     #start_date = now - datetime.timedelta(days=now.day-1, hours=now.hour, minutes=now.minute, seconds=now.second)
     #end_delta = datetime.timedelta(days=1,hours=-23, minutes=-59, seconds=-59)
@@ -107,9 +108,10 @@ def generate_invoice(template_name, output_name, order):
         'TOTAL' : order.total,
         'COUNT': order.quantity,
         'CURRENCY': settings.CURRENCY,
-        'INVOICE_TITLE' : _('Order Invoce'),
+        'INVOICE_TITLE' : f"Invoice-{order.order_ref_number}-{order.created_at}",
         'order': order
     }
+    output_name = output_name or f"Invoice-{order.order_ref_number}-{order.created_at}.pdf"
     invoice_html = render_to_string(template_name, context)
     invoce_pdf = open(output_name, 'w+b')
     pdf_status = pisa.CreatePDF(invoice_html, dest=invoce_pdf)
@@ -159,7 +161,7 @@ def generate_sold_products_reports(template_name, output_name, seller=None):
         'border': '',
         'entry_list' : entry_list.order_by('-sold_at'),
         'TOTAL' : total,
-        'TOTAL_PROMOTION_PRICE' = total_promotion_price,
+        'TOTAL_PROMOTION_PRICE' : total_promotion_price,
         'COUNT': entry_list.count(),
         'CURRENCY': settings.CURRENCY,
         'REPORT_TITLE' : _('Sold Product Card Sumary'),
