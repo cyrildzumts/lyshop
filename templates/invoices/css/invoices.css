@@ -128,6 +128,10 @@
     flex-direction: column;
 }
 
+.box-wrapper .box{
+  display: inline-block;
+}
+
 .box{
     /*display: flex;*/
     /*flex-wrap: wrap;*/
@@ -173,6 +177,7 @@
 .entry .key, .entry .value{
     /*display: inline-block;*/
     /*min-width: 250px;*/
+    width: 50%;
     text-align: left;
     font-size: 0.875em;
 }

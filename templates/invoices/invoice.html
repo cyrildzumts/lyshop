@@ -7,7 +7,7 @@
 <div id="main-content">
 
     <div class="mat-box full">
-        <div class="">
+        <div class="box-wrapper">
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
                 <p class="entry"><span class="key">{% trans "Payment Option" %}</span> <span class="value">{{order.payment_option|payment_option_value}}</span></p>
@@ -30,7 +30,7 @@
             </div>
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
-                <p class="entry"><span class="key">{% trans "Shipping Address" %}</span> <span class="value">{{order.address}}</span></p>
+                <p class="entry"><span class="key">{% trans "Shipping Address" %}</span> <span class="value">{{order.address|default_if_none:'-'}}</span></p>
             </div>
             
         </div><!--grid-->
@@ -40,7 +40,7 @@
                 <tr>
                         <th class="pos">{% trans "Pos." %}</th>
                         <th class="pos">{% trans "Art. Nr." %}</th>
-                        <th>{% trans "Display Name" %}</th>
+                        <th>{% trans "Article" %}</th>
                         <th>{% trans "Options" %}</th>
                         <th>{% trans "Quantiy" %}</th>
                         <th>{% trans "Unit Price" %}</th>
