@@ -54,7 +54,7 @@
                     <td class="bold">{{forloop.revcounter}}</td>
                     <td>{{item.product.product.article_number}}</td>
                     <td>{{item.product.display_name}}</td>
-                    <td><{% for attr in item.product.attributes.all %} <span>{{attr}};</span> {% endfor %}</td>
+                    <td>{% for attr in item.product.attributes.all %} <span>{{attr}};</span> {% endfor %}</td>
                     <td>{{item.quantity}}</td>
                     <td><span>{{item.unit_price}}</span> <span>{% trans CURRENCY %}</span></td>
                     <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
