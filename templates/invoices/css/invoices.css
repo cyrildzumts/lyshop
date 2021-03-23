@@ -119,17 +119,15 @@
 }
 
 .mat-box-content{
-    display: flex;
-    flex-wrap: wrap;
     width: 100%;
     padding: 8px 0;
     margin: 8px auto;
     font-size: 1em;
-    flex-direction: column;
 }
 
 .box-wrapper .box{
   display: inline-block;
+  width: 25%;
 }
 
 .box{
@@ -141,19 +139,9 @@
     border: 1px solid #ccc;
 }
 .box .box-content{
-    display: flex;
     width: 100%;
     margin: 8px auto;
     font-size: 1em;
-    flex-direction: column;
-}
-
-.box .content-left{
-    justify-content: start;
-}
-
-.box .content-right{
-    justify-content: end;
 }
 
 .entry{
@@ -223,26 +211,9 @@
     min-width: 100% !important;
     /*height: 100%;*/
     /*margin: 0;*/
-    display: flex !important;
-    flex-wrap: wrap;
     position: relative !important;
-    /*align-items: baseline !important;*/
-    justify-content: center !important;
-  
-  
   }
   
-  .display-flex{
-    display: flex;
-  }
-  
-  .flex{
-      display: flex;
-      flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-  }
   
   
   
@@ -261,73 +232,6 @@
   display: none;
 }
 
-.row{
-	display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  /*margin-right: -15px;*/
-  /*margin-left: -15px;*/
-  /*align-items: center;*/
-
-  /*justify-content: center;*/
-	width: 100%;
-}
-
-.row-left, .flex-left{
-  justify-content: flex-start !important;
-}
-
-.row-right, .flex-right{
-  justify-content: flex-end !important;
-}
-
-.align-left{
-  align-items: flex-start !important;
-}
-.align-right{
-  align-items: flex-end !important;
-}
-
-.align-center{
-  align-items: center !important;
-}
-
-.align-baseline{
-  align-items: baseline !important;
-}
-
-.flex-wrap{
-  flex-wrap: wrap;
-}
-.flex-center{
-  justify-content: center !important;
-}
-
-.flex-column{
-	display: flex;
-  flex-direction: column;
-  /*align-items: center;*/
-  /*justify-content: center;*/
-  width: 100%;
-  height: 100%;
-  flex: 1 0 auto;
-
-}
-
-.space-around{
-  justify-content: space-around;
-}
-
-.grid, .gridview{
-  display: flex;
-  max-width: 100%;
-  margin: 0;
-	flex-direction: row;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: flex-start;
-
-}
 
 
 .mat-table-wrapper{
