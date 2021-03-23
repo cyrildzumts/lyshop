@@ -9,6 +9,7 @@ from orders.models import Order, OrderItem
 from lyshop import utils, settings
 from xhtml2pdf import pisa
 import logging
+import datetime
 
 logger = logging.getLogger(__name__)
 
