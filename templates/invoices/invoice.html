@@ -1,0 +1,77 @@
+{% extends 'invoice_base.html' %}
+{% load i18n %}
+{% load shipment_status %}
+{% load order_tag %}
+
+{% block CONTENT %}
+<div id="main-content">
+
+    <div class="mat-box full">
+        <div class="grid">
+            <div class="box">
+                <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
+                <p class="entry"><span class="key">{% trans "Payment Option" %}</span> <span class="value">{{order.payment_option|payment_option_value}}</span></p>
+                <p class="entry"><span class="key">{% trans "Order Status" %}</span> <span class="value">{{order.status|order_status_value}}</span></p>
+                <p class="entry"><span class="key">{% trans "Paid Status" %}</span> <span class="value">{% if order.is_paid %} {% trans "PAID" %}{% else %}{% trans "NOT PAID" %}{% endif %}</span></p>
+                <p class="entry"><span class="key">{% trans "Payment Method" %}</span> <span class="value">{{order.payment_method}}</span></p>
+            </div>
+            <div class="box">
+                <p class="entry"><span class="key">{% trans "Quantity" %}</span><span class="value">{{order.quantity}}</span></p>
+                <p class="entry"><span class="key">{% trans "Price" %}</span><span class="value">{{order.amount|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
+                {% if order.coupon %}
+                <p class="entry"><span class="key">{% trans "Reduction" %}</span><span class="value">{{order.get_reduction|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
+                <p class="entry"><span class="key">{% trans "Coupon" %}</span><span class="value">{{order.coupon}}</span></p>
+                {% endif %}
+                <p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
+                <p class="entry"><span class="key">{% trans "Ship Mode" %}</span><span class="value">{{order.ship_mode.mode|ship_mode_value}}</span></p>
+                
+                <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total_price|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
+                <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total|floatformat:"-2"}} {% trans CURRENCY %}</span></p>
+            </div>
+            <div class="box">
+                <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
+                <p class="entry"><span class="key">{% trans "Shipping Address" %}</span> <span class="value">{{order.address}}</span></p>
+            </div>
+            
+        </div><!--grid-->
+    </div><!--End mat-box-->
+    <table id="report-table" class="mat-table">
+        <thead>
+                <tr>
+                        <th class="pos">{% trans "Pos." %}</th>
+                        <th class="pos">{% trans "Art. Nr." %}</th>
+                        <th>{% trans "Display Name" %}</th>
+                        <th>{% trans "Options" %}</th>
+                        <th>{% trans "Quantiy" %}</th>
+                        <th>{% trans "Unit Price" %}</th>
+                        <th>{% trans "Promotion Price" %}</th>
+                        <th>{% trans "Total Price" %}</th>
+                </tr>
+        </thead>
+        <tbody>
+                {% for item in order.order_items.all  %}
+                <tr>
+                    <td class="bold">{{forloop.revcounter}}</td>
+                    <td>{{item.product.product.article_number}}</td>
+                    <td>{{item.product.display_name}}</td>
+                    <td><{% for attr in item.product.attributes.all %} <span>{{attr}};</span> {% endfor %}</td>
+                    <td>{{item.quantity}}</td>
+                    <td><span>{{item.unit_price}}</span> <span>{% trans CURRENCY %}</span></td>
+                    <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                    <td><span>{{item.active_total_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                </tr>
+                {% endfor %}
+                
+        </tbody>
+
+    </table>
+    <div id="report-summary">
+        <h3>{% trans "Summary" %}</h3>
+
+        <p>{% trans "Total" %} : <span class="bold">{{TOTAL}} {% trans CURRENCY %}</span></p>
+        <p>{% trans "Numbers of articles" %} : <span class="bold">{{COUNT}}</span></p>
+    </div>
+
+</div>
+
+{% endblock CONTENT %}

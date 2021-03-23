@@ -1,8 +1,13 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import F, Q, Count, Sum
 from django.core.mail import send_mail
+from django.template.loader import get_template, render_to_string
+from django.utils.translation import gettext_lazy as _
 from django.forms import modelform_factory
 from django.forms import formset_factory, modelformset_factory
-from lyshop import utils
+from orders.models import Order, OrderItem
+from lyshop import utils, settings
+from xhtml2pdf import pisa
 import logging
 
 logger = logging.getLogger(__name__)
@@ -72,3 +77,100 @@ def send_shipment_confirmation(order):
 
 def send_refund_confirmation(order):
     pass
+
+
+
+def generate_invoice(template_name, output_name, order):
+    template_name = template_name or "invoice.html"
+    now = datetime.datetime.now()
+    #start_date = now - datetime.timedelta(days=now.day-1, hours=now.hour, minutes=now.minute, seconds=now.second)
+    #end_delta = datetime.timedelta(days=1,hours=-23, minutes=-59, seconds=-59)
+    #end_date = datetime.datetime(now.year, now.month +1, 1) - end_delta
+    #user_seller =  None
+    if isinstance(order, Order):
+        order_items = order.order_items.all()
+    else:
+        logger.warn("generate_invoice : no valid order")
+        return
+
+    
+    context = {
+        'SITE_NAME' : settings.SITE_NAME,
+        'SITE_HOST': settings.SITE_HOST,
+        'CONTACT_MAIL': settings.CONTACT_MAIL,
+        'DATE': now,
+        'orientation' : 'portrait',
+        'FRAME_NUMBER' : 2,
+        'page_size': 'letter portrait',
+        'border': '',
+        'entry_list' : order_items,
+        'TOTAL' : order.total,
+        'COUNT': order.quantity,
+        'CURRENCY': settings.CURRENCY,
+        'INVOICE_TITLE' : _('Order Invoce'),
+        'order': order
+    }
+    invoice_html = render_to_string(template_name, context)
+    invoce_pdf = open(output_name, 'w+b')
+    pdf_status = pisa.CreatePDF(invoice_html, dest=invoce_pdf)
+    invoce_pdf.close()
+    if pdf_status.err:
+        logger.error("error when creating the report pdf")
+    else:
+        logger.info("recharge report pdf created")
+
+
+
+
+def generate_sold_products_reports(template_name, output_name, seller=None):
+    template_name = template_name or "sold_products.html"
+    now = datetime.datetime.now()
+    start_date = now - datetime.timedelta(days=now.day-1, hours=now.hour, minutes=now.minute, seconds=now.second)
+    end_delta = datetime.timedelta(days=1,hours=-23, minutes=-59, seconds=-59)
+    end_date = datetime.datetime(now.year, now.month +1, 1) - end_delta
+    user_seller =  None
+    if isinstance(seller, str):
+        try:
+            user_seller = User.objects.get(username=seller)
+            entry_list = OrderItem.objects.filter(product__product__sold_by=user_seller, order__is_paid=True, order__is_closed=True ,order__created_at__year=now.year, order__created_at__month=now.month)
+        except User.DoesNotExist:
+            logger.warn("report generator generate_sold_products_reports : no seller {seller} found")
+            return
+        #total = Recharge.objects.filter(created_at__year=now.year, created_at__month=now.month).aggregate(total=Sum('amount')).get('total') or 0
+    elif isinstance(seller, User):
+        user_seller = seller
+        entry_list = OrderItem.objects.filter(product__product__sold_by=user_seller, order__is_paid=True, order__is_closed=True ,order__created_at__year=now.year, order__created_at__month=now.month)
+    else:
+        entry_list = OrderItem.objects.filter(order__is_paid=True, order__is_closed=True ,order__created_at__year=now.year, order__created_at__month=now.month)
+
+    total_aggregrate = entry_list.aggregate(total=Sum('total_price'), total_promotion_price=Sum('total_promotion_price'), count=Sum('quantity'))
+    total = total_aggregrate.get('total') or 0
+    total_promotion_price = total_aggregrate.get('total_promotion_price') or 0
+    count = total_aggregrate.get('count') or 0
+    
+    context = {
+        'SITE_NAME' : settings.SITE_NAME,
+        'SITE_HOST': settings.SITE_HOST,
+        'CONTACT_MAIL': settings.CONTACT_MAIL,
+        'DATE': now,
+        'orientation' : 'portrait',
+        'FRAME_NUMBER' : 2,
+        'page_size': 'letter portrait',
+        'border': '',
+        'entry_list' : entry_list.order_by('-sold_at'),
+        'TOTAL' : total,
+        'TOTAL_PROMOTION_PRICE' = total_promotion_price,
+        'COUNT': entry_list.count(),
+        'CURRENCY': settings.CURRENCY,
+        'REPORT_TITLE' : _('Sold Product Card Sumary'),
+        'start_date': start_date,
+        'end_date': end_date
+    }
+    report_html = render_to_string(template_name, context)
+    report_pdf = open(output_name, 'w+b')
+    pdf_status = pisa.CreatePDF(report_html, dest=report_pdf)
+    report_pdf.close()
+    if pdf_status.err:
+        logger.error("error when creating the report pdf")
+    else:
+        logger.info("sold voucher report pdf created")

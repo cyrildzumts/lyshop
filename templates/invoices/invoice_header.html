@@ -1,0 +1,10 @@
+{% load i18n %}
+
+<div id="header-content">
+<div class="date bold"><i>{{DATE|date:"j F Y"}}</i></div>
+<div class="title">
+<h2>{{INVOICE_TITLE}}</h2>
+<span>{% trans "Order Date " %}</span> : <i>{{order.created_at}}</i>
+</div>
+
+</div>

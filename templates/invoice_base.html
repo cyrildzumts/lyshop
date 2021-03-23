@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{invoice_title}}</title>
+    <style type="text/css">
+        {% include "invoices/css/invoices.css" %}
+        @page {
+            size: {{page_size}};
+            margin: 2cm;
+            {% if orientation == 'landscape' %}{% include "invoices/css/landscape.css" %}{% else %}{% include "invoices/css/portrait.css" %}{% endif %}
+        }
+    </style>
+</head>
+<body>
+    {% block HEADER %}{% include "invoices/invoice_header.html" %}{% endblock HEADER %}
+    {% block CONTENT %}{% endblock CONTENT %}
+    {% block REPORT_FOOTER %}{% include "invoices/invoice_footer.html" %}{% endblock REPORT_FOOTER %}
+</body>
+</html>
