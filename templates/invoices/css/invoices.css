@@ -150,7 +150,7 @@
     /*display: flex;*/
     /*align-items: center;
     justify-content: space-between;*/
-    width: 100%;
+    /*width: 100%;*/
     min-height: 3em;
     font-size: 1em;
     /*text-align: center;*/
@@ -202,11 +202,12 @@
 }
 
 .box .actions{
-    display: flex;
+    /*display: flex;*/
     width: 100%;
+    /*
     flex-wrap: wrap;
     align-items: center;
-    justify-content: end;
+    justify-content: end;*/
     padding: 0;
 }
 
