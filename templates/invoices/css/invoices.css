@@ -133,7 +133,7 @@
 .box{
     /*display: flex;*/
     /*flex-wrap: wrap;*/
-    display: inline-block;
+    /*display: inline-block;*/
     width: 25%;
     padding: 0.2em;
     margin: 8px 1px;
