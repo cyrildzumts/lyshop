@@ -125,7 +125,7 @@
     font-size: 1em;
 }
 
-.box-wrapper .box{
+.box{
   display: inline-block;
   width: 25%;
 }
@@ -140,7 +140,7 @@
     text-align: center;
     border: 1px solid #ccc;
 }
-.box .box-content{
+.box-content{
     width: 100%;
     margin: 8px auto;
     font-size: 1em;
@@ -164,7 +164,7 @@
     border-bottom: none;
 }
 
-.entry .key, .entry .value{
+.key, .value{
     /*display: inline-block;*/
     /*min-width: 250px;*/
     width: 50%;
@@ -175,14 +175,14 @@
 }
 
 
-.entry .key, .attr .key{
+.key{
     font-weight: 600;
     /*width: 50%;*/
     /*margin: 4px 8px;*/
 
 }
 
-.entry .value{
+.value{
     font-weight: 500;
     text-align: right;
     margin: 4px 8px;
