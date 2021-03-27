@@ -4,7 +4,7 @@
 <div class="date bold"><i>{{DATE|date:"j F Y"}}</i></div>
 <div class="title">
 <h2>{{INVOICE_TITLE}}</h2>
-<span>{% trans "Order Date " %}</span> : <i>{{order.created_at}}</i>
+<span>{% trans "Order Date " %}</span> : <i>{{order.created_at|date:"F j, Y"}}</i>
 </div>
 
 </div>

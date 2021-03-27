@@ -35,6 +35,32 @@
             
         </div><!--grid-->
     </div><!--End mat-box-->
+    <table class="mat-table">
+        <tbody>
+            <tr>
+                <td><p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p></td>
+                <td><p class="entry"><span class="key">{% trans "Paid Status" %}</span> <span class="value">{% if order.is_paid %} {% trans "PAID" %}{% else %}{% trans "NOT PAID" %}{% endif %}</span></p></td>
+                <td><p class="entry"><span class="key">{% trans "Payment Method" %}</span> <span class="value">{{order.payment_method}}</span></p></td>
+            </tr>
+            <tr>
+                <td><p class="entry"><span class="key">{% trans "Quantity" %}</span><span class="value">{{order.quantity}}</span></p></td>
+                <td><p class="entry"><span class="key">{% trans "Price" %}</span><span class="value">{{order.amount|floatformat:"-2"}} {% trans CURRENCY %}</span></p></td>
+                {% if order.coupon %}
+                <td><p class="entry"><span class="key">{% trans "Reduction" %}</span><span class="value">{{order.get_reduction|floatformat:"-2"}} {% trans CURRENCY %}</span></p></td>
+                <td><p class="entry"><span class="key">{% trans "Coupon" %}</span><span class="value">{{order.coupon}}</span></p></td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td><p class="entry"><span class="key">{% trans "Shipping Price" %}</span><span class="value">{{order.ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</span></p></td>
+                <td><p class="entry"><span class="key">{% trans "Ship Mode" %}</span><span class="value">{{order.ship_mode.mode|ship_mode_value}}</span></p></td>
+            </tr>
+            <tr>
+                <td><p class="entry"><span class="key">{% trans "Shipping Address" %}</span> <span class="value">{{order.address|default_if_none:'-'}}</span></p></td>
+            </tr>
+            <tr><td><p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total_price|floatformat:"-2"}} {% trans CURRENCY %}</span></p></td></tr>
+            <tr><td><p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p></td></tr>
+        </tbody>
+    </table>
     <table id="report-table" class="mat-table">
         <thead>
                 <tr>
