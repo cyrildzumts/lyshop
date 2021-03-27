@@ -175,14 +175,14 @@
 }
 
 
-.key{
+td .key{
     font-weight: 500;
     /*width: 50%;*/
     /*margin: 4px 8px;*/
 
 }
 
-.value{
+td .value{
     font-weight: 600;
     text-align: right;
     margin: 4px 8px;
