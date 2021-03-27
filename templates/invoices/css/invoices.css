@@ -262,30 +262,20 @@ td .value{
 	table-layout: fixed;
 	border-collapse: collapse;
 	border: 0;
-	font-size: 0.875em;
+	font-size: 12px;
 	padding: 0;
 	margin : 0;
 }
 
-.mat-table.scrollable{
-	table-layout: fixed;
-	border-collapse: collapse;
-}
 
-.mat-table.scrollable thead tr{
+.mat-table thead tr{
 	display: block;
 }
 
 
-.mat-table.scrollable tbody{
-	display: block;
-	overflow: auto;
-	height: 30em;
-	width: 100%;
-}
 
 .mat-table caption{
-	font-size: 1em;
+	font-size: 12px;
 	margin: .5em 0 .75em;
 }
 
@@ -306,7 +296,7 @@ table tr{
 }
 
 table tbody tr, .mat-table tbody tr{
-	min-height: 48px;
+	min-height: 32px;
 }
 
 .mat-table .checkbox{

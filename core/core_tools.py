@@ -81,7 +81,7 @@ def send_refund_confirmation(order):
 
 
 
-def generate_invoice(order, template_name=None, output_name=None):
+def generate_invoice(order, template_name=None, debug=False, output_name=None):
     template_name = template_name or "invoices/invoice.html"
     
     now = datetime.datetime.now()
@@ -104,7 +104,7 @@ def generate_invoice(order, template_name=None, output_name=None):
         'orientation' : 'portrait',
         'FRAME_NUMBER' : 2,
         'page_size': 'letter portrait',
-        'border': '',
+        'border': debug,
         'entry_list' : order_items,
         'TOTAL' : order.total,
         'COUNT': order.quantity,
