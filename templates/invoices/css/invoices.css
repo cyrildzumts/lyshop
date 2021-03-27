@@ -157,13 +157,6 @@
     padding: 0.5em;
 }
 
-.box .entry, .mat-box .entry{
-    border-bottom: 1px solid #ccc;
-}
-.entry:last-child{
-    border-bottom: none;
-}
-
 .key, .value{
     /*display: inline-block;*/
     /*min-width: 250px;*/
@@ -180,6 +173,10 @@ td .key{
     /*width: 50%;*/
     /*margin: 4px 8px;*/
 
+}
+
+td .key::after{
+  content: " : ";
 }
 
 td .value{
