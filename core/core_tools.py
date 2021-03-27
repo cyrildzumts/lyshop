@@ -10,6 +10,7 @@ from lyshop import utils, settings
 from xhtml2pdf import pisa
 import logging
 import datetime
+import io
 
 logger = logging.getLogger(__name__)
 
@@ -114,14 +115,16 @@ def generate_invoice(order, template_name=None, debug=False, output_name=None):
     }
     output_name = output_name or f"Invoice-{order.order_ref_number}-{order.created_at}.pdf"
     invoice_html = render_to_string(template_name, context)
-    invoce_pdf = open(output_name, 'w+b')
-    pdf_status = pisa.CreatePDF(invoice_html, dest=invoce_pdf)
-    invoce_pdf.close()
+    #invoce_pdf = open(output_name, 'w+b')
+    invoice_file = io.BytesIO()
+    pdf_status = pisa.CreatePDF(invoice_html, dest=invoice_file)
+    #invoice_file.close()
     if pdf_status.err:
         logger.error("error when creating the report pdf")
+        return None
     else:
         logger.info("recharge report pdf created")
-
+    return invoice_file
 
 
 
@@ -177,3 +180,14 @@ def generate_sold_products_reports(template_name, output_name, seller=None):
         logger.error("error when creating the report pdf")
     else:
         logger.info("sold voucher report pdf created")
+
+
+
+
+def save_pdf_file(order, debug=True):
+    byteio_file = generate_invoice(order, debug=debug)
+    if not byteio_file:
+        return
+    output_name = f"Invoice-{order.order_ref_number}-{order.created_at}.pdf"
+    with open(output_name, 'w+b') as f :
+        f.write(byteio_file.getbuffer())
