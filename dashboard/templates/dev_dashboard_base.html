@@ -26,7 +26,7 @@
                 {% if can_view_group %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:groups'%}"><i class="fas fa-users icon"></i><span>{% trans "Groups" %}</span></a></li>{% endif %}
                 {% if can_view_user %}
                 <li><a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}"><i class="fas fa-users icon"></i><span>{% trans "Customers" %}</span></a></li>
-                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:users'%}"><i class="fas fa-user-circle icon"></i><span>{% trans "Sellers" %}</span></a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:users'%}"><i class="fas fa-user-circle icon"></i><span>{% trans "Users" %}</span></a></li>
                 <li><a class="mat-button mat-button-text" href="{% url 'dashboard:tokens' %}"><i class="fas fa-key icon"></i><span>{% trans "Tokens" %}</span></a></li>
                 {% if can_generate_token %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:generate-token' %}"><i class="fas fa-key icon"></i><span>{% trans "Token Generator" %}</span></a></li>{% endif %}
                 {% endif %}
