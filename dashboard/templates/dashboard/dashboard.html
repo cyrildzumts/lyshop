@@ -86,7 +86,6 @@
                           <th></th>
                           <th scope="col">{% trans "Order" %}</th>
                           <th scope="col">{% trans "Article" %}</th>
-                          <th scope="col">{% trans "Product Type" %}</th>
                           <th scope="col">{% trans "Price" %}</th>
                           <th scope="col">{% trans "Promotion Price" %}</th>
                           <th scope="col">{% trans "Quantity" %}</th>
@@ -100,8 +99,6 @@
                   <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{sold_product.product.image}}" alt="{{sold_product.product.display_name}}"></div></td>
                   <td scope="row" data-label="{% trans 'Order' %}">{{sold_product.order.order_ref_number}}</td>
                   <td scope="row" data-label="{% trans 'Article' %}">{{sold_product.product.display_name}}</td>
-                  <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_value}}</td>
-                  <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
                   <td scope="row" data-label="{% trans 'Promotion Price' %}"><span><span>{{sold_product.promotion_price|default_if_none:'0'|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
                   <td scope="row" data-label="{% trans 'Quantity' %}">{{sold_product.quantity}}</td>
@@ -119,24 +116,18 @@
                 <thead>
                         <tr>
                                 <th></th>
-                                <th scope="col">{% trans "Name" %}</th>
                                 <th scope="col">{% trans "Display Name" %}</th>
-                                <th scope="col">{% trans "Gender" %}</th>
-                                <th scope="col">{% trans "Product Type" %}</th>
                                 <th scope="col">{% trans "Price" %}</th>
                                 <th scope="col">{% trans "Promotion Price" %}</th>
                                 <th scope="col">{% trans "Quantity" %}</th>
-                                <th scope="col">{% trans 'Added Date' %}"</th>
+                                <th scope="col">{% trans 'Added Date' %}</th>
                         </tr>
                 </thead>
                 <tbody>
                         {% for product in product_list  %}
                         <tr>
                         <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{product.image}}" alt="{{product.display_name}}"></div></td>
-                        <td scope="row" data-label="{% trans 'Name' %}">{{product.name}}</td>
                         <td data-label="{% trans 'Display Name' %}">{{product.display_name}}</td>
-                        <td data-label="{% trans 'Gender' %}">{{product.gender|gender_value}}</td>
-                        <td data-label="{% trans 'Type' %}">{% trans product.product_type.display_name %}</td>
                         <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                         <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                         <td data-label="{% trans 'Quantity' %}">{{product.quantity}}</td>
