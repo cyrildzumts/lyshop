@@ -54,7 +54,14 @@
             <span class="fas fa-search icon"></span>
             <input type="search" placeholder="{% trans 'Search' %}">
         </div>
+        <div class="user-wrapper">
+            {% if user_pic %} <img class="user-image" src="{{user_pic.image_url}}" alt=""> {% endif %}
+            <div>
+                <h4>{{request.user.username}}</h4>
+            </div>
+        </div>
     </header>
+    {% block DASHBOARD_SUMMARY %}{% endblock DASHBOARD_SUMMARY %}
     {% block MAIN_CONTENT %}
       
     {% endblock MAIN_CONTENT %}

@@ -5,11 +5,9 @@
 {% include "tags/unauthorized.html" %}
 {% else %}
 
-{% block HEADER_BANNER %}
-        {% block BANNER_TITLE %}
-                {% include "tags/dashboard_summary.html" %}
-        {% endblock BANNER_TITLE %}
-{% endblock HEADER_BANNER %}
+{% block DASHBOARD_SUMMARY %}
+        {% include "tags/dashboard_summary.html" %}
+{% endblock DASHBOARD_SUMMARY %}
 
 {% block MAIN_CONTENT %}
 <div class="container">
