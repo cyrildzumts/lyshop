@@ -45,21 +45,23 @@
 {% endblock SIDEBAR %}
 {% block DASH_CONTENT %}
 <div class="dash-main-content">
-    <header class="dashboard-header">
-        <h4>
-            <label for=""><span class="fas fa-bars"></span></label>{{content_title|default_if_none:'Dashboard'}}
-        </h4>
-        <div class="search-wrapper">
-            <span class="fas fa-search icon"></span>
-            <input type="search" placeholder="{% trans 'Search' %}">
-        </div>
-        <div class="user-wrapper">
-            {% if user_pic %} <img class="user-image" src="{{user_pic.image_url}}" alt=""> {% endif %}
-            <div>
-                <h4>{{request.user.username}}</h4>
+    <div class="dashboard-header-wrapper">
+        <header class="dashboard-header">
+            <h4>
+                <label for=""><span class="fas fa-bars"></span></label>{{content_title|default_if_none:'Dashboard'}}
+            </h4>
+            <div class="search-wrapper">
+                <span class="fas fa-search icon"></span>
+                <input type="search" placeholder="{% trans 'Search' %}">
             </div>
-        </div>
-    </header>
+            <div class="user-wrapper">
+                {% if user_pic %} <img class="user-image" src="{{user_pic.image_url}}" alt=""> {% endif %}
+                <div>
+                    <h4>{{request.user.username}}</h4>
+                </div>
+            </div>
+        </header>
+    </div>
     {% block DASHBOARD_SUMMARY %}{% endblock DASHBOARD_SUMMARY %}
     {% block MAIN_CONTENT %}
       

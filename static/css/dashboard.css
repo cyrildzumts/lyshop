@@ -139,6 +139,11 @@
     font-weight: 600;
 }
 
+.dashboard-header-wrapper{
+    position: fixed;
+    top:0;
+}
+
 .dashboard-header{
     display: flex;
     align-items: center;
