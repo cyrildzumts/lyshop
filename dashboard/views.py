@@ -231,7 +231,7 @@ def category_update(request, category_uuid):
         'form' : form,
         'category':category,
         'CATEGORIES' : Catalog_Constants.CATEGORIES,
-        'category_list': Category.objects.exclude(id__in=[category.pk])
+        'category_list': Category.objects.exclude(id__in=[category.pk]),
         'content_title': f"{category.display_name} - {_('Update')}"
     }
     context.update(get_view_permissions(request.user))
