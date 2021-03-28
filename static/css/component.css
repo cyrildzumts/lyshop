@@ -443,6 +443,7 @@ a.button{
 
 .sidebar-menu a{
 	/*display: block;*/
+	width: 100% !important;
 	font-size: 0.875rem;
 	padding-left: 1rem;
 	margin: 0 !important;
