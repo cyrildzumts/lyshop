@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.forms import modelform_factory
 from django.forms import formset_factory, modelformset_factory
 from orders.models import Order, OrderItem
+from vendors.models import SoldProduct
 from lyshop import utils, settings
 from xhtml2pdf import pisa
 import logging
@@ -82,8 +83,8 @@ def send_refund_confirmation(order):
 
 
 
-def generate_invoice(order, template_name=None, debug=False, output_name=None):
-    template_name = template_name or "invoices/invoice.html"
+def generate_invoice(order, debug=False, output_name=None):
+    template_name = "invoices/invoice.html"
     
     now = datetime.datetime.now()
     #start_date = now - datetime.timedelta(days=now.day-1, hours=now.hour, minutes=now.minute, seconds=now.second)
@@ -94,7 +95,7 @@ def generate_invoice(order, template_name=None, debug=False, output_name=None):
         order_items = order.order_items.all()
     else:
         logger.warn("generate_invoice : no valid order")
-        return
+        return None
 
     
     context = {
@@ -115,10 +116,8 @@ def generate_invoice(order, template_name=None, debug=False, output_name=None):
     }
     output_name = output_name or f"Invoice-{order.order_ref_number}-{order.created_at}.pdf"
     invoice_html = render_to_string(template_name, context)
-    #invoce_pdf = open(output_name, 'w+b')
     invoice_file = io.BytesIO()
     pdf_status = pisa.CreatePDF(invoice_html, dest=invoice_file, debug=False)
-    #invoice_file.close()
     if pdf_status.err:
         logger.error("error when creating the report pdf")
         return None
@@ -128,8 +127,8 @@ def generate_invoice(order, template_name=None, debug=False, output_name=None):
 
 
 
-def generate_sold_products_reports(template_name, output_name, debug=False, seller=None):
-    template_name = template_name or "sold_products.html"
+def generate_sold_products_reports(seller=None, debug=False):
+    template_name = "reports/sold_products.html"
     now = datetime.datetime.now()
     start_date = now - datetime.timedelta(days=now.day-1, hours=now.hour, minutes=now.minute, seconds=now.second)
     end_delta = datetime.timedelta(days=1,hours=-23, minutes=-59, seconds=-59)
@@ -138,20 +137,20 @@ def generate_sold_products_reports(template_name, output_name, debug=False, sell
     if isinstance(seller, str):
         try:
             user_seller = User.objects.get(username=seller)
-            entry_list = OrderItem.objects.filter(product__product__sold_by=user_seller, order__is_paid=True, order__is_closed=True ,order__created_at__year=now.year, order__created_at__month=now.month)
+            #entry_list = OrderItem.objects.filter(product__product__sold_by=user_seller, order__is_paid=True, order__is_closed=True ,order__created_at__year=now.year, order__created_at__month=now.month)
+            entry_list = SoldProduct.objects.filter(seller=user_seller, created_at__year=now.year, created_at__month=now.month)
         except User.DoesNotExist:
             logger.warn("report generator generate_sold_products_reports : no seller {seller} found")
-            return
+            return None
         #total = Recharge.objects.filter(created_at__year=now.year, created_at__month=now.month).aggregate(total=Sum('amount')).get('total') or 0
     elif isinstance(seller, User):
         user_seller = seller
-        entry_list = OrderItem.objects.filter(product__product__sold_by=user_seller, order__is_paid=True, order__is_closed=True ,order__created_at__year=now.year, order__created_at__month=now.month)
+        entry_list = SoldProduct.objects.filter(seller=user_seller, created_at__year=now.year, created_at__month=now.month)
     else:
-        entry_list = OrderItem.objects.filter(order__is_paid=True, order__is_closed=True ,order__created_at__year=now.year, order__created_at__month=now.month)
+        entry_list = SoldProduct.objects.filter(created_at__year=now.year, created_at__month=now.month)
 
-    total_aggregrate = entry_list.aggregate(total=Sum('total_price'), total_promotion_price=Sum('total_promotion_price'), count=Sum('quantity'))
+    total_aggregrate = entry_list.aggregate(total=Sum('total_price'), count=Sum('quantity'))
     total = total_aggregrate.get('total') or 0
-    total_promotion_price = total_aggregrate.get('total_promotion_price') or 0
     count = total_aggregrate.get('count') or 0
     
     context = {
@@ -163,10 +162,9 @@ def generate_sold_products_reports(template_name, output_name, debug=False, sell
         'FRAME_NUMBER' : 2,
         'page_size': 'letter portrait',
         'border': debug,
-        'entry_list' : entry_list.order_by('-sold_at'),
+        'entry_list' : entry_list,
         'TOTAL' : total,
-        'TOTAL_PROMOTION_PRICE' : total_promotion_price,
-        'COUNT': entry_list.count(),
+        'COUNT': count,
         'CURRENCY': settings.CURRENCY,
         'REPORT_TITLE' : _('Sold Product Card Sumary'),
         'start_date': start_date,
@@ -184,6 +182,13 @@ def generate_sold_products_reports(template_name, output_name, debug=False, sell
 
 
 
+def save_file(byteio_file, filename):
+    if not byteio_file or not filename:
+        logger.warning("save_report : byteio_file or filename is missing")
+        return
+    with open(filename, 'w+b') as f :
+        f.write(byteio_file.getbuffer())
+    
 def save_pdf_file(order, debug=True):
     byteio_file = generate_invoice(order, debug=debug)
     if not byteio_file:

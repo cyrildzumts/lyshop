@@ -1,0 +1,48 @@
+{% extends 'report_base.html' %}
+{% load i18n %}
+
+
+{% block REPORT_CONTENT %}
+<div id="main-content">
+    <table id="report-table" class="mat-table">
+          <caption>{% trans "Sold Product Listing" %}</i></caption>
+          <thead>
+                  <tr>
+                          <th scope="col">{% trans "Art. Nr." %}</th>
+                          <th scope="col">{% trans "Order" %}</th>
+                          <th scope="col">{% trans "Article" %}</th>
+                          <th scope="col">{% trans "Quantity" %}</th>
+                          <th scope="col">{% trans "Product Type" %}</th>
+                          <th scope="col">{% trans "Price" %}</th>
+                          <th scope="col">{% trans "Promotion Price" %}</th>
+                          <th scope="col">{% trans "Seller" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for sold_product in entry_list  %}
+                  <tr>
+                  <td>{{sold_product.product.article_number}}</td>
+                  <td>{{sold_product.order.order_ref_number}}</td>
+                  <td>{{sold_product.product.display_name}}</td>
+                  <td>{{sold_product.quantity}}</td>
+                  <td>{{sold_product.product.product.product_type.display_name}}</td>
+                  <td><span><span>{{sold_product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
+                  <td><span><span>{{sold_product.promotion_price|default_if_none:'0'|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
+                  <td>{{sold_product.seller.username}}</td>
+                  </tr>
+                  {% endfor %}
+                  
+          </tbody>
+
+    </table>
+    
+    <div id="report-summary">
+        <h3>{% trans "Summary" %}</h3>
+
+        <p>{% trans "Total" %} : <span class="bold">{{TOTAL}} {% trans CURRENCY %}</span></p>
+        <p>{% trans "Numbers of sold products" %} : <span class="bold">{{COUNT}}</span></p>
+    </div>
+
+</div>
+
+{% endblock REPORT_CONTENT %}

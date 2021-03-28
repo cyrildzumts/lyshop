@@ -45,6 +45,9 @@ class Order(models.Model):
         'status' : {'field_name': 'status','display_name': 'Status', 'template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'selection_options' : commons.ORDER_STATUS},
     }
 
+    class Meta:
+        ordering = ['-created_at']
+
 
     def __str__(self):
         return f'Order {self.order_ref_number}'
@@ -89,6 +92,9 @@ class OrderItem(models.Model):
     item_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     DEFAULT_FIELDS = ['order', 'product', 'quantity', 'unit_price', 'total_price','created_at', 'item_uuid']
     FORM_FIELDS = DEFAULT_FIELDS
+
+    class Meta:
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"OrderIem - {self.product.name} - {self.quantity}"
@@ -180,6 +186,9 @@ class PaymentRequest(models.Model):
     DEFAULT_FIELDS = ['token', 'pay_url', 'verification_code', 'order', 'customer', 'amount', 'created_at', 'status', 'request_uuid']
     FORM_FIELDS = DEFAULT_FIELDS
 
+    class Meta:
+        ordering = ['-created_at']
+
 
     def __str__(self):
         return "Payment Request id : {0} - Amount : {1}".format(self.pk, self.amount)
@@ -206,6 +215,9 @@ class OrderPayment(models.Model):
     payment_mode = models.IntegerField(choices=commons.ORDER_PAYMENT_MODE)
     created_at = models.DateTimeField(auto_now_add=True)
     payment_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+
+    class Meta:
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"OrderPayment - {self.amount}"
@@ -235,6 +247,9 @@ class Refund(models.Model):
     refund_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     FORM_FIELDS = ['status', 'declined_reason']
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return f"Refund {self.payment.sender.username} : {self.amount} {settings.CURRENCY}"
 
@@ -255,6 +270,9 @@ class OrderStatusHistory(models.Model):
     changed_by = models.ForeignKey(User, related_name='order_edit_histories', blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     history_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+
+    class Meta:
+        ordering = ['-created_at']
 
     def get_absolute_url(self):
        return reverse('orders:history-detail', kwargs={'history_uuid':self.history_uuid})

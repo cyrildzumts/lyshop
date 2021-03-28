@@ -14,6 +14,7 @@
 	    {% if border %}	    -pdf-frame-border: 1;  {% endif %}   /* for debugging the layout */ 
 	}
 	@frame content_frame {          /* Content Frame */
+		-pdf-frame-content: main-content;
 	    left: 1cm; width: 19cm; top: 3cm; height: 22.2cm;
 	    {% if border %}	    -pdf-frame-border: 1;  {% endif %}   /* for debugging the layout */
 	}
