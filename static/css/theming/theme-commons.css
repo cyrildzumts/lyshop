@@ -23,6 +23,17 @@ body{
     font-weight: 600;
 }
 
+.sidebar {
+	background-color: var(--sidebar-bg-color);
+	color: var(--sidebar-color);
+}
+
+.sidebar-menu a.active{
+
+	color: #fafafa;
+	background-color: var(--sidebar-active-color);
+}
+
 .page--banner{
     background-color: var(--third-color);
     color: var(--primary-color);
