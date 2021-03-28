@@ -10,6 +10,8 @@ PAYMENT_PAY_TOKEN = None
 PAYMENT_PAY_USER = None
 PAYMENT_PAY_HOST = 'http://pay-atalaku.com/api/payment-request'
 PAYMENT_PAY_URL = f'{PAYMENT_PAY_HOST}/{PAYMENT_PAY_USER}/{PAYMENT_PAY_TOKEN}/'
+INVOICE_CONTENT_TYPE = 'application/pdf'
+CONTENT_DISPOSITION = 'Content-Disposition'
 
 # Unpaid orders submitted 'ORDER_PAID_DAY_DELAY' ago 
 # must be cancelled

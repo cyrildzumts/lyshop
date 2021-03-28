@@ -14,4 +14,5 @@ urlpatterns = [
     path('orders/', views.orders, name='orders'),
     path('order-details/<uuid:order_uuid>/', views.order_detail, name='order-detail'),
     path('order-cancel/<uuid:order_uuid>/', views.order_cancel, name='order-cancel'),
+    path('download-invoice/<uuid:order_uuid>/', views.generate_invoice, name='download-invoice'),
 ]

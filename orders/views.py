@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.utils.translation import gettext_lazy as _
 from orders import orders_service
 from addressbook.forms import AddressModelForm, AddressForm
@@ -11,6 +11,7 @@ from addressbook import addressbook_service
 from addressbook import constants as Addressbook_Constants
 from shipment import shipment_service, constants as SHIPMENT_CONSTANTS
 from core.filters import filters
+from core import core_tools
 from orders import commons
 from vendors.models import SoldProduct
 from orders.forms import ShippingAddressForm, BillingAddressForm, PaymentRequestForm, PaymentOptionForm, OrderFilterOption
@@ -91,6 +92,16 @@ def cancel_order(request, order_uuid):
         messages.error(request, "Order could not be canceled")
 
     return redirect(order)
+
+
+@login_required
+def generate_invoice(request, order_uuid):
+    order = get_object_or_404(Order, order_uuid=order_uuid, user=request.user)
+    invoice = core_tools.generate_invoice(order)
+    filename = f"Invoice-{order.order_ref_number}-{order.created_at}.pdf"
+    response = HttpResponse(invoice.getValue(), content_type=commons.INVOICE_CONTENT_TYPE)
+    response[commons.CONTENT_DISPOSITION]= f"inline; filename='{filename}'"
+    return response
 
 
 @login_required
