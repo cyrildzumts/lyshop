@@ -236,3 +236,7 @@ li.active.selected{
 .dashboard-metrics .fas, .dashboard-metrics .icon {
     color: var(--secondary-color);
 }
+
+.sidebar-menu li:hover{
+	color: var(--secondary-color) !important;
+}
