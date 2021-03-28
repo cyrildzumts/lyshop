@@ -58,6 +58,7 @@
                 {% if user_pic %} <img class="user-image" src="{{user_pic.image_url}}" alt=""> {% endif %}
                 <div>
                     <h4>{{request.user.username}}</h4>
+                    <small>{% trans "Administrator" %}</small>
                 </div>
             </div>
         </header>
