@@ -3,39 +3,39 @@
 <div class="container">
         <div id="metrics" class="flex flex-wrap">
                 <div id="metric-orders" class="metric mat-box" data-index="0">
-                        <h3 class="metric-value">{{orders_count|default_if_none:'0'}}</h3>
+                        <h2 class="metric-value">{{orders_count|default_if_none:'0'}}</h2>
                         <span class="metric-title">{% trans "Orders" %}</span>
                 </div>
                 <div id="metric-products" class="metric mat-box" data-index="1">
-                        <h3 class="metric-value">{{products_count|default_if_none:'0'}}</h3>
+                        <h2 class="metric-value">{{products_count|default_if_none:'0'}}</h2>
                         <span class="metric-title">{% trans "Products" %}</span>
                 </div>
                 <div id="metric-current-orders" class="metric mat-box" data-index="2">
-                        <h3 class="metric-value">{{current_orders.count|default_if_none:'0'}}</h3>
+                        <h2 class="metric-value">{{current_orders.count|default_if_none:'0'}}</h2>
                         <span class="metric-title">{% trans "Month Orders" %}</span>
                 </div>
                 <div id="metric-users" class="metric mat-box" data-index="3">
-                        <h3 class="metric-value">{{users_count|default_if_none:'0'}}</h3>
+                        <h2 class="metric-value">{{users_count|default_if_none:'0'}}</h2>
                         <span class="metric-title">{% trans "Users" %}</span>
                 </div>
                 <div id="metric-visitors" class="metric mat-box" data-index="4">
-                        <h3 class="metric-value">{{visitors|default_if_none:'0'}}</h3>
+                        <h2 class="metric-value">{{visitors|default_if_none:'0'}}</h2>
                         <span class="metric-title">{% trans "Visitors" %}</span>
                 </div>
                 <div id="metric-unique-visitors" class="metric mat-box" data-index="5">
-                        <h3 class="metric-value">{{unique_visitors|default_if_none:'0'}}</h3>
+                        <h2 class="metric-value">{{unique_visitors|default_if_none:'0'}}</h2>
                         <span class="metric-title">{% trans "Unique Visitors" %}</span>
                 </div>
                 <div id="metric-facebook-visitors" class="metric mat-box" data-index="6">
-                        <h3 class="metric-value">{{facebook_visitors|default_if_none:'0'}}</h3>
+                        <h2 class="metric-value">{{facebook_visitors|default_if_none:'0'}}</h2>
                         <span class="metric-title">{% trans "Facebook Visitors" %}</span>
                 </div>
                 <div id="metric-google-visitors" class="metric mat-box" data-index="7">
-                        <h3 class="metric-value">{{google_visitors|default_if_none:'0'}}</h3>
+                        <h2 class="metric-value">{{google_visitors|default_if_none:'0'}}</h2>
                         <span class="metric-title">{% trans "Google Visitors" %}</span>
                 </div>
                 <div id="metric-suspicious-visitors" class="metric mat-box" data-index="8">
-                        <h3 class="metric-value">{{total_suspicious_visitors|default_if_none:'0'}}</h3>
+                        <h2 class="metric-value">{{total_suspicious_visitors|default_if_none:'0'}}</h2>
                         <span class="metric-title">{% trans "Suspicious Visitors" %}</span>
                 </div>
         </div>
