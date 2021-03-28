@@ -222,3 +222,13 @@ li.active.selected{
 .action{
     color: var(--action-color);
 }
+
+.dashboard-header{
+    background-color: #fff;
+    color: var(--primary-color) ;
+
+}
+
+.metric-title, .dashboard-metrics span{
+    color: var(--text-grey);
+}
