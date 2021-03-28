@@ -10,7 +10,7 @@
 {% block MAIN %}
 <div class="container">
 {% block SIDEBAR %}
-      <div id="sidebar" class="container">
+      <div id="sidebar" class="sidebar">
             <div class="sidebar-brand">
                 <h1><span></span> {{site_name}}</h1>
             </div>
@@ -31,14 +31,13 @@
                 {% if can_generate_token %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:generate-token' %}"><i class="fas fa-key icon"></i><span>{% trans "Token Generator" %}</span></a></li>{% endif %}
                 {% endif %}
                 {% if can_view_payment %} 
-                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-methods'%}">{% trans "Payment Methods" %}</a></li>
                 <li><a class="mat-button mat-button-text" href="{% url 'payment:payment-home'%}"><i class="fas fa-money-check icon"></i><span>{% trans "Payments" %}</span></a></li>
                 <li><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-requests'%}"><i class="fas fa-cash-register icon"></i><span>{% trans "Payment Requests" %}</span></a></li>
-                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:refunds'%}">{% trans "Refunds" %}</a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:refunds'%}"><i class="fas fa-money-check icon"></i><span>{% trans "Refunds" %}</span></a></li>
                 {% endif %}
                 {% if can_view_shipment %}<li><a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home'%}"><i class="fas fa-shipping-fast icon"></i><span>{% trans "Shipments" %}</span></a></li>{% endif %}
                 
-                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:reports' %}">{% trans "Reports" %}</a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:reports' %}"><i class="fas fa-poll icon"></i><span>{% trans "Reports" %}</span></a></li>
                 <li><a class="mat-button mat-button-text" href="{% url 'accounts:logout'%}"><i class="fas fa-sign-out-alt icon"></i><span>{% trans "Logout" %}</span></a></li>
             </ul>
             </div>
