@@ -299,6 +299,9 @@ class Product(models.Model):
         'gender' : {'field_name': 'genre','display_name': 'Gender', 'template_name' : 'tags/integer_field.html', 'range': False, 'selection' : True, 'queryset':False, 'selection_options' : constants.GENDER},
     }
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return self.name
 

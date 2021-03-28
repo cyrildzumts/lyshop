@@ -13,30 +13,58 @@
         {% include "tags/dashboard_summary.html" %}
 {% endblock DASHBOARD_SUMMARY %}
 {% block CONTENT %}
-{% if can_view_order %}
                 
-        <div class="mat-table-wrapper">
-                <h4>{% trans "Recent Orders" %}</h4>
-                <table id="order-list" class="mat-table">
+<div class="mat-table-wrapper">
+        <div class="row"><h4>{% trans "Recent Orders" %}</h4> <a href="{% url 'dashboard:orders' %}" class="mat-button mat-button-default"><span>{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
+        <table id="order-list" class="mat-table">
+                <thead>
+                        <tr>
+                                <th scope="col">{% trans "Reference Number" %}</th>
+                                <th scope="col">{% trans "Customer" %}</th>
+                                <th scope="col">{% trans "Status" %}</th>
+                                <th scope="col">{% trans "Total Price" %}</th>
+                                <th scope="col">{% trans "Date of Order" %}</th>
+                                <th scope="col">{% trans "Details" %}</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        {% for order in order_list  %}
+                        <tr>
+                        <td scope="row" data-label="{% trans 'Reference Number' %}">{{order.order_ref_number}}</td>
+                        <td data-label="{% trans 'Customer' %}">{{order.user.get_full_name}}</td>
+                        <td data-label="{% trans 'Status' %}">{{order.status|order_status_value}} </td>
+                        <td data-label="{% trans 'Total Price' %}">{{order.total}} {% trans CURRENCY %}</td>
+                        <td data-label="{% trans 'Date of Order' %}">{{order.created_at|date:"F j, Y"}}</td>
+                        <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{order.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                        </tr>
+                        {% endfor %}
+                        
+                </tbody>
+                <tfoot>
+                        
+                </tfoot>
+
+        </table>
+        
+</div> <!--End of Table Wrapper-->
+<div class="mat-table-wrapper">
+                <div class="row"><h4>{% trans "New Customer" %}</h4> <a href="{% url 'dashboard:users' %}" class="mat-button mat-button-default"><span>{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
+                <table id="user-list" class="mat-table">
                         <thead>
                                 <tr>
-                                        <th scope="col">{% trans "Reference Number" %}</th>
-                                        <th scope="col">{% trans "Customer" %}</th>
-                                        <th scope="col">{% trans "Status" %}</th>
-                                        <th scope="col">{% trans "Total Price" %}</th>
-                                        <th scope="col">{% trans "Date of Order" %}</th>
-                                        <th scope="col">{% trans "Details" %}</th>
+                                        <th scope="col">{% trans "Username" %}</th>
+                                        <th scope="col">{% trans "Name" %}</th>
+                                        <th scope="col">{% trans "Is Active" %}</th>
+                                        <th scope="col">{% trans "Date Joined" %}</th>
                                 </tr>
                         </thead>
                         <tbody>
-                                {% for order in order_list  %}
+                                {% for u in user_list  %}
                                 <tr>
-                                <td scope="row" data-label="{% trans 'Reference Number' %}">{{order.order_ref_number}}</td>
-                                <td data-label="{% trans 'Customer' %}">{{order.user.get_full_name}}</td>
-                                <td data-label="{% trans 'Status' %}">{{order.status|order_status_value}} </td>
-                                <td data-label="{% trans 'Total Price' %}">{{order.total}} {% trans CURRENCY %}</td>
-                                <td data-label="{% trans 'Date of Order' %}">{{order.created_at|date:"F j, Y"}}</td>
-                                <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{order.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                                        <td>{{u.username}}</td>
+                                        <td data-label="{% trans 'Name' %}">{{u.get_full_name}}</td>
+                                        <td data-label="{% trans 'Is Active' %}">{{u.is_active|yesno:_('yes,no')}}</td>
+                                        <td data-label="{% trans 'Date Joined' %}">{{u.date_joined|date:"F j, Y"}}</td>
                                 </tr>
                                 {% endfor %}
                                 
@@ -47,8 +75,76 @@
         
                 </table>
                 
-        </div> <!--End of Table Wrapper-->
-{% endif %}
+</div> <!--End of Table Wrapper-->
+<div class="mat-table-wrapper">
+        <div class="row"><h4>{% trans "Recent sold Product" %}</h4> <a href="{% url 'dashboard:sold_products' %}" class="mat-button mat-button-default"><span>{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
+        <table id="product-list" class="mat-table js-filter-table">
+          <thead>
+                  <tr>
+                          <th></th>
+                          <th scope="col">{% trans "Order" %}</th>
+                          <th scope="col">{% trans "Article" %}</th>
+                          <th scope="col">{% trans "Product Type" %}</th>
+                          <th scope="col">{% trans "Price" %}</th>
+                          <th scope="col">{% trans "Promotion Price" %}</th>
+                          <th scope="col">{% trans "Quantity" %}</th>
+                          <th scope="col">{% trans "Sold Date" %}</th>
+                  </tr>
+          </thead>
+          <tbody>
+                  {% for sold_product in sold_product_list  %}
+                  <tr>
+        
+                  <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{sold_product.product.image}}" alt="{{sold_product.product.display_name}}"></div></td>
+                  <td scope="row" data-label="{% trans 'Order' %}">{{sold_product.order.order_ref_number}}</td>
+                  <td scope="row" data-label="{% trans 'Article' %}">{{sold_product.product.display_name}}</td>
+                  <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_value}}</td>
+                  <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
+                  <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
+                  <td scope="row" data-label="{% trans 'Promotion Price' %}"><span><span>{{sold_product.promotion_price|default_if_none:'0'|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
+                  <td scope="row" data-label="{% trans 'Quantity' %}">{{sold_product.quantity}}</td>
+                  <td scope="row" data-label="{% trans 'Sold Date' %}">{{sold_product.created_at|date:"F j, Y"}}</td>
+                  </tr>
+                  
+          </tbody>
+
+    </table>
+</div>
+<div class="mat-table-wrapper">
+        <div class="row"><h4>{% trans "Last added Product" %}</h4> <a href="{% url 'dashboard:products' %}" class="mat-button mat-button-default"><span>{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
+        <table id="product-list" class="mat-table">
+                <thead>
+                        <tr>
+                                <th></th>
+                                <th scope="col">{% trans "Name" %}</th>
+                                <th scope="col">{% trans "Display Name" %}</th>
+                                <th scope="col">{% trans "Gender" %}</th>
+                                <th scope="col">{% trans "Product Type" %}</th>
+                                <th scope="col">{% trans "Price" %}</th>
+                                <th scope="col">{% trans "Promotion Price" %}</th>
+                                <th scope="col">{% trans "Quantity" %}</th>
+                                <th scope="col">{% trans 'Added Date' %}"</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        {% for product in product_list  %}
+                        <tr>
+                        <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{product.image}}" alt="{{product.display_name}}"></div></td>
+                        <td scope="row" data-label="{% trans 'Name' %}">{{product.name}}</td>
+                        <td data-label="{% trans 'Display Name' %}">{{product.display_name}}</td>
+                        <td data-label="{% trans 'Gender' %}">{{product.gender|gender_value}}</td>
+                        <td data-label="{% trans 'Type' %}">{% trans product.product_type.display_name %}</td>
+                        <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                        <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                        <td data-label="{% trans 'Quantity' %}">{{product.quantity}}</td>
+                        <td scope="row" data-label="{% trans 'Added Date' %}">{{product.created_at|date:"F j, Y"}}</td>
+                        </tr>
+                        {% endfor %}
+                        
+                </tbody>
+
+        </table>
+</div>
 {% endblock CONTENT %}
 </div>
 

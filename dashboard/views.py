@@ -77,8 +77,11 @@ def dashboard(request):
     can_view_dashboard = PermissionManager.user_can_access_dashboard(request.user)
     page_title = _('Dashboard') + ' - ' + settings.SITE_NAME
     username = request.user.username
-    recent_orders = Order.objects.order_by('-created_at')[:10]
+    recent_orders = Order.objects.order_by('-created_at')[:Constants.MAX_RECENT]
     currents_orders = analytics.get_orders()
+    recent_products = Product.objects.filter(is_active=True)[:Constants.MAX_RECENT]
+    recent_sold_products = SoldProduct.objects.all()[:Constants.MAX_RECENT]
+    recent_users = User.objects.all().order_by('-date_joined'):Constants.MAX_RECENT]
     facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     google_visitors = GoogleAdsHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
     total_suspicious_visitors = SuspiciousRequest.objects.aggregate(hits=Sum('hits')).get('hits') or 0
@@ -96,7 +99,10 @@ def dashboard(request):
             'unique_visitors' : UniqueIP.objects.count(),
             'facebook_visitors' : facebook_visitors,
             'google_visitors' : google_visitors,
-            'total_suspicious_visitors': total_suspicious_visitors
+            'total_suspicious_visitors': total_suspicious_visitors,
+            'product_list': recent_products,
+            'sold_product_list': recent_sold_products,
+            'user_list': recent_users
         }
     if not can_view_dashboard :
         logger.warning(f"Dashboard : PermissionDenied to user {username} for path {request.path}")
