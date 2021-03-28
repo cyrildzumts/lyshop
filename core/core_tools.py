@@ -117,7 +117,7 @@ def generate_invoice(order, template_name=None, debug=False, output_name=None):
     invoice_html = render_to_string(template_name, context)
     #invoce_pdf = open(output_name, 'w+b')
     invoice_file = io.BytesIO()
-    pdf_status = pisa.CreatePDF(invoice_html, dest=invoice_file)
+    pdf_status = pisa.CreatePDF(invoice_html, dest=invoice_file, debug=False)
     #invoice_file.close()
     if pdf_status.err:
         logger.error("error when creating the report pdf")
@@ -174,7 +174,7 @@ def generate_sold_products_reports(template_name, output_name, seller=None):
     }
     report_html = render_to_string(template_name, context)
     report_pdf = open(output_name, 'w+b')
-    pdf_status = pisa.CreatePDF(report_html, dest=report_pdf)
+    pdf_status = pisa.CreatePDF(report_html, dest=report_pdf, debug=False)
     report_pdf.close()
     if pdf_status.err:
         logger.error("error when creating the report pdf")
