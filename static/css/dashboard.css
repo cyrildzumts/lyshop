@@ -134,3 +134,9 @@
     /*font-size: 1.2em;*/
     font-weight: 600;
 }
+
+.dashboard-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
