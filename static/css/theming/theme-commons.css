@@ -232,3 +232,7 @@ li.active.selected{
 .metric-title, .dashboard-metrics span{
     color: var(--text-grey);
 }
+
+.dashboard-metrics .fas, .dashboard-metrics .icon {
+    color: var(--secondary-color);
+}
