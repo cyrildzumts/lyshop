@@ -1,5 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import F, Q, Count, Sum
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.template.loader import get_template, render_to_string
 from django.utils.translation import gettext_lazy as _
