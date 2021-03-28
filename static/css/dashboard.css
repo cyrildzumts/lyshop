@@ -110,6 +110,10 @@
     margin: 2px 5px;
 }
 
+.dashboard-metrics{
+    margin-top: 90px;
+}
+
 #metrics{
     font-size: 0.7em;
 }
