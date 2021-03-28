@@ -16,7 +16,7 @@
             </div>
             <div class="sidebar-menu">
             <ul>
-                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:home'%}"><i class="fas fa-tachometer-alt icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+                <li><a class="mat-button mat-button-text active" href="{% url 'dashboard:home'%}"><i class="fas fa-tachometer-alt icon"></i><span>{% trans "Dashboard" %}</span></a></li>
                 <li><a class="mat-button mat-button-text" href="{% url 'dashboard:addressbook'%}"><i class="fas fa-address-book icon"></i><span>{% trans "Addressbook" %}</span></a></li>
                 {% if can_view_product %}
                 <li><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}"><i class="fas fa-gifts icon"></i><span>{% trans "Products" %}</span></a></li>
