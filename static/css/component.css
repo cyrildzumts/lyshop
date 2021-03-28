@@ -463,6 +463,7 @@ a.button{
 }
 
 .dash-main-content{
+	position: relative;
 	margin-left: 345px;
 }
 .footer .copyright span{
