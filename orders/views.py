@@ -99,7 +99,7 @@ def generate_invoice(request, order_uuid):
     order = get_object_or_404(Order, order_uuid=order_uuid, user=request.user)
     invoice = core_tools.generate_invoice(order)
     filename = f"Invoice-{order.order_ref_number}-{order.created_at}.pdf"
-    response = HttpResponse(invoice.getValue(), content_type=commons.INVOICE_CONTENT_TYPE)
+    response = HttpResponse(invoice.getvalue(), content_type=commons.INVOICE_CONTENT_TYPE)
     response[commons.CONTENT_DISPOSITION]= f"inline; filename='{filename}'"
     return response
 
