@@ -86,6 +86,9 @@ class SoldProduct(models.Model):
     total_price = models.DecimalField(blank=True, null=True, max_digits=conf.PRODUCT_PRICE_MAX_DIGITS, decimal_places=conf.PRODUCT_PRICE_DECIMAL_PLACES)
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)  
+    
+    class Meta:
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"SoldProduct {self.product.name}"

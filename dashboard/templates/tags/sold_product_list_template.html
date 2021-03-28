@@ -16,8 +16,8 @@
                          {% if can_delete_product %}
                           <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
                           <th></th>
-                          <th scope="col">{% trans "Name" %}</th>
-                          <th scope="col">{% trans "Display Name" %}</th>
+                          <th scope="col">{% trans "Order" %}</th>
+                          <th scope="col">{% trans "Article" %}</th>
                           <th scope="col">{% trans "Gender" %}</th>
                           <th scope="col">{% trans "Product Type" %}</th>
                           <th scope="col">{% trans "Price" %}</th>
@@ -27,8 +27,8 @@
                           <th scope="col">{% trans "Action" %}</th>
                           {% else %}
                           <th></th>
-                          <th scope="col">{% trans "Name" %}</th>
-                          <th scope="col">{% trans "Display Name" %}</th>
+                          <th scope="col">{% trans "Order" %}</th>
+                          <th scope="col">{% trans "Article" %}</th>
                           <th scope="col">{% trans "Gender" %}</th>
                           <th scope="col">{% trans "Product Type" %}</th>
                           <th scope="col">{% trans "Price" %}</th>
@@ -49,23 +49,23 @@
                   {% if can_delete_product %}
                   <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{sold_product.pk}}"><span class="checkbox-label"></span></label></td>
                   <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{sold_product.product.image}}" alt="{{sold_product.product.display_name}}"></div></td>
-                  <td scope="row" data-label="{% trans 'Name' %}">{{sold_product.product.name}}</td>
-                  <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
+                  <td scope="row" data-label="{% trans 'Order' %}">{{sold_product.order.order_ref_number}}</td>
+                  <td scope="row" data-label="{% trans 'Article' %}">{{sold_product.product.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_value}}</td>
                   <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
-                  <td scope="row" data-label="{% trans 'Promotion Price' %}"><span><span>{{sold_product.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
+                  <td scope="row" data-label="{% trans 'Promotion Price' %}"><span><span>{{sold_product.promotion_price|default_if_none:'0'|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
                   <td scope="row" data-label="{% trans 'Quantity' %}">{{sold_product.quantity}}</td>
                   <td scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   <td scope="row" data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_delete_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Delete" %}</span></a></td>
                   {% else %}
                   <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{sold_product.product.image}}" alt="{{sold_product.product.display_name}}"></div></td>
-                  <td scope="row" data-label="{% trans 'Name' %}">{{sold_product.product.name}}</td>
-                  <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
+                  <td scope="row" data-label="{% trans 'Order' %}">{{sold_product.order.order_ref_number}}</td>
+                  <td scope="row" data-label="{% trans 'Article' %}">{{sold_product.product.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_value}}</td>
                   <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.unit_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
-                  <td scope="row" data-label="{% trans 'End Price' %}"><span>{{sold_product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
+                  <td scope="row" data-label="{% trans 'End Price' %}"><span>{{sold_product.active_total_price|default_if_none:'0'|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                   <td scope="row" data-label="{% trans 'Quantity' %}">{{sold_product.quantity}}</td>
                   <td scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   {% endif %}

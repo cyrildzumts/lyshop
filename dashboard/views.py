@@ -1726,7 +1726,7 @@ def sold_product_list(request):
         'page_title': page_title,
     }
 
-    queryset = SoldProduct.objects.all().order_by('-created_at')
+    queryset = SoldProduct.objects.all()
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
