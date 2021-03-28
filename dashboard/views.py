@@ -85,6 +85,7 @@ def dashboard(request):
     context = {
             'name'          : username,
             'page_title'    : page_title,
+            'content_title' : 'Dashboard',
             'is_allowed'     : can_view_dashboard,
             'order_list' : recent_orders,
             'currents_orders' : currents_orders,
@@ -113,7 +114,8 @@ def category_create (request):
     template_name = 'dashboard/category_create.html'
     page_title = _('New Category')
     context = {
-        'page_title': page_title
+        'page_title': page_title,
+        'content_title' : 'Category'
     }
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
@@ -148,7 +150,8 @@ def categories(request):
     template_name = 'dashboard/category_list.html'
     page_title = _('Category List')
     context = {
-        'page_title': page_title
+        'page_title': page_title,
+        'content_title' : 'Categories'
     }
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
@@ -194,6 +197,7 @@ def category_detail(request, category_uuid=None):
     context['page_title'] = page_title
     context['category'] = category
     context['product_list'] = product_list
+    context['content_title'] = category.display_name
     context['subcategory_list'] = Category.objects.filter(parent=category)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -228,6 +232,7 @@ def category_update(request, category_uuid):
         'category':category,
         'CATEGORIES' : Catalog_Constants.CATEGORIES,
         'category_list': Category.objects.exclude(id__in=[category.pk])
+        'content_title': f"{category.display_name} - {_('Update')}"
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -389,6 +394,7 @@ def orders(request):
     except EmptyPage:
         list_set = None
     context['page_title'] = page_title
+    context['content_title'] = 'Orders'
     context['orders'] = list_set
     context['ORDER_STATUS'] = Order_Constants.ORDER_STATUS
     context['PAYMENT_OPTIONS'] = Order_Constants.PAYMENT_OPTIONS
@@ -425,7 +431,8 @@ def order_detail(request, order_uuid=None):
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
         'order_is_cancelable' :  orders_service.is_cancelable(order),
-        'order_can_be_shipped' :  orders_service.can_be_shipped(order)
+        'order_can_be_shipped' :  orders_service.can_be_shipped(order),
+        'content_title' : f"Order - {order.order_ref_number}"
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)

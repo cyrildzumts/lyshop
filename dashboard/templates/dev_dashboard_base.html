@@ -1,0 +1,76 @@
+{% extends "base.html"%}
+{% load static %}
+{% load i18n %} 
+{% block META_REDIRECT %}
+        
+{% endblock META_REDIRECT %}
+
+{% block HEADER_PANEL %}{% endblock HEADER_PANEL %}
+
+{% block MAIN %}
+<div class="container">
+{% block SIDEBAR %}
+      <div id="sidebar" class="container">
+            <div class="sidebar-brand">
+                <h1><span></span> {{site_name}}</h1>
+            </div>
+            <div class="sidebar-menu">
+            <ul>
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:home'%}"><i class="fas fa-tachometer-alt icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:addressbook'%}"><i class="fas fa-address-book icon"></i><span>{% trans "Addressbook" %}</span></a></li>
+                {% if can_view_product %}
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}"><i class="fas fa-gifts icon"></i><span>{% trans "Products" %}</span></a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:users'%}"><i class="fas fa-user-friends icon"></i><span>{% trans "Sellers" %}</span></a></li>
+                {% endif %}
+                {% if can_view_order %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:orders'%}"><i class="fas fa-shopping-bag icon"></i><span>{% trans "Orders" %}</span></a></li>{% endif %}
+                {% if can_view_group %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:groups'%}"><i class="fas fa-users icon"></i><span>{% trans "Groups" %}</span></a></li>{% endif %}
+                {% if can_view_user %}
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}"><i class="fas fa-users icon"></i><span>{% trans "Customers" %}</span></a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:users'%}"><i class="fas fa-user-circle icon"></i><span>{% trans "Sellers" %}</span></a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:tokens' %}"><i class="fas fa-key icon"></i><span>{% trans "Tokens" %}</span></a></li>
+                {% if can_generate_token %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:generate-token' %}"><i class="fas fa-key icon"></i><span>{% trans "Token Generator" %}</span></a></li>{% endif %}
+                {% endif %}
+                {% if can_view_payment %} 
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-methods'%}">{% trans "Payment Methods" %}</a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'payment:payment-home'%}"><i class="fas fa-money-check icon"></i><span>{% trans "Payments" %}</span></a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-requests'%}"><i class="fas fa-cash-register icon"></i><span>{% trans "Payment Requests" %}</span></a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:refunds'%}">{% trans "Refunds" %}</a></li>
+                {% endif %}
+                {% if can_view_shipment %}<li><a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home'%}"><i class="fas fa-shipping-fast icon"></i><span>{% trans "Shipments" %}</span></a></li>{% endif %}
+                
+                <li><a class="mat-button mat-button-text" href="{% url 'dashboard:reports' %}">{% trans "Reports" %}</a></li>
+                <li><a class="mat-button mat-button-text" href="{% url 'accounts:logout'%}"><i class="fas fa-sign-out-alt icon"></i><span>{% trans "Logout" %}</span></a></li>
+            </ul>
+            </div>
+      </div>
+{% endblock SIDEBAR %}
+{% block DASH_CONTENT %}
+<div class="dash-main-content container">
+    <header>
+        <h1>
+            <label for=""><span class="fas fa-bars"></span></label>{{content_title|default_if_none:'Dashboard'}}
+        </h1>
+        <div class="search-wrapper">
+            <span class="fas fa-search icon"></span>
+            <input type="search" placeholder="{% trans 'Search' %}">
+        </div>
+    </header>
+    {% block MAIN_CONTENT %}
+      
+    {% endblock MAIN_CONTENT %}
+
+</div>
+{% endblock DASH_CONTENT %}
+</div>    
+{% endblock MAIN %}
+
+{% block BASE_SCRIPT %}
+<script  data-main="{% static 'js/DashboardApp' %}" src="{% static 'js/require.js' %}"></script>        
+{% endblock BASE_SCRIPT %}
+
+{% block SCRIPT %}     
+
+<script  type="application/javascript" src="{% static 'js/lib/validators.js' %}"></script>
+<script  type="application/javascript" src="{% static 'js/lib/dashboard.js' %}"></script>
+
+{% endblock SCRIPT %}
