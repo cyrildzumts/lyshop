@@ -67,7 +67,7 @@
     {% block MAIN_CONTENT %}
       {% block DASHBOARD_SUMMARY %}{% endblock DASHBOARD_SUMMARY %}
         {% block CONTENT %}{% endblock CONTENT %}
-        {% block FOOTER %}
+        {% block DASHBOARD_FOOTER %}
             <footer class="footer column row">
                     {% include 'tags/footer_content.html' %}
                     <div class="footer-list">
@@ -83,7 +83,7 @@
                             </ul>
                     </div>
             </footer>
-        {% endblock FOOTER %}
+        {% endblock DASHBOARD_FOOTER %}
     {% endblock MAIN_CONTENT %}
     </main>
 </div>
