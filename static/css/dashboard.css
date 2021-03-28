@@ -183,6 +183,7 @@
 .dashboard-header .user-wrapper{
     display: flex;
     align-items: center;
+    padding: 0 1rem;
 }
 
 .dashboard-header .user-wrapper img{
