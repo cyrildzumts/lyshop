@@ -5,15 +5,16 @@
 {% include "tags/unauthorized.html" %}
 {% else %}
 
+
+
+
+<div class="main-content">
 {% block DASHBOARD_SUMMARY %}
         {% include "tags/dashboard_summary.html" %}
 {% endblock DASHBOARD_SUMMARY %}
-
-{% block MAIN_CONTENT %}
-<div class="container">
+{% block CONTENT %}
 {% if can_view_order %}
-                        
-<div class="col-xs-12 col-10">
+                
         <div class="mat-table-wrapper">
                 <h4>{% trans "Recent Orders" %}</h4>
                 <table id="order-list" class="mat-table">
@@ -47,9 +48,9 @@
                 </table>
                 
         </div> <!--End of Table Wrapper-->
-</div> <!--End of Col-6-->
 {% endif %}
+{% endblock CONTENT %}
 </div>
 
-{% endblock MAIN_CONTENT %}
+
 {% endif %}
