@@ -139,6 +139,8 @@
     font-weight: 600;
 }
 
+
+
 .dashboard-header-wrapper{
     position: fixed;
     top:0;
@@ -196,4 +198,10 @@
 .dashboard-header .user-wrapper small{
     display: inline-block;
     color : var(--text-grey);
+}
+
+main {
+    margin-top: 90px;
+    padding: 2rem 1.5rem;
+    min-height: calc(100vh - 90px);
 }
