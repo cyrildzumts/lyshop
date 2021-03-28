@@ -128,7 +128,7 @@ def generate_invoice(order, template_name=None, debug=False, output_name=None):
 
 
 
-def generate_sold_products_reports(template_name, output_name, seller=None):
+def generate_sold_products_reports(template_name, output_name, debug=False, seller=None):
     template_name = template_name or "sold_products.html"
     now = datetime.datetime.now()
     start_date = now - datetime.timedelta(days=now.day-1, hours=now.hour, minutes=now.minute, seconds=now.second)
@@ -162,7 +162,7 @@ def generate_sold_products_reports(template_name, output_name, seller=None):
         'orientation' : 'portrait',
         'FRAME_NUMBER' : 2,
         'page_size': 'letter portrait',
-        'border': '',
+        'border': debug,
         'entry_list' : entry_list.order_by('-sold_at'),
         'TOTAL' : total,
         'TOTAL_PROMOTION_PRICE' : total_promotion_price,
@@ -173,14 +173,14 @@ def generate_sold_products_reports(template_name, output_name, seller=None):
         'end_date': end_date
     }
     report_html = render_to_string(template_name, context)
-    report_pdf = open(output_name, 'w+b')
-    pdf_status = pisa.CreatePDF(report_html, dest=report_pdf, debug=False)
-    report_pdf.close()
+    report_file = io.BytesIO()
+    pdf_status = pisa.CreatePDF(report_html, dest=report_file, debug=False)
     if pdf_status.err:
         logger.error("error when creating the report pdf")
+        return None
     else:
         logger.info("sold voucher report pdf created")
-
+    return report_file
 
 
 
