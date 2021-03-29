@@ -426,6 +426,10 @@ a.button{
 	z-index: 100;
 }
 
+.sidebar-menu{
+	position: relative;
+}
+
 .sidebar-brand{
 	height: 90px;
 	padding: 1rem 0 1rem 2rem;
@@ -462,6 +466,18 @@ a.button{
 	font-size: 1.5rem;
 	padding-right: 1rem;
 }
+
+.sidebar-menu .footer-wrapper{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.sidebar-menu .footer-wrapper li{
+	font-size: 0.75rem;
+	padding-bottom: 0.5rem;
+}
+
 
 .dash-main-content{
 	position: relative;
@@ -2421,8 +2437,8 @@ a.mat-button{
 				0px 1px 3px 0px rgba(0,0,0,.12);*/
 	/*border: 1px solid #ccc;*/
 	border-radius: 4px;
-	padding: 0;
-	margin: 0;
+	padding: 1rem 0;
+	margin: 1rem 0;
 }
 
 .table-filter{
@@ -2475,13 +2491,13 @@ a.mat-button{
 
 table thead, .mat-table thead{
 	max-height: 64px;
-	font-size: 0.875em;
+	font-size: 0.875rem;
 	font-weight: 600;
 	color: #242424;
 }
 
 table tr{
-	padding: .35em;
+	padding: .35rem;
 }
 
 table tbody tr, .mat-table tbody tr{
@@ -2494,9 +2510,9 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .mat-table td, .mat-table th, table td, table th{
-	padding: 0.625em;
+	padding: 0.625rem;
 	text-align: left;
-	letter-spacing: 0.15em;
+	letter-spacing: 0.15rem;
 	
 }
 
@@ -2505,14 +2521,14 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .mat-table th{
-	font-size: 0.85em;
+	font-size: 0.85rem;
 	text-transform: uppercase;
 	/*height: 56px;*/
 	text-align: left;
 }
 
 .mat-table td{
-	font-size: 0.85em;
+	font-size: 0.85rem;
 }
 
 
@@ -3070,12 +3086,12 @@ table tbody tr, .mat-table tbody tr{
 		/*justify-content: start;*/
 		border-bottom: 2px solid #ddd;
 		padding: 0;
-		margin-bottom: 0.625em;
+		margin-bottom: 0.625rem;
 	}
 
 	.mat-table td{
 		display: flex;
-		font-size: 0.8em;
+		font-size: 0.8rem;
 		text-align: right;
 		align-items: center;
 		justify-content: space-between;
@@ -3168,14 +3184,7 @@ table tbody tr, .mat-table tbody tr{
 		/*padding: .35em;*/
 	}
 	
-	.mat-table td, .mat-table th{
-		padding: 0.625em;
-		text-align: center;
-	}
 	
-	.mat-table td{
-		padding: 2px 4px;
-	}
 
 	.mat-table td::before{
 		content: unset;
@@ -3184,7 +3193,6 @@ table tbody tr, .mat-table tbody tr{
 	
 	.mat-table th{
 		font-size: 0.85em;
-		letter-spacing: 0.1em;
 		text-transform: uppercase;
 	}
 
