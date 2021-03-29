@@ -5,11 +5,6 @@
 
 
 <div class="mat-table-wrapper">
-        <div class="row">
-            <div class="mat-table-title">
-                {% trans "Products" %}
-            </div>
-        </div><!--End of Row-->
         {% if FILTER_CONFIG %}
             <form action="{% url 'dashboard:products' %}" id="filter-form" method="GET">
             {% include "core/core_filter.html" with FILTER_TEMPLATE="core/filter.html" %}
@@ -19,13 +14,8 @@
         <table id="product-list" class="mat-table js-filter-table">
              <ul class="actions">
              {% for k,v in PRODUCT_ACTIONS %}<li><label for=""> <input type="radio" name="action" value="{{k}}"> {% trans v %}</label></li>{% endfor %}
+             <li><button type="submit" class="js-activable mat-button mat-button-outlined" disabled><i class="fas fa-trash icon"></i><span>{% trans "APPLY" %}</span></button></li>
              </ul>
-            {% if can_delete_product %}
-
-            <div class="actions">
-                    <button type="submit" class="js-activable mat-button mat-button-outlined" disabled><i class="fas fa-trash icon"></i><span>{% trans "APPLY" %}</span></button>
-            </div>
-            {% endif %}
           <thead>
                   <tr>
                           <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
