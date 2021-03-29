@@ -3,15 +3,15 @@
 
 {% block ACTIONS %}
 <a class="mat-button mat-button-default" href="{{brand.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>
-<a class="mat-button mat-button-default" href="{% url 'dashboard:brand-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Group" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url 'dashboard:brand-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Brand" %}</span></a>
 <a class="mat-button mat-button-default" href="{% url 'dashboard:brands' %}"><i class="fas icon"></i><span>{% trans "Brands" %}</span></a>
-<a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+
 {% endblock ACTIONS %}
 
 {% block CONTENT_MAIN %}
 
 <div class="container">
-        <div class="mat-box col-xs-12 col-m-12">
+        <div class="mat-box">
           <div class="box">
             <div class="entry">
               <span class="key">{% trans "Name" %}</span> <span class="value">{{brand.name}}</span>

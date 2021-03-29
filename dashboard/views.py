@@ -2292,7 +2292,8 @@ def brand_detail(request, brand_uuid=None):
     context = {
         'page_title': page_title,
         'product_list': product_list,
-        'brand': brand
+        'brand': brand,
+        'content_title': brand.display_name
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -2329,7 +2330,8 @@ def brand_update(request, brand_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'brand': brand
+        'brand': brand,
+        'content_title': brand.display_name
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
