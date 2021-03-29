@@ -1125,8 +1125,6 @@ def products(request):
     context = {
         'page_title': page_title,
     }
-
-    #queryset = Product.objects.order_by('-created_at')
     queryDict = request.GET.copy()
     field_filter = filters.Filter(Product, queryDict)
     queryset = field_filter.apply_filter().order_by('-created_at')
@@ -1144,6 +1142,7 @@ def products(request):
     context['SELECTED_FILTERS'] = selected_filters
     context['FILTER_CONFIG'] = Product.FILTER_CONFIG
     context['PRODUCT_ACTIONS'] = Catalog_Constants.PRODUCT_ACTIONS
+    context['content_title'] = 'Products'
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
