@@ -10,11 +10,12 @@
 {% block MAIN %}
 <div class="container">
 {% block SIDEBAR %}
+      <input type="checkbox" id="nav-toggle">
       <div id="sidebar" class="sidebar">
             <div class="sidebar-brand">
                 <h4><i>L</i><span>{{site_name}}</span></h4>
             </div>
-            <input type="checkbox" id="nav-toggle">
+            
             <div class="sidebar-menu">
                 <ul>
                     <li><a class="mat-button mat-button-text active" href="{% url 'dashboard:home'%}"><i class="fas fa-tachometer-alt icon"></i><span>{% trans "Dashboard" %}</span></a></li>
