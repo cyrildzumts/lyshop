@@ -1,23 +1,17 @@
-{% extends "dashboard_base.html"%}
+{% extends "product_base.html"%}
 {% load i18n %}
 {% load catalog_tags %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Category" %} - {{category.display_name}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}     
-        </div>  
-    </div>
-{% endblock HEADER_BANNER %}
+{% block ACTIONS %}
+{% if can_change_category %}<a class="mat-button mat-button-default" href="{{category.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>{% endif %}
+{% if can_add_category %}<a class="mat-button mat-button-default" href="{% url 'dashboard:category-create' %}"> <i class="fas fa-plus icon"></i> <span>{% trans "Add new Category" %}</span></a>{% endif %}
+{% if can_delete_category %}<a class="mat-button mat-button-default" href="{{category.get_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span> </a>{% endif %}
+<a class="mat-button mat-button-default" href="{% url 'dashboard:categories' %}"> <i class="fas fa-list icon"></i><span>{% trans "Categories" %}</span></a>
+{% endblock ACTIONS %}
 
-{% block MAIN_CONTENT %}
-
-{% if can_view_category %}
+{% block CONTENT_MAIN %}
 
 <div class="container">
   <div class="mat-box wrapper full">
-    <div class="row">
       <div class="box">
             <div class="entry">
               <span class="key">{% trans "Name" %}</span> <span class="value">{{category.name}}</span>
@@ -44,17 +38,6 @@
               <span class="key">{% trans "Parent" %}</span> <span class="value">{{category.parent}}</span>
             </div>
       </div>
-    </div>
-    <div class="mat-box-content">
-      <div class="actions">
-        {% if can_change_category %}<a class="mat-button mat-button-default" href="{{category.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>{% endif %}
-        {% if can_add_category %}<a class="mat-button mat-button-default" href="{% url 'dashboard:category-create' %}"> <i class="fas fa-plus icon"></i> <span>{% trans "Add new Category" %}</span></a>{% endif %}
-        {% if can_delete_category %}<a class="mat-button mat-button-default" href="{{category.get_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span> </a>{% endif %}
-        <a class="mat-button mat-button-default" href="{% url 'dashboard:categories' %}"> <i class="fas fa-list icon"></i><span>{% trans "Categories" %}</span></a>
-        <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"> <i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
-      </div>
-    </div>
-
   </div><!--End of mat-box-->
   <div class="mat-box wrapper full">
     <div class="mat-box-title">
@@ -91,13 +74,5 @@
     </div><!--End of mat-box-content-->
 
   </div><!--End of mat-box-->
-
-
 </div>
-
-{% else %}
-<div class="error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

@@ -124,7 +124,7 @@ def category_create (request):
     page_title = _('New Category')
     context = {
         'page_title': page_title,
-        'content_title' : 'Category'
+        'content_title' : _('New Category')
     }
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
@@ -160,7 +160,7 @@ def categories(request):
     page_title = _('Category List')
     context = {
         'page_title': page_title,
-        'content_title' : 'Categories'
+        'content_title' : _('Categories')
     }
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):

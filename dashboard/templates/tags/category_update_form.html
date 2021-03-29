@@ -1,11 +1,5 @@
 {% load i18n %} 
 
-
-{% if can_change_category %}
-
-
-<div class="responsive">
-
     <div class="mat-box">
         <div class="title">
             <h3>{% trans "Category" %}</h3>
@@ -66,10 +60,4 @@
             
         </form>
     </div>          
-</div>
 
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}

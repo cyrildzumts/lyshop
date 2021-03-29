@@ -1,16 +1,9 @@
-{% extends "dashboard_base.html"%}
+{% extends "product_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-  <div class="row">
-        <div class="col-6">
-            <div class="title">
-                <h3>{% trans "New Brand" %}</h3>
-            </div>
-        </div> 
-  </div>
-{% endblock HEADER_BANNER %}
-{% block MAIN_CONTENT %}
+{% block ACTIONS %}{% endblock ACTIONS %}
+
+{% block CONTENT_MAIN %}
 
 {% include "tags/brand_creation_form.html" %}
 
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}
