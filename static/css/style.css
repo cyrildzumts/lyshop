@@ -426,3 +426,8 @@
     padding: 1em !important;
 }
 
+.padding-h{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
