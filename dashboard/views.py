@@ -1168,7 +1168,8 @@ def product_detail(request, product_uuid=None):
         'page_title': page_title,
         'product': product,
         'variant_list': variants,
-        'image_list': images
+        'image_list': images,
+        'content_title': product.display_name
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -1216,6 +1217,7 @@ def product_update(request, product_uuid=None):
     context['GENDER'] = Catalog_Constants.GENDER
     context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
     context['SHORT_DESCRIPTION_MAX_SIZE'] = Catalog_Constants.SHORT_DESCRIPTION_MAX_SIZE
+    context['content_title'] = f"{product.display_name} - Update" 
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -1437,6 +1439,7 @@ def product_image_create(request, product_uuid=None):
     form = ProductImageForm()
     context['form'] = form
     context['product'] = product
+    context['content_title'] = f"{product.display_name} - Add Image" 
     return render(request,template_name, context)
 
 @login_required
@@ -1589,6 +1592,7 @@ def product_variant_create(request, product_uuid=None):
     }
     context['attribute_formset'] = attribute_formset
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context['content_title'] = f"{product.display_name} - New Variant"
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -1637,6 +1641,7 @@ def create_product_variant(request, product_uuid=None):
     }
     context['attribute_formset'] = attribute_formset
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context['content_title'] = f"{product.display_name} - New Variant"
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -1669,6 +1674,7 @@ def product_variant_detail(request, variant_uuid=None):
         'available_attribute_list' : available_attribute_list,
         'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
     }
+    context['content_title'] = f"{product.display_name} - Variant"
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -1717,6 +1723,7 @@ def product_variant_update(request, variant_uuid=None):
         'attribute_formset': attribute_formset,
         'attribute_types': Catalog_Constants.ATTRIBUTE_TYPE
     }
+    context['content_title'] = f"{product.display_name} - Variant Update"
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -1775,6 +1782,7 @@ def sold_product_list(request):
         list_set = None
     context['page_title'] = page_title
     context['product_list'] = list_set
+    context['content_title'] = f"Sold Products"
     context.update(get_view_permissions(request.user))
 
     return render(request,template_name, context)
@@ -1970,6 +1978,7 @@ def attribute_create(request, variant_uuid):
     context['attribute_formset'] = attribute_formset
     context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context['content_title'] = f"New Attribute"
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -2037,6 +2046,7 @@ def attributes_create(request):
     }
     context['attribute_formset'] = attribute_formset
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context['content_title'] = f"New Attributes"
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -2172,6 +2182,7 @@ def attributes(request):
         'attribute_list': list_set,
         'has_default_not_set' : ProductAttribute.objects.filter(name__in=Catalog_Constants.DEFAULT_PRIMARY_ATTRIBUTES, is_primary=False).exists()
     }
+    context['content_title'] = f"Attributes"
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -2217,7 +2228,8 @@ def brands(request):
         list_set = None
     context = {
         'page_title': page_title,
-        'brand_list': list_set
+        'brand_list': list_set,
+        'content_title': 'Brands'
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -2252,7 +2264,8 @@ def brand_create(request):
         form = BrandForm()
     context = {
         'page_title': page_title,
-        'form' : form
+        'form' : form,
+        'content_title': 'New Brand'
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
