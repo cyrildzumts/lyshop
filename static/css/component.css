@@ -416,6 +416,18 @@ a.button{
 	width: 100%;
 	margin-bottom: 32px;
 }
+#nav-toggle{
+	display: none;
+}
+
+#nav-toggle:checked + .sidebar{
+	width: 70px;
+}
+
+#nav-toggle:checked + .sidebar .sidebar-brand h4 span:last-child,
+#nav-toggle:checked + .sidebar li a span:last-child{
+	display: none;
+}
 
 .sidebar {
 	width: 345px;
