@@ -1,6 +1,10 @@
 {% extends "dev_dashboard_base.html"%}
 {% load i18n %}
-{% if can_view_product %}
+{% if not can_view_product %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% else %}
 {% block SIDEBAR_CONTENT %}
     <li><a class="mat-button mat-button-text active" href="{% url 'dashboard:home'%}"><i class="fas fa-tachometer-alt icon"></i><span>{% trans "Dashboard" %}</span></a></li>
     {% if can_view_brand %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:brands'%}">{% trans "Brands" %}</a></li>{% endif %}
@@ -27,11 +31,4 @@
         {% block CONTENT_MAIN %}{% endblock CONTENT_MAIN %}
     </div>
 {% endblock CONTENT %}
-
-{% else %}
-{% block SIDEBAR_CONTENT %}{% endblock SIDEBAR_CONTENT %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% block CONTENT %}{% endblock CONTENT %}
 {% endif %}
