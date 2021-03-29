@@ -77,21 +77,6 @@
       {% block DASHBOARD_SUMMARY %}{% endblock DASHBOARD_SUMMARY %}
         {% block CONTENT %}{% endblock CONTENT %}
         {% block DASHBOARD_FOOTER %}
-            <footer class="footer column row">
-                    {% include 'tags/footer_content.html' %}
-                    <div class="footer-list">
-                            {% now "Y" as current_year %}
-                            <ul class="mat-list">
-                                    <li class="list-item"><span>Copyright</span> <i class="fa fa-copyright"></i><span class="copyright-year">{{current_year}}</span> <span class="site">{{site_name}} - {%trans 'ONLINE SHOP' %} </span></li>
-                                    <li class="list-item">
-                                            <div class="actions">
-                                                    <a class="mat-button mat-button-text" href="{% url 'about' %}">{% trans "About us" %}</a>
-                                                    <a class="mat-button mat-button-text" href="{% url 'faq' %}">{% trans "FAQ" %}</a>
-                                            </div>
-                                    </li>
-                            </ul>
-                    </div>
-            </footer>
         {% endblock DASHBOARD_FOOTER %}
     {% endblock MAIN_CONTENT %}
     </main>
