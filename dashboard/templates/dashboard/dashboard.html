@@ -94,7 +94,7 @@
                   {% for sold_product in sold_product_list  %}
                   <tr>
         
-                  <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{sold_product.product.image}}" alt="{{sold_product.product.display_name}}"></div></td>
+                  <td><div class="col-xs-3 col-3"><img class="img-responsive" src="{{sold_product.product.image}}" alt="{{sold_product.product.display_name}}"></div></td>
                   <td scope="row" data-label="{% trans 'Order' %}">{{sold_product.order.order_ref_number}}</td>
                   <td scope="row" data-label="{% trans 'Article' %}">{{sold_product.product.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
@@ -124,7 +124,7 @@
                 <tbody>
                         {% for product in product_list  %}
                         <tr>
-                        <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{product.image}}" alt="{{product.display_name}}"></div></td>
+                        <td><div class="col-xs-3 col-3"><img class="img-responsive" src="{{product.image}}" alt="{{product.display_name}}"></div></td>
                         <td data-label="{% trans 'Article' %}">{{product.display_name}}</td>
                         <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                         <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
