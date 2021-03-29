@@ -480,7 +480,6 @@ a.button{
 	font-size: 0.6rem;
 	font-weight: 500;
 	padding-bottom: 0.5rem;
-	padding-left: 0;
 	margin-bottom: 0.5rem;
 }
 
@@ -2467,7 +2466,7 @@ a.mat-button{
 	table-layout: fixed;
 	border-collapse: collapse;
 	border: 0;
-	font-size: 0.875em;
+	font-size: 0.875rem;
 	padding: 0;
 	margin : 0;
 }
@@ -2531,14 +2530,14 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .mat-table th{
-	font-size: 0.85rem;
+	font-size: 0.8rem;
 	text-transform: uppercase;
 	/*height: 56px;*/
 	text-align: left;
 }
 
 .mat-table td{
-	font-size: 0.85rem;
+	font-size: 0.7rem;
 }
 
 

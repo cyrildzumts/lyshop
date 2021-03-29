@@ -34,7 +34,7 @@
                         <tr>
                         <td scope="row" data-label="{% trans 'Reference Number' %}">{{order.order_ref_number}}</td>
                         <td data-label="{% trans 'Customer' %}">{{order.user.get_full_name}}</td>
-                        <td data-label="{% trans 'Status' %}">{{order.status|order_status_value}} </td>
+                        <td data-label="{% trans 'Status' %}">{{order.status|order_status_value}}</td>
                         <td data-label="{% trans 'Total Price' %}">{{order.total}} {% trans CURRENCY %}</td>
                         <td data-label="{% trans 'Date of Order' %}">{{order.created_at|date:"F j, Y"}}</td>
                         <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{order.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
@@ -54,7 +54,6 @@
                 <table id="user-list" class="mat-table">
                         <thead>
                                 <tr>
-                                        <th scope="col">{% trans "Username" %}</th>
                                         <th scope="col">{% trans "Name" %}</th>
                                         <th scope="col">{% trans "Is Active" %}</th>
                                         <th scope="col">{% trans "Date Joined" %}</th>
@@ -63,7 +62,6 @@
                         <tbody>
                                 {% for u in user_list  %}
                                 <tr>
-                                        <td>{{u.username}}</td>
                                         <td data-label="{% trans 'Name' %}">{{u.get_full_name}}</td>
                                         <td data-label="{% trans 'Is Active' %}">{{u.is_active|yesno:_('yes,no')}}</td>
                                         <td data-label="{% trans 'Date Joined' %}">{{u.date_joined|date:"F j, Y"}}</td>
@@ -116,7 +114,7 @@
                 <thead>
                         <tr>
                                 <th></th>
-                                <th scope="col">{% trans "Display Name" %}</th>
+                                <th scope="col">{% trans "Article" %}</th>
                                 <th scope="col">{% trans "Price" %}</th>
                                 <th scope="col">{% trans "Promotion Price" %}</th>
                                 <th scope="col">{% trans "Quantity" %}</th>
@@ -127,7 +125,7 @@
                         {% for product in product_list  %}
                         <tr>
                         <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{product.image}}" alt="{{product.display_name}}"></div></td>
-                        <td data-label="{% trans 'Display Name' %}">{{product.display_name}}</td>
+                        <td data-label="{% trans 'Article' %}">{{product.display_name}}</td>
                         <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                         <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                         <td data-label="{% trans 'Quantity' %}">{{product.quantity}}</td>
