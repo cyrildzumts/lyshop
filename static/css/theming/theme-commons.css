@@ -237,7 +237,19 @@ li.active.selected{
     color: var(--secondary-color);
 }
 
-.sidebar-menu li:hover, .sidebar-menu li:hover a{
+.sidebar-menu + li:hover, .sidebar-menu + li:hover a{
 	color: var(--secondary-color) !important;
     font-size: 0.875rem;
 }
+
+/*
+.sidebar-menu .footer-wrapper li{
+	font-size: 0.6rem;
+	padding-bottom: 0.5rem;
+}
+
+.sidebar-menu .footer-wrapper a{
+	font-size: 0.5rem;
+	width: unset !important;
+}
+*/
