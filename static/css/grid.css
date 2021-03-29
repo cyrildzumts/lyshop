@@ -82,6 +82,10 @@
 .col-flex-12 { flex-basis: 100%; }
 
 
+.force-hidden{
+  display: none !important;
+}
+
 .hidden{
   display: none;
 }
