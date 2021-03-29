@@ -127,17 +127,21 @@
 .metric{
     width: 250px;
     font-family: 'Montserrat';
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
     padding: 8px !important;
     margin: 8px !important;
 
 }
+.metric .icon{
+    padding-left: 0;
+    margin-left: 0;
+}
 
 .metric-title{
     width: 100%;
     font-weight: 500;
-    margin: 4px;
+    margin: 0.5rem 0;
 }
 
 .metric-value{
