@@ -1,16 +1,12 @@
-{% extends "dashboard_base.html"%}
+{% extends "product_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-  <div class="row">
-        <div class="col-xs-12 col-6">
-            <span>{% trans "New Product" %}</span>
-        </div> 
-  </div>
-{% endblock HEADER_BANNER %}
+{% block ACTIONS %}
+<a class="mat-button mat-button-text js-cancel" href="{%url 'dashboard:product-home'%}">{% trans "Product Home" %}</a>
+{% endblock ACTIONS %}
 
-{% block MAIN %}
+{% block CONTENT_MAIN %}
 
 <div class="container">
     {% include "tags/product_creation_form.html" %}
 </div>
-{% endblock MAIN %}
+{% endblock CONTENT_MAIN %}
