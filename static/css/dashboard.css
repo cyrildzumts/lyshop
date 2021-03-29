@@ -265,6 +265,7 @@
     height: 90px;
     padding: 1rem 0 1rem 1.5rem;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: width 300ms;
 
 }
 
