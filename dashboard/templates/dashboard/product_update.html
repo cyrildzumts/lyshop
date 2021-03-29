@@ -1,11 +1,13 @@
-{% extends "dashboard_base.html"%}
+{% extends "product_base.html"%}
 {% load i18n %}
-{% block  HEADER_BANNER_TITLE %}
-    <h4> {% trans "Product Update" %} - {{product.name}}</h4>
-{% endblock HEADER_BANNER_TITLE %}
-{% block MAIN %}
+{% block  ACTIONS %}
+<a class="mat-button mat-button-text js-cancel" href="{{product.get_dashboard_url}}"><i class="fas fa-arrow-alt-circle-left icon"></i><span>{% trans "Back" %}</span></a>
+{% endblock ACTIONS %}
+
+
+{% block CONTENT_MAIN %}
 
 <div class="container">
     {% include "tags/product_update_form.html" %}
 </div>
-{% endblock MAIN %}
+{% endblock CONTENT_MAIN %}

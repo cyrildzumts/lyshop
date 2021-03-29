@@ -6,12 +6,9 @@
 
 {% if can_change_product %}<a class="mat-button mat-button-default" href="{{product.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>{% endif %}
 {% if can_add_product %}
-<a class="mat-button mat-button-default" href="{% url 'dashboard:product-create'%}"><i class="fas fa-plus icon"></i><span>{% trans "Add new Product" %}</span></a>
 <a class="mat-button mat-button-default" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a>
 <a class="mat-button mat-button-default" href="{% url 'dashboard:product-image-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Image" %}</span></a>
 {% endif %}
-<a class="mat-button mat-button-default" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a>
-<a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
 
 {% endblock ACTIONS %}
 
