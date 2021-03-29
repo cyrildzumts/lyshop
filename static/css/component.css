@@ -421,7 +421,20 @@ a.button{
 }
 
 #nav-toggle:checked + .sidebar{
-	width: 70px;
+	transition: width 300ms;
+	width: 100px;
+}
+
+
+#nav-toggle:checked + .dash-main-content .dashboard-header-wrapper{
+	transition: width 300ms;
+	left: 100px;
+	width: calc(100% - 100px);
+}
+
+#nav-toggle:checked ~ .dash-main-content{
+	transition: margin-left 300ms;
+	margin-left: 100px;
 }
 
 #nav-toggle:checked + .sidebar .sidebar-brand h4 span:last-child,
@@ -503,6 +516,7 @@ a.button{
 
 .dash-main-content{
 	position: relative;
+	transition: margin-left 300ms;
 	margin-left: 345px;
 }
 .footer .copyright span{
