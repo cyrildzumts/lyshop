@@ -11,7 +11,7 @@
                         <span class="metric-title"><i class="fas fa-gifts icon"></i>{% trans "Products" %}</span>
                 </div>
                 <div id="metric-current-orders" class="metric mat-box" data-index="2">
-                        <h4 class="metric-value">{{current_orders.count|default_if_none:'0'}}</h4>
+                        <h4 class="metric-value">{{montly_order_count|default_if_none:'0'}}</h4>
                         <span class="metric-title"><i class="fas fa-shopping-bag icon"></i>{% trans "Month Orders" %}</span>
                 </div>
                 <div id="metric-users" class="metric mat-box" data-index="3">

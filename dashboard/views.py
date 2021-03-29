@@ -77,8 +77,9 @@ def dashboard(request):
     can_view_dashboard = PermissionManager.user_can_access_dashboard(request.user)
     page_title = _('Dashboard') + ' - ' + settings.SITE_NAME
     username = request.user.username
+    now = timezone.now()
     recent_orders = Order.objects.order_by('-created_at')[:Constants.MAX_RECENT]
-    currents_orders = analytics.get_orders()
+    currents_orders = Order.objects.filter(created_at__year=now.year, created_at__month=now.month)
     recent_products = Product.objects.filter(is_active=True)[:Constants.MAX_RECENT]
     recent_sold_products = SoldProduct.objects.all()[:Constants.MAX_RECENT]
     recent_users = User.objects.all().order_by('-date_joined')[:Constants.MAX_RECENT]
@@ -92,6 +93,7 @@ def dashboard(request):
             'is_allowed'     : can_view_dashboard,
             'order_list' : recent_orders,
             'currents_orders' : currents_orders,
+            'montly_order_count': currents_orders.count(),
             'orders_count': Order.objects.count(),
             'products_count': Product.objects.count(),
             'users_count' : User.objects.count(),
