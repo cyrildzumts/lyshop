@@ -1,0 +1,16 @@
+{% extends "product_base.html"%}
+{% load i18n %}
+{% load catalog_tags %}
+{% load core_tags %}
+
+{% block ACTIONS %}
+<a class="mat-button mat-button-default" href="{% url 'dashboard:brand-create'%}"><i class="fas fa-plus icon"></i><span>{% trans "New Brand" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url 'dashboard:category-create'%}"><i class="fas fa-plus icon"></i><span>{% trans "New Category" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url 'dashboard:attributes-create'%}"><i class="fas fa-plus icon"></i><span>{% trans "New Attribute" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url 'dashboard:coupon-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "New Coupon" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url 'dashboard:highlight-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "New Highlight" %}</span></a>
+{% endblock ACTIONS %}
+
+{% block CONTENT_MAIN %}
+
+{% endblock CONTENT_MAIN %}

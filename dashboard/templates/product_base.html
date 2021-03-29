@@ -1,0 +1,37 @@
+{% extends "dev_dashboard_base.html"%}
+{% load i18n %}
+{% if can_view_product %}
+{% block SIDEBAR_CONTENT %}
+    <li><a class="mat-button mat-button-text active" href="{% url 'dashboard:home'%}"><i class="fas fa-tachometer-alt icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+    {% if can_view_brand %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:brands'%}">{% trans "Brands" %}</a></li>{% endif %}
+    {% if can_view_category %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}">{% trans "Categories" %}</a></li>{% endif %}
+    {% if can_view_coupon %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:coupons'%}">{% trans "Coupons" %}</a></li>{% endif %}
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:highlights'%}">{% trans "Highlights" %}</a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:sold-products'%}">{% trans "Sold Products" %}</a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}">{% trans "Product Type" %}</a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes'%}">{% trans "Product Type Attributes" %}</a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}">{% trans "Products Attributes" %}</a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:news'%}">{% trans "News" %}</a></li>
+{% endblock SIDEBAR_CONTENT %}
+
+{% block CONTENT %}
+    {% if can_add_product %}
+    <div class="actions">
+        <a class="mat-button mat-button-default" href="{% url 'dashboard:product-create'%}"><i class="fas fa-plus icon"></i><span>{% trans "New Product" %}</span></a>
+        {% block ACTIONS %}
+        {% endblock ACTIONS %}
+    </div><!--End of Banner-Actions-->
+    {% endif %}
+    <div>
+        {% block CONTENT_MAIN %}{% endblock CONTENT_MAIN %}
+    </div>
+{% endblock CONTENT %}
+
+{% else %}
+{% block SIDEBAR_CONTENT %}{% endblock SIDEBAR_CONTENT %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% block CONTENT %}{% endblock CONTENT %}
+{% endif %}

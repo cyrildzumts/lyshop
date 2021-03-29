@@ -1087,6 +1087,29 @@ def highlights_delete(request):
 
 
 @login_required
+def product_home(request):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_view_product(request.user):
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    template_name = 'dashboard/product_home.html'
+    page_title = _('Product')
+    context = {
+        'page_title': page_title,
+    }
+    
+    context['page_title'] = page_title
+    context['content_title'] = 'Product'
+    context.update(get_view_permissions(request.user))
+    return render(request,template_name, context)
+
+
+@login_required
 def products(request):
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
