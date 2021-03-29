@@ -242,14 +242,7 @@ li.active.selected{
     font-size: 0.875rem;
 }
 
-/*
-.sidebar-menu .footer-wrapper li{
-	font-size: 0.6rem;
-	padding-bottom: 0.5rem;
+.sidebar .footer-wrapper{
+	background-color: var(--sidebar-bg-color);
+    color: var(--sidebar-color);
 }
-
-.sidebar-menu .footer-wrapper a{
-	font-size: 0.5rem;
-	width: unset !important;
-}
-*/
