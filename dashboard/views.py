@@ -3726,6 +3726,7 @@ def coupons(request):
     context['coupon_list'] = request_set
     context['can_delete_coupon'] = PermissionManager.user_can_delete_coupon(request.user)
     context['can_update_coupon'] = PermissionManager.user_can_change_coupon(request.user)
+    context['content_title'] = 'Coupons'
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3751,6 +3752,7 @@ def coupon_detail(request, coupon_uuid=None):
     context['coupon'] = coupon
     context['can_delete_coupon'] = PermissionManager.user_can_delete_coupon(request.user)
     context['can_update_coupon'] = PermissionManager.user_can_change_coupon(request.user)
+    context['content_title'] = f"Coupon - {coupon.name}"
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3792,7 +3794,8 @@ def coupon_create(request):
     context = {
         'page_title': page_title,
         'form' : form,
-        'sellers' : sellers
+        'sellers' : sellers,
+        'content_title' : _('New Coupon')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -3846,7 +3849,8 @@ def coupon_update(request, coupon_uuid=None):
         'page_title': page_title,
         'form' : form,
         'coupon': coupon,
-        'sellers': sellers
+        'sellers': sellers,
+        'content_title': f"Coupon - {coupon.name} - Update" 
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
