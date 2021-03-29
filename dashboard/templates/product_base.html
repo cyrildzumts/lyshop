@@ -6,17 +6,17 @@
 </div>
 {% else %}
 {% block SIDEBAR_CONTENT %}
-    <li><a class="mat-button mat-button-text active" href="{% url 'dashboard:home'%}"><i class="fas fa-tachometer-alt icon"></i><span>{% trans "Dashboard" %}</span></a></li>
-    {% if can_view_brand %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:brands'%}">{% trans "Brands" %}</a></li>{% endif %}
-    {% if can_view_category %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}">{% trans "Categories" %}</a></li>{% endif %}
-    {% if can_view_coupon %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:coupons'%}">{% trans "Coupons" %}</a></li>{% endif %}
-    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
-    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:highlights'%}">{% trans "Highlights" %}</a></li>
-    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:sold-products'%}">{% trans "Sold Products" %}</a></li>
-    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}">{% trans "Product Type" %}</a></li>
-    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes'%}">{% trans "Product Type Attributes" %}</a></li>
-    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}">{% trans "Products Attributes" %}</a></li>
-    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:news'%}">{% trans "News" %}</a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:home'%}"><i class="fas fa-tachometer-alt icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+    {% if can_view_brand %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:brands'%}"><i class="fas fa-band-aid icon"></i><span>{% trans "Brands" %}</span></a></li>{% endif %}
+    {% if can_view_category %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}"><i class="fas fa-sitemap icon"></i><span>{% trans "Categories" %}</span></a></li>{% endif %}
+    {% if can_view_coupon %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:coupons'%}"><i class="fas fa-barcode icon"></i><span>{% trans "Coupons" %}</span></a></li>{% endif %}
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}"><i class="fas fa-gifts icon"></i><span>{% trans "Products" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:highlights'%}"><i class="fas fa-star icon"></i><span>{% trans "Highlights" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:sold-products'%}"><i class="fas fa-hand-holding-usd icon"></i><span>{% trans "Sold Products" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}"><i class="fas fa-slack-hash icon"></i><span>{% trans "Product Type" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes'%}"><i class="fas fa-cogs icon"></i><span>{% trans "Type Attributes" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}"><i class="fas fa-squarespace icon"></i><span>{% trans "Products Attributes" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:news'%}"><i class="fas fa-newspaper icon"></i><span>{% trans "News" %}</span></a></li>
 {% endblock SIDEBAR_CONTENT %}
 
 {% block CONTENT %}
