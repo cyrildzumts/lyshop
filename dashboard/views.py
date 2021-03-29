@@ -81,6 +81,7 @@ def dashboard(request):
     recent_orders = Order.objects.order_by('-created_at')[:Constants.MAX_RECENT]
     currents_orders = Order.objects.filter(created_at__year=now.year, created_at__month=now.month)
     recent_products = Product.objects.filter(is_active=True)[:Constants.MAX_RECENT]
+    products_count = Product.objects.aggregate(quantity=Sum('quantity')).get('quantity') or 0
     recent_sold_products = SoldProduct.objects.all()[:Constants.MAX_RECENT]
     recent_users = User.objects.all().order_by('-date_joined')[:Constants.MAX_RECENT]
     facebook_visitors = FacebookLinkHit.objects.aggregate(hits=Sum('hits')).get('hits') or 0
@@ -95,7 +96,7 @@ def dashboard(request):
             'currents_orders' : currents_orders,
             'montly_order_count': currents_orders.count(),
             'orders_count': Order.objects.count(),
-            'products_count': Product.objects.count(),
+            'products_count': products_count,
             'users_count' : User.objects.count(),
             'visitors' : Visitor.objects.count(),
             'unique_visitors' : UniqueIP.objects.count(),
