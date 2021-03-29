@@ -341,6 +341,7 @@ def product_create(request):
         raise PermissionDenied
     context = {
         'page_title': page_title,
+        'content_title': _('New Product')
     }
     
     username = request.user.username
