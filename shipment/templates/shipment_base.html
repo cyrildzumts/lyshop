@@ -1,28 +1,29 @@
-{% extends "base.html"%}
-{% load i18n %} 
-{% block META_REDIRECT %}
-        
-{% endblock META_REDIRECT %}
 
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Shipment" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-        <div class="actions">
-            <a class="mat-button mat-button-default" href="{% url 'home' %}">{% trans 'Home' %}</a>
-            <a class="mat-button mat-button-default" href="{% url 'shipment:ship-modes' %}">{% trans 'Ship Modes' %}</a>
-            <a class="mat-button mat-button-default" href="{% url 'shipment:shipments' %}">{% trans 'Shipments' %}</a> 
-            <a class="mat-button mat-button-default" href="{% url 'shipment:ready-for-shipment' %}"><i class="fas fa-check-square icon"></i><span>{% trans "Ready" %}</span></a>   
-        </div><!--End of Banner-Actions-->
-        </div><!--End of Container-->
-        
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% if not can_view_shipment %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% else %}
+{% block SIDEBAR_CONTENT %}
+<li><a class="mat-button mat-button-text" href="{% url 'dashboard:home'%}"><i class="fas fa-tachometer-alt icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+<li><a class="mat-button mat-button-text" href="{% url 'shipment:ship-modes' %}"><i class="fas fa-dolly icon"></i><span>{% trans "Ship Modes" %}</span></a></li>
+<li><a class="mat-button mat-button-text" href="{% url 'shipment:shipments' %}"><i class="fas fa-rulerfa-shipping-fast icon"></i><span>{% trans "Shipments" %}</span></a></li>
+<li><a class="mat-button mat-button-text" href="{% url 'shipment:ready-for-shipment' %}"><i class="fas fa-check-square icon"></i><span>{% trans "Ready" %}</span></a></li>
+
+{% endblock SIDEBAR_CONTENT %}
+
+{% block CONTENT %}
+    <div class="actions">
+        {% if can_add_shipment %}
+        <a class="mat-button mat-button-default" href="{% url 'shipment:ship-mode-create'%}"><i class="fas fa-dolly icon"></i>{% trans "New Ship mode" %}</a>
+        {% endif %}
+        {% block ACTIONS %}
+        {% endblock ACTIONS %}
+    </div><!--End of Banner-Actions-->
+    <div>
+        {% block CONTENT_MAIN %}{% endblock CONTENT_MAIN %}
     </div>
-{% endblock HEADER_BANNER %}
-{% block MAIN %}
-
-{% endblock MAIN %}
+{% endblock CONTENT %}
+{% endif %}

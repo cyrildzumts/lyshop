@@ -1,36 +1,13 @@
 {% extends "shipment_base.html"%}
 {% load i18n %}
 {% load shipment_status %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Orders ready for shipment" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
 
-            <div class="col col-9">
-                <div class="banner--actions">
-                    
-                    <a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment Home" %}</span></a>
-                    
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
 
-{% block MAIN %}
+{% block CONTENT_MAIN %}
 {% if order_list %}
 <div class="container">
-<div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         <table id="shipment-list" class="mat-table js-filter-table">
-          <caption>{% trans "Orders" %}</caption>
           <thead>
                   <tr>
                           <th scope="col">{% trans "Shipping Price" %}</th>
@@ -54,14 +31,9 @@
                   {% endfor %}
                   
           </tbody>
-          <tfoot>
-                  
-          </tfoot>
-
     </table>
     {% include "tags/pagination.html" with page_set=order_list %}
     </div><!--End of Table Wrapper-->
-  </div>
 </div>
 
 {% else %}
@@ -74,4 +46,4 @@
   </div>
 </div>
 {% endif %}
-{% endblock MAIN %}
+{% endblock CONTENT_MAIN %}

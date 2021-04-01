@@ -1,17 +1,12 @@
 {% extends "shipment_base.html"%}
 {% load i18n %}
 {% load shipment_status %}
-{% block  HEADER_BANNER_TITLE %}
-    <h4> {% trans "Shipment Home" %}</h4>
-{% endblock HEADER_BANNER_TITLE %}
 
-{% block MAIN %}
+{% block CONTENT_MAIN %}
 {% if recent_shipments %}
 <div class="container">
-<div class="col-m-12 col-9">
     <div class="mat-table-wrapper">
         <table id="shipment-list" class="mat-table js-filter-table">
-          <caption>{% trans "Recent Shipments" %}</caption>
           <thead>
                   <tr>
                           <th scope="col">{% trans "Shipping Price" %}</th>
@@ -33,24 +28,17 @@
                   {% endfor %}
                   
           </tbody>
-          <tfoot>
-                  
-          </tfoot>
-
     </table>
     {% include "tags/pagination.html" with page_set=shipment_list %}
     </div><!--End of Table Wrapper-->
-  </div>
 </div>
 
 {% else %}
 <div class="container">
-  <div class="col-m-12 col-12">
+  <div class="mat-box">
     <p>{% trans "There is no shipments yet." %}</p>
-  </div>
-  <div class="col-m-12 col-12">
     <p>{% trans "Shipments will be displayed here." %}</p>
   </div>
 </div>
 {% endif %}
-{% endblock MAIN %}
+{% endblock CONTENT_MAIN %}

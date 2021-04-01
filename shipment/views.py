@@ -34,7 +34,8 @@ def shipment_home(request):
     queryset = Shipment.objects.all()[:5]
     context = {
         'page_title' : _('Shipments'),
-        'recent_shipments' : queryset
+        'recent_shipments' : queryset,
+        'content_title': _('Shipment Home')
     }
     template_name = 'shipment/shipment_home.html'
     return render(request, template_name, context)
@@ -53,7 +54,8 @@ def shipments(request):
         list_set = None
     context = {
         'page_title' : _('Shipments'),
-        'shipment_list' : list_set
+        'shipment_list' : list_set,
+        'content_title': _('Shipments')
     }
     template_name = 'shipment/shipment_list.html'
 
@@ -73,7 +75,8 @@ def order_ready_for_shipment(request):
         list_set = None
     context = {
         'page_title' : _('Shipment Waiting'),
-        'order_list' : list_set
+        'order_list' : list_set,
+        'content_title': _('Orders Ready')
     }
     template_name = 'shipment/order_ready_list.html'
 
@@ -86,7 +89,8 @@ def shipment_detail(request, shipment_uuid):
 
     context = {
         'page_title' : _('Shipment'),
-        'shipment' : shipment
+        'shipment' : shipment,
+        'content_title': _('Shipment')
     }
     template_name = 'shipment/shipment_detail.html'
     return render(request, template_name, context)
@@ -123,7 +127,8 @@ def shipment_update(request, shipment_uuid):
         'page_title' : _('Shipment Update'),
         'shipment' : shipment,
         'SHIPMENT_STATUS': Constants.SHIPMENT_STATUS,
-        'form' : form
+        'form' : form,
+        'content_title': _('Shipment Update')
     }
     template_name = 'shipment/shipment_update.html'
     return render(request, template_name, context)
@@ -149,7 +154,8 @@ def shipment_history(request, shipment_uuid):
     context = {
         'page_title' : _('Shipment Histories'),
         'history_list':  list_set,
-        'shipment' : shipment
+        'shipment' : shipment,
+        'content_title': _('Shipment Histories')
     }
     template_name = 'shipment/shipment_histories.html'
     return render(request, template_name, context)
@@ -160,7 +166,8 @@ def shipment_history_detail(request, history_uuid):
     history = get_object_or_404(ShipmentStatusHistory, history_uuid=history_uuid)
     context = {
         'page_title' : _('Shipment History'),
-        'history':  history
+        'history':  history,
+        'content_title': _('Shipment History')
     }
     template_name = 'shipment/shipment_history.html'
     return render(request, template_name, context)
@@ -179,7 +186,8 @@ def ship_mode_create(request):
         raise PermissionDenied
     context = {
         'page_title': page_title,
-        'SHIP_MODE' : Constants.SHIP_MODE
+        'SHIP_MODE' : Constants.SHIP_MODE,
+        'content_title': _('New Ship Mode')
     }
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
@@ -212,6 +220,7 @@ def ship_modes(request):
         raise PermissionDenied
     context = {
         'page_title': page_title,
+        'content_title': _('Ship Modes')
     }
     queryset = shipment_service.get_ship_modes()
     page = request.GET.get('page', 1)
@@ -236,7 +245,8 @@ def ship_mode_detail(request, ship_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     context = {
-        'page_title': page_title
+        'page_title': page_title,
+        'content_title': _('Ship Mode')
     }
 
     ship_mode = get_object_or_404(ShipMode, ship_uuid=ship_uuid)
@@ -270,7 +280,8 @@ def ship_mode_update(request, ship_uuid):
         'page_title': page_title,
         'form' : form,
         'ship_mode': ship_mode,
-        'SHIP_MODE' : Constants.SHIP_MODE
+        'SHIP_MODE' : Constants.SHIP_MODE,
+        'content_title': _('Ship Mode Update')
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)

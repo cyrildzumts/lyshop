@@ -1,16 +1,11 @@
 {% extends "shipment_base.html"%}
 {% load i18n %}
 {% load shipment_status %}
-{% block  HEADER_BANNER_TITLE %}
-    <h4> {% trans "New Ship Mode" %}</h4>
-{% endblock HEADER_BANNER_TITLE %}
-{% block MAIN %}
+
+{% block CONTENT_MAIN %}
 <div class="container">
     {% if can_add_shipment %}
-    <div class="actions">
-        <a class="mat-button mat-button-default" href="{% url 'shipment:shipments'%}"> {% trans "Shipments" %}</a>
-        <a class="mat-button mat-button-default" href="{% url 'shipment:shipment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Shipment Board" %}</span></a>
-    </div><!--End of Banner-Actions-->
+
         <div class="mat-box">
     
                 <form class="form" name="add-ship-mode" action="{% url 'shipment:ship-mode-create' %}" method="POST">{% csrf_token %}
@@ -59,4 +54,4 @@
     </div>
     {% endif %}
 </div>
-{% endblock MAIN %}
+{% endblock CONTENT_MAIN %}
