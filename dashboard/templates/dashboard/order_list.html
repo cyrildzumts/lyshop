@@ -8,8 +8,7 @@
 <form id="filter-form" action="" method="GET">{% comment %}{% csrf_token %}
 {% endcomment %}
 <div class="container">
-<div class="full">
-<div class="banner--actions">
+<div class="actions">
     <a class="mat-button mat-button-default" href="{% url 'dashboard:clean-unpaid-orders' %}"><i class="fas fa-sync icon"></i><span>{% trans "Clean Unpaid Orders" %}</span></a>
 </div><!--End of Banner-Actions-->
     <div class="mat-table-wrapper">
@@ -53,7 +52,6 @@
     </table>
     {% include "tags/pagination.html" with page_set=orders %}
     </div><!--End of Table Wrapper-->
-  </div>
 </div>
 </form>
 {% else %}
