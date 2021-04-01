@@ -299,24 +299,25 @@ main {
     min-height: calc(100vh - 90px);
 }
 
+#nav-toggle:checked  + .sidebar{
+    transition: width 300ms;
+    width: 100%;
+}
+
+
+#nav-toggle:checked + .dash-main-content .dashboard-header-wrapper{
+    transition: width 300ms;
+    left: 0;
+    width: 100%;
+}
+
+#nav-toggle:checked + .dash-main-content{
+    transition: margin-left 300ms;
+    margin-left: 0;
+}
 
 @media only screen and (max-width: 1200px){
-    #nav-toggle:checked  + .sidebar{
-        transition: width 300ms;
-        width: 100%;
-    }
     
-    
-    #nav-toggle:checked + .dash-main-content .dashboard-header-wrapper{
-        transition: width 300ms;
-        left: 0;
-        width: 100%;
-    }
-    
-    #nav-toggle:checked + .dash-main-content{
-        transition: margin-left 300ms;
-        margin-left: 0;
-    }
     
     /*
     #nav-toggle:checked > .sidebar .sidebar-brand h4 span:last-child,
