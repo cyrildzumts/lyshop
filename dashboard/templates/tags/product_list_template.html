@@ -13,7 +13,7 @@
         <form action="{% url 'dashboard:products-changes' %}" method="POST">{% csrf_token %}
         <table id="product-list" class="mat-table js-filter-table">
              <ul class="actions">
-             {% for k,v in PRODUCT_ACTIONS %}<li><label for=""> <input type="radio" name="action" value="{{k}}"> {% trans v %}</label></li>{% endfor %}
+             {% for k,v in PRODUCT_ACTIONS %}<li><input id="action-{{k}}" type="radio" name="action" value="{{k}}"><label for="action-{{k}}">{% trans v %}</label></li>{% endfor %}
              <li><button type="submit" class="js-activable mat-button mat-button-outlined" disabled><i class="fas fa-trash icon"></i><span>{% trans "APPLY" %}</span></button></li>
              </ul>
           <thead>
