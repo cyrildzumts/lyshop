@@ -1,10 +1,8 @@
 {% load i18n %}
 {% load l10n %}
-{% if can_change_product %}
-<div class="responsive">
-    <div class="form-group">
-            
-    </div>
+
+<div class="mat-box">
+
     <form class="form" name="variant" action="{{variant.get_update_url}}" method="POST">{% csrf_token %}
         <input type="hidden" name="product" value="{{variant.product.pk}}">
         {{ attribute_formset.management_form }}
@@ -38,8 +36,3 @@
         </div>
     </form>
 </div>
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}

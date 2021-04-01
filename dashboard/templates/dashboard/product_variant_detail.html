@@ -1,20 +1,22 @@
-{% extends "dashboard_base.html"%}
-{% load i18n %}
+{% extends "product_base.html"%}
 {% load static %}
 {% load catalog_tags %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Product Variant " %} - {{variant.display_name}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-    </div>
-{% endblock HEADER_BANNER %}
-{% block MAIN_CONTENT %}
-{% if can_view_product %}
+{% load i18n %}
+{% block ACTIONS %}
 
+{% if can_add_product %}
+<a class="mat-button mat-button-default" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a>
+<a class="mat-button mat-button-default" href="{{variant.get_update_url}}"><i class="fas fa-pen icon"></i><span class="">{% trans "Edit" %}</span></a>
+<a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"><i class="fas fa-tag icon"></i><span class="">{% trans "Parent Product" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a>
+<form action="{{variant.get_delete_url}}" method="POST">{% csrf_token %}
+    <button class="mat-button mat-button-default warn" type="submit"><i class="fas fa-trash icon"></i><span class="">{% trans "Delete" %}</span></button>
+</form>
+
+{% endif %}
+
+{% endblock ACTIONS %}
+{% block CONTENT_MAIN %}
 <div class="container">
   <div class="mat-box wrapper full">
       <div class="mat-box-content row">
@@ -140,14 +142,7 @@
     </div>  
   </div>
 </div>
-
-
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}
 
 {% block SCRIPT %}
 <script type="text/javascript">
