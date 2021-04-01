@@ -314,6 +314,7 @@ main {
 #nav-toggle:checked + .dash-main-content{
     transition: margin-left 300ms;
     margin-left: 0;
+    width: 100%;
 }
 
 @media only screen and (max-width: 1200px){
