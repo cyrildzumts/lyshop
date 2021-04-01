@@ -1,25 +1,13 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Permission Group Update" %} - {{group.name}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-                <div class="banner--actions">
-                    {% if can_add_group %}<a class="mat-button mat-button-default" href="{% url 'dashboard:group-create' %}"> <i class="fas fas-plus"></i> <span>{% trans "Create A Group" %}</span> </a>{% endif %}
-                     <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
-                </div><!--End of Banner-Actions-->
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
 
-{% block MAIN_CONTENT %}
+
+{% block CONTENT %}
 <div class="container">
+    <div class="actions">
+        {% if can_add_group %}<a class="mat-button mat-button-default" href="{% url 'dashboard:group-create' %}"> <i class="fas fas-plus"></i> <span>{% trans "Create A Group" %}</span> </a>{% endif %}
+            <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
+    </div><!--End of Banner-Actions-->
     {% include "tags/group_update_form.html" %}
 </div>
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT %}

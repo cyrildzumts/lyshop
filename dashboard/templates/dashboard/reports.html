@@ -5,38 +5,21 @@
 {% include "tags/unauthorized.html" %}
 {% else %}
 
-{% block HEADER_BANNER %}
-<div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "REPORTS" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-        </div>
-        <div class="container">
-            <div class="col-m-12">
-                <div class="banner--actions">
-                        <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
-                        <a class="mat-button mat-button-text" href="{% url 'dashboard:update-suspicious-requests' %}"><i class="fas fa-sync icon"></i><span>{% trans "Update Suspicious Requests" %}</span></a>    
-                </div><!--End of Banner-Actions-->
-            </div>
-            <div class="col-m-12">
-                {% include "tags/report_summary.html" %}
-            </div>
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-
-
 {% block SCRIPT_VAR %}
     {% if report %}
     {{report|json_script:"report_script"}}
     {% endif %}
 {% endblock SCRIPT_VAR %}
 
-{% block MAIN_CONTENT %}
+{% block CONTENT %}
 <div class="container">
-    <div class="full">
+    
+    {% include "tags/report_summary.html" %}
+    <div class="actions">
+            <a class="mat-button mat-button-text" href="{% url 'dashboard:update-suspicious-requests' %}"><i class="fas fa-sync icon"></i><span>{% trans "Update Suspicious Requests" %}</span></a>    
+    </div><!--End of Banner-Actions-->
+</div>
+<div class="container">
         <div id="reports" class="container">
                 {% if report %}
                 {% include "tags/analytics.html" %}
@@ -46,10 +29,8 @@
                 </div>
                 {% endif %}
         </div>
-    </div>
-    
 </div>
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT %}
 
 {% block BASE_SCRIPT %}
 <script  data-main="{% static 'js/ReportApp' %}" src="{% static 'js/require.js' %}"></script>        

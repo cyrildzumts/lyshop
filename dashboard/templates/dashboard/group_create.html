@@ -1,25 +1,11 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "New Group" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-                <div class="actions">
-                    {% if can_view_group %}
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:groups'%}"><i class="fas fa-list icon"></i><span>{% trans "Groups" %}</span></a>{% endif %}
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>     
-                </div><!--End of Banner-Actions-->
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-{% block MAIN_CONTENT %}
+
+{% block CONTENT %}
 <div class="container">
+    <div class="actions">
+        <a class="mat-button mat-button-default" href="{% url 'dashboard:groups'%}"><i class="fas fa-list icon"></i><span>{% trans "Groups" %}</span></a> 
+    </div><!--End of Actions-->
     {% include "tags/group_form.html" %}
 </div>
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT %}

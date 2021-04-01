@@ -1,7 +1,7 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
 {% load addresses_tags %}
-{% block MAIN_CONTENT %}
+{% block CONTENT %}
 
 <div class="container wrapper">
     <form  class="form" name="product" action="{{address.get_dashboard_update_url}}" method="POST">{% csrf_token %}
@@ -65,4 +65,4 @@
         </div>
     </form>
 </div>
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT %}

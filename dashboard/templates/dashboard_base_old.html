@@ -1,0 +1,94 @@
+{% extends "base.html"%}
+{% load static %}
+{% load i18n %} 
+{% block META_REDIRECT %}
+        
+{% endblock META_REDIRECT %}
+
+{% block HEADER_BANNER %}
+
+{% endblock HEADER_BANNER %}
+
+{% block MAIN %}
+<div class="col-m-12 col-2">
+{% block SIDEBAR %}
+      <div class="container">
+            <aside class="panel panel-align-left full">
+                  <ul class="dock dock-left full">
+                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'accounts:logout'%}">{% trans "Logout" %}</a></li>
+                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:home'%}">{% trans "Dashboard" %}</a></li>
+                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:addressbook'%}">{% trans "Addressbook" %}</a></li>
+                              {% if can_view_product %}
+                              <li class="docklet">
+                                    <div class="collapsible">
+                                          <span class="collapse-toggle mat-button mat-button-text" data-target="docklet-products">{% trans "Products Settings" %}</span>
+                                          <ul id="docklet-products" class="collapse-content mat-box">
+                                                {% if can_view_brand %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:brands'%}">{% trans "Brands" %}</a></li>{% endif %}
+                                                {% if can_view_category %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}">{% trans "Categories" %}</a></li>{% endif %}
+                                                {% if can_view_coupon %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:coupons'%}">{% trans "Coupons" %}</a></li>{% endif %}
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home'%}">{% trans "Vendor" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:highlights'%}">{% trans "Highlights" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:sold-products'%}">{% trans "Sold Products" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}">{% trans "Product Type" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes'%}">{% trans "Product Type Attributes" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}">{% trans "Products Attributes" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:news'%}">{% trans "News" %}</a></li>
+                                          </ul>
+                                    </div>
+                              </li>
+                              
+                              {% endif %}
+                              <li class="docklet">
+                                    <div class="collapsible">
+                                          <span class="collapse-toggle mat-button mat-button-text" data-target="docklet-payments">{% trans "Orders & Payments" %}</span>
+                                          <ul id="docklet-payments" class="collapse-content mat-box">
+                                                {% if can_view_order %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:orders'%}">{% trans "Orders" %}</a></li>{% endif %}
+                                                {% if can_view_payment %} 
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-methods'%}">{% trans "Payment Methods" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'payment:payment-home'%}">{% trans "Payments" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-requests'%}">{% trans "Payment Requests" %}</a></li>
+                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:refunds'%}">{% trans "Refunds" %}</a></li>
+                                                {% endif %}
+                                                {% if can_view_shipment %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home'%}">{% trans "Shipments" %}</a></li>{% endif %}
+                                          </ul>
+                                    </div>
+                              </li>
+                              <li class="docklet">
+                                    <div class="collapsible">
+                                          <span class="collapse-toggle mat-button mat-button-text" data-target="docklet-users">{% trans "Users & Groups" %}</span>
+                                          <ul id="docklet-users" class="collapse-content mat-box">
+                                                {% if can_view_user %}
+                                                      {% if can_view_group %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:groups'%}">{% trans "Groups" %}</a></li>{% endif %}
+                                                      <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}">{% trans "Users" %}</a></li>
+                                                      <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:tokens' %}">{% trans "Token" %}</a></li>
+                                                      {% if can_generate_token %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:generate-token' %}">{% trans "Token AUTH API" %}</a></li>{% endif %}
+                                                {% endif %}
+                                          </ul>
+                                    </div>
+                              </li>
+                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:reports' %}">{% trans "Reports" %}</a></li>
+                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'accounts:logout'%}">{% trans "Logout" %}</a></li>
+                  </ul>
+            </aside>
+      </div>
+{% endblock SIDEBAR %}
+</div>
+<div class="col-m-12 col-10">
+      {% block MAIN_CONTENT %}
+      
+      {% endblock MAIN_CONTENT %}
+</div>
+      
+{% endblock MAIN %}
+
+{% block BASE_SCRIPT %}
+<script  data-main="{% static 'js/DashboardApp' %}" src="{% static 'js/require.js' %}"></script>        
+{% endblock BASE_SCRIPT %}
+
+{% block SCRIPT %}     
+
+<script  type="application/javascript" src="{% static 'js/lib/validators.js' %}"></script>
+<script  type="application/javascript" src="{% static 'js/lib/dashboard.js' %}"></script>
+
+{% endblock SCRIPT %}

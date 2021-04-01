@@ -3,15 +3,13 @@
 {% load addresses_tags %}
 
 
-{% block MAIN_CONTENT %}
+{% block CONTENT %}
 <div class="container">
+    <div class="actions">
+        <a href="{{address.get_dashboard_update_url}}" class="mat-button mat-button-default"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
+    </div>
     <div class="grid">
         <div class="row">
-                <div class="box">
-                    <div class="actions">
-                        <a href="{{address.get_dashboard_update_url}}" class="mat-button mat-button-default"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
-                    </div>
-                </div>
                 <div class="box">
                     <div class="entry">
                         <span class="key">{% trans "User" %}</span><span class="value">{{address.user.username}}</span>
@@ -53,4 +51,4 @@
     </div>
 
 </div>
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT %}

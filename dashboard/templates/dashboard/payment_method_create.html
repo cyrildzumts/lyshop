@@ -1,29 +1,15 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
 {% load order_tag %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "New Payment Method" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-                <div class="actions">
-                    {% if can_view_payment %}
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:payment-methods'%}"> {% trans "Payment Methods" %}</a>{% endif %}
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
-                    
-                        
-                </div><!--End of Banner-Actions-->
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-{% block MAIN_CONTENT %}
+
+{% block CONTENT %}
 <div class="container">
     {% if can_add_payment %}
+        <div class="actions">
+            {% if can_view_payment %}
+            <a class="mat-button mat-button-default" href="{% url 'dashboard:payment-methods'%}"> {% trans "Payment Methods" %}</a>
+            {% endif %}
+        </div><!--End of Banner-Actions-->
         <div class="mat-box">
     
                 <form class="form" name="add-payment-method" action="{% url 'dashboard:payment-method-create' %}" method="POST">{% csrf_token %}
@@ -75,4 +61,4 @@
     </div>
     {% endif %}
 </div>
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT %}

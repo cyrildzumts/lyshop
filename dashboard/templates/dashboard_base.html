@@ -5,83 +5,90 @@
         
 {% endblock META_REDIRECT %}
 
-{% block HEADER_BANNER %}
-
-{% endblock HEADER_BANNER %}
+{% block HEADER %}{% endblock HEADER%}
 
 {% block MAIN %}
-<div class="col-m-12 col-2">
+<div class="container">
 {% block SIDEBAR %}
-      <div class="container">
-            <aside class="panel panel-align-left full">
-                  <ul class="dock dock-left full">
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'accounts:logout'%}">{% trans "Logout" %}</a></li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:home'%}">{% trans "Dashboard" %}</a></li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:addressbook'%}">{% trans "Addressbook" %}</a></li>
-                              {% if can_view_product %}
-                              <li class="docklet">
-                                    <div class="collapsible">
-                                          <span class="collapse-toggle mat-button mat-button-text" data-target="docklet-products">{% trans "Products Settings" %}</span>
-                                          <ul id="docklet-products" class="collapse-content mat-box">
-                                                {% if can_view_brand %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:brands'%}">{% trans "Brands" %}</a></li>{% endif %}
-                                                {% if can_view_category %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:categories' %}">{% trans "Categories" %}</a></li>{% endif %}
-                                                {% if can_view_coupon %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:coupons'%}">{% trans "Coupons" %}</a></li>{% endif %}
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home'%}">{% trans "Vendor" %}</a></li>
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:products'%}">{% trans "Products" %}</a></li>
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:highlights'%}">{% trans "Highlights" %}</a></li>
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:sold-products'%}">{% trans "Sold Products" %}</a></li>
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}">{% trans "Product Type" %}</a></li>
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes'%}">{% trans "Product Type Attributes" %}</a></li>
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}">{% trans "Products Attributes" %}</a></li>
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:news'%}">{% trans "News" %}</a></li>
-                                          </ul>
-                                    </div>
-                              </li>
-                              
-                              {% endif %}
-                              <li class="docklet">
-                                    <div class="collapsible">
-                                          <span class="collapse-toggle mat-button mat-button-text" data-target="docklet-payments">{% trans "Orders & Payments" %}</span>
-                                          <ul id="docklet-payments" class="collapse-content mat-box">
-                                                {% if can_view_order %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:orders'%}">{% trans "Orders" %}</a></li>{% endif %}
-                                                {% if can_view_payment %} 
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-methods'%}">{% trans "Payment Methods" %}</a></li>
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'payment:payment-home'%}">{% trans "Payments" %}</a></li>
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:payment-requests'%}">{% trans "Payment Requests" %}</a></li>
-                                                <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:refunds'%}">{% trans "Refunds" %}</a></li>
-                                                {% endif %}
-                                                {% if can_view_shipment %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home'%}">{% trans "Shipments" %}</a></li>{% endif %}
-                                          </ul>
-                                    </div>
-                              </li>
-                              <li class="docklet">
-                                    <div class="collapsible">
-                                          <span class="collapse-toggle mat-button mat-button-text" data-target="docklet-users">{% trans "Users & Groups" %}</span>
-                                          <ul id="docklet-users" class="collapse-content mat-box">
-                                                {% if can_view_user %}
-                                                      {% if can_view_group %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:groups'%}">{% trans "Groups" %}</a></li>{% endif %}
-                                                      <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}">{% trans "Users" %}</a></li>
-                                                      <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:tokens' %}">{% trans "Token" %}</a></li>
-                                                      {% if can_generate_token %}<li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:generate-token' %}">{% trans "Token AUTH API" %}</a></li>{% endif %}
-                                                {% endif %}
-                                          </ul>
-                                    </div>
-                              </li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'dashboard:reports' %}">{% trans "Reports" %}</a></li>
-                              <li class="docklet"><a class="mat-button mat-button-text" href="{% url 'accounts:logout'%}">{% trans "Logout" %}</a></li>
-                  </ul>
-            </aside>
+      <input type="checkbox" id="nav-toggle">
+      <div id="sidebar" class="sidebar">
+            <div class="sidebar-brand">
+                <h4><span>{{site_name}}</span></h4>
+            </div>
+            
+            <div class="sidebar-menu">
+                <ul>
+                    {% block SIDEBAR_CONTENT %}
+                    <li><a class="mat-button mat-button-text active" href="{% url 'dashboard:home'%}"><i class="fas fa-tachometer-alt icon"></i><span>{% trans "Dashboard" %}</span></a></li>
+                    {% if can_view_product %}
+                    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:product-home'%}"><i class="fas fa-gifts icon"></i><span>{% trans "Products" %}</span></a></li>
+                    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:users'%}"><i class="fas fa-user-friends icon"></i><span>{% trans "Sellers" %}</span></a></li>
+                    {% endif %}
+                    {% if can_view_order %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:orders'%}"><i class="fas fa-shopping-bag icon"></i><span>{% trans "Orders" %}</span></a></li>{% endif %}
+                    {% if can_view_group %}<li><a class="mat-button mat-button-text" href="{% url 'dashboard:groups'%}"><i class="fas fa-users icon"></i><span>{% trans "Groups" %}</span></a></li>{% endif %}
+                    {% if can_view_user %}
+                    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}"><i class="fas fa-users icon"></i><span>{% trans "Customers" %}</span></a></li>
+                    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:users'%}"><i class="fas fa-user-circle icon"></i><span>{% trans "Users" %}</span></a></li>
+                    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:tokens' %}"><i class="fas fa-key icon"></i><span>{% trans "Tokens" %}</span></a></li>
+                    
+                    {% endif %}
+                    {% if can_view_payment %} 
+                    <li><a class="mat-button mat-button-text" href="{% url 'payment:payment-home'%}"><i class="fas fa-money-check icon"></i><span>{% trans "Payments" %}</span></a></li>
+                    {% endif %}
+                    {% if can_view_shipment %}<li><a class="mat-button mat-button-text" href="{% url 'shipment:shipment-home'%}"><i class="fas fa-shipping-fast icon"></i><span>{% trans "Shipments" %}</span></a></li>{% endif %}
+                    
+                    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:reports' %}"><i class="fas fa-poll icon"></i><span>{% trans "Reports" %}</span></a></li>
+                    <li><a class="mat-button mat-button-text" href="{% url 'accounts:logout'%}"><i class="fas fa-sign-out-alt icon"></i><span>{% trans "Logout" %}</span></a></li>
+                    {% endblock SIDEBAR_CONTENT %}
+                </ul>
+                <div class="footer-wrapper">
+                    {% now "Y" as current_year %}
+                    <ul>
+                        <li><span>Copyright</span> <i class="fa fa-copyright icon"></i><span class="copyright-year padding-h">{{current_year}}</span> <span class="site">{{site_name}} - {%trans 'ONLINE SHOP' %} </span></li>
+                        <li>
+                            <div class="flex">
+                                <a class="mat-button mat-button-text" href="{% url 'about' %}"><i class="fas fa-info-circle icon"></i><span>{% trans "About us" %}</span></a>
+                                <a class="mat-button mat-button-text" href="{% url 'faq' %}"><i class="fas fa-question-circle icon"></i><span>{% trans "FAQ" %}</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
       </div>
 {% endblock SIDEBAR %}
+{% block DASH_CONTENT %}
+<div class="dash-main-content">
+    <div class="dashboard-header-wrapper">
+        <header class="dashboard-header">
+            <h4>
+                <label for="nav-toggle"><span class="fas fa-bars"></span></label>{{content_title|default_if_none:'Dashboard'}}
+            </h4>
+            <div class="search-wrapper force-hidden">
+                <span class="fas fa-search icon"></span>
+                <input type="search" placeholder="{% trans 'Search' %}">
+            </div>
+            <div class="user-wrapper">
+                {% if user_pic %} <img class="user-image" src="{{user_pic.image_url}}" alt=""> {% endif %}
+                <div>
+                    <h4>{{request.user.username}}</h4>
+                    <small>{% trans "Administrator" %}</small>
+                </div>
+            </div>
+        </header>
+    </div>
+    <main>
+    {% block MAIN_CONTENT %}
+      {% block DASHBOARD_SUMMARY %}{% endblock DASHBOARD_SUMMARY %}
+        {% block CONTENT %}{% endblock CONTENT %}
+        {% block DASHBOARD_FOOTER %}
+        {% endblock DASHBOARD_FOOTER %}
+    {% endblock MAIN_CONTENT %}
+    </main>
 </div>
-<div class="col-m-12 col-10">
-      {% block MAIN_CONTENT %}
-      
-      {% endblock MAIN_CONTENT %}
-</div>
-      
+{% endblock DASH_CONTENT %}
+</div>    
 {% endblock MAIN %}
-
+{% block FOOTER %}{% endblock FOOTER %}
 {% block BASE_SCRIPT %}
 <script  data-main="{% static 'js/DashboardApp' %}" src="{% static 'js/require.js' %}"></script>        
 {% endblock BASE_SCRIPT %}

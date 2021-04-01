@@ -1,44 +1,29 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
 {% load core_tags %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "User Information" %} - {{user_instance.username}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-                <div class="banner--actions">
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}"><i class="fas fa-users icon"></i><span>{% trans "Users" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:user-delete' user_instance.pk %}"><i class="fas fa-remove icon"></i><span>{% trans "Delete" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:send-welcome-mail' user_instance.pk %}"><i class="fas fa-envelope icon"></i><span>{% trans "Send Welcome Mail" %}</span></a>
-                    {% if user_instance.account and not user_instance.account.email_validated %}
-                        <a class="mat-button mat-button-text" href="{% url 'accounts:send-validation' user_instance.account.account_uuid %}">{% trans "Send Validation Link" %}</a>
-                    {% endif %}
-                    {% if not has_balance and can_have_balance %}
-                        <a class="mat-button mat-button-text" href="{% url 'dashboard:create-vendor-balance' user_instance.pk %}"><i class="fas fa-plus icon"></i><span>{% trans "Add Balance" %}</span></a>
-                    {% endif %}
-                    {% if is_seller %}
-                        
-                    <a class="mat-button mat-button-text" href="{% url 'dashboard:update-vendors-products' user_instance.pk %}"><i class="fas fa-sync icon"></i><span>{% trans "Update Vendor" %}</span></a>
-                    <a class="mat-button mat-button-text warn" href="{% url 'dashboard:reset-vendor' user_instance.pk %}"><i class="fas fa-unlink icon"></i><span>{% trans "Reset Vendor" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'payment:pay-vendor' user_instance.pk %}"><i class="fas fa-file-invoice icon"></i><span>{% trans "Pay Vendor" %}</span></a>
-                    {% endif %}
-                        
-                </div><!--End of Banner-Actions--> 
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
 
-{%block MAIN_CONTENT %}
+{%block CONTENT %}
 
                 
 <div class="container">
-
+        <div class="actions">
+                <a class="mat-button mat-button-text" href="{% url 'dashboard:users' %}"><i class="fas fa-users icon"></i><span>{% trans "Users" %}</span></a>
+                <a class="mat-button mat-button-text" href="{% url 'dashboard:user-delete' user_instance.pk %}"><i class="fas fa-remove icon"></i><span>{% trans "Delete" %}</span></a>
+                <a class="mat-button mat-button-text" href="{% url 'dashboard:send-welcome-mail' user_instance.pk %}"><i class="fas fa-envelope icon"></i><span>{% trans "Send Welcome Mail" %}</span></a>
+                {% if user_instance.account and not user_instance.account.email_validated %}
+                <a class="mat-button mat-button-text" href="{% url 'accounts:send-validation' user_instance.account.account_uuid %}">{% trans "Send Validation Link" %}</a>
+                {% endif %}
+                {% if not has_balance and can_have_balance %}
+                <a class="mat-button mat-button-text" href="{% url 'dashboard:create-vendor-balance' user_instance.pk %}"><i class="fas fa-plus icon"></i><span>{% trans "Add Balance" %}</span></a>
+                {% endif %}
+                {% if is_seller %}
+                
+                <a class="mat-button mat-button-text" href="{% url 'dashboard:update-vendors-products' user_instance.pk %}"><i class="fas fa-sync icon"></i><span>{% trans "Update Vendor" %}</span></a>
+                <a class="mat-button mat-button-text warn" href="{% url 'dashboard:reset-vendor' user_instance.pk %}"><i class="fas fa-unlink icon"></i><span>{% trans "Reset Vendor" %}</span></a>
+                <a class="mat-button mat-button-text" href="{% url 'payment:pay-vendor' user_instance.pk %}"><i class="fas fa-file-invoice icon"></i><span>{% trans "Pay Vendor" %}</span></a>
+                {% endif %}
+                
+        </div><!--End of Banner-Actions-->
         <div class="mat-box">
                 <div class="title row">
                         <span>{% trans "User Information" %}</span>
@@ -141,6 +126,6 @@
 </div>
 {% endif %}
                 
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT %}
 
 

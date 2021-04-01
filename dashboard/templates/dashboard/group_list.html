@@ -1,30 +1,7 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
 
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Groups" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-
-            <div class="col col-9">
-                <div class="banner--actions">
-                    {% if can_add_group %}<a class="mat-button mat-button-default" href="{% url 'dashboard:group-create' %}"> <i class="fas fa-plus icon"></i> <span>{% trans "Add new Group" %}</span> </a>{% endif %}
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
-                        
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-
-{% block MAIN_CONTENT %}
+{% block CONTENT %}
 
 {% if can_view_group %}
 
@@ -47,14 +24,12 @@
 </div><!--End of Dialog-->
 
 <div class="container">
+
+    <div class="actions">
+    {% if can_add_group %}<a class="mat-button mat-button-default" href="{% url 'dashboard:group-create' %}"> <i class="fas fa-plus icon"></i> <span>{% trans "New Group" %}</span> </a>{% endif %}
+    </div>
     {% if groups %}
-    <div class="full">
     <div class="mat-table-wrapper">
-        <div class="row">
-            <div class="mat-table-title">
-                {% trans "Groups" %}
-            </div>
-        </div><!--End of Row-->
         <form action="{% url 'dashboard:groups-delete' %}" method="POST">{% csrf_token %}
         <table id="group-list" class="mat-table js-filter-table">
           {% if can_delete_group %}
@@ -97,7 +72,6 @@
     {% else %}
     <p> {% trans "There is currently no Group" %} ...</p>
     {% endif %}
-    </div>
 </div>
 {% else %}
 <div class="access-error">
@@ -105,4 +79,4 @@
 </div>
 {% endif %}
 
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT %}
