@@ -317,7 +317,7 @@ main {
     width: 100%;
 }
 
-@media only screen and (max-width: 1200px){
+@media only screen and (min-width: 900px){
     
     .sidebar{
         transition: left 300ms;
@@ -350,20 +350,24 @@ main {
     
     .sidebar{
         transition: left 300ms;
-        left: 100px;
+        left: 0;
+        width: 100px;
     }
     
     
     .dash-main-content .dashboard-header-wrapper{
         transition: width 300ms;
         left: 0;
-        width: calc(100% - 100px);
+        width: 100%;
+    }
+    .dashboard-header{
+        height: 60px;
     }
     
     .dash-main-content{
         transition: margin-left 300ms;
         margin-left: 100px;
-        width: calc(100vh - 100px);;
+        width: calc(100vh - 100px);
     }
     
     
