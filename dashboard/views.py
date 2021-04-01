@@ -1461,7 +1461,7 @@ def product_image_detail(request, image_uuid=None):
     page_title = "Product Image" + " - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['image'] = p_image
-    context['content_title'] = f"{product.display_name} - Image" 
+    context['content_title'] = f"{p_image.product.display_name} - Image" 
     return render(request,template_name, context)
 
 def product_image_delete(request, image_uuid=None):
