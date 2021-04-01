@@ -4236,7 +4236,7 @@ def product_type_attribute_create(request):
         'page_title': page_title,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'form' : form,
-        'content_title' _('New Product Type Attributes')
+        'content_title': _('New Product Type Attributes')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
