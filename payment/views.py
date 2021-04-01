@@ -45,6 +45,7 @@ def payment_home(request):
     context = {
         'page_title' : page_title,
         'recent_payments' : recent_payments,
+        'content_title': _('Payment Home')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -59,7 +60,9 @@ def payments(request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title': _('Payments')
+    }
     queryset = Payment.objects.order_by('-created_at').all()
     template_name = "payment/payment_list.html"
     page_title = "Payments - " + settings.SITE_NAME
@@ -86,7 +89,9 @@ def payment_details(request, payment_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title': _('Payment')
+    }
     payment = get_object_or_404(Payment, payment_uuid=payment_uuid)
     can_be_updated = payment_service.payment_can_be_updated(payment)
     template_name = "payment/payment_detail.html"
@@ -128,7 +133,9 @@ def policies(request):
     if not can_view_policy:
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
-    context = {}
+    context = {
+        'content_title': _('Policies')
+    }
     queryset = PaymentPolicy.objects.all()
     template_name = "payment/policy_list.html"
     page_title = "Policies - " + settings.SITE_NAME
@@ -178,7 +185,8 @@ def policy_update(request, policy_uuid=None):
             'template_name':template_name,
             'policy' : instance,
             'form': form,
-            'can_change_policy' : can_change_policy
+            'can_change_policy' : can_change_policy,
+            'content_title': _('Policy Update')
         }
     context.update(get_view_permissions(request.user))
     return render(request, template_name,context )
@@ -296,7 +304,8 @@ def policy_create(request):
             'page_title':page_title,
             'template_name':template_name,
             'form': form,
-            'can_add_policy' : can_add_policy
+            'can_add_policy' : can_add_policy,
+            'content_title': _('New Payment')
         }
     
     context.update(get_view_permissions(request.user))
@@ -316,7 +325,9 @@ def policy_details(request, policy_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title': _('Policy')
+    }
     policy = get_object_or_404(PaymentPolicy, policy_uuid=policy_uuid)
     template_name = "payment/policy_detail.html"
     page_title = "Policy Details - " + settings.SITE_NAME
@@ -340,7 +351,9 @@ def policy_groups(request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title': _('Policy Groups')
+    }
     queryset = PaymentPolicyGroup.objects.all()
     template_name = "payment/policy_group_list.html"
     page_title = "Policy Group - " + settings.SITE_NAME
@@ -389,7 +402,8 @@ def policy_group_create(request):
             'template_name':template_name,
             'form': form,
             'policies' : PaymentPolicy.objects.all(),
-            'can_add_policy' : can_add_policy
+            'can_add_policy' : can_add_policy,
+            'content_title': _('New Policy Group')
         }
     context.update(get_view_permissions(request.user))
     
@@ -426,7 +440,8 @@ def policy_group_update(request, group_uuid=None):
             'group' : instance,
             'form': form,
             'policies' : PaymentPolicy.objects.all(),
-            'can_change_policy' : can_change_policy
+            'can_change_policy' : can_change_policy,
+            'content_title': _('Policy Group Update')
         }
     context.update(get_view_permissions(request.user))
     return render(request, template_name,context )
@@ -483,7 +498,9 @@ def policy_group_details(request, group_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title': _('Policy Group')
+    }
     group = get_object_or_404(PaymentPolicyGroup, policy_group_uuid=group_uuid)
     template_name = "payment/policy_group_detail.html"
     page_title = "Policy Group Details - " + settings.SITE_NAME

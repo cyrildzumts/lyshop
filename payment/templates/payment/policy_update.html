@@ -1,29 +1,8 @@
 {% extends "payment_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Policy" %} - {{policy.commission}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
 
-            <div class="col col-9">
-                <div class="banner--actions">
-                    <a class="mat-button mat-button-text" href="{% url 'payment:policy-create'%}"><i class="fas fa-plus icon"></i><span>{% trans "Add new Policy" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'payment:policies' %}"><i class="fas icon"></i><span>{% trans "Policies" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'payment:payment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Payment" %}</span></a>     
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-{% block MAIN_CONTENT %}
+{% block CONTENT_MAIN %}
 
 {% include "payment_tags/policy_update_form.html" %}
 
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

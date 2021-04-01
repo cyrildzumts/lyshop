@@ -1,36 +1,15 @@
 {% extends "payment_base.html"%}
 {% load i18n %}
 
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Policy Group" %} - {{group.name}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
+{% block ACTIONS %}
+<div class="banner--actions">
+    <a class="mat-button mat-button-text" href="{{group.get_update_url}}"><i class="fas fa-pen icon"></i><span>{% trans "Edit" %}</span></a>
+    <a class="mat-button mat-button-text" href="{{group.get_delete_url}}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a>
+</div><!--End of Banner-Actions-->
+{% endblock ACTIONS %}
 
-            <div class="col-xs-12 col-9">
-                <div class="banner--actions">
-                    <a class="mat-button mat-button-text" href="{{group.get_update_url}}"><i class="fas fa-pen icon"></i><span>{% trans "Edit" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{{group.get_delete_url}}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'payment:policy-group-create'%}"><i class="fas fa-plus icon"></i><span>{% trans "Add New Policy Group" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'payment:policy-groups' %}"><i class="fas icon"></i><span>{% trans "Policy Groups" %}</span></a>
-                    <a class="mat-button mat-button-text" href="{% url 'payment:payment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>
-                    
-                        
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
+{% block CONTENT_MAIN %}
 
-{% block MAIN_CONTENT %}
-
-{% if can_view_policy %}
 <div class="container">
         <div class="mat-box">
           <div class="mat-box-title">
@@ -69,10 +48,4 @@
           </div>
     </div>
 </div>
-
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}
