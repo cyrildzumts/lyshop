@@ -1,9 +1,15 @@
-{% extends "dashboard_base.html"%}
+{% extends "product_base.html"%}
 {% load i18n %}
+{% block ACTIONS %}
 
-{% block MAIN %}
+<a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"><i class="fas fa-tag icon"></i><span class="">{% trans "Product" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a>
+
+{% endblock ACTIONS %}
+
+{% block CONTENT_MAIN %}
 
 <div class="container">
     {% include "tags/product_image_upload_form.html" %}
 </div>
-{% endblock MAIN %}
+{% endblock CONTENT_MAIN %}

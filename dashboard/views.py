@@ -1440,7 +1440,7 @@ def product_image_create(request, product_uuid=None):
     form = ProductImageForm()
     context['form'] = form
     context['product'] = product
-    context['content_title'] = f"{product.display_name} - Add Image" 
+    context['content_title'] = f"{product.display_name} - Add Image"
     return render(request,template_name, context)
 
 @login_required
@@ -1461,6 +1461,7 @@ def product_image_detail(request, image_uuid=None):
     page_title = "Product Image" + " - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['image'] = p_image
+    context['content_title'] = f"{product.display_name} - Image" 
     return render(request,template_name, context)
 
 def product_image_delete(request, image_uuid=None):
@@ -1549,6 +1550,7 @@ def product_images(request, product_uuid):
     context['page_title'] = page_title
     context['image_list'] = list_set
     context['product'] = product
+    context['content_title'] = f"{product.display_name} - Images" 
     return render(request,template_name, context)
 
 @login_required
@@ -1812,7 +1814,8 @@ def sold_product_detail(request, product_uuid=None):
         'product' : sold_product.product.product,
         'variant' : sold_product.product,
         'attribute_list': sold_product.product.attributes.all(),
-        'image_list': images
+        'image_list': images,
+        'content_title' : _('Sold Product')
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -1979,7 +1982,7 @@ def attribute_create(request, variant_uuid):
     context['attribute_formset'] = attribute_formset
     context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
-    context['content_title'] = f"New Attribute"
+    context['content_title'] = _("New Attribute")
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -2047,7 +2050,7 @@ def attributes_create(request):
     }
     context['attribute_formset'] = attribute_formset
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
-    context['content_title'] = f"New Attributes"
+    context['content_title'] = _("New Attributes")
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -2119,7 +2122,8 @@ def attribute_detail(request, attribute_uuid):
         'page_title': page_title,
         'attribute' : attribute,
         'product_list': attribute.products.all(),
-        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
+        'content_title' : _(attribute.display_name)
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -2181,9 +2185,9 @@ def attributes(request):
     context = {
         'page_title': page_title,
         'attribute_list': list_set,
-        'has_default_not_set' : ProductAttribute.objects.filter(name__in=Catalog_Constants.DEFAULT_PRIMARY_ATTRIBUTES, is_primary=False).exists()
+        'has_default_not_set' : ProductAttribute.objects.filter(name__in=Catalog_Constants.DEFAULT_PRIMARY_ATTRIBUTES, is_primary=False).exists(),
+        'content_title' : _('Attributes')
     }
-    context['content_title'] = f"Attributes"
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -2230,7 +2234,7 @@ def brands(request):
     context = {
         'page_title': page_title,
         'brand_list': list_set,
-        'content_title': 'Brands'
+        'content_title': _('Brands')
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -2266,7 +2270,7 @@ def brand_create(request):
     context = {
         'page_title': page_title,
         'form' : form,
-        'content_title': 'New Brand'
+        'content_title': _('New Brand')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)

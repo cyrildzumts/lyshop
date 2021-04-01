@@ -1,11 +1,14 @@
-{% extends "dashboard_base.html"%}
+{% extends "product_base.html"%}
 {% load i18n %}
 
-{% block  HEADER_BANNER_TITLE %}
-    <h4> {% trans "Product Image" %} </h4>
-{% endblock HEADER_BANNER_TITLE %}
+{% block ACTIONS %}
 
-{% block MAIN %}
+<a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"><i class="fas fa-tag icon"></i><span class="">{% trans "Product" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a>
+
+{% endblock ACTIONS %}
+
+{% block CONTENT_MAIN %}
 
 <form action="{{image.get_delete_url}}" method="POST">{% csrf_token %}
 <div class="container">
@@ -18,7 +21,7 @@
             </div>
         
         
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-4">
             <div class="mat-list-wrapper">
                 <div class="mat-list-header">
                     <div class="title">
@@ -33,4 +36,4 @@
         </div>      
 </div>
 </form>
-{% endblock MAIN %}
+{% endblock CONTENT_MAIN %}
