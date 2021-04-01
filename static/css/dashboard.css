@@ -303,24 +303,26 @@ main {
 @media only screen and (max-width: 1200px){
     .sidebar{
         transition: width 300ms;
-        width: 100px;
+        width: 100%;
     }
     
     
-    .dash-main-content .dashboard-header-wrapper{
+    #nav-toggle:checked > .dash-main-content .dashboard-header-wrapper{
         transition: width 300ms;
-        left: 100px;
-        width: calc(100% - 100px);
+        left: 0;
+        width: 100%;
     }
     
-    .dash-main-content{
+    #nav-toggle:checked > .dash-main-content{
         transition: margin-left 300ms;
-        margin-left: 100px;
+        margin-left: 0;
     }
     
-    .sidebar .sidebar-brand h4 span:last-child,
-    .sidebar li a span:last-child,
-    .sidebar .footer-wrapper{
+    /*
+    #nav-toggle:checked > .sidebar .sidebar-brand h4 span:last-child,
+    #nav-toggle:checked > .sidebar li a span:last-child,
+    #nav-toggle:checked > .sidebar .footer-wrapper{
         display: none;
     }
+    */
 }
