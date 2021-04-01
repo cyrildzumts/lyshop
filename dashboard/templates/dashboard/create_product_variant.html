@@ -1,99 +1,97 @@
-{% extends "dashboard_base.html"%}
+{% extends "product_base.html"%}
 {% load i18n %}
 {% load static %}
 {% load catalog_tags %}
-{% block HEADER_BANNER %}
-  <div class="row">
-        <div class="col-6">
-            <div class="title">
-                <h3>{% trans "New Product Variant" %}</h3>
-            </div>
-        </div> 
-  </div>
-{% endblock HEADER_BANNER %}
+{% block ACTIONS %}
 
-{% block MAIN_CONTENT %}
+<a class="mat-button mat-button-default" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a>
+<a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"><i class="fas fa-tag icon"></i><span class="">{% trans "Parent Product" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url 'dashboard:products' %}"><i class="fas fa-list icon"></i><span>{% trans "Products" %}</span></a>
+
+{% endblock ACTIONS %}
+
+{% block CONTENT_MAIN %}
 
 <div class="container">
-    <div class="responsive">
+    <div class="mat-box">
 
-    <form id="form-add-attributes" class="form" name="variant" action="{% url 'dashboard:product-variant-create' product.product_uuid %}" method="POST">{% csrf_token %}
-        <input type="hidden" name="product" value="{{product.pk}}">
-        <input id="id_form-TOTAL_FORMS" type="hidden" name="form-TOTAL_FORMS" value="0">
-        <input id="id_form-INITIAL_FORMS" type="hidden" name="form-INITIAL_FORMS" value="0">
-        <input id="id_form-MIN_NUM_FORMS" type="hidden" name="form-MIN_NUM_FORMS" value="0">
-        <input id="id_form-MAX_NUM_FORMS" type="hidden" name="form-MAX_NUM_FORMS" value="0">
-        <div class="mat-table-wrapper">
-                <div class="mat-table-title">
-                    {% trans "Available Attributes" %}
-                </div>
-                
-                <div class="container">
-                    {% regroup attribute_list by display_name as name_list %}
-                        <span class="hint">{% trans "Press Ctrl to select multiple values" %}</span>
-                        {% for attr in name_list %}
-                            <div class="mat-input flex flex-left">
-                                <label>{{ attr.grouper }}</label>
-                                <select name="attributes" multiple>
-                                    {% for obj in attr.list %}
-                                        <option value="{{ obj.pk }}">{{ obj.value }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        {% endfor %}
-                </div>
-                {% comment "" %}
-                <table id="attr-list" class="mat-table js-filter-table">
-                    <thead>
-                            <tr>
-                                <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></th>
-                                <th scope="col">{% trans "Name" %}</th>
-                                <th scope="col">{% trans "Display Name" %}</th>
-                                <th scope="col">{% trans "Value" %}</th>
-                                <th scope="col">{% trans "Primary" %}</th>
-                                <th scope="col">{% trans "Value Type" %}</th>
-                            </tr>
-                    </thead>
-                    <tbody>
-                            {% for attr in attribute_list %}
-                            <tr>
-                                <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
-                                <td data-label="{% trans 'Name' %}">{{attr.name}}</td>
-                                <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
-                                <td data-label="{% trans 'Value' %}">{{attr.value}}</td>
-                                <td data-label="{% trans 'Primary' %}">{{attr.is_primary|yesno:_("yes,no")}}</td>
-                                <td data-label="{% trans 'Value type' %}">{{attr.value_type|attr_type_value}}</td>
-                            </tr>
-                            {% endfor %}
-                            
-                    </tbody>
-                </table>
-                {% endcomment %}
-        
-        </div>
-
-        <div class="container">
-            <div class="mat-box full">
-                <h4>{% trans "New Attribtute" %}</h4>
-                <div class="actions">
-                    <span class="mat-button mat-button-outlined js-clear-input" data-target="#form-attr-container">{% trans "Clear Form" %}</span>
-                    <span class="mat-button mat-button-default js-add-new-attribute" title="{% trans 'Add new Attribute' %}" data-form="#form-add-attributes" data-target="#form-attr-container">{% trans "Add" %}</span>
-                </div>
-                <div class="mat-box-content">
-                    <div id="form-attr-container" class="container">
-                    
+        <form id="form-add-attributes" class="form" name="variant" action="{% url 'dashboard:product-variant-create' product.product_uuid %}" method="POST">{% csrf_token %}
+            <input type="hidden" name="product" value="{{product.pk}}">
+            <input id="id_form-TOTAL_FORMS" type="hidden" name="form-TOTAL_FORMS" value="0">
+            <input id="id_form-INITIAL_FORMS" type="hidden" name="form-INITIAL_FORMS" value="0">
+            <input id="id_form-MIN_NUM_FORMS" type="hidden" name="form-MIN_NUM_FORMS" value="0">
+            <input id="id_form-MAX_NUM_FORMS" type="hidden" name="form-MAX_NUM_FORMS" value="0">
+            <div class="mat-table-wrapper">
+                    <div class="mat-table-title">
+                        {% trans "Available Attributes" %}
                     </div>
-                </div><!--End of box content-->
-            </div><!--End of box-->
-        </div>
-        <div class="actions">
-            <a class="mat-button mat-button-outlined" href="{% url 'dashboard:products' %}" >{% trans "Cancel" %}</a>
-            <button class="mat-button mat-button-default" type="submit">{% trans "Create" %}</button>
-        </div>
-    </form>
+                    
+                    <div class="container">
+                        {% regroup attribute_list by display_name as name_list %}
+                            <span class="hint">{% trans "Press Ctrl to select multiple values" %}</span>
+                            {% for attr in name_list %}
+                                <div class="mat-input flex flex-left">
+                                    <label>{{ attr.grouper }}</label>
+                                    <select name="attributes" multiple>
+                                        {% for obj in attr.list %}
+                                            <option value="{{ obj.pk }}">{{ obj.value }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            {% endfor %}
+                    </div>
+                    {% comment "" %}
+                    <table id="attr-list" class="mat-table js-filter-table">
+                        <thead>
+                                <tr>
+                                    <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></th>
+                                    <th scope="col">{% trans "Name" %}</th>
+                                    <th scope="col">{% trans "Display Name" %}</th>
+                                    <th scope="col">{% trans "Value" %}</th>
+                                    <th scope="col">{% trans "Primary" %}</th>
+                                    <th scope="col">{% trans "Value Type" %}</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for attr in attribute_list %}
+                                <tr>
+                                    <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
+                                    <td data-label="{% trans 'Name' %}">{{attr.name}}</td>
+                                    <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
+                                    <td data-label="{% trans 'Value' %}">{{attr.value}}</td>
+                                    <td data-label="{% trans 'Primary' %}">{{attr.is_primary|yesno:_("yes,no")}}</td>
+                                    <td data-label="{% trans 'Value type' %}">{{attr.value_type|attr_type_value}}</td>
+                                </tr>
+                                {% endfor %}
+                                
+                        </tbody>
+                    </table>
+                    {% endcomment %}
+            
+            </div>
+
+            <div class="container">
+                <div class="mat-box full">
+                    <h4>{% trans "New Attribtute" %}</h4>
+                    <div class="actions">
+                        <span class="mat-button mat-button-outlined js-clear-input" data-target="#form-attr-container">{% trans "Clear Form" %}</span>
+                        <span class="mat-button mat-button-default js-add-new-attribute" title="{% trans 'Add new Attribute' %}" data-form="#form-add-attributes" data-target="#form-attr-container">{% trans "Add" %}</span>
+                    </div>
+                    <div class="mat-box-content">
+                        <div id="form-attr-container" class="container">
+                        
+                        </div>
+                    </div><!--End of box content-->
+                </div><!--End of box-->
+            </div>
+            <div class="actions">
+                <a class="mat-button mat-button-outlined" href="{% url 'dashboard:products' %}" >{% trans "Cancel" %}</a>
+                <button class="mat-button mat-button-default" type="submit">{% trans "Create" %}</button>
+            </div>
+        </form>
+    </div>
 </div>
-</div>
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}
 {% block SCRIPT %}
 <script type="text/javascript">
 var types = [
