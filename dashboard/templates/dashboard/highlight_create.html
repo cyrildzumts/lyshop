@@ -1,17 +1,12 @@
-{% extends "dashboard_base.html"%}
+{% extends "product_base.html"%}
 {% load i18n %}
 {% load catalog_tags %}
-{% block HEADER_BANNER %}
-  <div class="row">
-        <div class="col col-6">
-            <span>{% trans "New Highlight" %}</span>
-        </div> 
-  </div>
-{% endblock HEADER_BANNER %}
+{% block ACTIONS %}
+<a class="mat-button mat-button-default" href="{% url 'dashboard:highlights' %}"><i class="fas fa-list icon"></i><span>{% trans "Highlights" %}</span></a>
+{% endblock ACTIONS %}
 
-{% load catalog_tags %}
-{% block MAIN_CONTENT %}
-{% if can_view_product  %}
+{% block CONTENT_MAIN %}
+
 <div class="container">
     <div class="mat-box">
         <div class="mat-box-content">
@@ -55,9 +50,4 @@
         </div><!--End mat-box-content-->
     </div>
 </div>
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

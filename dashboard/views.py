@@ -906,6 +906,7 @@ def highlights(request):
         list_set = None
     context['page_title'] = page_title
     context['highlight_list'] = list_set
+    context['content_title'] = _('Highlights')
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -945,6 +946,7 @@ def highlight_create(request):
     context['form'] = form
     context['GENDER'] = Catalog_Constants.GENDER
     context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
+    context['content_title'] = _('New Highlight')
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -969,7 +971,8 @@ def highlight_detail(request, highlight_uuid=None):
         'page_title': page_title,
         'highlighted_products': highlight.products.all(),
         'products': Product.objects.filter(quantity__gt=0).exclude(pk__in=highlight.products.all()),
-        'highlight': highlight
+        'highlight': highlight,
+        'content_title': highlight.display_name
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -1012,6 +1015,7 @@ def highlight_update(request, highlight_uuid=None):
     context['products'] = highlight.products.all()
     context['GENDER'] = Catalog_Constants.GENDER
     context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
+    context['content_title'] = highlight.display_name + _('Update')
 
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
