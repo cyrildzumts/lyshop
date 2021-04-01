@@ -1,21 +1,10 @@
-{% extends "dashboard_base.html"%}
+{% extends "product_base.html"%}
 {% load i18n %}
-{% block HEADER_BANNER %}
-  <div class="row">
-        <div class="col-6">
-            <div class="title">
-                <h3>{% trans "New Product Type Attribute" %}</h3>
-            </div>
-        </div> 
-  </div>
-{% endblock HEADER_BANNER %}
-{% block MAIN_CONTENT %}
+{% block ACTIONS %}
 
-{% if can_add_product %}
+{% endblock ACTIONS %}
 
-
-<div class="responsive">
-
+{% block CONTENT_MAIN %}
     <div class="container">
         
         <div class="mat-box">
@@ -53,15 +42,6 @@
                     </div>
                     
                 </form>
-            </div>
-    </div>          
+            </div>        
 </div>
-
-
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

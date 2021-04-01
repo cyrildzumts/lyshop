@@ -1,42 +1,17 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
 {% load catalog_tags %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Attribute" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
-
-            <div class="col-m-12 col-9">
-                <div class="actions">
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:attributes-create' %}"><i class="fas fa-plus icon"></i><span>{% trans "Add new Attributes" %}</span></a>    
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:attributes' %}"><i class="fas fa-list icon"></i><span>{% trans "Attributes" %}</span></a>
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>    
-                </div><!--End of Banner-Actions-->
-                
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-
-{% block MAIN_CONTENT %}
-{% if can_view_product %}
-
+{% block ACTIONS %}
+<a class="mat-button mat-button-default" href="{% url 'dashboard:attributes-create' %}"><i class="fas fa-plus icon"></i><span>{% trans "New Attributes" %}</span></a>    
+<a class="mat-button mat-button-default" href="{% url 'dashboard:attributes' %}"><i class="fas fa-list icon"></i><span>{% trans "Attributes" %}</span></a>
 {% if can_delete_product %}
 <form action="{{attribute.get_delete_url}}" method="POST">{% csrf_token %}
-
-<div class="actions">
   <button type="submit" class="mat-button warn">{% trans "Delete" %}</button>
-</div>
 </form>
 {% endif %}
+{% endblock ACTIONS %}
 
+{% block CONTENT_MAIN %}
 <div class="mat-box">
   <div class="entry">
     <span class="key">{% trans "Name" %}</span> <span class="value">{{attribute.name}}</span>
@@ -55,8 +30,6 @@
     <span class="key">{% trans "Is Primary" %}</span> <span class="value">{{attribute.is_primary|yesno:_("yes,no")}}</span>
   </div>
 </div>
-
-{% if can_change_product%}
 <div class="container">
     <form  class="form" name="attribute" action="{{attribute.get_update_url}}" method="POST">{% csrf_token %}
         <div id="error-login" class="error-login left">
@@ -107,17 +80,9 @@
 
         </div>
         
-        {% else %}
-        <div class="mat-box">
-          <span>{% trans "No product available for this attribute" %}</span>
-        </div>
-        {% endif %}
-
-{% endif %}
 {% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+<div class="mat-box">
+  <span>{% trans "No product available for this attribute" %}</span>
 </div>
 {% endif %}
-
 {% endblock MAIN_CONTENT %}
