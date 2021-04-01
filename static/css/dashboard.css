@@ -300,8 +300,8 @@ main {
 }
 
 #nav-toggle:checked  + .sidebar{
-    transition: width 300ms;
-    width: 100%;
+    transition: left 300ms;
+    left: 0;
 }
 
 
