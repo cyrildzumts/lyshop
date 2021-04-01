@@ -1444,7 +1444,7 @@ def product_image_create(request, product_uuid=None):
     form = ProductImageForm()
     context['form'] = form
     context['product'] = product
-    context['content_title'] = f"{product.display_name} - Add Image"
+    context['content_title'] = f"{product.display_name} - New Image"
     return render(request,template_name, context)
 
 @login_required
@@ -2425,7 +2425,8 @@ def brand_products(request, brand_uuid=None):
     context = {
         'page_title': page_title,
         'product_list': list_set,
-        'brand': brand
+        'brand': brand,
+        'content_title': f"{_('Brand Products')} - {brand.display_name}"
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -2481,6 +2482,7 @@ def tokens(request):
         list_set = None
     context['page_title'] = page_title
     context['token_list'] = list_set
+    context['content_title'] = _('Tokens')
     context.update(get_view_permissions(request.user))
     context['can_delete'] = PermissionManager.user_can_delete_user(request.user)
     return render(request,template_name, context)
@@ -2501,6 +2503,7 @@ def generate_token(request):
     context = {
         'page_title' :_('User Token Generation') + ' - ' + settings.SITE_NAME,
         'can_generate_token' : can_generate_token,
+        'content_title' : _('User Token Generation')
     }
     if request.method == 'POST':
             form = TokenForm(utils.get_postdata(request))
@@ -2553,7 +2556,8 @@ def reports(request):
         'unique_visitors' : UniqueIP.objects.count(),
         'facebook_visitors' : fbcount_sum,
         'google_visitors': total_google_visitors,
-        'total_suspicious_visitors' : total_suspicious_visitors
+        'total_suspicious_visitors' : total_suspicious_visitors,
+        'content_title' : _('Reports')
     }
     orders_count = Order.objects.count()
     currents_orders = analytics.get_orders()
@@ -2604,6 +2608,7 @@ def users(request):
     context['can_delete_user'] = PermissionManager.user_can_delete_user(request.user)
     context['can_add_user'] = PermissionManager.user_can_add_user(request.user)
     context['can_update_user'] = PermissionManager.user_can_change_user(request.user)
+    context['content_title'] = _('Users')
     return render(request,template_name, context)
 
 @login_required
@@ -2637,6 +2642,7 @@ def user_details(request, pk=None):
     context['can_update'] = PermissionManager.user_can_change_user(request.user)
     context['cart_items'] = cart_items
     context['ACCOUNT_TYPE'] = Account_Constants.ACCOUNT_TYPE
+    context['content_title'] = f"{_('User')} - {user.get_full_name()}"
     return render(request,template_name, context)
 
 
@@ -2790,6 +2796,7 @@ def policies(request):
         list_set = None
     context['page_title'] = page_title
     context['policies'] = list_set
+    context['content_title'] = _('Policies')
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -2826,7 +2833,8 @@ def policy_update(request, policy_uuid=None):
             'template_name':template_name,
             'policy' : instance,
             'form': form,
-            'can_change_policy' : can_change_policy
+            'can_change_policy' : can_change_policy,
+            'content_title': f"{_('Policy update')} - {instance.name}"
         }
     context.update(get_view_permissions(request.user))
     return render(request, template_name,context )
@@ -2944,7 +2952,8 @@ def policy_create(request):
             'page_title':page_title,
             'template_name':template_name,
             'form': form,
-            'can_add_policy' : can_add_policy
+            'can_add_policy' : can_add_policy,
+            'content_title' : _('New Policy')
         }
     
     context.update(get_view_permissions(request.user))
@@ -2970,6 +2979,7 @@ def policy_details(request, policy_uuid=None):
     page_title = "Policy Details - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['policy'] = policy
+    context['content_title'] = _('Policy')
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3002,6 +3012,7 @@ def policy_groups(request):
         list_set = None
     context['page_title'] = page_title
     context['groups'] = list_set
+    context['content_title'] = _('Policy Groups')
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3037,7 +3048,8 @@ def policy_group_create(request):
             'template_name':template_name,
             'form': form,
             'policies' : Policy.objects.all(),
-            'can_add_policy' : can_add_policy
+            'can_add_policy' : can_add_policy,
+            'content_title' : _('New Policy Group')
         }
     context.update(get_view_permissions(request.user))
     
@@ -3074,7 +3086,8 @@ def policy_group_update(request, group_uuid=None):
             'group' : instance,
             'form': form,
             'policies' : Policy.objects.all(),
-            'can_change_policy' : can_change_policy
+            'can_change_policy' : can_change_policy,
+            'content_title' : _('Policy Group Update')
         }
     context.update(get_view_permissions(request.user))
     return render(request, template_name,context )
@@ -3152,6 +3165,7 @@ def policy_group_details(request, group_uuid=None):
     context['group'] = group
     context['members'] = group.members.all()
     context['users'] = User.objects.filter(is_active=True, is_superuser=False)
+    context['content_title'] = _('Policy Group')
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3242,6 +3256,7 @@ def groups(request):
     context['can_delete_group'] = PermissionManager.user_can_delete_group(request.user)
     context['can_update_group'] = PermissionManager.user_can_change_group(request.user)
     context['can_add_group'] = PermissionManager.user_can_add_group(request.user)
+    context['content_title'] = _('Groups')
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3266,6 +3281,7 @@ def group_detail(request, pk=None):
     context['group'] = group
     context['can_delete_group'] = PermissionManager.user_can_delete_group(request.user)
     context['can_update_group'] = PermissionManager.user_can_change_group(request.user)
+    context['content_title'] = _('Group')
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3317,7 +3333,8 @@ def group_update(request, pk=None):
             'available_users' : available_users,
             'permissions': permissions,
             'available_permissions' : available_permissions,
-            'can_change_group' : can_change_group
+            'can_change_group' : can_change_group,
+            'content_title' : _('Group Update')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -3373,7 +3390,8 @@ def group_create(request):
             'form': form,
             'available_users' : available_users,
             'available_permissions': available_permissions,
-            'can_add_group' : can_add_group
+            'can_add_group' : can_add_group,
+            'content_title' : _('New Group')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -3636,6 +3654,7 @@ def create_account(request):
     context['can_add_user'] = can_add_user
     context['user_form'] = user_form
     context['account_form'] = account_form
+    context['content_title'] = _('New Account')
     return render(request, template_name, context)
 
 
@@ -3670,6 +3689,7 @@ def payment_requests(request):
     context['requests'] = request_set
     context['can_delete_payment'] = PermissionManager.user_can_delete_payment(request.user)
     context['can_update_payment'] = PermissionManager.user_can_change_payment(request.user)
+    context['content_title'] = _('Payment Requests')
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3697,6 +3717,7 @@ def payment_request_details(request, request_uuid=None):
     context['payment_request'] = payment_request
     context['can_delete_payment'] = PermissionManager.user_can_delete_payment(request.user)
     context['can_update_payment'] = PermissionManager.user_can_change_payment(request.user)
+    context['content_title'] = _('Payment Request')
     logger.debug("(payment_request_details) - Updating context object")
     context.update(get_view_permissions(request.user))
     logger.debug("[OK] (payment_request_details) - Updating context object")
@@ -3944,7 +3965,8 @@ def product_types(request):
         list_set = None
     context = {
         'page_title': page_title,
-        'product_type_list': list_set
+        'product_type_list': list_set,
+        'content_title':_('Product Types')
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -3982,7 +4004,8 @@ def product_type_create(request):
     context = {
         'page_title': page_title,
         'type_attributes' : ProductTypeAttribute.objects.all(),
-        'form' : form
+        'form' : form,
+        'content_title' : _('New Product Type')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -4010,7 +4033,8 @@ def product_type_detail(request, type_uuid=None):
         'product_list': product_list,
         'product_type': product_type,
         'attribute_list': product_type.attributes.all(),
-        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
+        'content_title' : _('Product Type')
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4050,7 +4074,8 @@ def product_type_update(request, type_uuid=None):
         'form' : form,
         'product_type': product_type,
         'attributes' : ProductAttribute.objects.exclude(id__in=product_type.attributes.all()),
-        'type_attributes' : ProductTypeAttribute.objects.exclude(id__in=product_type.type_attributes.all())
+        'type_attributes' : ProductTypeAttribute.objects.exclude(id__in=product_type.type_attributes.all()),
+        'content_title' : _('Product Type Update')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -4171,7 +4196,8 @@ def product_type_attributes(request):
     context = {
         'page_title': page_title,
         'type_attribute_list': list_set,
-        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
+        'content_title': _('ProductType Products')
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4209,7 +4235,8 @@ def product_type_attribute_create(request):
     context = {
         'page_title': page_title,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
-        'form' : form
+        'form' : form,
+        'content_title' _('New Product Type Attributes')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -4238,7 +4265,8 @@ def product_type_attribute_detail(request, type_attribute_uuid=None):
         #'product_list': product_list,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'attribute_list': attributes,
-        'type_attribute': type_attribute
+        'type_attribute': type_attribute,
+        'content_title' : _('Product Type Attribute')
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4278,7 +4306,8 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
         'form' : form,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'attribute_list': type_attribute.attributes.all(),
-        'type_attribute': type_attribute
+        'type_attribute': type_attribute,
+        'content_title' : _('Product Type Attribute Update')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -4350,7 +4379,8 @@ def payment_method_create(request):
         raise PermissionDenied
     context = {
         'page_title': page_title,
-        'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE
+        'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE,
+        'content_title' : _('New Payment Method')
     }
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
@@ -4386,7 +4416,8 @@ def payment_methods(request):
         raise PermissionDenied
     context = {
         'page_title': page_title,
-        'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE
+        'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE,
+        'content_title' : _('Payment Methods')
     }
     queryset = orders_service.get_payment_methods()
     page = request.GET.get('page', 1)
@@ -4414,7 +4445,8 @@ def payment_method_detail(request, method_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     context = {
-        'page_title': page_title
+        'page_title': page_title,
+        'content_title' : _('Payment Method')
     }
 
     payment_method = get_object_or_404(PaymentMethod, method_uuid=method_uuid)
@@ -4452,7 +4484,8 @@ def payment_method_update(request, method_uuid):
         'page_title': page_title,
         'form' : form,
         'payment_method':payment_method,
-        'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE
+        'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE,
+        'content_title' : _('Payment Method Update')
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4507,7 +4540,9 @@ def payment_methods_delete(request):
 def addressbook(request):
     template_name = "dashboard/addressbook.html"
     username = request.user.username
-    context = {}
+    context = {
+        'content_title' : _('Addressbook')
+    }
     queryset = Address.objects.all().order_by('-created_at')
     page_title = _("Addresses") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
@@ -4533,6 +4568,7 @@ def address_detail(request, address_uuid=None):
     context = {
         'page_title': page_title,
         'address': address,
+        'content_title' : _('Address')
     }
     return render(request,template_name, context)
 
@@ -4544,6 +4580,7 @@ def address_update(request, address_uuid=None):
     page_title = _('Address Update')
     context = {
         'page_title': page_title,
+        'content_title' : _('Address Update')
     }
     obj = get_object_or_404(Address, address_uuid=address_uuid)
     username = request.user.username
@@ -4607,7 +4644,9 @@ def refunds(request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title' : _('Refunds')
+    }
     #current_account = Account.objects.get(user=request.user)
     queryset = Refund.objects.all().order_by('-created_at')
     template_name = "dashboard/refund_list.html"
@@ -4640,7 +4679,9 @@ def refund_detail(request, refund_uuid=None):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title' : _('Refund')
+    }
     refund = get_object_or_404(Refund, refund_uuid=refund_uuid)
     template_name = "dashboard/refund_detail.html"
     page_title = "Refund" + " - " + settings.SITE_NAME
@@ -4689,7 +4730,8 @@ def refund_update(request, refund_uuid=None):
         'form' : form,
         'refund': refund,
         'REFUND_STATUS': Order_Constants.REFUND_STATUS,
-        'REFUND_DECLINED_REASON': Order_Constants.REFUND_DECLINED_REASON
+        'REFUND_DECLINED_REASON': Order_Constants.REFUND_DECLINED_REASON,
+        'content_title' : _('Refund Update')
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -4721,7 +4763,9 @@ def refund_bulk_update(request):
 def news(request):
     template_name = "dashboard/news_list.html"
     username = request.user.username
-    context = {}
+    context = {
+        'content_title' : _('Infos')
+    }
     queryset = News.objects.all().order_by('-created_at')
     page_title = _("News") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
@@ -4753,6 +4797,7 @@ def news_create(request):
         raise PermissionDenied
     context = {
         'page_title': page_title,
+        'content_title' : _('New Info')
     }
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
@@ -4780,6 +4825,7 @@ def news_detail(request, news_uuid=None):
     context = {
         'page_title': page_title,
         'news': news,
+        'content_title' : _('Info')
     }
     return render(request,template_name, context)
 
@@ -4791,6 +4837,7 @@ def news_update(request, news_uuid=None):
     page_title = _('News Update')
     context = {
         'page_title': page_title,
+        'content_title' : _('Info Update')
     }
     obj = get_object_or_404(News, news_uuid=news_uuid)
     username = request.user.username
