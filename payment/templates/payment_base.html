@@ -6,10 +6,13 @@
 </div>
 {% else %}
 {% block SIDEBAR_CONTENT %}
-<a class="mat-button mat-button-text" href="{% url 'payment:payment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Payment Home" %}</span></a>
-<a class="mat-button mat-button-text" href="{% url 'payment:payments'%}">{% trans "Payments" %}</a>
-<a class="mat-button mat-button-text" href="{% url 'payment:policies' %}">{% trans "Policies" %}</a></li>
-<a class="mat-button mat-button-text" href="{% url 'payment:policy-groups' %}">{% trans "Policy Groups" %}</a></li>
+<li><a class="mat-button mat-button-text" href="{% url 'payment:payment-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Payment Home" %}</span></a></li>
+<li><a class="mat-button mat-button-text" href="{% url 'payment:payments'%}"><i class="fas fa-money-check-alt"></i>{% trans "Payments" %}</a></li>
+<li><a class="mat-button mat-button-text" href="{% url 'payment:policies' %}"><i class="fas fa-ruler"></i>{% trans "Policies" %}</a></li>
+<li><a class="mat-button mat-button-text" href="{% url 'payment:policy-groups' %}"><i class="fas fa-pencil-ruler"></i>{% trans "Policy Groups" %}</a></li>
+
+
+
 
 {% endblock SIDEBAR_CONTENT %}
 
