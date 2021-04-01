@@ -205,13 +205,13 @@
 	padding-right: 1rem;
 }
 
-.sidebar-menu .footer-wrapper{
+.sidebar .footer-wrapper{
 	position: fixed;
 	bottom: 0;
 	left: 0;
 }
 
-.sidebar-menu .footer-wrapper li{
+.sidebar .footer-wrapper li{
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -221,7 +221,7 @@
 	margin-bottom: 0.5rem;
 }
 
-.sidebar-menu .footer-wrapper a{
+.sidebar .footer-wrapper a{
 	font-size: 0.5rem;
 	width: unset !important;
 }
