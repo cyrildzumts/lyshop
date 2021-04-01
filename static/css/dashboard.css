@@ -301,17 +301,17 @@ main {
 
 #nav-toggle:checked  + .sidebar{
     transition: left 300ms;
-    left: 0;
+    left: -345px;
 }
 
 
-#nav-toggle:checked + .dash-main-content .dashboard-header-wrapper{
+#nav-toggle:checked ~ .dash-main-content .dashboard-header-wrapper{
     transition: width 300ms;
     left: 0;
     width: 100%;
 }
 
-#nav-toggle:checked + .dash-main-content{
+#nav-toggle:checked ~ .dash-main-content{
     transition: margin-left 300ms;
     margin-left: 0;
     width: 100%;
