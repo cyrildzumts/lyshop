@@ -5,6 +5,39 @@ SELLER_GROUP = "Seller"
 
 MAX_RECENT = 5
 
+DASHBOARD_GLOBALS_PREFIX = "dashboard"
+
+DASHBOARD_PRODUCT_CONTEXT = {
+    'IMAGE_URL'                 : f"{DASHBOARD_GLOBALS_PREFIX}:product-image-detail",
+    'IMAGE_CREATE_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:product-image-create",
+    'IMAGE_DELETE_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:product-image-delete",
+    'PRODUCT_CREATE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-create",
+    'PRODUCT_DELETE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-delete",
+    'PRODUCTS_DELETE_URL'       : f"{DASHBOARD_GLOBALS_PREFIX}:products-delete",
+    'PRODUCT_BULK_CHANGES_URL'  : f"{DASHBOARD_GLOBALS_PREFIX}:products-changes",
+    'PRODUCT_URL'               : f"{DASHBOARD_GLOBALS_PREFIX}:product-detail",
+    'PRODUCT_UPDATE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-update",
+    'VARIANT_URL'               : f"{DASHBOARD_GLOBALS_PREFIX}:product-variant-detail",
+    'VARIANT_CREATE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-variant-create",
+    'VARIANT_UPDATE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-variant-update",
+    'VARIANT_DELETE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-variant-delete",
+}
+
+DASHBOARD_PRODUCT_TYPES_CONTEXT = {
+    'PRODUCT_TYPE_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-detail",
+    'PRODUCT_TYPE_UPDATE_URL'   : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-update",
+    'PRODUCT_TYPE_DELETE_URL'   : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-delete",
+    'PRODUCT_TYPE_CREATE_URL'   : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-create",
+}
+
+
+DASHBOARD_ATTRIBUTES_CONTEXT = {
+    'ATTRIBUTE_BULK_CREATE_URL' : f"{DASHBOARD_GLOBALS_PREFIX}:bulk-attributes-create",
+    'ATTRIBUTE_CREATE_URL' : f"{DASHBOARD_GLOBALS_PREFIX}:attribute-create",
+    'ATTRIBUTE_ADD_URL' : f"{DASHBOARD_GLOBALS_PREFIX}:attribute-add",
+}
+
+
 DASHBOARD_VIEW_PERM = 'can_view_dashboard'
 TOKEN_GENERATE_PERM = 'can_generate_token'
 

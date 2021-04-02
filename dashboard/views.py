@@ -1174,7 +1174,12 @@ def product_detail(request, product_uuid=None):
         'product': product,
         'variant_list': variants,
         'image_list': images,
-        'content_title': product.display_name
+        'content_title': product.display_name,
+        'VARIANT_URL' : "dashboard:product-variant-detail",
+        'IMAGE_URL' : "dashboard:product-image-detail",
+        'PRODUCT_UPDATE_URL': product.get_update_url(),
+        'VARIANT_CREATE_URL': "dashboard:product-variant-create",
+        'IMAGE_CREATE_URL': "dashboard:product-image-create",
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
