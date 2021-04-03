@@ -24,6 +24,7 @@ from orders import commons as Order_Constants
 from core.filters import filters
 from lyshop import utils, settings, conf as GLOBAL_CONF
 from vendors import vendors_service
+from vendors import constants as VENDORS_CONTANTS
 from shipment import shipment_service
 from vendors.models import Balance, BalanceHistory, VendorPayment, VendorPaymentHistory, SoldProduct
 from payment.models import Payment

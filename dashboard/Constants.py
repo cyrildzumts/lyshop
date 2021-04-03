@@ -7,6 +7,25 @@ MAX_RECENT = 5
 
 DASHBOARD_GLOBALS_PREFIX = "dashboard"
 
+
+DASHBOARD_BRAND_CONTEXT = {
+    'BRANDS_URL'               : f"{DASHBOARD_GLOBALS_PREFIX}:brands",
+    'BRAND_URL'                : f"{DASHBOARD_GLOBALS_PREFIX}:brand-detail",
+    'BRAND_UPDATE_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:brand-update",
+    'BRAND_DELETE_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:brand-delete",
+    'BRANDS_DELETE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:brands-delete",
+    'BRAND_CREATE_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:brand-create",
+}
+
+DASHBOARD_COUPON_CONTEXT = {
+    'COUPONS_URL'               : f"{DASHBOARD_GLOBALS_PREFIX}:coupons",
+    'COUPON_URL'                : f"{DASHBOARD_GLOBALS_PREFIX}:coupon-detail",
+    'COUPON_UPDATE_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:coupon-update",
+    'COUPON_DELETE_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:coupon-delete",
+    'COUPONS_DELETE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:coupons-delete",
+    'COUPON_CREATE_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:coupon-create",
+}
+
 DASHBOARD_PRODUCT_CONTEXT = {
     'IMAGE_URL'                 : f"{DASHBOARD_GLOBALS_PREFIX}:product-image-detail",
     'IMAGE_CREATE_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:product-image-create",
@@ -21,9 +40,12 @@ DASHBOARD_PRODUCT_CONTEXT = {
     'VARIANT_CREATE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-variant-create",
     'VARIANT_UPDATE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-variant-update",
     'VARIANT_DELETE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-variant-delete",
+    'SOLD_PRODUCTS_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:sold-products",
+    'SOLD_PRODUCT_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:sold-product-detail",
 }
 
 DASHBOARD_PRODUCT_TYPES_CONTEXT = {
+    'PRODUCT_TYPES_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:product-types",
     'PRODUCT_TYPE_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-detail",
     'PRODUCT_TYPE_UPDATE_URL'   : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-update",
     'PRODUCT_TYPE_DELETE_URL'   : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-delete",
@@ -33,8 +55,15 @@ DASHBOARD_PRODUCT_TYPES_CONTEXT = {
 
 DASHBOARD_ATTRIBUTES_CONTEXT = {
     'ATTRIBUTE_BULK_CREATE_URL' : f"{DASHBOARD_GLOBALS_PREFIX}:bulk-attributes-create",
-    'ATTRIBUTE_CREATE_URL' : f"{DASHBOARD_GLOBALS_PREFIX}:attribute-create",
-    'ATTRIBUTE_ADD_URL' : f"{DASHBOARD_GLOBALS_PREFIX}:attribute-add",
+    'ATTRIBUTE_CREATE_URL'      : f"{DASHBOARD_GLOBALS_PREFIX}:attribute-create",
+    'ATTRIBUTE_ADD_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:attribute-add",
+}
+
+DASHBOARD_ORDERS_CONTEXT = {
+    'ORDERS_URL'                : f"{DASHBOARD_GLOBALS_PREFIX}:orders",
+    'ORDER_URL'                 : f"{DASHBOARD_GLOBALS_PREFIX}:order-detail",
+    'ORDER_ITEM_URL'            : f"{DASHBOARD_GLOBALS_PREFIX}:order-item-detail",
+    'ORDER_ITEM_UPDATE_URL'     : f"{DASHBOARD_GLOBALS_PREFIX}:order-item-update",
 }
 
 
