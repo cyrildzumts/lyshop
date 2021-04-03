@@ -93,7 +93,7 @@
                                     <td>{{variant.display_name}}</td>
                                     <td>{{variant.quantity}}</td>
                                     <td>{{variant.price}} {% trans "XAF" %}</td>
-                                    <td><a class="mat-button mat-button-text" href="{% url VARIANT_URL vairant.product_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                                    <td><a class="mat-button mat-button-text" href="{% url VARIANT_URL variant.product_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                               </tr>
                               {% endfor %}
                               
