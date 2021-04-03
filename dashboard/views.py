@@ -48,6 +48,7 @@ from catalog import catalog_service
 from catalog import constants as Catalog_Constants
 from core.filters import filters
 from core.tasks import send_mail_task
+from core.resources import ui_strings as CORE_STRINGS
 from orders import commons as Order_Constants
 from orders import orders_service
 from vendors.models import SoldProduct, Balance, VendorPayment, BalanceHistory
@@ -90,7 +91,7 @@ def dashboard(request):
     context = {
             'name'          : username,
             'page_title'    : page_title,
-            'content_title' : 'Dashboard',
+            'content_title' : CORE_STRINGS.DASHBOARD_DASHBOARD_TITLE,
             'is_allowed'     : can_view_dashboard,
             'order_list' : recent_orders,
             'currents_orders' : currents_orders,
@@ -341,7 +342,7 @@ def product_create(request):
         raise PermissionDenied
     context = {
         'page_title': page_title,
-        'content_title': _('New Product')
+        'content_title': CORE_STRINGS.DASHBOARD_PRODUCT_CREATE_TITLE
     }
     
     username = request.user.username
@@ -365,6 +366,7 @@ def product_create(request):
     context['GENDER'] = Catalog_Constants.GENDER
     context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
     context['SHORT_DESCRIPTION_MAX_SIZE'] = Catalog_Constants.SHORT_DESCRIPTION_MAX_SIZE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -404,15 +406,16 @@ def orders(request):
     except EmptyPage:
         list_set = None
     context['page_title'] = page_title
-    context['content_title'] = 'Orders'
+    context['content_title'] = CORE_STRINGS.DASHBOARD_ORDERS_TITLE
     context['orders'] = list_set
     context['ORDER_STATUS'] = Order_Constants.ORDER_STATUS
     context['PAYMENT_OPTIONS'] = Order_Constants.PAYMENT_OPTIONS
     context['SELECTED_FILTERS'] = selected_filters
     context['FILTER_CONFIG'] = Order.FILTER_CONFIG
-    context.update(get_view_permissions(request.user))
     context['can_delete_order'] = PermissionManager.user_can_delete_order(request.user)
     context['can_update_order'] = PermissionManager.user_can_change_order(request.user)
+    context.update(Constants.DASHBOARD_ORDERS_CONTEXT)
+    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 
@@ -442,8 +445,9 @@ def order_detail(request, order_uuid=None):
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
         'order_is_cancelable' :  orders_service.is_cancelable(order),
         'order_can_be_shipped' :  orders_service.can_be_shipped(order),
-        'content_title' : f"Order - {order.order_ref_number}"
+        'content_title' : f"{CORE_STRINGS.DASHBOARD_ORDER_TITLE} - {order.order_ref_number}"
     }
+    context.update(Constants.DASHBOARD_ORDERS_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -626,8 +630,10 @@ def order_update(request, order_uuid=None):
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
         'order_can_be_shipped' :  orders_service.can_be_shipped(order),
-        'form': form
+        'form': form,
+        'content_title' : CORE_STRINGS.DASHBOARD_ORDER_UPDATE_TITLE
     }
+    context.update(Constants.DASHBOARD_ORDERS_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -653,12 +659,14 @@ def order_item(request, order_uuid=None, item_uuid=None):
         'page_title': page_title,
         'order': order,
         'item' : item,
+        'content_title' : CORE_STRINGS.DASHBOARD_ORDER_ITEM_TITLE,
         'shipment': shipment_service.find_order_shipment(order),
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
         'order_is_cancelable' :  orders_service.is_cancelable(order),
         'order_can_be_shipped' :  orders_service.can_be_shipped(order)
     }
+    context.update(Constants.DASHBOARD_ORDERS_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -703,12 +711,14 @@ def order_item_update(request, order_uuid=None, item_uuid=None):
         'page_title': page_title,
         'order': order,
         'item' : item,
+        'content_title' : CORE_STRINGS.DASHBOARD_ORDER_ITEM_UPDATE_TITLE,
         'shipment': shipment_service.find_order_shipment(order),
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
         'order_can_be_shipped' :  orders_service.can_be_shipped(order),
         'form': OrderItemUpdateForm(instance=item)
     }
+    context.update(Constants.DASHBOARD_ORDERS_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -799,10 +809,12 @@ def order_history(request, order_uuid):
         'page_title' : _('Order Histories'),
         'history_list':  list_set,
         'order' : order,
+        'content_title' : CORE_STRINGS.DASHBOARD_ORDER_HISTORY_TITLE,
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
     }
     template_name = 'dashboard/order_histories.html'
+    context.update(Constants.DASHBOARD_ORDERS_CONTEXT)
     return render(request, template_name, context)
 
 @login_required
@@ -810,6 +822,7 @@ def order_history_detail(request, history_uuid):
     history = get_object_or_404(OrderStatusHistory, history_uuid=history_uuid)
     context = {
         'page_title' : _('Order History'),
+        'content_title' : CORE_STRINGS.DASHBOARD_ORDER_HISTORY_TITLE,
         'history':  history,
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
@@ -906,7 +919,7 @@ def highlights(request):
         list_set = None
     context['page_title'] = page_title
     context['highlight_list'] = list_set
-    context['content_title'] = _('Highlights')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_HIGHLIGHTS_TITLE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -946,7 +959,7 @@ def highlight_create(request):
     context['form'] = form
     context['GENDER'] = Catalog_Constants.GENDER
     context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
-    context['content_title'] = _('New Highlight')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_HIGHLIGHT_CREATE_TITLE
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -972,7 +985,7 @@ def highlight_detail(request, highlight_uuid=None):
         'highlighted_products': highlight.products.all(),
         'products': Product.objects.filter(quantity__gt=0).exclude(pk__in=highlight.products.all()),
         'highlight': highlight,
-        'content_title': highlight.display_name
+        'content_title': CORE_STRINGS.DASHBOARD_HIGHLIGHT_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -1015,7 +1028,7 @@ def highlight_update(request, highlight_uuid=None):
     context['products'] = highlight.products.all()
     context['GENDER'] = Catalog_Constants.GENDER
     context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
-    context['content_title'] = highlight.display_name + _('Update')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_HIGHLIGHT_UPDATE_TITLE
 
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -1109,7 +1122,8 @@ def product_home(request):
     }
     
     context['page_title'] = page_title
-    context['content_title'] = 'Product'
+    context['content_title'] = CORE_STRINGS.DASHBOARD_PRODUCT_HOME_TITLE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -1147,7 +1161,8 @@ def products(request):
     context['SELECTED_FILTERS'] = selected_filters
     context['FILTER_CONFIG'] = Product.FILTER_CONFIG
     context['PRODUCT_ACTIONS'] = Catalog_Constants.PRODUCT_ACTIONS
-    context['content_title'] = 'Products'
+    context['content_title'] = CORE_STRINGS.DASHBOARD_PRODUCTS_TITLE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -1174,13 +1189,9 @@ def product_detail(request, product_uuid=None):
         'product': product,
         'variant_list': variants,
         'image_list': images,
-        'content_title': product.display_name,
-        'VARIANT_URL' : "dashboard:product-variant-detail",
-        'IMAGE_URL' : "dashboard:product-image-detail",
-        'PRODUCT_UPDATE_URL': product.get_update_url(),
-        'VARIANT_CREATE_URL': "dashboard:product-variant-create",
-        'IMAGE_CREATE_URL': "dashboard:product-image-create",
+        'content_title': CORE_STRINGS.DASHBOARD_PRODUCT_TITLE,
     }
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -1227,7 +1238,8 @@ def product_update(request, product_uuid=None):
     context['GENDER'] = Catalog_Constants.GENDER
     context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
     context['SHORT_DESCRIPTION_MAX_SIZE'] = Catalog_Constants.SHORT_DESCRIPTION_MAX_SIZE
-    context['content_title'] = f"{product.display_name} - Update" 
+    context['content_title'] = CORE_STRINGS.DASHBOARD_PRODUCT_UPDATE_TITLE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -1449,7 +1461,8 @@ def product_image_create(request, product_uuid=None):
     form = ProductImageForm()
     context['form'] = form
     context['product'] = product
-    context['content_title'] = f"{product.display_name} - New Image"
+    context['content_title'] = CORE_STRINGS.DASHBOARD_PRODUCT_IMAGE_CREATE_TITLE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -1470,7 +1483,8 @@ def product_image_detail(request, image_uuid=None):
     page_title = "Product Image" + " - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['image'] = p_image
-    context['content_title'] = f"{p_image.product.display_name} - Image" 
+    context['content_title'] = CORE_STRINGS.DASHBOARD_PRODUCT_IMAGE_TITLE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     return render(request,template_name, context)
 
 def product_image_delete(request, image_uuid=None):
@@ -1529,7 +1543,8 @@ def product_image_update(request, image_uuid=None):
             'image'  : image,
             'form': form
         }
-    
+    context['content_title'] = CORE_STRINGS.DASHBOARD_PRODUCT_IMAGE_UPDATE_TITLE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     return render(request, template_name,context )
 
 @login_required
@@ -1604,7 +1619,8 @@ def product_variant_create(request, product_uuid=None):
     }
     context['attribute_formset'] = attribute_formset
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
-    context['content_title'] = f"{product.display_name} - New Variant"
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_PRODUCT_VARIANTE_CREATE_TITLE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -1653,7 +1669,8 @@ def create_product_variant(request, product_uuid=None):
     }
     context['attribute_formset'] = attribute_formset
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
-    context['content_title'] = f"{product.display_name} - New Variant"
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_PRODUCT_VARIANTE_CREATE_TITLE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -1686,7 +1703,8 @@ def product_variant_detail(request, variant_uuid=None):
         'available_attribute_list' : available_attribute_list,
         'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
     }
-    context['content_title'] = f"{product.display_name} - Variant"
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_PRODUCT_VARIANTE_TITLE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -1735,7 +1753,8 @@ def product_variant_update(request, variant_uuid=None):
         'attribute_formset': attribute_formset,
         'attribute_types': Catalog_Constants.ATTRIBUTE_TYPE
     }
-    context['content_title'] = f"{product.display_name} - Variant Update"
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_PRODUCT_VARIANTE_UPDATE_TITLE
+    context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -1794,7 +1813,8 @@ def sold_product_list(request):
         list_set = None
     context['page_title'] = page_title
     context['product_list'] = list_set
-    context['content_title'] = f"Sold Products"
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_SOLD_PRODUCTS_TITLE
+    context.update(Constants.DASHBOARD_SOLD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
 
     return render(request,template_name, context)
@@ -1824,8 +1844,9 @@ def sold_product_detail(request, product_uuid=None):
         'variant' : sold_product.product,
         'attribute_list': sold_product.product.attributes.all(),
         'image_list': images,
-        'content_title' : _('Sold Product')
     }
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_SOLD_PRODUCT_TITLE
+    context.update(Constants.DASHBOARD_SOLD_PRODUCT_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -1991,7 +2012,8 @@ def attribute_create(request, variant_uuid):
     context['attribute_formset'] = attribute_formset
     context['attribute_types'] = Catalog_Constants.ATTRIBUTE_TYPE
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
-    context['content_title'] = _("New Attribute")
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_ATTRIBUTE_CREATE_TITLE
+    context.update(Constants.DASHBOARD_ATTRIBUTES_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -2059,7 +2081,8 @@ def attributes_create(request):
     }
     context['attribute_formset'] = attribute_formset
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
-    context['content_title'] = _("New Attributes")
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_ATTRIBUTE_CREATE_TITLE
+    context.update(Constants.DASHBOARD_ATTRIBUTES_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -2132,8 +2155,9 @@ def attribute_detail(request, attribute_uuid):
         'attribute' : attribute,
         'product_list': attribute.products.all(),
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
-        'content_title' : _(attribute.display_name)
     }
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_ATTRIBUTE_TITLE
+    context.update(Constants.DASHBOARD_ATTRIBUTES_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -2195,8 +2219,9 @@ def attributes(request):
         'page_title': page_title,
         'attribute_list': list_set,
         'has_default_not_set' : ProductAttribute.objects.filter(name__in=Catalog_Constants.DEFAULT_PRIMARY_ATTRIBUTES, is_primary=False).exists(),
-        'content_title' : _('Attributes')
     }
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_ATTRIBUTES_TITLE
+    context.update(Constants.DASHBOARD_ATTRIBUTES_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -2243,8 +2268,9 @@ def brands(request):
     context = {
         'page_title': page_title,
         'brand_list': list_set,
-        'content_title': _('Brands')
     }
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_BRANDS_TITLE
+    context.update(Constants.DASHBOARD_BRAND_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -2279,8 +2305,9 @@ def brand_create(request):
     context = {
         'page_title': page_title,
         'form' : form,
-        'content_title': _('New Brand')
     }
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_BRAND_CREATE_TITLE
+    context.update(Constants.DASHBOARD_BRAND_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -2306,8 +2333,9 @@ def brand_detail(request, brand_uuid=None):
         'page_title': page_title,
         'product_list': product_list,
         'brand': brand,
-        'content_title': brand.display_name
     }
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_BRAND_TITLE
+    context.update(Constants.DASHBOARD_BRAND_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -2346,6 +2374,8 @@ def brand_update(request, brand_uuid=None):
         'brand': brand,
         'content_title': brand.display_name
     }
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_BRAND_UPDATE_TITLE
+    context.update(Constants.DASHBOARD_BRAND_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
 
@@ -2431,8 +2461,9 @@ def brand_products(request, brand_uuid=None):
         'page_title': page_title,
         'product_list': list_set,
         'brand': brand,
-        'content_title': f"{_('Brand Products')} - {brand.display_name}"
     }
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_BRAND_PRODUCTS_TITLE
+    context.update(Constants.DASHBOARD_BRAND_CONTEXT)
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -2487,9 +2518,9 @@ def tokens(request):
         list_set = None
     context['page_title'] = page_title
     context['token_list'] = list_set
-    context['content_title'] = _('Tokens')
-    context.update(get_view_permissions(request.user))
+    context['content_title'] =  CORE_STRINGS.DASHBOARD_TOKENS_TITLE
     context['can_delete'] = PermissionManager.user_can_delete_user(request.user)
+    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 @login_required
@@ -2508,7 +2539,7 @@ def generate_token(request):
     context = {
         'page_title' :_('User Token Generation') + ' - ' + settings.SITE_NAME,
         'can_generate_token' : can_generate_token,
-        'content_title' : _('User Token Generation')
+        'content_title' : CORE_STRINGS.DASHBOARD_TOKEN_CREATE_TITLE
     }
     if request.method == 'POST':
             form = TokenForm(utils.get_postdata(request))
@@ -2562,7 +2593,7 @@ def reports(request):
         'facebook_visitors' : fbcount_sum,
         'google_visitors': total_google_visitors,
         'total_suspicious_visitors' : total_suspicious_visitors,
-        'content_title' : _('Reports')
+        'content_title' : CORE_STRINGS.DASHBOARD_REPORTS_TITLE
     }
     orders_count = Order.objects.count()
     currents_orders = analytics.get_orders()
@@ -2613,7 +2644,7 @@ def users(request):
     context['can_delete_user'] = PermissionManager.user_can_delete_user(request.user)
     context['can_add_user'] = PermissionManager.user_can_add_user(request.user)
     context['can_update_user'] = PermissionManager.user_can_change_user(request.user)
-    context['content_title'] = _('Users')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_USERS_TITLE
     return render(request,template_name, context)
 
 @login_required
@@ -2647,7 +2678,7 @@ def user_details(request, pk=None):
     context['can_update'] = PermissionManager.user_can_change_user(request.user)
     context['cart_items'] = cart_items
     context['ACCOUNT_TYPE'] = Account_Constants.ACCOUNT_TYPE
-    context['content_title'] = f"{_('User')} - {user.get_full_name()}"
+    context['content_title'] = f"{CORE_STRINGS.DASHBOARD_USER_TITLE} - {user.get_full_name()}"
     return render(request,template_name, context)
 
 
@@ -2801,7 +2832,7 @@ def policies(request):
         list_set = None
     context['page_title'] = page_title
     context['policies'] = list_set
-    context['content_title'] = _('Policies')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_POLICIES_TITLE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -2839,7 +2870,7 @@ def policy_update(request, policy_uuid=None):
             'policy' : instance,
             'form': form,
             'can_change_policy' : can_change_policy,
-            'content_title': f"{_('Policy update')} - {instance.name}"
+            'content_title': f"{CORE_STRINGS.DASHBOARD_POLICY_TITLE} - {instance.name}"
         }
     context.update(get_view_permissions(request.user))
     return render(request, template_name,context )
@@ -2958,7 +2989,7 @@ def policy_create(request):
             'template_name':template_name,
             'form': form,
             'can_add_policy' : can_add_policy,
-            'content_title' : _('New Policy')
+            'content_title' : CORE_STRINGS.DASHBOARD_POLICY_CREATE_TITLE
         }
     
     context.update(get_view_permissions(request.user))
@@ -2984,7 +3015,7 @@ def policy_details(request, policy_uuid=None):
     page_title = "Policy Details - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['policy'] = policy
-    context['content_title'] = _('Policy')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_POLICY_TITLE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3017,7 +3048,7 @@ def policy_groups(request):
         list_set = None
     context['page_title'] = page_title
     context['groups'] = list_set
-    context['content_title'] = _('Policy Groups')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_POLICY_GROUPS_TITLE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3054,7 +3085,7 @@ def policy_group_create(request):
             'form': form,
             'policies' : Policy.objects.all(),
             'can_add_policy' : can_add_policy,
-            'content_title' : _('New Policy Group')
+            'content_title' : CORE_STRINGS.DASHBOARD_POLICY_GROUP_CREATE_TITLE
         }
     context.update(get_view_permissions(request.user))
     
@@ -3092,7 +3123,7 @@ def policy_group_update(request, group_uuid=None):
             'form': form,
             'policies' : Policy.objects.all(),
             'can_change_policy' : can_change_policy,
-            'content_title' : _('Policy Group Update')
+            'content_title' : CORE_STRINGS.DASHBOARD_POLICY_GROUP_UPDATE_TITLE
         }
     context.update(get_view_permissions(request.user))
     return render(request, template_name,context )
@@ -3170,7 +3201,7 @@ def policy_group_details(request, group_uuid=None):
     context['group'] = group
     context['members'] = group.members.all()
     context['users'] = User.objects.filter(is_active=True, is_superuser=False)
-    context['content_title'] = _('Policy Group')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_POLICY_GROUP_TITLE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3261,7 +3292,7 @@ def groups(request):
     context['can_delete_group'] = PermissionManager.user_can_delete_group(request.user)
     context['can_update_group'] = PermissionManager.user_can_change_group(request.user)
     context['can_add_group'] = PermissionManager.user_can_add_group(request.user)
-    context['content_title'] = _('Groups')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_GROUPS_TITLE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3286,7 +3317,7 @@ def group_detail(request, pk=None):
     context['group'] = group
     context['can_delete_group'] = PermissionManager.user_can_delete_group(request.user)
     context['can_update_group'] = PermissionManager.user_can_change_group(request.user)
-    context['content_title'] = _('Group')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_GROUP_TITLE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3339,7 +3370,7 @@ def group_update(request, pk=None):
             'permissions': permissions,
             'available_permissions' : available_permissions,
             'can_change_group' : can_change_group,
-            'content_title' : _('Group Update')
+            'content_title' : CORE_STRINGS.DASHBOARD_GROUP_UPDATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -3396,7 +3427,7 @@ def group_create(request):
             'available_users' : available_users,
             'available_permissions': available_permissions,
             'can_add_group' : can_add_group,
-            'content_title' : _('New Group')
+            'content_title' : CORE_STRINGS.DASHBOARD_GROUP_CREATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -3659,7 +3690,7 @@ def create_account(request):
     context['can_add_user'] = can_add_user
     context['user_form'] = user_form
     context['account_form'] = account_form
-    context['content_title'] = _('New Account')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_USER_CREATE_TITLE
     return render(request, template_name, context)
 
 
@@ -3694,7 +3725,7 @@ def payment_requests(request):
     context['requests'] = request_set
     context['can_delete_payment'] = PermissionManager.user_can_delete_payment(request.user)
     context['can_update_payment'] = PermissionManager.user_can_change_payment(request.user)
-    context['content_title'] = _('Payment Requests')
+    context['content_title'] = CORE_STRINGS.DASHBOARD_PAYMENT_REQUESTS_TITLE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3722,10 +3753,8 @@ def payment_request_details(request, request_uuid=None):
     context['payment_request'] = payment_request
     context['can_delete_payment'] = PermissionManager.user_can_delete_payment(request.user)
     context['can_update_payment'] = PermissionManager.user_can_change_payment(request.user)
-    context['content_title'] = _('Payment Request')
-    logger.debug("(payment_request_details) - Updating context object")
+    context['content_title'] = CORE_STRINGS.DASHBOARD_PAYMENT_REQUEST_TITLE
     context.update(get_view_permissions(request.user))
-    logger.debug("[OK] (payment_request_details) - Updating context object")
     return render(request,template_name, context)
 
 
@@ -3760,7 +3789,7 @@ def coupons(request):
     context['coupon_list'] = request_set
     context['can_delete_coupon'] = PermissionManager.user_can_delete_coupon(request.user)
     context['can_update_coupon'] = PermissionManager.user_can_change_coupon(request.user)
-    context['content_title'] = 'Coupons'
+    context['content_title'] = CORE_STRINGS.DASHBOARD_COUPONS_TITLE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3786,7 +3815,7 @@ def coupon_detail(request, coupon_uuid=None):
     context['coupon'] = coupon
     context['can_delete_coupon'] = PermissionManager.user_can_delete_coupon(request.user)
     context['can_update_coupon'] = PermissionManager.user_can_change_coupon(request.user)
-    context['content_title'] = f"Coupon - {coupon.name}"
+    context['content_title'] = f"{CORE_STRINGS.DASHBOARD_COUPON_TITLE} - {coupon.name}"
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -3829,7 +3858,7 @@ def coupon_create(request):
         'page_title': page_title,
         'form' : form,
         'sellers' : sellers,
-        'content_title' : _('New Coupon')
+        'content_title' : CORE_STRINGS.DASHBOARD_COUPON_CREATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -3884,7 +3913,7 @@ def coupon_update(request, coupon_uuid=None):
         'form' : form,
         'coupon': coupon,
         'sellers': sellers,
-        'content_title': f"Coupon - {coupon.name} - Update" 
+        'content_title': CORE_STRINGS.DASHBOARD_COUPON_UPDATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -3971,7 +4000,7 @@ def product_types(request):
     context = {
         'page_title': page_title,
         'product_type_list': list_set,
-        'content_title':_('Product Types')
+        'content_title': CORE_STRINGS.DASHBOARD_PRODUCT_TYPES_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4010,7 +4039,7 @@ def product_type_create(request):
         'page_title': page_title,
         'type_attributes' : ProductTypeAttribute.objects.all(),
         'form' : form,
-        'content_title' : _('New Product Type')
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_TYPE_CREATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -4039,7 +4068,7 @@ def product_type_detail(request, type_uuid=None):
         'product_type': product_type,
         'attribute_list': product_type.attributes.all(),
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
-        'content_title' : _('Product Type')
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_TYPE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4080,7 +4109,7 @@ def product_type_update(request, type_uuid=None):
         'product_type': product_type,
         'attributes' : ProductAttribute.objects.exclude(id__in=product_type.attributes.all()),
         'type_attributes' : ProductTypeAttribute.objects.exclude(id__in=product_type.type_attributes.all()),
-        'content_title' : _('Product Type Update')
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_TYPE_UPDATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -4166,7 +4195,8 @@ def product_type_products(request, type_uuid=None):
     context = {
         'page_title': page_title,
         'product_list': list_set,
-        'product_type': product_type
+        'product_type': product_type,
+        'content_title': CORE_STRINGS.DASHBOARD_PRODUCT_TYPE_PRODUCTS_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4202,7 +4232,7 @@ def product_type_attributes(request):
         'page_title': page_title,
         'type_attribute_list': list_set,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
-        'content_title': _('ProductType Products')
+        'content_title': CORE_STRINGS.DASHBOARD_TYPE_ATTRIBUTES_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4241,7 +4271,7 @@ def product_type_attribute_create(request):
         'page_title': page_title,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'form' : form,
-        'content_title': _('New Product Type Attributes')
+        'content_title': CORE_STRINGS.DASHBOARD_TYPE_ATTRIBUTE_CREATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -4271,7 +4301,7 @@ def product_type_attribute_detail(request, type_attribute_uuid=None):
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'attribute_list': attributes,
         'type_attribute': type_attribute,
-        'content_title' : _('Product Type Attribute')
+        'content_title' : CORE_STRINGS.DASHBOARD_TYPE_ATTRIBUTE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4312,7 +4342,7 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
         'attribute_list': type_attribute.attributes.all(),
         'type_attribute': type_attribute,
-        'content_title' : _('Product Type Attribute Update')
+        'content_title' : CORE_STRINGS.DASHBOARD_TYPE_ATTRIBUTE_UPDATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -4385,7 +4415,7 @@ def payment_method_create(request):
     context = {
         'page_title': page_title,
         'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE,
-        'content_title' : _('New Payment Method')
+        'content_title' : CORE_STRINGS.DASHBOARD_PAYMENT_METHOD_CREATE_TITLE
     }
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
@@ -4422,7 +4452,7 @@ def payment_methods(request):
     context = {
         'page_title': page_title,
         'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE,
-        'content_title' : _('Payment Methods')
+        'content_title' : CORE_STRINGS.DASHBOARD_PAYMENT_METHODS_TITLE
     }
     queryset = orders_service.get_payment_methods()
     page = request.GET.get('page', 1)
@@ -4451,7 +4481,7 @@ def payment_method_detail(request, method_uuid=None):
         raise PermissionDenied
     context = {
         'page_title': page_title,
-        'content_title' : _('Payment Method')
+        'content_title' : CORE_STRINGS.DASHBOARD_PAYMENT_METHOD_TITLE
     }
 
     payment_method = get_object_or_404(PaymentMethod, method_uuid=method_uuid)
@@ -4490,7 +4520,7 @@ def payment_method_update(request, method_uuid):
         'form' : form,
         'payment_method':payment_method,
         'ORDER_PAYMENT_MODE' : Order_Constants.ORDER_PAYMENT_MODE,
-        'content_title' : _('Payment Method Update')
+        'content_title' : CORE_STRINGS.DASHBOARD_PAYMENT_METHOD_UPDATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
@@ -4650,7 +4680,7 @@ def refunds(request):
         raise PermissionDenied
 
     context = {
-        'content_title' : _('Refunds')
+        'content_title' : CORE_STRINGS.DASHBOARD_REFUNDS_TITLE
     }
     #current_account = Account.objects.get(user=request.user)
     queryset = Refund.objects.all().order_by('-created_at')
@@ -4685,7 +4715,7 @@ def refund_detail(request, refund_uuid=None):
         raise PermissionDenied
 
     context = {
-        'content_title' : _('Refund')
+        'content_title' : CORE_STRINGS.DASHBOARD_REFUND_TITLE
     }
     refund = get_object_or_404(Refund, refund_uuid=refund_uuid)
     template_name = "dashboard/refund_detail.html"
@@ -4736,7 +4766,7 @@ def refund_update(request, refund_uuid=None):
         'refund': refund,
         'REFUND_STATUS': Order_Constants.REFUND_STATUS,
         'REFUND_DECLINED_REASON': Order_Constants.REFUND_DECLINED_REASON,
-        'content_title' : _('Refund Update')
+        'content_title' : CORE_STRINGS.DASHBOARD_REFUND_UPDATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -4769,7 +4799,7 @@ def news(request):
     template_name = "dashboard/news_list.html"
     username = request.user.username
     context = {
-        'content_title' : _('Infos')
+        'content_title' : CORE_STRINGS.DASHBOARD_INFOS_TITLE
     }
     queryset = News.objects.all().order_by('-created_at')
     page_title = _("News") + " - " + settings.SITE_NAME
@@ -4802,7 +4832,7 @@ def news_create(request):
         raise PermissionDenied
     context = {
         'page_title': page_title,
-        'content_title' : _('New Info')
+        'content_title' : CORE_STRINGS.DASHBOARD_INFO_CREATE_TITLE
     }
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
@@ -4830,7 +4860,7 @@ def news_detail(request, news_uuid=None):
     context = {
         'page_title': page_title,
         'news': news,
-        'content_title' : _('Info')
+        'content_title' : CORE_STRINGS.DASHBOARD_INFO_TITLE
     }
     return render(request,template_name, context)
 
@@ -4842,7 +4872,7 @@ def news_update(request, news_uuid=None):
     page_title = _('News Update')
     context = {
         'page_title': page_title,
-        'content_title' : _('Info Update')
+        'content_title' : CORE_STRINGS.DASHBOARD_INFO_UPDATE_TITLE
     }
     obj = get_object_or_404(News, news_uuid=news_uuid)
     username = request.user.username

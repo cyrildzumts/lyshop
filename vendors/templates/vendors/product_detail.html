@@ -4,13 +4,14 @@
 {% load catalog_tags %}
 
 {% block ACTIONS %}
-  {% include  %}
+ {% include 'tags/product_detail_actions_snippet.html' %}
 {% endblock ACTIONS %}
 
 {% block MAIN_CONTENT %}
 {% if is_seller %}
+{% include 'tags/product_detail_snippet.html' %}
 
-<div class="container wrapper">
+{% comment %}<div class="container wrapper">
   <div class="mat-box wrapper full">
       <div class="mat-box-content row">
         <div class="col-12 col-m-12 col-xs-12 title">
@@ -135,7 +136,7 @@
 
 
 
-</div><!--End of container-->
+</div><!--End of container-->{% endcomment %}
 
 {% else %}
 <div class="access-error">

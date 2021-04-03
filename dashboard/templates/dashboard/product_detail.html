@@ -4,16 +4,21 @@
 {% load i18n %}
 {% block ACTIONS %}
 
-{% if can_change_product %}<a class="mat-button mat-button-default" href="{{product.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>{% endif %}
+{% include 'tags/product_detail_actions_snippet.html' %}
+
+{% comment %}{% if can_change_product %}<a class="mat-button mat-button-default" href="{{product.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>{% endif %}
 {% if can_add_product %}
 <a class="mat-button mat-button-default" href="{% url 'dashboard:product-variant-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Variant" %}</span></a>
 <a class="mat-button mat-button-default" href="{% url 'dashboard:product-image-create' product.product_uuid %}"><i class="fas fa-plus icon"></i> <span>{% trans "Add Image" %}</span></a>
-{% endif %}
+{% endif %}{% endcomment %}
 
 {% endblock ACTIONS %}
 
 {% block CONTENT_MAIN %}
-<div class="container">
+
+{% include 'tags/product_detail_snippet.html' %}
+
+{% comment %}<div class="container">
   <div class="mat-box wrapper full">
       <div class="mat-box-content row">
         <div class="col-12 col-m-12 col-xs-12 title">
@@ -135,5 +140,5 @@
 
 
 
-</div><!--End of container-->
+</div><!--End of container-->{% endcomment %}
 {% endblock CONTENT_MAIN %}

@@ -22,6 +22,7 @@ from orders.forms import OrderItemUpdateForm
 from orders.models import Order, OrderItem
 from orders import commons as Order_Constants
 from core.filters import filters
+from core.resources import ui_strings as CORE_STRINGS
 from lyshop import utils, settings, conf as GLOBAL_CONF
 from vendors import vendors_service
 from vendors import constants as VENDORS_CONTANTS
@@ -62,8 +63,10 @@ def vendor_home(request):
         'number_sold_products' : number_sold_products,
         'recent_sold_products': sold_product_list,
         'recent_products' : recent_products,
-        'product_count': product_count
+        'product_count': product_count,
+        'content_title' : CORE_STRINGS.DASHBOARD_VENDOR_HOME_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request, template_name, context)
 
 
@@ -92,8 +95,10 @@ def brands(request):
         list_set = None
     context = {
         'page_title': page_title,
-        'brand_list': list_set
+        'brand_list': list_set,
+        'content_title': CORE_STRINGS.DASHBOARD_BRANDS_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_BRAND_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -123,9 +128,10 @@ def brand_create(request):
         form = BrandForm()
     context = {
         'page_title': page_title,
-        'form' : form
+        'form' : form,
+        'content_title': CORE_STRINGS.DASHBOARD_BRANDS_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_BRAND_CONTEXT)
     return render(request, template_name, context)
 
 @login_required
@@ -146,9 +152,10 @@ def brand_detail(request, brand_uuid=None):
     context = {
         'page_title': page_title,
         'product_list': product_list,
-        'brand': brand
+        'brand': brand,
+        'content_title': CORE_STRINGS.DASHBOARD_BRAND_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_BRAND_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -180,9 +187,10 @@ def brand_update(request, brand_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'brand': brand
+        'brand': brand,
+        'content_title' : CORE_STRINGS.DASHBOARD_BRAND_UPDATE_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_BRAND_CONTEXT)
     return render(request, template_name, context)
 
 
@@ -255,9 +263,10 @@ def brand_products(request, brand_uuid=None):
     context = {
         'page_title': page_title,
         'product_list': list_set,
-        'brand': brand
+        'brand': brand,
+        'content_title': CORE_STRINGS.DASHBOARD_BRAND_PRODUCTS_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_BRAND_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -277,7 +286,7 @@ def brand_product_detail(request, brand_uuid=None, product_uuid=None):
         'page_title': page_title,
         'product': product
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_BRAND_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -296,6 +305,7 @@ def product_list(request):
     page_title = _('Products')
     context = {
         'page_title': page_title,
+        'content_title': CORE_STRINGS.DASHBOARD_PRODUCTS_TITLE
     }
 
     #queryset = Product.objects.filter(is_active=True, sold_by=request.user).order_by('-created_at')
@@ -316,7 +326,7 @@ def product_list(request):
     context['product_list'] = list_set
     context['SELECTED_FILTERS'] = selected_filters
     context['FILTER_CONFIG'] = Product.FILTER_CONFIG
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -338,8 +348,10 @@ def product_detail(request, product_uuid=None):
         'page_title': page_title,
         'product': product,
         'variant_list': variants,
-        'image_list': images
+        'image_list': images,
+        'content_title': CORE_STRINGS.DASHBOARD_PRODUCT_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -354,6 +366,7 @@ def product_update(request, product_uuid=None):
     page_title = _('Product Update')
     context = {
         'page_title': page_title,
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_UPDATE_TITLE,
     }
     form = None
     product = get_object_or_404(Product, product_uuid=product_uuid, sold_by=request.user)
@@ -380,6 +393,7 @@ def product_update(request, product_uuid=None):
     context['GENDER'] = Catalog_Constants.GENDER
     context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
     context['SHORT_DESCRIPTION_MAX_SIZE'] = Catalog_Constants.SHORT_DESCRIPTION_MAX_SIZE
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request, template_name, context)
 
 @login_required
@@ -440,6 +454,7 @@ def product_create(request):
     
     context = {
         'page_title': page_title,
+        'content_title': CORE_STRINGS.DASHBOARD_PRODUCT_CREATE_TITLE
     }
     form = None
     
@@ -463,6 +478,7 @@ def product_create(request):
     context['GENDER'] = Catalog_Constants.GENDER
     context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.DESCRIPTION_MAX_SIZE
     context['SHORT_DESCRIPTION_MAX_SIZE'] = Catalog_Constants.SHORT_DESCRIPTION_MAX_SIZE
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request, template_name, context)
 
 
@@ -501,10 +517,12 @@ def product_variant_create(request, product_uuid=None):
         'page_title': page_title,
         'form' : form,
         'product' : product,
-        'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
+        'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none()),
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_VARIANTE_CREATE_TITLE,
     }
     context['attribute_formset'] = attribute_formset
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request, template_name, context)
 
 @login_required
@@ -530,8 +548,10 @@ def product_variant_detail(request, variant_uuid=None):
         'ATTRIBUTE_TYPE' : Catalog_Constants.ATTRIBUTE_TYPE,
         'attribute_list' : attribute_list,
         'available_attribute_list' : available_attribute_list,
-        'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none())
+        'attribute_formset': attribute_formset(queryset=ProductAttribute.objects.none()),
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_VARIANTE_TITLE,
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -570,8 +590,10 @@ def product_variant_update(request, variant_uuid=None):
         'variant' : variant,
         'attributes': variant.attributes.all(),
         'attribute_formset': attribute_formset,
-        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_VARIANTE_UPDATE_TITLE,
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request, template_name, context)
 
 @login_required
@@ -601,7 +623,9 @@ def product_image_create(request, product_uuid=None):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}    
+    context = {
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_IMAGE_CREATE_TITLE,
+    }    
     template_name = "vendors/product_image_create.html"
     page_title = "New Product Image" + " - " + settings.SITE_NAME
     context['page_title'] = page_title
@@ -660,6 +684,7 @@ def product_image_create(request, product_uuid=None):
     form = ProductImageForm()
     context['form'] = form
     context['product'] = product
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -669,13 +694,16 @@ def product_image_detail(request, image_uuid=None):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_IMAGE_TITLE
+    }
     image = get_object_or_404(ProductImage, image_uuid=image_uuid, product__sold_by=request.user)
 
     template_name = "vendors/product_image_detail.html"
     page_title = "Product Image" + " - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['image'] = image
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -723,7 +751,8 @@ def product_image_update(request, image_uuid=None):
             'page_title': page_title,
             'template_name': template_name,
             'image'  : image,
-            'form': form
+            'form': form,
+            'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_IMAGE_UPDATE_TITLE
         }
     
     return render(request, template_name,context )
@@ -751,6 +780,7 @@ def product_images(request, product_uuid):
     context['page_title'] = page_title
     context['image_list'] = list_set
     context['product'] = product
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -844,10 +874,12 @@ def attribute_create(request, variant_uuid):
     context = {
         'page_title': page_title,
         'formset' : attribute_formset(),
-        'variant' : variant
+        'variant' : variant,
+        'content_title' : CORE_STRINGS.DASHBOARD_ATTRIBUTE_CREATE_TITLE
     }
     context['attribute_formset'] = attribute_formset
     context['ATTRIBUTE_TYPE'] = Catalog_Constants.ATTRIBUTE_TYPE
+    context.update(VENDORS_CONTANTS.DASHBOARD_ATTRIBUTES_CONTEXT)
     return render(request, template_name, context)
 
 @login_required
@@ -906,8 +938,10 @@ def attribute_detail(request, attribute_uuid):
     context = {
         'page_title': page_title,
         'attribute' : attribute,
-        'product_list': attribute.products.filter(product__sold_by=request.user)
+        'product_list': attribute.products.filter(product__sold_by=request.user),
+        'content_title' : CORE_STRINGS.DASHBOARD_ATTRIBUTE_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_ATTRIBUTES_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -939,9 +973,10 @@ def attribute_update(request, attribute_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'brand': attribute
+        'brand': attribute,
+        'content_title' : CORE_STRINGS.DASHBOARD_ATTRIBUTE_UPDATE_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_ATTRIBUTES_CONTEXT)
     return render(request, template_name, context)
 
 
@@ -967,8 +1002,10 @@ def attributes(request):
         list_set = None
     context = {
         'page_title': page_title,
-        'attribute_list': list_set
+        'attribute_list': list_set,
+        'content_title' : CORE_STRINGS.DASHBOARD_ATTRIBUTES_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_ATTRIBUTES_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -982,7 +1019,9 @@ def coupons(request):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title' : CORE_STRINGS.DASHBOARD_COUPONS_TITLE
+    }
     queryset = Coupon.objects.filter(seller=request.user).order_by('-created_at')
     template_name = "vendors/coupon_list.html"
     page_title = "Coupon - " + settings.SITE_NAME
@@ -996,6 +1035,7 @@ def coupons(request):
         request_set = None
     context['page_title'] = page_title
     context['coupon_list'] = request_set
+    context.update(VENDORS_CONTANTS.DASHBOARD_COUPON_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -1006,12 +1046,15 @@ def coupon_detail(request, coupon_uuid=None):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title' : CORE_STRINGS.DASHBOARD_COUPON_TITLE
+    }
     coupon = get_object_or_404(Coupon, coupon_uuid=coupon_uuid, seller=request.user)
     template_name = "vendors/coupon_detail.html"
     page_title = "Coupon" + " - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['coupon'] = coupon
+    context.update(VENDORS_CONTANTS.DASHBOARD_COUPON_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -1044,9 +1087,10 @@ def coupon_create(request):
         form = CouponForm()
     context = {
         'page_title': page_title,
-        'form' : form
+        'form' : form,
+        'content_title' : CORE_STRINGS.DASHBOARD_COUPON_CREATE_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_COUPON_CONTEXT)
     return render(request, template_name, context)
 
 
@@ -1090,9 +1134,10 @@ def coupon_update(request, coupon_uuid=None):
     context = {
         'page_title': page_title,
         'form' : form,
-        'coupon': coupon
+        'coupon': coupon,
+        'content_title' : CORE_STRINGS.DASHBOARD_COUPON_UPDATE_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_COUPON_CONTEXT)
     return render(request, template_name, context)
 
 
@@ -1167,9 +1212,10 @@ def product_types(request):
         list_set = None
     context = {
         'page_title': page_title,
-        'product_type_list': list_set
+        'product_type_list': list_set,
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_TYPES_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_TYPES_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -1202,8 +1248,10 @@ def product_type_create(request):
     context = {
         'page_title': page_title,
         'type_attributes' : ProductTypeAttribute.objects.all(),
-        'form' : form
+        'form' : form,
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_TYPE_CREATE_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_TYPES_CONTEXT)
     return render(request, template_name, context)
 
 @login_required
@@ -1225,8 +1273,10 @@ def product_type_detail(request, type_uuid=None):
         'page_title': page_title,
         'product_list': product_list,
         'product_type': product_type,
-        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE
+        'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_TYPE_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_TYPES_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -1261,9 +1311,10 @@ def product_type_update(request, type_uuid=None):
         'form' : form,
         'product_type': product_type,
         'attributes' : ProductAttribute.objects.exclude(id__in=product_type.attributes.all()),
-        'type_attributes' : ProductTypeAttribute.objects.exclude(id__in=product_type.type_attributes.all())
+        'type_attributes' : ProductTypeAttribute.objects.exclude(id__in=product_type.type_attributes.all()),
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_TYPE_UPDATE_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_TYPES_CONTEXT)
     return render(request, template_name, context)
 
 
@@ -1338,8 +1389,10 @@ def product_type_products(request, type_uuid=None):
     context = {
         'page_title': page_title,
         'product_list': list_set,
-        'product_type': product_type
+        'product_type': product_type,
+        'content_title' : CORE_STRINGS.DASHBOARD_PRODUCT_TYPE_PRODUCTS_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_PRODUCT_TYPES_CONTEXT)
     return render(request,template_name, context)
 
 ## PRODUCT TYPE ATTRIBUTES
@@ -1368,8 +1421,10 @@ def product_type_attributes(request):
         list_set = None
     context = {
         'page_title': page_title,
-        'type_attribute_list': list_set
+        'type_attribute_list': list_set,
+        'content_title' : CORE_STRINGS.DASHBOARD_TYPE_ATTRIBUTES_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_TYPES_ATTRIBUTE_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -1402,9 +1457,10 @@ def product_type_attribute_create(request):
     context = {
         'page_title': page_title,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
-        'form' : form
+        'form' : form,
+        'content_title' : CORE_STRINGS.DASHBOARD_TYPE_ATTRIBUTE_CREATE_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_TYPE_ATTRIBUTE_CREATE_TITLE)
     return render(request, template_name, context)
 
 @login_required
@@ -1426,8 +1482,10 @@ def product_type_attribute_detail(request, type_attribute_uuid=None):
         'page_title': page_title,
         #'product_list': product_list,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
-        'type_attribute': type_attribute
+        'type_attribute': type_attribute,
+        'content_title' : CORE_STRINGS.DASHBOARD_TYPE_ATTRIBUTE_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_TYPES_ATTRIBUTE_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -1461,9 +1519,10 @@ def product_type_attribute_update(request, type_attribute_uuid=None):
         'page_title': page_title,
         'form' : form,
         'ATTRIBUTE_TYPE': Catalog_Constants.ATTRIBUTE_TYPE,
-        'type_attribute': type_attribute
+        'type_attribute': type_attribute,
+        'content_title' : CORE_STRINGS.DASHBOARD_TYPE_ATTRIBUTE_UPDATE_TITLE
     }
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_TYPES_ATTRIBUTE_CONTEXT)
     return render(request, template_name, context)
 
 
@@ -1526,6 +1585,7 @@ def sold_product_list(request):
     page_title = _('Products')
     context = {
         'page_title': page_title,
+        'content_title' : CORE_STRINGS.DASHBOARD_SOLD_PRODUCTS_TITLE
     }
 
     queryset = SoldProduct.objects.filter(seller=request.user).order_by('-created_at')
@@ -1539,7 +1599,7 @@ def sold_product_list(request):
         list_set = None
     context['page_title'] = page_title
     context['product_list'] = list_set
-
+    context.update(VENDORS_CONTANTS.DASHBOARD_SOLD_PRODUCT_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -1553,7 +1613,6 @@ def sold_product_detail(request, product_uuid=None):
 
     page_title = _('Product Detail')
     
-
     sold_product = get_object_or_404(SoldProduct, product_uuid=product_uuid, seller=request.user)
     images = ProductImage.objects.filter(product=sold_product.product.product)
     context = {
@@ -1562,8 +1621,10 @@ def sold_product_detail(request, product_uuid=None):
         'product' : sold_product.product.product,
         'variant' : sold_product.product,
         'attribute_list': sold_product.product.attributes.all(),
-        'image_list': images
+        'image_list': images,
+        'content_title' : CORE_STRINGS.DASHBOARD_SOLD_PRODUCT_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_SOLD_PRODUCT_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -1637,7 +1698,8 @@ def balance_history(request, balance_uuid):
     context = {
         'page_title' : _('Balance Histories'),
         'history_list':  list_set,
-        'balance' : balance
+        'balance' : balance,
+        'content_title': CORE_STRINGS.DASHBOARD_BALANCE_HYSTORIES_TITLE
     }
     template_name = 'vendors/balance_histories.html'
     return render(request, template_name, context)
@@ -1660,13 +1722,16 @@ def payment_details(request, payment_uuid):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title': CORE_STRINGS.DASHBOARD_PAYMENT_TITLE
+    }
     payment = get_object_or_404(Payment, payment_uuid=payment_uuid)
     template_name = "vendors/payment_detail.html"
     page_title = "Payment Details - " + settings.SITE_NAME
     context['page_title'] = page_title
     context['payment'] = payment
     context['fee'] = payment.balance_amount - payment.amount
+    context.update(VENDORS_CONTANTS.DASHBOARD_PAYMENTS_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -1680,7 +1745,9 @@ def payments(request):
         logger.warning("Vendor Page : PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
 
-    context = {}
+    context = {
+        'content_title': CORE_STRINGS.DASHBOARD_PAYMENTS_TITLE
+    }
     queryset = vendors_service.get_vendor_payments(request.user)
     template_name = "vendors/payment_list.html"
     page_title = "Payments - " + settings.SITE_NAME
@@ -1694,6 +1761,7 @@ def payments(request):
         list_set = None
     context['page_title'] = page_title
     context['payment_list'] = list_set
+    context.update(VENDORS_CONTANTS.DASHBOARD_PAYMENTS_CONTEXT)
     return render(request,template_name, context)
 
 
@@ -1738,8 +1806,10 @@ def orders(request):
 
     context = {
         'page_title': page_title,
-        'order_items' : list_set
+        'order_items' : list_set,
+        'content_title': CORE_STRINGS.DASHBOARD_ORDERS_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_ORDERS_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -1763,7 +1833,9 @@ def order_item(request, order_uuid=None, item_uuid=None):
         'shipment': shipment_service.find_order_shipment(order),
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
+        'content_title': CORE_STRINGS.DASHBOARD_ORDER_ITEM_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_ORDERS_CONTEXT)
     return render(request,template_name, context)
 
 @login_required
@@ -1801,6 +1873,8 @@ def order_item_update(request, order_uuid=None, item_uuid=None):
         'shipment': shipment_service.find_order_shipment(order),
         'ORDER_STATUS' : Order_Constants.ORDER_STATUS,
         'PAYMENT_OPTIONS': Order_Constants.PAYMENT_OPTIONS,
-        'form': OrderItemUpdateForm(instance=item)
+        'form': OrderItemUpdateForm(instance=item),
+        'content_title': CORE_STRINGS.DASHBOARD_ORDER_ITEM_UPDATE_TITLE
     }
+    context.update(VENDORS_CONTANTS.DASHBOARD_ORDERS_CONTEXT)
     return render(request,template_name, context)

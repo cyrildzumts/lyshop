@@ -40,6 +40,9 @@ DASHBOARD_PRODUCT_CONTEXT = {
     'VARIANT_CREATE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-variant-create",
     'VARIANT_UPDATE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-variant-update",
     'VARIANT_DELETE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-variant-delete",
+}
+
+DASHBOARD_SOLD_PRODUCT_CONTEXT = {
     'SOLD_PRODUCTS_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:sold-products",
     'SOLD_PRODUCT_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:sold-product-detail",
 }
@@ -52,6 +55,14 @@ DASHBOARD_PRODUCT_TYPES_CONTEXT = {
     'PRODUCT_TYPE_CREATE_URL'   : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-create",
 }
 
+DASHBOARD_TYPES_ATTRIBUTE_CONTEXT = {
+    'TYPE_ATTRIBUTES_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-attributes",
+    'TYPE_ATTRIBUTE_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-attribute-detail",
+    'TYPE_ATTRIBUTE_UPDATE_URL'   : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-attribute-update",
+    'TYPE_ATTRIBUTE_DELETE_URL'   : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-attribute-delete",
+    'TYPE_ATTRIBUTES_DELETE_URL'  : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-attributes-delete",
+    'TYPE_ATTRIBUTE_CREATE_URL'   : f"{DASHBOARD_GLOBALS_PREFIX}:product-type-attribute-create",
+}
 
 DASHBOARD_ATTRIBUTES_CONTEXT = {
     'ATTRIBUTE_BULK_CREATE_URL' : f"{DASHBOARD_GLOBALS_PREFIX}:bulk-attributes-create",
@@ -64,6 +75,11 @@ DASHBOARD_ORDERS_CONTEXT = {
     'ORDER_URL'                 : f"{DASHBOARD_GLOBALS_PREFIX}:order-detail",
     'ORDER_ITEM_URL'            : f"{DASHBOARD_GLOBALS_PREFIX}:order-item-detail",
     'ORDER_ITEM_UPDATE_URL'     : f"{DASHBOARD_GLOBALS_PREFIX}:order-item-update",
+}
+
+DASHBOARD_PAYMENTS_CONTEXT = {
+    'PAYMENTS_URL'              : f"{DASHBOARD_GLOBALS_PREFIX}:payments",
+    'PAYMENT_URL'               : f"{DASHBOARD_GLOBALS_PREFIX}:payment-detail",
 }
 
 

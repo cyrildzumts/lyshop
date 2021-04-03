@@ -16,6 +16,7 @@ from django.http import HttpResponse
 from django.urls import reverse, resolve
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidden
 from django.contrib import messages
+from core.resources import ui_strings as CORE_STRINGS
 from payment.models import Payment, PaymentHistory, PaymentPolicy, PaymentPolicyGroup
 from payment.forms import PaymentPolicyForm, PaymentPolicyGroupForm, PaymentPolicyGroupUpdateForm, PaymentPolicyGroupUpdateMembersForm
 from dashboard.permissions import PermissionManager, get_view_permissions
@@ -45,7 +46,7 @@ def payment_home(request):
     context = {
         'page_title' : page_title,
         'recent_payments' : recent_payments,
-        'content_title': _('Payment Home')
+        'content_title': CORE_STRINGS.DASHBOARD_PAYMENT_HOME_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request, template_name, context)
@@ -61,7 +62,7 @@ def payments(request):
         raise PermissionDenied
 
     context = {
-        'content_title': _('Payments')
+        'content_title': CORE_STRINGS.DASHBOARD_PAYMENTS_TITLE
     }
     queryset = Payment.objects.order_by('-created_at').all()
     template_name = "payment/payment_list.html"
@@ -90,13 +91,13 @@ def payment_details(request, payment_uuid=None):
         raise PermissionDenied
 
     context = {
-        'content_title': _('Payment')
+        'content_title': CORE_STRINGS.DASHBOARD_PAYMENT_TITLE
     }
     payment = get_object_or_404(Payment, payment_uuid=payment_uuid)
     can_be_updated = payment_service.payment_can_be_updated(payment)
     template_name = "payment/payment_detail.html"
     page_title = "Payment Details - " + settings.SITE_NAME
-    context['page_title'] = page_title
+    context['page_title'] = CORE_STRINGS.DASHBOARD_PAYMENT_TITLE
     context['payment'] = payment
     context['can_be_updated'] = can_be_updated
     context['fee'] = payment.balance_amount - payment.amount
@@ -134,7 +135,7 @@ def policies(request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     context = {
-        'content_title': _('Policies')
+        'content_title': CORE_STRINGS.DASHBOARD_POLICIES_TITLE
     }
     queryset = PaymentPolicy.objects.all()
     template_name = "payment/policy_list.html"
@@ -186,7 +187,7 @@ def policy_update(request, policy_uuid=None):
             'policy' : instance,
             'form': form,
             'can_change_policy' : can_change_policy,
-            'content_title': _('Policy Update')
+            'content_title': CORE_STRINGS.DASHBOARD_POLICY_UPDATE_TITLE
         }
     context.update(get_view_permissions(request.user))
     return render(request, template_name,context )
@@ -305,7 +306,7 @@ def policy_create(request):
             'template_name':template_name,
             'form': form,
             'can_add_policy' : can_add_policy,
-            'content_title': _('New Payment')
+            'content_title': CORE_STRINGS.DASHBOARD_POLICY_CREATE_TITLE
         }
     
     context.update(get_view_permissions(request.user))
@@ -326,7 +327,7 @@ def policy_details(request, policy_uuid=None):
         raise PermissionDenied
 
     context = {
-        'content_title': _('Policy')
+        'content_title': CORE_STRINGS.DASHBOARD_POLICY_TITLE
     }
     policy = get_object_or_404(PaymentPolicy, policy_uuid=policy_uuid)
     template_name = "payment/policy_detail.html"
@@ -352,7 +353,7 @@ def policy_groups(request):
         raise PermissionDenied
 
     context = {
-        'content_title': _('Policy Groups')
+        'content_title': CORE_STRINGS.DASHBOARD_POLICY_GROUPS_TITLE
     }
     queryset = PaymentPolicyGroup.objects.all()
     template_name = "payment/policy_group_list.html"
@@ -403,7 +404,7 @@ def policy_group_create(request):
             'form': form,
             'policies' : PaymentPolicy.objects.all(),
             'can_add_policy' : can_add_policy,
-            'content_title': _('New Policy Group')
+            'content_title': CORE_STRINGS.DASHBOARD_POLICY_GROUP_CREATE_TITLE
         }
     context.update(get_view_permissions(request.user))
     
@@ -441,7 +442,7 @@ def policy_group_update(request, group_uuid=None):
             'form': form,
             'policies' : PaymentPolicy.objects.all(),
             'can_change_policy' : can_change_policy,
-            'content_title': _('Policy Group Update')
+            'content_title': CORE_STRINGS.DASHBOARD_POLICY_GROUP_UPDATE_TITLE
         }
     context.update(get_view_permissions(request.user))
     return render(request, template_name,context )
@@ -499,7 +500,7 @@ def policy_group_details(request, group_uuid=None):
         raise PermissionDenied
 
     context = {
-        'content_title': _('Policy Group')
+        'content_title': CORE_STRINGS.DASHBOARD_POLICY_GROUP_TITLE
     }
     group = get_object_or_404(PaymentPolicyGroup, policy_group_uuid=group_uuid)
     template_name = "payment/policy_group_detail.html"

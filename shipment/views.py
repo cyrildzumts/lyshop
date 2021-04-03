@@ -18,6 +18,7 @@ from django.contrib import messages
 from django.db.models import F, Q, Count, Sum
 from django.utils import timezone
 from dashboard.permissions import PermissionManager, get_view_permissions
+from core.resources import ui_strings as CORE_STRINGS
 from shipment.models import Shipment, ShippedItem, ShipmentStatusHistory, ShipMode
 from shipment import shipment_service, constants as Constants
 from shipment.forms import ShipmentForm, ShipModeForm
@@ -35,7 +36,7 @@ def shipment_home(request):
     context = {
         'page_title' : _('Shipments'),
         'recent_shipments' : queryset,
-        'content_title': _('Shipment Home')
+        'content_title': CORE_STRINGS.DASHBOARD_SHIPMENT_HOME_TITLE
     }
     template_name = 'shipment/shipment_home.html'
     return render(request, template_name, context)
@@ -53,9 +54,9 @@ def shipments(request):
     except EmptyPage:
         list_set = None
     context = {
-        'page_title' : _('Shipments'),
+        'page_title' : CORE_STRINGS.DASHBOARD_SHIPMENTS_TITLE,
         'shipment_list' : list_set,
-        'content_title': _('Shipments')
+        'content_title': CORE_STRINGS.DASHBOARD_SHIPMENTS_TITLE
     }
     template_name = 'shipment/shipment_list.html'
 
@@ -74,9 +75,9 @@ def order_ready_for_shipment(request):
     except EmptyPage:
         list_set = None
     context = {
-        'page_title' : _('Shipment Waiting'),
+        'page_title' : CORE_STRINGS.DASHBOARD_SHIPMENT_READY_TITLE,
         'order_list' : list_set,
-        'content_title': _('Orders Ready')
+        'content_title': CORE_STRINGS.DASHBOARD_SHIPMENT_READY_TITLE
     }
     template_name = 'shipment/order_ready_list.html'
 
@@ -88,9 +89,9 @@ def shipment_detail(request, shipment_uuid):
     shipment = get_object_or_404(Shipment.objects.select_related('order__address'), shipment_uuid=shipment_uuid)
 
     context = {
-        'page_title' : _('Shipment'),
+        'page_title' : CORE_STRINGS.DASHBOARD_SHIPMENT_TITLE,
         'shipment' : shipment,
-        'content_title': _('Shipment')
+        'content_title': CORE_STRINGS.DASHBOARD_SHIPMENT_TITLE
     }
     template_name = 'shipment/shipment_detail.html'
     return render(request, template_name, context)
@@ -124,11 +125,11 @@ def shipment_update(request, shipment_uuid):
 
     form = ShipmentForm(instance=shipment)
     context = {
-        'page_title' : _('Shipment Update'),
+        'page_title' : CORE_STRINGS.DASHBOARD_SHIPMENT_UPDATE_TITLE,
         'shipment' : shipment,
         'SHIPMENT_STATUS': Constants.SHIPMENT_STATUS,
         'form' : form,
-        'content_title': _('Shipment Update')
+        'content_title': CORE_STRINGS.DASHBOARD_SHIPMENT_UPDATE_TITLE
     }
     template_name = 'shipment/shipment_update.html'
     return render(request, template_name, context)
@@ -152,10 +153,10 @@ def shipment_history(request, shipment_uuid):
     except EmptyPage:
         list_set = None
     context = {
-        'page_title' : _('Shipment Histories'),
+        'page_title' : CORE_STRINGS.DASHBOARD_SHIPMENT_HISTORY_TITLE,
         'history_list':  list_set,
         'shipment' : shipment,
-        'content_title': _('Shipment Histories')
+        'content_title': CORE_STRINGS.DASHBOARD_SHIPMENT_HISTORY_TITLE
     }
     template_name = 'shipment/shipment_histories.html'
     return render(request, template_name, context)
@@ -185,9 +186,9 @@ def ship_mode_create(request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     context = {
-        'page_title': page_title,
+        'page_title': CORE_STRINGS.DASHBOARD_SHIP_MODE_CREATE_TITLE,
         'SHIP_MODE' : Constants.SHIP_MODE,
-        'content_title': _('New Ship Mode')
+        'content_title': CORE_STRINGS.DASHBOARD_SHIP_MODE_CREATE_TITLE
     }
     if request.method == 'POST':
         postdata = utils.get_postdata(request)
@@ -219,8 +220,8 @@ def ship_modes(request):
         logger.warning("PermissionDenied to user %s for path %s", username, request.path)
         raise PermissionDenied
     context = {
-        'page_title': page_title,
-        'content_title': _('Ship Modes')
+        'page_title': CORE_STRINGS.DASHBOARD_SHIP_MODES_TITLE,
+        'content_title': CORE_STRINGS.DASHBOARD_SHIP_MODES_TITLE
     }
     queryset = shipment_service.get_ship_modes()
     page = request.GET.get('page', 1)
@@ -238,7 +239,7 @@ def ship_modes(request):
 @login_required
 def ship_mode_detail(request, ship_uuid=None):
     template_name = 'shipment/ship_mode_detail.html'
-    page_title = _('Ship Mode')
+    page_title = CORE_STRINGS.DASHBOARD_SHIP_MODE_TITLE
     username = request.user.username
 
     if not PermissionManager.user_can_view_shipment(request.user):
@@ -246,7 +247,7 @@ def ship_mode_detail(request, ship_uuid=None):
         raise PermissionDenied
     context = {
         'page_title': page_title,
-        'content_title': _('Ship Mode')
+        'content_title': CORE_STRINGS.DASHBOARD_SHIP_MODE_TITLE
     }
 
     ship_mode = get_object_or_404(ShipMode, ship_uuid=ship_uuid)
@@ -257,7 +258,6 @@ def ship_mode_detail(request, ship_uuid=None):
 @login_required
 def ship_mode_update(request, ship_uuid):
     template_name = 'shipment/ship_mode_update.html'
-    page_title = _('Edit Ship Mode')
     username = request.user.username
 
     if not PermissionManager.user_can_change_shipment(request.user):
@@ -277,11 +277,11 @@ def ship_mode_update(request, ship_uuid):
 
     form = ShipModeForm(instance=ship_mode)
     context = {
-        'page_title': page_title,
+        'page_title': CORE_STRINGS.DASHBOARD_SHIP_MODE_UPDATE_TITLE,
         'form' : form,
         'ship_mode': ship_mode,
         'SHIP_MODE' : Constants.SHIP_MODE,
-        'content_title': _('Ship Mode Update')
+        'content_title': CORE_STRINGS.DASHBOARD_SHIP_MODE_UPDATE_TITLE
     }
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)

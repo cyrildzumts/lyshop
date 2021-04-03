@@ -1,0 +1,125 @@
+from django.utils.translation import gettext_lazy as _
+
+DASHBOARD_DASHBOARD_TITLE = _('Dashboard')
+DASHBOARD_PAYMENT_HOME_TITLE = _('Payment Home')
+DASHBOARD_PRODUCT_HOME_TITLE = _('Product Home')
+DASHBOARD_VENDOR_HOME_TITLE = _('Vendor Home')
+DASHBOARD_SHIPMENT_HOME_TITLE = _('Shipment Home')
+DASHBOARD_PAYMENT_REQUEST_HOME_TITLE = _('Payment Request Home')
+
+
+DASHBOARD_ATTRIBUTES_TITLE = _('Attributes')
+DASHBOARD_ATTRIBUTE_TITLE = _('Attribute')
+DASHBOARD_ATTRIBUTE_UPDATE_TITLE = _('Attribute Update')
+DASHBOARD_ATTRIBUTE_CREATE_TITLE = _('New Attribute')
+
+DASHBOARD_BALANCE_HISTORY_TITLE         = _('Balance History')
+DASHBOARD_BALANCE_HYSTORIES_TITLE       = _('Balance Histories')
+
+DASHBOARD_BRANDS_TITLE                  = _('Brands')
+DASHBOARD_BRAND_TITLE                   = _('Brand')
+DASHBOARD_BRAND_UPDATE_TITLE            = _('Brand Update')
+DASHBOARD_BRAND_PRODUCTS_TITLE          = _('Brand Products')
+
+DASHBOARD_COUPONS_TITLE                 = _('Coupons')
+DASHBOARD_COUPON_TITLE                  = _('Coupon')
+DASHBOARD_COUPON_UPDATE_TITLE           = _('Coupon Update')
+
+DASHBOARD_INFOS_TITLE                 = _('Infos')
+DASHBOARD_INFO_TITLE                  = _('Info')
+DASHBOARD_INFO_CREATE_TITLE           = _('New Info')
+DASHBOARD_INFO_UPDATE_TITLE           = _('Info Update')
+
+DASHBOARD_GROUPS_TITLE                 = _('Groups')
+DASHBOARD_GROUP_TITLE                  = _('Group')
+DASHBOARD_GROUP_UPDATE_TITLE           = _('Group Update')
+
+
+DASHBOARD_HIGHLIGHTS_TITLE                  = _('Highlights')
+DASHBOARD_HIGHLIGHT_TITLE                 = _('Highlight')
+DASHBOARD_HIGHLIGHT_UPDATE_TITLE           = _('Highlight Update')
+DASHBOARD_HIGHLIGHT_CREATE_TITLE           = _('New Highlight')
+
+DASHBOARD_ORDERS_TITLE                  = _('Orders')
+DASHBOARD_ORDER_TITLE                   = _('Order')
+DASHBOARD_ORDER_UPDATE_TITLE            = _('Order Update')
+DASHBOARD_ORDER_ITEM_TITLE              = _('Order Item')
+DASHBOARD_ORDER_ITEM_UPDATE_TITLE       = _('Order Item Update')
+DASHBOARD_ORDER_HISTORY_TITLE           = _('Order History')
+
+DASHBOARD_PAYMENT_TITLE = _('Payment')
+DASHBOARD_PAYMENTS_TITLE = _('Payments')
+
+DASHBOARD_PAYMENT_REQUESTS_TITLE = _('Payment Requests')
+DASHBOARD_PAYMENT_REQUEST_TITLE = _('Payment Request')
+
+DASHBOARD_PAYMENT_METHODS_TITLE = _('Payment Methods')
+DASHBOARD_PAYMENT_METHOD_TITLE = _('Payment Method')
+DASHBOARD_PAYMENT_METHOD_UPDATE_TITLE = _('Payment Method Update')
+DASHBOARD_PAYMENT_METHOD_CREATE_TITLE = _('New Payment Method')
+
+DASHBOARD_POLICIES_TITLE = _('Policies')
+DASHBOARD_POLICY_TITLE = _('Policy')
+DASHBOARD_POLICY_UPDATE_TITLE = _('Policy Update')
+DASHBOARD_POLICY_CREATE_TITLE = _('New Policy')
+
+DASHBOARD_POLICY_GROUPS_TITLE = _('Policy Groups')
+DASHBOARD_POLICY_GROUP_TITLE = _('Policy Group')
+DASHBOARD_POLICY_GROUP_UPDATE_TITLE = _('Policy Group Update')
+DASHBOARD_POLICY_GROUP_CREATE_TITLE = _('New Policy Group')
+
+DASHBOARD_PRODUCTS_TITLE = _('Products')
+DASHBOARD_PRODUCT_TITLE = _('Product')
+DASHBOARD_PRODUCT_UPDATE_TITLE = _('Product Update')
+DASHBOARD_PRODUCT_CREATE_TITLE = _('New Product')
+
+DASHBOARD_PRODUCT_IMAGE_TITLE = _('Product Image')
+DASHBOARD_PRODUCT_IMAGE_UPDATE_TITLE = _('Product Image Update')
+DASHBOARD_PRODUCT_IMAGE_CREATE_TITLE = _('New Image')
+
+DASHBOARD_REFUNDS_TITLE = _('Refunds')
+DASHBOARD_REFUND_TITLE = _('Refund')
+DASHBOARD_REFUND_UPDATE_TITLE = _('Refund Update')
+DASHBOARD_REFUND_CREATE_TITLE = _('New Refund')
+
+
+DASHBOARD_SHIPMENTS_TITLE = _('Shipments')
+DASHBOARD_SHIPMENT_TITLE = _('Shipment')
+DASHBOARD_SHIPMENT_HISTORY_TITLE = _('Shipment History')
+DASHBOARD_SHIPMENT_UPDATE_TITLE = _('Shipment Update')
+DASHBOARD_SHIPMENT_READY_TITLE = _('Ready Shipments')
+
+DASHBOARD_SHIP_MODES_TITLE = _('Ship Modes')
+DASHBOARD_SHIP_MODE_TITLE = _('Ship Mode')
+DASHBOARD_SHIP_MODE_UPDATE_TITLE = _('Ship Mode Update')
+DASHBOARD_SHIP_MODE_CREATE_TITLE = _('New Ship Mode')
+
+DASHBOARD_SOLD_PRODUCT_TITLE = _('Sold Product')
+DASHBOARD_SOLD_PRODUCTS_TITLE = _('Sold Products')
+
+DASHBOARD_PRODUCT_VARIANTE_TITLE = _('Product Variante')
+DASHBOARD_PRODUCT_VARIANTE_UPDATE_TITLE = _('Product Variante Update')
+DASHBOARD_PRODUCT_VARIANTE_CREATE_TITLE = _('New Variant')
+
+DASHBOARD_PRODUCT_TYPES_TITLE = _('Product Types')
+DASHBOARD_PRODUCT_TYPE_TITLE = _('Product Type')
+DASHBOARD_PRODUCT_TYPE_UPDATE_TITLE = _('Product Type Update')
+DASHBOARD_PRODUCT_TYPE_CREATE_TITLE = _('New Product Type')
+DASHBOARD_PRODUCT_TYPE_PRODUCTS_TITLE = _('Type Products')
+
+DASHBOARD_TYPE_ATTRIBUTES_TITLE = _('Type Attributes')
+DASHBOARD_TYPE_ATTRIBUTE_TITLE = _('Type Attribute')
+DASHBOARD_TYPE_ATTRIBUTE_UPDATE_TITLE = _('Type Attribute Update')
+DASHBOARD_TYPE_ATTRIBUTE_CREATE_TITLE = _('New Type Attribute')
+
+DASHBOARD_USERS_TITLE = _('Users')
+DASHBOARD_USER_TITLE = _('User')
+DASHBOARD_USER_UPDATE_TITLE = _('User Update')
+DASHBOARD_USER_CREATE_TITLE = _('New User')
+
+
+DASHBOARD_TOKENS_TITLE = _('Tokens')
+DASHBOARD_TOKEN_CREATE_TITLE = _('New Token')
+
+DASHBOARD_REPORTS_TITLE = _('Reports')
+
