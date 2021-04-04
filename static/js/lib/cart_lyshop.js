@@ -128,6 +128,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
                 
                 var option = {
                     type:'POST',
+                    method: 'POST',
                     dataType: 'json',
                     url : '/cart/ajax-add-coupon/',
                     data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
@@ -164,6 +165,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         console.log("Remove coupon %s from cart");
         var option = {
             type:'POST',
+            method: 'POST',
             dataType: 'json',
             url : '/cart/ajax-coupon-remove/',
             data : {csrfmiddlewaretoken : csrfmiddlewaretoken}
@@ -195,6 +197,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         console.log("Verifying coupon ", coupon);
         var option = {
             type:'POST',
+            method: 'POST',
             dataType: 'json',
             url : '/cart/ajax-coupon-verify/',
             data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
@@ -223,6 +226,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
 
         var option = {
             type:'POST',
+            method: 'POST',
             dataType: 'json',
             url : '/cart/ajax-cart-item/' + data['item'] + '/' + data['action'] + '/',
             data : data
@@ -263,6 +267,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
     
         var option = {
             type:'POST',
+            method: 'POST',
             dataType: 'json',
             url : '/cart/ajax-cart-item-update/',
             data : data
