@@ -381,7 +381,7 @@ function(Chart, ajax){
             data:{},
             dataType: 'json'
         }
-        var promise = ajax(options).then(function(response){
+        var promise = ajax(options, true).then(function(response){
             //report = response.report;
             refresh_chart(response);
             //updateMetrics(response)

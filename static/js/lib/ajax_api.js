@@ -16,11 +16,11 @@ define(['lang'], function(Locale) {
         A future object is returned
     */
 
-      function ajax_api(options, add_lang, debug){
+      function ajax_api(options, no_add_lang, debug){
         if(debug){
           console.debug("ajax_api options - ", options);
         }
-        if(add_lang){
+        if(!no_add_lang){
           options.url = '/' + Locale.get_lang() + options.url;
         }
         
