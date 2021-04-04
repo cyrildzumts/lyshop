@@ -341,18 +341,18 @@
 .success{
     background-color: #fff;
     /*border: 2px solid #388e3c !important;*/
-    color: #388e3c !important;
+    color: #2ecc71 !important;
 }
 
 .warning, .warn{
     background-color: #fff;
     /*border: 2px solid #e64a19 !important;*/
-    color: #e64a19 !important;
+    color: #e67e22 !important;
 }
 .debug{
     background-color: #fff;
     border: 2px solid #1976d2 !important;
-    color: #1976d2 !important;
+    color: #3498db !important;
 }
 
 .error{
