@@ -28,7 +28,6 @@
                         <th scope="col">{% trans "Display Name" %}</th>
                         <th scope="col">{% trans "Code" %}</th>
                         <th scope="col">{% trans "Details" %}</th>
-                        <th scope="col">{% trans "Delete Action" %}</th>
                   </tr>
           </thead>
           <tbody>
@@ -38,8 +37,7 @@
                   <td data-label="{% trans 'Name' %}">{{brand.name}}</td>
                   <td data-label="{% trans 'Display Name' %}">{{brand.display_name}}</td>
                   <td data-label="{% trans 'Code' %}">{{brand.code}}</td>
-                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{brand.get_vendor_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
-                  <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'vendors:brand-delete' brand.brand_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{% url BRAND_URL brand.brand_uuid %}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   

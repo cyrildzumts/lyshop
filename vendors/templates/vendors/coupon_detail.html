@@ -1,9 +1,15 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 
-{% block MAIN_CONTENT %}
+{% block ACTIONS %}
+<a class="mat-button mat-button-default" href="{% url COUPON_UPDATE_URL coupon.coupon_uuid %}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>
+<a class="mat-button mat-button-default" href="{% url COUPON_CREATE_URL %}"> <i class="fas fa-plus icon"></i><span>{% trans "New Coupon" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url COUPON_DELETE_URL coupon.coupon_uuid %}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span> </a>
+<a class="mat-button mat-button-default" href="{% url COUPONS_URL %}"><i class="fas icon"></i><span>{% trans "Coupons" %}</span></a>
 
-{% if is_seller %}
+{% endblock ACTIONS %}
+
+{% block CONTENT_MAIN %}
 <div class="container wrapper">
         <div class="mat-box full">
           <div class="grid">
@@ -50,20 +56,7 @@
                 </div>
             </div>
           </div><!--End of title-->
-          <div class="mat-box-content">
-                <div class="banner--actions">
-                    <a class="mat-button mat-button-default" href="{{coupon.get_vendor_update_url}}"><i class="fas fa-pen icon"></i>{% trans "Edit" %}</a>
-                    <a class="mat-button mat-button-default" href="{% url 'vendors:coupon-create'%}"><i class="fas fa-plus icon"></i>{% trans "Add New Coupon" %}</a>
-                    <a class="mat-button mat-button-default warn" href="{{coupon.get_vendor_delete_url}}"><i class="fas fa-trash icon"></i>{% trans "Delete" %}</a>
-                    <a class="mat-button mat-button-text" href="{% url 'vendors:coupons' %}"><span class="back"></span>{% trans "Coupons" %}</a>
-                    
-                </div><!--End of Banner-Actions-->
-          </div><!--End of mat-box-content-->
+          
         </div><!--End of mat-box-->
 </div>
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

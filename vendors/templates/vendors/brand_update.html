@@ -1,20 +1,7 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 
-{% block MAIN_CONTENT %}
-{% if is_seller %}
+{% block CONTENT_MAIN %}
 
-
-<div class="container wrapper">
-
-    <div class="col col-9">
-        <div class="banner--actions">
-            <a class="mat-button mat-button-default" href="{% url 'vendors:vendor-home' %}"> {% trans "Vendor Panel" %} </a>
-                
-        </div><!--End of Banner-Actions-->
-    </div><!--End of Responsive-->
-
-</div><!--End of Container-->
 {% include "vendor_tags/brand_update_form.html" %}
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

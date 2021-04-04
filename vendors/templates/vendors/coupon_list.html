@@ -3,24 +3,16 @@
 {% load tz %}
 
 
-{% block MAIN_CONTENT %}
-{% if is_seller %}
+{% block ACTIONS %}
+<a class="mat-button mat-button-default" href="{% url COUPON_CREATE_URL %}"> <i class="fas fa-plus icon"></i><span>{% trans "New Coupon" %}</span></a>
+{% endblock ACTIONS %}
+
+{% block CONTENT_MAIN %}
+
 <div class="container wrapper">
-        <div class="actions">
-            <a class="mat-button mat-button-default" href="{% url 'vendors:coupon-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "Add new Coupon" %}</span></a>
-            <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Panel" %}</span></a>
-                
-        </div><!--End of Banner-Actions-->
-</div><!--End of Container-->
-<div class="container wrapper">
-<div class="col-m-12 col-9">
+
     <div class="mat-table-wrapper">
-        <div class="row">
-            <div class="mat-table-title">
-                {% trans "Coupons" %}
-            </div>
-        </div><!--End of Row-->
-        <form action="{% url 'vendors:coupons-delete' %}" method="POST">{% csrf_token %}
+        <form action="{% url COUPONS_DELETE_URL %}" method="POST">{% csrf_token %}
         <table id="coupon-list" class="mat-table js-filter-table">
             <div class="actions">
                 <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i><span>{% trans "Delete Selected" %}</span></button>
@@ -51,8 +43,8 @@
                   {% else %}
                     {% trans "Not Activated" %}
                   {% endif %}</td>
-                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{coupon.get_vendor_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
-                  <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{{coupon.get_vendor_delete_url}}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{% url COUPON_URL coupon.coupon_uuid %}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                  <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url COUPON_DELETE_URL coupon.coupon_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   
@@ -61,11 +53,5 @@
         </form>
     {% include "tags/pagination.html" with page_set=coupon_list %}
     </div><!--End of Table Wrapper-->
-  </div>
 </div>
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}
