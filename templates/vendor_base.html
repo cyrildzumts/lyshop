@@ -1,0 +1,51 @@
+
+
+{% extends "dashboard_base.html"%}
+{% load i18n %}
+{% if not is_seller %}
+<div class="access-error">
+  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+</div>
+{% else %}
+{% if balance %}
+{% block SIDEBAR_BRAND_EXTRA %}
+<div class="balance-info">
+      <h4>{% trans "Balance" %}</h4>
+      <small>{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %}</small>
+</div>
+{% endblock SIDEBAR_BRAND_EXTRA %}
+{% endif %}
+{% block SIDEBAR_CONTENT %}
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home'%}"><i class="fas fa-user-tie icon"></i><span>{% trans "Vendor Panel" %}</span></a></li>
+    {% if balance %}
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:balance-history' balance.balance_uuid %}"><i class="fas fa-history icon"></i><span>{% trans "Balance History" %}</span></a></li>
+    {% endif %}
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:brands' %}"><i class="fas fa-band-aid icon"></i><span>{% trans "Brands" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:orders' %}"><i class="fas fa-shopping-bagicon"></i><span>{% trans "Orders" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:payments' %}"><i class="fas fa-money-check icon"></i><span>{% trans "Payments" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:coupons' %}"><i class="fas fa-barcode icon"></i><span>{% trans "Coupons" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:products' %}"><i class="fas fa-gifts icon"></i><span>{% trans "Products" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:sold-products' %}"><i class="fas fa-hand-holding-usd icon"></i><span>{% trans "Sold Products" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:product-types' %}"><i class="fas fa-random icon"></i><span>{% trans "Product Type" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:product-type-attributes' %}"><i class="fas fa-cogs icon"></i><span>{% trans "Type Attributes" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'vendors:attributes' %}"><i class="fas fa-ring icon"></i><span>{% trans "Products Attributes" %}</span></a></li>
+    
+{% endblock SIDEBAR_CONTENT %}
+
+{% block CONTENT %}
+    <div class="actions">
+        <a class="mat-button mat-button-default" href="{% url 'vendors:product-create' %}"><i class="fas fa-plus icon"></i><span>{% trans "New Product" %}</span></a>
+        {% block ACTIONS %}
+        {% endblock ACTIONS %}
+    </div><!--End of Banner-Actions-->
+    <div>
+        {% block CONTENT_MAIN %}{% endblock CONTENT_MAIN %}
+    </div>
+{% endblock CONTENT %}
+{% endif %}
+{% block SCRIPT %}
+<script  type="application/javascript" src="{% static 'js/vendor/Chart.min.js' %}"></script>
+<script  type="application/javascript" src="{% static 'js/lib/accounts.js' %}"></script> 
+<script  type="application/javascript" src="{% static 'js/lib/attributes.js' %}"></script> 
+<script  type="application/javascript" src="{% static 'js/lib/dashboard.js' %}"></script>
+{% endblock SCRIPT %}

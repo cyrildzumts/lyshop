@@ -45,6 +45,8 @@ DASHBOARD_PRODUCT_CONTEXT = {
     'IMAGE_URL'                 : f"{DASHBOARD_GLOBALS_PREFIX}:product-image-detail",
     'IMAGE_CREATE_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:product-image-create",
     'IMAGE_DELETE_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:product-image-delete",
+    'PRODUCTS_URL'              : f"{DASHBOARD_GLOBALS_PREFIX}:products",
+    'PRODUCT_HOME_URL'          : f"{DASHBOARD_GLOBALS_PREFIX}:product-home",
     'PRODUCT_CREATE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-create",
     'PRODUCT_DELETE_URL'        : f"{DASHBOARD_GLOBALS_PREFIX}:product-delete",
     'PRODUCTS_DELETE_URL'       : f"{DASHBOARD_GLOBALS_PREFIX}:products-delete",
@@ -83,6 +85,7 @@ DASHBOARD_ATTRIBUTES_CONTEXT = {
     'ATTRIBUTE_BULK_CREATE_URL' : f"{DASHBOARD_GLOBALS_PREFIX}:bulk-attributes-create",
     'ATTRIBUTE_CREATE_URL'      : f"{DASHBOARD_GLOBALS_PREFIX}:attribute-create",
     'ATTRIBUTE_ADD_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:attribute-add",
+    'ATTRIBUTES_URL'         : f"{DASHBOARD_GLOBALS_PREFIX}:attributes",
 }
 
 DASHBOARD_ORDERS_CONTEXT = {
