@@ -5,8 +5,7 @@
 
 {% block CONTENT_MAIN %}
  <div class="container">
-            <h4><i class="fas fa-history icon"></i> {% trans "Balance History" %}</h4>
-            <h4> <i class="fas fa-money-bill icon"></i> <span>{% trans "Balance" %} - {{balance.balance}} {% trans "XAF" %}</span></h4>
+            <h4> <i class="fas fa-money-bill icon"></i> <span>{% trans "Balance" %} - {{balance.balance|floatformat:"-2"}} {% trans CURRENCY %}</span></h4>
 </div>    
 {% if history_list %}
 <div class="container">
@@ -24,8 +23,8 @@
                       {% for h in history_list  %}
                       <tr>
                         <td data-label="{% trans 'Customer' %}">{{h.sender.username}} </td>
-                        <td data-label="{% trans 'Balance State' %}">{{h.current_amount}}  {% trans "XAF" %}</td>
-                        <td data-label="{% trans 'Received Amount' %}">{{h.balance_amount}}  {% trans "XAF" %}</td>
+                        <td data-label="{% trans 'Balance State' %}">{{h.current_amount|floatformat:"-2"}}  {% trans CURRENCY %}</td>
+                        <td data-label="{% trans 'Received Amount' %}">{{h.balance_amount|floatformat:"-2"}}  {% trans CURRENCY %}</td>
                         <td data-label="{% trans 'Date' %}">{{h.created_at|date:"F j, Y"}}</td>
                       </tr>
                       {% endfor %}
