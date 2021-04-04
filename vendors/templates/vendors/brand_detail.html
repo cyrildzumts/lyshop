@@ -1,7 +1,14 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 
-{% block MAIN_CONTENT %}
+{% block ACTIONS %}
+<a class="mat-button mat-button-default" href="{% url BRAND_UPDATE_URL brand.brand_uuid %}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>
+<a class="mat-button mat-button-default" href="{% url BRAND_CREATE_URL %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Brand" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url BRANDS_URL %}"><i class="fas icon"></i><span>{% trans "Brands" %}</span></a>
+
+{% endblock ACTIONS %}
+
+{% block CONTENT_MAIN %}
 {% if is_seller %}
 
 <div class="container wrapper">
@@ -17,14 +24,7 @@
               <span class="key"><i class="fas fa-barcode icon">{% trans "Code" %}</i></span> <span class="value">{{brand.code}}</span>
             </div>
           </div>
-          <div class="mat-box-content">
-            <ul class="actions row" role="navigation">
-                {% if can_change_brand %}<li class="list-item"><a class="mat-button mat-button-default" href="{{brand.get_vendor_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>{% endif %}
-                {% if can_add_brand %}<li class="list-item"> <a class="mat-button mat-button-default" href="{% url 'vendors:brand-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Group" %}</span></a> </li>{% endif %}
-                <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:brands' %}"><i class="fas icon"></i><span>{% trans "Brands" %}</span></a> </li>
-                <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Panel" %}</span></a></li>
-            </ul>
-          </div>
+          
         </div><!--End of mat-box-->
         <div class="mat-box full">
           <div class="mat-box-title">
@@ -51,10 +51,6 @@
                               {% endfor %}
                               
                       </tbody>
-                      <tfoot>
-                              
-                      </tfoot>
-
                 </table>
               </div><!--End of Table Wrapper-->
           </div>
@@ -67,4 +63,4 @@
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
 {% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

@@ -3,13 +3,11 @@
 {% if is_seller %}
 
 
-<div class="responsive ">
-
-    <div class="container wrapper">
+<div class="container">
         
         <div class="mat-box">
     
-                <form class="form" name="add-brand" action="{% url 'vendors:brand-create' %}" method="POST">{% csrf_token %}
+                <form class="form" name="add-brand" action="{% url BRAND_CREATE_URL %}" method="POST">{% csrf_token %}
                     <input type="hidden" name="added_by" value="{{request.user.pk}}">
                     <div class="container">
                     
@@ -34,15 +32,13 @@
                     </div><!-- End of container-->
 
                     <div class="actions row">
-                            <a class="mat-button mat-button-text js-cancel" href="{% url 'vendors:brands' %}">{% trans "Cancel" %}</a>
+                            <a class="mat-button mat-button-text js-cancel" href="{% url BRANDS_URL %}">{% trans "Cancel" %}</a>
                             <button class="mat-button mat-button-default" type="submit">{% trans "Create" %}</button>
                     </div>
                     
                 </form>
-            </div>
-    </div>          
+            </div>        
 </div>
-
 
 {% else %}
 <div class="access-error">
