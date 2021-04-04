@@ -371,6 +371,7 @@ def ajax_cart_item_update(request, item_uuid=None, action=None):
         'success' : False
     }
     if request.method != 'POST':
+        logger.debug(f"ajax_cart_item_update : REQUEST.METHOD : {request.method}")
         context['error'] = 'Method not allowed. POST requets expected.'
         context['status'] = False
         logger.warn(context['error'])
