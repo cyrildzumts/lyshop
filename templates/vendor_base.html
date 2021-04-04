@@ -11,7 +11,7 @@
 {% if balance %}
 {% block SIDEBAR_BRAND_EXTRA %}
 <div class="balance-info">
-      <h4>{% trans "Balance" %}</h4>
+      <span>{% trans "Balance" %}</span>
       <small>{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %}</small>
 </div>
 {% endblock SIDEBAR_BRAND_EXTRA %}

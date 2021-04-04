@@ -28,6 +28,10 @@ body{
 	color: var(--sidebar-color);
 }
 
+.sidebar-brand .balance-info small{
+    color: var(--secondary-color);
+}
+
 .sidebar-menu a.active{
 
 	color: #fafafa;
