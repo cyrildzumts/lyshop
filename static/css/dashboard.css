@@ -166,6 +166,7 @@
 
 .sidebar-menu{
 	position: relative;
+    margin-top: 1rem;
 }
 
 .sidebar-brand{
@@ -182,12 +183,12 @@
     display: inline-block;
     width: 100%;
     text-align: left;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 .sidebar-brand .balance-info small{
     width: 100%;
     text-align: left;
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     font-weight: 600;
 }
 
