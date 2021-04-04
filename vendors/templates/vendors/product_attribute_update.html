@@ -1,9 +1,8 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 
-{% block MAIN_CONTENT %}
+{% block CONTENT_MAIN %}
 
-{% if is_seller %}
 <div class="container wrapper">
     <form id="attribute-form" class="form" name="attribute" action="{{type_attribute.get_vendor_update_url}}" method="POST">{% csrf_token %}
         <div id="error-login" class="error-login left">
@@ -15,14 +14,9 @@
           </div>
           
           <div class="form-group row">
-            <button class="mat-button mat-button-text" type="submit">{% trans "Update" %}</button>
             <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}">{% trans "Cancel" %}</a>
+            <button class="mat-button mat-button-text" type="submit">{% trans "Update" %}</button>
           </div>
     </form>
 </div>
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

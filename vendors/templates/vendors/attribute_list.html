@@ -1,38 +1,11 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 {% load catalog_tags %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Attributes" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
 
-            <div class="col-m-12 col-9">
-                <div class="banner--actions">
-                    <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Dashboard" %}</span></a>    
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
+{% block CONTENT_MAIN %}
 
-{% block MAIN_CONTENT %}
-{% if is_seller %}
-
-<div class="container wrapper">
-  <div class="col-m-12 col-9">
+<div class="container">
     <div class="mat-table-wrapper">
-        <div class="row">
-            <div class="mat-table-title">
-                {% trans "Attributes" %}
-            </div>
-        </div><!--End of Row-->
         <form action="{% url 'vendors:attributes-delete' %}" method="POST">{% csrf_token %}
         
         <table id="attr-list" class="mat-table js-filter-table">
@@ -71,11 +44,4 @@
     {% include "tags/pagination.html" with page_set=attribute_list %}
     </div><!--End of Table Wrapper-->
 </div>
-</div>
-
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

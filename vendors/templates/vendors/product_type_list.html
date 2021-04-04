@@ -2,25 +2,10 @@
 {% load i18n %}
 
 
-{% block MAIN_CONTENT %}
+{% block CONTENT_MAIN %}
 
-{% if is_seller %}
-<div class="container wrapper">
-    <div class="actions">
-
-        <a class="mat-button mat-button-default" href="{% url 'vendors:product-type-create'%}"> <i class="fas fa-plus icon"></i><span>{% trans "Add new Product Type" %}</span></a>
-        <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Home" %}</span></a>
-            
-    </div><!--End of Banner-Actions-->
-</div><!--End of Container-->
-<div class="container wrapper">
-<div class="col-m-12 col-9">
+<div class="container">
     <div class="mat-table-wrapper">
-        <div class="row">
-            <div class="mat-table-title">
-                {% trans "Product Types" %}
-            </div>
-        </div><!--End of Row-->
         <table id="brand-list" class="mat-table js-filter-table">
             
           <thead>
@@ -50,11 +35,5 @@
         </form>
     {% include "tags/pagination.html" with page_set=product_type_list %}
     </div><!--End of Table Wrapper-->
-  </div>
 </div>
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

@@ -1,10 +1,8 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 
-{% block MAIN_CONTENT %}
-{% if is_seller %}
-
-<div class="container wrapper">
+{% block CONTENT_MAIN %}
+<div class="container">
     <div class="mat-box full">
           <div class="mat-box-title">
             {% if balance %}
@@ -32,8 +30,7 @@
         </div><!--End of mat-box-->
 </div>
 {% if recent_sold_products %}
-<div class="container wrapper">
-<div class="col-m-12 col-9">
+<div class="container ">
     <div class="mat-table-wrapper">
         <table id="product-list" class="mat-table js-filter-table">
           <caption>{% trans "Recent Sold Products" %}</caption>
@@ -68,7 +65,6 @@
 
     </table>
     </div><!--End of Table Wrapper-->
-  </div>
 </div>
 
 {% else %}
@@ -129,6 +125,5 @@
     <p>{% trans "Recently added products will be displayed here." %}</p>
   </div>
 </div>
-{% endif %}
 {% endif %}
 {% endblock MAIN_CONTENT %}
