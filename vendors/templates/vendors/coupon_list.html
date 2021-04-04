@@ -10,7 +10,7 @@
 {% block CONTENT_MAIN %}
 
 <div class="container wrapper">
-
+    {% if coupon_list %}
     <div class="mat-table-wrapper">
         <form action="{% url COUPONS_DELETE_URL %}" method="POST">{% csrf_token %}
         <table id="coupon-list" class="mat-table js-filter-table">
@@ -38,10 +38,12 @@
                   <td data-label="{% trans 'Reduction' %}">{{coupon.reduction}}</td>
                   <td data-label="{% trans 'Date of Creation' %}">{{coupon.created_at|date:"F j, Y"}}</td>
                   <td data-label="{% trans 'Seller' %}">{% if coupon.seller %}{{coupon.seller.username}}{% else %}-{% endif %}</td>
-                  <td data-label="{% trans 'Status' %}">{% if coupon.is_active %}
-                    {% trans "Activated" %}
+                  <td data-label="{% trans 'Status' %}">
+                  
+                  {% if coupon.is_active %}
+                    <i class="fas fa-circle icon success"></i> <span>{% trans "Active" %}</span>
                   {% else %}
-                    {% trans "Not Activated" %}
+                    <i class="fas fa-circle icon warning"></i> <span>{% trans "Inactive" %}</span>
                   {% endif %}</td>
                   <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{% url COUPON_URL coupon.coupon_uuid %}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url COUPON_DELETE_URL coupon.coupon_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>
@@ -53,5 +55,8 @@
         </form>
     {% include "tags/pagination.html" with page_set=coupon_list %}
     </div><!--End of Table Wrapper-->
+    {% else %}
+    <div-mat-box>{% trans "There is no coupon yet" %}</div-mat-box>
+    {% endif %}
 </div>
 {% endblock CONTENT_MAIN %}

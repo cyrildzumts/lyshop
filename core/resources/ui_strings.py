@@ -18,11 +18,13 @@ DASHBOARD_BALANCE_HYSTORIES_TITLE       = _('Balance Histories')
 
 DASHBOARD_BRANDS_TITLE                  = _('Brands')
 DASHBOARD_BRAND_TITLE                   = _('Brand')
+DASHBOARD_BRAND_CREATE_TITLE            = _('New Brand')
 DASHBOARD_BRAND_UPDATE_TITLE            = _('Brand Update')
 DASHBOARD_BRAND_PRODUCTS_TITLE          = _('Brand Products')
 
 DASHBOARD_COUPONS_TITLE                 = _('Coupons')
 DASHBOARD_COUPON_TITLE                  = _('Coupon')
+DASHBOARD_COUPON_CREATE_TITLE           = _('New Coupon')
 DASHBOARD_COUPON_UPDATE_TITLE           = _('Coupon Update')
 
 DASHBOARD_INFOS_TITLE                 = _('Infos')
@@ -32,6 +34,7 @@ DASHBOARD_INFO_UPDATE_TITLE           = _('Info Update')
 
 DASHBOARD_GROUPS_TITLE                 = _('Groups')
 DASHBOARD_GROUP_TITLE                  = _('Group')
+DASHBOARD_GROUP_CREATE_TITLE           = _('New Group')
 DASHBOARD_GROUP_UPDATE_TITLE           = _('Group Update')
 
 
