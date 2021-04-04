@@ -231,7 +231,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             url : '/cart/ajax-cart-item/' + data['item'] + '/' + data['action'] + '/',
             data : data
         }
-        ajax_api(option).then(function(response){
+        ajax_api(option, true).then(function(response){
             self.update_badge(response.count);
             if(response.count == 0){
                 document.location.reload();
