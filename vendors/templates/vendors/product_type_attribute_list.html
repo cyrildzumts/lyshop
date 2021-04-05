@@ -30,7 +30,7 @@
                   <tr>
                         <td scope="row" class="checkbox"><label><input class="js-selectable" type="checkbox" name="type_attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
                         <td data-label="{% trans 'Name' %}">{{attr.display_name}}</td>
-                        <td data-label="{% trans 'Type' %}">{{attr.attribute_type|attr_type_key}}</td>
+                        <td data-label="{% trans 'Type' %}">{{attr.attribute_type|attr_type_value}}</td>
                         <td data-label="{% trans 'Description' %}">{{attr.description}}</td>
                         <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{% url TYPE_ATTRIBUTE_URL attr.type_attribute_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   </tr>

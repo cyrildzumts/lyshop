@@ -10,12 +10,11 @@
         
         <table id="attr-list" class="mat-table js-filter-table">
         <div class="actions">
-          <button id="js-delete-attrs-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i> <span>{% trans "Delete Selected Attributes" %}</span></button>
+          <button id="js-delete-attrs-btn" class="mat-button mat-button-outlined js-activable" disabled><i class="fas fa-trash icon"></i> <span>{% trans "Delete Selection" %}</span></button>
         </div>
           <thead>
                   <tr>
                           <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></th>
-                          <th scope="col">{% trans "Name" %}</th>
                           <th scope="col">{% trans "Display Name" %}</th>
                           <th scope="col">{% trans "Value" %}</th>
                           <th scope="col">{% trans "Value Type" %}</th>
@@ -26,10 +25,9 @@
                   {% for attr in attribute_list %}
                   <tr>
                   <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
-                  <td data-label="{% trans 'Name' %}">{{attr.name}}</td>
-                  <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
+                  <td data-label="{% trans 'Name' %}">{{attr.display_name}}</td>
                   <td data-label="{% trans 'Value' %}">{{attr.value}}</td>
-                  <td data-label="{% trans 'Value type' %}">{{attr.value_type|attr_type_key}}</td>
+                  <td data-label="{% trans 'Value type' %}">{{attr.value_type|attr_type_value}}</td>
                   <td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{{attr.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   </tr>
                   {% endfor %}
