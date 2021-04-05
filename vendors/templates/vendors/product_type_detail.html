@@ -60,21 +60,22 @@
                           </tfoot>
 
                     </table>
-                    <div class="mat-box">
-                      <h4> {% trans "Attributes" %}</h4>
-                      <ul>
-                          {% for attr in product_type.type_attributes.all %}
-                          <li><a class="mat-button mat-button-text" href="{{attr.get_vendor_url}}"><span>{{attr.display_name}}</span></a></li>
-                          {% endfor %}
-                      </ul>
-                    </div>
+                    
 
               </div><!--End of Table Wrapper-->
 
             </div><!--End of mat-box-content-->
         </div><!--End of mat-box-->
+        <div class="mat-box full">
+          <h4> {% trans "Attributes" %}</h4>
+          <ul>
+              {% for attr in product_type.type_attributes.all %}
+              <li><a class="mat-button mat-button-text" href="{{attr.get_vendor_url}}"><span>{{attr.display_name}}</span></a></li>
+              {% endfor %}
+          </ul>
+        </div>
         {% if product_list %}
-        <div class="mat-box">
+        <div class="mat-box full">
 
           <h4>{% trans "Products" %} <span>{{product_list.count}}</span></h4>
           <ul>
