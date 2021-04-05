@@ -1,10 +1,10 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 
-{% block MAIN_CONTENT %}
+{% block CONTENT_MAIN %}
 {% if is_seller %}
 <div class="container wrapper">
     {% include "vendor_tags/product_variant_update_form.html" %}
 </div>
 {% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

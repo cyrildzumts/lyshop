@@ -3,19 +3,8 @@
 {% load catalog_tags %}
 {% load shipment_status %}
 {% load order_tag %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Order" %} - {{item.order.order_ref_number}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-    </div>
-{% endblock HEADER_BANNER %}
 
-
-{% block MAIN_CONTENT %}
+{% block CONTENT_MAIN %}
 
 {% if is_seller  %}
 <div class="container">
@@ -84,4 +73,4 @@
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
 {% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

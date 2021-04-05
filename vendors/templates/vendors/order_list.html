@@ -1,38 +1,11 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 {% load order_tag %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Orders" %}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-        <div class="container">
 
-            <div class="col col-9">
-                <div class="banner--actions">
-                    <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}">{% trans "Orders" %}</a>
-                </div><!--End of Banner-Actions-->
-            </div><!--End of Responsive-->
-        
-        </div><!--End of Container-->
-        
-    </div>
-{% endblock HEADER_BANNER %}
-
-
-{% block MAIN_CONTENT %}
+{% block CONTENT_MAIN %}
 {% if is_seller %}
 <div class="container">
     <div class="mat-box wrapper full">
-        <div class="grid title">
-            <div class="mat-box-title wrapper">
-                <h4> {% trans "Order Items" %}</h4>
-            </div>
-            
-        </div><!--End of title-->
         <div class="mat-box-content">
             <div class="mat-table-wrapper">
                 <table id="item-list" class="mat-table">
@@ -40,7 +13,7 @@
                             <tr>
                                     <th></th>
                                     <th>{% trans "Order Reference" %}</th>
-                                    <th>{% trans "Display Name" %}</th>
+                                    <th>{% trans "Article" %}</th>
                                     <th>{% trans "Options" %}</th>
                                     <th>{% trans "Quantiy" %}</th>
                                     <th>{% trans "Unit Price" %}</th>
@@ -81,4 +54,4 @@
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
 {% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

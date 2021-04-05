@@ -3,31 +3,17 @@
 {% load catalog_tags %}
 {% load shipment_status %}
 {% load order_tag %}
-{% block HEADER_BANNER %}
-    <div class="banner banner-align-left">
-        <div class="full welcome-text center">
-                {% block  HEADER_BANNER_TITLE %}
-                    <h4> {% trans "Order" %} - {{order.order_ref_number}}</h4>
-                {% endblock HEADER_BANNER_TITLE %}
-                
-        </div>
-    </div>
-{% endblock HEADER_BANNER %}
+{% block ACTIONS %}
+    <a class="mat-button mat-button-default" href="{{item.get_vendor_update_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Update" %}</span></a>
+{% endblock ACTIONS %}
 
 
-{% block MAIN_CONTENT %}
+{% block CONTENT_MAIN %}
 
 {% if is_seller  %}
 <div class="container">
-    <div class="actions">
-        
-        <a class="mat-button mat-button-default" href="{{item.get_vendor_update_url}}"><i class="fas fa-refresh icon"></i><span>{% trans "Update" %}</span></a>
-        
-        <a class="mat-button mat-button-text" href="{% url 'vendors:orders' %}"><i class="fas fa-list icon"></i><span>{% trans "Orders" %}</span></a>
-        <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Panel" %}</span></a>   
-        
-    </div><!--End of Banner-Actions-->
-    <div class="mat-box wrapper full">
+
+    <div class="mat-box full">
         <div class="grid">
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
@@ -98,4 +84,4 @@
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
 {% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

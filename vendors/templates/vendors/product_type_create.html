@@ -1,14 +1,14 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 
-{% block MAIN_CONTENT %}
+{% block CONTENT_MAIN %}
 
 {% if is_seller%}
 
 
-    <div class="container wrapper">
+    <div class="container">
         
-        <div class="mat-box wrapper full">
+        <div class="mat-box full">
     
                 <form class="form" name="add-product-type" action="{% url 'vendors:product-type-create' %}" method="POST">{% csrf_token %}
                     <input type="hidden" name="added_by" value="{{request.user.pk}}">
@@ -57,4 +57,4 @@
 </div>
 {% endif %}
 
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

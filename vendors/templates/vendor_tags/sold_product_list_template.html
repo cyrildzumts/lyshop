@@ -1,45 +1,27 @@
 {% load i18n %}
 {% load catalog_tags %}
 <div class="mat-table-wrapper">
-        <div class="row">
-            <div class="mat-table-title">
-                {% trans "Products" %}
-            </div>
-        </div><!--End of Row-->
         <form action="{% url 'vendors:sold-products-delete' %}" method="POST">{% csrf_token %}
         <table id="product-list" class="mat-table js-filter-table">
-        <div class="actions">
-                <button id="js-delete-all-btn" class="mat-button mat-button-outlined js-activable" disabled>{% trans "Delete Selected" %}</button>
-        </div>
           <thead>
                   <tr>
                           <th><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
-                          <th scope="col">{% trans "Name" %}</th>
-                          <th scope="col">{% trans "Display Name" %}</th>
-                          <th scope="col">{% trans "Gender" %}</th>
-                          <th scope="col">{% trans "Product Type" %}</th>
+                          <th scope="col">{% trans "Article" %}</th>
                           <th scope="col">{% trans "Price" %}</th>
                           <th scope="col">{% trans "End Price" %}</th>
                           <th scope="col">{% trans "Quantity" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
-                          <th scope="col">{% trans "Action" %}</th>
                   </tr>
           </thead>
           <tbody>
                   {% for sold_product in product_list  %}
                   <tr>
                   <td class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{sold_product.pk}}"><span class="checkbox-label"></span></label></td>
-                  <td scope="row" data-label="{% trans 'Name' %}">{{sold_product.product.name}}</td>
-                  <td scope="row" data-label="{% trans 'Display Name' %}">{{sold_product.product.display_name}}</td>
-                  <td scope="row" data-label="{% trans 'Gender' %}">{{sold_product.product.product.gender|gender_value}}</td>
-                  <td scope="row" data-label="{% trans 'Type' %}">{{sold_product.product.product.product_type.display_name}}</td>
+                  <td scope="row" data-label="{% trans 'Article' %}">{{sold_product.product.display_name}}</td>
                   <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.unit_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
                   <td scope="row" data-label="{% trans 'End Price' %}"><span><span>{{sold_product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
                   <td scope="row" data-label="{% trans 'Quantity' %}">{{sold_product.quantity}}</td>
-                  <th scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_vendor_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
-                  {% if is_seller %}
-                  <td scope="row" data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default" href="{{sold_product.get_vendor_delete_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Delete" %}</span></a></td>
-                  {% endif %}
+                  <th scope="row" data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{% url SOLD_PRODUCT_URL sold_product.product_uuid %}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   

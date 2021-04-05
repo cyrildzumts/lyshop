@@ -1,15 +1,12 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 
-{% block MAIN_CONTENT %}
-    {% if is_seller %}
-        <div class="container wrapper">
-                <div class="actions">
-                    <a class="mat-button mat-button-default" href="{% url 'dashboard:home' %}"> {% trans "Dashboard" %} </a>
-                        
-                </div><!--End of Actions-->
-        </div><!--End of Container-->
+{% block CONTENT_MAIN %}
+    {% if perms.cart.change_coupon  %}
         {% include "vendor_tags/coupon_form_update.html" %}
     {% else %}
+    <div class="access-error">
+    <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
+    </div>
     {% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

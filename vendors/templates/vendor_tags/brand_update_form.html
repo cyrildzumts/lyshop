@@ -1,18 +1,12 @@
 {% load i18n %} 
 
-{% if is_seller %}
+{% if perms.catalog.change_brand %}
 
-
-<div class="responsive">
-
-    <div class="container wrapper">
+    <div class="container">
         
         <div class="mat-box full">
-        
-                <div class="title">
-                    <h3>{% trans "Brand Update" %}</h3>
-                </div>
-                <form class="form" name="add-brand" action="{{brand.get_vendor_update_url}}" method="POST">{% csrf_token %}
+    
+                <form class="form" name="add-brand" action="{% url BRAND_UPDATE_URL brand.brand_uuid %}" method="POST">{% csrf_token %}
                     <input type="hidden" name="added_by" value="{{brand.added_by.pk}}">
                     <div class="container">
                     
@@ -37,13 +31,12 @@
                     </div><!-- End of container-->
 
                     <div class="actions row">
-                            <a class="mat-button mat-button-text js-cancel" href="{{brand.get_vendor_url}}">{% trans "Cancel" %}</a>
+                            <a class="mat-button mat-button-text js-cancel" href="{% url BRAND_URL brand.brand_uuid %}">{% trans "Cancel" %}</a>
                             <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
                     </div>
                     
                 </form>
-            </div>
-    </div>          
+            </div>         
 </div>
 
 
