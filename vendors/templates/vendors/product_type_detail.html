@@ -25,47 +25,49 @@
               </ul>
           </div>
         </div><!--End of mat-box-->
-        <div class="mat-box full">
-            <div class="mat-box-title">
-              <h3> {% trans "Type Attributes" %}</h3>
-            </div>
-            <div class="mat-box-content">
-              <div class="mat-table-wrapper">
-                  
-                  
-                    <table id="attr-list" class="mat-table js-filter-table">
-                        
-                          <thead>
-                                  <tr>
-                                        
-                                        <th scope="col">{% trans "Name" %}</th>
-                                        <th scope="col">{% trans "Display Name" %}</th>
-                                        <th scope="col">{% trans "Type" %}</th>
-                                        <th scope="col">{% trans "Details" %}</th>
-                                  </tr>
-                          </thead>
-                          <tbody>
-                                  {% for attr in product_type.type_attributes.all %}
-                                  <tr>
-                                        <td scope="row" data-label="{% trans 'Name' %}">{{attr.name}}</td>
-                                        <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
-                                        <td data-label="{% trans 'Type' %}">{{attr.attribute_type|attr_type_key}}</td>
-                                        <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{{attr.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
-                                  </tr>
-                                  {% endfor %}
-                                  
-                          </tbody>
-                          <tfoot>
-                                  
-                          </tfoot>
-
-                    </table>
+        {% comment %}
+          <div class="mat-box full">
+              <div class="mat-box-title">
+                <h3> {% trans "Type Attributes" %}</h3>
+              </div>
+              <div class="mat-box-content">
+                <div class="mat-table-wrapper">
                     
-
-              </div><!--End of Table Wrapper-->
-
-            </div><!--End of mat-box-content-->
-        </div><!--End of mat-box-->
+                    
+                      <table id="attr-list" class="mat-table js-filter-table">
+                          
+                            <thead>
+                                    <tr>
+                                          
+                                          <th scope="col">{% trans "Name" %}</th>
+                                          <th scope="col">{% trans "Display Name" %}</th>
+                                          <th scope="col">{% trans "Type" %}</th>
+                                          <th scope="col">{% trans "Details" %}</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                    {% for attr in product_type.type_attributes.all %}
+                                    <tr>
+                                          <td scope="row" data-label="{% trans 'Name' %}">{{attr.name}}</td>
+                                          <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
+                                          <td data-label="{% trans 'Type' %}">{{attr.attribute_type|attr_type_key}}</td>
+                                          <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{{attr.get_vendor_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                                    </tr>
+                                    {% endfor %}
+                                    
+                            </tbody>
+                            <tfoot>
+                                    
+                            </tfoot>
+  
+                      </table>
+                      
+  
+                </div><!--End of Table Wrapper-->
+  
+              </div><!--End of mat-box-content-->
+          </div><!--End of mat-box-->
+        {% endcomment %}
         <div class="mat-box full">
           <h4> {% trans "Attributes" %}</h4>
           <ul>
