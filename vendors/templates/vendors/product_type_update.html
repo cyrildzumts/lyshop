@@ -17,7 +17,7 @@
                 <div class="title">
                     <h3>{% trans "ProductType Update" %}</h3>
                 </div>
-                <form class="form" name="update-product-type" action="{% url PRODUCT_TYPE_UPDATE_URL product_type.product_type_uuid  %}" method="POST">{% csrf_token %}
+                <form class="form" name="update-product-type" action="{% url PRODUCT_TYPE_UPDATE_URL product_type.type_uuid  %}" method="POST">{% csrf_token %}
                     <div class="container">
                     
                         <div class="form-group">
@@ -52,7 +52,7 @@
                     </div><!-- End of container-->
 
                     <div class="actions row">
-                            <a class="mat-button mat-button-text js-cancel" href="{% url PRODUCT_TYPE_URL product_type.product_type_uuid  %}">{% trans "Cancel" %}</a>
+                            <a class="mat-button mat-button-text js-cancel" href="{% url PRODUCT_TYPE_URL product_type.type_uuid  %}">{% trans "Cancel" %}</a>
                             <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
                     </div>
                     

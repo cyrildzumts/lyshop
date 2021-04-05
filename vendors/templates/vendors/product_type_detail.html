@@ -3,7 +3,7 @@
 {% load catalog_tags %}
 
 {% block ACTIONS %}
-<a class="mat-button mat-button-default" href="{% url PRODUCT_TYPE_UPDATE_URL product_type.product_type_uuid  %}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url PRODUCT_TYPE_UPDATE_URL product_type.type_uuid  %}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span></a>
 <a class="mat-button mat-button-default" href="{% url PRODUCT_TYPE_CREATE_URL %}"> <i class="fas fa-plus icon"></i><span>{% trans "New Produt Type" %}</span></a>
 <a class="mat-button mat-button-default" href="{% url PRODUCT_TYPES_URL %}"><i class="fas fa-list icon"></i><span>{% trans "Product Types" %}</span></a>
 

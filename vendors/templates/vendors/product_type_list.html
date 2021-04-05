@@ -13,7 +13,6 @@
                   <tr>
                           
                           <th scope="col">{% trans "Name" %}</th>
-                          <th scope="col">{% trans "Display Name" %}</th>
                           <th scope="col">{% trans "Code" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
                   </tr>
@@ -21,11 +20,9 @@
           <tbody>
                   {% for type in product_type_list  %}
                   <tr>
-    
-                  <td scope="row" data-label="{% trans 'Name' %}">{{type.name}}</td>
-                  <td data-label="{% trans 'Display Name' %}">{{type.display_name}}</td>
+                  <td data-label="{% trans 'Name' %}">{{type.display_name}}</td>
                   <td data-label="{% trans 'Code' %}">{{type.code}}</td>
-                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{type.get_vendor_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{% url PRODUCT_TYPE_URL type.type_uuid  %}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
                   
                   </tr>
                   {% endfor %}
