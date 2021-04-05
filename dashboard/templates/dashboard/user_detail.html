@@ -102,6 +102,34 @@
         </div>
 
 </div>
+<div class="container">
+<div class="mat-box">
+        <h5>{% trans "User Groups" %}</h5>
+        <ul>
+                {% for g in user_instance.groups %}{% endfor %}
+                <li>    
+                        <ul>
+                                <li>
+                                    <h5>{% trans "Group" %} {{g.name}}</h5>
+                                    <h6>{% trans "Group Permissions" %}</h6>
+                                </li>
+                                {% for p in g.permissions %}
+                                <li>{{p.name}} - {{p.codename}}</li>
+                                {% endfor %}
+                        </ul>
+                </li>
+        </ul>
+
+
+
+        <h5>{% trans "User Permissions" %}</h5>
+        <ul>
+                {% for p in user_instance.user_permissions %}{% endfor %}
+                <li>{{p.name}} - {{p.codename}}</li>
+        </ul>
+
+</div>
+</div>
 {% if cart_items %}
 <div class="col-m-12 col-8">
         <div class="mat-list-wrapper wrapper">

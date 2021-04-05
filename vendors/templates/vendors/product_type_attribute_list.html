@@ -1,25 +1,15 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 {% load catalog_tags %}
-{% block MAIN_CONTENT %}
-{% if is_seller %}
-<div class="container wrapper">
-    <div class="col-m-12 col-9">
-        <div class="banner--actions">
-            <a class="mat-button mat-button-text" href="{% url 'vendors:product-type-attribute-create' %}"><i class="fas fa-plus icon"></i><span>{% trans "Add Attribute Type" %}</span></a>    
-            <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Home" %}</span></a>    
-        </div><!--End of Banner-Actions-->
-    </div><!--End of Responsive-->
 
-</div><!--End of Container-->
-<div class="container wrapper">
-  <div class="col-m-12 col-9">
+{% block ACTIONS %}
+<a class="mat-button mat-button-text" href="{% url TYPE_ATTRIBUTE_CREATE_URL %}"><i class="fas fa-plus icon"></i><span>{% trans "New Attribute Type" %}</span></a>    
+{% endblock ACTIONS %}
+
+{% block CONTENT_MAIN %}
+
+<div class="container">
     <div class="mat-table-wrapper">
-        <div class="row">
-            <div class="mat-table-title">
-                {% trans "Type Attributes" %}
-            </div>
-        </div><!--End of Row-->
         <form action="{% url 'vendors:product-type-attributes-delete' %}" method="POST">{% csrf_token %}
         
         <table id="attr-list" class="mat-table js-filter-table">
@@ -30,7 +20,6 @@
                   <tr>
                         <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></th>
                         <th scope="col">{% trans "Name" %}</th>
-                        <th scope="col">{% trans "Display Name" %}</th>
                         <th scope="col">{% trans "Type" %}</th>
                         <th scope="col">{% trans "Description" %}</th>
                         <th scope="col">{% trans "Details" %}</th>
@@ -40,29 +29,17 @@
                   {% for attr in type_attribute_list %}
                   <tr>
                         <td scope="row" class="checkbox"><label><input class="js-selectable" type="checkbox" name="type_attributes" value="{{attr.pk}}"><span class="checkbox-label"></span></label></td>
-                        <td data-label="{% trans 'Name' %}">{{attr.name}}</td>
-                        <td data-label="{% trans 'Display Name' %}">{{attr.display_name}}</td>
+                        <td data-label="{% trans 'Name' %}">{{attr.display_name}}</td>
                         <td data-label="{% trans 'Type' %}">{{attr.attribute_type|attr_type_key}}</td>
                         <td data-label="{% trans 'Description' %}">{{attr.description}}</td>
-                        <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{{attr.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                        <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-text" href="{% url TYPE_ATTRIBUTE_URL attr.type_attribute_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   
           </tbody>
-          <tfoot>
-                  
-          </tfoot>
-
     </table>
     </form>
     {% include "tags/pagination.html" with page_set=type_attribute_list %}
     </div><!--End of Table Wrapper-->
 </div>
-</div>
-
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}

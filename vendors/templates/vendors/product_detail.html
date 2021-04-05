@@ -7,8 +7,7 @@
  {% include 'tags/product_detail_actions_snippet.html' %}
 {% endblock ACTIONS %}
 
-{% block MAIN_CONTENT %}
-{% if is_seller %}
+{% block CONTENT_MAIN %}
 {% include 'tags/product_detail_snippet.html' %}
 
 {% comment %}<div class="container wrapper">
@@ -138,9 +137,4 @@
 
 </div><!--End of container-->{% endcomment %}
 
-{% else %}
-<div class="access-error">
-  <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
-</div>
-{% endif %}
-{% endblock MAIN_CONTENT %}
+{% endblock CONTENT_MAIN %}
