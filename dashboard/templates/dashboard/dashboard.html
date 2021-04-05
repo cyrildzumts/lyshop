@@ -14,9 +14,13 @@
 {% block DASHBOARD_SUMMARY %}
         {% include "tags/dashboard_summary.html" %}
 {% endblock DASHBOARD_SUMMARY %}
+
 {% block CONTENT %}
-                
+            
 <div class="mat-table-wrapper">
+{% if order_list %}
+
+
         <div class="row"><h4>{% trans "Recent Orders" %}</h4> <a href="{% url 'dashboard:orders' %}" class="mat-button mat-button-default"><span>{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
         <table id="order-list" class="mat-table">
                 <thead>
@@ -47,6 +51,9 @@
                 </tfoot>
 
         </table>
+{% else %}
+<div class="mat-box">{% trans "No Recents Orders" %}</div>
+{% endif %}
         
 </div> <!--End of Table Wrapper-->
 <div class="mat-table-wrapper">
@@ -55,7 +62,7 @@
                         <thead>
                                 <tr>
                                         <th scope="col">{% trans "Name" %}</th>
-                                        <th scope="col">{% trans "Is Active" %}</th>
+                                        <th scope="col">{% trans "Status" %}</th>
                                         <th scope="col">{% trans "Date Joined" %}</th>
                                 </tr>
                         </thead>
@@ -63,7 +70,7 @@
                                 {% for u in user_list  %}
                                 <tr>
                                         <td data-label="{% trans 'Name' %}">{{u.get_full_name}}</td>
-                                        <td data-label="{% trans 'Is Active' %}">{{u.is_active|yesno:_('yes,no')}}</td>
+                                        <td data-label="{% trans 'Status' %}"><i class="fas fa-circle {% if u.is_active %}success {% else %} warning {% endif %} icon"></i>{{u.is_active|yesno:_('active,inactive')}}</td>
                                         <td data-label="{% trans 'Date Joined' %}">{{u.date_joined|date:"F j, Y"}}</td>
                                 </tr>
                                 {% endfor %}

@@ -104,7 +104,8 @@
 </div>
 <div class="container">
 <div class="mat-box">
-        <h5>{% trans "User Groups" %}</h5>
+        <h5>{% trans "User Groups" %} ({{user_instance.groups.count}}) </h5>
+        {% if user_instance.groups %}
         <ul>
                 {% for g in user_instance.groups.all %}
                 <li>    
@@ -120,36 +121,36 @@
                 </li>
                 {% endfor %}
         </ul>
+        {% endif %}
 
 
-
-        <h5>{% trans "User Permissions" %}</h5>
+        <h5>{% trans "User Permissions" %} ({{user_instance.user_permissions.count}})</h5>
+        {% if user_instance.user_permissions %}
         <ul>
                 {% for p in user_instance.user_permissions.all %}
                 <li>{{p.name}} - {{p.codename}}</li>
                 {% endfor %}
         </ul>
+        {% endif %}
 
 </div>
 </div>
 {% if cart_items %}
-<div class="col-m-12 col-8">
-        <div class="mat-list-wrapper wrapper">
-                <ul class="mat-list">
-                {% for item in cart_items %}
-                <li class="mat-list-item" id="item-{{item.id}}">
-                        {% include "tags/user_cart.html" %}
-                </li>
-                {% endfor %}
+<div class="container">
+        <div class="mat-list-wrapper">
+                <ul>
+                        {% for item in cart_items %}
+                        <li id="item-{{item.id}}">
+                                {% include "tags/user_cart.html" %}
+                        </li>
+                        {% endfor %}
                 </ul>
                 
         </div><!--End mat-list-wrapper-->
 </div>
-
-{% else %}
 {% endif %}
 {% if is_seller %}
-<div class="container wrapper">
+<div class="container">
         <div class="full">
         {% include 'tags/product_list_template.html' with product_list=product_list %}   
         </div>
