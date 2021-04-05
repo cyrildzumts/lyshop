@@ -106,7 +106,7 @@
 <div class="mat-box">
         <h5>{% trans "User Groups" %}</h5>
         <ul>
-                {% for g in user_instance.groups.all %}{% endfor %}
+                {% for g in user_instance.groups.all %}
                 <li>    
                         <ul>
                                 <li>
@@ -118,14 +118,16 @@
                                 {% endfor %}
                         </ul>
                 </li>
+                {% endfor %}
         </ul>
 
 
 
         <h5>{% trans "User Permissions" %}</h5>
         <ul>
-                {% for p in user_instance.user_permissions.all %}{% endfor %}
+                {% for p in user_instance.user_permissions.all %}
                 <li>{{p.name}} - {{p.codename}}</li>
+                {% endfor %}
         </ul>
 
 </div>
