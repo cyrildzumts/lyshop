@@ -1,28 +1,25 @@
 {% extends "vendor_base.html"%}
 {% load i18n %}
 {% load catalog_tags %}
+
+{% block ACTIONS %}
+<a class="mat-button mat-button-default" href="{% url PRODUCT_TYPE_UPDATE_URL product_type.product_type_uuid  %}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url PRODUCT_TYPE_CREATE_URL %}"> <i class="fas fa-plus icon"></i><span>{% trans "New Produt Type" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url PRODUCT_TYPES_URL %}"><i class="fas fa-list icon"></i><span>{% trans "Product Types" %}</span></a>
+
+{% endblock ACTIONS %}
+
 {% block CONTENT_MAIN %}
 {% if is_seller %}
 
 
-<div class="container wrapper">
+<div class="container">
         <div class="mat-box full">
-          <div class="mat-box-title">
-            <h3> {% trans "Name" %} : {{product_type.name}} </h3>
-            <h4> {% trans "Display Name" %} : {{product_type.display_name}}</h4>
-            <h4> {% trans "Product Count" %} : {{product_list.count}}</h4>
-            <h4> {% trans "Type Code" %} : {{product_type.code}}</h4>
-          </div>
-          <div class="mat-box-content">
-
-          </div>
-          <div class="container">
-              <ul class="actions row" role="navigation">
-                  <li class="list-item"><a class="mat-button mat-button-default" href="{{product_type.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a> </li>
-                  <li class="list-item"> <a class="mat-button mat-button-default" href="{% url 'vendors:product-type-create' %}"> <i class="fas fa-plus icon"></i><span>{% trans "Add New Produt Type" %}</span></a> </li>
-                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:product-types' %}"><i class="fas fa-list icon"></i><span>{% trans "Product Types" %}</span></a> </li>
-                  <li class="list-item"> <a class="mat-button mat-button-text" href="{% url 'vendors:vendor-home' %}"><i class="fas fa-home icon"></i><span>{% trans "Vendor Home" %}</span></a></li>
-              </ul>
+          <div class="box">
+            <p class="entry"><span class="key"> {% trans "Name" %}</span> <span class="value">{{product_type.name}} </span></p>
+            <p class="entry"><span class="key"> {% trans "Display Name" %}</span> <span class="value">{{product_type.display_name}}</span></p>
+            <p class="entry"><span class="key"> {% trans "Product Count" %}</span><span class="value">{{product_list.count}}</span></p>
+            <p class="entry"><span class="key"> {% trans "Code" %}</span> <span class="value">{{product_type.code}}</span></p>
           </div>
         </div><!--End of mat-box-->
         {% comment %}
