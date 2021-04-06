@@ -2758,7 +2758,8 @@ table tbody tr, .mat-table tbody tr{
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	padding: 2%;
+	font-size: 0.7em;
+	padding: 0.2rem 0.5rem;
 	flex: 1 13%;
 }
 
