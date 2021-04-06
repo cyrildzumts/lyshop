@@ -108,7 +108,9 @@ define([
             self.ship_mode_changed(this);
         });
         this.validate_address();
+        self.update_payment_method();
         tabs.init();
+        
         $('input.js-input-ship-mode').prop('checked', false);
         $('.js-send').prop('disabled', true);
     };
