@@ -110,6 +110,7 @@ define([
         this.validate_address();
         tabs.init();
         $('input.js-input-ship-mode').prop('checked', false);
+        $('.js-send').prop('disabled', true);
     };
 
     Checkout.prototype.validate_address = function(){
