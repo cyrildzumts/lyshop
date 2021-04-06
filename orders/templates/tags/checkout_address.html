@@ -1,19 +1,19 @@
 {% load i18n %}
 <div id="{{step_id}}" class="tab-content" data-index="{{index}}" data-checked="{{step_id}} tab-icon">
     <div class="mat-box">
-        <h3>{% trans "Shipping Mode" %}</h3>
+        <h5>{% trans "Shipping Mode" %}</h5>
         <div class="mat-box-content">
             <ul>
                 {% for ship_mode in ship_modes %}
-                <li class="list-item" title="{% trans ship_mode.display_name %}"><input class="js-input-ship-mode" data-mode="{{ship_mode.mode}}" data-price="{{ship_mode.price|floatformat:'-2'}}" type="radio" name="ship_mode" value="{{ship_mode.pk}}"><label for="ship_mode">{% trans ship_mode.display_name %} - {{ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</label></li>
+                <li class="list-item" title="{% trans ship_mode.display_name %}"><input id="ship_mode-{{ship_mode.mode}}" class="js-input-ship-mode" data-mode="{{ship_mode.mode}}" data-price="{{ship_mode.price|floatformat:'-2'}}" type="radio" name="ship_mode" value="{{ship_mode.pk}}"><label for="ship_mode-{{ship_mode.mode}}">{% trans ship_mode.display_name %} - {{ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</label></li>
                 {% endfor %}
             </ul>
         </div>
     </div><!--End of Box-->
     <div id="address-container" class="hidden">
-        <div class="title">
-            <div class="flex"><span>{% trans "Shipping Address" %}</span> <span class="js-add-address mat-button  mat-button-default"> <i class="fas fa-plus icon"></i> {% trans "New Address" %}</span></div>
-        </div>
+        
+        <h5><span>{% trans "Shipping Address" %}</span> <span class="js-add-address mat-button  mat-button-default"> <i class="fas fa-plus icon"></i> {% trans "New Address" %}</span></h5>
+        
         {% if address %}
         <div id="checkout-address" class="mat-box">
                 <input id="address" type="hidden" name="address" value="{{address.pk}}">
