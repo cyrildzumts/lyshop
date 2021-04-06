@@ -212,7 +212,7 @@ define([
 
     };
     Checkout.prototype.update_payment_method = function(){
-        this.payment_option = parseInt($('.js-input-payment-option').val());
+        //this.payment_option = parseInt($('.js-input-payment-option').val());
         console.log("Checkout  update_payment_method :  option %s : type : %s ", this.payment_option, typeof this.payment_option);
         var methods = PAYMENT_OPTION_METHODS_MAPPING.get(parseInt(this.payment_option));
         var li_list = $(PAYMENT_METHOD_CONTAINER + " li");
