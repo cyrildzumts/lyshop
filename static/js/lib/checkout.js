@@ -89,7 +89,7 @@ define([
             console.log("payment option changed %s", this.value);
         });
         $('.js-input-payment-method').on('change', function(event){
-            self.payment_method = this.value;
+            self.payment_method = $(this).data('mode');
             console.log("payment method changed : %s", this.value);
             self.validate_pament_method();
         });
