@@ -3,6 +3,7 @@ define(function() {
 
 var Tabs = (function(){
     var tab_preffix = "step-header-";
+    var tab_content_prefix = "step-";
     var checked_icon_class = "fas fa-check";
     var tab_title_class = "tab-title";
     var tab_title_checked = "tab-checked";
@@ -68,7 +69,7 @@ var Tabs = (function(){
         }
         $('.' + tab_preffix + index + " .icon").toggleClass(checked_icon_class, toggle);
         $('.' + tab_preffix + index + " ." + tab_title_class).toggleClass(tab_title_checked, toggle);
-        $('.' + tab_preffix + index + " .js-tab-next").toggleClass('disabled', toggle);
+        $('.' + tab_content_prefix + index + " .js-tab-next").toggleClass('disabled', toggle);
     };
     Tabs.prototype.onTabClicked = function(event){
         var tab = parseInt($(event.target).data("index"));
