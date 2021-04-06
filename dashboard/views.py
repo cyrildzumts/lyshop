@@ -2676,6 +2676,7 @@ def user_details(request, pk=None):
     context['can_delete'] = PermissionManager.user_can_delete_user(request.user)
     context['can_update'] = PermissionManager.user_can_change_user(request.user)
     context['cart_items'] = cart_items
+    context['recent_orders'] = recent_orders
     context['ACCOUNT_TYPE'] = Account_Constants.ACCOUNT_TYPE
     context['content_title'] = f"{CORE_STRINGS.DASHBOARD_USER_TITLE} - {user.get_full_name()}"
     return render(request,template_name, context)
