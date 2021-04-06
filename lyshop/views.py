@@ -5,11 +5,11 @@ from django.templatetags.static import static
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.sitemaps import Sitemap
-from catalog.models import Highlight, Category
+from catalog.models import Highlight, Category, Product
 from catalog import constants as Catalog_Constants
 # from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from lyshop import settings
+from lyshop import settings, utils
 
     
 
@@ -40,6 +40,9 @@ def home(request):
     template_name = "home.html"
     page_title = settings.HOME_TITLE
     highlights = Highlight.objects.filter(is_active=True)
+    new_arrivals = Product.objects.all()[:utils.MAX_RECENTS]
+    features = Product.objects.all()[:utils.MAX_RECENTS]
+    soldes = Product.objects.filter(promotion_price__gt=0)[:utils.MAX_RECENTS]
     try:
         parfum_category = Category.objects.get(name='parfum')
     except ObjectDoesNotExist as identifier:
@@ -65,7 +68,11 @@ def home(request):
         'OG_TITLE' : page_title,
         'OG_DESCRIPTION': settings.META_DESCRIPTION,
         'OG_IMAGE': static('assets/lyshop_banner.png'),
-        'OG_URL': request.build_absolute_uri()
+        'OG_URL': request.build_absolute_uri(),
+        'new_arrivals': new_arrivals,
+        'soldes': soldes,
+        'features': features
+
     }
     return render(request, template_name,context)
 

@@ -73,19 +73,21 @@
     </div>
     {% endif %}
     
-    {% if electronics_category %}
-    <div class="image-banner">
-      <div class="banner-action">
-        <a href="{{electronics_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Electronics" %}</a>
+    {% comment %}
+      {% if electronics_category %}
+      <div class="image-banner">
+        <div class="banner-action">
+          <a href="{{electronics_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Electronics" %}</a>
+        </div>
+        <picture class="img-responsive">
+          <source media="(min-width:40em)" srcset="{% static 'assets/electronics_banner.png' %}">
+          <source media="(max-width:40em)" srcset="{% static 'assets/electronics_banner_small.png' %}">
+          <img class="img-responsive" src="{% static 'assets/electronics_banner.png' %}" alt="{% trans 'Electronics' %}">
+        </picture>
+        
       </div>
-      <picture class="img-responsive">
-        <source media="(min-width:40em)" srcset="{% static 'assets/electronics_banner.png' %}">
-        <source media="(max-width:40em)" srcset="{% static 'assets/electronics_banner_small.png' %}">
-        <img class="img-responsive" src="{% static 'assets/electronics_banner.png' %}" alt="{% trans 'Electronics' %}">
-      </picture>
-      
-    </div>
-    {% endif %}
+      {% endif %}
+    {% endcomment %}
   </div>
   
 </div><!--End of Banner-->
@@ -93,6 +95,38 @@
 {% endif %}
 
 {% block MAIN %}
+<div class="container">
+  <div class="new-arrivals">
+    <div class="slider-wrapper">
+        <ul class="slider">
+          {% for p in new_arrivals %}
+          <li class="slide">{% include 'tags/product_card' with SHOW_LABEL=True LABEL='New' p=p %}</li>
+          {% endfor %}
+        </ul>
+    </div>
+  
+  </div>
+
+  <div class="featured">
+    <div class="slider-wrapper">
+        <ul class="slider">
+          {% for p in features %}
+          <li class="slide">{% include 'tags/product_card' with SHOW_LABEL=False p=p %}</li>
+          {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+  <div class="offers">
+    <div class="slider-wrapper">
+        <ul class="slider">
+          {% for p in soldes %}
+          <li class="slide">{% include 'tags/product_card' with SHOW_LABEL=True LABEL="Solde" p=p %}</li>
+          {% endfor %}
+        </ul>
+    </div>
+  </div>
+</div>
 
 
 {% endblock MAIN %}

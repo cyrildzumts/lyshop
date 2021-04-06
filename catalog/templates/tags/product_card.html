@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<div class="filterable product product-card" data-name="{{p.display_name}}" data-brand="{{p.brand.id}}" data-gender="{{p.gender}}" data-price="{{p.price|floatformat:'-2'}}" data-type="{{p.product_type.id}}">
+
+        {% if SHOW_LABEL %}<span class="label">{% trans LABEL %}</span>{% endif %}
+
+        <div class="img-wrapper product-image">
+        {% if p.images and p.images.first %}
+                <img class="img-responsive" loading="lazy" data-src="{{p.images.first.get_image_url}}" alt="{{p.display_name}}">
+        {% else %}
+                <img class="img-responsive" loading="lazy" data-src="{{p.product.images.first.get_image_url}}" alt="{{p.display_name}}">
+        {% endif %}
+        </div>
+        <div class="product-info">
+                <div class="product-name left full">
+                        <span class="full emphasis">{{p.brand.display_name}}</span> 
+                        <span class="full">{{p.display_name}}</span>
+                </div>
+                <div class="full left">
+                        {% if p.is_promoted %}
+                        <div class="price">
+                                <span class="emphasis sale-price">{{p.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span> <span class="old-price">{{p.price|floatformat:"-2"}} {% trans CURRENCY %}</span>
+                        </div>
+                        {% else %}
+                        <div class="price">
+                                <span class="emphasis">{{p.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
+                        </div>
+                        {% endif %}
+                </div>
+                <div>
+                        
+                </div>
+        </div><!--End of details-->
+        </a>
+</div>

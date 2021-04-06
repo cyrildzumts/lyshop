@@ -2648,6 +2648,15 @@ table tbody tr, .mat-table tbody tr{
 	font-weight: 600;
 }
 
+.product-card .label{
+	position: absolute;
+	top: 0.5em;
+	left: 0.5em;
+	padding: 0.2em;
+	font-size: 0.875em;
+	font-weight: 600;
+}
+
 .menu-close{
 	display: none;
 }
@@ -2748,6 +2757,7 @@ table tbody tr, .mat-table tbody tr{
 .product-card{
 	display: flex;
 	flex-direction: column;
+	position: relative;
 	padding: 2%;
 	flex: 1 13%;
 }
