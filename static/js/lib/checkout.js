@@ -130,16 +130,17 @@ define([
         tabs.toggle_checked(address_tab, toggle);
     };
     Checkout.prototype.validate_pament_options = function(){
-       var is_valid = PAYMENT_OPTIONS.includes(this.payment_option);
+       var is_valid = PAYMENT_OPTIONS.includes(parseInt(this.payment_option));
        if(!is_valid){
            console.log("Payment Option is invalid");
        }
        tabs.toggle_checked(payment_tab, is_valid);
+       this.validate_pament_methods();
 
     };
 
     Checkout.prototype.validate_pament_methods = function(){
-       var is_valid = PAYMENT_OPTION_METHODS_MAPPING.get(this.payment_option).includes(this.payment_method);
+       var is_valid = PAYMENT_OPTION_METHODS_MAPPING.get(parseInt(this.payment_option)).includes(parseInt(this.payment_method));
        if(!is_valid){
            console.log("Payment Method is invalid");
        }
