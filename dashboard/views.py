@@ -2672,13 +2672,13 @@ def user_details(request, pk=None):
     context['is_seller'] = is_seller
     context['can_have_balance'] = can_have_balance
     context['has_balance'] = hasattr(user, 'balance') and user.balance is not None
-    context.update(get_view_permissions(request.user))
     context['can_delete'] = PermissionManager.user_can_delete_user(request.user)
     context['can_update'] = PermissionManager.user_can_change_user(request.user)
     context['cart_items'] = cart_items
     context['recent_orders'] = recent_orders
     context['ACCOUNT_TYPE'] = Account_Constants.ACCOUNT_TYPE
     context['content_title'] = f"{CORE_STRINGS.DASHBOARD_USER_TITLE} - {user.get_full_name()}"
+    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 
