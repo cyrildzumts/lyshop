@@ -890,6 +890,14 @@ a.button{
   margin-top: 1rem;
 }
 
+.tab-content .mat-box{
+	margin-top: 1rem;
+}
+
+.tab-content ul li{
+	margin-bottom: 0.5rem;
+}
+
 .tab{
   font-weight: 700;
   text-align: center;
