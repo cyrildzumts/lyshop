@@ -79,7 +79,7 @@ def dashboard(request):
     page_title = _('Dashboard') + ' - ' + settings.SITE_NAME
     username = request.user.username
     now = timezone.now()
-    recent_orders = Order.objects.order_by('-created_at')[:Constants.MAX_RECENT]
+    recent_orders = Order.objects.all()[:Constants.MAX_RECENT]
     currents_orders = Order.objects.filter(created_at__year=now.year, created_at__month=now.month)
     recent_products = Product.objects.filter(is_active=True)[:Constants.MAX_RECENT]
     products_count = Product.objects.aggregate(quantity=Sum('quantity')).get('quantity') or 0
@@ -392,9 +392,8 @@ def orders(request):
     queryset = field_filter.apply_filter()
     selected_filters = field_filter.selected_filters
     if queryset is None:
-        queryset = Order.objects.order_by('-created_at')
-    else:
-        queryset = queryset.order_by('-created_at')
+        queryset = Order.objects.all()
+
     template_name = "dashboard/order_list.html"
     page_title = _("Dashboard Orders") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
@@ -2664,7 +2663,7 @@ def user_details(request, pk=None):
     is_seller = vendors_service.is_vendor(user)
     can_have_balance = vendors_service.can_have_balance(user)
     cart_items = cart_service.get_cartitems(user)
-
+    recent_orders = Order.objects.filter(user=user)[:Constants.MAX_RECENT]
     template_name = "dashboard/user_detail.html"
     page_title = "User Details - " + settings.SITE_NAME
     context['page_title'] = page_title
