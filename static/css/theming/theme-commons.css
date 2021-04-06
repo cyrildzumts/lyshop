@@ -241,7 +241,8 @@ li.active.selected{
     color: var(--secondary-color);
 }
 
-.sidebar-menu > ul li:hover, .sidebar-menu > ul li:hover a{
+.sidebar-menu > ul li:hover, .sidebar-menu > ul li:hover a,
+.dash-main-content ul li:hover, .dash-main-content > ul li:hover a{
 	color: var(--secondary-color) !important;
     font-size: 0.875rem;
 }
