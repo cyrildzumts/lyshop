@@ -2655,6 +2655,7 @@ table tbody tr, .mat-table tbody tr{
 	padding: 0.2em;
 	font-size: 0.875em;
 	font-weight: 600;
+	text-transform:uppercase;
 }
 
 .menu-close{
