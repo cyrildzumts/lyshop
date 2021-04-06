@@ -887,6 +887,7 @@ a.button{
 .tab-content{
   padding: 0;
   justify-content: start;
+  margin-top: 1rem;
 }
 
 .tab{
