@@ -1,6 +1,7 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
 {% load core_tags %}
+{% load order_tag %}
 
 {%block CONTENT %}
 
@@ -137,7 +138,8 @@
 </div>
 {% if cart_items %}
 <div class="container">
-        <div class="mat-list-wrapper">
+        <div class="mat-box full">
+                <h5>{% trans "User Shopping Cart" %}</h5>
                 <ul>
                         {% for item in cart_items %}
                         <li id="item-{{item.id}}">
@@ -149,9 +151,23 @@
         </div><!--End mat-list-wrapper-->
 </div>
 {% endif %}
+
+{% if recent_orders %}
+<div class="container">
+        <div class="mat-box">
+                <h5>{% trans "Recents Orders" %}</h5>
+                <ul>
+                        {% for order in recent_orders %}
+                        <li><a class="mat-button mat-button-text" href="{{order.get_dashboard_url}}"><i class="fas fa-shopping-bag icon"></i><span>{{order.order_ref_number}}</span> - <span>{{order.total_price}} {% trans CURRENCY %}</span> - <span>{{order.status|order_status_value}}</span></a></li>
+                        {% endfor %}
+                </ul>
+        </div>
+</div>
+{% endif %}
+
 {% if is_seller %}
 <div class="container">
-        <div class="full">
+        <div class="mat-box full">
         {% include 'tags/product_list_template.html' with product_list=product_list %}   
         </div>
 </div>
