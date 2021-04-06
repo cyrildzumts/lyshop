@@ -102,7 +102,7 @@
 <div class="container">
   <div class="new-arrivals">
     <div class="slider-wrapper">
-        <ul class="slider flex align-left">
+        <ul class="slider flex align-left flex-wrap">
           {% for p in new_arrivals %}
           <li class="col-xs-6 col-2">{% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='New' p=p %}</li>
           {% endfor %}
@@ -113,7 +113,7 @@
 
   <div class="featured">
     <div class="slider-wrapper">
-        <ul class="slider flex align-left">
+        <ul class="slider flex align-left flex-wrap">
           {% for p in features %}
           <li class="col-xs-6 col-2">{% include 'tags/product_card.html' with SHOW_LABEL=False p=p %}</li>
           {% endfor %}
@@ -123,7 +123,7 @@
 
   <div class="offers">
     <div class="slider-wrapper">
-        <ul class="slider flex align-left">
+        <ul class="slider flex align-left flex-wrap">
           {% for p in soldes %}
           <li class="col-xs-6 col-2">{% include 'tags/product_card.html' with SHOW_LABEL=True LABEL="Solde" p=p %}</li>
           {% endfor %}
