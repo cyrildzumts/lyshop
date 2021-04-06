@@ -69,7 +69,7 @@ var Tabs = (function(){
         }
         $('.' + tab_preffix + index + " .icon").toggleClass(checked_icon_class, toggle);
         $('.' + tab_preffix + index + " ." + tab_title_class).toggleClass(tab_title_checked, toggle);
-        $('.' + tab_content_prefix + index + " .js-tab-next").toggleClass('disabled', toggle);
+        $('.' + tab_content_prefix + index + " .js-tab-next").toggleClass('disabled', !toggle);
     };
     Tabs.prototype.onTabClicked = function(event){
         var tab = parseInt($(event.target).data("index"));
