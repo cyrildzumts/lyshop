@@ -44,34 +44,38 @@
   {% endif %}
   <div class="container banner-container">
 
-  {% if parfum_category %}
-    <div class="image-banner">
-      <div class="banner-action">
-        <a href="{{parfum_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Perfumes" %}</a>
+ {% comment %}
+    {% if parfum_category %}
+      <div class="image-banner">
+        <div class="banner-action">
+          <a href="{{parfum_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Perfumes" %}</a>
+        </div>
+        <picture class="img-responsive">
+          <source media="(min-width:40em)" srcset="{% static 'assets/parfum_banner.png' %}">
+          <source media="(max-width:40em)" srcset="{% static 'assets/parfum_banner_small.png' %}">
+          <img class="img-responsive" src="{% static 'assets/parfum_banner_small-2.png' %}" alt="{% trans 'Parfum' %}">
+        </picture>
+        
       </div>
-      <picture class="img-responsive">
-        <source media="(min-width:40em)" srcset="{% static 'assets/parfum_banner.png' %}">
-        <source media="(max-width:40em)" srcset="{% static 'assets/parfum_banner_small.png' %}">
-        <img class="img-responsive" src="{% static 'assets/parfum_banner_small-2.png' %}" alt="{% trans 'Parfum' %}">
-      </picture>
-      
-    </div>
-  {% endif %}
+    {% endif %}
+ {% endcomment %}
     
 
-    {% if mode_category %}
-    <div class="image-banner">
-      <div class="banner-action">
-        <a href="{{mode_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Mode" %}</a>
+    {% comment %}
+      {% if mode_category %}
+      <div class="image-banner">
+        <div class="banner-action">
+          <a href="{{mode_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Mode" %}</a>
+        </div>
+        <picture class="img-responsive">
+          <source media="(min-width:40em)" srcset="{% static 'assets/mode_banner.png' %}">
+          <source media="(max-width:40em)" srcset="{% static 'assets/mode_banner_small.png' %}">
+          <img class="img-responsive" src="{% static 'assets/mode_banner_small-2.png' %}" alt="{% trans 'Mode' %}">
+        </picture>
+        
       </div>
-      <picture class="img-responsive">
-        <source media="(min-width:40em)" srcset="{% static 'assets/mode_banner.png' %}">
-        <source media="(max-width:40em)" srcset="{% static 'assets/mode_banner_small.png' %}">
-        <img class="img-responsive" src="{% static 'assets/mode_banner_small-2.png' %}" alt="{% trans 'Mode' %}">
-      </picture>
-      
-    </div>
-    {% endif %}
+      {% endif %}
+    {% endcomment %}
     
     {% comment %}
       {% if electronics_category %}
