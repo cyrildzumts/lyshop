@@ -136,7 +136,7 @@ define([
            console.log("Payment Option is invalid");
        }
        tabs.toggle_checked(payment_tab, is_valid);
-       this.validate_pament_method();
+       //this.validate_pament_method();
 
     };
 
