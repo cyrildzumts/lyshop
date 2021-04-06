@@ -236,6 +236,11 @@
 	/*margin-bottom: 0.5rem;*/
 }
 
+.spaced-list li span{
+    min-width: 100px;
+    padding: 0 1rem;
+}
+
 .sidebar .footer-wrapper a{
 	font-size: 0.5rem;
 	width: unset !important;

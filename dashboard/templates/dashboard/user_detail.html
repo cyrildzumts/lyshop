@@ -154,11 +154,11 @@
 
 {% if recent_orders %}
 <div class="container">
-        <div class="mat-box">
+        <div class="mat-box full">
                 <h5>{% trans "Recents Orders" %}</h5>
-                <ul>
+                <ul class="spaced-list">
                         {% for order in recent_orders %}
-                        <li><a class="mat-button mat-button-text" href="{{order.get_dashboard_url}}"><i class="fas fa-shopping-bag icon"></i><span>{{order.order_ref_number}}</span> - <span>{{order.total_price}} {% trans CURRENCY %}</span> - <span>{{order.status|order_status_value}}</span></a></li>
+                        <li><a class="mat-button mat-button-text" href="{{order.get_dashboard_url}}"><i class="fas fa-shopping-bag icon"></i><span>{{order.order_ref_number}}</span> - <span>{{order.total_price|floatformat:"-2"}} {% trans CURRENCY %}</span> - <span>{{order.status|order_status_value}}</span></a></li>
                         {% endfor %}
                 </ul>
         </div>
