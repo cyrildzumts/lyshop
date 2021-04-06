@@ -14,7 +14,7 @@
             <h5>{% trans "Payment Methods" %}</h5>
             <ul>
                 {% for p_method in payment_methods %}
-                <li id="p-method-{{p_method.mode}}" title="{{p_method.mode|pay_mode_value}}"><input id="pm-{{p_method.mode}}" class="js-input-payment-method" type="radio" name="payment_method" value="{{p_method.pk}}"><label for="pm-{{p_method.mode}}">{{p_method.display_name}}</label></li>
+                <li id="p-method-{{p_method.mode}}" title="{{p_method.mode|pay_mode_value}}"><input id="pm-{{p_method.mode}}" class="js-input-payment-method" type="radio" name="payment_method" value="{{p_method.mode}}"><label for="pm-{{p_method.mode}}">{{p_method.display_name}}</label></li>
                 {% endfor %}
             </ul>
     </div> 
