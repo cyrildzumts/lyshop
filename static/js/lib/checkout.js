@@ -13,6 +13,9 @@ define([
         'postal_code','phone_number', 'street'
  
     ];
+    var LI_PO_PREFIX = '#p-option-';
+    var LI_PM_PREFIX = '#p-method-';
+    var PAYMENT_METHOD_CONTAINER = "#payment-method ul";
     var SHIP_STANDARD = 0;
     var SHIP_EXPRESS  = 1
     var SHIP_IN_STORE = 2
@@ -41,6 +44,26 @@ define([
     var verification_tab = 3;
     var tabs = null;
 
+    var PAY_AT_DELIVERY = 0;
+    var PAY_AT_ORDER = 1;
+    var PAY_WITH_PAY = 2;
+    var PAY_BEFORE_DELIVERY = 3;
+
+    var PAYMENT_OPTIONS = [PAY_AT_DELIVERY, PAY_AT_ORDER, PAY_WITH_PAY, PAY_BEFORE_DELIVERY];
+
+    var ORDER_PAYMENT_CASH = 0;
+    var ORDER_PAYMENT_PAY = 1;
+    var ORDER_PAYMENT_MOBILE = 2;
+
+    var PAYMENT_METHODS = [ORDER_PAYMENT_CASH, ORDER_PAYMENT_MOBILE, ORDER_PAYMENT_PAY];
+
+
+
+    var PAYMENT_OPTION_METHODS_MAPPING = new Map();
+    PAYMENT_OPTION_METHODS_MAPPING.set(PAY_AT_DELIVERY, [ORDER_PAYMENT_CASH]);
+    PAYMENT_OPTION_METHODS_MAPPING.set(PAY_AT_ORDER, [PAY_WITH_PAY]);
+    PAYMENT_OPTION_METHODS_MAPPING.set(PAY_BEFORE_DELIVERY, [ORDER_PAYMENT_CASH, ORDER_PAYMENT_MOBILE, ORDER_PAYMENT_PAY]);
+
     var Checkout = function(tabs_comp){
         tabs = tabs_comp;
         this.address = {};
@@ -60,10 +83,13 @@ define([
         $('.js-input-payment-option').on('change', function(event){
             self.payment_option = this.value;
             self.validate_pament_options();
+            console.log("payment option changed %s", this.value);
+            self.update_payment_method();
         });
         $('.js-input-payment-method').on('change', function(event){
             self.payment_method = this.value;
-            self.validate_pament_options();
+            console.log("payment method changed : %s", this.value);
+            self.validate_pament_method();
         });
         $('.js-add-address').on('click', function(){
             $('#new-address, #checkout-address').toggleClass('hidden');
@@ -104,15 +130,21 @@ define([
         tabs.toggle_checked(address_tab, toggle);
     };
     Checkout.prototype.validate_pament_options = function(){
-       var toggle = false;
-       if(this.payment_method == -1 || this.payment_option == -1){
-           console.log("Payment Options are invalid");
-       }else{
-           toggle = true;
+       var is_valid = PAYMENT_OPTIONS.includes(this.payment_option);
+       if(!is_valid){
+           console.log("Payment Option is invalid");
        }
-       tabs.toggle_checked(payment_tab, toggle);
+       tabs.toggle_checked(payment_tab, is_valid);
 
     };
+
+    Checkout.prototype.validate_pament_methods = function(){
+       var is_valid = PAYMENT_OPTION_METHODS_MAPPING.get(this.payment_option).includes(this.payment_method);
+       if(!is_valid){
+           console.log("Payment Method is invalid");
+       }
+        tabs.toggle_checked(payment_tab, is_valid);
+     };
 
     Checkout.prototype.create_address = function(){
         var self = this;
@@ -145,7 +177,7 @@ define([
             url : api_address_url,
             data : data
         }
-        var add_promise = ajax(option).then(function(response){
+        var add_promise = ajax(option, true).then(function(response){
             if(response.status){
                 address_inputs.each(function(){
                     this.disabled = 'disabled';
@@ -172,7 +204,13 @@ define([
 
     };
     Checkout.prototype.update_payment_method = function(){
-        
+        var methods = PAYMENT_OPTION_METHODS_MAPPING.get(this.payment_option);
+        var is_valid = methods && methods.includes(this.payment_method);
+        var li_list = $(PAYMENT_METHOD_CONTAINER + " li");
+        li_list.hide();
+        methods.forEach(function(value, index){
+            $(LI_PM_PREFIX + value, PAYMENT_METHOD_CONTAINER).toggle(is_valid);
+        });
     };
     Checkout.prototype.ship_mode_changed = function(el){
         var mode = parseInt($(el).data('mode'));
