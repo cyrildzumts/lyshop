@@ -142,7 +142,8 @@ define([
     };
 
     Checkout.prototype.validate_pament_method = function(){
-       var is_valid = PAYMENT_OPTION_METHODS_MAPPING.get(parseInt(this.payment_option)).includes(parseInt(this.payment_method));
+       var methods = PAYMENT_OPTION_METHODS_MAPPING.get(parseInt(this.payment_option));
+       var is_valid = methods && methods.includes(parseInt(this.payment_method));
        if(!is_valid){
            console.log("Payment Method is invalid");
        }
