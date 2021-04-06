@@ -98,9 +98,9 @@
 <div class="container">
   <div class="new-arrivals">
     <div class="slider-wrapper">
-        <ul class="slider">
+        <ul class="slider flex">
           {% for p in new_arrivals %}
-          <li class="slide col-xs-6 col-3">{% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='New' p=p %}</li>
+          <li class="col-xs-6 col-3">{% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='New' p=p %}</li>
           {% endfor %}
         </ul>
     </div>
@@ -109,9 +109,9 @@
 
   <div class="featured">
     <div class="slider-wrapper">
-        <ul class="slider">
+        <ul class="slider flex">
           {% for p in features %}
-          <li class="slide col-xs-6 col-3">{% include 'tags/product_card.html' with SHOW_LABEL=False p=p %}</li>
+          <li class="col-xs-6 col-3">{% include 'tags/product_card.html' with SHOW_LABEL=False p=p %}</li>
           {% endfor %}
         </ul>
     </div>
@@ -119,9 +119,9 @@
 
   <div class="offers">
     <div class="slider-wrapper">
-        <ul class="slider">
+        <ul class="slider flex">
           {% for p in soldes %}
-          <li class="slide col-xs-6 col-3">{% include 'tags/product_card.html' with SHOW_LABEL=True LABEL="Solde" p=p %}</li>
+          <li class="col-xs-6 col-3">{% include 'tags/product_card.html' with SHOW_LABEL=True LABEL="Solde" p=p %}</li>
           {% endfor %}
         </ul>
     </div>
