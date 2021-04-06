@@ -134,7 +134,7 @@ define([
        if(!is_valid){
            console.log("Payment Option is invalid");
        }
-       tabs.toggle_checked(payment_tab, is_valid);
+       tabs.toggle_checked(payment_tab, !is_valid);
        this.validate_pament_methods();
 
     };
@@ -144,7 +144,7 @@ define([
        if(!is_valid){
            console.log("Payment Method is invalid");
        }
-        tabs.toggle_checked(payment_tab, is_valid);
+        tabs.toggle_checked(payment_tab, !is_valid);
      };
 
     Checkout.prototype.create_address = function(){
