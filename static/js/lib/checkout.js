@@ -15,6 +15,7 @@ define([
     ];
     var LI_PO_PREFIX = '#p-option-';
     var LI_PM_PREFIX = '#p-method-';
+    var INPOUT_PM_PREFIX = '#pm-';
     var PAYMENT_METHOD_CONTAINER = "#payment-method ul";
     var SHIP_STANDARD = 0;
     var SHIP_EXPRESS  = 1
@@ -135,11 +136,11 @@ define([
            console.log("Payment Option is invalid");
        }
        tabs.toggle_checked(payment_tab, is_valid);
-       this.validate_pament_methods();
+       this.validate_pament_method();
 
     };
 
-    Checkout.prototype.validate_pament_methods = function(){
+    Checkout.prototype.validate_pament_method = function(){
        var is_valid = PAYMENT_OPTION_METHODS_MAPPING.get(parseInt(this.payment_option)).includes(parseInt(this.payment_method));
        if(!is_valid){
            console.log("Payment Method is invalid");
@@ -209,6 +210,9 @@ define([
         var methods = PAYMENT_OPTION_METHODS_MAPPING.get(parseInt(this.payment_option));
         var li_list = $(PAYMENT_METHOD_CONTAINER + " li");
         li_list.hide();
+        $('input', li_list).each(function(){
+            this.checked = false;
+        });
         if(methods){
             methods.forEach(function(value, index){
                 $(LI_PM_PREFIX + value, PAYMENT_METHOD_CONTAINER).show();
