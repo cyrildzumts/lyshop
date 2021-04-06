@@ -307,11 +307,9 @@ input{
 }
 
 label{
-	padding: 4px 8px;
 	/*width: 250px;*/
 	text-align: left;
 	/*max-width: 350px;*/
-	color: #CCC;
 }
 
 .label-row{
@@ -892,9 +890,13 @@ a.button{
 
 .tab-content .mat-box{
 	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 .tab-content ul li{
+	display: flex;
+	align-items: center;
+	justify-content: start;
 	margin-bottom: 0.5rem;
 }
 
