@@ -83,9 +83,10 @@ define([
         var addr = document.getElementById('address');
         $('.js-input-payment-option').on('change', function(event){
             self.payment_option = this.value;
+            self.payment_method = -1;
+            self.update_payment_method();
             self.validate_pament_options();
             console.log("payment option changed %s", this.value);
-            self.update_payment_method();
         });
         $('.js-input-payment-method').on('change', function(event){
             self.payment_method = this.value;
@@ -135,8 +136,8 @@ define([
        if(!is_valid){
            console.log("Payment Option is invalid");
        }
-       tabs.toggle_checked(payment_tab, is_valid);
-       //this.validate_pament_method();
+       //tabs.toggle_checked(payment_tab, is_valid);
+       this.validate_pament_method();
 
     };
 
@@ -146,6 +147,7 @@ define([
            console.log("Payment Method is invalid");
        }
         tabs.toggle_checked(payment_tab, is_valid);
+        return is_valid;
      };
 
     Checkout.prototype.create_address = function(){
@@ -212,6 +214,7 @@ define([
         li_list.hide();
         $('input', li_list).each(function(){
             this.checked = false;
+            this.value = -1;
         });
         if(methods){
             methods.forEach(function(value, index){
