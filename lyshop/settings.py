@@ -274,9 +274,10 @@ LOGGING = {
         },
         'file': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
+            'class': 'logging.TimedRotatingFileHandler',
             'formatter': 'file',
-            'filename':'logs/lyshop.log'
+            'filename':'logs/lyshop.log',
+            'when' : 'midnight'
         },
         'mail_admins': {
             'level': 'ERROR',
@@ -296,7 +297,7 @@ LOGGING = {
         },
         'django.request': {
             'handlers': ['mail_admins', 'file'],
-            'level': 'ERROR',
+            'level': 'WARNING',
             'propagate': False,
         },
         'django.template': {
