@@ -2648,6 +2648,17 @@ table tbody tr, .mat-table tbody tr{
 	font-weight: 600;
 }
 
+.highlight ul{
+	width: 100%;
+	flex-direction: row !important;
+	flex-wrap: nowrap !important;
+	overflow: hidden !important;
+	overflow-x: auto !important;
+	padding: 0.2em !important;
+	padding-top: 3em !important;
+	margin-bottom: 1em !important;
+}
+
 .product-card .label{
 	position: absolute;
 	top: 0.5em;

@@ -110,16 +110,18 @@
     </div>
   
   </div>
-
-  <div class="featured">
+  {% for h in highlights %}
+  <div class="featured highlight">
+    <span class="label">{% trans h.display_name %}</span>
     <div class="slider-wrapper">
-        <ul class="slider flex align-left flex-wrap">
-          {% for p in features %}
+        <ul class="slider flex align-left">
+          {% for p in h.products.all %}
           <li class="col-xs-6 col-2">{% include 'tags/product_card.html' with SHOW_LABEL=False p=p %}</li>
           {% endfor %}
         </ul>
     </div>
   </div>
+  {% endfor %}
 
   <div class="offers">
     <div class="slider-wrapper">
