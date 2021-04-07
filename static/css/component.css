@@ -2636,7 +2636,7 @@ table tbody tr, .mat-table tbody tr{
 	padding: 0.2em !important;
 	padding-top: 3em !important;
 	margin-bottom: 1em !important;
-	justify-content: center;
+	/*justify-content: center;*/
 }
 
 .highlight .product-card{
