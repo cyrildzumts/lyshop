@@ -2626,6 +2626,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .highlight{
+	display: flex;
 	position: relative;
 	width: 100%;
 	flex-direction: row !important;
