@@ -378,9 +378,10 @@
 
 .old-price{
     text-decoration: line-through;
-    color: #242424;
+    color: #0A0A0A;
     margin-right: 4px;
-    font-size: 80%;
+    font-size: 60%;
+    font-weight: 700;
 
 
 }

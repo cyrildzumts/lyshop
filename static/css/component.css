@@ -2658,7 +2658,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .product-card > .label{
-	top: 0.5em;
+	/*top: 0.5em;*/
 	/*left: 0;*/
 	position: absolute;
 	padding: 0.2em;
