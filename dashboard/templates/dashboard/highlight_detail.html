@@ -12,7 +12,7 @@
 {% block CONTENT_MAIN %}
 
 <div class="container">
-    <div class="mat-box wrapper">
+    <div class="mat-box ">
         <div class="grid">
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Name" %}</span> <span class="value">{{highlight.name}}</span></p>
@@ -28,20 +28,14 @@
             
         </div><!--End mat-box-content-->
     </div><!--End mat-box-->
-    <div class="mat-box wrapper">
-        <div class="grid title">
-            <div class="mat-box-title wrapper">
-                <h4> {% trans "Highlight Products" %}</h4>
-            </div>
-            
-        </div><!--End of title-->
+    <div class="mat-box full">
+        <h5> {% trans "Highlight Products" %}</h5>
         <div class="mat-box-content">
             <div class="mat-table-wrapper">
                 <table id="item-list" class="mat-table">
                     <thead>
                             <tr>
-                                    <th>{% trans "Display Name" %}</th>
-                                    <th>{% trans "Quantiy" %}</th>
+                                    <th>{% trans "Article" %}</th>
                                     <th>{% trans "Price" %}</th>
                                     <th>{% trans "Promotion Price" %}</th>
                                     <th>{% trans "Details" %}</th>
@@ -51,8 +45,6 @@
                             {% for item in highlighted_products  %}
                             <tr>
                                 <td>{{item.display_name}}</td>
-                                <td>{{item.quantity}}</td>
-                                
                                 <td><span>{{item.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                                 <td><a class="mat-button mat-button-default" href="{{item.product.get_absolute_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Product Details" %}</span></a></td>
@@ -66,13 +58,8 @@
         </div><!--End mat-box-content-->
     </div><!--End mat-box-->
 
-    <div class="mat-box wrapper">
-        <div class="grid title">
-            <div class="mat-box-title wrapper">
-                <h4> {% trans "Products" %}</h4>
-            </div>
-            
-        </div><!--End of title-->
+    <div class="mat-box full">
+        <h5> {% trans "Products" %}</h5>
         <div class="mat-box-content">
             <div class="mat-table-wrapper">
                 <form action="{% url 'dashboard:highlight-add-products' highlight.highlight_uuid %}" method="POST">{% csrf_token %}
@@ -81,7 +68,7 @@
                     <thead>
                             <tr>
                                 <th></th>
-                                <th>{% trans "Display Name" %}</th>
+                                <th>{% trans "Article" %}</th>
                                 <th>{% trans "Quantiy" %}</th>
                                 <th>{% trans "Price" %}</th>
                                 <th>{% trans "Promotion Price" %}</th>

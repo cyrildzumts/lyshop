@@ -19,22 +19,18 @@
                   
                   <tr>
                         <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
-                        <th scope="col">{% trans "Name" %}</th>
-                        <th scope="col">{% trans "Display Name" %}</th>
-                        <th scope="col">{% trans "Active" %}</th>
+                        <th scope="col">{% trans "Highlight" %}</th>
+                        <th scope="col">{% trans "Status" %}</th>
                         <th scope="col">{% trans "Details" %}</th>
-                        <th scope="col">{% trans "Delete Action" %}</th>
                   </tr>
           </thead>
           <tbody>
                   {% for highlight in highlight_list  %}
                   <tr>
                   <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="brands" value="{{highlight.pk}}"><span class="checkbox-label"></span></label></td>
-                  <td data-label="{% trans 'Name' %}">{{highlight.name}}</td>
-                  <td data-label="{% trans 'Display Name' %}">{{highlight.display_name}}</td>
-                  <td data-label="{% trans 'Active' %}">{{highlight.is_active|yesno}}</td>
+                  <td data-label="{% trans 'Highlight' %}">{{highlight.display_name}}</td>
+                  <td data-label="{% trans 'Status' %}"><i class="fas fa-circle icon {% if highlight.is_active %}success{% else %}warning{% endif %}"></i>{{highlight.is_active|yesno:_('active,inactive')}}</td>
                   <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{highlight.get_dashboard_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
-                  {% if can_delete_highlight %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:highlight-delete' highlight.highlight_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   
