@@ -100,8 +100,8 @@
 
 {% block MAIN %}
 <div class="container">
-  {% comment %}
-    <div class="new-arrivals">
+    <div class="new-arrivals highlight">
+      <span class="label">{% trans 'New Arrivals' %}</span>
       <div class="slider-wrapper">
           <ul class="slider flex align-left flex-wrap">
             {% for p in new_arrivals %}
@@ -111,7 +111,6 @@
       </div>
     
     </div>
-  {% endcomment %}
   {% for h in highlights %}
   <div class="featured highlight">
     <span class="label">{% trans h.display_name %}</span>
