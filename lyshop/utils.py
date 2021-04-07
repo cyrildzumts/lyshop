@@ -5,7 +5,7 @@ import logging
 import random
 
 logger = logging.getLogger(__name__)
-MAX_RECENTS = 3
+MAX_RECENTS = 5
 
 PAGINATED_BY = 50
 RAND_START = 0

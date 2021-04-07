@@ -100,16 +100,18 @@
 
 {% block MAIN %}
 <div class="container">
-  <div class="new-arrivals">
-    <div class="slider-wrapper">
-        <ul class="slider flex align-left flex-wrap">
-          {% for p in new_arrivals %}
-          <li class="col-xs-6 col-2">{% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='New' p=p %}</li>
-          {% endfor %}
-        </ul>
+  {% comment %}
+    <div class="new-arrivals">
+      <div class="slider-wrapper">
+          <ul class="slider flex align-left flex-wrap">
+            {% for p in new_arrivals %}
+            <li class="col-xs-6 col-2">{% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='New' p=p %}</li>
+            {% endfor %}
+          </ul>
+      </div>
+    
     </div>
-  
-  </div>
+  {% endcomment %}
   {% for h in highlights %}
   <div class="featured highlight">
     <span class="label">{% trans h.display_name %}</span>
@@ -123,7 +125,9 @@
   </div>
   {% endfor %}
 
-  <div class="offers">
+  {% if soldes %}
+  <div class="offers highlight">
+    <span class="label">{% trans 'Sale' %}</span>
     <div class="slider-wrapper">
         <ul class="slider flex align-left flex-wrap">
           {% for p in soldes %}
@@ -132,6 +136,7 @@
         </ul>
     </div>
   </div>
+  {% endif %}
 </div>
 
 
