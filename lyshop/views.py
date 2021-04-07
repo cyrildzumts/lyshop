@@ -41,7 +41,6 @@ def home(request):
     page_title = settings.HOME_TITLE
     highlights = Highlight.objects.filter(is_active=True)
     new_arrivals = Product.objects.all()[:utils.MAX_RECENTS]
-    features = Product.objects.all()[:utils.MAX_RECENTS]
     soldes = Product.objects.filter(promotion_price__gt=0)[:utils.MAX_RECENTS]
     try:
         parfum_category = Category.objects.get(name='parfum')
@@ -71,7 +70,6 @@ def home(request):
         'OG_URL': request.build_absolute_uri(),
         'new_arrivals': new_arrivals,
         'soldes': soldes,
-        'features': features
 
     }
     return render(request, template_name,context)
