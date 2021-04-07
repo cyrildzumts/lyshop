@@ -118,11 +118,11 @@
   <div class="offers highlight">
     <span class="label">{% trans 'Sale' %}</span>
     <div class="slider-wrapper">
-        <ul class="slider products">
+        <div class="slider products">
           {% for p in soldes %}
           {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL="Solde" p=p %}
           {% endfor %}
-        </ul>
+        </div>
     </div>
   </div>
   {% endif %}
