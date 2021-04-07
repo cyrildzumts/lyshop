@@ -2637,6 +2637,10 @@ table tbody tr, .mat-table tbody tr{
 	margin-bottom: 1em !important;
 }
 
+.highlight .product-card{
+	flex: 0 0 25%;
+}
+
 .highlight > .label{
 	top: 0.5em;
 	left: 0.5em;
@@ -3074,6 +3078,9 @@ table tbody tr, .mat-table tbody tr{
 	}
 	table td:last-child {
 		border-bottom: 0;
+	}
+	.highlight .product-card{
+		flex: 0 0 45% !important;
 	}
 
 	

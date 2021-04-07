@@ -103,14 +103,10 @@
   {% if soldes %}
     <div class="new-arrivals highlight">
       <span class="label">{% trans 'New Arrivals' %}</span>
-      <div class="slider-wrapper">
-          <div class="slider products">
-            {% for p in new_arrivals %}
-            {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='New' p=p %}
-            {% endfor %}
-          </div>
-      </div>
-    
+
+          {% for p in new_arrivals %}
+          {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='New' p=p %}
+          {% endfor %}
     </div>
   {% endif %}
 
