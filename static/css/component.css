@@ -2637,7 +2637,7 @@ table tbody tr, .mat-table tbody tr{
 	margin-bottom: 1em !important;
 }
 
-.highlight ~ .label{
+.highlight > .label{
 	position: absolute;
 	top: 0.5em;
 	left: 0.5em;
@@ -2657,7 +2657,7 @@ table tbody tr, .mat-table tbody tr{
 	margin-bottom: 1em !important;
 }
 
-.product-card ~ .label{
+.product-card > .label{
 	position: absolute;
 	top: 0.5em;
 	/*left: 0;*/
