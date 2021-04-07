@@ -274,7 +274,7 @@ LOGGING = {
         },
         'file': {
             'level': 'DEBUG',
-            'class': 'logging.TimedRotatingFileHandler',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
             'formatter': 'file',
             'filename':'logs/lyshop.log',
             'when' : 'midnight'
