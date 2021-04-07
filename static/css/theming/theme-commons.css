@@ -254,7 +254,7 @@ li.active.selected{
 
 .product-card .label{
     background-color: var(--secondary-color) !important;
-    color: #fafafa;
+    color: #fafafa !important;
 }
 
 a {
