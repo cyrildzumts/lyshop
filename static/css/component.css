@@ -2640,7 +2640,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .highlight .product-card{
-	flex: 0 0 25%;
+	flex: 0 0 20%;
 }
 
 .highlight > .label{
