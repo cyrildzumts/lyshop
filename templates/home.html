@@ -18,7 +18,7 @@
       <h4> {%trans 'Welcome to '%} {{site_name}}</h4>
       <h5>{% trans 'ONLINE SHOPPING MADE EASY' %}</h5>
     </div><!--End of Banner Titlte-->
-    <div class="banner--content">
+    <div class="banner--content hidden">
         <p class="banner--description banner-entry">
           {% blocktrans trimmed %}
           Are you looking for something new ? 
@@ -104,11 +104,11 @@
     <div class="new-arrivals highlight">
       <span class="label">{% trans 'New Arrivals' %}</span>
       <div class="slider-wrapper">
-          <ul class="slider flex align-left flex-wrap">
+          <div class="slider products">
             {% for p in new_arrivals %}
-            <li class="col-xs-6 col-2">{% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='New' p=p %}</li>
+            {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='New' p=p %}
             {% endfor %}
-          </ul>
+          </div>
       </div>
     
     </div>
@@ -118,9 +118,9 @@
   <div class="offers highlight">
     <span class="label">{% trans 'Sale' %}</span>
     <div class="slider-wrapper">
-        <ul class="slider flex align-left flex-wrap">
+        <ul class="slider products">
           {% for p in soldes %}
-          <li class="col-xs-6 col-2">{% include 'tags/product_card.html' with SHOW_LABEL=True LABEL="Solde" p=p %}</li>
+          {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL="Solde" p=p %}
           {% endfor %}
         </ul>
     </div>
@@ -131,11 +131,11 @@
   <div class="featured highlight">
     <span class="label">{% trans h.display_name %}</span>
     <div class="slider-wrapper">
-        <ul class="slider flex align-left">
+        <div class="slider products">
           {% for p in h.products.all %}
-          <li class="col-xs-6 col-2">{% include 'tags/product_card.html' with SHOW_LABEL=False p=p %}</li>
+          {% include 'tags/product_card.html' with SHOW_LABEL=False p=p %}
           {% endfor %}
-        </ul>
+        </div>
     </div>
   </div>
   {% endfor %}
