@@ -256,3 +256,7 @@ li.active.selected{
     background-color: var(--secondary-color) !important;
     color: #fafafa;
 }
+
+a {
+	color: var(--primary-color) ;
+}
