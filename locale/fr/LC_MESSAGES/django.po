@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 08:43+0000\n"
+"POT-Creation-Date: 2021-04-08 09:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2330,6 +2330,10 @@ msgstr "Meilleures offres de la semaine"
 #: core/resources/ui_strings.py:133 templates/home.html:62
 msgid "Sales"
 msgstr "Soldes"
+
+#: core/resources/ui_strings.py:134
+msgid "NEW"
+msgstr "NOUVEAU"
 
 #: core/templates/core/catalog_filter.html:13
 #: core/templates/core/filter.html:13
