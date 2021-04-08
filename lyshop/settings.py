@@ -291,7 +291,7 @@ LOGGING = {
             'propagate': False,
         },
         'django': {
-            'level': 'WARNING',
+            'level': 'DEBUG',
             'handlers': ['file'],
             'propagate': True,
         },
