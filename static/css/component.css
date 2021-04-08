@@ -2625,7 +2625,9 @@ table tbody tr, .mat-table tbody tr{
 	margin: 0;
 }
 
-.highlight{
+
+
+.highlight, .hz-scroll-xs{
 	display: flex;
 	position: relative;
 	width: 100%;
@@ -2642,6 +2644,7 @@ table tbody tr, .mat-table tbody tr{
 .highlight .product-card{
 	flex: 0 0 20%;
 }
+
 
 .highlight > .label{
 	top: 0.5em;
@@ -3112,6 +3115,23 @@ table tbody tr, .mat-table tbody tr{
 	}
 	.highlight .product-card{
 		flex: 0 0 45% !important;
+	}
+
+	.hz-scroll-xs{
+		display: flex;
+		position: relative;
+		width: 100%;
+		flex-direction: row !important;
+		flex-wrap: nowrap !important;
+		overflow: hidden !important;
+		overflow-x: auto !important;
+		padding: 0.2em !important;
+		padding-top: 3em !important;
+		margin-bottom: 1em !important;
+		/*justify-content: center;*/
+	}
+	.hz-scroll-xs .kiosk-image-wrapper{
+		flex: 0 0 80%;
 	}
 
 	
