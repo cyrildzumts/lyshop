@@ -52,7 +52,7 @@
     <div class="new-arrivals highlight">
       <span class="label">{% trans 'New Arrivals' %}</span>
           {% for p in new_arrivals %}
-          {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL={% trans "New" %} p=p %}
+          {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL="New" p=p %}
           {% endfor %}
     </div>
   {% endif %}
@@ -61,7 +61,7 @@
   <div class="offers highlight">
     <span class="label">{% trans 'Sales' %}</span>
           {% for p in soldes %}
-          {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL={% trans 'Sale' %} p=p %}
+          {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='Sale' p=p %}
           {% endfor %}
   </div>
   {% endif %}
