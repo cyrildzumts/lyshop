@@ -302,8 +302,8 @@ LOGGING = {
         },
         'django.template': {
             'handlers': ['console', 'file'],
-            'level': 'WARNING',
-            'propagate': False,
+            'level': 'DEBUG',
+            'propagate': True,
         }
     }
 }
