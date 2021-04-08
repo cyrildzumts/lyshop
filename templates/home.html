@@ -34,11 +34,11 @@
         </div><!--End of Banner Content-->
         {% if discover %}
         <div class="banner--actions">
-          <a class="mat-button mat-button-default" href="#"> {% trans 'Our catalog' %} {{site_name}}</a>
+          <a class="mat-button mat-button-default" href="#"> {% translate 'Our catalog' %} {{site_name}}</a>
         </div><!--End of Banner Actions-->
         {% else %}
         <div class="banner--actions">
-          <a class="mat-button mat-button-default" href="{% url 'catalog:catalog-home' %}"> {% trans 'Discover Our Catalog' %}</a>
+          <a class="mat-button mat-button-default" href="{% url 'catalog:catalog-home' %}"> {% translate 'Discover Our Catalog' %}</a>
         </div><!--End of Banner Actions-->
         {% endif %}
     </div>
@@ -48,27 +48,27 @@
 
 {% block MAIN %}
 <div class="container">
-  {% if soldes %}
+  {% if new_arrivals %}
     <div class="new-arrivals highlight">
-      <span class="label">{% trans 'New Arrivals' %}</span>
+      <span class="label">{% translate 'New Arrivals' %}</span>
           {% for p in new_arrivals %}
-          {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL='New' p=p %}
+          {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL={% translate "New" %} p=p %}
           {% endfor %}
     </div>
   {% endif %}
 
   {% if soldes %}
   <div class="offers highlight">
-    <span class="label">{% trans 'Sale' %}</span>
+    <span class="label">{% translate 'Sales' %}</span>
           {% for p in soldes %}
-          {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL="Solde" p=p %}
+          {% include 'tags/product_card.html' with SHOW_LABEL=True LABEL={% translate 'Sale' %} p=p %}
           {% endfor %}
   </div>
   {% endif %}
   
   {% for h in highlights %}
   <div class="featured highlight">
-    <span class="label">{% trans h.display_name %}</span>
+    <span class="label">{% translate h.display_name %}</span>
           {% for p in h.products.all %}
           {% include 'tags/product_card.html' with SHOW_LABEL=False p=p %}
           {% endfor %}
