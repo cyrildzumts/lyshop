@@ -4802,7 +4802,7 @@ def news(request):
         'content_title' : CORE_STRINGS.DASHBOARD_INFOS_TITLE
     }
     queryset = News.objects.all().order_by('-created_at')
-    page_title = _("News") + " - " + settings.SITE_NAME
+    page_title = _("Infos") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
     try:
@@ -4821,7 +4821,7 @@ def news(request):
 @login_required
 def news_create(request):
     template_name = 'dashboard/news_create.html'
-    page_title = _('New News')
+    page_title = _('New Infos')
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):
         logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
@@ -4838,12 +4838,12 @@ def news_create(request):
         postdata = utils.get_postdata(request)
         news = catalog_service.create_news(postdata)
         if news:
-            messages.success(request,_('News {news} created'))
-            logger.info(f'[ OK ] News {news} added by user {request.user.username}' )
+            messages.success(request,_('Info {news} created'))
+            logger.info(f'[ OK ] Info {news} added by user {request.user.username}' )
             return redirect('dashboard:news')
         else:
-            messages.error(request,_('News not created'))
-            logger.error(f'[ NOT OK ] Error on adding News by user {request.user.username}.' )
+            messages.error(request,_('Info not created'))
+            logger.error(f'[ NOT OK ] Error on adding Info by user {request.user.username}.' )
 
     form = PaymentMethodForm()
     context['form'] = form
@@ -4854,7 +4854,7 @@ def news_create(request):
 def news_detail(request, news_uuid=None):
     template_name = 'dashboard/news_detail.html'
     username = request.user.username
-    page_title = _('News')
+    page_title = _('Info')
 
     news = get_object_or_404(News, news_uuid=news_uuid)
     context = {
@@ -4869,7 +4869,7 @@ def news_detail(request, news_uuid=None):
 def news_update(request, news_uuid=None):
     username = request.user.username
     template_name = 'dashboard/news_update.html'
-    page_title = _('News Update')
+    page_title = _('Info Update')
     context = {
         'page_title': page_title,
         'content_title' : CORE_STRINGS.DASHBOARD_INFO_UPDATE_TITLE
