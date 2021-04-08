@@ -338,7 +338,7 @@ class Product(models.Model):
     
     @property
     def is_promoted(self):
-        return self.promotion_price is not None or self.promotion_price > 0
+        return self.promotion_price is not None and self.promotion_price > 0
     
     @property
     def image(self):
