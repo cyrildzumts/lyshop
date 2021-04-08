@@ -2811,7 +2811,9 @@ table tbody tr, .mat-table tbody tr{
 	margin: unset;
 }
 
-.product-detail-properties ul li .entry > div{
+.product-detail-properties ul li .entry > div,
+.product-detail-properties ul li .entry > .value,
+.product-detail-properties ul li .entry > .chips{
 	font-size: 0.75rem;
 }
 
