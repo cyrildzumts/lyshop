@@ -135,7 +135,7 @@ LABEL_NEW = _('New')
 LABEL_NEW_UPPERCASE = _('NEW')
 
 INFOS_FREE_SHIPPING_TITLE = _('Free shipping')
-INFOS_FREE_SHIPPING_CONTENT = _('LYSHOP is offering free shipping for members. This offers is valid until %(date_limit)s.')
+INFOS_FREE_SHIPPING_CONTENT = _('LYSHOP is offering free shipping for members. This offers is limited.')
 
 INFOS_CUSTOM_SALE_TITLE = _('Sale')
-INFOS_CUSTOM_SALE_CONTENT = _('LYSHOP is currently offering sales on selected articles. The sales are valid until %(date_limit)s.')
+INFOS_CUSTOM_SALE_CONTENT = _('LYSHOP is currently offering sale on selected articles.')
