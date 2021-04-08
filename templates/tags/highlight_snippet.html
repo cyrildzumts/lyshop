@@ -1,0 +1,8 @@
+{% if snippet_list %}
+    <div class="highlight">
+      <span class="label">{% translate SNIPPET_LABEL %}</span>
+          {% for p in snippet_list %}
+          {% include 'tags/product_card.html'  p=p %}
+          {% endfor %}
+    </div>
+  {% endif %}

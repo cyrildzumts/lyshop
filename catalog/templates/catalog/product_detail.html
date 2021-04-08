@@ -131,22 +131,10 @@
             </div><!--End of mat-box-->
       </div><!--End of container-->
     </div><!--End of col-4 -->
-    {% if variant_list %}
-
-    <div class="col-m-12 col-12">
-      <div class="mat-box">
-            <h4>{% trans "Variants" %}</h4>
-            <div class="mat-box-content">
-              <div class="mat-list-wrapper">
-                  <ul class="mat-list">
-                      {% for v in variant_list %}
-                        <li class="matt-list-item"><a class="mat-button mat-button-text" href="{{v.get_absolute_url}}">{{v.display_name}}</a></li>
-                      {% endfor %}
-                  </ul>
-              </div><!--End of wrapper-->
-            </div><!--End of content-->
-        </div><!--End of mat-box-->
-    </div><!--End of col-12-->
+    {% if recommendations %}
+    <div class="container">
+      {% include "tags/highlight_snippet.html" with snippet_list=recommendations SNIPPET_LABEL=recommendation_label %}
+    </div><!--End of container -->
     {% endif %}
   </div><!--End of row-->
 </div>

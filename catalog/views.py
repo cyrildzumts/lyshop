@@ -28,6 +28,7 @@ from catalog.forms import (BrandForm, ProductAttributeForm,
 )
 from cart import cart_service
 from cart.forms import AddCartForm
+from core.resources import ui_strings as CORE_UI_STRING
 from core.filters import filters
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -35,6 +36,7 @@ from wishlist import wishlist_service
 
 from operator import itemgetter
 from catalog import catalog_service, constants as Constants
+from inventory import inventory_service
 from lyshop import utils, settings, conf as GLOBAL_CONF
 import logging
 
@@ -203,7 +205,9 @@ def product_detail(request, product_uuid=None):
         'OG_DESCRIPTION': product.short_description,
         'OG_IMAGE': request.build_absolute_uri(product.images.first().get_image_url()),
         'OG_URL': request.build_absolute_uri(),
-        'wishlist_list' : wishlist_list
+        'wishlist_list' : wishlist_list,
+        'recommendations': inventory_service.get_recommandations(product),
+        'recommendation_label' : CORE_UI_STRING.RECOMMANDATION_LABEL
     }
     return render(request,template_name, context)
 

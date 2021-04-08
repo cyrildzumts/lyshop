@@ -351,3 +351,13 @@ def update_product_type(postdata, product_type):
         logger.error(f'Error when updating ProductType.')
     return product_type, False
 
+
+def get_top_10():
+    return models.Product.objects.filter(is_active=True).order_by('-view_count')[:Constants.TOP_VIEWS_MAX]
+
+
+
+def get_recommandations(product):
+    if not isinstance(product, models.Product):
+        return models.Product.objects.none()
+    return models.Product.objects.filter(is_active=True, category=product.category, gender=product.gender).exclude(pk=product.pk).order_by('-view_count')[:Constants.TOP_VIEWS_MAX]
