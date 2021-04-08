@@ -2870,17 +2870,17 @@ table tbody tr, .mat-table tbody tr{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	font-size: 0.8em;
+	font-size: 0.9rem;
 }
 
 .news .news-title{
-	font-size: 0.8em;
+	font-size: 0.9rem;
     font-weight: 600;
 }
 
 .news .news-content{
 	text-align: center;
-	font-size: 0.75em;
+	font-size: 0.8rem;
 	padding: 0 1em;
 }
 
