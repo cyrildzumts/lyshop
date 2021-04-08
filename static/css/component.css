@@ -3132,6 +3132,7 @@ table tbody tr, .mat-table tbody tr{
 	}
 	.hz-scroll-xs .kiosk-image-wrapper{
 		flex: 0 0 80%;
+		margin-right: 1rem;
 	}
 
 	
