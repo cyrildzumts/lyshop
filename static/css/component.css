@@ -2805,6 +2805,7 @@ table tbody tr, .mat-table tbody tr{
 
 .product-detail-properties ul li .entry{
 	align-items: baseline;
+	padding: 0 !important;
 }
 
 .product-detail-properties ul li .entry .key{
