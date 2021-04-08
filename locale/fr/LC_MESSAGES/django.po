@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 14:55+0000\n"
+"POT-Creation-Date: 2021-04-08 23:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -954,55 +954,55 @@ msgstr "Nr. d'article"
 msgid "added to cart"
 msgstr "ajouté au panier"
 
-#: catalog/constants.py:80
+#: catalog/constants.py:82
 msgid "Shoes | Ballerinas, Loafer, Pumps | LYSHOP"
 msgstr "Chaussures | Ballerines, Loafer, Escarpins | LYSHOP"
 
-#: catalog/constants.py:81
+#: catalog/constants.py:83
 msgid "Bags | Handbags for women | Online Shopping | LYSHOP"
 msgstr "Sacs | Sacs à mains pour femmes | Achats en ligne | LYSHOP"
 
-#: catalog/constants.py:82
+#: catalog/constants.py:84
 msgid "Perfumes | Perfumes for Men and Women | LYSHOP"
 msgstr "Parfums | Parfums Hommes et Femmes | LYSHOP"
 
-#: catalog/constants.py:83
+#: catalog/constants.py:85
 msgid "Electronics | Smartphones | LYSHOP"
 msgstr "Électroniques | Smartphones | LYSHOP"
 
-#: catalog/constants.py:84
+#: catalog/constants.py:86
 msgid "Fashion | Women and Men | LYSHOP"
 msgstr "Mode | Femmes et hommes | LYSHOP"
 
-#: catalog/constants.py:85
+#: catalog/constants.py:87
 msgid "Catalog | Fashion for all | LYSHOP"
 msgstr "Catalogue | La mode pour tous | LYSHOP"
 
-#: catalog/constants.py:86
+#: catalog/constants.py:88
 msgid "Eau De Parfum | Buy online | LYSHOP"
 msgstr "Eau De Parfum | Acheter en ligne | LYSHOP"
 
-#: catalog/constants.py:87
+#: catalog/constants.py:89
 msgid "Eau De Toilette | Buy online | LYSHOP"
 msgstr "Eau De Toilette | Acheter en ligne | LYSHOP"
 
-#: catalog/constants.py:88
+#: catalog/constants.py:90
 msgid "Smartphone | Buy online | LYSHOP"
 msgstr "Smartphone | Acheter en ligne | LYSHOP"
 
-#: catalog/constants.py:89
+#: catalog/constants.py:91
 msgid "Ballerines | Flat shoes | Buy online | LYSHOP"
 msgstr "Ballerines | Acheter en ligne | LYSHOP"
 
-#: catalog/constants.py:90
+#: catalog/constants.py:92
 msgid "Escarpins  | High heels shoes | Buy online | LYSHOP"
 msgstr "Escarpins | Chaussures à talons hauts | Acheter en ligne | LYSHOP"
 
-#: catalog/constants.py:91
+#: catalog/constants.py:93
 msgid "Mocassins | Buy online | LYSHOP"
 msgstr "Mocassins | Acheter en ligne | LYSHOP"
 
-#: catalog/constants.py:92
+#: catalog/constants.py:94
 msgid "Sneakers | Sport shoes | Buy online | LYSHOP"
 msgstr "Sneakers | Chaussures de sport | Acheter en ligne | LYSHOP"
 
@@ -1391,11 +1391,6 @@ msgstr ""
 "commande qu'à l'endroit mentionné ci-dessus. Les frais d'expédition à Port-"
 "gentil sont ajoutés au montant de la commande."
 
-#: catalog/templates/catalog/product_detail.html:138
-#: catalog/templates/catalog/product_variant_detail.html:100
-msgid "Variants"
-msgstr "Déclinaisons"
-
 #: catalog/templates/catalog/product_image_detail.html:5
 #: core/resources/ui_strings.py:79
 #: dashboard/templates/dashboard/product_image.html:5
@@ -1422,6 +1417,10 @@ msgstr "Dès que les produits seront disponibles, ils seront affichés ici."
 #: catalog/templates/tags/add_to_cart.html:14
 msgid "Add to Cart"
 msgstr "Ajouter au panier"
+
+#: catalog/templates/catalog/product_variant_detail.html:100
+msgid "Variants"
+msgstr "Déclinaisons"
 
 #: catalog/templates/tags/add_to_cart.html:17
 msgid "Please, login first or create an account"
@@ -1638,35 +1637,35 @@ msgstr "Prix inférieur à prix plus élevé"
 msgid "Populariy"
 msgstr "Popularité"
 
-#: catalog/views.py:174
+#: catalog/views.py:176
 #, fuzzy
 #| msgid "Product Name"
 msgid "Product added"
 msgstr "Nom du produit"
 
-#: catalog/views.py:177
+#: catalog/views.py:179
 #, fuzzy
 #| msgid "Product not created"
 msgid "Product not added"
 msgstr "Produit non crée"
 
-#: catalog/views.py:180
+#: catalog/views.py:182
 #, fuzzy
 #| msgid "Invalid coupon"
 msgid "Invalid form"
 msgstr "Coupon invalide"
 
-#: catalog/views.py:183
+#: catalog/views.py:185
 msgid "You must firt log in before you can add item to your cart"
 msgstr ""
 
-#: catalog/views.py:219 dashboard/views.py:1180 dashboard/views.py:1834
+#: catalog/views.py:223 dashboard/views.py:1180 dashboard/views.py:1834
 #: dashboard/views.py:2482 vendors/views.py:281 vendors/views.py:341
 #: vendors/views.py:1614
 msgid "Product Detail"
 msgstr "Les détails du produit"
 
-#: catalog/views.py:246 dashboard/views.py:1688 vendors/views.py:536
+#: catalog/views.py:250 dashboard/views.py:1688 vendors/views.py:536
 msgid "Product Variant Detail"
 msgstr "Détail de la variante de produit"
 
@@ -2346,6 +2345,10 @@ msgstr ""
 msgid "LYSHOP is currently offering sale on selected articles."
 msgstr ""
 "LYSHOP propose actuellement des soldes sur certains articles sélectionnés."
+
+#: core/resources/ui_strings.py:142
+msgid "Recommendation"
+msgstr "Recommandation"
 
 #: core/templates/core/catalog_filter.html:13
 #: core/templates/core/filter.html:13
@@ -5083,7 +5086,10 @@ msgid ""
 "LYSHOP offers fashion items, accessories and perfumes, all authentic. Become "
 "a LYSHOP member and take advantage of the special advantages. We deliver to "
 "Libreville and Port-Gentil in Gabon"
-msgstr "LYSHOP propose des articles de mode, des accessoires et des parfums, tous authentiques. Devenez membre LYSHOP et profitez des avantages spéciaux. Nous livrons sur Libreville et Port-Gentil au Gabon"
+msgstr ""
+"LYSHOP propose des articles de mode, des accessoires et des parfums, tous "
+"authentiques. Devenez membre LYSHOP et profitez des avantages spéciaux. Nous "
+"livrons sur Libreville et Port-Gentil au Gabon"
 
 #: lyshop/settings.py:31
 msgid "Fashion and quality for everyone | LYSHOP"
