@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 13:39+0000\n"
+"POT-Creation-Date: 2021-04-08 14:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3000,6 +3000,7 @@ msgstr "Commence le"
 
 #: dashboard/templates/dashboard/coupon_detail.html:43
 #: dashboard/templates/dashboard/coupon_detail.html:57
+#: dashboard/templates/dashboard/news_detail.html:25
 #: vendors/templates/vendors/coupon_detail.html:43
 msgid "Expire at"
 msgstr "Date d'expiration"
@@ -3486,14 +3487,6 @@ msgstr "Fin"
 msgid "Provider"
 msgstr "Fournisseur"
 
-#: dashboard/templates/dashboard/news_detail.html:25
-#: dashboard/templates/dashboard/payment_method_create.html:41
-#: dashboard/templates/dashboard/payment_method_detail.html:29
-#: dashboard/templates/dashboard/payment_method_update.html:33
-#: orders/templates/tags/tags_payment_method.html:14
-msgid "Credential"
-msgstr "Identifiant"
-
 #: dashboard/templates/dashboard/news_detail.html:39
 #: dashboard/templates/dashboard/payment_method_detail.html:46
 #: shipment/templates/shipment/ship_mode_detail.html:40
@@ -3696,6 +3689,13 @@ msgstr "Actualiser la commande"
 #: dashboard/templates/dashboard/order_update.html:60
 msgid "Order Paid"
 msgstr "Commande Payée"
+
+#: dashboard/templates/dashboard/payment_method_create.html:41
+#: dashboard/templates/dashboard/payment_method_detail.html:29
+#: dashboard/templates/dashboard/payment_method_update.html:33
+#: orders/templates/tags/tags_payment_method.html:14
+msgid "Credential"
+msgstr "Identifiant"
 
 #: dashboard/templates/dashboard/payment_method_detail.html:11
 msgid "New Paymnet Method"
@@ -5080,12 +5080,10 @@ msgstr ""
 
 #: lyshop/settings.py:30
 msgid ""
-"Welcome to LYSHOP, your online store in Gabon for fashion, perfumes and "
-"shoes. We deliver to Libreville and Port-gentil."
-msgstr ""
-"Bienvenu chez LYSHOP,  votre magasin de vente en ligne au Gabon pour la "
-"mode, parfums et chaussures. Nous effectuons des livraisons sur Libreville "
-"et Port-gentil."
+"LYSHOP offers fashion items, accessories and perfumes, all authentic. Become "
+"a LYSHOP member and take advantage of the special advantages. We deliver to "
+"Libreville and Port-Gentil in Gabon"
+msgstr "LYSHOP propose des articles de mode, des accessoires et des parfums, tous authentiques. Devenez membre LYSHOP et profitez des avantages spéciaux. Nous livrons sur Libreville et Port-Gentil au Gabon"
 
 #: lyshop/settings.py:31
 msgid "Fashion and quality for everyone | LYSHOP"
@@ -7182,6 +7180,14 @@ msgstr "Retirée de la liste"
 #: wishlist/views.py:268
 msgid "shop list renamed to"
 msgstr "liste d'achat renommée en"
+
+#~ msgid ""
+#~ "Welcome to LYSHOP, your online store in Gabon for fashion, perfumes and "
+#~ "shoes. We deliver to Libreville and Port-gentil."
+#~ msgstr ""
+#~ "Bienvenu chez LYSHOP,  votre magasin de vente en ligne au Gabon pour la "
+#~ "mode, parfums et chaussures. Nous effectuons des livraisons sur "
+#~ "Libreville et Port-gentil."
 
 #~ msgid "LYSHOP is offering free shipping for members"
 #~ msgstr "LYSHOP offre la livraison gratuite aux membres"
