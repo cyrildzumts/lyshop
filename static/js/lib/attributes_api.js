@@ -19,6 +19,9 @@ define(["ajax_api"],function(ajax) {
     };
     AttributManager.prototype.init = function(){
         var self = this;
+        if(this.form.length == 0){
+            return;
+        }
         $('.js-add-new-attribute').on('click', function(){
             //var target = $($(this).data('target'));
             //var form_container = $($(this).data('form'));
