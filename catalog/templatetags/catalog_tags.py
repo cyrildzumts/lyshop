@@ -11,6 +11,13 @@ register = template.Library()
 
 
 
+@register.simple_tag
+def core_trans (value):
+    if isinstance(value, str):
+        return _(value)
+    return value
+
+
 @register.filter
 def gender_key(value):
     k,v = Constants.get_gender_key(value)
