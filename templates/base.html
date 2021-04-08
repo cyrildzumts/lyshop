@@ -98,7 +98,12 @@
 </header>
 {% endblock HEADER %}
 {% block NEWS %}
-
+{% if news %}
+<div class="news">
+    <span class="news-title">{% trans news.title %}</span>
+    <div class="news-content">{% trans news.content %}</div>
+</div>
+{% endif %}
 {% endblock NEWS %}
 {% if banner %}
 {% block HEADER_BANNER %}
