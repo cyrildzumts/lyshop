@@ -1,6 +1,6 @@
 {% extends "dashboard_base.html"%}
 {% load i18n %}
-{% if not can_view_product %}
+{% if not perms.catalog.view_product %}
 <div class="access-error">
   <p>{% trans "The page you requested could not be found or you are not allowed to access this page." %}</p>
 </div>
@@ -16,11 +16,11 @@
     <li><a class="mat-button mat-button-text" href="{% url 'dashboard:product-types'%}"><i class="fas fa-random icon"></i><span>{% trans "Product Type" %}</span></a></li>
     <li><a class="mat-button mat-button-text" href="{% url 'dashboard:product-type-attributes'%}"><i class="fas fa-cogs icon"></i><span>{% trans "Type Attributes" %}</span></a></li>
     <li><a class="mat-button mat-button-text" href="{% url 'dashboard:attributes'%}"><i class="fas fa-ring icon"></i><span>{% trans "Products Attributes" %}</span></a></li>
-    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:news'%}"><i class="fas fa-newspaper icon"></i><span>{% trans "News" %}</span></a></li>
+    <li><a class="mat-button mat-button-text" href="{% url 'dashboard:news'%}"><i class="fas fa-newspaper icon"></i><span>{% trans "Infos" %}</span></a></li>
 {% endblock SIDEBAR_CONTENT %}
 
 {% block CONTENT %}
-    {% if can_add_product %}
+    {% if perms.catalog.add_product %}
     <div class="actions">
         <a class="mat-button mat-button-default" href="{% url 'dashboard:product-create'%}"><i class="fas fa-plus icon"></i><span>{% trans "New Product" %}</span></a>
         {% block ACTIONS %}
