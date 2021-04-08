@@ -131,11 +131,12 @@
             </div><!--End of mat-box-->
       </div><!--End of container-->
     </div><!--End of col-4 -->
-    {% if recommendations %}
+    
+  </div><!--End of row-->
+  {% if recommendations %}
     <div class="container">
       {% include "tags/highlight_snippet.html" with snippet_list=recommendations SNIPPET_LABEL=recommendation_label %}
     </div><!--End of container -->
     {% endif %}
-  </div><!--End of row-->
 </div>
 {% endblock MAIN %}
