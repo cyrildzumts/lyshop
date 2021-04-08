@@ -83,7 +83,3 @@ _("YELLOW")
 
 
 
-_('Free shipping')
-_('LYSHOP is offering free shipping for members')
-
-
