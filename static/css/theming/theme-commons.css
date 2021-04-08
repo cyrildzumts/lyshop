@@ -260,3 +260,9 @@ li.active.selected{
 a {
 	color: var(--primary-color) ;
 }
+
+.fas span{
+	border: 1px solid #fafafa;
+	background-color: #fafafa;
+	color: #0A0A0A;
+}
