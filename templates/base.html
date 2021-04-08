@@ -101,7 +101,7 @@
 {% if news %}
 <div class="news">
     <span class="news-title">{% trans news.title %}</span>
-    <div class="news-content">{% blocktrans %} {{news.content}}{% endblocktrans %}</div>
+    <div class="news-content"> {% trans news.content %}</div>
 </div>
 {% endif %}
 {% endblock NEWS %}
