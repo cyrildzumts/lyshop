@@ -49,27 +49,17 @@
             <div class="product-detail-properties left">
                 
                    <div class="left">
-                      <div class="left">
-                        <span class="value">{{product.brand.display_name}}</span> - <span>{{product.display_name}}</span>
-                      </div>
-                      <div class="gender">
-                        <span class="value">
-                        {{product.gender|gender_value}}
-                        </span>
-                      </div>
+                      <h5>{{product.brand.display_name}}</span> - <span>{{product.display_name}}</h5>
+                      <h5>{{product.gender|gender_value}}</h5>
                       {% if product.is_promoted %}
-                      <div class="price">
-                        <span class="sale-price">{{product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span> <span class="old-price">{{product.price|floatformat:"-2"}} {% trans CURRENCY %}</span>
-                      </div>
+                      <h6><span class="sale-price">{{product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span> <span class="old-price">{{product.price|floatformat:"-2"}} {% trans CURRENCY %}</span></h6>
                       {% else %}
-                      <div class="price">
-                        <span class="emphasis">{{product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span>
-                      </div>
+                      <h6>{{product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</h6>
                       {% endif %}
 
-                      <ul class="mat-list">
+                      <ul>
                         {% for k, attr in product_attrs.attrs.items %}
-                        <li class="attr-wrapper">
+                        <li>
                           {% if attr.selective %}
                             <div class="entry">
                               <span class="key">{% trans attr.display_name %}</span>
@@ -86,7 +76,7 @@
                           {% endif %}
                         </li>
                         {% endfor %}
-                        <li class="attr-wrapper">
+                        <li>
                           <div class="attr description">
                               <span class="key">{% trans "Description" %} :</span>
                               <p class="value">{{product.description}}</p>

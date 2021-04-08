@@ -2797,6 +2797,28 @@ table tbody tr, .mat-table tbody tr{
 	padding: 1em;
 	margin-top: 2em;
 }
+
+.product-detail-properties ul{
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.product-detail-properties ul li .entry{
+	align-items: baseline;
+}
+
+.product-detail-properties ul li .entry .key{
+	margin: unset;
+}
+
+.product-detail-properties ul li .entry > div{
+	font-size: 0.75rem;
+}
+
+.product-detail-properties .description{
+	padding-left: 0 !important;
+}
+
 .product-detail-wrapper{
 	font-size: 0.8em !important;
 }
