@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 13:37+0000\n"
+"POT-Creation-Date: 2021-04-08 13:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2339,7 +2339,8 @@ msgstr "Livraison gratuite"
 #: core/resources/ui_strings.py:138
 msgid "LYSHOP is offering free shipping for members. This offers is limited."
 msgstr ""
-"LYSHOP offre la livraison gratuite aux membres. Cette offre est limitée"
+"LYSHOP offre actuellement la livraison gratuite aux membres. Cette offre est "
+"limitée"
 
 #: core/resources/ui_strings.py:141
 msgid "LYSHOP is currently offering sale on selected articles."
