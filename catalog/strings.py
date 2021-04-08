@@ -12,7 +12,6 @@ _("Mode")
 _("Parfum")
 _("Shoes")
 
-
 # GENDER
 _("BABY BOY")
 _("BABY GIRL")
@@ -81,6 +80,7 @@ _("RED")
 _("SKY BLUE")
 _("WHITE")
 _("YELLOW")
+
 
 
 _('Free shipping')

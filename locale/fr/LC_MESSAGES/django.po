@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 09:22+0000\n"
+"POT-Creation-Date: 2021-04-08 09:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1049,241 +1049,241 @@ msgstr "Parfum"
 msgid "Shoes"
 msgstr "Chaussures"
 
-#: catalog/strings.py:17
+#: catalog/strings.py:16
 msgid "BABY BOY"
 msgstr "BÉBÉ GARCON"
 
-#: catalog/strings.py:18
+#: catalog/strings.py:17
 msgid "BABY GIRL"
 msgstr "BÉBÉ FILLE"
 
-#: catalog/strings.py:19
+#: catalog/strings.py:18
 msgid "BOY"
 msgstr "GARCON"
 
-#: catalog/strings.py:20
+#: catalog/strings.py:19
 msgid "GIRL"
 msgstr "FILLE"
 
-#: catalog/strings.py:21
+#: catalog/strings.py:20
 msgid "MEN"
 msgstr "HOMME"
 
-#: catalog/strings.py:22
+#: catalog/strings.py:21
 msgid "NO GENDER"
 msgstr "MIXTE"
 
-#: catalog/strings.py:23
+#: catalog/strings.py:22
 msgid "WOMEN"
 msgstr "FEMME"
 
-#: catalog/strings.py:26
+#: catalog/strings.py:25
 msgid "ACCESSORIES"
 msgstr "ACCÉSSOIRES"
 
-#: catalog/strings.py:27
+#: catalog/strings.py:26
 msgid "BAG"
 msgstr "SAC"
 
-#: catalog/strings.py:28
+#: catalog/strings.py:27
 msgid "SHOES"
 msgstr "CHAUSSURES"
 
-#: catalog/strings.py:29
+#: catalog/strings.py:28
 msgid "SMARTPHONE"
 msgstr "SMARTPHONE"
 
-#: catalog/strings.py:30
+#: catalog/strings.py:29
 msgid "PARFUM"
 msgstr "PARFUM"
 
-#: catalog/strings.py:33
+#: catalog/strings.py:32
 msgid "Battery"
 msgstr "Batterie"
 
-#: catalog/strings.py:34
+#: catalog/strings.py:33
 msgid "Capacity"
 msgstr "Capacité"
 
-#: catalog/strings.py:35
+#: catalog/strings.py:34
 msgid "Color"
 msgstr "Couleur"
 
-#: catalog/strings.py:36
+#: catalog/strings.py:35
 msgid "Material"
 msgstr "Matériel"
 
-#: catalog/strings.py:37
+#: catalog/strings.py:36
 msgid "RAM"
 msgstr "RAM"
 
-#: catalog/strings.py:38
+#: catalog/strings.py:37
 msgid "Size"
 msgstr "Taille"
 
-#: catalog/strings.py:40
+#: catalog/strings.py:39
 msgid "ONE SIZE"
 msgstr "TAILLE UNIQUE"
 
-#: catalog/strings.py:41
+#: catalog/strings.py:40
 msgid "one size"
 msgstr "taille unique"
 
-#: catalog/strings.py:42
+#: catalog/strings.py:41
 msgid "One Size"
 msgstr "Taille Unique"
 
-#: catalog/strings.py:45
+#: catalog/strings.py:44
 msgid "Beige"
 msgstr "Beige"
 
-#: catalog/strings.py:46
+#: catalog/strings.py:45
 msgid "Black"
 msgstr "Noir"
 
-#: catalog/strings.py:47
+#: catalog/strings.py:46
 msgid "Blue"
 msgstr "Bleu"
 
-#: catalog/strings.py:48
+#: catalog/strings.py:47
 msgid "Bordeaux"
 msgstr "Bordeaux"
 
-#: catalog/strings.py:49
+#: catalog/strings.py:48
 msgid "Brown"
 msgstr "Marron"
 
-#: catalog/strings.py:50
+#: catalog/strings.py:49
 msgid "Caramel"
 msgstr "Caramel"
 
-#: catalog/strings.py:51
+#: catalog/strings.py:50
 msgid "Coral"
 msgstr "Corail"
 
-#: catalog/strings.py:52
+#: catalog/strings.py:51
 msgid "Dark Blue"
 msgstr "Bleu Foncé"
 
-#: catalog/strings.py:53
+#: catalog/strings.py:52
 msgid "Fuchsia"
 msgstr "Fuchsia"
 
-#: catalog/strings.py:54
+#: catalog/strings.py:53
 msgid "Gray"
 msgstr "Gris"
 
-#: catalog/strings.py:55
+#: catalog/strings.py:54
 msgid "Green"
 msgstr "Vert"
 
-#: catalog/strings.py:56
+#: catalog/strings.py:55
 msgid "Olive"
 msgstr "Olive"
 
-#: catalog/strings.py:57
+#: catalog/strings.py:56
 msgid "Orange"
 msgstr "Orange"
 
-#: catalog/strings.py:58
+#: catalog/strings.py:57
 msgid "Pink"
 msgstr "Rose"
 
-#: catalog/strings.py:59
+#: catalog/strings.py:58
 msgid "Purple"
 msgstr "Violet"
 
-#: catalog/strings.py:60
+#: catalog/strings.py:59
 msgid "Red"
 msgstr "Rouge"
 
-#: catalog/strings.py:61
+#: catalog/strings.py:60
 msgid "Sky Blue"
 msgstr "Bleu Ciel"
 
-#: catalog/strings.py:62
+#: catalog/strings.py:61
 msgid "White"
 msgstr "Blanc"
 
-#: catalog/strings.py:63
+#: catalog/strings.py:62
 msgid "Yellow"
 msgstr "Jaune"
 
-#: catalog/strings.py:65
+#: catalog/strings.py:64
 msgid "BEIGE"
 msgstr "BEIGE"
 
-#: catalog/strings.py:66
+#: catalog/strings.py:65
 msgid "BLACK"
 msgstr "NOIR"
 
-#: catalog/strings.py:67
+#: catalog/strings.py:66
 msgid "BLUE"
 msgstr "BLEU"
 
-#: catalog/strings.py:68
+#: catalog/strings.py:67
 msgid "BORDEAUX"
 msgstr "BORDEAUX"
 
-#: catalog/strings.py:69
+#: catalog/strings.py:68
 msgid "BROWN"
 msgstr "MARRON"
 
-#: catalog/strings.py:70
+#: catalog/strings.py:69
 msgid "CARAMEL"
 msgstr "CARAMEL"
 
-#: catalog/strings.py:71
+#: catalog/strings.py:70
 msgid "CORAL"
 msgstr "CORAIL"
 
-#: catalog/strings.py:72
+#: catalog/strings.py:71
 msgid "DARK BLUE"
 msgstr "BLEU FONCÉ"
 
-#: catalog/strings.py:73
+#: catalog/strings.py:72
 msgid "FUCHSIA"
 msgstr "FUCHSIA"
 
-#: catalog/strings.py:74
+#: catalog/strings.py:73
 msgid "GRAY"
 msgstr "GRIS"
 
-#: catalog/strings.py:75
+#: catalog/strings.py:74
 msgid "GREEN"
 msgstr "VERT"
 
-#: catalog/strings.py:76
+#: catalog/strings.py:75
 msgid "OLIVE"
 msgstr "OLIVE"
 
-#: catalog/strings.py:77
+#: catalog/strings.py:76
 msgid "ORANGE"
 msgstr "ORANGE"
 
-#: catalog/strings.py:78
+#: catalog/strings.py:77
 msgid "PINK"
 msgstr "ROSE"
 
-#: catalog/strings.py:79
+#: catalog/strings.py:78
 msgid "PURPLE"
 msgstr "VIOLET"
 
-#: catalog/strings.py:80
+#: catalog/strings.py:79
 #, fuzzy
 #| msgid "REFUND"
 msgid "RED"
 msgstr "ROUGE"
 
-#: catalog/strings.py:81
+#: catalog/strings.py:80
 msgid "SKY BLUE"
 msgstr "BLEU CIEL"
 
-#: catalog/strings.py:82
+#: catalog/strings.py:81
 msgid "WHITE"
 msgstr "BLANC"
 
-#: catalog/strings.py:83
+#: catalog/strings.py:82
 msgid "YELLOW"
 msgstr "JAUNE"
 
@@ -2332,6 +2332,10 @@ msgid "Sales"
 msgstr "Soldes"
 
 #: core/resources/ui_strings.py:134
+msgid "New"
+msgstr "Nouveau"
+
+#: core/resources/ui_strings.py:135
 msgid "NEW"
 msgstr "NOUVEAU"
 
