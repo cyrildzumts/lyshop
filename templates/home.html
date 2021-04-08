@@ -6,94 +6,42 @@
 {% block HEADER_BANNER %}
 <div class="banner">
     <div class="container banner-container">
-    <div class="image-banner">
-      <picture class="img-responsive">
-        <source media="(min-width:40em)" srcset="{% static 'assets/lyshop_banner.png' %}">
-        <source media="(max-width:40em)" srcset="{% static 'assets/lyshop_banner_small.png' %}">
-        <img class="img-responsive" src="{% static 'assets/lyshop_banner.png' %}" alt="{{site_name}}">
-      </picture>
-      
+        <div class="image-banner">
+          <picture class="img-responsive">
+            <source media="(min-width:40em)" srcset="{% static 'assets/lyshop_banner.png' %}">
+            <source media="(max-width:40em)" srcset="{% static 'assets/lyshop_banner_small.png' %}">
+            <img class="img-responsive" src="{% static 'assets/lyshop_banner.png' %}" alt="{{site_name}}">
+          </picture>
+        </div><!--End of image-banner-->
+        <div class="banner--title hidden">
+          <h4> {%trans 'Welcome to '%} {{site_name}}</h4>
+          <h5>{% trans 'ONLINE SHOPPING MADE EASY' %}</h5>
+        </div><!--End of Banner Titlte-->
+        <div class="banner--content hidden">
+            <p class="banner--description banner-entry">
+              {% blocktrans trimmed %}
+              Are you looking for something new ? 
+              {% endblocktrans %}
+            </p>
+            <p class="banner--description banner-entry">
+              {% blocktrans trimmed %}
+              You can get it at {{site_name}}
+              {% endblocktrans %}
+            </p>
+            <p class="banner--description banner-entry">
+              {% trans "Your online shop in Gabon" %}
+            </p>
+        </div><!--End of Banner Content-->
+        {% if discover %}
+        <div class="banner--actions">
+          <a class="mat-button mat-button-default" href="#"> {% trans 'Our catalog' %} {{site_name}}</a>
+        </div><!--End of Banner Actions-->
+        {% else %}
+        <div class="banner--actions">
+          <a class="mat-button mat-button-default" href="{% url 'catalog:catalog-home' %}"> {% trans 'Discover Our Catalog' %}</a>
+        </div><!--End of Banner Actions-->
+        {% endif %}
     </div>
-    <div class="banner--title hidden">
-      <h4> {%trans 'Welcome to '%} {{site_name}}</h4>
-      <h5>{% trans 'ONLINE SHOPPING MADE EASY' %}</h5>
-    </div><!--End of Banner Titlte-->
-    <div class="banner--content hidden">
-        <p class="banner--description banner-entry">
-          {% blocktrans trimmed %}
-          Are you looking for something new ? 
-          {% endblocktrans %}
-        </p>
-        <p class="banner--description banner-entry">
-          {% blocktrans trimmed %}
-          You can get it at {{site_name}}
-          {% endblocktrans %}
-        </p>
-        <p class="banner--description banner-entry">
-          {% trans "Your online shop in Gabon" %}
-        </p>
-    </div><!--End of Banner Content-->
-  {% if discover %}
-   <div class="banner--actions">
-    <a class="mat-button mat-button-default" href="#"> {% trans 'Our catalog' %} {{site_name}}</a>
-  </div><!--End of Banner Actions-->
-  {% else %}
-  <div class="banner--actions">
-    <a class="mat-button mat-button-default" href="{% url 'catalog:catalog-home' %}"> {% trans 'Discover Our Catalog' %}</a>
-  </div><!--End of Banner Actions-->
-  {% endif %}
-  <div class="container banner-container">
-
- {% comment %}
-    {% if parfum_category %}
-      <div class="image-banner">
-        <div class="banner-action">
-          <a href="{{parfum_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Perfumes" %}</a>
-        </div>
-        <picture class="img-responsive">
-          <source media="(min-width:40em)" srcset="{% static 'assets/parfum_banner.png' %}">
-          <source media="(max-width:40em)" srcset="{% static 'assets/parfum_banner_small.png' %}">
-          <img class="img-responsive" src="{% static 'assets/parfum_banner_small-2.png' %}" alt="{% trans 'Parfum' %}">
-        </picture>
-        
-      </div>
-    {% endif %}
- {% endcomment %}
-    
-
-    {% comment %}
-      {% if mode_category %}
-      <div class="image-banner">
-        <div class="banner-action">
-          <a href="{{mode_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Mode" %}</a>
-        </div>
-        <picture class="img-responsive">
-          <source media="(min-width:40em)" srcset="{% static 'assets/mode_banner.png' %}">
-          <source media="(max-width:40em)" srcset="{% static 'assets/mode_banner_small.png' %}">
-          <img class="img-responsive" src="{% static 'assets/mode_banner_small-2.png' %}" alt="{% trans 'Mode' %}">
-        </picture>
-        
-      </div>
-      {% endif %}
-    {% endcomment %}
-    
-    {% comment %}
-      {% if electronics_category %}
-      <div class="image-banner">
-        <div class="banner-action">
-          <a href="{{electronics_category.get_absolute_url}}" class="mat-button mat-button-default">{% trans "Electronics" %}</a>
-        </div>
-        <picture class="img-responsive">
-          <source media="(min-width:40em)" srcset="{% static 'assets/electronics_banner.png' %}">
-          <source media="(max-width:40em)" srcset="{% static 'assets/electronics_banner_small.png' %}">
-          <img class="img-responsive" src="{% static 'assets/electronics_banner.png' %}" alt="{% trans 'Electronics' %}">
-        </picture>
-        
-      </div>
-      {% endif %}
-    {% endcomment %}
-  </div>
-  
 </div><!--End of Banner-->
 {% endblock HEADER_BANNER %}
 {% endif %}
