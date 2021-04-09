@@ -4,6 +4,7 @@ X_FORWARDED_FOR_HEADER = "X-Forwarded-For"
 FACEBOOK_REQUEST_QUERY = "fbclid"
 GOOGLE_REQUEST_QUERY   = "gclid"
 REMOTE_ADDR = "REMOTE_ADDR"
+USER_AGENT = 'HTTP_USER_AGENT'
 IP_SEP = ','
 SERVER_NAMES = ['85.214.155.78', '10.221.168.93']
 EXCLUDES_PATHS = ['/api', '/dashboard', '/favicon.ico']
