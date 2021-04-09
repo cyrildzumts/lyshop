@@ -4,6 +4,7 @@ APP_PREFIX = 'dashboard.'
 SELLER_GROUP = "Seller"
 
 MAX_RECENT = 5
+TOP_VIEWS_MAX = 10
 
 DASHBOARD_GLOBALS_PREFIX = "dashboard"
 
