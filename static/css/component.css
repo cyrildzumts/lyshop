@@ -3125,9 +3125,11 @@ table tbody tr, .mat-table tbody tr{
 	}
 
 	table tbody tr td a{
+		width: 100% !important;
 		justify-self: end;
 		text-align: right !important;
 		margin: 0 !important;
+		margin-left: 1rem !important;
 	}
 
 	table tbody tr td a span{
