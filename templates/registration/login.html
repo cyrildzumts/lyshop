@@ -21,7 +21,7 @@
                     <h3>{{SITE_NAME}}</h3>
                     <div id="user-login" class="user-login mat-box">
                          {% if has_login_error %}
-                            <div class="login-error warning">{{login_error}}</div>
+                            <div class="login-error error">{{login_error}}</div>
                         {% endif %}
                         <form id="login-form" class="login-form" action="{% url 'accounts:login' %}" method="post"> {% csrf_token %}
                            

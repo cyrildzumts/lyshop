@@ -19,7 +19,7 @@
             <div class="col-6">
                 <div id="account-dialog" class="container">
                     {% if login_error %}
-                        <div class="login-error warning">{% trans login_error %}</div>
+                        <div class="login-error error">{% trans login_error %}</div>
                     {% endif %}
                     <section id="user-login" class="user-login flex">
                         <form id="login-form" class="login-form" action="{% url 'accounts:login' %}" method="post"> {% csrf_token %}
