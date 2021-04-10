@@ -3112,14 +3112,16 @@ table tbody tr, .mat-table tbody tr{
 	.mat-table td{
 		display: flex;
 		font-size: 0.7rem;
-		text-align: right;
+		/*text-align: right;*/
 		align-items: center;
 		/*justify-content: space-between;*/
 		/*border-bottom: 1px solid #ddd;*/
 	}
 
 	table tbody tr td span{
+		width: 100%;
 		justify-self: end;
+		text-align: right;
 	}
 	.mat-table td::before{
 		content: attr(data-label);

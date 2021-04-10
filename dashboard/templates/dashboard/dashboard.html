@@ -105,12 +105,12 @@
                   <tr>
         
                   <td><div class="col-xs-3 col-3"><img class="img-responsive" src="{{sold_product.product.image}}" alt="{{sold_product.product.display_name}}"></div></td>
-                  <td scope="row" data-label="{% trans 'Order' %}">{{sold_product.order.order_ref_number}}</td>
-                  <td scope="row" data-label="{% trans 'Article' %}">{{sold_product.product.display_name}}</td>
-                  <td scope="row" data-label="{% trans 'Price' %}"><span><span>{{sold_product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
-                  <td scope="row" data-label="{% trans 'Promotion Price' %}"><span><span>{{sold_product.promotion_price|default_if_none:'0'|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></span></td>
-                  <td scope="row" data-label="{% trans 'Quantity' %}">{{sold_product.quantity}}</td>
-                  <td scope="row" data-label="{% trans 'Sold Date' %}">{{sold_product.created_at|date:"F j, Y"}}</td>
+                  <td scope="row" data-label="{% trans 'Order' %}"><span>{{sold_product.order.order_ref_number}}</span></td>
+                  <td scope="row" data-label="{% trans 'Article' %}"><span>{{sold_product.product.display_name}}</span></td>
+                  <td scope="row" data-label="{% trans 'Price' %}"><span>{{sold_product.price|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                  <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{sold_product.promotion_price|default_if_none:'0'|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                  <td scope="row" data-label="{% trans 'Quantity' %}"><span>{{sold_product.quantity}}</span></td>
+                  <td scope="row" data-label="{% trans 'Sold Date' %}"><span>{{sold_product.created_at|date:"F j, Y"}}</span></td>
                   </tr>
                   {% endfor %}
                   
