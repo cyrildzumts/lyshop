@@ -168,7 +168,7 @@ class ProductAttribute(models.Model):
 
     class Meta:
         unique_together = ['name', 'value']
-        ordering = ['name']
+        ordering = ['name', 'value']
 
     def __str__(self):
         return f"{self.display_name} - {self.value}" 
