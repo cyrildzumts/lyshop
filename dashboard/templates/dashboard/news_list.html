@@ -28,11 +28,11 @@
                   {% for news in news_list  %}
                   <tr>
                   <td scope="row" class="checkbox"><label><input class="js-selectable" type="checkbox" name="news-list" value="{{news.pk}}"><span class="checkbox-label"></span></label></td>
-                  <td data-label="{% trans 'Title' %}">{{news.title}}</td>
-                  <td data-label="{% trans 'Start' %}">{{news.start_at|date:"F j, Y"}}</td>
-                  <td data-label="{% trans 'Active' %}">{{news.is_active|yesno}}</td>
-                  <td data-label="{% trans 'Date of Creation' %}">{{news.created_at|date:"F j, Y"}}</td>
-                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{news.get_absolute_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                  <td data-label="{% trans 'Title' %}"><span>{{news.title}}</span></td>
+                  <td data-label="{% trans 'Start' %}"><span></span></td>
+                  <td data-label="{% trans 'Active' %}"><span><i class="fas fa-circle {% if niews.is_active %}success {% else %} warning {% endif %} icon"></i>{{news.is_active|yesno:_('active,inactive')}}</span></td>
+                  <td data-label="{% trans 'Date of Creation' %}"><span>{{news.created_at|date:"F j, Y"}}</span></td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{news.get_absolute_url}}"><span><i class="fas fa-info icon"></i>{% trans "Details" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   

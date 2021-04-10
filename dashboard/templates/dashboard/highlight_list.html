@@ -28,9 +28,9 @@
                   {% for highlight in highlight_list  %}
                   <tr>
                   <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="brands" value="{{highlight.pk}}"><span class="checkbox-label"></span></label></td>
-                  <td data-label="{% trans 'Highlight' %}">{{highlight.display_name}}</td>
-                  <td data-label="{% trans 'Status' %}"><i class="fas fa-circle icon {% if highlight.is_active %}success{% else %}warning{% endif %}"></i>{{highlight.is_active|yesno:_('active,inactive')}}</td>
-                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{highlight.get_dashboard_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
+                  <td data-label="{% trans 'Highlight' %}"><span>{{highlight.display_name}}</span></td>
+                  <td data-label="{% trans 'Status' %}"><span><i class="fas fa-circle icon {% if highlight.is_active %}success{% else %}warning{% endif %}"></i>{{highlight.is_active|yesno:_('active,inactive')}}</span></td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{highlight.get_dashboard_url}}"><span><i class="fas fa-info"></i>{% trans "Details" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   

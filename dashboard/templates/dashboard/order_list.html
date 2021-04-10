@@ -33,22 +33,18 @@
                   {% for o in orders  %}
                   <tr>
                     <!--<td class="checkbox"><input type="checkbox" name="selected-service"></td>-->
-                    <td scope="row" data-label="Customer">{{o.user.get_full_name}}</td>
-                    <td scope="row" data-label="Reference Number">{{o.order_ref_number}}</td>
-                    <td data-label="{% trans 'Amount' %}">{{o.amount|floatformat:"-2"}} {% trans CURRENCY %}</td>
-                    <td data-label="{% trans 'Quantity' %}">{{o.quantity}} </td>
-                    <td data-label="{% trans 'Status' %}">{{o.status|order_status_value}} </td>
-                    <td data-label="{% trans 'Payment Option' %}">{{o.payment_option|payment_option_value}} </td>
-                    <td data-label="{% trans 'Date' %}">{{o.created_at|date:"F j, Y"}}</td>
-                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                    <td scope="row" data-label="Customer"><span>{{o.user.get_full_name}}</span></td>
+                    <td scope="row" data-label="Reference Number"><span>{{o.order_ref_number}}</span></td>
+                    <td data-label="{% trans 'Amount' %}"><span>{{o.amount|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                    <td data-label="{% trans 'Quantity' %}"><span>{{o.quantity}}</span></td>
+                    <td data-label="{% trans 'Status' %}"><span>{{o.status|order_status_value}}</span></td>
+                    <td data-label="{% trans 'Payment Option' %}"><span>{{o.payment_option|payment_option_value}}</span></td>
+                    <td data-label="{% trans 'Date' %}"><span>{{o.created_at|date:"F j, Y"}}</span></td>
+                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_dashboard_url}}"><span><i class="fas fa-info icon"></i>{% trans "Detail" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   
           </tbody>
-          <tfoot>
-                  
-          </tfoot>
-
     </table>
     {% include "tags/pagination.html" with page_set=orders %}
     </div><!--End of Table Wrapper-->

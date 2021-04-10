@@ -19,7 +19,6 @@
                           <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
                           <th scope="col">{% trans "Name" %}</th>
                           <th scope="col">{% trans "Display Name" %}</th>
-                          <th scope="col">{% trans "Code" %}</th>
                           <th scope="col">{% trans "Details" %}</th>
                           <th scope="col">{% trans "Delete Action" %}</th>
                   </tr>
@@ -28,11 +27,10 @@
                   {% for type in product_type_list  %}
                   <tr>
                   <td scope="row" class="checkbox"><label><input class="js-selectable" type="checkbox" name="product_types" value="{{type.pk}}"><span class="checkbox-label"></span></label></td>
-                  <td data-label="{% trans 'Name' %}">{{type.name}}</td>
-                  <td data-label="{% trans 'Display Name' %}">{{type.display_name}}</td>
-                  <td data-label="{% trans 'Code' %}">{{type.code}}</td>
-                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{type.get_dashboard_url}}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
-                  {% if can_delete_product %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default js-need-confirmation" href="{% url 'dashboard:product-type-delete' type.type_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
+                  <td data-label="{% trans 'Name' %}"><span>{{type.name}}</span></td>
+                  <td data-label="{% trans 'Display Name' %}"><span>{{type.display_name}}</span></td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{type.get_dashboard_url}}"><span><i class="fas fa-info"></i>{% trans "Details" %}</span></a></td>
+                  {% if can_delete_product %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default js-need-confirmation" href="{% url 'dashboard:product-type-delete' type.type_uuid %}"><span><i class="fas fa-trash icon"></i>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
           </tbody>

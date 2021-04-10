@@ -31,19 +31,15 @@
                   {% for category in category_list  %}
                   <tr>
                   <td scope="row" class="checkbox"><input class="js-selectable" type="checkbox" name="categories" value="{{category.pk}}"></td>
-                  <td data-label="{% trans 'Name' %}">{{category.name}}</td>
-                  <td data-label="{% trans 'Display Name' %}">{{category.display_name}}</td>
-                  <td data-label="{% trans 'Code' %}">{{category.code}}</td>
-                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{category.get_dashboard_url}}"><i class="fas fa-info icon"></i> <span>{% trans "Details" %}</span></a></td>
-                  {% if can_delete_category %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:category-delete' category.category_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
+                  <td data-label="{% trans 'Name' %}"><span>{{category.name}}</span></td>
+                  <td data-label="{% trans 'Display Name' %}"><span>{{category.display_name}}</span></td>
+                  <td data-label="{% trans 'Code' %}"><span>{{category.code}}</span></td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{category.get_dashboard_url}}"><span><i class="fas fa-info icon"></i>{% trans "Details" %}</span></a></td>
+                  {% if can_delete_category %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:category-delete' category.category_uuid %}"><span><i class="fas fa-trash icon"></i>{% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   
           </tbody>
-          <tfoot>
-                  
-          </tfoot>
-
         </table>
         </form>
     {% include "tags/pagination.html" with page_set=category_list %}

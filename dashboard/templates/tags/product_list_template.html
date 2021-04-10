@@ -37,14 +37,14 @@
                   <td scope="row" class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{product.pk}}"><span class="checkbox-label"></span></label></td>
                   {% endif %}
                   <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{product.image}}" alt="{{product.display_name}}"></div></td>
-                  <td scope="row" data-label="{% trans 'Name' %}">{{product.name}}</td>
-                  <td data-label="{% trans 'Display Name' %}">{{product.display_name}}</td>
-                  <td data-label="{% trans 'Gender' %}">{{product.gender|gender_value}}</td>
-                  <td data-label="{% trans 'Type' %}">{% trans product.product_type.display_name %}</td>
-                  <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
-                  <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
-                  <td data-label="{% trans 'Quantity' %}">{{product.quantity}}</td>
-                  <td data-label="{% trans 'Detail' %}"><a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                  <td scope="row" data-label="{% trans 'Name' %}"><span>{{product.name}}</span></td>
+                  <td data-label="{% trans 'Display Name' %}"><span>{{product.display_name}}</span></td>
+                  <td data-label="{% trans 'Gender' %}"><span>{{product.gender|gender_value}}</span></td>
+                  <td data-label="{% trans 'Type' %}"><span>{% trans product.product_type.display_name %}</span></td>
+                  <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                  <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                  <td data-label="{% trans 'Quantity' %}"><span>{{product.quantity}}</span></td>
+                  <td data-label="{% trans 'Detail' %}"><a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"><span><i class="fas fa-info icon"></i>{% trans "Details" %}</span></a></td>
                 
                   </tr>
                   {% endfor %}

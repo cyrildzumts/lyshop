@@ -81,15 +81,15 @@
                             {% for item in order.order_items.all  %}
                             <tr>
                                 <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{item.image}}" alt="{{item.display_name}}"></div></td>
-                                <td>{{item.product.display_name}}</td>
-                                <td><div class="row">{% for attr in item.product.attributes.all %} <span>{{attr}}</span> {% endfor %}</div></td>
-                                <td>{{item.quantity}}</td>
+                                <td><span>{{item.product.display_name}}</span></td>
+                                <td><span class="row">{% for attr in item.product.attributes.all %} {{attr}}; {% endfor %}</span></td>
+                                <td><span>{{item.quantity}}</span></td>
                                 
-                                <td><span>{{item.unit_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
-                                <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
-                                <td><span>{{item.active_total_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
-                                <td><a class="mat-button mat-button-default" href="{{item.get_dashboard_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Order Item" %}</span></a></td>
-                                <td><a class="mat-button mat-button-default" href="{{item.get_update_url}}"> <i class="fas fa-info icon"></i><span>{% trans "Update" %}</span></a></td>
+                                <td><span>{{item.unit_price|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                                <td><span>{{item.promotion_price|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                                <td><span>{{item.active_total_price|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                                <td><a class="mat-button mat-button-default" href="{{item.get_dashboard_url}}"><span><i class="fas fa-info icon"></i>{% trans "Order Item" %}</span></a></td>
+                                <td><a class="mat-button mat-button-default" href="{{item.get_update_url}}"><span><i class="fas fa-info icon"></i>{% trans "Update" %}</span></a></td>
                             </tr>
                             {% endfor %}
                             

@@ -29,11 +29,11 @@
                   {% for brand in brand_list  %}
                   <tr>
                   <td scope="row" data-label="" class="checkbox"><label><input class="js-selectable" type="checkbox" name="brands" value="{{brand.pk}}"><span class="checkbox-label"></span></label></td>
-                  <td data-label="{% trans 'Name' %}">{{brand.name}}</td>
-                  <td data-label="{% trans 'Display Name' %}">{{brand.display_name}}</td>
-                  <td data-label="{% trans 'Code' %}">{{brand.code}}</td>
-                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{% url BRAND_URL brand.brand_uuid %}"><i class="fas fa-info"></i> <span>{% trans "Details" %}</span></a></td>
-                  {% if can_delete_brand %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:brand-delete' brand.brand_uuid %}"><i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a></td>{% endif %}
+                  <td data-label="{% trans 'Name' %}"><span>{{brand.name}}</span></td>
+                  <td data-label="{% trans 'Display Name' %}"><span>{{brand.display_name}}</span></td>
+                  <td data-label="{% trans 'Code' %}"><span>{{brand.code}}</span></td>
+                  <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{% url BRAND_URL brand.brand_uuid %}"><span><i class="fas fa-info"></i> {% trans "Details" %}</span></a></td>
+                  {% if can_delete_brand %}<td data-label="{% trans 'Action' %}"><a class="mat-button mat-button-default warning danger js-need-confirmation" href="{% url 'dashboard:brand-delete' brand.brand_uuid %}"><span><i class="fas fa-trash icon"></i> {% trans "Delete" %}</span></a></td>{% endif %}
                   </tr>
                   {% endfor %}
                   
