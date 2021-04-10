@@ -3127,7 +3127,7 @@ table tbody tr, .mat-table tbody tr{
 	table tbody tr td a{
 		justify-self: end;
 		text-align: right !important;
-		margin: 0;
+		margin: 0 !important;
 	}
 
 	table tbody tr td a span{
