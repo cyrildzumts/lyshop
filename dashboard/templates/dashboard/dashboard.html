@@ -36,12 +36,12 @@
                 <tbody>
                         {% for order in order_list  %}
                         <tr>
-                        <td scope="row" data-label="{% trans 'Reference Number' %}">{{order.order_ref_number}}</td>
-                        <td data-label="{% trans 'Customer' %}">{{order.user.get_full_name}}</td>
-                        <td data-label="{% trans 'Status' %}">{{order.status|order_status_value}}</td>
-                        <td data-label="{% trans 'Total Price' %}">{{order.total}} {% trans CURRENCY %}</td>
-                        <td data-label="{% trans 'Date of Order' %}">{{order.created_at|date:"F j, Y"}}</td>
-                        <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{order.get_dashboard_url}}"><i class="fas fa-info icon"></i><span>{% trans "Detail" %}</span></a></td>
+                        <td scope="row" data-label="{% trans 'Reference Number' %}"><span>{{order.order_ref_number}}</span></td>
+                        <td data-label="{% trans 'Customer' %}"><span>{{order.user.get_full_name}}</span></td>
+                        <td data-label="{% trans 'Status' %}"><span>{{order.status|order_status_value}}</span></td>
+                        <td data-label="{% trans 'Total Price' %}"><span>{{order.total}} {% trans CURRENCY %}</span></td>
+                        <td data-label="{% trans 'Date of Order' %}"><span>{{order.created_at|date:"F j, Y"}}</span></td>
+                        <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{order.get_dashboard_url}}"><span><i class="fas fa-info icon"></i>{% trans "Detail" %}</span></a></td>
                         </tr>
                         {% endfor %}
                         
@@ -69,9 +69,9 @@
                         <tbody>
                                 {% for u in user_list  %}
                                 <tr>
-                                        <td data-label="{% trans 'Name' %}">{{u.get_full_name}}</td>
-                                        <td data-label="{% trans 'Status' %}"><i class="fas fa-circle {% if u.is_active %}success {% else %} warning {% endif %} icon"></i>{{u.is_active|yesno:_('active,inactive')}}</td>
-                                        <td data-label="{% trans 'Date Joined' %}">{{u.date_joined|date:"F j, Y"}}</td>
+                                        <td data-label="{% trans 'Name' %}"><span>{{u.get_full_name}}</span></td>
+                                        <td data-label="{% trans 'Status' %}"><span><i class="fas fa-circle {% if u.is_active %}success {% else %} warning {% endif %} icon"></i>{{u.is_active|yesno:_('active,inactive')}}</span></td>
+                                        <td data-label="{% trans 'Date Joined' %}"><span>{{u.date_joined|date:"F j, Y"}}</span></td>
                                 </tr>
                                 {% endfor %}
                                 
@@ -140,12 +140,12 @@
                         {% for product in top_10_list  %}
                         <tr>
                         <td><div class="col-xs-3 col-3"><img class="img-responsive" src="{{product.image}}" alt="{{product.display_name}}"></div></td>
-                        <td data-label="{% trans 'Article' %}">{{product.display_name}}</td>
-                        <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
-                        <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}}</span><span>{% trans CURRENCY %}</span></td>
-                        <td data-label="{% trans 'Quantity' %}">{{product.quantity}}</td>
-                        <td data-label="{% trans 'Views' %}"><i class="fas fa-eye icon"></i><span class="bold">{{product.view_count}}</span></td>
-                        <td scope="row" data-label="{% trans 'Added Date' %}">{{product.created_at|date:"F j, Y"}}</td>
+                        <td data-label="{% trans 'Article' %}"><span>{{product.display_name}}</span></td>
+                        <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}} {% trans CURRENCY %}<span></td>
+                        <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                        <td data-label="{% trans 'Quantity' %}"><span>{{product.quantity}}</span></td>
+                        <td data-label="{% trans 'Views' %}"><span class="bold"><i class="fas fa-eye icon"></i> {{product.view_count}}</span></td>
+                        <td scope="row" data-label="{% trans 'Added Date' %}"><span>{{product.created_at|date:"F j, Y"}}</span></td>
                         </tr>
                         {% endfor %}
                         
@@ -171,11 +171,11 @@
                         {% for product in product_list  %}
                         <tr>
                         <td><div class="col-xs-3 col-3"><img class="img-responsive" src="{{product.image}}" alt="{{product.display_name}}"></div></td>
-                        <td data-label="{% trans 'Article' %}">{{product.display_name}}</td>
-                        <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
-                        <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
-                        <td data-label="{% trans 'Quantity' %}">{{product.quantity}}</td>
-                        <td scope="row" data-label="{% trans 'Added Date' %}">{{product.created_at|date:"F j, Y"}}</td>
+                        <td data-label="{% trans 'Article' %}"><span>{{product.display_name}}</span></td>
+                        <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                        <td scope="row" data-label="{% trans 'Promotion Price' %}"><span>{{product.get_promotion_price|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+                        <td data-label="{% trans 'Quantity' %}"><span>{{product.quantity}}</span></td>
+                        <td scope="row" data-label="{% trans 'Added Date' %}"><span>{{product.created_at|date:"F j, Y"}}</span></td>
                         </tr>
                         {% endfor %}
                         
