@@ -3118,16 +3118,15 @@ table tbody tr, .mat-table tbody tr{
 		/*border-bottom: 1px solid #ddd;*/
 	}
 
-	table tbody tr td span,
-	table tbody tr td a{
+	table tbody tr td span{
 		width: 100%;
 		justify-self: end;
-		text-align: right;
+		text-align: right !important;
 	}
 
 	table tbody tr td a{
 		justify-self: end;
-		text-align: right;
+		text-align: right !important;
 	}
 
 
