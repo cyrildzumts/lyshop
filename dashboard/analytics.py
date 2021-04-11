@@ -1,4 +1,4 @@
-from django.db.models import F, Q, Sum, Count
+from django.db.models import F, Q, Sum, Count, Max, Min, Avg
 from catalog.models import ProductVariant, Product
 from orders.models import Order
 from inventory.models import Visitor, UniqueIP, FacebookLinkHit, SuspiciousRequest, GoogleAdsHit
@@ -106,6 +106,11 @@ def report_products(year=timezone.now().year):
         raise ValueError(error_str)
     
     data = []
+    product_type_report = Product.filter(quantity__gt=0).objects.values(type_name=F'product_type__display_name').annotate(count=Count('product_type')).order_by()
+    product_gender_report = Product.objects.filter(quantity__gt=0).values('gender').annotate(count=Count('gender')).order_by()
+    product_brand_report = Product.objects.filter(quantity__gt=0).values(brand=F('brand__display_name')).annotate(count=Count('brand')).order_by()
+    product_price_reports = Product.objects.filter(quantity__gt=0).aggregate(total_price=Sum('price'), min_price=Min('price'), max_price=Max('price'), avg_price=Avg('price'))
+
     if year == timezone.now().year:
         MONTH_LIMIT = timezone.now().month
     else :
@@ -114,6 +119,7 @@ def report_products(year=timezone.now().year):
     months = list(range(1, MONTH_LIMIT + 1))
 
     for m in months:
+        
         count = Product.objects.filter(created_at__year=year, created_at__month=m).aggregate(count=Sum('quantity')).get('count') or 0
         data.append({'x': f"{year}-{m:02}", 'y' : count})
 
@@ -123,7 +129,13 @@ def report_products(year=timezone.now().year):
         'year' : year,
         'months': months,
         'data' : data,
-        'total_count' : total_products
+        'total_count' : total_products,
+        'detail_reports' : {
+            'product_type_report': product_type_report,
+            'product_gender_report': product_gender_report,
+            'product_brand_report': product_brand_report,
+            'product_price_reports': product_price_reports
+        }
     }
     return report
 
@@ -301,7 +313,5 @@ def refresh_suspicious_request():
             break
         SuspiciousRequest.objects.bulk_create(batch, batch_size)
     return True
-
-
 
 

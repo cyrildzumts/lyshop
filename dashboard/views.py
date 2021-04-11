@@ -76,6 +76,9 @@ MAX_IMAGE_SIZE = 2097152
 def dashboard(request):
     template_name = "dashboard/dashboard.html"
     can_view_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_view_dashboard :
+        logger.warning(f"Dashboard : PermissionDenied to user {username} for path {request.path}")
+        raise PermissionDenied
     page_title = _('Dashboard') + ' - ' + settings.SITE_NAME
     username = request.user.username
     now = timezone.now()
@@ -109,15 +112,11 @@ def dashboard(request):
             'sold_product_list': recent_sold_products,
             'user_list': recent_users,
             'top_10_list': top_10_list,
+            'product_reports' : analytics.report_products()
         }
-    if not can_view_dashboard :
-        logger.warning(f"Dashboard : PermissionDenied to user {username} for path {request.path}")
-        raise PermissionDenied
-    else : 
-        
-        context.update(get_view_permissions(request.user))
+    context.update(get_view_permissions(request.user))
 
-        logger.info(f"Authorized Access : User {username} has requested the Dashboard Page")
+    logger.info(f"Authorized Access : User {username} has requested the Dashboard Page")
 
     return render(request, template_name, context)
 

@@ -16,7 +16,33 @@
 {% endblock DASHBOARD_SUMMARY %}
 
 {% block CONTENT %}
-            
+
+{% if product_reports %}
+<div class="mat-table-wrapper">
+        <h4>{% trans "Product Reports" %}</h4>
+        <ul>
+        <li><h5>{% trans "Brand report" %}</h5></li>
+        {% for entry in product_reports.product_brand_report %}
+        <li class="left"><span>{{entry.brand_name}}</span><span>{{entry.count}}</span></li>
+        {% endfor %}
+        </ul>
+
+        <ul>
+        <li><h5>{% trans "Product Type report" %}</h5></li>
+        {% for entry in product_reports.product_type_report %}
+        <li class="left"><span>{{entry.type_name}}</span> - <span>{{entry.count}}</span></li>
+        {% endfor %}
+        </ul>
+
+        <ul>
+        <li><h5>{% trans "Product Gender report" %}</h5></li>
+        {% for entry in product_reports.product_gender_report %}
+        <li class="left"><span>{{entry.gender|gender_value}}</span> - <span>{{entry.count}}</span></li>
+        {% endfor %}
+        </ul>
+</div>
+
+{% endif %}
 <div class="mat-table-wrapper">
 {% if order_list %}
 
