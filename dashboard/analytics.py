@@ -106,7 +106,7 @@ def report_products(year=timezone.now().year):
         raise ValueError(error_str)
     
     data = []
-    product_type_report = Product.objects.filter(quantity__gt=0).values(type_name=F'product_type__display_name').annotate(count=Count('product_type')).order_by()
+    product_type_report = Product.objects.filter(quantity__gt=0).values(type_name=F('product_type__display_name')).annotate(count=Count('product_type')).order_by()
     product_gender_report = Product.objects.filter(quantity__gt=0).values('gender').annotate(count=Count('gender')).order_by()
     product_brand_report = Product.objects.filter(quantity__gt=0).values(brand=F('brand__display_name')).annotate(count=Count('brand')).order_by()
     product_price_reports = Product.objects.filter(quantity__gt=0).aggregate(total_price=Sum('price'), min_price=Min('price'), max_price=Max('price'), avg_price=Avg('price'))
