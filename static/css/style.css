@@ -423,7 +423,7 @@
     padding: 0 !important;
 }
 
-.padding-1x{
+.padding-1x, .padding{
     padding: 1em !important;
 }
 
