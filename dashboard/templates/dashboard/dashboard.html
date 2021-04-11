@@ -23,7 +23,7 @@
         <ul>
         <li><h5>{% trans "Brand report" %}</h5></li>
         {% for entry in product_reports.detail_reports.product_brand_report %}
-        <li class="left"><span>{{entry.brand_name}}</span><span>{{entry.count}}</span></li>
+        <li class="left"><span>{{entry.brand_name}}</span> - <span>{{entry.count}}</span></li>
         {% endfor %}
         </ul>
 
