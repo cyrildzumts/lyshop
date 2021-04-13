@@ -38,7 +38,7 @@
                     <td class="checkbox"><input class="js-selectable" type="checkbox" name="users" value="{{u.pk}}"></td>
                     <td data-label="{% trans 'Seller' %}"><span>{{u.get_full_name}}</span></td>
                     <td data-label="{% trans 'Email' %}"><span>{{u.email}}</span></td>
-                    <td data-label="{% trans 'Sales' %}"><span>{{u.total_sold|default_if_none:'0'}} {% trans CURRENCY %}</span></td>
+                    <td data-label="{% trans 'Sales' %}"><span>{{u.sales|default_if_none:'0'}} {% trans CURRENCY %}</span></td>
                     <td data-label="{% trans 'Article' %}"><span>{{u.product_count}}</span></td>
                     <td data-label="{% trans 'Sold' %}"><span>{{u.total_sold}}</span></td>
                     <td data-label="{% trans 'Total Views' %}">{{u.total_views}}</td>
