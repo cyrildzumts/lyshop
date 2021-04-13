@@ -4,7 +4,7 @@ from orders.models import Order
 from inventory.models import Visitor, UniqueIP, FacebookLinkHit, SuspiciousRequest, GoogleAdsHit
 from inventory import constants as Inventory_Constants
 from dashboard.models import LoginReport
-from dashboard import constants as Constants
+from dashboard import Constants
 from django.contrib.auth.models import User
 from django.utils import timezone
 from lyshop import utils
