@@ -2648,6 +2648,72 @@ def users(request):
     return render(request,template_name, context)
 
 @login_required
+def customers(request):
+    username = request.user.username
+    can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_access_dashboard:
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    can_view_user = PermissionManager.user_can_view_user(request.user)
+    if not can_view_user:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    queryset = analytics.customers_report()
+    template_name = "dashboard/customers.html"
+    page_title = _("Customers") + " - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['customers'] = list_set
+    context.update(get_view_permissions(request.user))
+    context['can_delete_user'] = PermissionManager.user_can_delete_user(request.user)
+    context['can_add_user'] = PermissionManager.user_can_add_user(request.user)
+    context['can_update_user'] = PermissionManager.user_can_change_user(request.user)
+    context['content_title'] = CORE_STRINGS.DASHBOARD_CUSTOMERS_TITLE
+    return render(request,template_name, context)
+
+@login_required
+def sellers(request):
+    username = request.user.username
+    can_access_dashboard = PermissionManager.user_can_access_dashboard(request.user)
+    if not can_access_dashboard:
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+    can_view_user = PermissionManager.user_can_view_user(request.user)
+    if not can_view_user:
+        logger.warning("PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    context = {}
+    queryset = analytics.sellers_report()
+    template_name = "dashboard/sellers.html"
+    page_title = _("Sellers") + " - " + settings.SITE_NAME
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+    context['page_title'] = page_title
+    context['sellers'] = list_set
+    context.update(get_view_permissions(request.user))
+    context['can_delete_user'] = PermissionManager.user_can_delete_user(request.user)
+    context['can_add_user'] = PermissionManager.user_can_add_user(request.user)
+    context['can_update_user'] = PermissionManager.user_can_change_user(request.user)
+    context['content_title'] = CORE_STRINGS.DASHBOARD_CUSTOMERS_TITLE
+    return render(request,template_name, context)
+
+@login_required
 def user_details(request, pk=None):
     username = request.user.username
     if not PermissionManager.user_can_access_dashboard(request.user):

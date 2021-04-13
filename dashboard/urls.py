@@ -172,6 +172,7 @@ users_patterns = [
     path('generate-token/', views.generate_token, name='generate-token'),
     path('tokens/', views.tokens, name='tokens'),
     path('users/', views.users, name='users'),
+    path('customers/', views.customers, name='customers'),
     path('users/create-user/', views.create_account, name='create-user'),
     path('users/detail/<int:pk>/', views.user_details, name='user-detail'),
     path('users/send-welcome-mail/<int:pk>/', views.send_welcome_mail, name='send-welcome-mail'),
@@ -347,6 +348,8 @@ urlpatterns = [
 
     path('tokens/', views.tokens, name='tokens'),
     path('users/', views.users, name='users'),
+    path('customers/', views.customers, name='customers'),
+    path('sellers/', views.sellers, name='sellers'),
     path('users/create-user/', views.create_account, name='create-user'),
     path('users/detail/<int:pk>/', views.user_details, name='user-detail'),
     path('users/send-welcome-mail/<int:pk>/', views.send_welcome_mail, name='send-welcome-mail'),

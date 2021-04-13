@@ -4,6 +4,7 @@ from orders.models import Order
 from inventory.models import Visitor, UniqueIP, FacebookLinkHit, SuspiciousRequest, GoogleAdsHit
 from inventory import constants as Inventory_Constants
 from dashboard.models import LoginReport
+from dashboard import constants as Constants
 from django.contrib.auth.models import User
 from django.utils import timezone
 from lyshop import utils
@@ -315,3 +316,12 @@ def refresh_suspicious_request():
     return True
 
 
+
+def customers_report():
+    return User.objects.annotate(spent=Sum('orders__total'), last_ordered=Max('orders__created_at'))
+
+
+def sellers_report():
+    return User.objects.filter(groups__name=Constants.SELLER_GROUP).annotate(
+        product_count=Sum('sold_products__quantity'), total_views=Sum('sold_products__view_count'), sales=Sum('vendor_sold_products__total_price'),
+        last_sold=Max('vendor_sold_products__created_at'), total_sold=Sum('vendor_sold_products__quantity'))
