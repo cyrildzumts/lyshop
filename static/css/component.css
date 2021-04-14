@@ -392,6 +392,11 @@ label{
 
 }
 
+.mat-input .icon, .form-group .icon{
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
 a.button{
   text-decoration: none;
 }
