@@ -322,6 +322,6 @@ def customers_report():
 
 
 def sellers_report():
-    return User.objects.filter(groups__name=Constants.SELLER_GROUP).exclude(vendor_sold_products__product=None).annotate(
+    return User.objects.filter(groups__name=Constants.SELLER_GROUP).annotate(
         product_count=Sum('sold_products__quantity'), total_views=Sum('sold_products__view_count'), sales=Sum('vendor_sold_products__total_price'),
         last_sold=Max('vendor_sold_products__created_at'), total_sold=Sum('vendor_sold_products__quantity'))

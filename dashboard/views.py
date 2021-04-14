@@ -2710,7 +2710,7 @@ def sellers(request):
     context['can_delete_user'] = PermissionManager.user_can_delete_user(request.user)
     context['can_add_user'] = PermissionManager.user_can_add_user(request.user)
     context['can_update_user'] = PermissionManager.user_can_change_user(request.user)
-    context['content_title'] = CORE_STRINGS.DASHBOARD_CUSTOMERS_TITLE
+    context['content_title'] = CORE_STRINGS.DASHBOARD_SELLERS_TITLE
     return render(request,template_name, context)
 
 @login_required
