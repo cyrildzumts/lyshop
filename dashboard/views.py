@@ -1836,7 +1836,7 @@ def sold_product_detail(request, product_uuid=None):
     
     sold_product = get_object_or_404(SoldProduct, product_uuid=product_uuid)
     images = None
-    if sold_product.product:
+    if sold_product.product is not None:
         images = ProductImage.objects.filter(product=sold_product.product.product)
 
     context = {
