@@ -1834,9 +1834,11 @@ def sold_product_detail(request, product_uuid=None):
 
     page_title = _('Product Detail')
     
-
     sold_product = get_object_or_404(SoldProduct, product_uuid=product_uuid)
-    images = ProductImage.objects.filter(product=sold_product.product.product)
+    images = None
+    if sold_product.product:
+        images = ProductImage.objects.filter(product=sold_product.product.product)
+
     context = {
         'page_title': page_title,
         'sold_product': sold_product,
