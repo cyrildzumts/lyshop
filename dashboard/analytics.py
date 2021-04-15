@@ -323,5 +323,6 @@ def customers_report():
 
 def sellers_report():
     return User.objects.filter(groups__name=Constants.SELLER_GROUP).annotate(
-        product_count=Sum('sold_products__quantity'), total_views=Sum('sold_products__view_count'), sales=Sum('vendor_sold_products__total_price'),
-        last_sold=Max('vendor_sold_products__created_at'), total_sold=Sum('vendor_sold_products__quantity'))
+        sales=Sum('vendor_sold_products__total_price'), product_count=Sum('vendor_sold_products__product__product__quantity'),
+        total_views=Sum('vendor_sold_products__product__product__view_count'),
+        last_sold=Max('vendor_sold_products__created_at'), total_sold=Sum('vendor_sold_products__quantity')).order_by()
