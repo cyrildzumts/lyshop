@@ -1836,15 +1836,21 @@ def sold_product_detail(request, product_uuid=None):
     
     sold_product = get_object_or_404(SoldProduct, product_uuid=product_uuid)
     images = None
-    if sold_product.product is not None:
-        images = ProductImage.objects.filter(product=sold_product.product.product)
+    product = None
+    variant = None
+    attrs = None
+    if sold_product.product:
+        product = sold_product.product.product
+        variant = sold_product.product
+        attrs = variant.attributes.all()
+        images = ProductImage.objects.filter(product=product)
 
     context = {
         'page_title': page_title,
         'sold_product': sold_product,
-        'product' : sold_product.product.product,
-        'variant' : sold_product.product,
-        'attribute_list': sold_product.product.attributes.all(),
+        'product' : product,
+        'variant' : variant,
+        'attribute_list': attrs,
         'image_list': images,
     }
     context['content_title'] =  CORE_STRINGS.DASHBOARD_SOLD_PRODUCT_TITLE
@@ -1870,9 +1876,8 @@ def sold_product_delete(request, product_uuid=None):
         raise SuspiciousOperation('Bad request')
 
     product = get_object_or_404(SoldProduct, product_uuid=product_uuid)
-    p_name = product.product.name
     SoldProduct.objects.filter(pk=product.pk).delete()
-    logger.info(f'SoldProduct \"{p_name}\" deleted by user \"{request.user.username}\"')
+    logger.info(f'SoldProduct with id \"{product.pk}\" deleted by user \"{request.user.username}\"')
     messages.success(request, _('SoldProduct deleted'))
     return redirect('dashboard:sold-products')
 

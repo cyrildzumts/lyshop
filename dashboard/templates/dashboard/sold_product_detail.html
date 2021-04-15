@@ -4,7 +4,6 @@
 {% load static %}
 
 {% block ACTIONS %}
-<a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"><span class="fas fa-tag icon"></span><span class="">{% trans "Product" %}</span></a>
 {% if can_delete_product %}
 <a class="mat-button mat-button-default" href="{{sold_product.get_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a>
 {% endif %}
@@ -18,6 +17,7 @@
           <div class="col-12 col-m-12 col-xs-12 title">
               <span>{% trans "Product Information" %}</span>
           </div>
+          {% if product %}
           <div class="box">
             <div class="entry">
               <span class="key">{% trans "Name" %}</span> <span class="value">{{product.name}}</span>
@@ -32,9 +32,10 @@
               <span class="key">{% trans "Gender" %}</span> <span class="value">{{product.gender|gender_value}}</span>
             </div>
           </div>
+          {% endif %}
           <div class="box">
               <div class="entry">
-                <span class="key">{% trans "Quantity" %}</span> <span class="value">{{variant.quantity}}</span>
+                <span class="key">{% trans "Quantity" %}</span> <span class="value">{{sold_product.quantity}}</span>
               </div>
               
               <div class="entry">
@@ -49,15 +50,13 @@
           </div>
           <div class="box">
             <div class="entry">
-              <span class="key">{% trans "Views" %}</span> <span class="value">{{product.view_count}}</span>
-            </div>
-            <div class="entry">
               <span class="key">{% trans "Sold Date" %}</span> <span class="value">{{sold_product.created_at|date:"F j, Y"}}</span>
             </div>
           </div>
         
       </div><!--End of grid-->
   </div>
+  {% if attribute_list %}
   <div class="mat-box wrapper full">
       <div class="title">
         <h4>{% trans "Product Attributes" %}</h4>
@@ -73,6 +72,6 @@
               </ul>
       </div><!--nd of box-content-->
   </div><!--End of mat-box-->
- 
+  {% endif %}
 </div>
 {% endblock CONTENT_MAIN %}

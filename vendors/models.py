@@ -91,7 +91,9 @@ class SoldProduct(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"SoldProduct {self.product.name}"
+        if self.product:
+            return f"SoldProduct {self.product.name}"
+        return return f"SoldProduct id {self.pk}"
 
     def get_absolute_url(self):
         return reverse("vendors:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
