@@ -102,7 +102,7 @@ class SoldProduct(models.Model):
         return reverse("dashboard:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
     
     def get_delete_url(self):
-        return reverse("dashboard:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
+        return reverse("dashboard:sold-product-delete", kwargs={"product_uuid": self.product_uuid})
 
     def get_vendor_url(self):
         return reverse("vendors:sold-product-detail", kwargs={"product_uuid": self.product_uuid})
