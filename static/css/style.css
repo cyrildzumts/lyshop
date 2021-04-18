@@ -432,7 +432,13 @@
     padding-right: 0.5rem;
 }
 
+.small{
+    font-size: 0.7rem;
+}
 
+.medium{
+    font-size: .875rem;
+}
 
 .padding-l{
     padding-left: 1rem;

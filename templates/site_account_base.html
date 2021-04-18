@@ -9,14 +9,14 @@
             <h5>{% trans "Hello" %}, <span>{{user.get_full_name}}</span></h5>
         {% endblock HEADER_BANNER_TITLE %}
         
-        <div class="container padding-v">
+        <div class="padding-v">
             {% if is_seller %}
             <div class="balance-info">
                 <div class="row flex-left"><h5>{% trans "Balance" %}</h5></div>
                 <div class="row flex-left balance"><span>{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %} </span></div>
             </div><!--End of Balance-->
             {% endif %}
-            <ul class="padding-v">
+            <ul class="padding-v small">
                     <li><a class="mat-button mat-button-text" href="{{account.get_absolute_url}}"><i class="fas fa-user icon"></i><span>{% trans "Account Details" %}</span></a></li>
                     <li><a class="mat-button mat-button-text" href="{% url 'addressbook:addressbook' %}"><i class="fas fa-address-book icon"></i>  {% trans "Addressbook" %}</a></li>
                     <li><a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-shopping-cart icon"></i>{% trans "Shopping List" %}</a></li>
