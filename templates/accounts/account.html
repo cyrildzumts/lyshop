@@ -17,13 +17,11 @@
 </div>
 
 {% else %}
-<div class="flex">
-    <h4>{% trans "Account Summary" %}</h4>
-</div>
+<h5>{% trans "Account Summary" %}</h5>
 <div class="container">
    
    {% if recent_orders %}
-   <h5>{% trans "Recent Orders" %}</h5>
+   <div class="row"><h5>{% trans "Recent Orders" %}</h5> <a href="{% url 'orders:orders' %}" class="mat-button mat-button-default"><span>{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
    <div class="mat-table-wrapper">
         <table id="order-list" class="mat-table js-filter-table">
           <thead>
@@ -48,7 +46,7 @@
                     <td data-label="{% trans 'Shipment Status' %}"><span>{% trans "No shipment information" %}</span></td>
                     {% endif %}
                     <td data-label="{% trans 'Date' %}"><span>{{o.created_at|date:"F j, Y"}}</span></td>
-                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_absolute_url}}"><span><i class="fas fa-info icon"></i>{% trans "Detail" %}</span></a></td>
+                    <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{{o.get_absolute_url}}"><span><i class="fas fa-info icon"></i>{% trans "See" %}</span></a></td>
                   </tr>
                   {% endfor %}
                   
