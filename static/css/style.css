@@ -432,6 +432,8 @@
     padding-right: 0.5rem;
 }
 
+
+
 .padding-l{
     padding-left: 1rem;
 }
@@ -439,3 +441,7 @@
     padding-right: 1rem;
 }
 
+.padding-v{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
