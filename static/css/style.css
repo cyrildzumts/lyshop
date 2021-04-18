@@ -428,26 +428,26 @@
 }
 
 .padding-h{
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
 }
 
 .small{
-    font-size: 0.7rem;
+    font-size: 0.7rem !important;
 }
 
 .medium{
-    font-size: .875rem;
+    font-size: .875rem !important;
 }
 
 .padding-l{
-    padding-left: 1rem;
+    padding-left: 1rem !important;
 }
 .padding-r{
-    padding-right: 1rem;
+    padding-right: 1rem !important;
 }
 
 .padding-v{
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
 }
