@@ -1759,6 +1759,11 @@ input.editable{
 	cursor: pointer;
 }
 
+.chips span{
+	width: 100%;
+	text-align: center;
+}
+
 .bordered{
 	border: 1px solid #201c29;
 }
