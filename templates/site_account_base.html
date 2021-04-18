@@ -16,7 +16,7 @@
                 <div class="row flex-left balance"><span>{{balance.balance|floatformat:"-2"}} {% trans CURRENCY %} </span></div>
             </div><!--End of Balance-->
             {% endif %}
-            <ul class="padding-v medium">
+            <ul class="medium">
                     <li><a class="mat-button mat-button-text" href="{{account.get_absolute_url}}"><i class="fas fa-user icon"></i><span>{% trans "Account Details" %}</span></a></li>
                     <li><a class="mat-button mat-button-text" href="{% url 'addressbook:addressbook' %}"><i class="fas fa-address-book icon"></i>  {% trans "Addressbook" %}</a></li>
                     <li><a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-shopping-cart icon"></i>{% trans "Shopping List" %}</a></li>
