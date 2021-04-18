@@ -51,7 +51,7 @@
         <table id="order-list" class="mat-table">
                 <thead>
                         <tr>
-                                <th scope="col">{% trans "Reference Number" %}</th>
+                                <th scope="col">{% trans "Order Reference" %}</th>
                                 <th scope="col">{% trans "Customer" %}</th>
                                 <th scope="col">{% trans "Status" %}</th>
                                 <th scope="col">{% trans "Total Price" %}</th>
@@ -62,7 +62,7 @@
                 <tbody>
                         {% for order in order_list  %}
                         <tr>
-                        <td scope="row" data-label="{% trans 'Reference Number' %}"><span>{{order.order_ref_number}}</span></td>
+                        <td scope="row" data-label="{% trans 'Order Reference' %}"><span>{{order.order_ref_number}}</span></td>
                         <td data-label="{% trans 'Customer' %}"><span>{{order.user.get_full_name}}</span></td>
                         <td data-label="{% trans 'Status' %}"><span>{{order.status|order_status_value}}</span></td>
                         <td data-label="{% trans 'Total Price' %}"><span>{{order.total}} {% trans CURRENCY %}</span></td>

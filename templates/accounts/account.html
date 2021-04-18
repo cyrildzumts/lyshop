@@ -17,7 +17,7 @@
 </div>
 
 {% else %}
-<div class="flex flex-left full"><h4>{% trans "Overview" %}</h4></div>
+<div class="flex flex-left full padding-h"><h4>{% trans "Overview" %}</h4></div>
 <div class="container">
    
    {% if recent_orders %}
@@ -37,7 +37,7 @@
           <tbody>
                   {% for o in recent_orders  %}
                   <tr>
-                    <td scope="row" data-label="Order Reference"><span>{{o.order_ref_number}}</span></td>
+                    <td scope="row" data-label="{% trans 'Order Reference' %}"><span>{{o.order_ref_number}}</span></td>
                     <td data-label="{% trans 'Amount' %}"><span>{{o.amount|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
                     <td data-label="{% trans 'Status' %}"><span>{{o.status|order_status_value}}</span></td>
                     {% if o.order_shipment.first %}

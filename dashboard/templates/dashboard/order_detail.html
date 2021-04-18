@@ -25,6 +25,7 @@
         <div class="grid">
             <div class="box">
                 <p class="entry"><span class="key">{% trans "Order Ref Number" %}</span> <span class="value">{{order.order_ref_number}}</span></p>
+                <p class="entry"><span class="key">{% trans "Customer" %}</span> <span class="value">{{order.user.get_full_name}}</span></p>
                 <p class="entry"><span class="key">{% trans "Payment Option" %}</span> <span class="value">{{order.payment_option|payment_option_value}}</span></p>
                 <p class="entry"><span class="key">{% trans "Order Status" %}</span> <span class="value">{{order.status|order_status_value}}</span></p>
                 <p class="entry"><span class="key">{% trans "Shipping Status" %}</span> <span class="value">{% if shipment %}{{shipment.shipment_status|shipment_status_value}}{% else %}{% trans "No shipping information available" %}{% endif %}</span></p>
