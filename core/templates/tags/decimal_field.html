@@ -7,11 +7,11 @@
     </div>
     {% if SELECTION %}
     {% include "tags/list_filter.html" with target="{{field_name}}-list" field="{{field_name}}"%}
-    <div class="flex flex-column align-left">
+    <ul class="scroll-v">
     {% for k, v in SELECTION_OPTIONS %} 
-        <span  class="chips js-list-filter {% if k in FILTER.selection or k == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}" data-{{field_name}}="{{obj.display_name}}" data-value="{{obj.pk}}"  data-value="{{k}}">{% trans v %}</span> 
+        <li><span  class="chips js-list-filter {% if k in FILTER.selection or k == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}" data-{{field_name}}="{{obj.display_name}}" data-value="{{obj.pk}}"  data-value="{{k}}">{% trans v %}</span></li>
     {% endfor %}
-    </div>
+    </ul>
     {% elif RANGE %}
     <div class="box-content">
         <div class="form-group">
