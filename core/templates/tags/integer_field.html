@@ -10,11 +10,11 @@
     
     {% if FIELD_FILTER.queryset %}
         {% for obj in FIELD_FILTER.selection_options %} 
-            <li><span  class="chips js-list-filter {% if obj.pk in FILTER.selection or obj.pk == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}" data-{{field_name}}="{{obj.display_name}}" data-value="{{obj.pk}}">{% trans obj.display_name %}</span></li>
+            <li class="js-list-filter" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}" data-{{field_name}}="{{obj.display_name}}" data-value="{{obj.pk}}"><span  class="chips {% if obj.pk in FILTER.selection or obj.pk == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}" data-{{field_name}}="{{obj.display_name}}" data-value="{{obj.pk}}">{% trans obj.display_name %}</span></li>
         {% endfor %}
     {% else %}
         {% for k, v in SELECTION_OPTIONS %} 
-            <li><span  class="chips js-list-filter {% if k in FILTER.selection or k == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}" data-{{field_name}}="{{v}}" data-value="{{k}}">{% trans v %}</span></li>
+            <li class="js-list-filter" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}" data-{{field_name}}="{{v}}" data-value="{{k}}"><span  class="chips {% if k in FILTER.selection or k == FILTER.selection %} chips-selected {% endif %}" data-target="{{field_name}}-id" data-type="selection" data-name="{{field_name}}" data-{{field_name}}="{{v}}" data-value="{{k}}">{% trans v %}</span></li>
         {% endfor %}
     {% endif %}
     
