@@ -56,7 +56,7 @@
    {% else %}
    <div class="mat-box">
     <p>{% trans "You have not order any product yet." %}</p>
-    <p>{% trans "Your recent orders will be shown here." %}</p>
+    <p><a class="mat-button mat-button-default" href="{% url 'catalog:catalog-home' %}"> {% translate 'Discover Our Catalog' %}</a></p>
    </div>
    {% endif %}
    
