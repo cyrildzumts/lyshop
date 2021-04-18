@@ -21,7 +21,7 @@
 <div class="container">
    
    {% if recent_orders %}
-   <div class="flex flex-left full padding-h medium"><span>{% trans "Recent Orders" %}</span> <a href="{% url 'orders:orders' %}" class="mat-button mat-button-default"><span class="small">{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
+   <div class="flex flex-left full padding-h medium"><h5>{% trans "Recent Orders" %}</h5> <a href="{% url 'orders:orders' %}" class="mat-button mat-button-default"><span class="small">{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
    <div class="mat-table-wrapper">
         <table id="order-list" class="mat-table js-filter-table">
           <thead>
