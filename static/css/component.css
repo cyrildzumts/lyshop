@@ -1770,8 +1770,11 @@ input.editable{
     margin: 0;
 }
 .collapsible .mat-button{
-	font-size: 1em !important;
 	padding : 0 !important;
+}
+
+.collapsible .actions .mat-button{
+	padding : 0 1rem !important;
 }
 
 
