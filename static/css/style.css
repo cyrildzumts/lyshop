@@ -451,3 +451,11 @@
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
 }
+
+.no-child-padding a{
+    padding: 0 !important;
+}
+
+.no-child-margin a{
+    margin: 0 !important;
+}
