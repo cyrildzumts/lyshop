@@ -1788,7 +1788,7 @@ input.editable{
 }
 
 .product-filter .collapse-content, .product-filter .collapsible-content{
-	position: fixed;
+	position: relative;
 	z-index: 100;
 }
 
