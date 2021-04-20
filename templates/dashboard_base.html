@@ -63,9 +63,9 @@
 <div class="dash-main-content">
     <div class="dashboard-header-wrapper">
         <header class="dashboard-header">
-            <h4>
-                <label for="nav-toggle"><span class="fas fa-bars"></span></label>{{content_title|default_if_none:'Dashboard'}}
-            </h4>
+            <div class="header-title">
+                <label for="nav-toggle"><i class="fas fa-bars icon"></i></label><span class="bold small">{{content_title|default_if_none:'Dashboard'}}</span>
+            </div>
             <div class="search-wrapper force-hidden">
                 <span class="fas fa-search icon"></span>
                 <input type="search" placeholder="{% trans 'Search' %}">
@@ -73,7 +73,7 @@
             <div class="user-wrapper">
                 {% if user_pic %} <img class="user-image" src="{{user_pic.image_url}}" alt=""> {% endif %}
                 <div>
-                    <h4>{{request.user.username}}</h4>
+                    <h5>{{request.user.username}}</h5>
                     <small>{% trans "Administrator" %}</small>
                 </div>
             </div>
