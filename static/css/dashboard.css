@@ -274,6 +274,11 @@
 
 }
 
+.header-title label{
+    padding-left: 0;
+    padding-right: 1rem;
+}
+
 .dashboard-header .search-wrapper{
     display: flex;
     align-items: center;
