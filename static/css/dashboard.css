@@ -405,3 +405,9 @@ main {
     }
     
 }
+
+@media only screen and (max-width:40em){
+    * {
+      font-size: 0.875rem;
+    }
+  }
