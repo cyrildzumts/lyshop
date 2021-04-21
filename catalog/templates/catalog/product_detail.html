@@ -100,37 +100,44 @@
             {% endif %}
             
             <div class="product-detail-shipping">
+                  <ul class="text-gray medium bold">
+                    <li><i class="fas fa-check icon"></i><span>{% trans "Free delivery from a purchase of 50,000 XAF" %}</span></li>
+                    <li><i class="fas fa-check icon"></i><span>{% trans "Payment with AirtelMoney or in Cash" %}</span></li>
+                    <li><i class="fas-fa-check icon"></i> <span>{% trans "Place your order and collect it at one of our collection points" %}</span></li>
+                  </ul>
 
-                  <div class="collapsible">
-                
-                      <div class="collapse-toggle mat-button mat-button-text" data-target="detail-shipping">{% trans "Shipping Info" %}<i class="fas fa-chevron-down icon"></i></div>
-                      <div id="detail-shipping" class="collapse-content">
-                            <div class="product-info">
-
-                                <ul>
-                                    {% for s in ship_modes %} <li>{% trans s.display_name %} ({% if s.price == 0 %}{% trans "FREE" %} {% else %}{{s.price|floatformat:"-2"}} {% trans CURRENCY %}{% endif %})</li> {% endfor %}
-                                </ul>
-                            </div><!--End of product-info -->
-                            <div class="product-info">
-                              <p>{% trans "You can also choose to up pick your order yourself at one of our pick up locations below" %}</p>
-                            </div><!--End of product-info -->
-                            <div class="product-info">
-                              <h5>{% trans "Pick up Locations" %}</h5>
-                              <ul>
-                                  <li><i class="fas fa-map-marked-alt icon"></i><span class="bold padding-h">LBV</span><span>{% trans "Louis, in the galleries of the municipal market, Box N ° 4" %}</span></li>
-                                  <li><i class="fas fa-map-marked-alt icon"></i><span class="bold padding-h">POG</span><span>{% trans "Grand village, at Josy Coiffure, near CECADO, at carréfour Assane" %}</span></li>
-                              </ul>
-                            </div><!--End of product-info -->
-                            <div class="shipping-warning">
+                  {% comment %}
+                    <div class="collapsible">
+                  
+                        <div class="collapse-toggle mat-button mat-button-text" data-target="detail-shipping">{% trans "Shipping Info" %}<i class="fas fa-chevron-down icon"></i></div>
+                        <div id="detail-shipping" class="collapse-content">
                               <div class="product-info">
-                                  <p>{% blocktrans trimmed %}Home delivery is currently offered in Libreville.{% endblocktrans %}</p>
-                                  <p>{% blocktrans trimmed %}For customers living in Port-gentil, you can only pick up you order at the mentioned location above.
-                                  Shipping fee to Port-gentil is added to the order amount.
-                                  {% endblocktrans %}</p>
-                              </div>
-                            </div><!--End of shipping-warning-->
-                      </div><!--End of collapse-content-->
-                  </div><!--End of collapsible-->
+  
+                                  <ul>
+                                      {% for s in ship_modes %} <li>{% trans s.display_name %} ({% if s.price == 0 %}{% trans "FREE" %} {% else %}{{s.price|floatformat:"-2"}} {% trans CURRENCY %}{% endif %})</li> {% endfor %}
+                                  </ul>
+                              </div><!--End of product-info -->
+                              <div class="product-info">
+                                <p>{% trans "You can also choose to up pick your order yourself at one of our pick up locations below" %}</p>
+                              </div><!--End of product-info -->
+                              <div class="product-info">
+                                <h5>{% trans "Pick up Locations" %}</h5>
+                                <ul>
+                                    <li><i class="fas fa-map-marked-alt icon"></i><span class="bold padding-h">LBV</span><span>{% trans "Louis, in the galleries of the municipal market, Box N ° 4" %}</span></li>
+                                    <li><i class="fas fa-map-marked-alt icon"></i><span class="bold padding-h">POG</span><span>{% trans "Grand village, at Josy Coiffure, near CECADO, at carréfour Assane" %}</span></li>
+                                </ul>
+                              </div><!--End of product-info -->
+                              <div class="shipping-warning">
+                                <div class="product-info">
+                                    <p>{% blocktrans trimmed %}Home delivery is currently offered in Libreville.{% endblocktrans %}</p>
+                                    <p>{% blocktrans trimmed %}For customers living in Port-gentil, you can only pick up you order at the mentioned location above.
+                                    Shipping fee to Port-gentil is added to the order amount.
+                                    {% endblocktrans %}</p>
+                                </div>
+                              </div><!--End of shipping-warning-->
+                        </div><!--End of collapse-content-->
+                    </div><!--End of collapsible-->
+                  {% endcomment %}
             </div><!--End of mat-box-->
       </div><!--End of container-->
     </div><!--End of col-4 -->
