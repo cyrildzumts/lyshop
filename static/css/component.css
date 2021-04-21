@@ -2859,8 +2859,12 @@ table tbody tr, .mat-table tbody tr{
 	font-size: 0.8em !important;
 }
 .product-detail-shipping{
-	font-size: 0.85em;
+	font-size: 0.8rem;
 	margin-top: 1em !important;
+	margin-bottom: 1rem !important;
+}
+.product-detail-shipping li{
+	padding-bottom: 1rem !important;
 }
 
 .product-info{
