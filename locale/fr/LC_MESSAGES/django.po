@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-18 11:40+0000\n"
+"POT-Creation-Date: 2021-04-21 21:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -382,7 +382,7 @@ msgstr "Utiliser pour"
 #: dashboard/templates/dashboard/idcard_detail.html:21
 #: dashboard/templates/dashboard/news_update.html:41
 #: dashboard/templates/dashboard/order_detail.html:14
-#: dashboard/templates/dashboard/order_detail.html:92
+#: dashboard/templates/dashboard/order_detail.html:93
 #: dashboard/templates/dashboard/order_item.html:15
 #: dashboard/templates/dashboard/order_item_update.html:100
 #: dashboard/templates/dashboard/order_update.html:14
@@ -633,7 +633,7 @@ msgstr "Nom"
 #: dashboard/templates/dashboard/highlight_update.html:17
 #: dashboard/templates/dashboard/highlight_update.html:49
 #: dashboard/templates/dashboard/news_detail.html:19
-#: dashboard/templates/dashboard/order_detail.html:70
+#: dashboard/templates/dashboard/order_detail.html:71
 #: dashboard/templates/dashboard/order_item.html:72
 #: dashboard/templates/dashboard/order_item_update.html:74
 #: dashboard/templates/dashboard/payment_method_create.html:24
@@ -769,7 +769,7 @@ msgid "Invalid coupon"
 msgstr "Coupon invalide"
 
 #: cart/templates/cart/cart.html:32 core/resources/ui_strings.py:26
-#: dashboard/templates/dashboard/order_detail.html:40
+#: dashboard/templates/dashboard/order_detail.html:41
 #: dashboard/templates/dashboard/order_item.html:34
 #: dashboard/templates/dashboard/order_item_update.html:33
 #: dashboard/templates/dashboard/order_update.html:33
@@ -807,7 +807,7 @@ msgstr "Nombre d'articles"
 #: dashboard/templates/dashboard/coupon_detail.html:21
 #: dashboard/templates/dashboard/coupon_list.html:24
 #: dashboard/templates/dashboard/coupon_list.html:37
-#: dashboard/templates/dashboard/order_detail.html:39
+#: dashboard/templates/dashboard/order_detail.html:40
 #: dashboard/templates/dashboard/order_item.html:33
 #: dashboard/templates/dashboard/order_item_update.html:32
 #: dashboard/templates/dashboard/order_update.html:32
@@ -882,8 +882,8 @@ msgstr ""
 msgid "Your shopping cart is empty"
 msgstr "Votre panier est vide"
 
-#: cart/templates/cart_base.html:12 templates/base.html:64
-#: templates/base.html:88
+#: cart/templates/cart_base.html:12 templates/base.html:66
+#: templates/base.html:90
 msgid "Cart"
 msgstr "Panier"
 
@@ -904,7 +904,7 @@ msgstr "Continuer vos achats"
 #: dashboard/templates/dashboard/dashboard.html:172
 #: dashboard/templates/dashboard/dashboard.html:192
 #: dashboard/templates/dashboard/dashboard.html:203
-#: dashboard/templates/dashboard/order_detail.html:36
+#: dashboard/templates/dashboard/order_detail.html:37
 #: dashboard/templates/dashboard/order_item.html:30
 #: dashboard/templates/dashboard/order_item.html:91
 #: dashboard/templates/dashboard/order_item_update.html:29
@@ -1315,14 +1315,14 @@ msgstr ""
 "Dès que des produits sont disponible pour cette catégorie, ils seront "
 "affichés ici"
 
-#: catalog/templates/catalog/product_detail.html:81
+#: catalog/templates/catalog/product_detail.html:86
 #: catalog/templates/catalog/product_variant_detail.html:81
 #: dashboard/templates/dashboard/brand_product_detail.html:64
 #: dashboard/templates/dashboard/highlight_create.html:38
 #: dashboard/templates/dashboard/highlight_detail.html:23
 #: dashboard/templates/dashboard/highlight_update.html:21
 #: dashboard/templates/dashboard/highlight_update.html:71
-#: dashboard/templates/dashboard/order_detail.html:54
+#: dashboard/templates/dashboard/order_detail.html:55
 #: dashboard/templates/dashboard/order_item.html:46
 #: dashboard/templates/dashboard/order_item_update.html:45
 #: dashboard/templates/dashboard/payment_request_detail.html:43
@@ -1347,52 +1347,17 @@ msgstr ""
 msgid "Description"
 msgstr "Description"
 
-#: catalog/templates/catalog/product_detail.html:103
-#: orders/templates/orders/checkout.html:11
-msgid "Shipping Info"
-msgstr "Information sur l'envoi"
+#: catalog/templates/catalog/product_detail.html:104
+msgid "Free delivery from a purchase of 50,000 XAF"
+msgstr "Livraison gratuite à partir d'un achat de 50000 FCFA"
 
-#: catalog/templates/catalog/product_detail.html:108
-msgid "FREE"
-msgstr "GRATUIT"
+#: catalog/templates/catalog/product_detail.html:105
+msgid "Payment with AirtelMoney or in Cash"
+msgstr "Paiement avec AirtelMoney ou en espèces"
 
-#: catalog/templates/catalog/product_detail.html:112
-msgid ""
-"You can also choose to up pick your order yourself at one of our pick up "
-"locations below"
-msgstr ""
-"Vous pouvez également choisir de récupérer votre commande vous-même dans "
-"l'un de nos points de retrait ci-dessous"
-
-#: catalog/templates/catalog/product_detail.html:115
-#: templates/tags/footer_content.html:22
-msgid "Pick up Locations"
-msgstr "Lieux de retraits"
-
-#: catalog/templates/catalog/product_detail.html:117
-#: templates/tags/footer_content.html:24
-msgid "Louis, in the galleries of the municipal market, Box N ° 4"
-msgstr "Louis, aux galeries du marché municipal, Box N° 4"
-
-#: catalog/templates/catalog/product_detail.html:118
-#: templates/tags/footer_content.html:25
-msgid "Grand village, at Josy Coiffure, near CECADO, at carréfour Assane"
-msgstr ""
-"Au Grand village, chez Josy Coiffure, à coté de CECADO, au carréfour Assane"
-
-#: catalog/templates/catalog/product_detail.html:123
-msgid "Home delivery is currently offered in Libreville."
-msgstr "La livraison à domicile est actuellement proposée à Libreville."
-
-#: catalog/templates/catalog/product_detail.html:124
-msgid ""
-"For customers living in Port-gentil, you can only pick up you order at the "
-"mentioned location above. Shipping fee to Port-gentil is added to the order "
-"amount."
-msgstr ""
-"Pour les clients résidant à Port-gentil, vous ne pouvez récupérer votre "
-"commande qu'à l'endroit mentionné ci-dessus. Les frais d'expédition à Port-"
-"gentil sont ajoutés au montant de la commande."
+#: catalog/templates/catalog/product_detail.html:106
+msgid "Place your order and collect it at one of our collection points"
+msgstr "Passez votre commande et récupérez-la dans l'un de nos points de retrait"
 
 #: catalog/templates/catalog/product_image_detail.html:5
 #: core/resources/ui_strings.py:79
@@ -1463,7 +1428,7 @@ msgstr "Solde"
 #: dashboard/templates/dashboard/highlight_list.html:33
 #: dashboard/templates/dashboard/news_list.html:24
 #: dashboard/templates/dashboard/news_list.html:35
-#: dashboard/templates/dashboard/order_detail.html:76
+#: dashboard/templates/dashboard/order_detail.html:77
 #: dashboard/templates/dashboard/order_list.html:29
 #: dashboard/templates/dashboard/order_list.html:43
 #: dashboard/templates/dashboard/payment_method_list.html:31
@@ -1693,7 +1658,7 @@ msgstr "Produits vendus"
 #: dashboard/templates/tags/idcard_form.html:21 dashboard/views.py:82
 #: payment/templates/payment_base.html:10
 #: payment/templates/payment_base_old.html:57
-#: shipment/templates/shipment_base.html:10 templates/base.html:57
+#: shipment/templates/shipment_base.html:10 templates/base.html:59
 #: templates/dashboard_base.html:23 templates/product_base.html:9
 msgid "Dashboard"
 msgstr "Tableau de bord"
@@ -1902,7 +1867,7 @@ msgstr "Nouvel Highlight"
 #: dashboard/templates/tags/analytics.html:8
 #: dashboard/templates/tags/dashboard_summary.html:7
 #: dashboard/templates/tags/report_summary.html:7
-#: orders/templates/order_base.html:9 templates/dashboard_base.html:28
+#: orders/templates/order_base.html:8 templates/dashboard_base.html:28
 #: templates/site_account_base.html:23 templates/vendor_base.html:25
 #: vendors/templates/vendor_base_old.html:53
 #: vendors/templates/vendor_tags/analytics.html:10
@@ -1933,7 +1898,7 @@ msgid "Order Update"
 msgstr "Actualiser la commande"
 
 #: core/resources/ui_strings.py:49
-#: dashboard/templates/dashboard/order_detail.html:91
+#: dashboard/templates/dashboard/order_detail.html:92
 #: dashboard/templates/dashboard/order_item.html:58
 #: dashboard/templates/dashboard/order_item_update.html:60
 #: dashboard/views.py:653 vendors/templates/vendors/order_item.html:40
@@ -1990,7 +1955,7 @@ msgid "Payment Methods"
 msgstr "Methodes de paiement"
 
 #: core/resources/ui_strings.py:60
-#: dashboard/templates/dashboard/order_detail.html:32 dashboard/views.py:4547
+#: dashboard/templates/dashboard/order_detail.html:33 dashboard/views.py:4547
 #: orders/templates/orders/order_detail.html:38
 #: templates/invoices/invoice.html:15
 msgid "Payment Method"
@@ -2176,7 +2141,7 @@ msgid "Ship Modes"
 msgstr "Modes d'envoies"
 
 #: core/resources/ui_strings.py:96
-#: dashboard/templates/dashboard/order_detail.html:43
+#: dashboard/templates/dashboard/order_detail.html:44
 #: orders/templates/orders/order_detail.html:48
 #: shipment/templates/shipment/ship_mode_update.html:5
 #: templates/invoices/invoice.html:27
@@ -2516,7 +2481,7 @@ msgstr "Tout sélectioner"
 #: dashboard/templates/dashboard/coupon_list.html:42
 #: dashboard/templates/dashboard/group_list.html:48
 #: dashboard/templates/dashboard/group_list.html:59
-#: dashboard/templates/dashboard/order_detail.html:77
+#: dashboard/templates/dashboard/order_detail.html:78
 #: dashboard/templates/dashboard/payment_method_list.html:32
 #: dashboard/templates/dashboard/payment_method_list.html:46
 #: dashboard/templates/dashboard/permission_list.html:51
@@ -2604,7 +2569,7 @@ msgstr "Code"
 #: dashboard/templates/dashboard/dashboard.html:201
 #: dashboard/templates/dashboard/highlight_detail.html:34
 #: dashboard/templates/dashboard/highlight_detail.html:67
-#: dashboard/templates/dashboard/order_detail.html:37
+#: dashboard/templates/dashboard/order_detail.html:38
 #: dashboard/templates/dashboard/order_item.html:31
 #: dashboard/templates/dashboard/order_item_update.html:30
 #: dashboard/templates/dashboard/order_update.html:30
@@ -2758,7 +2723,7 @@ msgstr "Nombre de vues"
 #: dashboard/templates/dashboard/group_list.html:74
 #: dashboard/templates/dashboard/idcard_detail.html:37
 #: dashboard/templates/dashboard/new_user.html:24
-#: dashboard/templates/dashboard/order_detail.html:106
+#: dashboard/templates/dashboard/order_detail.html:107
 #: dashboard/templates/dashboard/order_item.html:102
 #: dashboard/templates/dashboard/order_item_update.html:108
 #: dashboard/templates/dashboard/order_list.html:55
@@ -2948,13 +2913,11 @@ msgstr "Ouvert"
 #: dashboard/templates/dashboard/claim_list.html:22
 #: dashboard/templates/dashboard/dashboard.html:70
 #: dashboard/templates/dashboard/group_list.html:58
-#: dashboard/templates/dashboard/order_list.html:43
 #: dashboard/templates/dashboard/permission_list.html:50
 #: dashboard/templates/dashboard/permission_list.html:62
 #: dashboard/templates/dashboard/policy_group_list.html:41
 #: dashboard/templates/dashboard/policy_list.html:46
 #: dashboard/templates/tags/product_list_template.html:47
-#: orders/templates/orders/order_list.html:37
 #: payment/templates/payment/payment_home.html:27
 #: payment/templates/payment/payment_list.html:28
 #: payment/templates/payment/policy_group_list.html:26
@@ -3199,7 +3162,9 @@ msgstr "Client"
 #: dashboard/templates/dashboard/customers.html:39
 #: dashboard/templates/dashboard/dashboard.html:55
 #: dashboard/templates/dashboard/dashboard.html:66
+#: dashboard/templates/dashboard/order_detail.html:28
 #: dashboard/templates/dashboard/order_list.html:22
+#: dashboard/templates/dashboard/order_list.html:36
 #: dashboard/templates/dashboard/payment_request_detail.html:20
 #: dashboard/templates/dashboard/payment_request_list.html:18
 #: dashboard/templates/dashboard/refund_detail.html:20
@@ -3322,14 +3287,18 @@ msgstr "Tout voir"
 #: dashboard/templates/dashboard/dashboard.html:54
 #: dashboard/templates/dashboard/dashboard.html:65
 #: dashboard/templates/dashboard/order_list.html:23
+#: dashboard/templates/dashboard/order_list.html:37
 #: orders/templates/orders/order_list.html:21
 #: orders/templates/orders/order_list.html:32
-msgid "Reference Number"
-msgstr "Numéro de référence"
+#: shipment/templates/shipment/order_ready_list.html:14
+#: templates/accounts/account.html:29 templates/accounts/account.html:40
+#: vendors/templates/vendors/order_list.html:15
+msgid "Order Reference"
+msgstr "Reference"
 
 #: dashboard/templates/dashboard/dashboard.html:57
 #: dashboard/templates/dashboard/dashboard.html:68
-#: dashboard/templates/dashboard/order_detail.html:75
+#: dashboard/templates/dashboard/order_detail.html:76
 #: orders/templates/orders/order_detail.html:82
 #: templates/invoices/invoice.html:46
 #: vendors/templates/vendors/order_list.html:21
@@ -3384,7 +3353,7 @@ msgstr "Articles"
 #: dashboard/templates/dashboard/dashboard.html:202
 #: dashboard/templates/dashboard/highlight_detail.html:35
 #: dashboard/templates/dashboard/highlight_detail.html:68
-#: dashboard/templates/dashboard/order_detail.html:74
+#: dashboard/templates/dashboard/order_detail.html:75
 #: dashboard/templates/dashboard/order_item.html:88
 #: dashboard/templates/dashboard/order_item_update.html:90
 #: dashboard/templates/dashboard/product_variant_detail.html:52
@@ -3551,7 +3520,7 @@ msgid "Add Selection"
 msgstr "Ajouter la sélection"
 
 #: dashboard/templates/dashboard/highlight_detail.html:66
-#: dashboard/templates/dashboard/order_detail.html:72
+#: dashboard/templates/dashboard/order_detail.html:73
 #: orders/templates/orders/order_detail.html:79
 #: templates/invoices/invoice.html:43
 #: vendors/templates/vendors/order_list.html:18
@@ -3667,7 +3636,7 @@ msgstr "Marquer la commande comme payée"
 msgid "Order Ref Number"
 msgstr "Numéro de Commande"
 
-#: dashboard/templates/dashboard/order_detail.html:28
+#: dashboard/templates/dashboard/order_detail.html:29
 #: dashboard/templates/dashboard/order_item.html:24
 #: dashboard/templates/dashboard/order_item_update.html:23
 #: dashboard/templates/dashboard/order_list.html:27
@@ -3680,7 +3649,7 @@ msgstr "Numéro de Commande"
 msgid "Payment Option"
 msgstr "Option de payment"
 
-#: dashboard/templates/dashboard/order_detail.html:29
+#: dashboard/templates/dashboard/order_detail.html:30
 #: dashboard/templates/dashboard/order_item.html:25
 #: dashboard/templates/dashboard/order_item_update.html:24
 #: dashboard/templates/dashboard/order_update.html:25
@@ -3689,7 +3658,7 @@ msgstr "Option de payment"
 msgid "Order Status"
 msgstr "Statut de la commande"
 
-#: dashboard/templates/dashboard/order_detail.html:30
+#: dashboard/templates/dashboard/order_detail.html:31
 #: dashboard/templates/dashboard/order_item.html:26
 #: dashboard/templates/dashboard/order_item_update.html:25
 #: dashboard/templates/dashboard/order_update.html:26
@@ -3698,7 +3667,7 @@ msgstr "Statut de la commande"
 msgid "Shipping Status"
 msgstr "Statut d'envoie"
 
-#: dashboard/templates/dashboard/order_detail.html:30
+#: dashboard/templates/dashboard/order_detail.html:31
 #: dashboard/templates/dashboard/order_item.html:26
 #: dashboard/templates/dashboard/order_item_update.html:25
 #: dashboard/templates/dashboard/order_update.html:26
@@ -3707,7 +3676,7 @@ msgstr "Statut d'envoie"
 msgid "No shipping information available"
 msgstr "Aucune information disponible"
 
-#: dashboard/templates/dashboard/order_detail.html:31
+#: dashboard/templates/dashboard/order_detail.html:32
 #: dashboard/templates/dashboard/order_item.html:27
 #: dashboard/templates/dashboard/order_item_update.html:26
 #: orders/templates/orders/order_detail.html:37
@@ -3715,7 +3684,7 @@ msgstr "Aucune information disponible"
 msgid "Paid Status"
 msgstr "Statut du paiement"
 
-#: dashboard/templates/dashboard/order_detail.html:31
+#: dashboard/templates/dashboard/order_detail.html:32
 #: dashboard/templates/dashboard/order_item.html:27
 #: dashboard/templates/dashboard/order_item_update.html:26
 #: orders/commons.py:101 orders/commons.py:110
@@ -3724,7 +3693,7 @@ msgstr "Statut du paiement"
 msgid "PAID"
 msgstr "PAYÉ"
 
-#: dashboard/templates/dashboard/order_detail.html:31
+#: dashboard/templates/dashboard/order_detail.html:32
 #: dashboard/templates/dashboard/order_item.html:27
 #: dashboard/templates/dashboard/order_item_update.html:26
 #: orders/templates/orders/order_detail.html:37
@@ -3732,7 +3701,7 @@ msgstr "PAYÉ"
 msgid "NOT PAID"
 msgstr "NON PAYÉ"
 
-#: dashboard/templates/dashboard/order_detail.html:33
+#: dashboard/templates/dashboard/order_detail.html:34
 #: orders/templates/orders/order_detail.html:56
 #: orders/templates/tags/checkout_address.html:15
 #: shipment/templates/shipment/shipment_detail.html:34
@@ -3740,7 +3709,7 @@ msgstr "NON PAYÉ"
 msgid "Shipping Address"
 msgstr "Addresse d'envoie"
 
-#: dashboard/templates/dashboard/order_detail.html:42
+#: dashboard/templates/dashboard/order_detail.html:43
 #: dashboard/templates/dashboard/order_item.html:36
 #: dashboard/templates/dashboard/order_item_update.html:35
 #: dashboard/templates/dashboard/order_update.html:35
@@ -3757,7 +3726,7 @@ msgstr "Addresse d'envoie"
 msgid "Shipping Price"
 msgstr "Frais d'envoi"
 
-#: dashboard/templates/dashboard/order_detail.html:47
+#: dashboard/templates/dashboard/order_detail.html:48
 #: dashboard/templates/dashboard/order_item.html:40
 #: dashboard/templates/dashboard/order_item_update.html:39
 #: dashboard/templates/dashboard/order_update.html:39
@@ -3766,7 +3735,7 @@ msgstr "Frais d'envoi"
 msgid "Order Date"
 msgstr "Date de la commande"
 
-#: dashboard/templates/dashboard/order_detail.html:48
+#: dashboard/templates/dashboard/order_detail.html:49
 #: dashboard/templates/dashboard/order_item.html:41
 #: dashboard/templates/dashboard/order_item_update.html:40
 #: dashboard/templates/dashboard/order_update.html:40
@@ -3775,21 +3744,21 @@ msgstr "Date de la commande"
 msgid "Last Update"
 msgstr "Dernière mise à jour"
 
-#: dashboard/templates/dashboard/order_detail.html:49
 #: dashboard/templates/dashboard/order_detail.html:50
+#: dashboard/templates/dashboard/order_detail.html:51
 #: dashboard/templates/dashboard/order_item.html:42
 #: dashboard/templates/dashboard/order_item_update.html:41
 msgid "TOTAL"
 msgstr "TOTAL"
 
-#: dashboard/templates/dashboard/order_detail.html:71
+#: dashboard/templates/dashboard/order_detail.html:72
 #: orders/templates/orders/order_detail.html:78
 #: templates/invoices/invoice.html:42
 #: vendors/templates/vendors/order_list.html:17
 msgid "Options"
 msgstr "Options"
 
-#: dashboard/templates/dashboard/order_detail.html:73
+#: dashboard/templates/dashboard/order_detail.html:74
 #: dashboard/templates/dashboard/order_item.html:85
 #: dashboard/templates/dashboard/order_item_update.html:87
 #: dashboard/templates/dashboard/product_variant_detail.html:49
@@ -3820,6 +3789,13 @@ msgstr "L'historique des commande sera affiché ici"
 #: dashboard/templates/dashboard/order_list.html:12
 msgid "Clean Unpaid Orders"
 msgstr "Nettoyer"
+
+#: dashboard/templates/dashboard/order_list.html:43
+#: orders/templates/orders/order_list.html:37
+#: templates/accounts/account.html:49
+#: templates/tags/product_detail_snippet.html:114
+msgid "See"
+msgstr "Voir"
 
 #: dashboard/templates/dashboard/order_update.html:51
 msgid "Update Order"
@@ -4379,23 +4355,23 @@ msgstr ""
 
 #: dashboard/templates/dashboard_base_del..html:43
 #: dashboard/templates/dashboard_base_old.html:18
-#: dashboard/templates/dashboard_base_old.html:71 templates/base.html:70
-#: templates/base.html:93 templates/dashboard_base.html:44
+#: dashboard/templates/dashboard_base_old.html:71 templates/base.html:72
+#: templates/base.html:95 templates/dashboard_base.html:44
 #: vendors/templates/vendor_base_old.html:60
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: dashboard/templates/dashboard_base_del..html:48 templates/base.html:153
+#: dashboard/templates/dashboard_base_del..html:48 templates/base.html:155
 #: templates/dashboard_base.html:51
 msgid "ONLINE SHOP"
 msgstr "MAGASIN EN LIGNE"
 
-#: dashboard/templates/dashboard_base_del..html:51 templates/base.html:156
+#: dashboard/templates/dashboard_base_del..html:51 templates/base.html:158
 #: templates/dashboard_base.html:54
 msgid "About us"
 msgstr "À propos de nous"
 
-#: dashboard/templates/dashboard_base_del..html:52 templates/base.html:157
+#: dashboard/templates/dashboard_base_del..html:52 templates/base.html:159
 #: templates/dashboard_base.html:55
 msgid "FAQ"
 msgstr "FAQ"
@@ -5388,6 +5364,10 @@ msgstr "Confirmation de l'annulation de la commande"
 msgid "Shipment Confirmation"
 msgstr "Confirmation de l'envoi"
 
+#: orders/templates/orders/checkout.html:11
+msgid "Shipping Info"
+msgstr "Information sur l'envoi"
+
 #: orders/templates/orders/checkout.html:17
 msgid "Verification"
 msgstr "Vérifcation"
@@ -5502,7 +5482,7 @@ msgstr ""
 #: orders/templates/tags/checkout_failed_content.html:6
 #: orders/templates/tags/checkout_success_content.html:8
 #: templates/accounts/registration/email_validation.html:19
-#: templates/base.html:63 templates/base.html:87
+#: templates/base.html:65 templates/base.html:89
 #: templates/registration/email_validation.html:19
 msgid "My Account"
 msgstr "Mon compte"
@@ -5693,12 +5673,6 @@ msgstr "RETRAIT EN MAGASIN(POG)"
 #: shipment/constants.py:23
 msgid "IN STORE PICK UP(LBV)"
 msgstr "RETRAIT EN MAGASIN(LBV)"
-
-#: shipment/templates/shipment/order_ready_list.html:14
-#: templates/accounts/account.html:29
-#: vendors/templates/vendors/order_list.html:15
-msgid "Order Reference"
-msgstr "Reference"
 
 #: shipment/templates/shipment/order_ready_list.html:42
 #: shipment/templates/shipment/shipment_home.html:39
@@ -5974,18 +5948,13 @@ msgstr "Aperçu"
 msgid "No shipment information"
 msgstr "Aucune information d'expédition"
 
-#: templates/accounts/account.html:49
-#: templates/tags/product_detail_snippet.html:114
-msgid "See"
-msgstr "Voir"
-
 #: templates/accounts/account.html:58
 msgid "You have not order any product yet."
 msgstr "Vous n'avez encore commandé aucun produit"
 
-#: templates/accounts/account.html:59
-msgid "Your recent orders will be shown here."
-msgstr "Vos commandes récentes seront affichées ici."
+#: templates/accounts/account.html:59 templates/home.html:41
+msgid "Discover Our Catalog"
+msgstr "Découvrir notre Catalogue"
 
 #: templates/accounts/account_detail.html:9
 msgid "User Picture"
@@ -6054,7 +6023,7 @@ msgstr "Mot de passe oublié ?"
 
 #: templates/accounts/registration/login.html:52
 #: templates/accounts/registration/password_reset_complete.html:11
-#: templates/base.html:73 templates/base.html:95
+#: templates/base.html:75 templates/base.html:97
 #: templates/registration/login.html:41
 #: templates/registration/password_reset_complete.html:11
 #: templates/tags/signup_dialog.html:34
@@ -6341,18 +6310,18 @@ msgstr "Une fois votre email vérifié, vous pourrez passer des commandes."
 msgid "Discover our Products"
 msgstr "Découvrez nos produits"
 
-#: templates/base.html:55
+#: templates/base.html:57
 msgid "Catalog"
 msgstr "Catalogue"
 
-#: templates/base.html:61 templates/vendor_base.html:20
+#: templates/base.html:63 templates/vendor_base.html:20
 #: vendors/templates/vendors/brand_product_detail.html:13
 #: vendors/templates/vendors/order_item_update.html:15
 #: vendors/templates/vendors/product_variant_detail.html:62
 msgid "Vendor Panel"
 msgstr "Espace Vendeur"
 
-#: templates/base.html:81
+#: templates/base.html:83
 msgid "Enable Grid"
 msgstr "Activer la Grille"
 
@@ -6692,10 +6661,6 @@ msgstr "Votre boutique en ligne au Gabon"
 msgid "Our catalog"
 msgstr "Notre Catalogue"
 
-#: templates/home.html:41
-msgid "Discover Our Catalog"
-msgstr "Découvrir notre Catalogue"
-
 #: templates/invoices/invoice.html:39 templates/reports/recharge_report.html:11
 #: templates/reports/sold_vouchers_report.html:11
 msgid "Pos."
@@ -6798,7 +6763,6 @@ msgid "Credit"
 msgstr "Identifiant"
 
 #: templates/site_account_base.html:9
-
 msgid "Hello"
 msgstr "Salut"
 
@@ -6884,6 +6848,19 @@ msgstr "Début de plage"
 #: templates/tags/filter.html:31
 msgid "Range End"
 msgstr "Fin de plage"
+
+#: templates/tags/footer_content.html:22
+msgid "Pick up Locations"
+msgstr "Lieux de retraits"
+
+#: templates/tags/footer_content.html:24
+msgid "Louis, in the galleries of the municipal market, Box N ° 4"
+msgstr "Louis, aux galeries du marché municipal, Box N° 4"
+
+#: templates/tags/footer_content.html:25
+msgid "Grand village, at Josy Coiffure, near CECADO, at carréfour Assane"
+msgstr ""
+"Au Grand village, chez Josy Coiffure, à coté de CECADO, au carréfour Assane"
 
 #: templates/tags/footer_content.html:31
 msgid "Contact"
@@ -7297,6 +7274,34 @@ msgstr "Retirée de la liste"
 #: wishlist/views.py:268
 msgid "shop list renamed to"
 msgstr "liste d'achat renommée en"
+
+#~ msgid "FREE"
+#~ msgstr "GRATUIT"
+
+#~ msgid ""
+#~ "You can also choose to up pick your order yourself at one of our pick up "
+#~ "locations below"
+#~ msgstr ""
+#~ "Vous pouvez également choisir de récupérer votre commande vous-même dans "
+#~ "l'un de nos points de retrait ci-dessous"
+
+#~ msgid "Home delivery is currently offered in Libreville."
+#~ msgstr "La livraison à domicile est actuellement proposée à Libreville."
+
+#~ msgid ""
+#~ "For customers living in Port-gentil, you can only pick up you order at "
+#~ "the mentioned location above. Shipping fee to Port-gentil is added to the "
+#~ "order amount."
+#~ msgstr ""
+#~ "Pour les clients résidant à Port-gentil, vous ne pouvez récupérer votre "
+#~ "commande qu'à l'endroit mentionné ci-dessus. Les frais d'expédition à "
+#~ "Port-gentil sont ajoutés au montant de la commande."
+
+#~ msgid "Reference Number"
+#~ msgstr "Numéro de référence"
+
+#~ msgid "Your recent orders will be shown here."
+#~ msgstr "Vos commandes récentes seront affichées ici."
 
 #~ msgid "Account Summary"
 #~ msgstr "Information sur le compte"
