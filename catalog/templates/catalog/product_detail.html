@@ -77,7 +77,7 @@
                         </li>
                         {% endfor %}
                         <li>
-                          <div class="actions">
+                          <div class="actions padding-v">
                             {% include "tags/add_to_cart.html" with quantity=product.quantity %}
                           </div>
                         </li>
@@ -94,13 +94,13 @@
             </div><!--End of product detail-->
             </form>
             {% if user.is_authenticated %}
-                <div class="actions">
+                <div class="actions padding-v">
                   {% include "tags/add_to_wishlist.html" %}
                 </div>
             {% endif %}
             
-            <div class="product-detail-shipping">
-                  <ul class="text-gray medium">
+            <div class="product-detail-shipping padding-v">
+                  <ul class="text-gray medium padding-v">
                     <li><i class="fas fa-check icon"></i><span>{% trans "Free delivery from a purchase of 50,000 XAF" %}</span></li>
                     <li><i class="fas fa-check icon"></i><span>{% trans "Payment with AirtelMoney or in Cash" %}</span></li>
                     <li><i class="fas fa-check icon"></i><span>{% trans "Place your order and collect it at one of our collection points" %}</span></li>
