@@ -77,6 +77,11 @@
                         </li>
                         {% endfor %}
                         <li>
+                          <div class="actions">
+                            {% include "tags/add_to_cart.html" with quantity=product.quantity %}
+                          </div>
+                        </li>
+                        <li>
                           <div class="attr description">
                               <span class="key">{% trans "Description" %} :</span>
                               <p class="value">{{product.description}}</p>
@@ -85,9 +90,7 @@
                       
                       </ul>
                 </div>
-                <div class="actions">
-                  {% include "tags/add_to_cart.html" with quantity=product.quantity %}
-                </div>
+                
             </div><!--End of product detail-->
             </form>
             {% if user.is_authenticated %}
