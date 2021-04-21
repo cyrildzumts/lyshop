@@ -2663,8 +2663,8 @@ table tbody tr, .mat-table tbody tr{
 	flex-wrap: nowrap !important;
 	overflow: hidden !important;
 	overflow-x: auto !important;
-	padding: 0.2em !important;
-	padding-top: 3em !important;
+	/*padding: 0.2em !important;*/
+	/*padding-top: 3em !important;
 	margin-bottom: 1em !important;
 	/*justify-content: center;*/
 }
@@ -3180,7 +3180,7 @@ table tbody tr, .mat-table tbody tr{
 		overflow: hidden !important;
 		overflow-x: auto !important;
 		padding: 0.2em !important;
-		padding-top: 3em !important;
+		/*padding-top: 3em !important;*/
 		margin-bottom: 1em !important;
 		/*justify-content: center;*/
 	}
