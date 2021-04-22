@@ -35,13 +35,19 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         $('#add-cart-form').submit(function(event){
             event.stopPropagation();
             event.preventDefault();
+            var variant = $('#variant').val();
             //var data = {};
             
             /*$.each($(this).serializeArray(),(i, e) =>{
                 data[e.name] = e.value;
             });
             */
+           var is_valid = variant && variant.length > 0;
+           $('.js-selection-required').toggleClass('hidden', !is_valid);
+           if(is_valid){
             self.add($(this).serialize(), $('#product-name', this).val());
+           }
+            
            //return true;
         });
         $('.js-cart-item-quantity').on('keypress', function(e){
@@ -54,8 +60,13 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         $('.js-attr-select').on('click', function(event){
             var element = $(this);
             var input = $('#' + element.data('target'));
+            var has_class = element.hasClass('chips-selected');
             input.val(element.data('value'));
-            element.toggleClass('chips-selected', !element.hasClass('chips-selected')).siblings().removeClass('chips-selected');
+            element.toggleClass('chips-selected', !has_class).siblings().removeClass('chips-selected');
+            if(!has_class){
+                $('.js-selection-required').toggleClass('hidden', !has_class);
+            }
+            
         });
         $('.js-add-coupon').on('click', self.addCoupon.bind(this));
         $(".js-remove-coupon").on('click', self.removeCoupon);
