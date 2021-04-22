@@ -60,11 +60,14 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         $('.js-attr-select').on('click', function(event){
             var element = $(this);
             var input = $('#' + element.data('target'));
-            var has_class = element.hasClass('chips-selected');
-            input.val(element.data('value'));
-            element.toggleClass('chips-selected', !has_class).siblings().removeClass('chips-selected');
-            if(!has_class){
-                $('.js-selection-required').toggleClass('hidden', !has_class);
+            var was_selected = element.hasClass('chips-selected');
+            
+            element.toggleClass('chips-selected', !was_selected).siblings().removeClass('chips-selected');
+            if(!was_selected){
+                input.val(element.data('value'));
+                $('.js-selection-required').toggleClass('hidden', !was_selected);
+            }else{
+                input.val('');
             }
             
         });
