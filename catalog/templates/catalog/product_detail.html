@@ -67,7 +67,7 @@
                                 {% for e in attr.value %} <span class="js-attr-select chips {% if e.quantity < 1 %}disabled{% endif %}" data-quantity="{{e.quantity}}" data-value="{{e.variant}}" data-target="variant">{% core_trans e.value %}</span> {% endfor %}
                               </div>
                             </div>
-                            <div class="padding medium error hidden js-selection-required">{% trans "Please select an option first" %} :  (<span class="bold">{% trans attr.display_name %}</span>)</div>
+                            <div class="padding medium error hidden js-selection-required">{% trans "Please select an option first" %} :  <span class="bold">{% trans attr.display_name %}</span></div>
                           
                           {% else %}
                             <div class="entry">
