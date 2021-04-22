@@ -298,7 +298,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
     }
 
     Cart.prototype.update_badge = function(quantity){
-        $('.cart .badge').text(quantity);
+        $('.cart .js-cart-count').text(quantity);
     }
 
     return Cart;

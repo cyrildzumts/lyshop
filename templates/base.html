@@ -64,7 +64,7 @@
                 {% if account %}
                 <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}" title="{% trans 'My Account' %}"><i class="fas fa-user"></i></a></li>
                 <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}" title="{% trans 'Cart' %}">
-                        <div class="row align-center cart"><i class="fas fa-shopping-bag"><span>{{cart_items_count}}</span></i></div></a>
+                        <div class="row align-center cart"><i class="fas fa-shopping-bag"><span class="js-cart-count">{{cart_items_count}}</span></i></div></a>
                 </li>
                 {% comment %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-heart icon"></i></a></li>{% endcomment %}
                 {% endif %}
@@ -87,7 +87,7 @@
         {% if request.user.is_authenticated %}
                 {% if account %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'accounts:account' %}" title="{% trans 'My Account' %}"><i class="fas fa-user"></i></a></li>{% endif %}
                 <li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'cart:cart' %}" title="{% trans 'Cart' %}">
-                      <div class="flex align-center cart"><i class="fas fa-shopping-bag"><span>{{cart_items_count}}</span></i></div></a>
+                      <div class="flex align-center cart"><i class="fas fa-shopping-bag"><span class="js-cart-count">{{cart_items_count}}</span></i></div></a>
                 </li>
                 {% comment %}<li class="mat-list-item"><a class="mat-button mat-button-text" href="{% url 'wishlist:wishlist-home' %}"><i class="fas fa-heart icon"></i></a></li>{% endcomment %}
                 <li class="mat-list-item"><a class="signout-btn mat-button mat-button-text signout" href="{% url 'accounts:logout' %}" title="{% trans 'Logout' %}"><i class="fas fa-sign-out-alt icon"></i></a></li>
