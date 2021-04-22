@@ -2653,9 +2653,7 @@ table tbody tr, .mat-table tbody tr{
 	margin: 0;
 }
 
-
-
-.highlight, .hz-scroll-xs{
+.highlight{
 	display: flex;
 	position: relative;
 	width: 100%;
@@ -2663,10 +2661,20 @@ table tbody tr, .mat-table tbody tr{
 	flex-wrap: nowrap !important;
 	overflow: hidden !important;
 	overflow-x: auto !important;
-	/*padding: 0.2em !important;*/
-	/*padding-top: 3em !important;
+	padding: 0.2em !important;
+	padding-top: 3em !important;
 	margin-bottom: 1em !important;
 	/*justify-content: center;*/
+}
+
+.hz-scroll-xs{
+	display: flex;
+	position: relative;
+	width: 100%;
+	flex-direction: row !important;
+	flex-wrap: nowrap !important;
+	overflow: hidden !important;
+	overflow-x: auto !important;
 }
 
 
@@ -3172,17 +3180,9 @@ table tbody tr, .mat-table tbody tr{
 	}
 
 	.hz-scroll-xs{
-		display: flex;
-		position: relative;
-		width: 100%;
-		flex-direction: row !important;
-		flex-wrap: nowrap !important;
-		overflow: hidden !important;
-		overflow-x: auto !important;
 		padding: 0.2em !important;
 		/*padding-top: 3em !important;*/
 		margin-bottom: 1em !important;
-		/*justify-content: center;*/
 	}
 	.hz-scroll-xs .kiosk-image-wrapper{
 		flex: 0 0 80%;
