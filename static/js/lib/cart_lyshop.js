@@ -42,7 +42,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
                 data[e.name] = e.value;
             });
             */
-           var is_valid = variant && variant.length > 0;
+           var is_valid = variant.length > 0;
            $('.js-selection-required').toggleClass('hidden', !is_valid);
            if(is_valid){
             self.add($(this).serialize(), $('#product-name', this).val());

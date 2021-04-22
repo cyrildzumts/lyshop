@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-21 21:07+0000\n"
+"POT-Creation-Date: 2021-04-22 17:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -833,7 +833,7 @@ msgid "no reduction"
 msgstr "pas de réduction"
 
 #: cart/templates/cart/cart.html:45
-#: cart/templates/cart_tags/item_snippet.html:32
+#: cart/templates/cart_tags/item_snippet.html:33
 #: dashboard/templates/dashboard/order_update.html:36
 #: dashboard/templates/dashboard/sold_product_detail.html:48
 #: dashboard/templates/tags/user_cart.html:33
@@ -895,7 +895,7 @@ msgstr "Panier"
 msgid "Continue Shopping"
 msgstr "Continuer vos achats"
 
-#: cart/templates/cart_tags/item_snippet.html:38
+#: cart/templates/cart_tags/item_snippet.html:39
 #: dashboard/templates/dashboard/brand_detail.html:35
 #: dashboard/templates/dashboard/brand_product_detail.html:28
 #: dashboard/templates/dashboard/dashboard.html:125
@@ -948,7 +948,7 @@ msgstr "Continuer vos achats"
 msgid "Quantity"
 msgstr "Quantité"
 
-#: cart/templates/cart_tags/item_snippet.html:55
+#: cart/templates/cart_tags/item_snippet.html:56
 #: dashboard/templates/tags/user_cart.html:56
 msgid "Art. Nr"
 msgstr "Nr. d'article"
@@ -1315,7 +1315,12 @@ msgstr ""
 "Dès que des produits sont disponible pour cette catégorie, ils seront "
 "affichés ici"
 
-#: catalog/templates/catalog/product_detail.html:86
+#: catalog/templates/catalog/product_detail.html:69
+
+msgid "Please select an option first"
+msgstr "Veuillez tout d'abord sélectionner une option"
+
+#: catalog/templates/catalog/product_detail.html:87
 #: catalog/templates/catalog/product_variant_detail.html:81
 #: dashboard/templates/dashboard/brand_product_detail.html:64
 #: dashboard/templates/dashboard/highlight_create.html:38
@@ -1347,17 +1352,18 @@ msgstr ""
 msgid "Description"
 msgstr "Description"
 
-#: catalog/templates/catalog/product_detail.html:104
+#: catalog/templates/catalog/product_detail.html:105
 msgid "Free delivery from a purchase of 50,000 XAF"
 msgstr "Livraison gratuite à partir d'un achat de 50000 FCFA"
 
-#: catalog/templates/catalog/product_detail.html:105
+#: catalog/templates/catalog/product_detail.html:106
 msgid "Payment with AirtelMoney or in Cash"
 msgstr "Paiement avec AirtelMoney ou en espèces"
 
-#: catalog/templates/catalog/product_detail.html:106
+#: catalog/templates/catalog/product_detail.html:107
 msgid "Place your order and collect it at one of our collection points"
-msgstr "Passez votre commande et récupérez-la dans l'un de nos points de retrait"
+msgstr ""
+"Passez votre commande et récupérez-la dans l'un de nos points de retrait"
 
 #: catalog/templates/catalog/product_image_detail.html:5
 #: core/resources/ui_strings.py:79
