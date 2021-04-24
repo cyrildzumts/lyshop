@@ -3015,7 +3015,6 @@ table tbody tr, .mat-table tbody tr{
 }
 .footer-catalog a{
 	display: inline-block;
-	color: #fafafa;
 }
 
 @media only screen and (max-width:40em){

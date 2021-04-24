@@ -270,3 +270,12 @@ a {
 .text-gray{
     color:#777;
 }
+
+.footer-content{
+	background-color: #fafafa;
+    color: #0A0A0A;
+}
+
+.footer-catalog a{
+	color: #0A0A0A;
+}
