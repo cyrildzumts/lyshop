@@ -97,7 +97,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         }
         ajax_api(option).then(function(response){
             self.update_badge(response.quantity);
-            notify({level:'info', content: response.message});
+            notify({level:response.success? 'info': 'error', content: response.message});
         }, function(reason){
             console.error(reason);
             notify({level:'warn', content:'product could not be added'});

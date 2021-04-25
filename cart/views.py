@@ -15,6 +15,7 @@ from catalog.models import ProductVariant, Product
 from cart.forms import CartItemForm, AddToCartForm, CartItemUpdateForm, AddCartForm, CouponForm, CartItemQuantityUpdateForm, CouponVerificationForm
 from cart.models import CartItem, CartModel
 from cart import cart_service
+from cart.resources import ui_strings as CART_UI_STRINGS
 from orders import orders_service
 from catalog import catalog_service
 from lyshop import settings, utils
@@ -116,18 +117,25 @@ def ajax_add_to_cart(request):
             attr = form.cleaned_data['attr']
             variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid)
             result, cart = cart_service.add_to_cart(cart, variant)
+            prefix = variant.product.display_name
             if result:
-                prefix = variant.product.display_name + " " + variant.product.brand.display_name
                 cart.refresh_from_db()
                 context['success'] = True
                 context['status'] = True
                 context['quantity'] = cart.quantity
-                context['message'] =  prefix + " " + str(_('added to cart'))
+                context['message'] =  _(CART_UI_STRINGS.CART_PRODUCT_ADDED)
                 return JsonResponse(context)
+            else:
+                context['success'] = False
+                context['status'] = True
+                context['quantity'] = cart.quantity
+                context['message'] =  _(CART_UI_STRINGS.CART_PRODUCT_QTY_NOT_AVAILABLE)
+                return JsonResponse(context)
+
 
         else:
             logger.error(f"Form is invalid. {form.errors}")
-            context['error'] = 'Bad Request. product missing'
+            context['error'] = _(CART_UI_STRINGS.CART_INVALID_FORM)
             context['status'] = False
             return JsonResponse(context,status=HTTPStatus.BAD_REQUEST)
             

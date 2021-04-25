@@ -1,0 +1,6 @@
+CART_PRODUCT_ADDED = 'Product Added'
+CART_PRODUCT_QTY_NOT_AVAILABLE = 'Requested quantity not available'
+CART_UPDATED = 'Cart updated'
+CART_PRODUCT_QTY_UPDATED = 'Product quantity updated'
+CART_ADD_ERROR = 'Error on the request.'
+CART_INVALID_FORM = 'Invalid Submitted data.'

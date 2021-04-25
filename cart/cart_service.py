@@ -76,7 +76,7 @@ def add_to_cart(cart, product_variant):
         logger.info('Product already present in the cart.')
         cart_item = queryset.first()
         updated_rows, cart_item = update_cart(cart, cart_item, cart_item.quantity + 1)
-        if updated_rows:
+        if updated_rows > 0:
             return cart_item, cart
         else:
             return None, cart
