@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponse, JsonResponse
-from django.utils.translation import gettext_lazy as _
+#from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_protect
+
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator

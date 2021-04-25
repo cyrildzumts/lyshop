@@ -1,4 +1,4 @@
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 DASHBOARD_DASHBOARD_TITLE = _('Dashboard')
 DASHBOARD_PAYMENT_HOME_TITLE = _('Payment Home')
@@ -143,9 +143,9 @@ INFOS_CUSTOM_SALE_TITLE = _('Sale')
 INFOS_CUSTOM_SALE_CONTENT = _('LYSHOP is currently offering sale on selected articles.')
 RECOMMANDATION_LABEL = _('Recommendation')
 
-PRODUCT_ADDED = 'Product Added'
-PRODUCT_QTY_NOT_AVAILABLE = 'Requested quantity not available'
-CART_UPDATED = 'Cart updated'
-PRODUCT_QTY_UPDATED = 'Product quantity updated'
-REQUEST_ERROR = 'Error on the request.'
-INVALID_FORM = 'Invalid Submitted data.'
+PRODUCT_ADDED = _('Product Added')
+PRODUCT_QTY_NOT_AVAILABLE = _('Requested quantity not available')
+CART_UPDATED = _('Cart updated')
+PRODUCT_QTY_UPDATED = _('Product quantity updated')
+REQUEST_ERROR = _('Error on the request')
+INVALID_FORM = _('Invalid Submitted data')
