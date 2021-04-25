@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-22 17:20+0000\n"
+"POT-Creation-Date: 2021-04-25 10:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -953,10 +953,6 @@ msgstr "Quantité"
 msgid "Art. Nr"
 msgstr "Nr. d'article"
 
-#: cart/views.py:125
-msgid "added to cart"
-msgstr "ajouté au panier"
-
 #: catalog/constants.py:82
 msgid "Shoes | Ballerinas, Loafer, Pumps | LYSHOP"
 msgstr "Chaussures | Ballerines, Loafer, Escarpins | LYSHOP"
@@ -1315,8 +1311,7 @@ msgstr ""
 "Dès que des produits sont disponible pour cette catégorie, ils seront "
 "affichés ici"
 
-#: catalog/templates/catalog/product_detail.html:69
-
+#: catalog/templates/catalog/product_detail.html:70
 msgid "Please select an option first"
 msgstr "Veuillez tout d'abord sélectionner une option"
 
@@ -1613,26 +1608,22 @@ msgid "Populariy"
 msgstr "Popularité"
 
 #: catalog/views.py:176
-#, fuzzy
-#| msgid "Product Name"
 msgid "Product added"
-msgstr "Nom du produit"
+msgstr "Produit ajouté"
 
 #: catalog/views.py:179
-#, fuzzy
-#| msgid "Product not created"
 msgid "Product not added"
-msgstr "Produit non crée"
+msgstr "Le produit n'a pas été ajouté."
 
 #: catalog/views.py:182
-#, fuzzy
-#| msgid "Invalid coupon"
 msgid "Invalid form"
-msgstr "Coupon invalide"
+msgstr "Formulaire invalide"
 
 #: catalog/views.py:185
-msgid "You must firt log in before you can add item to your cart"
+msgid "You must first login before you can add item to your cart"
 msgstr ""
+"Vous devez d'abord vous connecter avant de pouvoir ajouter un article à "
+"votre panier"
 
 #: catalog/views.py:223 dashboard/views.py:1181 dashboard/views.py:1835
 #: dashboard/views.py:2490 vendors/views.py:281 vendors/views.py:341
@@ -1645,10 +1636,8 @@ msgid "Product Variant Detail"
 msgstr "Détail de la variante de produit"
 
 #: core/core_tools.py:170
-#, fuzzy
-#| msgid "Sold Products"
 msgid "Sold Product Card Sumary"
-msgstr "Produits vendus"
+msgstr "Resumé des produit vendus"
 
 #: core/resources/ui_strings.py:3
 #: dashboard/templates/dashboard/idcard_detail.html:22
@@ -7280,6 +7269,9 @@ msgstr "Retirée de la liste"
 #: wishlist/views.py:268
 msgid "shop list renamed to"
 msgstr "liste d'achat renommée en"
+
+#~ msgid "added to cart"
+#~ msgstr "ajouté au panier"
 
 #~ msgid "FREE"
 #~ msgstr "GRATUIT"

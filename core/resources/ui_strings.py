@@ -142,3 +142,10 @@ INFOS_FREE_SHIPPING_CONTENT = _('LYSHOP is offering free shipping for members. T
 INFOS_CUSTOM_SALE_TITLE = _('Sale')
 INFOS_CUSTOM_SALE_CONTENT = _('LYSHOP is currently offering sale on selected articles.')
 RECOMMANDATION_LABEL = _('Recommendation')
+
+PRODUCT_ADDED = 'Product Added'
+PRODUCT_QTY_NOT_AVAILABLE = 'Requested quantity not available'
+CART_UPDATED = 'Cart updated'
+PRODUCT_QTY_UPDATED = 'Product quantity updated'
+REQUEST_ERROR = 'Error on the request.'
+INVALID_FORM = 'Invalid Submitted data.'

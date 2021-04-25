@@ -182,7 +182,7 @@ def product_detail(request, product_uuid=None):
                     messages.warning(request, message=_("Invalid form"))
                     logger.info(f"Product not added. Form is not valid : {form.errors} ")
         else:
-            messages.warning(request, message=_("You must firt log in before you can add item to your cart"))
+            messages.warning(request, message=_("You must first login before you can add item to your cart"))
             logger.info(f"product_details : Product not added. anonyme user")
                 
     Product.objects.filter(product_uuid=product_uuid).update(view_count=F('view_count') + 1)
