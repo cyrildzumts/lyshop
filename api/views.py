@@ -32,6 +32,7 @@ from lyshop import utils
 from django.utils import timezone
 from operator import itemgetter
 import logging
+import uuid
 logger = logging.getLogger(__name__)
 
 # Create your views here.
@@ -162,3 +163,14 @@ def get_attribute_type(request):
     'value_types' : [{ 'key' :k, 'value': v } for k,v in CATALOG_CONSTANTS.ATTRIBUTE_TYPE]
     }
     return Response(data=attr_template)
+
+
+@api_view(['POST'])
+@permission_classes(['AllowAny'])
+def authenticate(request):
+    postdata = request.POST.copy()
+    logger.debug("Received authenticate request")
+    logger.debug(f"Request POST : {postdata}")
+    utils.show_dict_contents(postdata, "API Athenticate Header")
+    token = uuid.uuid4()
+    return Response(data={"tokenType": 'Bearer', 'accessToken': token}, status=status.HTTP_200_OK)
