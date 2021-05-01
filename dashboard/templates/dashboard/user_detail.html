@@ -81,10 +81,10 @@
                                 </div>
                                 {% endif %}
                                 <div class="entry">
-                                        <span class="key">{% trans "Date joined" %}</span> <span class="value">{{user_instance.date_joined|date:"F j, Y"}}</span>
+                                        <span class="key">{% trans "Date joined" %}</span> <span class="value">{{user_instance.date_joined|date:"F j, Y H:i:s"}}</span>
                                 </div>
                                 <div class="entry">
-                                        <span class="key">{% trans "Last login" %}</span> <span class="value">{{user_instance.last_login|date:"F j, Y"}}</span>
+                                        <span class="key">{% trans "Last login" %}</span> <span class="value">{{user_instance.last_login|date:"F j, Y H:i:s"}}</span>
                                 </div>
                         </div>
 

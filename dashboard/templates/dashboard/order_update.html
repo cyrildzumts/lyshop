@@ -36,8 +36,8 @@
                 <p class="entry"><span class="key">{% trans "Total" %}</span><span class="value">{{order.total}} {% trans "XAF" %}</span></p>
             </div>
             <div class="box">
-                <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y"}}</span></p>
-                <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y"}}</span></p>
+                <p class="entry"><span class="key">{% trans "Order Date" %}</span> <span class="value">{{order.created_at|date:"F j, Y H:i:s"}}</span></p>
+                <p class="entry"><span class="key">{% trans "Last Update" %}</span> <span class="value">{{order.last_edited_at|date:"F j, Y H:i:s"}}</span></p>
             </div>
             
         </div><!--End of title-->

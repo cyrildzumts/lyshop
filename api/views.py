@@ -169,8 +169,8 @@ def get_attribute_type(request):
 @permission_classes([])
 @authentication_classes([])
 def authenticate(request):
-    postdata = request.POST.copy()
     logger.debug("Received authenticate request")
+    postdata = request.POST.copy()
     logger.debug(f"Request POST : {postdata}")
     utils.show_dict_contents(postdata, "API Athenticate Header")
     token = uuid.uuid4()
