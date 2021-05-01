@@ -168,8 +168,8 @@ def get_attribute_type(request):
 @api_view(['POST'])
 @permission_classes(['AllowAny'])
 def authenticate(request):
-    postdata = request.POST.copy()
     logger.debug("Received authenticate request")
+    postdata = request.POST.copy()
     logger.debug(f"Request POST : {postdata}")
     utils.show_dict_contents(postdata, "API Athenticate Header")
     token = uuid.uuid4()

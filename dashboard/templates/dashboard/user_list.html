@@ -35,7 +35,7 @@
                     <td scope="row" data-label="{% trans 'Username' %}"><span>{{u.username}}</span></td>
                     <td data-label="{% trans 'Name' %}"><span>{{u.get_full_name}}</span></td>
                     <td data-label="{% trans 'Is Active' %}"><span><i class="fas fa-circle icon {% if u.is_active %}success{% else %}error{% endif %}"></i>{{u.is_active|yesno:_('active,inactive')}}</span></td>
-                    <td data-label="{% trans 'Date Joined' %}"><span>{{u.date_joined|date}}</span></td>
+                    <td data-label="{% trans 'Date Joined' %}"><span>{{u.date_joined|date:"F j, Y H:i:s"}}</span></td>
                     <td data-label="{% trans 'Details' %}"><a class="mat-button mat-button-default" href="{% url 'dashboard:user-detail' u.pk %}">{% trans "More" %} </a></td>
                   </tr>
                   {% endfor %}
