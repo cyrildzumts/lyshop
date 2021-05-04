@@ -2634,7 +2634,7 @@ def users(request):
         raise PermissionDenied
 
     context = {}
-    queryset = User.objects.all()
+    queryset = User.objects.order_by('-date_joined')
     template_name = "dashboard/user_list.html"
     page_title = _("Dashboard Users") + " - " + settings.SITE_NAME
     page = request.GET.get('page', 1)
@@ -2647,10 +2647,6 @@ def users(request):
         list_set = None
     context['page_title'] = page_title
     context['users'] = list_set
-    context.update(get_view_permissions(request.user))
-    context['can_delete_user'] = PermissionManager.user_can_delete_user(request.user)
-    context['can_add_user'] = PermissionManager.user_can_add_user(request.user)
-    context['can_update_user'] = PermissionManager.user_can_change_user(request.user)
     context['content_title'] = CORE_STRINGS.DASHBOARD_USERS_TITLE
     return render(request,template_name, context)
 

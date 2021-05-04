@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block ACTIONS %}
-{% if can_delete_product %}
+{% if perms.catalog.vew_product %}
 <a class="mat-button mat-button-default" href="{{sold_product.get_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span></a>
 {% endif %}
 {% endblock ACTIONS %}
