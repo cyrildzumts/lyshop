@@ -3,7 +3,7 @@
 {% load order_tag %}
 {% load catalog_tags %}
 {% load core_tags %}
-{% if not can_access_dashboard %}
+{% if not perms.dashboard.can_view_dashboard %}
 {% include "tags/unauthorized.html" %}
 {% else %}
 

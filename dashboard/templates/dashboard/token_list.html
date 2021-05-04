@@ -4,9 +4,9 @@
 
 {% block CONTENT %}
 
-{% if can_view_user %}
+{% if perms.authtoken.view_token %}
 <div class="actions">
-    {% if can_generate_token %}
+    {% if perms.authtoken.add_token %}
     <a class="mat-button mat-button-default" href="{% url 'dashboard:generate-token' %}"><i class="fas fa-plus icon"></i><span>{% trans "Add Token" %}</span></a>
     {% endif %}
 </div><!--End of Actions-->

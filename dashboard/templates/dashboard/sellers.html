@@ -3,11 +3,11 @@
 
 {% block CONTENT %}
 
-{% if can_view_user %}
+{% if perms.auth.view_user %}
 
 <div class="container">
     <div class="nav">
-      {% if can_add_user %}
+      {% if perms.auth.add_user %}
       <a class="mat-button mat-button-default" href="{% url 'dashboard:create-user' %}"> <i class="fas fa-user-plus icon"></i><span>{% trans "New Customer" %}</span></a>
       {% endif %}
     </div>

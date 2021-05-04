@@ -3,7 +3,7 @@
 
 
 {% block CONTENT %}
-{% if not can_generate_token %}
+{% if not perms.authtoken.add_token %}
  {% include "tags/unauthorized.html" %}
 {% else %}
 <div class="container">
