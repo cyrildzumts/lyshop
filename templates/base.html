@@ -11,6 +11,11 @@
         <title>
                 {% block title %} {{page_title}} {% endblock %}
         </title>
+        {% comment %}
+                twitter card
+        {% endcomment %}
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:creator" content="@cyrildz">
         <meta name="keywords" content="{{META_KEYWORDS}}">
         <meta name="description" content="{{META_DESCRIPTION}}">
         <meta property="og:title" content="{{OG_TITLE}}">
