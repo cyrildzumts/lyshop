@@ -100,6 +100,7 @@
         <li class="mat-list-item"><a class="dialog-btn mat-button mat-button-text" href="{% url 'accounts:login' %}?next={{request.path}}" data-tab="0" data-target="#signup-dialog" title="{% trans 'Login' %}"><i class="fas fa-sign-in-alt"></i></a></li>
        {% endif %}
     </ul>
+    {% include "tags/navigations.html" %}
 </div>
 {% endblock HEADER_PANEL %}           
 </header>

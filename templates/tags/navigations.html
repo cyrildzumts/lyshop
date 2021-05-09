@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<ul>
+    <li><a href="#">{% trans "All" %}</a></li>
+    {% for k, v in GENDER %}
+    <li class="collapsible">
+        <span class="open" data-target="gender-{{k}}">{% trans v %}</span>
+        <ul id="gender-{{k}}" class="collapse-content">
+            <li>{% trans "See All" %}</li>
+            {% for p_type in PRODUCT_TYPES %}
+                <li><a href="#">{% trans p_type.display_name %}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
