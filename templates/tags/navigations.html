@@ -1,16 +1,16 @@
 {% load i18n %}
 
-<div class="big-menu">
+<div class="big-menu full">
     <span>{% trans "Shop" %} <i class="fas fa-caret-down icon"></i></span>
     <div class="full">
         <ul>
             {% for k,v in GENDER %}
-            <li>
-                <div class="submenu">
+            <li class="col-xs-12 col-3">
+                <div class="submenu full">
                     <span>{% trans v %} <i class="fas fa-caret-down icon"></i></span>
                     <ul>
                         {% for p_type in PRODUCT_TYPES %}
-                            <li><a href="#">{% trans p_type.display_name %}</a></li>
+                            <li class="full"><a href="#">{% trans p_type.display_name %}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
