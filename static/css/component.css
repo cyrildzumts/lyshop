@@ -2549,7 +2549,8 @@ table tbody tr, .mat-table tbody tr{
 }
 .submenu li a {
 	text-align: left;
-	font-size: 00.875em;
+	font-size: 0.75em;
+	font-weight: lighter;
 }
 .table-select-wrapper{
 	display: flex;
