@@ -2540,6 +2540,17 @@ table tbody tr, .mat-table tbody tr{
 	display: block;
 }
 
+.big-menu{
+	width: 100%;
+}
+
+.submenu{
+	width: 100%;
+}
+.submenu li a {
+	text-align: left;
+	font-size: 00.875em;
+}
 .table-select-wrapper{
 	display: flex;
 	align-items: center;
