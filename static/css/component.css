@@ -2543,6 +2543,13 @@ table tbody tr, .mat-table tbody tr{
 .big-menu{
 	width: 100%;
 }
+.big-menu > .nav-menu{
+	display: none;
+}
+
+.big-menu:hover > .nav-menu{
+	display: block;
+}
 
 .submenu{
 	width: 100%;
