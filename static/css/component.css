@@ -159,6 +159,7 @@ li a{
 	display: none;
 	background-color: #fafafa;
 	position: fixed;
+	overflow-y: auto;
 	padding: 1em;
 	z-index: 10;
 }
