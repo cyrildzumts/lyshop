@@ -2548,6 +2548,7 @@ table tbody tr, .mat-table tbody tr{
 	display: none;
 	background-color: #fafafa;
 	position: fixed;
+	padding: 1em;
 	z-index: 10;
 }
 
