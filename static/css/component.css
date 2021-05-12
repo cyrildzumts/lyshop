@@ -151,6 +151,31 @@ li a{
 	text-decoration: none;
 }
 
+.big-menu{
+	width: 100%;
+	position: relative;
+}
+.big-menu > .nav-menu{
+	display: none;
+	background-color: #fafafa;
+	position: fixed;
+	padding: 1em;
+	z-index: 10;
+}
+
+.big-menu:hover > .nav-menu{
+	display: block;
+}
+
+.submenu{
+	width: 100%;
+}
+.submenu li a {
+	text-align: left;
+	font-size: 0.75em;
+	font-weight: lighter;
+}
+
 .filter-body{
 	max-height: 22em;
 	max-width: 18em;
@@ -2540,30 +2565,7 @@ table tbody tr, .mat-table tbody tr{
 	display: block;
 }
 
-.big-menu{
-	width: 100%;
-	position: relative;
-}
-.big-menu > .nav-menu{
-	display: none;
-	background-color: #fafafa;
-	position: fixed;
-	padding: 1em;
-	z-index: 10;
-}
 
-.big-menu:hover > .nav-menu{
-	display: block;
-}
-
-.submenu{
-	width: 100%;
-}
-.submenu li a {
-	text-align: left;
-	font-size: 0.75em;
-	font-weight: lighter;
-}
 .table-select-wrapper{
 	display: flex;
 	align-items: center;
