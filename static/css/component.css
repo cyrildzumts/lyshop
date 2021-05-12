@@ -2542,9 +2542,13 @@ table tbody tr, .mat-table tbody tr{
 
 .big-menu{
 	width: 100%;
+	position: relative;
 }
 .big-menu > .nav-menu{
 	display: none;
+	background-color: #fafafa;
+	position: fixed;
+	z-index: 10;
 }
 
 .big-menu:hover > .nav-menu{
