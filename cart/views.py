@@ -474,6 +474,11 @@ def cart_update(request, item_uuid):
 
 @login_required
 def cart_clear(request):
+    context = {}
+    if request.method != 'POST':
+        context['error'] = 'Method not allowed. POST requets expected.'
+        context['status'] = False
+        return JsonResponse(context, status=HTTPStatus.METHOD_NOT_ALLOWED)
     cart, created = CartModel.objects.get_or_create(user=request.user)
     CartItem.objects.filter(cart=cart).delete()
     context = {

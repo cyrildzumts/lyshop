@@ -6,15 +6,6 @@ from api import views, viewsets
 
 app_name = 'api'
 router = DefaultRouter()
-router.register(r'accounts', viewsets.AccountViewSet)
-router.register(r'addresses', viewsets.AddressViewSet)
-router.register(r'brands', viewsets.BrandViewSet)
-router.register(r'categories', viewsets.CategoryViewSet)
-router.register(r'orders', viewsets.OrderViewSet)
-router.register(r'products', viewsets.ProductViewSet)
-router.register(r'product_variants', viewsets.ProductVariantViewSet)
-router.register(r'attributes', viewsets.ProductAttributeViewSet)
-
 
 urlpatterns = [
     path('', include(router.urls)),

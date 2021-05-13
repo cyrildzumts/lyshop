@@ -165,13 +165,12 @@ def get_attribute_type(request):
     return Response(data=attr_template)
 
 
-@api_view(['GET','POST'])
+@api_view(['POST'])
 @permission_classes([])
 @authentication_classes([])
 def authenticate(request):
     logger.debug("Received authenticate request")
     postdata = request.POST.copy()
-    logger.debug(f"Request POST : {postdata}")
     utils.show_dict_contents(postdata, "API Athenticate Header")
     token = uuid.uuid4()
     return Response(data={"tokenType": 'Bearer', 'accessToken': token}, status=status.HTTP_200_OK)

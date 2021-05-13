@@ -36,19 +36,11 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             event.stopPropagation();
             event.preventDefault();
             var variant = $('#variant').val();
-            //var data = {};
-            
-            /*$.each($(this).serializeArray(),(i, e) =>{
-                data[e.name] = e.value;
-            });
-            */
-           var is_valid = variant.length > 0;
-           $('.js-selection-required').toggleClass('hidden', is_valid);
-           if(is_valid){
-            self.add($(this).serialize(), $('#product-name', this).val());
-           }
-            
-           //return true;
+            var is_valid = variant.length > 0;
+            $('.js-selection-required').toggleClass('hidden', is_valid);
+            if(is_valid){
+                self.add($(this).serialize(), $('#product-name', this).val());
+            }
         });
         $('.js-cart-item-quantity').on('keypress', function(e){
             if(e.which != 13){
@@ -84,10 +76,8 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
     Cart.prototype.add = function(formData, product_name){
         var self = this;
         if(!formData){
-            console.warn("No data for to add to to cart");
             return;
         }
-        console.log("Add To Cart Form Data : ", formData);
         var option = {
             type:'POST',
             method: 'POST',
@@ -110,11 +100,25 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             return;
         }
         console.log("Removing product from cart");
+        var option = {
+            type:'POST',
+            method: 'POST',
+            dataType: 'json',
+            url : '/cart/ajax_cart_item_delete/' + product.product_uuid + '/',
+            data : {'csrfmiddlewaretoken': this.csrfmiddlewaretoken.value, 'item_uuid': product.product_uuid}
+        }
+        ajax_api(option).then(function(response){
+            self.update_badge(response.quantity);
+            notify({level:response.success? 'info': 'error', content: response.error});
+        }, function(reason){
+            console.error(reason);
+            notify({level:'warn', content:'product could not be removed'});
+        });
     }
 
     Cart.prototype.putInWishlist = function(product_uuid){
         if(!this.csrfmiddlewaretoken || !this.csrfmiddlewaretoken.value){
-            console.warning("Cart add oporation not allowed: csrf_token missing");
+            console.warning("csrf_token missing");
             return;
         }
         console.log("Puting product %s into wishlist", product_uuid);
@@ -122,10 +126,23 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
 
     Cart.prototype.clear = function(){
         if(!this.csrfmiddlewaretoken || !this.csrfmiddlewaretoken.value){
-            console.warning("Cart add oporation not allowed: csrf_token missing");
+            console.warning("csrf_token missing");
             return;
         }
-        console.log("Clearing Cart");
+        var option = {
+            type:'POST',
+            method: 'POST',
+            dataType: 'json',
+            url : '/api/clear-cart/',
+            data : {'csrfmiddlewaretoken': this.csrfmiddlewaretoken.value}
+        }
+        ajax_api(option).then(function(response){
+            self.update_badge(0);
+            notify({level:response.success? 'info': 'error', content: response.error});
+        }, function(reason){
+            console.error(reason);
+            notify({level:'warn', content:'your cart could ne be cleared'});
+        });
     }
 
     Cart.prototype.addCoupon = function(){
