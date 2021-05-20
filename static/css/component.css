@@ -1685,7 +1685,7 @@ input.editable{
 	color: #232F34;
 	background-color: #232F341E;
 	cursor: pointer;
-	font-size: 0.8em;
+	font-size: 1em;
 	font-weight: 500;
 	text-transform: uppercase;
 	border-radius: 2em;
@@ -2737,7 +2737,7 @@ table tbody tr, .mat-table tbody tr{
 .category-nav ul{
 	display: flex;
 	overflow-x: auto;
-	font-size: 0.75em;
+	font-size: 1em;
 	margin: 0 auto;
 }
 .category-nav .mat-button{
@@ -2791,7 +2791,7 @@ table tbody tr, .mat-table tbody tr{
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	font-size: 0.7em;
+	font-size: 1em;
 	padding: 0.2rem 0.5rem;
 	flex: 1 13%;
 }
@@ -2831,7 +2831,7 @@ table tbody tr, .mat-table tbody tr{
 .product-detail-properties ul li .entry > div .chips,
 .product-detail-properties ul li .entry > .value,
 .product-detail-properties ul li .entry > .chips{
-	font-size: 0.6rem;
+	font-size: 0.8rem;
 }
 
 .product-detail-properties .description{
@@ -2839,7 +2839,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .product-detail-wrapper{
-	font-size: 0.8em !important;
+	font-size: 1em !important;
 }
 .product-detail-shipping{
 	font-size: 0.8rem;
