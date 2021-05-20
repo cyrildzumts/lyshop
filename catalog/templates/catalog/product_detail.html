@@ -49,12 +49,12 @@
             <div class="product-detail-properties left">
                 
                    <div class="left">
-                      <h5>{{product.brand.display_name}}</span> - <span>{{product.display_name}}</h5>
-                      <h5>{{product.gender|gender_value}}</h5>
+                      <h3>{{product.brand.display_name}}</span> - <span>{{product.display_name}}</h3>
+                      <h4>{{product.gender|gender_value}}</h4>
                       {% if product.is_promoted %}
-                      <h6><span class="sale-price">{{product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span> <span class="old-price">{{product.price|floatformat:"-2"}} {% trans CURRENCY %}</span></h6>
+                      <h2><span class="sale-price">{{product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</span> <span class="old-price">{{product.price|floatformat:"-2"}} {% trans CURRENCY %}</span></h2>
                       {% else %}
-                      <h6>{{product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</h6>
+                      <h2>{{product.active_price|floatformat:"-2"}} {% trans CURRENCY %}</h2>
                       {% endif %}
 
                       <ul>
