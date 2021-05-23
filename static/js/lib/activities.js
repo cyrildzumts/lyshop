@@ -17,6 +17,7 @@ define(['vendor/js.cookie', 'ajax_api'],function(Cookies, ajax_api) {
     }
 
     function update_user_activity(){
+        console.info('sending user activity : ', option.data);
         ajax_api(option).then(function(response){
             console.info(response)
         }, function(reason){
