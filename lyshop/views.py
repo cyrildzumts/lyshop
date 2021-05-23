@@ -11,6 +11,7 @@ from catalog import constants as Catalog_Constants
 from django.contrib.auth.forms import UserCreationForm
 from lyshop import settings, utils
 from django.utils import timezone
+import datetime
 
 import logging
 
@@ -88,10 +89,13 @@ def about(request):
     """
     template_name = "about.html"
     page_title = 'About' + ' - ' + settings.SITE_NAME
-    if request.session.test_cookie_worked():
-        logger.info("Session cookie worked.")
+    last_login = request.session.get('last_login')
+    if last_login:
+        d = datetime.datetime.fromtimestamp(last_login)
+        logger.info(f'Last user login : {d}')
     else:
-        logger.info("Session cookie not allowed.")
+        logger.info(f'Last user login not set')
+    
     context = {
         'page_title': page_title,
     }
