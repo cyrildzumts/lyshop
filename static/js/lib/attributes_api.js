@@ -33,7 +33,7 @@ define(["ajax_api"],function(ajax) {
             dataType: 'json',
             url : '/api/attribute-types/'
         }
-        ajax(option, true).then(function(response){
+        ajax(option).then(function(response){
             attr_template = response;
         }, function(reason){
             console.error(reason);

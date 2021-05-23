@@ -5,7 +5,7 @@ requirejs.config({
     }
 });
 
-requirejs(['cart_lyshop', 'attributes_api', 'ajax_api', 'components_api', 'checkout','wishlist', 'commons', 'image_loader'], function(Cart, AttributeManager ,ajax_api, Component, Checkout, Wishlist){
+requirejs(['cart_lyshop', 'attributes_api', 'ajax_api', 'components_api', 'checkout','wishlist', 'commons', 'image_loader', 'activities'], function(Cart, AttributeManager ,ajax_api, Component, Checkout, Wishlist){
     console.log("LyshopApp loaded ...");
     var cart = new Cart();
     var wishlist = new Wishlist();

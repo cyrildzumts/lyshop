@@ -55,8 +55,6 @@ urlpatterns = i18n_patterns(
     path('about/', views.about, name='about'),
     path('lyshop-admin-board/', admin.site.urls),
     path('addressbook/', include('addressbook.urls')),
-    path('api/', include('api.urls', namespace='api')),
-    path('api/api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('accounts/', include('accounts.urls')),
     path('catalog/', include('catalog.urls')),
     path('cart/', include('cart.urls')),
@@ -73,6 +71,8 @@ urlpatterns = i18n_patterns(
 
 urlpatterns += [
     path('i18n/', include('django.conf.urls.i18n')),
+    path('api/', include('api.urls', namespace='api')),
+    path('api/api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

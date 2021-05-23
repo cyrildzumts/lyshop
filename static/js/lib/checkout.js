@@ -185,7 +185,7 @@ define([
             url : api_address_url,
             data : data
         }
-        var add_promise = ajax(option, true).then(function(response){
+        var add_promise = ajax(option).then(function(response){
             if(response.status){
                 address_inputs.each(function(){
                     this.disabled = 'disabled';

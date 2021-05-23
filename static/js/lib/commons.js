@@ -187,7 +187,7 @@ define([
             cache : false,
             contentType : false
         };
-        ajax(options, true, false).then(function(response){
+        ajax(options, false).then(function(response){
 
         }, function(reason){
 
@@ -368,7 +368,7 @@ define([
                 cache : false,
                 contentType : false
             };
-            ajax(options, true, false).then(function(response){
+            ajax(options, false).then(function(response){
                 console.info("Files have bean uploaded.");
                 var msg = {
                     content : response.message,
