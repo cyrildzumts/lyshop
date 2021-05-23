@@ -11,7 +11,9 @@ from catalog import constants as Catalog_Constants
 from django.contrib.auth.forms import UserCreationForm
 from lyshop import settings, utils
 
-    
+import logging
+
+logger = logging.getLogger(__name__)
 
 def page_not_found(request):
     template_name = '404.html'
@@ -57,6 +59,8 @@ def home(request):
     except ObjectDoesNotExist as identifier:
         electronics_category = None
     
+    request.session.set_test_cookie()
+    
     context = {
         'page_title': page_title,
         'user_is_authenticated' : request.user.is_authenticated,
@@ -83,6 +87,10 @@ def about(request):
     """
     template_name = "about.html"
     page_title = 'About' + ' - ' + settings.SITE_NAME
+    if request.session.test_cookie_worked():
+        logger.info("Session cookie worked.")
+    else:
+        logger.info("Session cookie not allowed.")
     context = {
         'page_title': page_title,
     }
