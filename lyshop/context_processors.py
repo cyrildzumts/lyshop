@@ -23,6 +23,7 @@ def site_context(request):
         'redirect_to' : '/',
         'is_dashboard_allowed' : is_dashboard_allowed,
         'dev_mode' : settings.DEV_MODE,
+        'DEVENV' : settings.DEV_MODE,
         'cart_items_count': cart_items_count,
         'CURRENCY' : settings.CURRENCY,
         'next_url' : request.path,
