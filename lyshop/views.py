@@ -10,6 +10,7 @@ from catalog import constants as Catalog_Constants
 # from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from lyshop import settings, utils
+from django.utils import timezone
 
 import logging
 
@@ -59,7 +60,7 @@ def home(request):
     except ObjectDoesNotExist as identifier:
         electronics_category = None
     
-    request.session.set_test_cookie()
+    request.session['last_login'] = timezone.now().timestamp()
     
     context = {
         'page_title': page_title,
