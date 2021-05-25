@@ -1150,7 +1150,7 @@ button, input, select, textarea{
   justify-content: center;
   /*min-height: 25rem;*/
   flex-shrink: 0;
-  font-size: 0.75rem;
+  font-size: 1rem;
   letter-spacing: 0.15em;
   margin-top: 1em;
 }
@@ -2059,7 +2059,7 @@ a.mat-button{
 .footer .list-item{
 	display: flex;
 	align-items: baseline;
-	font-size: 0.8em;
+	/*font-size: 0.8em;*/
 	justify-content: center;
 }
 
