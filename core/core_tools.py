@@ -203,4 +203,7 @@ def save_pdf_file(order, debug=True):
 
 
 def slugify_categories():
-    updated_row = Category.objects.filter(slug=None).update(slug=slugify(F('name')))
+    queryset = Category.objects.filter(slug__in=[None, 'fname'])
+    for c in queryset:
+        c.slug = slugify(c.name)
+        c.save()
