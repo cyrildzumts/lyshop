@@ -1,8 +1,10 @@
 
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from accounts.models import Account
+from django.utils.text import slugify
+from catalog.models import Category
 from core.tasks import send_mail_task
 from lyshop import settings
 import logging
@@ -55,3 +57,9 @@ def send_validation_mail(sender, instance, created, **kwargs):
             queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
             routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
         )
+
+
+@receiver(pre_save, sender=Category)
+def generate_category_slug(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = slugify(instance.name)
