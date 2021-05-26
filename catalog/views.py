@@ -259,7 +259,7 @@ def product_detail(request, product_uuid=None):
 
 def product_detail_slug(request, category_slug=None, product_slug=None, product_uuid=None):
     template_name = 'catalog/product_detail.html'
-    product = get_object_or_404(Product, category__slug=category_slug, product_slug=product_slug, product_uuid=product_uuid)
+    product = get_object_or_404(Product, category__slug=category_slug, slug=product_slug, product_uuid=product_uuid)
     page_title = product.display_name 
     if request.method == "POST":
         if request.user.is_authenticated:  
