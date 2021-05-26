@@ -24,6 +24,19 @@ def is_suspicious_path(path):
             return False
     return True
 
+
+class OnlineUserTracker:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if  is_accepted_path(request.path) and not is_excluded_path(request.path):
+            v, created = Visitor.objects.get_or_create(url=request.path)
+            Visitor.objects.filter(pk=v.pk).update(hits=F('hits') + 1)
+        response = self.get_response(request)
+        return response
+
+
 class VisitorCounter:
     def __init__(self, get_response):
         self.get_response = get_response

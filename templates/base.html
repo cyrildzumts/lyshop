@@ -155,7 +155,7 @@
         {% include 'tags/footer_content.html' %}
         <div class="footer-list">
                 {% now "Y" as current_year %}
-                <ul class="mat-list">
+                <ul class="mat-list small">
                         <li class="list-item"><span>Copyright</span> <i class="fa fa-copyright"></i><span class="copyright-year">{{current_year}}</span> <span class="site">{{site_name}} - {%trans 'ONLINE SHOP' %} </span></li>
                         <li class="list-item">
                                 <div class="actions">
@@ -188,6 +188,20 @@
 <script  type="application/javascript" src="{% static 'js/lib/styling.js' %}"></script> 
 {% block SCRIPT %}
 {% endblock SCRIPT %}
+{% block GOOGLE_ANALYTICS %}
+{% if ALLOW_GOOGLE_ANALYTICS %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-189272780-1">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-189272780-1');
+</script>
+{% endif %}
+{% endblock GOOGLE_ANALYTICS %}
 </body>
 
 </html>

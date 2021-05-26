@@ -38,6 +38,32 @@ body{
 	background-color: var(--sidebar-active-color);
 }
 
+.info{
+    
+    /*border: 2px solid #616161;*/
+    color: var(--info-color) !important;
+}
+.success{
+    /*border: 2px solid #388e3c !important;*/
+    color: var(--success-color) !important;
+}
+
+.warning, .warn{
+    /*border: 2px solid #e64a19 !important;*/
+    color: var(--warning-color) !important;
+}
+.debug{
+    color: var(--debug-color) !important;
+}
+
+.error{
+    color:var(--error-color) !important;
+}
+
+.danger, .danger *, .saled-price, .sale, .sale-price{
+    color: var(--warning-color) !important;
+}
+
 .page--banner{
     background-color: var(--third-color);
     color: var(--primary-color);

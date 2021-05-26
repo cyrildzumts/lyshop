@@ -10,8 +10,12 @@ from catalog import constants as Catalog_Constants
 # from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from lyshop import settings, utils
+from django.utils import timezone
+import datetime
 
-    
+import logging
+
+logger = logging.getLogger(__name__)
 
 def page_not_found(request):
     template_name = '404.html'
@@ -57,6 +61,8 @@ def home(request):
     except ObjectDoesNotExist as identifier:
         electronics_category = None
     
+    request.session['last_login'] = timezone.now().timestamp()
+    
     context = {
         'page_title': page_title,
         'user_is_authenticated' : request.user.is_authenticated,
@@ -83,6 +89,13 @@ def about(request):
     """
     template_name = "about.html"
     page_title = 'About' + ' - ' + settings.SITE_NAME
+    last_login = request.session.get('last_login')
+    if last_login:
+        d = datetime.datetime.fromtimestamp(last_login)
+        logger.info(f'Last user login : {d}')
+    else:
+        logger.info(f'Last user login not set')
+    
     context = {
         'page_title': page_title,
     }

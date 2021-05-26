@@ -14,4 +14,9 @@
     --sidebar-color: #0A0A0A;
     --sidebar-active-color: #FF0D00;
     --text-grey: #CCC;
+    --warning-color : #FF0D00;
+    --error-color : #FF0D00;
+    --success-color :#0A0A0A ;
+    --info-color: #45A29E;
+    --debug-color: #1e88e5;
 }

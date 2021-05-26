@@ -174,3 +174,16 @@ def authenticate(request):
     utils.show_dict_contents(postdata, "API Athenticate Header")
     token = uuid.uuid4()
     return Response(data={"tokenType": 'Bearer', 'accessToken': token}, status=status.HTTP_200_OK)
+
+
+
+@api_view(['POST'])
+@permission_classes([])
+@authentication_classes([])
+def update_activity(request):
+    logger.debug("Updating User activity request")
+    postdata = request.POST.copy()
+    logger.debug(f"Request POST : {postdata}")
+    utils.show_dict_contents(postdata, "update_activity")
+    logger.debug(f"update_activity request user: {request.user}")
+    return Response(data={'success': True, 'message': 'updated'}, status=status.HTTP_200_OK)

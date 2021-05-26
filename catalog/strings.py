@@ -9,7 +9,7 @@ _("Eaux de Toilette")
 _("Eaux de Parfum")
 _("Electronic")
 _("Mode")
-_("Parfum")
+_("Parfums")
 _("Shoes")
 
 # GENDER
@@ -26,7 +26,7 @@ _("ACCESSORIES")
 _("BAG")
 _("SHOES")
 _("SMARTPHONE")
-_("PARFUM")
+_("PARFUMS")
 
 # ATTIBUTES NAME
 _("Battery")

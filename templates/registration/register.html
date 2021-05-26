@@ -2,12 +2,10 @@
 {% extends "base.html" %}
 {% load i18n %} 
 {% block HEADER_PANEL %}
-  <div class="header--panel row">
-       <div class="col col-1">
-              <div class="logo">
-                <a class="link" href="{%url 'home'%}"> {{site_name}} </a>
-              </div>
-        </div>
+  <div class="header--panel">
+       <ul class="site-panel">
+        <li><a class="link logo" href="{%url 'home'%}"> {{site_name}} </a></li>
+       </ul>
   </div>
 {% endblock HEADER_PANEL %}
 {% block HEADER_BANNER %}
@@ -49,7 +47,7 @@
           <button class="mat-button mat-button-default" type="submit">{%trans 'Create My Account'%} </button>
         </div>
         <div class="actions flex-center">
-            <span class="register-hint">{% trans "Already have an account ? " %}</span><a class="mat-button mat-button-default register-btn" href="{% url 'accounts:login' %}">{% trans "Sign In" %}</a>
+            <span class="register-hint">{% trans "Already have an account ?" %}</span><a class="mat-button mat-button-default register-btn" href="{% url 'accounts:login' %}">{% trans "Sign In" %}</a>
         </div>
       </form>
      </div>

@@ -137,6 +137,51 @@ def category_detail(request, sale=None, category_uuid=None):
     }
     return render(request,template_name, context)
 
+def category_detail_slug(request, sale=None, slug=None):
+    logger.debug(f"category_detail_slug called with slug {slug}")
+    template_name = 'catalog/category_detail.html'
+    if request.method != 'GET':
+        raise HttpResponseBadRequest
+
+    category = get_object_or_404(Category, slug__iexact=slug)
+    sale_category = Product.objects.filter(is_active=True, sale=True).exists()
+    subcats = category.get_children().filter(is_active=True)
+    filterquery = Q(category__category_uuid=category.category_uuid)
+    subcatquery = Q(category__id__in=subcats.values_list('id'))
+    queryDict = request.GET.copy()
+    field_filter = filters.Filter(Product, queryDict)
+    queryset = field_filter.apply_filter().filter(is_active=True)
+    logger.debug(f"queryset count : {queryset.count()}")
+    selected_filters = field_filter.selected_filters
+    queryset = queryset.filter(filterquery | subcatquery)
+    if sale == 'sale':
+        queryset = queryset.filter(sale=True)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+
+    context = {
+        'page_title': category.get_page_title(),
+        'category' : category,
+        'parent_category' : category.parent,
+        'product_list': list_set,
+        'type_list': ProductType.objects.all(),
+        'parent_sub_category_list': Category.objects.filter(parent=category.parent, is_active=True),
+        'subcategory_list': subcats,
+        'GENDER' : Constants.GENDER,
+        'SELECTED_FILTERS' : selected_filters,
+        'OG_TITLE' : category.get_page_title(),
+        'OG_DESCRIPTION': settings.META_DESCRIPTION,
+        'OG_IMAGE': static('assets/lyshop_banner.png'),
+        'OG_URL': request.build_absolute_uri(),
+        'sale_category' : sale_category
+    }
+    return render(request,template_name, context)
 
 def brand_detail(request, brand_uuid=None):
     template_name = 'catalog/brand_detail.html'
@@ -210,6 +255,57 @@ def product_detail(request, product_uuid=None):
         'recommendation_label' : CORE_UI_STRING.RECOMMANDATION_LABEL
     }
     return render(request,template_name, context)
+
+
+def product_detail_slug(request, category_slug=None, product_slug=None, product_uuid=None):
+    template_name = 'catalog/product_detail.html'
+    product = get_object_or_404(Product, category__slug=category_slug, slug=product_slug, product_uuid=product_uuid)
+    page_title = product.display_name 
+    if request.method == "POST":
+        if request.user.is_authenticated:  
+            form = AddCartForm(utils.get_postdata(request))
+            if form.is_valid():
+                variant = get_object_or_404(ProductVariant, product_uuid=form.cleaned_data['variant_uuid'])
+                item, cart = cart_service.add_to_cart(cart_service.get_cart(request.user), variant)
+                if item:
+                    messages.success(request, message=_("Product added"))
+                    logger.info("Product added")
+                else:
+                    messages.success(request, message=_("Product not added"))
+                    logger.info("Product not added")
+            else:
+                    messages.warning(request, message=_("Invalid form"))
+                    logger.info(f"Product not added. Form is not valid : {form.errors} ")
+        else:
+            messages.warning(request, message=_("You must first login before you can add item to your cart"))
+            logger.info(f"product_details : Product not added. anonyme user")
+                
+    Product.objects.filter(product_uuid=product.product_uuid).update(view_count=F('view_count') + 1)
+    images = ProductImage.objects.filter(product=product)
+    common_attrs, selective_attrs = catalog_service.get_product_attributes(product.id)
+    product_attrs = catalog_service.product_attributes(product.id)
+    if request.user.is_authenticated:
+        wishlist_list = wishlist_service.get_wishlists({'customer': request.user})
+    else:
+        wishlist_list = None
+
+    context = {
+        'page_title': page_title,
+        'product': product,
+        'image_list': images,
+        'common_attrs' : common_attrs,
+        'selective_attrs' : selective_attrs,
+        'product_attrs': product_attrs,
+        'OG_TITLE' : page_title,
+        'OG_DESCRIPTION': product.short_description,
+        'OG_IMAGE': request.build_absolute_uri(product.images.first().get_image_url()),
+        'OG_URL': request.build_absolute_uri(),
+        'wishlist_list' : wishlist_list,
+        'recommendations': inventory_service.get_recommandations(product),
+        'recommendation_label' : CORE_UI_STRING.RECOMMANDATION_LABEL
+    }
+    return render(request,template_name, context)
+
 
 @login_required
 def add_product_to_cart(request):

@@ -7,6 +7,8 @@ from django.utils.translation import gettext_lazy as _
 from django.forms import modelform_factory
 from django.forms import formset_factory, modelformset_factory
 from orders.models import Order, OrderItem
+from django.utils.text import slugify
+from catalog.models import Category, Product
 from vendors.models import SoldProduct
 from lyshop import utils, settings
 from xhtml2pdf import pisa
@@ -197,3 +199,18 @@ def save_pdf_file(order, debug=True):
     output_name = f"Invoice-{order.order_ref_number}-{order.created_at}.pdf"
     with open(output_name, 'w+b') as f :
         f.write(byteio_file.getbuffer())
+
+
+
+def slugify_categories():
+    queryset = Category.objects.filter(slug=None)
+    for c in queryset:
+        c.slug = slugify(c.name)
+        c.save()
+
+    
+def slugify_products():
+    queryset = Product.objects.filter(slug=None)
+    for p in queryset:
+        p.slug = slugify(p.name)
+        p.save()
