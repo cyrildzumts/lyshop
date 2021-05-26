@@ -151,6 +151,7 @@ def category_detail_slug(request, sale=None, slug=None):
     queryDict = request.GET.copy()
     field_filter = filters.Filter(Product, queryDict)
     queryset = field_filter.apply_filter().filter(is_active=True)
+    logger.debug(f"queryset count : {queryset.count()}")
     selected_filters = field_filter.selected_filters
     queryset = queryset.filter(filterquery | subcatquery)
     if sale == 'sale':
