@@ -239,6 +239,10 @@
     
 }
 
+.capitalize{
+    text-transform: capitalize !important;
+}
+
 .docklet:hover .link{
     text-decoration: none;
     font-size: 1em;
