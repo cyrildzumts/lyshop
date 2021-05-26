@@ -315,7 +315,7 @@ class Product(models.Model):
         return reverse("catalog:product-detail", kwargs={"product_uuid": self.product_uuid})
     
     def get_slug_url(self):
-        return reverse("catalog:product-detail", kwargs={"product_slug": self.slug, "category_slug": self.category.slug})
+        return reverse("catalog:product-detail", kwargs={"product_slug": self.slug, "category_slug": self.category.slug, "product_uuid" : self.product_uuid})
     
     
     def get_dashboard_url(self):

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from accounts.models import Account
 from django.utils.text import slugify
-from catalog.models import Category
+from catalog.models import Category, Product
 from core.tasks import send_mail_task
 from lyshop import settings
 import logging
@@ -61,5 +61,10 @@ def send_validation_mail(sender, instance, created, **kwargs):
 
 @receiver(pre_save, sender=Category)
 def generate_category_slug(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = slugify(instance.name)
+
+@receiver(pre_save, sender=Product)
+def generate_product_slug(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = slugify(instance.name)

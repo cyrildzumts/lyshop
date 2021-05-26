@@ -8,7 +8,7 @@ from django.forms import modelform_factory
 from django.forms import formset_factory, modelformset_factory
 from orders.models import Order, OrderItem
 from django.utils.text import slugify
-from catalog.models import Category
+from catalog.models import Category, Product
 from vendors.models import SoldProduct
 from lyshop import utils, settings
 from xhtml2pdf import pisa
@@ -207,3 +207,10 @@ def slugify_categories():
     for c in queryset:
         c.slug = slugify(c.name)
         c.save()
+
+    
+def slugify_products():
+    queryset = Product.objects.filter(slug__in=[None])
+    for p in queryset:
+        p.slug = slugify(p.name)
+        p.save()
