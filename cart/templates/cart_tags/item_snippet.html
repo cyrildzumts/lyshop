@@ -62,7 +62,7 @@
                     {% for attr in item.product.attributes.all %}
                         {% if attr.is_primary %}
                             <div class="cart-item-entry">
-                                <span class="key">{{attr.display_name}}</span> <span class="value">{% core_trans attr.value%}</span>
+                                <span class="key">{% trans attr.display_name %}</span> <span class="value">{% core_trans attr.value%}</span>
                             </div>
                         {% endif %}
                     {% endfor %}
