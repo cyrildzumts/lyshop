@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-26 20:00+0000\n"
+"POT-Creation-Date: 2021-05-26 20:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -977,12 +977,12 @@ msgid "Catalog | Fashion for all | LYSHOP"
 msgstr "Catalogue | La mode pour tous | LYSHOP"
 
 #: catalog/constants.py:88
-msgid "Eau De Parfum | Buy online | LYSHOP"
-msgstr "Eau De Parfum | Acheter en ligne | LYSHOP"
+msgid "Eaux De Parfums | Buy online | LYSHOP"
+msgstr "Eaux De Parfums | Acheter en ligne | LYSHOP"
 
 #: catalog/constants.py:89
-msgid "Eau De Toilette | Buy online | LYSHOP"
-msgstr "Eau De Toilette | Acheter en ligne | LYSHOP"
+msgid "Eaux De Toilettes | Buy online | LYSHOP"
+msgstr "Eaux De Toilettes | Acheter en ligne | LYSHOP"
 
 #: catalog/constants.py:90
 msgid "Smartphone | Buy online | LYSHOP"
@@ -1040,8 +1040,8 @@ msgid "Mode"
 msgstr "Mode"
 
 #: catalog/strings.py:12
-msgid "Parfum"
-msgstr "Parfum"
+msgid "Parfums"
+msgstr "Parfums"
 
 #: catalog/strings.py:13
 msgid "Shoes"
@@ -1092,8 +1092,8 @@ msgid "SMARTPHONE"
 msgstr "SMARTPHONE"
 
 #: catalog/strings.py:29
-msgid "PARFUM"
-msgstr "PARFUM"
+msgid "PARFUMS"
+msgstr "PARFUMS"
 
 #: catalog/strings.py:32
 msgid "Battery"
