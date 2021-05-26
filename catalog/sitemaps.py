@@ -11,3 +11,6 @@ class CategorySiteMap(Sitemap):
     
     def lastmod(self, obj):
         return obj.created_at
+    
+    def location(self, item):
+        return item.get_slug_url()

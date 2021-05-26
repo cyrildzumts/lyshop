@@ -12,4 +12,4 @@ class LyshopSiteMap(Sitemap):
         return ["home", "catalog:catalog-home", "about", "faq"]
     
     def location(self, item):
-        return item.get_slug_url()
+        return reverse(item)
