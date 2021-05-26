@@ -2,12 +2,10 @@
 {% extends "base.html" %}
 {% load i18n %} 
 {% block HEADER_PANEL %}
-  <div class="header--panel row">
-       <div class="col col-1">
-              <div class="logo">
-                <a class="link" href="{%url 'home'%}"> {{site_name}} </a>
-              </div>
-        </div>
+  <div class="header--panel">
+       <ul class="site-panel">
+        <li><a class="link logo" href="{%url 'home'%}"> {{site_name}} </a></li>
+       </ul>
   </div>
 {% endblock HEADER_PANEL %}
 {% block HEADER_BANNER %}
