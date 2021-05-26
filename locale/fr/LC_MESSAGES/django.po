@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-26 20:19+0000\n"
+"POT-Creation-Date: 2021-05-26 23:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3201,7 +3201,6 @@ msgstr "Appuyez sur Ctrl pour sélectionner plusieurs valeurs"
 #: dashboard/templates/dashboard/create_user.html:22
 #: templates/accounts/registration/register.html:24
 #: templates/accounts/registration/vendor_register.html:22
-#: templates/registration/register.html:27
 #: templates/registration/vendor_register.html:22
 #: templates/tags/signup_dialog.html:7
 msgid "Registration"
@@ -6786,6 +6785,10 @@ msgstr ""
 #: templates/registration/password_reset_email.html:14
 msgid "Sincerely"
 msgstr "Cordialement"
+
+#: templates/registration/register.html:27
+msgid "Sign up"
+msgstr "S'inscrire"
 
 #: templates/reports/recharge_report.html:8
 msgid "Recharges Listing"
