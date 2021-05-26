@@ -256,6 +256,57 @@ def product_detail(request, product_uuid=None):
     }
     return render(request,template_name, context)
 
+
+def product_detail_slug(request, category_slug=None, product_slug=None):
+    template_name = 'catalog/product_detail.html'
+    product = get_object_or_404(Product, category__slug=category_slug, product_slug=product_slug)
+    page_title = product.display_name 
+    if request.method == "POST":
+        if request.user.is_authenticated:  
+            form = AddCartForm(utils.get_postdata(request))
+            if form.is_valid():
+                variant = get_object_or_404(ProductVariant, product_uuid=form.cleaned_data['variant_uuid'])
+                item, cart = cart_service.add_to_cart(cart_service.get_cart(request.user), variant)
+                if item:
+                    messages.success(request, message=_("Product added"))
+                    logger.info("Product added")
+                else:
+                    messages.success(request, message=_("Product not added"))
+                    logger.info("Product not added")
+            else:
+                    messages.warning(request, message=_("Invalid form"))
+                    logger.info(f"Product not added. Form is not valid : {form.errors} ")
+        else:
+            messages.warning(request, message=_("You must first login before you can add item to your cart"))
+            logger.info(f"product_details : Product not added. anonyme user")
+                
+    Product.objects.filter(product_uuid=product.product_uuid).update(view_count=F('view_count') + 1)
+    images = ProductImage.objects.filter(product=product)
+    common_attrs, selective_attrs = catalog_service.get_product_attributes(product.id)
+    product_attrs = catalog_service.product_attributes(product.id)
+    if request.user.is_authenticated:
+        wishlist_list = wishlist_service.get_wishlists({'customer': request.user})
+    else:
+        wishlist_list = None
+
+    context = {
+        'page_title': page_title,
+        'product': product,
+        'image_list': images,
+        'common_attrs' : common_attrs,
+        'selective_attrs' : selective_attrs,
+        'product_attrs': product_attrs,
+        'OG_TITLE' : page_title,
+        'OG_DESCRIPTION': product.short_description,
+        'OG_IMAGE': request.build_absolute_uri(product.images.first().get_image_url()),
+        'OG_URL': request.build_absolute_uri(),
+        'wishlist_list' : wishlist_list,
+        'recommendations': inventory_service.get_recommandations(product),
+        'recommendation_label' : CORE_UI_STRING.RECOMMANDATION_LABEL
+    }
+    return render(request,template_name, context)
+
+
 @login_required
 def add_product_to_cart(request):
     cart, created = CartModel.objects.get_or_create(user=request.user)

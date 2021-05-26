@@ -277,6 +277,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     last_edited_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     gender = models.IntegerField(blank=True, null=True, choices=constants.GENDER)
+    slug = models.SlugField(max_length=250, blank=True, null=True)
     view_count = models.IntegerField(blank=True, null=True, default=0)
     related_products = models.ManyToManyField('self')
     product_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -312,6 +313,9 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("catalog:product-detail", kwargs={"product_uuid": self.product_uuid})
+    
+    def get_slug_url(self):
+        return reverse("catalog:product-detail", kwargs={"product_slug": self.slug, "category_slug": self.category.slug})
     
     
     def get_dashboard_url(self):
