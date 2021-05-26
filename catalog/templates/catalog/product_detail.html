@@ -9,10 +9,10 @@
 <div class="container product-detail-wrapper">
   <ul class="row">
     {% if product.category.parent %}
-    <li class="mat-button"><a href="{{product.category.parent.get_absolute_url}}"><span>{% trans product.category.parent.display_name %}</span><span></span></a></li>
+    <li class="mat-button"><a href="{{product.category.parent.get_slug_url}}"><span>{% trans product.category.parent.display_name %}</span><span></span></a></li>
 
     {% endif %}
-    <li class="mat-button"><a href="{{product.category.get_absolute_url}}">{% trans product.category.display_name %}</a></li>
+    <li class="mat-button"><a href="{{product.category.get_slug_url}}">{% trans product.category.display_name %}</a></li>
   </ul>
   <div class="container">
     <div class="col-m-12 col-3">
