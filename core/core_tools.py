@@ -210,7 +210,7 @@ def slugify_categories():
 
     
 def slugify_products():
-    queryset = Product.objects.filter(slug__in=[None])
+    queryset = Product.objects.filter(slug=None)
     for p in queryset:
         p.slug = slugify(p.name)
         p.save()
