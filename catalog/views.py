@@ -138,6 +138,7 @@ def category_detail(request, sale=None, category_uuid=None):
     return render(request,template_name, context)
 
 def category_detail_slug(request, sale=None, slug=None):
+    logger.debug(f"category_detail_slug called with slug {slug}")
     template_name = 'catalog/category_detail.html'
     if request.method != 'GET':
         raise HttpResponseBadRequest
