@@ -137,6 +137,49 @@ def category_detail(request, sale=None, category_uuid=None):
     }
     return render(request,template_name, context)
 
+def category_detail_slug(request, sale=None, slug=None):
+    template_name = 'catalog/category_detail.html'
+    if request.method != 'GET':
+        raise HttpResponseBadRequest
+
+    category = get_object_or_404(Category, slug__iexact=slug)
+    sale_category = Product.objects.filter(is_active=True, sale=True).exists()
+    subcats = category.get_children().filter(is_active=True)
+    filterquery = Q(category__category_uuid=category.category_uuid)
+    subcatquery = Q(category__id__in=subcats.values_list('id'))
+    queryDict = request.GET.copy()
+    field_filter = filters.Filter(Product, queryDict)
+    queryset = field_filter.apply_filter().filter(is_active=True)
+    selected_filters = field_filter.selected_filters
+    queryset = queryset.filter(filterquery | subcatquery)
+    if sale == 'sale':
+        queryset = queryset.filter(sale=True)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
+
+    context = {
+        'page_title': category.get_page_title(),
+        'category' : category,
+        'parent_category' : category.parent,
+        'product_list': list_set,
+        'type_list': ProductType.objects.all(),
+        'parent_sub_category_list': Category.objects.filter(parent=category.parent, is_active=True),
+        'subcategory_list': subcats,
+        'GENDER' : Constants.GENDER,
+        'SELECTED_FILTERS' : selected_filters,
+        'OG_TITLE' : category.get_page_title(),
+        'OG_DESCRIPTION': settings.META_DESCRIPTION,
+        'OG_IMAGE': static('assets/lyshop_banner.png'),
+        'OG_URL': request.build_absolute_uri(),
+        'sale_category' : sale_category
+    }
+    return render(request,template_name, context)
 
 def brand_detail(request, brand_uuid=None):
     template_name = 'catalog/brand_detail.html'

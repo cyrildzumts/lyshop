@@ -111,6 +111,9 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse("catalog:category-detail", kwargs={"category_uuid": self.category_uuid})
     
+    def get_slug_url(self):
+        return reverse("catalog:category-detail", kwargs={"slug": self.slug})
+    
     def get_dashboard_url(self):
         return reverse("dashboard:category-detail", kwargs={"category_uuid": self.category_uuid})
     

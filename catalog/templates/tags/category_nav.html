@@ -7,9 +7,9 @@
             {% if sale_category %}<li><a class="mat-button sale" href="{% url 'catalog:sale:catalog-home' 'sale' %}">{% trans "Sale" %}</a></li>{% endif %}
             {% for c in root_category_list %}
                 {% if category.parent and c.id == category.parent.id or c.id == category.id  %}
-                <li class="active"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+                <li class="active"><a class="mat-button" href="{{c.get_slug_url}}">{% trans c.display_name %}</a></li>
                 {% else %}
-                <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+                <li><a class="mat-button" href="{{c.get_slug_url}}">{% trans c.display_name %}</a></li>
                 {% endif %}
             {% endfor %}
             
@@ -22,9 +22,9 @@
     <ul class="list-horizontal">
             {% for c in parent_sub_category_list %}
             {% if c.id == category.id %}
-            <li class="active selected"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+            <li class="active selected"><a class="mat-button" href="{{c.get_slug_url}}">{% trans c.display_name %}</a></li>
             {% else %}
-            <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+            <li><a class="mat-button" href="{{c.get_slug_url}}">{% trans c.display_name %}</a></li>
             {% endif %}
             {% endfor %}
             
@@ -36,9 +36,9 @@
     <ul class="list-horizontal">
             {% for c in subcategory_list %}
             {% if c.id == category.id %}
-            <li class="active current selected"><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+            <li class="active current selected"><a class="mat-button" href="{{c.get_slug_url}}">{% trans c.display_name %}</a></li>
             {% else %}
-            <li><a class="mat-button" href="{{c.get_absolute_url}}">{% trans c.display_name %}</a></li>
+            <li><a class="mat-button" href="{{c.get_slug_url}}">{% trans c.display_name %}</a></li>
             {% endif %}
             {% endfor %}
             
