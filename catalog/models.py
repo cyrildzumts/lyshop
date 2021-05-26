@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, post_save
 from django.utils.translation import gettext_lazy as _
+from django.utils.text import slugify
 from django.dispatch import receiver
 from django.urls import reverse
 from catalog import constants
@@ -97,6 +98,7 @@ class Category(models.Model):
     is_active = models.BooleanField(default=True)
     view_count = models.IntegerField(blank=True, null=True, default=0)
     parent = models.ForeignKey('self', related_name='children', blank=True, null=True, on_delete=models.SET_NULL)
+    slug = models.SlugField(max_length=250, blank=True, null=True)
     category_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     FORM_FIELDS = ['name', 'display_name','page_title_index', 'code', 'parent', 'added_by', 'is_active']
 
@@ -464,26 +466,6 @@ class ProductImage(models.Model):
 
 
 
-
-@receiver(post_save, sender=ProductVariant)
-def generate_product_sku(sender, instance, created, **kwargs):
-    if created:
-        logger.debug(f'Generating SKU for newly created Product variant {instance.name}')
-        sku = f"{instance.product.category.code}{instance.product.brand.code}" + str(instance.id).zfill(conf.PRODUCT_NUMBER_LENGTH)
-        logger.debug(f'SKU for Product variant {instance.name} generated : {sku}')
-        if ProductVariant.objects.filter(pk=instance.pk).exists():
-            logger.debug("Saving generated SKU in the product ...")
-            try :
-                updated_rows_count = ProductVariant.objects.filter(pk=instance.pk).update(sku=sku, article_number=sku)
-                logger.info(f"[ OK ] SKU created for Product Variant {instance.name}. affected Rows : {updated_rows_count}")
-            except Exception as e:
-                logger.error(f"[ ERROR ] SKU created but could not update Product Variant {instance.name}.")
-                logger.exception(e)
-        else :
-            logger.debug("[ FAILED ] SKU not saved in new ProductVariant : instance not found in the database")
-        
-
-
 class RelatedProduct(models.Model):
     name = models.CharField(max_length=64, null=False, blank=False)
     product = models.ForeignKey(Product, related_name='related_product', on_delete=models.CASCADE)
@@ -550,3 +532,25 @@ class News(models.Model):
 
     def get_update_url(self):
         return reverse("dashboard:news-update", kwargs={"news_uuid": self.news_uuid})
+
+
+
+
+@receiver(post_save, sender=ProductVariant)
+def generate_product_sku(sender, instance, created, **kwargs):
+    if created:
+        logger.debug(f'Generating SKU for newly created Product variant {instance.name}')
+        sku = f"{instance.product.category.code}{instance.product.brand.code}" + str(instance.id).zfill(conf.PRODUCT_NUMBER_LENGTH)
+        logger.debug(f'SKU for Product variant {instance.name} generated : {sku}')
+        if ProductVariant.objects.filter(pk=instance.pk).exists():
+            logger.debug("Saving generated SKU in the product ...")
+            try :
+                updated_rows_count = ProductVariant.objects.filter(pk=instance.pk).update(sku=sku, article_number=sku)
+                logger.info(f"[ OK ] SKU created for Product Variant {instance.name}. affected Rows : {updated_rows_count}")
+            except Exception as e:
+                logger.error(f"[ ERROR ] SKU created but could not update Product Variant {instance.name}.")
+                logger.exception(e)
+        else :
+            logger.debug("[ FAILED ] SKU not saved in new ProductVariant : instance not found in the database")
+
+
