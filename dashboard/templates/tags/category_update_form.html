@@ -34,12 +34,12 @@
             <div class="flex flex-column">
                 <div class="form-group">
                     <label for="description">{% trans "Description" %}</label>
-                    <textarea id="description" class="limited-input bordered"  name="description" cols="30" rows="10" data-target="#description-counter" data-max-length="164">
+                    <textarea id="description" class="limited-input bordered"  name="description" cols="30" rows="10" data-target="#description-counter" data-max-length="{{DESCRIPTION_MAX_SIZE}}">
                     {{category.description}}
                     </textarea>
                 </div>
                 
-                <div class="row"> <span id="description-counter" class="char-counter">0</span><span class="text-max-length">/164</span></div>
+                <div class="row"> <span id="description-counter" class="char-counter">0</span><span class="text-max-length">/{{DESCRIPTION_MAX_SIZE}}</span></div>
             </div>
             {% if category_list %}
             <div class="form-group">
