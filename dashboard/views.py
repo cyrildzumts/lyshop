@@ -246,6 +246,7 @@ def category_update(request, category_uuid):
         'category_list': Category.objects.exclude(id__in=[category.pk]),
         'content_title': f"{category.display_name} - {_('Update')}"
     }
+    context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.CATEGORY_DESCRIPTION_MAX_SIZE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
