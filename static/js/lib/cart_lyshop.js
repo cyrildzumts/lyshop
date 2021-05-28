@@ -92,7 +92,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/cart/ajax-add-to-cart/',
+            url : '/api/add-to-cart/',
             data : formData
         }
         ajax_api(option).then(function(response){

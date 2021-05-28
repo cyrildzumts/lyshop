@@ -19,6 +19,7 @@ router.register(r'attributes', viewsets.ProductAttributeViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('analytics/', views.analytics_data, name='analytics'),
+    path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
     path('authenticate/', views.authenticate, name='authenticate'),
     path('create-address/', views.create_address, name='create-address'),
     path('attribute-types/', views.get_attribute_type, name='attribute-types'),

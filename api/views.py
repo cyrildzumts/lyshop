@@ -1,3 +1,4 @@
+from cart import cart_service
 from django.shortcuts import render
 from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
@@ -136,6 +137,20 @@ def update_address(request, address_uuid):
         return Response(data={'status': True, **model_to_dict(address)}, status=status.HTTP_200_OK)
     
     return Response(data={'status': False, 'error': 'address not created'}, status=status.HTTP_200_OK)
+
+
+
+@api_view(['POST'])
+def add_to_cart(request):
+    logger.info(f"API: add_to_cart {request.user.username}")
+    if request.method != 'POST':
+        return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    context = cart_service.process_add_to_cart_request(request)
+    if context.get('status') :
+        return Response(data=context, status=status.HTTP_200_OK)
+    
+    return Response(data=context, status=status.HTTP_400_BAD_REQUEST)
 
 
 

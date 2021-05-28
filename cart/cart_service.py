@@ -1,9 +1,13 @@
+from lyshop import utils
+from django.utils.translation import gettext as _
 from django.db.models import F,Q,Count, Sum, FloatField, When, Case
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from cart.models import CartItem, CartModel, Coupon
+from cart.forms import AddCartForm
 from catalog.models import ProductVariant, Product
+from core.resources import ui_strings as CORE_UI_STRINGS
 import logging
 import datetime
 
@@ -63,6 +67,42 @@ def get_cart_solded_price(amount=0.0, percent=0):
         solded_price = float(amount) *((100 - percent) / 100.0)
     return solded_price
 
+
+def process_add_to_cart_request(request):
+    postdata = utils.get_postdata(request)
+    form = AddCartForm(postdata)
+    context = {}
+    if form.is_valid():
+        logger.debug("Summitted data are valid")
+        variant_uuid = form.cleaned_data['variant_uuid']
+        attr = form.cleaned_data['attr']
+        variant = None
+        try:
+            variant = ProductVariant.objects.get(product_uuid=variant_uuid)
+        except ProductVariant.DoesNotExist:
+            pass
+        result, cart = add_to_cart(request.user.cart, variant)
+        prefix = variant.product.display_name
+        if result:
+            cart.refresh_from_db()
+            context['success'] = True
+            context['status'] = True
+            context['quantity'] = cart.quantity
+            context['message'] =  _(CORE_UI_STRINGS.PRODUCT_ADDED)
+            return context
+        else:
+            context['success'] = False
+            context['status'] = True
+            context['quantity'] = cart.quantity
+            context['message'] =  _(CORE_UI_STRINGS.PRODUCT_QTY_NOT_AVAILABLE)
+            return context
+
+
+    else:
+        logger.error(f"Form is invalid. {form.errors}")
+        context['error'] = _(CORE_UI_STRINGS.INVALID_FORM)
+        context['status'] = False
+        return context
 
 def add_to_cart(cart, product_variant):
     """
