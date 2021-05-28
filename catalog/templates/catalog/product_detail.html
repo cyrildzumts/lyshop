@@ -20,14 +20,14 @@
         <div class="wrapper full kiosk">
             <div class="row hidden-m hidden-xs">
               <div class="img-wrapper">
-                <img id="main-image" class="img-responsive" src="{{product.images.first.get_image_url}}" alt="">
+                <img id="main-image" class="img-responsive" src="{{product.images.first.get_image_url}}" alt="{{product.display_name}}">
               </div>
             </div>
 
             <div class="row hz-scroll-xs">
             {% for image in image_list %}
               <div class="img-wrapper col-3 kiosk-image-wrapper">
-                <img  class="img-responsive js-select-image kiosk-image" src="{{image.get_image_url}}" alt="">
+                <img  class="img-responsive js-select-image kiosk-image" src="{{image.get_image_url}}" alt="{{product.display_name}}">
               </div>
             {% endfor %}
             </div>

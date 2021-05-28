@@ -5204,14 +5204,11 @@ msgid "Refund not updated"
 msgstr "Remboursement non actualisé"
 
 #: dashboard/views.py:4894
-#, fuzzy
-#| msgid "New Info"
+
 msgid "New Infos"
 msgstr "Nouvelle Info"
 
 #: dashboard/views.py:4911
-#, fuzzy, python-brace-format
-#| msgid "News {news} created"
 msgid "Info {news} created"
 msgstr "News {news} créé"
 
@@ -5254,8 +5251,8 @@ msgstr ""
 "livrons sur Libreville et Port-Gentil au Gabon"
 
 #: lyshop/settings.py:31
-msgid "Fashion and quality for everyone | LYSHOP"
-msgstr "Mode et qualité pour  tous | LYSHOP"
+msgid "Fashion and quality for everyone | Online Shop | LYSHOP"
+msgstr "Mode et qualité pour  tous | Magasin en ligne | LYSHOP"
 
 #: lyshop/settings.py:317
 msgid "French"
