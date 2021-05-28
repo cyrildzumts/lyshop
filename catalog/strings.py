@@ -12,6 +12,12 @@ _("Mode")
 _("Parfums")
 _("Shoes")
 
+# Category descriptions
+_("Immerse yourself in the premium segment of perfumes and cosmetics.")
+_("A fragrance has to evoke the best moments in life.")
+_("We are selective on the quality of the perfumes. Enjoy our fantastic selection of fragrances for moments to remember.")
+_("Discover our collection of shoes whose quality is well established. Ballerinas, Loafer, Sandal, Sneaker, Pumps, Derby, Boot and others. Define your style.")
+
 # GENDER
 _("BABY BOY")
 _("BABY GIRL")

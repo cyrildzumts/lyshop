@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-26 23:49+0200\n"
+"POT-Creation-Date: 2021-05-28 20:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,8 +57,8 @@ msgstr ""
 #: dashboard/templates/tags/case_close_form.html:41
 #: dashboard/templates/tags/case_update_form.html:42
 #: dashboard/templates/tags/caseissue_form.html:18
-#: dashboard/templates/tags/category_creation_form.html:49
-#: dashboard/templates/tags/category_update_form.html:57
+#: dashboard/templates/tags/category_creation_form.html:57
+#: dashboard/templates/tags/category_update_form.html:67
 #: dashboard/templates/tags/coupon_form.html:47
 #: dashboard/templates/tags/coupon_form_update.html:52
 #: dashboard/templates/tags/group_form.html:17
@@ -144,7 +144,7 @@ msgstr "Annuler"
 #: dashboard/templates/dashboard/product_type_create.html:45
 #: dashboard/templates/dashboard/product_variant_detail.html:123
 #: dashboard/templates/tags/brand_creation_form.html:35
-#: dashboard/templates/tags/category_creation_form.html:50
+#: dashboard/templates/tags/category_creation_form.html:58
 #: dashboard/templates/tags/coupon_form.html:48
 #: dashboard/templates/tags/policy_creation_form.html:35
 #: dashboard/templates/tags/policy_group_creation_form.html:31
@@ -393,7 +393,7 @@ msgstr "Utiliser pour"
 #: dashboard/templates/dashboard/refund_update.html:63
 #: dashboard/templates/tags/brand_update_form.html:36
 #: dashboard/templates/tags/case_update_form.html:43
-#: dashboard/templates/tags/category_update_form.html:58
+#: dashboard/templates/tags/category_update_form.html:68
 #: dashboard/templates/tags/coupon_form_update.html:53
 #: dashboard/templates/tags/idcard_update_form.html:53
 #: dashboard/templates/tags/policy_group_update_form.html:50
@@ -620,8 +620,8 @@ msgstr "Nom"
 #: dashboard/templates/dashboard/brand_list.html:22
 #: dashboard/templates/dashboard/brand_list.html:33
 #: dashboard/templates/dashboard/category_detail.html:20
-#: dashboard/templates/dashboard/category_detail.html:53
-#: dashboard/templates/dashboard/category_detail.html:61
+#: dashboard/templates/dashboard/category_detail.html:57
+#: dashboard/templates/dashboard/category_detail.html:65
 #: dashboard/templates/dashboard/category_list.html:24
 #: dashboard/templates/dashboard/category_list.html:35
 #: dashboard/templates/dashboard/create_product_variant.html:49
@@ -881,8 +881,8 @@ msgstr ""
 msgid "Your shopping cart is empty"
 msgstr "Votre panier est vide"
 
-#: cart/templates/cart_base.html:12 templates/base.html:72
-#: templates/base.html:96
+#: cart/templates/cart_base.html:12 templates/base.html:74
+#: templates/base.html:98
 msgid "Cart"
 msgstr "Panier"
 
@@ -1048,238 +1048,264 @@ msgid "Shoes"
 msgstr "Chaussures"
 
 #: catalog/strings.py:16
+msgid "Immerse yourself in the premium segment of perfumes and cosmetics."
+msgstr "Plongez dans le segment premium des parfums et cosmétiques."
+
+#: catalog/strings.py:17
+msgid "A fragrance has to evoke the best moments in life."
+msgstr "Un parfum doit évoquer les meilleurs moments de la vie."
+
+#: catalog/strings.py:18
+msgid ""
+"We are selective on the quality of the perfumes. Enjoy our fantastic "
+"selection of fragrances for moments to remember."
+msgstr ""
+"Nous sommes sélectif sur la qualité des parfums. Profitez de notre sélection "
+"fantastic de parfums pour des moments dont on se souviendra."
+
+#: catalog/strings.py:19
+msgid ""
+"Discover our collection of shoes whose quality is well established. "
+"Ballerinas, Loafer, Sandal, Sneaker, Pumps, Derby, Boot and others. Define "
+"your style."
+msgstr ""
+"Découvrez notre collection de chaussures dont la qualité n'est plus à faire. "
+"Ballerines, mocassins, sandales, baskets, escarpins, derbys, bottes et "
+"autres. Définissez votre style."
+
+#: catalog/strings.py:22
 msgid "BABY BOY"
 msgstr "BÉBÉ GARCON"
 
-#: catalog/strings.py:17
+#: catalog/strings.py:23
 msgid "BABY GIRL"
 msgstr "BÉBÉ FILLE"
 
-#: catalog/strings.py:18
+#: catalog/strings.py:24
 msgid "BOY"
 msgstr "GARCON"
 
-#: catalog/strings.py:19
+#: catalog/strings.py:25
 msgid "GIRL"
 msgstr "FILLE"
 
-#: catalog/strings.py:20
+#: catalog/strings.py:26
 msgid "MEN"
 msgstr "HOMME"
 
-#: catalog/strings.py:21
+#: catalog/strings.py:27
 msgid "NO GENDER"
 msgstr "MIXTE"
 
-#: catalog/strings.py:22
+#: catalog/strings.py:28
 msgid "WOMEN"
 msgstr "FEMME"
 
-#: catalog/strings.py:25
+#: catalog/strings.py:31
 msgid "ACCESSORIES"
 msgstr "ACCÉSSOIRES"
 
-#: catalog/strings.py:26
+#: catalog/strings.py:32
 msgid "BAG"
 msgstr "SAC"
 
-#: catalog/strings.py:27
+#: catalog/strings.py:33
 msgid "SHOES"
 msgstr "CHAUSSURES"
 
-#: catalog/strings.py:28
+#: catalog/strings.py:34
 msgid "SMARTPHONE"
 msgstr "SMARTPHONE"
 
-#: catalog/strings.py:29
+#: catalog/strings.py:35
 msgid "PARFUMS"
 msgstr "PARFUMS"
 
-#: catalog/strings.py:32
+#: catalog/strings.py:38
 msgid "Battery"
 msgstr "Batterie"
 
-#: catalog/strings.py:33
+#: catalog/strings.py:39
 msgid "Capacity"
 msgstr "Capacité"
 
-#: catalog/strings.py:34
+#: catalog/strings.py:40
 msgid "Color"
 msgstr "Couleur"
 
-#: catalog/strings.py:35
+#: catalog/strings.py:41
 msgid "Material"
 msgstr "Matériel"
 
-#: catalog/strings.py:36
+#: catalog/strings.py:42
 msgid "RAM"
 msgstr "RAM"
 
-#: catalog/strings.py:37
+#: catalog/strings.py:43
 msgid "Size"
 msgstr "Taille"
 
-#: catalog/strings.py:39
+#: catalog/strings.py:45
 msgid "ONE SIZE"
 msgstr "TAILLE UNIQUE"
 
-#: catalog/strings.py:40
+#: catalog/strings.py:46
 msgid "one size"
 msgstr "taille unique"
 
-#: catalog/strings.py:41
+#: catalog/strings.py:47
 msgid "One Size"
 msgstr "Taille Unique"
 
-#: catalog/strings.py:44
+#: catalog/strings.py:50
 msgid "Beige"
 msgstr "Beige"
 
-#: catalog/strings.py:45
+#: catalog/strings.py:51
 msgid "Black"
 msgstr "Noir"
 
-#: catalog/strings.py:46
+#: catalog/strings.py:52
 msgid "Blue"
 msgstr "Bleu"
 
-#: catalog/strings.py:47
+#: catalog/strings.py:53
 msgid "Bordeaux"
 msgstr "Bordeaux"
 
-#: catalog/strings.py:48
+#: catalog/strings.py:54
 msgid "Brown"
 msgstr "Marron"
 
-#: catalog/strings.py:49
+#: catalog/strings.py:55
 msgid "Caramel"
 msgstr "Caramel"
 
-#: catalog/strings.py:50
+#: catalog/strings.py:56
 msgid "Coral"
 msgstr "Corail"
 
-#: catalog/strings.py:51
+#: catalog/strings.py:57
 msgid "Dark Blue"
 msgstr "Bleu Foncé"
 
-#: catalog/strings.py:52
+#: catalog/strings.py:58
 msgid "Fuchsia"
 msgstr "Fuchsia"
 
-#: catalog/strings.py:53
+#: catalog/strings.py:59
 msgid "Gray"
 msgstr "Gris"
 
-#: catalog/strings.py:54
+#: catalog/strings.py:60
 msgid "Green"
 msgstr "Vert"
 
-#: catalog/strings.py:55
+#: catalog/strings.py:61
 msgid "Olive"
 msgstr "Olive"
 
-#: catalog/strings.py:56
+#: catalog/strings.py:62
 msgid "Orange"
 msgstr "Orange"
 
-#: catalog/strings.py:57
+#: catalog/strings.py:63
 msgid "Pink"
 msgstr "Rose"
 
-#: catalog/strings.py:58
+#: catalog/strings.py:64
 msgid "Purple"
 msgstr "Violet"
 
-#: catalog/strings.py:59
+#: catalog/strings.py:65
 msgid "Red"
 msgstr "Rouge"
 
-#: catalog/strings.py:60
+#: catalog/strings.py:66
 msgid "Sky Blue"
 msgstr "Bleu Ciel"
 
-#: catalog/strings.py:61
+#: catalog/strings.py:67
 msgid "White"
 msgstr "Blanc"
 
-#: catalog/strings.py:62
+#: catalog/strings.py:68
 msgid "Yellow"
 msgstr "Jaune"
 
-#: catalog/strings.py:64
+#: catalog/strings.py:70
 msgid "BEIGE"
 msgstr "BEIGE"
 
-#: catalog/strings.py:65
+#: catalog/strings.py:71
 msgid "BLACK"
 msgstr "NOIR"
 
-#: catalog/strings.py:66
+#: catalog/strings.py:72
 msgid "BLUE"
 msgstr "BLEU"
 
-#: catalog/strings.py:67
+#: catalog/strings.py:73
 msgid "BORDEAUX"
 msgstr "BORDEAUX"
 
-#: catalog/strings.py:68
+#: catalog/strings.py:74
 msgid "BROWN"
 msgstr "MARRON"
 
-#: catalog/strings.py:69
+#: catalog/strings.py:75
 msgid "CARAMEL"
 msgstr "CARAMEL"
 
-#: catalog/strings.py:70
+#: catalog/strings.py:76
 msgid "CORAL"
 msgstr "CORAIL"
 
-#: catalog/strings.py:71
+#: catalog/strings.py:77
 msgid "DARK BLUE"
 msgstr "BLEU FONCÉ"
 
-#: catalog/strings.py:72
+#: catalog/strings.py:78
 msgid "FUCHSIA"
 msgstr "FUCHSIA"
 
-#: catalog/strings.py:73
+#: catalog/strings.py:79
 msgid "GRAY"
 msgstr "GRIS"
 
-#: catalog/strings.py:74
+#: catalog/strings.py:80
 msgid "GREEN"
 msgstr "VERT"
 
-#: catalog/strings.py:75
+#: catalog/strings.py:81
 msgid "OLIVE"
 msgstr "OLIVE"
 
-#: catalog/strings.py:76
+#: catalog/strings.py:82
 msgid "ORANGE"
 msgstr "ORANGE"
 
-#: catalog/strings.py:77
+#: catalog/strings.py:83
 msgid "PINK"
 msgstr "ROSE"
 
-#: catalog/strings.py:78
+#: catalog/strings.py:84
 msgid "PURPLE"
 msgstr "VIOLET"
 
-#: catalog/strings.py:79
+#: catalog/strings.py:85
 msgid "RED"
 msgstr "ROUGE"
 
-#: catalog/strings.py:80
+#: catalog/strings.py:86
 msgid "SKY BLUE"
 msgstr "BLEU CIEL"
 
-#: catalog/strings.py:81
+#: catalog/strings.py:87
 msgid "WHITE"
 msgstr "BLANC"
 
-#: catalog/strings.py:82
+#: catalog/strings.py:88
 msgid "YELLOW"
 msgstr "JAUNE"
 
@@ -1292,16 +1318,16 @@ msgid "As soon as Products are available, they will be displayed here."
 msgstr "Dès que les produits seront disponibles, ils seront affichés ici."
 
 #: catalog/templates/catalog/catalog_home.html:24
-#: catalog/templates/catalog/category_detail.html:22
+#: catalog/templates/catalog/category_detail.html:28
 #: catalog/templates/catalog/product_list.html:21
 msgid "Please try again later"
 msgstr "Veuillez reesayer pus tard"
 
-#: catalog/templates/catalog/category_detail.html:20
+#: catalog/templates/catalog/category_detail.html:26
 msgid "There are no products to display for this  category yet."
 msgstr "Il n'y a pas de produits dans cette catégorie actuellement"
 
-#: catalog/templates/catalog/category_detail.html:21
+#: catalog/templates/catalog/category_detail.html:27
 msgid ""
 "As soon as Product are available on this category, they will be listed here."
 msgstr ""
@@ -1315,6 +1341,7 @@ msgstr "Veuillez tout d'abord sélectionner une option"
 #: catalog/templates/catalog/product_detail.html:87
 #: catalog/templates/catalog/product_variant_detail.html:81
 #: dashboard/templates/dashboard/brand_product_detail.html:64
+#: dashboard/templates/dashboard/category_detail.html:44
 #: dashboard/templates/dashboard/highlight_create.html:38
 #: dashboard/templates/dashboard/highlight_detail.html:23
 #: dashboard/templates/dashboard/highlight_update.html:21
@@ -1329,6 +1356,8 @@ msgstr "Veuillez tout d'abord sélectionner une option"
 #: dashboard/templates/dashboard/product_type_attribute_update.html:39
 #: dashboard/templates/tags/case_close_form.html:32
 #: dashboard/templates/tags/case_update_form.html:33
+#: dashboard/templates/tags/category_creation_form.html:39
+#: dashboard/templates/tags/category_update_form.html:36
 #: dashboard/templates/tags/product_creation_form.html:80
 #: dashboard/templates/tags/product_update_form.html:107
 #: templates/tags/product_detail_snippet.html:70
@@ -1410,8 +1439,8 @@ msgstr "Solde"
 #: dashboard/templates/dashboard/brand_detail.html:45
 #: dashboard/templates/dashboard/brand_list.html:24
 #: dashboard/templates/dashboard/brand_list.html:35
-#: dashboard/templates/dashboard/category_detail.html:55
-#: dashboard/templates/dashboard/category_detail.html:63
+#: dashboard/templates/dashboard/category_detail.html:59
+#: dashboard/templates/dashboard/category_detail.html:67
 #: dashboard/templates/dashboard/category_list.html:26
 #: dashboard/templates/dashboard/category_list.html:37
 #: dashboard/templates/dashboard/coupon_list.html:28
@@ -1650,7 +1679,7 @@ msgstr "Resumé des produit vendus"
 #: dashboard/templates/tags/idcard_form.html:21 dashboard/views.py:82
 #: payment/templates/payment_base.html:10
 #: payment/templates/payment_base_old.html:57
-#: shipment/templates/shipment_base.html:10 templates/base.html:65
+#: shipment/templates/shipment_base.html:10 templates/base.html:67
 #: templates/dashboard_base.html:23 templates/product_base.html:9
 msgid "Dashboard"
 msgstr "Tableau de bord"
@@ -2598,8 +2627,8 @@ msgstr "Ajouter une nouvelle marque"
 #: dashboard/templates/dashboard/brand_list.html:23
 #: dashboard/templates/dashboard/brand_list.html:34
 #: dashboard/templates/dashboard/category_detail.html:26
-#: dashboard/templates/dashboard/category_detail.html:54
-#: dashboard/templates/dashboard/category_detail.html:62
+#: dashboard/templates/dashboard/category_detail.html:58
+#: dashboard/templates/dashboard/category_detail.html:66
 #: dashboard/templates/dashboard/category_list.html:25
 #: dashboard/templates/dashboard/category_list.html:36
 #: dashboard/templates/tags/category_update_form.html:26
@@ -2897,7 +2926,7 @@ msgstr "Parent"
 msgid "Slug"
 msgstr ""
 
-#: dashboard/templates/dashboard/category_detail.html:46
+#: dashboard/templates/dashboard/category_detail.html:50
 msgid "Sub Categories"
 msgstr "Sous catégories"
 
@@ -3199,7 +3228,6 @@ msgid "Press Ctrl to select multiple values"
 msgstr "Appuyez sur Ctrl pour sélectionner plusieurs valeurs"
 
 #: dashboard/templates/dashboard/create_user.html:22
-#: templates/accounts/registration/register.html:24
 #: templates/accounts/registration/vendor_register.html:22
 #: templates/registration/vendor_register.html:22
 #: templates/tags/signup_dialog.html:7
@@ -4416,23 +4444,23 @@ msgstr ""
 
 #: dashboard/templates/dashboard_base_del..html:43
 #: dashboard/templates/dashboard_base_old.html:18
-#: dashboard/templates/dashboard_base_old.html:71 templates/base.html:78
-#: templates/base.html:101 templates/dashboard_base.html:44
+#: dashboard/templates/dashboard_base_old.html:71 templates/base.html:80
+#: templates/base.html:103 templates/dashboard_base.html:44
 #: vendors/templates/vendor_base_old.html:60
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: dashboard/templates/dashboard_base_del..html:48 templates/base.html:161
+#: dashboard/templates/dashboard_base_del..html:48 templates/base.html:163
 #: templates/dashboard_base.html:51
 msgid "ONLINE SHOP"
 msgstr "MAGASIN EN LIGNE"
 
-#: dashboard/templates/dashboard_base_del..html:51 templates/base.html:164
+#: dashboard/templates/dashboard_base_del..html:51 templates/base.html:166
 #: templates/dashboard_base.html:54
 msgid "About us"
 msgstr "À propos de nous"
 
-#: dashboard/templates/dashboard_base_del..html:52 templates/base.html:165
+#: dashboard/templates/dashboard_base_del..html:52 templates/base.html:167
 #: templates/dashboard_base.html:55
 msgid "FAQ"
 msgstr "FAQ"
@@ -4625,17 +4653,17 @@ msgstr "Selectionner le titre"
 msgid "Category Code"
 msgstr "Code"
 
-#: dashboard/templates/tags/category_creation_form.html:39
-#: dashboard/templates/tags/category_update_form.html:36
+#: dashboard/templates/tags/category_creation_form.html:47
+#: dashboard/templates/tags/category_update_form.html:46
 #: vendors/templates/vendor_tags/category_update_form.html:36
 msgid "Parent Category"
 msgstr "Categorie mère"
 
-#: dashboard/templates/tags/category_creation_form.html:41
+#: dashboard/templates/tags/category_creation_form.html:49
 msgid "Select a parent Category"
 msgstr "Selectionner une categorie mère"
 
-#: dashboard/templates/tags/category_update_form.html:44
+#: dashboard/templates/tags/category_update_form.html:54
 #: vendors/templates/vendor_tags/category_update_form.html:44
 msgid "Select Parent category"
 msgstr "Selectionner une categorie mère"
@@ -5204,11 +5232,11 @@ msgid "Refund not updated"
 msgstr "Remboursement non actualisé"
 
 #: dashboard/views.py:4894
-
 msgid "New Infos"
 msgstr "Nouvelle Info"
 
 #: dashboard/views.py:4911
+#, python-brace-format
 msgid "Info {news} created"
 msgstr "News {news} créé"
 
@@ -5232,27 +5260,24 @@ msgstr "News supprimée"
 
 #: lyshop/settings.py:29
 msgid ""
-"LYSHOP, Lyshoping, Gabon, Shop, Shopping, Shoes, kids shoes, mens shoes, "
-"Womens shoes, Fashion, Perfumes, Women, Men, Child, Children, Kid, "
-"Electronics, Smartphones"
+"LYSHOP Gabon, Online Shop, Shoes, Fashion, Perfumes, Electronics, Smartphones"
 msgstr ""
-"LYSHOP, Lyshoping, Gabon, Boutique, Shopping, Chaussures, chaussures "
-"enfants, chaussures hommes, Chaussures femmes, Mode, Parfums, Femmes, "
-"Hommes, Enfants, Enfants, Enfants, Electronique, Smartphones"
+"LYSHOP Gabon, Boutique en ligne, Chaussures, Mode, Parfums, Électronique, "
+"Smartphones"
 
 #: lyshop/settings.py:30
 msgid ""
-"LYSHOP offers fashion items, accessories and perfumes, all authentic. Become "
-"a LYSHOP member and take advantage of the special advantages. We deliver to "
-"Libreville and Port-Gentil in Gabon"
+"LYSHOP is an online store in Gabon. We sell shoes, perfumes, accessories and "
+"more for men, women and children. We offer deliveries to libreville and port-"
+"gentil."
 msgstr ""
-"LYSHOP propose des articles de mode, des accessoires et des parfums, tous "
-"authentiques. Devenez membre LYSHOP et profitez des avantages spéciaux. Nous "
-"livrons sur Libreville et Port-Gentil au Gabon"
+"LYSHOP est une boutique de vente ligne au Gabon. Nous vendons des "
+"chaussures, parfums, accessoires et autres pour hommes, femmes et enfants. "
+"Nous proposons des livraisons sur libreville et port-gentil."
 
 #: lyshop/settings.py:31
 msgid "Fashion and quality for everyone | Online Shop | LYSHOP"
-msgstr "Mode et qualité pour  tous | Magasin en ligne | LYSHOP"
+msgstr "Mode et qualité pour tous | Magasin en ligne | LYSHOP"
 
 #: lyshop/settings.py:317
 msgid "French"
@@ -5540,7 +5565,7 @@ msgstr ""
 #: orders/templates/tags/checkout_failed_content.html:6
 #: orders/templates/tags/checkout_success_content.html:8
 #: templates/accounts/registration/email_validation.html:19
-#: templates/base.html:71 templates/base.html:95
+#: templates/base.html:73 templates/base.html:97
 #: templates/registration/email_validation.html:19
 msgid "My Account"
 msgstr "Mon compte"
@@ -6085,7 +6110,7 @@ msgstr "Mot de passe"
 
 #: templates/accounts/registration/login.html:42
 #: templates/accounts/registration/password_reset_complete.html:11
-#: templates/base.html:81 templates/base.html:103
+#: templates/base.html:83 templates/base.html:105
 #: templates/registration/login.html:41
 #: templates/registration/password_reset_complete.html:11
 #: templates/tags/signup_dialog.html:34
@@ -6323,6 +6348,11 @@ msgstr "Nous ne vous demanderons jamais votre mot passe."
 msgid "Reset"
 msgstr "Reinitialiser"
 
+#: templates/accounts/registration/register.html:24
+#: templates/registration/register.html:27
+msgid "Sign up"
+msgstr "S'inscrire"
+
 #: templates/accounts/registration/register.html:49
 #: templates/registration/register.html:50
 msgid "Already have an account ?"
@@ -6379,18 +6409,18 @@ msgstr "Choisissez un type de compte"
 msgid "Already have an account ? "
 msgstr "Vous avez déjà un compte ?"
 
-#: templates/base.html:63
+#: templates/base.html:65
 msgid "Catalog"
 msgstr "Catalogue"
 
-#: templates/base.html:69 templates/vendor_base.html:20
+#: templates/base.html:71 templates/vendor_base.html:20
 #: vendors/templates/vendors/brand_product_detail.html:13
 #: vendors/templates/vendors/order_item_update.html:15
 #: vendors/templates/vendors/product_variant_detail.html:62
 msgid "Vendor Panel"
 msgstr "Espace Vendeur"
 
-#: templates/base.html:89
+#: templates/base.html:91
 msgid "Enable Grid"
 msgstr "Activer la Grille"
 
@@ -6782,10 +6812,6 @@ msgstr ""
 #: templates/registration/password_reset_email.html:14
 msgid "Sincerely"
 msgstr "Cordialement"
-
-#: templates/registration/register.html:27
-msgid "Sign up"
-msgstr "S'inscrire"
 
 #: templates/reports/recharge_report.html:8
 msgid "Recharges Listing"
@@ -7346,6 +7372,24 @@ msgstr "Retirée de la liste"
 msgid "shop list renamed to"
 msgstr "liste d'achat renommée en"
 
+#~ msgid ""
+#~ "LYSHOP, Lyshoping, Gabon, Shop, Shopping, Shoes, kids shoes, mens shoes, "
+#~ "Womens shoes, Fashion, Perfumes, Women, Men, Child, Children, Kid, "
+#~ "Electronics, Smartphones"
+#~ msgstr ""
+#~ "LYSHOP, Lyshoping, Gabon, Boutique, Shopping, Chaussures, chaussures "
+#~ "enfants, chaussures hommes, Chaussures femmes, Mode, Parfums, Femmes, "
+#~ "Hommes, Enfants, Enfants, Enfants, Electronique, Smartphones"
+
+#~ msgid ""
+#~ "LYSHOP offers fashion items, accessories and perfumes, all authentic. "
+#~ "Become a LYSHOP member and take advantage of the special advantages. We "
+#~ "deliver to Libreville and Port-Gentil in Gabon"
+#~ msgstr ""
+#~ "LYSHOP propose des articles de mode, des accessoires et des parfums, tous "
+#~ "authentiques. Devenez membre LYSHOP et profitez des avantages spéciaux. "
+#~ "Nous livrons sur Libreville et Port-Gentil au Gabon"
+
 #~ msgid "New here ? "
 #~ msgstr "Vous êtes nouveau ?"
 
@@ -7394,14 +7438,6 @@ msgstr "liste d'achat renommée en"
 
 #~ msgid "No"
 #~ msgstr "Non"
-
-#~ msgid ""
-#~ "Welcome to LYSHOP, your online store in Gabon for fashion, perfumes and "
-#~ "shoes. We deliver to Libreville and Port-gentil."
-#~ msgstr ""
-#~ "Bienvenu chez LYSHOP,  votre magasin de vente en ligne au Gabon pour la "
-#~ "mode, parfums et chaussures. Nous effectuons des livraisons sur "
-#~ "Libreville et Port-gentil."
 
 #~ msgid "LYSHOP is offering free shipping for members"
 #~ msgstr "LYSHOP offre la livraison gratuite aux membres"
