@@ -95,7 +95,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             url : '/api/add-to-cart/',
             data : formData
         }
-        ajax_api(option).then(function(response){
+        ajax_api(option, false).then(function(response){
             self.update_badge(response.quantity);
             notify({level:response.success? 'info': 'error', content: response.message});
         }, function(reason){
