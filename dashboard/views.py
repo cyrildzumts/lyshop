@@ -144,12 +144,13 @@ def category_create (request):
             return redirect('dashboard:categories')
         else:
             messages.error(request,_('Error when creating new category'))
-            logger.error(f'[ NOT OK ] Error on adding New Category by user {request.user.username}. Errors : {form.errors}' )
+            logger.error(f'[ NOT OK ] Error on adding New Category by user {request.user.username}.' )
     elif request.method == 'GET':
         form = CategoryForm()
     context['form'] = form
     context['category_list'] = models.Category.objects.filter(is_active=True)
     context['CATEGORIES'] = Catalog_Constants.CATEGORIES
+    context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.CATEGORY_DESCRIPTION_MAX_SIZE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
     

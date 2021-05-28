@@ -99,7 +99,7 @@ class Category(models.Model):
     view_count = models.IntegerField(blank=True, null=True, default=0)
     parent = models.ForeignKey('self', related_name='children', blank=True, null=True, on_delete=models.SET_NULL)
     slug = models.SlugField(max_length=250, blank=True, null=True)
-    description = models.CharField(max_length=constants.SHORT_DESCRIPTION_MAX_SIZE, blank=True, null=True)
+    description = models.CharField(max_length=constants.CATEGORY_DESCRIPTION_MAX_SIZE, blank=True, null=True)
     category_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     FORM_FIELDS = ['name', 'display_name','page_title_index', 'code', 'parent', 'added_by', 'is_active']
 
