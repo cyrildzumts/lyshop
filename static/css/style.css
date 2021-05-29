@@ -380,14 +380,16 @@
     text-decoration: line-through;
 }
 
+.sale-price{
+    font-size: 0.8em;
+}
+
 .old-price{
     text-decoration: line-through;
     color: #0A0A0A;
     margin-right: 4px;
-    font-size: 70%;
-    font-weight: 700;
-
-
+    font-size: 0.6em;
+    font-weight: 500;
 }
 .selected{
     /*background-color: #fafafa;*/
