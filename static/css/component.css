@@ -2901,6 +2901,11 @@ table tbody tr, .mat-table tbody tr{
 	padding: 0.2em !important;
 	margin: 4px auto;
 }
+
+.category-description{
+	font-size: 0.7em;
+	width: 60%;
+}
 /*
 .products .product-card:first-child, 
 .products .product-card:nth-child(2){
@@ -2996,6 +3001,9 @@ table tbody tr, .mat-table tbody tr{
 	.product-detail-properties{
 		font-size: 0.8em;
 		margin-top: 1em;
+	}
+	.category-description{
+		width: 100%;
 	}
 	.collapsible .mat-button{
 		font-size: 0.8em !important;
