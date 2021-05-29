@@ -2904,7 +2904,19 @@ table tbody tr, .mat-table tbody tr{
 
 .category-description{
 	font-size: 0.7em;
-	width: 60%;
+	width: 100%;
+}
+
+.category-description *{
+	font-family: "Nunito", sans-serif;
+}
+.category-description h1{
+	font-size: 0.875em;
+	font-family: "Nunito", sans-serif;
+}
+.category-description p{
+	font-size: 0.7em;
+	font-family: "Nunito", sans-serif;
 }
 /*
 .products .product-card:first-child, 
@@ -3001,9 +3013,6 @@ table tbody tr, .mat-table tbody tr{
 	.product-detail-properties{
 		font-size: 0.8em;
 		margin-top: 1em;
-	}
-	.category-description{
-		width: 100%;
 	}
 	.collapsible .mat-button{
 		font-size: 0.8em !important;
