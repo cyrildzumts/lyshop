@@ -380,7 +380,7 @@
     text-decoration: line-through;
 }
 
-.sale-price{
+.sale-price, .price span{
     font-size: 0.8em;
 }
 
