@@ -2828,12 +2828,21 @@ table tbody tr, .mat-table tbody tr{
 
 .product-detail-properties ul li .entry .key{
 	margin: unset;
+	font-weight: 500;
+	font-size: 1em ;
 }
 
 .product-detail-properties ul li .entry > div .chips,
 .product-detail-properties ul li .entry > .value,
 .product-detail-properties ul li .entry > .chips{
 	font-size: 0.8rem;
+	font-weight: 500;
+}
+
+.product-detail-properties h1, .product-detail-properties h2,
+.product-detail-properties h3, .product-detail-properties h4{
+	font-weight: 500;
+	font-size: 1em ;
 }
 
 .product-detail-properties .description{
