@@ -272,6 +272,7 @@ li a{
 
 h1, h2, h3, h4, h5, h6{
 	font-family: 'Montserrat';
+	text-transform: uppercase;
 }
 
 input{
@@ -2913,10 +2914,10 @@ table tbody tr, .mat-table tbody tr{
 }
 .category-description h1{
 	font-size: 0.875em;
-	font-family: "Nunito", sans-serif;
+	font-family: "Montserrat", sans-serif;
 }
 .category-description p{
-	font-family: "Nunito", sans-serif;
+	font-family: "Oswald", sans-serif;
 	width: 45em;
 }
 /*

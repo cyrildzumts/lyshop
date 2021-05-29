@@ -1,7 +1,7 @@
 
 body{
     background-color: var(--body-bg);
-    color: var(--body-color);
+    color: var(--color-stone);
 }
 
 .header{
@@ -309,4 +309,7 @@ a {
 
 .footer-catalog a{
 	color: #0A0A0A;
+}
+h1, h2, h3, h4, h5, h6{
+	color: var(--color-stone);
 }
