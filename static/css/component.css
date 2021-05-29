@@ -2731,6 +2731,7 @@ table tbody tr, .mat-table tbody tr{
 */
 .category-nav{
 	width: 100%;
+	font-size: 0.75em;
 	padding: 0.5em 1em;
 }
 
