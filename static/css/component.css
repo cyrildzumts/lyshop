@@ -2917,6 +2917,7 @@ table tbody tr, .mat-table tbody tr{
 .category-description p{
 	font-size: 0.7em;
 	font-family: "Nunito", sans-serif;
+	width: 45em;
 }
 /*
 .products .product-card:first-child, 
@@ -3010,6 +3011,9 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
+	.category-description p{
+		width: 100%;
+	}
 	.product-detail-properties{
 		font-size: 0.8em;
 		margin-top: 1em;
