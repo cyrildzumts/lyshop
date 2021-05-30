@@ -61,6 +61,7 @@
                     <table id="item-list" class="mat-table">
                         <thead>
                                 <tr>
+                                    <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
                                     <th></th>
                                     <th>{% trans "Article" %}</th>
                                     <th>{% trans "Quantiy" %}</th>
@@ -73,6 +74,7 @@
                                 {% for item in products  %}
                                 <tr>
                                     <td scope="row" data-label="" class="checkbox"><input class="js-selectable" type="checkbox" name="products" value="{{item.pk}}"></td>
+                                    <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{item.image}}" alt="{{item.display_name}}"></div></td>
                                     <td>{{item.display_name}}</td>
                                     <td>{{item.quantity}}</td>
                                     
