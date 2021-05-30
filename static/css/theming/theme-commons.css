@@ -68,6 +68,13 @@ body{
     color: var(--warning-color) !important;
 }
 
+.entrant, .incoming{
+	color: var(--success-color) !important;
+}
+.outgoing{
+	color: var(--warning-color) !important;
+}
+
 .page--banner{
     background-color: var(--third-color);
     color: var(--primary-color);
@@ -104,7 +111,9 @@ body{
 }
 
 
-
+.cancel:hover{
+	color: #aaa;
+}
 
 .mat-button{
     /*color: var(--primary-color);*/

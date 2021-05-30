@@ -228,8 +228,6 @@
 .hidden-xs {display: none;}
 .box{ width: 100%;}
 .mat-box{width: 100%;}
-body{font-size: 1.3em;}
-
 }
   
 @media only screen and (max-width:40em){
@@ -251,9 +249,7 @@ body{font-size: 1.3em;}
   .col-m-12 { width: 100%; }
   .hidden-m {display: none;}
   .box{ width: 100%;}
-  .mat-box{width: 100%;}
-  body{font-size: 1.3em;}
-
+  .mat-box{width: 100%;
 }
 
 
