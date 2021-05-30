@@ -90,6 +90,7 @@
                                         <th scope="col">{% trans "Name" %}</th>
                                         <th scope="col">{% trans "Status" %}</th>
                                         <th scope="col">{% trans "Date Joined" %}</th>
+                                        <th scope="col">{% trans "Last Login" %}</th>
                                 </tr>
                         </thead>
                         <tbody>
@@ -98,6 +99,7 @@
                                         <td data-label="{% trans 'Name' %}"><span>{{u.get_full_name}}</span></td>
                                         <td data-label="{% trans 'Status' %}"><span><i class="fas fa-circle {% if u.is_active %}success {% else %} warning {% endif %} icon"></i>{{u.is_active|yesno:_('active,inactive')}}</span></td>
                                         <td data-label="{% trans 'Date Joined' %}"><span>{{u.date_joined|date:"F j, Y H:i:s"}}</span></td>
+                                        <td data-label="{% trans 'Last Login' %}"><span>{{u.last_login|date:"F j, Y H:i:s"}}</span></td>
                                 </tr>
                                 {% endfor %}
                                 
