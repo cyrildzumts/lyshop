@@ -865,6 +865,8 @@ button, input, select, textarea{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  /*flex-basis: calc(var(--width) / var(--columns) * 100%);*/
   /*min-height: 25rem;*/
   flex-shrink: 0;
   font-size: 0.75rem;
