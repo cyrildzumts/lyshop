@@ -156,12 +156,13 @@ li.active.selected{
 
 .highlight{
     background-color: var(--light-color) !important;
-    color: var(--primary-color) !important;;
 }
 
+/*
 .highlight > .label{
 	color: var(--primary-color) !important;
 }
+*/
 
 .docklet:hover{
 
