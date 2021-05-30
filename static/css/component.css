@@ -431,24 +431,6 @@ a.button{
 	margin: 0 16px;
 }
 
-/*
-.header--panel .mat-button{
-	min-width: 0;
-	padding: 0;
-	margin: 0 16px;
-}
-*/
-
-/*
-.header--panel .mat-button:last-child, .logo .mat-button:last-child{
-	padding: 0;
-	margin: 0 ;
-}
-*/
-
-
-
-
 .nav-container{
 	width: 100%;
 	padding: 0;
@@ -881,12 +863,11 @@ button, input, select, textarea{
 .footer {
   --width-mobile: 12;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   /*min-height: 25rem;*/
   flex-shrink: 0;
-  font-size: 1rem;
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   margin-top: 1em;
 }
@@ -1501,7 +1482,6 @@ input.editable{
 	font-size: 0.75em;
 	font-weight: 500;
 	letter-spacing: 0.15em;
-	font-family: 'Monserrat', sans-serif;
 	padding: 0 16px;
 	margin: 8px;
 	border: none;
@@ -2481,7 +2461,6 @@ table tbody tr, .mat-table tbody tr{
 	width: 100%;
 	justify-content: center;
 	flex-wrap: wrap;
-	font-size: 0.8em;
 	letter-spacing: 0.2em;
 	padding: 1em;
 	margin-bottom: 2em;
@@ -2493,7 +2472,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .footer-catalog .icon{
-	font-size: 1.2em;
+	font-size: 1em;
 }
 
 .footer-catalog ul{
