@@ -243,6 +243,10 @@
     text-transform: capitalize !important;
 }
 
+.uppercase{
+    text-transform: uppercase !important;
+}
+
 .docklet:hover .link{
     text-decoration: none;
     font-size: 1em;
@@ -337,38 +341,6 @@
     font-weight: 600;
 }
 
-.info{
-    background-color: #fff;
-    /*border: 2px solid #616161;*/
-    color: #616161 !important;
-}
-.success{
-    background-color: #fff;
-    /*border: 2px solid #388e3c !important;*/
-    color: #2ecc71 !important;
-}
-
-.warning, .warn{
-    background-color: #fff;
-    /*border: 2px solid #e64a19 !important;*/
-    color: #e67e22 !important;
-}
-.debug{
-    background-color: #fff;
-    border: 2px solid #1976d2 !important;
-    color: #3498db !important;
-}
-
-.error{
-    background-color: #fff;
-    /*border: 2px solid #d32f2f !important;*/
-    color: #d32f2f !important;
-}
-
-.danger, .danger *, .saled-price, .sale, .sale-price{
-    color: #e64a19 !important;
-}
-
 .currency{
     margin-left: 4px;
     margin-right: 4px;
@@ -381,15 +353,13 @@
 }
 
 .sale-price, .price span{
-    font-size: 0.8em;
+    /*font-size: 0.8em;*/
 }
 
 .old-price{
     text-decoration: line-through;
-    color: #0A0A0A;
     margin-right: 4px;
-    font-size: 0.6em;
-    font-weight: 500;
+    /*font-size: 0.6em;*/
 }
 .selected{
     /*background-color: #fafafa;*/

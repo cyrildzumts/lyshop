@@ -2793,7 +2793,7 @@ table tbody tr, .mat-table tbody tr{
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	font-size: 1em;
+	/*font-size: 1em;*/
 	padding: 0.2rem 0.5rem;
 	flex: 1 13%;
 }
@@ -2867,7 +2867,8 @@ table tbody tr, .mat-table tbody tr{
 	align-items: flex-start;
 	padding: 2% 1%;
 	margin-top: auto;
-	font-size: 0.85em;
+	font-size: 0.9em;
+	text-transform: uppercase;
 }
 .language{
 	cursor: default;
