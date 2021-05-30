@@ -30,6 +30,7 @@
             <table id="item-list" class="mat-table">
                 <thead>
                         <tr>
+                                <th></th>
                                 <th>{% trans "Article" %}</th>
                                 <th>{% trans "Price" %}</th>
                                 <th>{% trans "Promotion Price" %}</th>
@@ -39,6 +40,7 @@
                 <tbody>
                         {% for item in highlighted_products  %}
                         <tr>
+                            <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{item.image}}" alt="{{item.display_name}}"></div></td>
                             <td>{{item.display_name}}</td>
                             <td><span>{{item.price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
                             <td><span>{{item.promotion_price|floatformat:"-2"}}</span> <span>{% trans CURRENCY %}</span></td>
