@@ -222,6 +222,11 @@ li.active.selected{
     color: var(--third-color);
 }
 
+.metric .metric-value{
+    font-size: 1.1em;
+    color: #FAFAFA;
+}
+
 .banner-action .mat-button{
     background-color: #FFFFFF !important;
     color: var(--primary-color) !important;
