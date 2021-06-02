@@ -1,7 +1,7 @@
 
 body{
     background-color: var(--body-bg);
-    color: var(--color-stone);
+    color: var(--color-ebony);
 }
 
 .header{
@@ -222,6 +222,11 @@ li.active.selected{
     color: var(--third-color);
 }
 
+.metric .metric-value{
+    font-size: 1.1em;
+    color: #FAFAFA;
+}
+
 .banner-action .mat-button{
     background-color: #FFFFFF !important;
     color: var(--primary-color) !important;
@@ -321,5 +326,5 @@ a {
 	color: #0A0A0A;
 }
 h1, h2, h3, h4, h5, h6{
-	color: var(--color-stone);
+	color: var(--color-ebony);
 }

@@ -252,6 +252,7 @@
 	position: relative;
 	transition: margin-left 300ms;
 	margin-left: 345px;
+    width: 100%;
 }
 
 .dashboard-header-wrapper{

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-29 11:28+0000\n"
+"POT-Creation-Date: 2021-05-30 12:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -509,7 +509,7 @@ msgstr "Nouvelle adresse non créee"
 #: dashboard/templates/dashboard/create_product_variant.html:59
 #: dashboard/templates/dashboard/create_product_variant.html:107
 #: dashboard/templates/dashboard/dashboard.html:90
-#: dashboard/templates/dashboard/dashboard.html:98
+#: dashboard/templates/dashboard/dashboard.html:99
 #: dashboard/templates/dashboard/group_list.html:55
 #: dashboard/templates/dashboard/highlight_create.html:15
 #: dashboard/templates/dashboard/highlight_detail.html:18
@@ -897,12 +897,12 @@ msgstr "Continuer vos achats"
 #: cart/templates/cart_tags/item_snippet.html:39
 #: dashboard/templates/dashboard/brand_detail.html:35
 #: dashboard/templates/dashboard/brand_product_detail.html:28
-#: dashboard/templates/dashboard/dashboard.html:125
-#: dashboard/templates/dashboard/dashboard.html:138
-#: dashboard/templates/dashboard/dashboard.html:160
-#: dashboard/templates/dashboard/dashboard.html:172
-#: dashboard/templates/dashboard/dashboard.html:192
-#: dashboard/templates/dashboard/dashboard.html:203
+#: dashboard/templates/dashboard/dashboard.html:123
+#: dashboard/templates/dashboard/dashboard.html:136
+#: dashboard/templates/dashboard/dashboard.html:158
+#: dashboard/templates/dashboard/dashboard.html:170
+#: dashboard/templates/dashboard/dashboard.html:190
+#: dashboard/templates/dashboard/dashboard.html:201
 #: dashboard/templates/dashboard/order_detail.html:37
 #: dashboard/templates/dashboard/order_item.html:30
 #: dashboard/templates/dashboard/order_item.html:91
@@ -1065,13 +1065,12 @@ msgstr ""
 
 #: catalog/strings.py:19
 msgid ""
-"Discover our collection of shoes whose quality is well established. "
-"Ballerinas, Loafer, Sandal, Sneaker, Pumps, Derby, Boot and others. Define "
-"your style."
+"Discover our collection of quality shoes. Ballerinas, Loafer, Sandal, "
+"Sneaker, Pumps, Derby, Boot and others. Define your style."
 msgstr ""
-"Découvrez notre collection de chaussures dont la qualité n'est plus à faire. "
-"Ballerines, mocassins, sandales, baskets, escarpins, derbys, bottes et "
-"autres. Définissez votre style."
+"Découvrez notre collection de chaussures de qualité. Ballerines, mocassins, "
+"sandales, baskets, escarpins, derbys, bottes et autres. Définissez votre "
+"style."
 
 #: catalog/strings.py:20
 msgid ""
@@ -1461,8 +1460,8 @@ msgstr "Solde"
 #: dashboard/templates/dashboard/dashboard.html:70
 #: dashboard/templates/dashboard/group_list.html:47
 #: dashboard/templates/dashboard/group_list.html:58
-#: dashboard/templates/dashboard/highlight_detail.html:36
-#: dashboard/templates/dashboard/highlight_detail.html:69
+#: dashboard/templates/dashboard/highlight_detail.html:37
+#: dashboard/templates/dashboard/highlight_detail.html:72
 #: dashboard/templates/dashboard/highlight_list.html:24
 #: dashboard/templates/dashboard/highlight_list.html:33
 #: dashboard/templates/dashboard/news_list.html:24
@@ -1908,8 +1907,8 @@ msgid "Orders"
 msgstr "Commandes"
 
 #: core/resources/ui_strings.py:47
-#: dashboard/templates/dashboard/dashboard.html:121
-#: dashboard/templates/dashboard/dashboard.html:134
+#: dashboard/templates/dashboard/dashboard.html:119
+#: dashboard/templates/dashboard/dashboard.html:132
 #: dashboard/templates/dashboard/order_item.html:16
 #: dashboard/templates/dashboard/order_item_update.html:15
 #: dashboard/templates/dashboard/refund_detail.html:23
@@ -2066,7 +2065,7 @@ msgstr "Nouveau groupe de règles"
 #: core/resources/ui_strings.py:74
 #: dashboard/templates/dashboard/attribute_detail.html:72
 #: dashboard/templates/dashboard/create_product_variant.html:9
-#: dashboard/templates/dashboard/highlight_detail.html:56
+#: dashboard/templates/dashboard/highlight_detail.html:58
 #: dashboard/templates/dashboard/product_image_create.html:6
 #: dashboard/templates/dashboard/product_image_detail.html:7
 #: dashboard/templates/dashboard/product_variant_create.html:5
@@ -2545,6 +2544,7 @@ msgstr "Supprimer la sélection"
 #: dashboard/templates/dashboard/coupon_list.html:22
 #: dashboard/templates/dashboard/create_product_variant.html:47
 #: dashboard/templates/dashboard/customers.html:24
+#: dashboard/templates/dashboard/highlight_detail.html:66
 #: dashboard/templates/dashboard/highlight_list.html:21
 #: dashboard/templates/dashboard/news_list.html:19
 #: dashboard/templates/dashboard/payment_method_list.html:24
@@ -2658,14 +2658,14 @@ msgstr "Code"
 
 #: dashboard/templates/dashboard/brand_detail.html:36
 #: dashboard/templates/dashboard/brand_product_detail.html:15
-#: dashboard/templates/dashboard/dashboard.html:123
-#: dashboard/templates/dashboard/dashboard.html:136
-#: dashboard/templates/dashboard/dashboard.html:158
-#: dashboard/templates/dashboard/dashboard.html:170
-#: dashboard/templates/dashboard/dashboard.html:190
-#: dashboard/templates/dashboard/dashboard.html:201
-#: dashboard/templates/dashboard/highlight_detail.html:34
-#: dashboard/templates/dashboard/highlight_detail.html:67
+#: dashboard/templates/dashboard/dashboard.html:121
+#: dashboard/templates/dashboard/dashboard.html:134
+#: dashboard/templates/dashboard/dashboard.html:156
+#: dashboard/templates/dashboard/dashboard.html:168
+#: dashboard/templates/dashboard/dashboard.html:188
+#: dashboard/templates/dashboard/dashboard.html:199
+#: dashboard/templates/dashboard/highlight_detail.html:35
+#: dashboard/templates/dashboard/highlight_detail.html:70
 #: dashboard/templates/dashboard/order_detail.html:38
 #: dashboard/templates/dashboard/order_item.html:31
 #: dashboard/templates/dashboard/order_item_update.html:30
@@ -2726,8 +2726,8 @@ msgid "Delete Action"
 msgstr "Action de suppression"
 
 #: dashboard/templates/dashboard/brand_product_detail.html:10
-#: dashboard/templates/dashboard/highlight_detail.html:45
-#: dashboard/templates/dashboard/highlight_detail.html:81
+#: dashboard/templates/dashboard/highlight_detail.html:47
+#: dashboard/templates/dashboard/highlight_detail.html:85
 #: orders/templates/orders/order_detail.html:96
 #: vendors/templates/vendors/brand_product_detail.html:23
 msgid "Product Details"
@@ -3163,7 +3163,7 @@ msgstr "Vendeur"
 #: dashboard/templates/dashboard/dashboard.html:56
 #: dashboard/templates/dashboard/dashboard.html:67
 #: dashboard/templates/dashboard/dashboard.html:91
-#: dashboard/templates/dashboard/dashboard.html:99
+#: dashboard/templates/dashboard/dashboard.html:100
 #: dashboard/templates/dashboard/highlight_list.html:23
 #: dashboard/templates/dashboard/highlight_list.html:32
 #: dashboard/templates/dashboard/order_histories.html:18
@@ -3208,7 +3208,7 @@ msgstr "Date de création"
 
 #: dashboard/templates/dashboard/coupon_list.html:40
 #: dashboard/templates/dashboard/customers.html:45
-#: dashboard/templates/dashboard/dashboard.html:99
+#: dashboard/templates/dashboard/dashboard.html:100
 #: dashboard/templates/dashboard/highlight_list.html:32
 #: dashboard/templates/dashboard/news_list.html:33
 #: dashboard/templates/dashboard/user_list.html:37
@@ -3289,7 +3289,7 @@ msgstr "Client"
 #: dashboard/templates/dashboard/customers.html:26
 #: dashboard/templates/dashboard/customers.html:40
 #: dashboard/templates/dashboard/dashboard.html:92
-#: dashboard/templates/dashboard/dashboard.html:100
+#: dashboard/templates/dashboard/dashboard.html:101
 #: dashboard/templates/dashboard/user_list.html:27
 #: dashboard/templates/dashboard/user_list.html:38
 msgid "Date Joined"
@@ -3376,8 +3376,8 @@ msgstr "Commandes recentes"
 
 #: dashboard/templates/dashboard/dashboard.html:50
 #: dashboard/templates/dashboard/dashboard.html:86
-#: dashboard/templates/dashboard/dashboard.html:116
-#: dashboard/templates/dashboard/dashboard.html:184
+#: dashboard/templates/dashboard/dashboard.html:114
+#: dashboard/templates/dashboard/dashboard.html:182
 #: templates/accounts/account.html:24
 #, fuzzy
 #| msgid "Select all"
@@ -3416,20 +3416,27 @@ msgstr "Date de soumission"
 msgid "No Recents Orders"
 msgstr "Commandes recentes"
 
-#: dashboard/templates/dashboard/dashboard.html:116
+#: dashboard/templates/dashboard/dashboard.html:93
+#: dashboard/templates/dashboard/dashboard.html:102
+#, fuzzy
+#| msgid "Last login"
+msgid "Last Login"
+msgstr "Dernière connexion"
+
+#: dashboard/templates/dashboard/dashboard.html:114
 #, fuzzy
 #| msgid "Recent Sold Products"
 msgid "Recent sold Product"
 msgstr "Produit vendus recemment"
 
-#: dashboard/templates/dashboard/dashboard.html:122
-#: dashboard/templates/dashboard/dashboard.html:135
-#: dashboard/templates/dashboard/dashboard.html:157
-#: dashboard/templates/dashboard/dashboard.html:169
-#: dashboard/templates/dashboard/dashboard.html:189
-#: dashboard/templates/dashboard/dashboard.html:200
-#: dashboard/templates/dashboard/highlight_detail.html:33
-#: dashboard/templates/dashboard/highlight_detail.html:65
+#: dashboard/templates/dashboard/dashboard.html:120
+#: dashboard/templates/dashboard/dashboard.html:133
+#: dashboard/templates/dashboard/dashboard.html:155
+#: dashboard/templates/dashboard/dashboard.html:167
+#: dashboard/templates/dashboard/dashboard.html:187
+#: dashboard/templates/dashboard/dashboard.html:198
+#: dashboard/templates/dashboard/highlight_detail.html:34
+#: dashboard/templates/dashboard/highlight_detail.html:68
 #: dashboard/templates/dashboard/sellers.html:42
 #: dashboard/templates/tags/sold_product_list_template.html:20
 #: dashboard/templates/tags/sold_product_list_template.html:31
@@ -3445,14 +3452,14 @@ msgstr "Produit vendus recemment"
 msgid "Article"
 msgstr "Articles"
 
-#: dashboard/templates/dashboard/dashboard.html:124
-#: dashboard/templates/dashboard/dashboard.html:137
-#: dashboard/templates/dashboard/dashboard.html:159
-#: dashboard/templates/dashboard/dashboard.html:171
-#: dashboard/templates/dashboard/dashboard.html:191
-#: dashboard/templates/dashboard/dashboard.html:202
-#: dashboard/templates/dashboard/highlight_detail.html:35
-#: dashboard/templates/dashboard/highlight_detail.html:68
+#: dashboard/templates/dashboard/dashboard.html:122
+#: dashboard/templates/dashboard/dashboard.html:135
+#: dashboard/templates/dashboard/dashboard.html:157
+#: dashboard/templates/dashboard/dashboard.html:169
+#: dashboard/templates/dashboard/dashboard.html:189
+#: dashboard/templates/dashboard/dashboard.html:200
+#: dashboard/templates/dashboard/highlight_detail.html:36
+#: dashboard/templates/dashboard/highlight_detail.html:71
 #: dashboard/templates/dashboard/order_detail.html:75
 #: dashboard/templates/dashboard/order_item.html:88
 #: dashboard/templates/dashboard/order_item_update.html:90
@@ -3485,28 +3492,28 @@ msgstr "Articles"
 msgid "Promotion Price"
 msgstr "Prix réduit"
 
-#: dashboard/templates/dashboard/dashboard.html:126
-#: dashboard/templates/dashboard/dashboard.html:139
+#: dashboard/templates/dashboard/dashboard.html:124
+#: dashboard/templates/dashboard/dashboard.html:137
 #: dashboard/templates/dashboard/sold_product_detail.html:53
 #: templates/reports/sold_vouchers_report.html:14
 #: vendors/templates/vendors/sold_product_detail.html:49
 msgid "Sold Date"
 msgstr "Date de vente"
 
-#: dashboard/templates/dashboard/dashboard.html:147
+#: dashboard/templates/dashboard/dashboard.html:145
 #, fuzzy
 #| msgid "Recent Sold Products"
 msgid "No Recent sold Products"
 msgstr "Produit vendus recemment"
 
-#: dashboard/templates/dashboard/dashboard.html:152
+#: dashboard/templates/dashboard/dashboard.html:150
 #, fuzzy
 #| msgid "New Product"
 msgid "Most Views Products"
 msgstr "Nouveau produit"
 
-#: dashboard/templates/dashboard/dashboard.html:161
-#: dashboard/templates/dashboard/dashboard.html:173
+#: dashboard/templates/dashboard/dashboard.html:159
+#: dashboard/templates/dashboard/dashboard.html:171
 #: dashboard/templates/dashboard/product_variant_detail.html:58
 #: templates/tags/product_detail_snippet.html:62
 #: vendors/templates/vendors/product_variant_detail.html:47
@@ -3514,16 +3521,16 @@ msgstr "Nouveau produit"
 msgid "Views"
 msgstr "Vues"
 
-#: dashboard/templates/dashboard/dashboard.html:162
-#: dashboard/templates/dashboard/dashboard.html:174
-#: dashboard/templates/dashboard/dashboard.html:193
-#: dashboard/templates/dashboard/dashboard.html:204
+#: dashboard/templates/dashboard/dashboard.html:160
+#: dashboard/templates/dashboard/dashboard.html:172
+#: dashboard/templates/dashboard/dashboard.html:191
+#: dashboard/templates/dashboard/dashboard.html:202
 #, fuzzy
 #| msgid "Ordered Date"
 msgid "Added Date"
 msgstr "Date de la commande"
 
-#: dashboard/templates/dashboard/dashboard.html:184
+#: dashboard/templates/dashboard/dashboard.html:182
 #, fuzzy
 #| msgid "Recent Added Products"
 msgid "Last added Product"
@@ -3615,11 +3622,11 @@ msgstr "Créé"
 msgid "Highlight Products"
 msgstr "Produits en vogue"
 
-#: dashboard/templates/dashboard/highlight_detail.html:60
+#: dashboard/templates/dashboard/highlight_detail.html:62
 msgid "Add Selection"
 msgstr "Ajouter la sélection"
 
-#: dashboard/templates/dashboard/highlight_detail.html:66
+#: dashboard/templates/dashboard/highlight_detail.html:69
 #: dashboard/templates/dashboard/order_detail.html:73
 #: orders/templates/orders/order_detail.html:79
 #: templates/invoices/invoice.html:43
