@@ -108,6 +108,26 @@
           </div><!--End of Table Wrapper-->
       </div><!--End of mat-box-content-->
   </div><!--End of mat-box-->
+  <div class="mat-box full">
+    <div class="mat-box-title">
+      <h4>{% trans "Variants test" %}</h4>
+    </div>
+    <div class="mat-box-content">
+      {% for variant in variant_list %}
+        <ul>
+            {% regroup variant.attributes.all by name as attr_list %}
+            {% for attr in attr_list %}
+            <li>
+            {% trans attr.grouper %}
+              <ul>
+                  {% for entry in attr.list %} <li>{{entry.display_name}} : {{entry.value}}</li> {% endfor %}
+              </ul>
+            </li>
+            {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+  </div>
   <div class="mat-box wrapper full">
     <div class="mat-box-title">
       <h4>{% trans "Product Images" %}</h4>
