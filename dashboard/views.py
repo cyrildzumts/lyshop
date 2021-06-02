@@ -1185,7 +1185,7 @@ def product_detail(request, product_uuid=None):
 
     product = get_object_or_404(models.Product, product_uuid=product_uuid)
     images = ProductImage.objects.filter(product=product)
-    variants = models.ProductVariant.objects.select_related('attributes').filter(product=product)
+    variants = models.ProductVariant.objects.select_related().filter(product=product)
     context = {
         'page_title': page_title,
         'product': product,
