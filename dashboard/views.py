@@ -2749,8 +2749,8 @@ def user_details(request, pk=None):
     context['cart_items'] = cart_items
     context['recent_orders'] = recent_orders
     context['ACCOUNT_TYPE'] = Account_Constants.ACCOUNT_TYPE
+    context['addressbook'] = addressbook_service.get_addresses(user)
     context['content_title'] = f"{CORE_STRINGS.DASHBOARD_USER_TITLE} - {user.get_full_name()}"
-    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 
