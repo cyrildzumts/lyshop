@@ -1185,7 +1185,7 @@ def product_detail(request, product_uuid=None):
 
     product = get_object_or_404(models.Product, product_uuid=product_uuid)
     images = ProductImage.objects.filter(product=product)
-    variants = models.ProductVariant.objects.filter(product=product)
+    variants = models.ProductVariant.objects.select_related('attributes').filter(product=product)
     context = {
         'page_title': page_title,
         'product': product,
@@ -1707,7 +1707,6 @@ def product_variant_detail(request, variant_uuid=None):
     }
     context['content_title'] =  CORE_STRINGS.DASHBOARD_PRODUCT_VARIANTE_TITLE
     context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
-    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 @login_required
