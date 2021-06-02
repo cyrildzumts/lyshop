@@ -89,6 +89,7 @@
                                     <th>{% trans "Quantity" %}</th>
                                     <th>{% trans "Attributes" %}</th>
                                     <th>{% trans "Price" %}</th>
+                                    <th>{% trans "Detail" %}</th>
                               </tr>
                       </thead>
                       <tbody>
@@ -98,7 +99,7 @@
                                     <td data-label="{% trans 'Quantity' %}">{{variant.quantity}}</td>
                                     <td data-label="{% trans 'Price' %}">{{variant.price}} {% trans "XAF" %}</td>
                                     <td data-label="Attributes"><span class="flex flex-left">{% for attr in variant.attributes.all %}{{attr}}{% if not forloop.last %};{% endif %}{% endfor %}</span></td>
-                                    <td data><a class="mat-button mat-button-text" href="{% url VARIANT_URL variant.product_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                                    <td data-label="Detail"><a class="mat-button mat-button-text" href="{% url VARIANT_URL variant.product_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                               </tr>
                               {% endfor %}
                               
