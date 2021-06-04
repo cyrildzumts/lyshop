@@ -11,6 +11,7 @@ var Tabs = (function(){
     var tab_list = $('.tab');
     var current_index = 0;
     var tab_content_validators = [];
+    var valid_tabs = [];
 
     function Tabs(){
         this.currentTab     = 0;
@@ -18,8 +19,6 @@ var Tabs = (function(){
         this.tabs           = {};
         this.tab            = {};
         this.tabsCount      = 0;
-
-        
     };
 
     Tabs.prototype.init = function(){
@@ -71,6 +70,12 @@ var Tabs = (function(){
         $('.' + tab_preffix + index + " ." + tab_title_class).toggleClass(tab_title_checked, toggle);
         $('#' + tab_content_prefix + index + " .js-tab-next").toggleClass('disabled', !toggle);
         $('.js-send').prop('disabled', !toggle).toggleClass('disabled', !toggle);
+        var index_included = valid_tabs.includes(index);
+        if(toggle && !index_included ){
+            valid_tabs.push(index);
+        }else if(!toggle && index_included){
+            valid_tabs.splice(index, 1);
+        }
 
     };
     Tabs.prototype.onTabClicked = function(event){
