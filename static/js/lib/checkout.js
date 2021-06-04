@@ -78,6 +78,8 @@ define([
         this.items_count = 0;
         this.steps = [];
         this.current_step = {};
+        this.address_required = true;
+        this.address_available = false;
         
     };
     
@@ -234,6 +236,8 @@ define([
     Checkout.prototype.validate_shipmode = function(){
         var shipmde_container = $('#step-' + shipmode_tab);
         var $input = $("input[type='radio']:checked", shipmde_container);
+        tabs.toggle_checked(shipmode_tab, is_valid);
+        return is_valid;
     };
 
     Checkout.prototype.ship_mode_changed = function(el){
@@ -246,9 +250,8 @@ define([
         total += shipping_price;
         shipping_price_el.text(shipping_price);
         grand_total_el.text(total);
-        //var show_address_container = mode == SHIP_EXPRESS || mode == SHIP_STANDARD;
-        //$("#" + SHIPPING_ADDRESS_CONTAINER).toggleClass('hidden', !show_address_container)
-
+        this.address_required = mode == SHIP_EXPRESS || mode == SHIP_STANDARD;
+        tabs.toggle_checked(shipmode_tab, true);
     };
     
     return Checkout;
