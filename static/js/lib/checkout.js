@@ -40,9 +40,12 @@ define([
         valid : false,
         tab : null
     };
-    var address_tab = 1;
-    var payment_tab = 2;
-    var verification_tab = 3;
+    var shipmode_tab = 1;
+    var address_tab = 2;
+    var payment_tab = 3;
+    var verification_tab = 4;
+    var confirmation_tab = 5
+    var steps_order = [shipmode_tab, address_tab, payment_tab, verification_tab, confirmation_tab]
     var tabs = null;
 
     var PAY_AT_DELIVERY = 0;
@@ -81,6 +84,7 @@ define([
     Checkout.prototype.init = function(){
         var self = this;
         var addr = document.getElementById('address');
+
         $('.js-input-payment-option').on('change', function(event){
             self.payment_option = this.value;
             self.payment_method = -1;
@@ -107,7 +111,7 @@ define([
         $('.js-input-ship-mode').on('change', function(event){
             self.ship_mode_changed(this);
         });
-        this.validate_address();
+        //this.validate_address();
         self.update_payment_method();
         tabs.init();
         
@@ -227,6 +231,11 @@ define([
         }
         
     };
+    Checkout.prototype.validate_shipmode = function(){
+        var shipmde_container = $('#step-' + shipmode_tab);
+        var $input = $("input[type='radio']:checked", shipmde_container);
+    };
+
     Checkout.prototype.ship_mode_changed = function(el){
         var mode = parseInt($(el).data('mode'));
         var shipping_price_el = $('.js-shipping-price');
@@ -237,8 +246,9 @@ define([
         total += shipping_price;
         shipping_price_el.text(shipping_price);
         grand_total_el.text(total);
-        var show_address_container = mode == SHIP_EXPRESS || mode == SHIP_STANDARD;
-        $("#" + SHIPPING_ADDRESS_CONTAINER).toggleClass('hidden', !show_address_container)
+        //var show_address_container = mode == SHIP_EXPRESS || mode == SHIP_STANDARD;
+        //$("#" + SHIPPING_ADDRESS_CONTAINER).toggleClass('hidden', !show_address_container)
+
     };
     
     return Checkout;
