@@ -252,6 +252,7 @@ define([
         grand_total_el.text(total);
         this.address_required = mode == SHIP_EXPRESS || mode == SHIP_STANDARD;
         tabs.toggle_checked(shipmode_tab, true);
+        this.validate_address();
     };
     
     return Checkout;
