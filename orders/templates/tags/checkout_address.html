@@ -44,6 +44,10 @@
                     <label for="address_type">{% trans "Shipping address same as billing" %}</label>
                 </div>
         </div>
+        {% else %}
+        <div class="hint">
+            <span>{% trans "Please, add an Address for the delivery" %}</span>
+        </div>
         {% endif %}
         <div id="new-address" class="mat-box hidden">
             {% include "addressbook_tags/address_form.html" %}

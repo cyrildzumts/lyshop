@@ -24,6 +24,8 @@ define([
     var SHIP_IN_STORE_LBV = 4
     var SHIPPING_ADDRESS_CONTAINER = "address-container";
     var api_address_url = '/api/create-address/';
+    var SHIP_IN_HOUSE = [SHIP_STANDARD, SHIP_EXPRESS];
+    var SHIP_IN_STORE = [SHIP_IN_STORE, SHIP_IN_STORE_LBV, SHIP_IN_STORE_POG];
     var address = {
         id : "",
         name : "",
@@ -80,6 +82,11 @@ define([
         this.current_step = {};
         this.address_required = true;
         this.address_available = false;
+        this.ship_mode = -1;
+        this.ship_mode_valid = false;
+        this.shipping_price = 0;
+        this.sub_total = 0;
+        this.total = 0;
         
     };
     
@@ -235,22 +242,25 @@ define([
     };
     Checkout.prototype.validate_shipmode = function(){
         var shipmde_container = $('#step-' + shipmode_tab);
+        var $selectec_ship_mode = $('.js-input-ship-mode:checked')
         var $input = $("input[type='radio']:checked", shipmde_container);
         tabs.toggle_checked(shipmode_tab, is_valid);
         return is_valid;
     };
 
     Checkout.prototype.ship_mode_changed = function(el){
-        var mode = parseInt($(el).data('mode'));
-        var shipping_price_el = $('.js-shipping-price');
-        var grand_total_el = $('.js-grand-total');
-        var total_el = $('.js-final-price');
-        var total = parseInt(total_el.text());
-        var shipping_price = parseInt($(el).data('price'));
-        total += shipping_price;
-        shipping_price_el.text(shipping_price);
-        grand_total_el.text(total);
-        this.address_required = mode == SHIP_EXPRESS || mode == SHIP_STANDARD;
+        this.ship_mode = parseInt($(el).data('mode'));
+        this.ship_mode_valid = SHIP_IN_HOUSE.includes(this.ship_mode) || SHIP_IN_STORE.includes(this.ship_mode);
+        //var shipping_price_el = $('.js-shipping-price');
+        //var grand_total_el = $('.js-grand-total');
+        //var total_el = $('.js-final-price');
+        this.sub_total = parseInt($('.js-final-price').text());
+        this.shipping_price = parseInt($(el).data('price'));
+        //total += shipping_price;
+        this.total = this.sub_total + this.shipping_price;
+        $('.js-shipping-price').text(this.shipping_price);
+        $('.js-grand-total').text(this.total);
+        this.address_required = SHIP_IN_HOUSE.includes(this.ship_mode);
         tabs.toggle_checked(shipmode_tab, true);
         this.validate_address();
     };
