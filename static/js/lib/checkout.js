@@ -131,11 +131,11 @@ define([
         $('.js-send').prop('disabled', true);
         $('#checkout-form').on('submit', function(event){
             event.stopPropagation();
-            if(self.is_form_valid()){
+            if(!self.is_form_valid()){
                 event.preventDefault();
+                console.log("Checkout form is invalid");
                 return false;
             }
-            
             return true;
         });
 
