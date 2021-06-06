@@ -84,9 +84,12 @@ define([
         this.address_available = false;
         this.ship_mode = -1;
         this.ship_mode_valid = false;
+        this.payment_option_is_valid = false;
+        this.address_is_valid = false;
         this.shipping_price = 0;
         this.sub_total = 0;
         this.total = 0;
+        this.form_is_valid = false;
         
     };
     
@@ -126,7 +129,26 @@ define([
         
         $('input.js-input-ship-mode').prop('checked', false);
         $('.js-send').prop('disabled', true);
+        $('#checkout-form').on('submit', function(event){
+            event.stopPropagation();
+            if(self.is_form_valid()){
+                event.preventDefault();
+                return false;
+            }
+            
+            return true;
+        });
+
     };
+
+    Checkout.prototype.update_send_btn = function(){
+        $('.js-send').prop('disabled', !this.is_form_valid());
+        $('.js-send').toggleClass('disabled', !this.is_form_valid());
+    }
+
+    Checkout.prototype.is_form_valid = function(){
+        return this.ship_mode_valid && this.address_is_valid && this.payment_option_is_valid;
+    }
 
     Checkout.prototype.validate_address = function(){
         var toggle = false;
@@ -134,6 +156,7 @@ define([
         var inputs_container = $('#new-address').get();
         if(address_input){
             toggle = true;
+            this.address_is_valid = true;
         }else if(inputs_container){
             var inputs = $("input", inputs_container);
             toggle = true;
@@ -145,6 +168,7 @@ define([
                 }
             }
         }
+        this.address_is_valid = toggle;
         tabs.toggle_checked(address_tab, toggle);
     };
     Checkout.prototype.validate_pament_options = function(){
@@ -153,7 +177,7 @@ define([
            console.log("Payment Option is invalid");
        }
        //tabs.toggle_checked(payment_tab, is_valid);
-       this.validate_pament_method();
+       this.payment_option_is_valid = is_valid;
 
     };
 
@@ -164,6 +188,7 @@ define([
            console.log("Payment Method is invalid");
        }
         tabs.toggle_checked(payment_tab, is_valid);
+        this.payment_option_is_valid = is_valid;
         return is_valid;
      };
 
@@ -205,6 +230,7 @@ define([
                 });
                 var input = $('<input>', {name : 'address', type :'hidden', value : response.id});
                 input.appendTo(container);
+                this.address_is_valid = true;
                 tabs.toggle_checked(address_tab, true);
                 $('.js-add-address, .js-create-address').addClass('disabled').prop('disabled', 'disabled');
             }else{
