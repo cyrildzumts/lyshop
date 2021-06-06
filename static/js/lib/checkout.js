@@ -170,6 +170,7 @@ define([
         }
         this.address_is_valid = toggle;
         tabs.toggle_checked(address_tab, toggle);
+        this.update_send_btn();
     };
     Checkout.prototype.validate_pament_options = function(){
        var is_valid = PAYMENT_OPTIONS.includes(parseInt(this.payment_option));
@@ -189,6 +190,7 @@ define([
        }
         tabs.toggle_checked(payment_tab, is_valid);
         this.payment_option_is_valid = is_valid;
+        this.update_send_btn();
         return is_valid;
      };
 
@@ -233,6 +235,7 @@ define([
                 this.address_is_valid = true;
                 tabs.toggle_checked(address_tab, true);
                 $('.js-add-address, .js-create-address').addClass('disabled').prop('disabled', 'disabled');
+                this.update_send_btn();
             }else{
                 console.log("address not created. Error : %s", response.error);
             }
@@ -264,6 +267,7 @@ define([
                 $(LI_PM_PREFIX + value, PAYMENT_METHOD_CONTAINER).show();
             });
         }
+        this.update_send_btn();
         
     };
     Checkout.prototype.validate_shipmode = function(){
@@ -292,6 +296,7 @@ define([
         $('.js-no-address-required').toggleClass('hidden', this.address_required);
         tabs.toggle_checked(shipmode_tab, true);
         this.validate_address();
+        this.update_send_btn();
     };
     
     return Checkout;
