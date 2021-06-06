@@ -102,6 +102,7 @@ define([
             self.payment_option = this.value;
             self.payment_method = -1;
             self.payment_method_is_valid = false;
+             tabs.toggle_checked(payment_tab, false);
             self.update_payment_method();
             self.validate_pament_options();
             console.log("payment option changed %s", this.value);
