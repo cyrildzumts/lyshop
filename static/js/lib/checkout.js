@@ -261,7 +261,7 @@ define([
         $('.js-shipping-price').text(this.shipping_price);
         $('.js-grand-total').text(this.total);
         this.address_required = SHIP_IN_HOUSE.includes(this.ship_mode);
-        $('.js-add-address').toggle(!this.address_required);
+        $('.js-add-address').toggle(this.address_required);
         tabs.toggle_checked(shipmode_tab, true);
         this.validate_address();
     };
