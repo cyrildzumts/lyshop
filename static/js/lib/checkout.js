@@ -101,6 +101,7 @@ define([
         $('.js-input-payment-option').on('change', function(event){
             self.payment_option = this.value;
             self.payment_method = -1;
+            self.payment_method_is_valid = false;
             self.update_payment_method();
             self.validate_pament_options();
             console.log("payment option changed %s", this.value);
@@ -181,6 +182,7 @@ define([
        }
        //tabs.toggle_checked(payment_tab, is_valid);
        this.payment_option_is_valid = is_valid;
+       this.update_send_btn();
 
     };
 
