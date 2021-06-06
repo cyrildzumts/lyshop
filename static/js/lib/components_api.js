@@ -12,6 +12,7 @@ var Tabs = (function(){
     var current_index = 0;
     var tab_content_validators = [];
     var valid_tabs = [];
+    var tabs_to_skips = [];
 
     function Tabs(){
         this.currentTab     = 0;
