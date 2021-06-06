@@ -85,6 +85,7 @@ define([
         this.ship_mode = -1;
         this.ship_mode_valid = false;
         this.payment_option_is_valid = false;
+        this.payment_method_is_valid = false;
         this.address_is_valid = false;
         this.shipping_price = 0;
         this.sub_total = 0;
@@ -142,12 +143,13 @@ define([
     };
 
     Checkout.prototype.update_send_btn = function(){
+        console.log("Update send button");
         $('.js-send').prop('disabled', !this.is_form_valid());
         $('.js-send').toggleClass('disabled', !this.is_form_valid());
     }
 
     Checkout.prototype.is_form_valid = function(){
-        return this.ship_mode_valid && this.address_is_valid && this.payment_option_is_valid;
+        return this.ship_mode_valid && this.address_is_valid && this.payment_option_is_valid && this.payment_method_is_valid;
     }
 
     Checkout.prototype.validate_address = function(){
@@ -189,7 +191,7 @@ define([
            console.log("Payment Method is invalid");
        }
         tabs.toggle_checked(payment_tab, is_valid);
-        this.payment_option_is_valid = is_valid;
+        this.payment_method_is_valid = is_valid;
         this.update_send_btn();
         return is_valid;
      };
@@ -267,6 +269,7 @@ define([
                 $(LI_PM_PREFIX + value, PAYMENT_METHOD_CONTAINER).show();
             });
         }
+        console.log("update_payment_method: Updating send button");
         this.update_send_btn();
         
     };
