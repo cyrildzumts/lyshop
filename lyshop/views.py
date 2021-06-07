@@ -62,7 +62,7 @@ def home(request):
         electronics_category = None
     
     request.session['last_login'] = timezone.now().timestamp()
-    request.session['last_login_datetime'] = timezone.now()
+    request.session['last_login_datetime'] = timezone.now().isoformat()
     
     context = {
         'page_title': page_title,
