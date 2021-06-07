@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-07 00:38+0200\n"
+"POT-Creation-Date: 2021-06-07 18:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2407,11 +2407,11 @@ msgstr "Données soumises non valides"
 msgid "catalog"
 msgstr "catalogue"
 
-#: core/resources/ui_strings.py:155
+#: core/resources/ui_strings.py:155 templates/about.html:17
 msgid "shoes"
 msgstr "chaussures"
 
-#: core/resources/ui_strings.py:156
+#: core/resources/ui_strings.py:156 templates/about.html:16
 msgid "parfums"
 msgstr "parfum"
 
@@ -6000,6 +6000,18 @@ msgstr "À propos de LYSHOP"
 msgid "We are selling products like :"
 msgstr "Nous vendons des produits comme :"
 
+#: templates/about.html:13
+msgid "accessoires"
+msgstr "accessoires"
+
+#: templates/about.html:14
+msgid "clothes"
+msgstr "vêtements"
+
+#: templates/about.html:15
+msgid "electronics"
+msgstr "électronique"
+
 #: templates/about.html:19
 msgid "Product quality"
 msgstr "Qualité"
@@ -7619,9 +7631,6 @@ msgstr "liste d'achat renommée en"
 
 #~ msgid "Perfumes"
 #~ msgstr "Parfums"
-
-#~ msgid "Electronics"
-#~ msgstr "Electronique"
 
 #~ msgid "Add Product"
 #~ msgstr "Ajouter un produit"
