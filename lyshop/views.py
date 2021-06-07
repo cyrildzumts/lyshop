@@ -62,6 +62,7 @@ def home(request):
         electronics_category = None
     
     request.session['last_login'] = timezone.now().timestamp()
+    request.session['last_login_datetime'] = timezone.now()
     
     context = {
         'page_title': page_title,
@@ -90,9 +91,11 @@ def about(request):
     template_name = "about.html"
     page_title = 'About' + ' - ' + settings.SITE_NAME
     last_login = request.session.get('last_login')
+    last_login_datetime = request.session.get('last_login_datetime')
     if last_login:
         d = datetime.datetime.fromtimestamp(last_login)
         logger.info(f'Last user login : {d}')
+        logger.info(f'Last user login datetime : {last_login_datetime}')
     else:
         logger.info(f'Last user login not set')
     
