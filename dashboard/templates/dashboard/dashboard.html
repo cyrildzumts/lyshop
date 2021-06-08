@@ -47,7 +47,7 @@
 {% if order_list %}
 
 
-        <div class="row"><h4>{% trans "Recent Orders" %}</h4> <a href="{% url 'dashboard:orders' %}" class="mat-button mat-button-default"><span>{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
+        <div class="flex flex-left align-baseline label"><span class="medium">{% trans "Recent Orders" %}</h4> <a href="{% url 'dashboard:orders' %}" class="mat-button mat-button-text"><span class="small">{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
         <table id="order-list" class="mat-table">
                 <thead>
                         <tr>
@@ -83,7 +83,7 @@
         
 </div> <!--End of Table Wrapper-->
 <div class="mat-table-wrapper">
-                <div class="flex align-center label"><span class="medium">{% trans "New Customer" %}</span> <a href="{% url 'dashboard:users' %}" class="mat-button mat-button-text"><span class="small">{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
+                <div class="flex flex-left align-baseline label"><span class="medium">{% trans "New Customer" %}</span> <a href="{% url 'dashboard:users' %}" class="mat-button mat-button-text"><span class="small">{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
                 <table id="user-list" class="mat-table">
                         <thead>
                                 <tr>
@@ -111,7 +111,7 @@
 
 <div class="mat-table-wrapper">
 {% if sold_product_list %}
-        <div class="flex align-center label"><span>{% trans "Recent sold Product" %}</span> <a href="{% url 'dashboard:sold-products' %}" class="mat-button mat-button-text"><span class="small">{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
+        <div class="flex flex-left align-baseline label"><span>{% trans "Recent sold Product" %}</span> <a href="{% url 'dashboard:sold-products' %}" class="mat-button mat-button-text"><span class="small">{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
         <table id="product-list" class="mat-table js-filter-table">
           <thead>
                   <tr>
@@ -179,7 +179,7 @@
 </div>
 
 <div class="mat-table-wrapper">
-        <div class="flex align-center label"><span>{% trans "Last added Product" %}</span> <a href="{% url 'dashboard:products' %}" class="mat-button mat-button-text"><span class="small">{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
+        <div class="flex flex-left align-baseline label"><span>{% trans "Last added Product" %}</span> <a href="{% url 'dashboard:products' %}" class="mat-button mat-button-text"><span class="small">{% trans "See all" %}</span><i class="fas fa-arrow-right icon"></i></a></div>
         <table id="product-list" class="mat-table">
                 <thead>
                         <tr>
