@@ -154,7 +154,7 @@ def add_to_cart(request):
 
 @api_view(['POST'])
 def verify_coupon(request):
-    logger.info("Verifying coupon")
+    logger.info(f"user {request.user.username} verifying coupon")
     data = request.POST.copy()
     valid = cart_service.is_valid_coupon(data)
     context = {
@@ -166,7 +166,7 @@ def verify_coupon(request):
 
 @api_view(['POST'])
 def add_coupon(request):
-    logger.info("Verifying coupon")
+    logger.info(f"adding coupon to user cart \"{request.user.username}\"")
     data = request.POST.copy()
     valid, context = cart_service.process_apply_coupon(request.user, data)
     return Response(data=context)
@@ -174,7 +174,7 @@ def add_coupon(request):
 
 @api_view(['POST'])
 def remove_coupon_from_cart(request):
-    logger.info("removing coupon")
+    logger.info(f"removing coupon for user {request.user.username}")
     data = request.POST.copy()
     removed , context = cart_service.remove_coupon(request.user, data)
     return Response(data=context)
