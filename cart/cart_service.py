@@ -87,7 +87,7 @@ def add_product_to_cart(user, data):
             context['success'] = True
             context['quantity'] = cart.quantity
             context['message'] =  _(CORE_UI_STRINGS.PRODUCT_ADDED)
-            context['product'] = variant.product
+            context['product_url'] = variant.product.get_absolute_url()
             return context
         else:
             context['success'] = False

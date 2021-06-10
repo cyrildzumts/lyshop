@@ -89,7 +89,7 @@ def add_to_cart(request):
         result = cart_service.add_product_to_cart(request.user, postdata)
         if result['status']:
             messages.success(request, message=_(CORE_UI_STRINGS.PRODUCT_ADDED))
-            return redirect(result['product'].get_absolute_url())
+            return redirect(result['product_url'])
         else:
             context['error'] = CORE_UI_STRINGS.INVALID_FORM
             context['status'] = False
