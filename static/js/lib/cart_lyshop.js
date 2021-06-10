@@ -91,7 +91,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             url : '/api/add-to-cart/',
             data : formData
         }
-        ajax_api(option).then(function(response){
+        ajax_api.ajax(option).then(function(response){
             self.update_badge(response.quantity);
             notify({level:response.success? 'info': 'error', content: response.message});
         }, function(reason){
@@ -143,7 +143,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
                     url : '/api/add-to-coupon/',
                     data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
                 }
-                ajax_api(option).then(function(response){
+                ajax_api.ajax(option).then(function(response){
                     if(response.added){
                         $(".original-price").text(response.subtotal);
                         $(".final-price").text(response.total);
@@ -186,7 +186,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             url : '/api/remove-coupon/',
             data : {coupon: coupon.val(), csrfmiddlewaretoken : csrfmiddlewaretoken}
         }
-        ajax_api(option).then(
+        ajax_api.ajax(option).then(
             function(response){
                 var data = response;
                 if(response.removed){
@@ -222,7 +222,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             url : '/api/verify-coupon/',
             data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
         }
-        ajax_api(option).then(
+        ajax_api.ajax(option).then(
             function(response){
                 if(typeof callback == "function"){
                     callback(response);
@@ -251,7 +251,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             url : '/cart/ajax-cart-item/' + data['item'] + '/' + data['action'] + '/',
             data : data
         }
-        ajax_api(option).then(function(response){
+        ajax_api.ajax_lang(option).then(function(response){
             self.update_badge(response.count);
             if(response.count == 0){
                 document.location.reload();
@@ -292,7 +292,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             url : '/cart/ajax-cart-item-update/',
             data : data
         }
-        ajax_api(option).then(function(response){
+        ajax_api.ajax_lang(option).then(function(response){
             if(response['item_quantity'] == 0){
                 $('#' + target.data('parent')).fadeOut('slow').remove();
             }else{
