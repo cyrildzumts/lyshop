@@ -34,6 +34,8 @@ class CartItemQuantityUpdateForm(forms.Form):
 class CouponVerificationForm(forms.Form):
     coupon = forms.CharField(max_length=32)
 
+    
+
 
 class AddCartForm(forms.Form):
     attr = forms.IntegerField(required=False)
@@ -68,15 +70,12 @@ class CouponForm(forms.ModelForm):
         
 
 
-class ApplyCouponForm(forms.ModelForm):
+class ApplyCouponForm(forms.Form):
 
-    class Meta:
-        model = Coupon
-        fields = ['name']
+    coupon = forms.CharField(max_length=32)
     
-
     def clean(self):
         cleaned_data = super().clean()
-        name = cleaned_data.get('name')
-        if not Coupon.objects.filter(name=name, is_active=True, expire_at__gte=timezone.now()).exists():
-            raise ValidationError(f"Coupon {name} not found. Check if the coupon exists and is valid")
+        coupon = cleaned_data.get('coupon')
+        if not Coupon.objects.filter(name=coupon, is_active=True, expire_at__gte=timezone.now()).exists():
+            raise ValidationError(f"Coupon {coupon} not found. Check if the coupon exists and is valid")

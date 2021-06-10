@@ -146,13 +146,38 @@ def add_to_cart(request):
     if request.method != 'POST':
         return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
     
-    context = cart_service.process_add_to_cart_request(request)
+    context = cart_service.add_product_to_cart(request.user, request.POST.copy())
     if context.get('status') :
         return Response(data=context, status=status.HTTP_200_OK)
     
     return Response(data=context, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
+def verify_coupon(request):
+    logger.info("Verifying coupon")
+    data = request.POST.copy()
+    valid = cart_service.is_valid_coupon(data)
+    context = {
+        'success' : True,
+        'is_valid' : valid,
+    }
+    return Response(data=context)
 
+
+@api_view(['POST'])
+def add_coupon(request):
+    logger.info("Verifying coupon")
+    data = request.POST.copy()
+    valid, context = cart_service.process_apply_coupon(request.user, data)
+    return Response(data=context)
+
+
+@api_view(['POST'])
+def remove_coupon_from_cart(request):
+    logger.info("removing coupon")
+    data = request.POST.copy()
+    removed , context = cart_service.remove_coupon(request.user, data)
+    return Response(data=context)
 
 
 @api_view(['GET', 'POST'])

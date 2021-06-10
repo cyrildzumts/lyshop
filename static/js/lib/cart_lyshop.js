@@ -84,12 +84,11 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             console.warn("No data for to add to to cart");
             return;
         }
-        console.log("Add To Cart Form Data : ", formData);
         var option = {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/cart/ajax-add-to-cart/',
+            url : '/api/add-to-cart/',
             data : formData
         }
         ajax_api(option).then(function(response){
@@ -141,16 +140,21 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
                     type:'POST',
                     method: 'POST',
                     dataType: 'json',
-                    url : '/cart/ajax-add-coupon/',
+                    url : '/api/add-to-coupon/',
                     data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
                 }
                 ajax_api(option).then(function(response){
-                    $(".original-price").text(response.subtotal);
-                    $(".final-price").text(response.total);
-                    $(".js-cart-reduction").text(response.reduction);
-                    $(".js-add-coupon").hide().siblings(".js-remove-coupon").show();
-                    $("#coupon").prop('disabled', true).toggleClass('disabled');
-                    notify({level:'info', content:'coupon added'});
+                    if(response.added){
+                        $(".original-price").text(response.subtotal);
+                        $(".final-price").text(response.total);
+                        $(".js-cart-reduction").text(response.reduction);
+                        $(".js-add-coupon").hide().siblings(".js-remove-coupon").show();
+                        $("#coupon").prop('disabled', true).toggleClass('disabled');
+                        notify({level:'info', content:'coupon added'});
+                    }else{
+                        notify({level:'info', content:'coupon could not be added'});
+                    }
+                    
                 }, function(reason){
                     notify({level:'info', content:'coupon could not be added'});
                     console.error("Error on adding Coupon \"%s\" to user cart", coupon);
@@ -173,23 +177,28 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             console.warning("Cart remove oporation not allowed: csrf_token missing");
             return;
         }
+        var coupon = $('#coupon');
         console.log("Remove coupon %s from cart");
         var option = {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/cart/ajax-coupon-remove/',
-            data : {csrfmiddlewaretoken : csrfmiddlewaretoken}
+            url : '/api/remove-coupon/',
+            data : {coupon: coupon.val(), csrfmiddlewaretoken : csrfmiddlewaretoken}
         }
         ajax_api(option).then(
             function(response){
                 var data = response;
-                $('#coupon').prop('disabled', false).removeClass('disabled', false).val('');
-                $(".original-price").text(response.subtotal);
-                $(".final-price").text(response.total);
-                $(".js-cart-reduction").text(response.reduction);
-                $(".js-add-coupon").show().siblings(".js-remove-coupon").hide();
-                notify({level:'info', content:'coupon removed'});
+                if(response.removed){
+                    coupon.prop('disabled', false).removeClass('disabled', false).val('');
+                    $(".original-price").text(response.subtotal);
+                    $(".final-price").text(response.total);
+                    $(".js-cart-reduction").text(response.reduction);
+                    $(".js-add-coupon").show().siblings(".js-remove-coupon").hide();
+                    notify({level:'info', content:'coupon removed'});
+                }else{
+                    notify({level:'warn', content:'Coupon not removed'});
+                }
                 //document.location.reload();
             }, 
             function(error){
@@ -210,7 +219,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/cart/ajax-coupon-verify/',
+            url : '/api/verify-coupon/',
             data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
         }
         ajax_api(option).then(

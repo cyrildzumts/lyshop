@@ -20,6 +20,8 @@ urlpatterns = [
     path('', include(router.urls)),
     path('analytics/', views.analytics_data, name='analytics'),
     path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
+    path('verify-coupon/', views.verify_coupon, name='verify-coupon'),
+    path('remove-coupon/', views.remove_coupon_from_cart, name='remove-coupon'),
     path('authenticate/', views.authenticate, name='authenticate'),
     path('create-address/', views.create_address, name='create-address'),
     path('attribute-types/', views.get_attribute_type, name='attribute-types'),

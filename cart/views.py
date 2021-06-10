@@ -49,7 +49,7 @@ def cart(request):
 
 
 @login_required
-def add_to_cart(request):
+def add_to_cart_old(request):
     cart, created = CartModel.objects.get_or_create(user=request.user)
     context = {
         'success': False
@@ -77,6 +77,30 @@ def add_to_cart(request):
         context['status'] = False
         return redirect('catalog:home')
 
+    
+@login_required
+def add_to_cart(request):
+    cart, created = CartModel.objects.get_or_create(user=request.user)
+    context = {
+        'success': False
+    }
+    if request.method == 'POST':
+        postdata = request.POST.copy()
+        result = cart_service.add_product_to_cart(request.user, postdata)
+        if result['status']:
+            messages.success(request, message=_(CORE_UI_STRINGS.PRODUCT_ADDED))
+            return redirect(result['product'].get_absolute_url())
+        else:
+            context['error'] = CORE_UI_STRINGS.INVALID_FORM
+            context['status'] = False
+            messages.error(request, message=_(CORE_UI_STRINGS.INVALID_FORM))
+            
+    else:
+        context['error'] = 'Bad Request'
+        context['status'] = False
+        return redirect('catalog:home')
+
+
 @login_required
 def ajax_add_coupon(request):
     cart, created = CartModel.objects.get_or_create(user=request.user)
@@ -86,25 +110,18 @@ def ajax_add_coupon(request):
     }
     if request.method == 'POST':
         postdata = request.POST.copy()
-        coupon = postdata.get('coupon')
-        coupon_applied = cart_service.apply_coupon(cart, coupon)
+        #coupon = postdata.get('name')
+        #coupon_applied = cart_service.apply_coupon(cart, coupon)
+        coupon_applied, context = cart_service.process_apply_coupon(request.user, postdata)
         cart.refresh_from_db()
-        if coupon_applied:
-            context['success'] = True
-            context['status'] = True
-            context['subtotal'] = float(f'{cart.amount:g}')
-            context['total'] = float(f'{cart.get_total():g}')
-            context['reduction'] = float(f'{cart.get_reduction():g}')
-            return JsonResponse(context)
-        else:
-            return JsonResponse(context, status=HTTPStatus.NOT_ACCEPTABLE)
+        return JsonResponse(context)
     else:
         context['error'] = 'Method not allowed. POST requets expected.'
         return JsonResponse(context, status=HTTPStatus.METHOD_NOT_ALLOWED)
 
 
 @login_required
-def ajax_add_to_cart(request):
+def ajax_add_to_cart_old(request):
     cart, created = CartModel.objects.get_or_create(user=request.user)
     context = {
         'success': False
@@ -146,6 +163,37 @@ def ajax_add_to_cart(request):
     context['error'] = 'Bad Request'
     context['status'] = False
     return JsonResponse(context, status=HTTPStatus.BAD_REQUEST)
+
+
+@login_required
+def ajax_add_to_cart(request):
+    cart, created = CartModel.objects.get_or_create(user=request.user)
+    context = {
+        'success': False
+    }
+    if request.method == 'POST':
+        postdata = request.POST.copy()
+        result = cart_service.add_product_to_cart(request.user, postdata)
+        if result['success']:
+            cart.refresh_from_db()
+            context['success'] = True
+            context['status'] = True
+            context['quantity'] = cart.quantity
+            context['message'] =  _(CORE_UI_STRINGS.PRODUCT_ADDED)
+            return JsonResponse(context)
+        else:
+            context['success'] = False
+            context['status'] = True
+            context['quantity'] = cart.quantity
+            context['message'] =  _(CORE_UI_STRINGS.PRODUCT_QTY_NOT_AVAILABLE)
+            return JsonResponse(context)
+            
+    else:
+        logger.warn("Ajax send as GET Request")
+    context['error'] = 'Bad Request'
+    context['status'] = False
+    return JsonResponse(context, status=HTTPStatus.BAD_REQUEST)
+
 
 
 @login_required
@@ -395,7 +443,6 @@ def ajax_cart_item_update(request, item_uuid=None, action=None):
         logger.warn(context['error'])
         return JsonResponse(context, status=HTTPStatus.NOT_FOUND)
 
-
     item_quantity = item.quantity
     requested_quantity = item_quantity + 1 if action=='increment' else item_quantity - 1
     if action == 'increment':
@@ -503,19 +550,12 @@ def ajax_coupon_verify(request):
         'success' : False
     }
     if request.method == 'POST':
-        form = CouponVerificationForm(request.POST)
-        if form.is_valid():
-            coupon = form.cleaned_data['coupon']
-            valid = cart_service.is_valid_coupon(coupon)
-            context['success'] = True
-            context['status'] = True
-            context['valid'] = valid
-            return JsonResponse(context)
+        valid = cart_service.is_valid_coupon(request.POST.copy())
+        context['success'] = True
+        context['status'] = True
+        context['valid'] = valid
+        return JsonResponse(context)
 
-        else:
-            context['status'] = False
-            context['error'] = 'Bad Request. coupon is missing'
-            return JsonResponse(context, status=HTTPStatus.BAD_REQUEST)
     context['status'] = False
     context['error'] = 'Bad Request'
     return JsonResponse(context, status=HTTPStatus.BAD_REQUEST)
@@ -528,13 +568,7 @@ def ajax_coupon_remove(request):
     }
     cart, created = CartModel.objects.get_or_create(user=request.user)
     if request.method == 'POST':
-        cart_service.remove_coupon(cart)
-        cart.refresh_from_db()
-        context['success'] = True
-        context['status'] = True
-        context['subtotal'] = float(f'{cart.amount:g}')
-        context['total'] = float(f'{cart.get_total():g}')
-        context['reduction'] = float(f'{cart.get_reduction():g}')
+        removed, context = cart_service.remove_coupon(request.user, request.POST.copy())
         return JsonResponse(context)
 
     context['status'] = False

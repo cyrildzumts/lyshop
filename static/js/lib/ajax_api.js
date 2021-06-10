@@ -27,6 +27,15 @@ define(['lang'], function(Locale) {
             $.ajax(options).done(resolve).fail(reject);
         });
       }
+      
+      function ajax(options, debug){
+        if(debug){
+          console.debug("ajax_api options - ", options);
+        }
+        return new Promise(function(resolve, reject){
+            $.ajax(options).done(resolve).fail(reject);
+        });
+      }
     console.log("Ajax API ready");
     return ajax_api;
   });

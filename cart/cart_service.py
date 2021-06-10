@@ -70,10 +70,10 @@ def get_cart_solded_price(amount=0.0, percent=0):
 
 def add_product_to_cart(user, data):
     if not isinstance(user, User):
-        return {'success' : False, 'message' : "Invalid user."}
+        return {'success' : False, 'message' : "Invalid user", 'status': True}
 
     form = AddCartForm(data)
-    context = {}
+    context = {'status': True}
     if form.is_valid():
         variant_uuid = form.cleaned_data['variant_uuid']
         variant = None
@@ -85,22 +85,20 @@ def add_product_to_cart(user, data):
         if result:
             cart.refresh_from_db()
             context['success'] = True
-            context['status'] = True
             context['quantity'] = cart.quantity
             context['message'] =  _(CORE_UI_STRINGS.PRODUCT_ADDED)
+            context['product'] = variant.product
             return context
         else:
             context['success'] = False
-            context['status'] = True
             context['quantity'] = cart.quantity
             context['message'] =  _(CORE_UI_STRINGS.PRODUCT_QTY_NOT_AVAILABLE)
             return context
 
-
     else:
         logger.error(f"Form is invalid. {form.errors}")
         context['error'] = _(CORE_UI_STRINGS.INVALID_FORM)
-        context['status'] = False
+        context['success'] = False
         return context
     
 
@@ -251,7 +249,12 @@ def get_cartitems(user):
         cartitems_queryset = CartItem.objects.select_related('product').prefetch_related('product__attributes').filter(cart=cart)
     return cartitems_queryset
 
-def is_valid_coupon(coupon):
+
+def is_valid_coupon(data):
+    return ApplyCouponForm(data).is_valid()
+
+
+def is_valid_coupon_old(coupon):
     if not isinstance(coupon, str) :
         return False
     coupon_exists = Coupon.objects.filter(name=coupon, is_active=True, expire_at__gte=datetime.datetime.now()).exists()
@@ -262,10 +265,27 @@ def is_valid_coupon(coupon):
 
 def process_apply_coupon(user, data):
     if not isinstance(user, User):
-        return {'success': False}
+        return False
+    context = {}
     form = ApplyCouponForm(data)
     if form.is_valid():
-        coupon = 
+        coupon = Coupon.objects.get(name=form.cleaned_data.get('coupon'))
+        solded_price = coupon.get_solded_price(user.cart.amount)
+        context['success'] = True
+        context['added'] = True
+        context['status'] = True
+        context['subtotal'] = float(f'{user.cart.amount:g}')
+        context['total'] = float(f'{user.cart.get_total():g}')
+        context['reduction'] = float(f'{user.cart.get_reduction():g}')
+        CartModel.objects.filter(pk=user.cart.pk).update(coupon=coupon, solded_price=solded_price)
+        logger.info(f"Coupon \"{coupon}\" applied to Cart for user \"{user.username}\"")
+        return True, context
+    else:
+        logger.warn(f"No coupon found with the data :  \"{data}\"")
+        context['success'] = False
+        context['status'] = True
+        context['added'] = False
+        return False, context
 
 def apply_coupon(cart, coupon):
     if not isinstance(cart, CartModel) or not isinstance(coupon, str) :
@@ -280,7 +300,26 @@ def apply_coupon(cart, coupon):
         return False
     return True
 
-def remove_coupon(cart):
+
+def remove_coupon(user, data):
+    form = ApplyCouponForm(data)
+    context = {}
+    if form.is_valid():
+        coupon = Coupon.objects.get(name=form.cleaned_data.get('coupon'))
+        if hasattr(user, 'cart') and user.cart.coupon == coupon:
+            CartModel.objects.filter(pk=user.cart.pk).update(coupon=None, solded_price=0)
+            context['removed'] = True
+            context['subtotal'] = float(f'{user.cart.amount:g}')
+            context['total'] = float(f'{user.cart.get_total():g}')
+            context['reduction'] = float(f'{user.cart.get_reduction():g}')
+            return True, context
+
+    return False, {'removed':False, 'success': True}
+    
+    
+
+
+def remove_coupon_old(cart):
     if not isinstance(cart, CartModel):
         return False
     if not cart.coupon:
