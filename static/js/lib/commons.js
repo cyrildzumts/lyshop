@@ -1,6 +1,6 @@
 define([
     'ajax_api'
-], function(ajax) {
+], function(ajax_api) {
     'use strict';
     var fileUpload;
     var messages;
@@ -167,7 +167,7 @@ define([
             cache : false,
             contentType : false
         };
-        ajax(options, false).then(function(response){
+        ajax_api.ajax_lang(options, false).then(function(response){
 
         }, function(reason){
 
@@ -333,7 +333,7 @@ define([
                 console.error("Files can not be sent. Please check your files form. Files or form are missing.");
                 return;
             }
-            if(typeof ajax === 'undefined'){
+            if(typeof ajax_api.ajax_lang === 'undefined'){
                 var errorMsg = "can not upload files. ajax funtion is not defined";
                 console.error(errorMsg);
                 throw new Error(errorMsg);
@@ -348,7 +348,7 @@ define([
                 cache : false,
                 contentType : false
             };
-            ajax(options, false).then(function(response){
+            ajax_api.ajax_lang(options, false).then(function(response){
                 console.info("Files have bean uploaded.");
                 var msg = {
                     content : response.message,

@@ -1,4 +1,4 @@
-define(["ajax_api"],function(ajax) {
+define(["ajax_api"],function(ajax_api) {
     'use strict';
     var attr_template;
     function AttributManager(){
@@ -33,7 +33,7 @@ define(["ajax_api"],function(ajax) {
             dataType: 'json',
             url : '/api/attribute-types/'
         }
-        ajax(option).then(function(response){
+        ajax_api.ajax(option).then(function(response){
             attr_template = response;
         }, function(reason){
             console.error(reason);

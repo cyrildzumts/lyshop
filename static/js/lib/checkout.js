@@ -1,6 +1,6 @@
 define([
 'ajax_api'
-], function(ajax) {
+], function(ajax_api) {
     'use strict';
     var ADDRESS_FIELDS = [ 
             'user', 'city', 'firstname', 'lastname', 'country', 
@@ -229,7 +229,7 @@ define([
             url : api_address_url,
             data : data
         }
-        var add_promise = ajax(option).then(function(response){
+        var add_promise = ajax_api.ajax(option).then(function(response){
             if(response.status){
                 address_inputs.each(function(){
                     this.disabled = 'disabled';

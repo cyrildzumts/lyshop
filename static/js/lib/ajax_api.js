@@ -16,7 +16,7 @@ define(['lang'], function(Locale) {
         A future object is returned
     */
 
-      function ajax_api(options,no_add_lang, debug){
+      function ajax_lang(options,no_add_lang, debug){
         if(debug){
           console.debug("ajax_api options - ", options);
         }
@@ -27,7 +27,7 @@ define(['lang'], function(Locale) {
             $.ajax(options).done(resolve).fail(reject);
         });
       }
-      
+
       function ajax(options, debug){
         if(debug){
           console.debug("ajax_api options - ", options);
@@ -37,5 +37,5 @@ define(['lang'], function(Locale) {
         });
       }
     console.log("Ajax API ready");
-    return ajax_api;
+    return {ajax_lang:ajax_lang, ajax : ajax};
   });
