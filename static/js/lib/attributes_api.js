@@ -40,13 +40,6 @@ define(["ajax_api"],function(ajax) {
         });
     };
 
-    AttributManager.prototype.addAttribute = function(){
-
-    };
-
-    AttributManager.prototype.removeAttribute = function(){
-
-    };
 
     AttributManager.prototype.clear = function(){
         this.total_form = 0;

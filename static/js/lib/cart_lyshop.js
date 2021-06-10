@@ -76,9 +76,6 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         console.log("Cart initialized");
     }
 
-    Cart.prototype.ui_update = function(){
-
-    }
 
 
     Cart.prototype.add = function(formData, product_name){

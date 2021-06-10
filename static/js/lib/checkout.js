@@ -145,7 +145,6 @@ define([
     };
 
     Checkout.prototype.update_send_btn = function(){
-        console.log("Update send button");
         $('.js-send').prop('disabled', !this.is_form_valid());
         $('.js-send').toggleClass('disabled', !this.is_form_valid());
     }
@@ -251,13 +250,6 @@ define([
         });
     }
 
-    Checkout.prototype.validate_cart = function(){
-
-    };
-
-    Checkout.prototype.update_payment_option = function(){
-
-    };
     Checkout.prototype.update_payment_method = function(){
         //this.payment_option = parseInt($('.js-input-payment-option').val());
         console.log("Checkout  update_payment_method :  option %s : type : %s ", this.payment_option, typeof this.payment_option);

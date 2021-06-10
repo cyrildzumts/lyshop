@@ -111,26 +111,6 @@ define([
         return ListFilter;
     })();
 
-    var DragDrop = (function(){
-
-        function DragDrop(){
-
-        };
-
-        DragDrop.prototype.init = function(){
-
-        };
-
-        DragDrop.prototype.accept = function(event){
-
-        };
-
-        DragDrop.prototype.drag = function (event) {
-            
-        };
-
-        return DragDrop;
-    })();
 
     function onDropHandler(event){
         event.preventDefault();

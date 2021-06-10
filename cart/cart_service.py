@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from cart.models import CartItem, CartModel, Coupon
-from cart.forms import AddCartForm
+from cart.forms import AddCartForm, ApplyCouponForm
 from catalog.models import ProductVariant, Product
 from core.resources import ui_strings as CORE_UI_STRINGS
 import logging
@@ -66,6 +66,43 @@ def get_cart_solded_price(amount=0.0, percent=0):
     if amount and percent:
         solded_price = float(amount) *((100 - percent) / 100.0)
     return solded_price
+
+
+def add_product_to_cart(user, data):
+    if not isinstance(user, User):
+        return {'success' : False, 'message' : "Invalid user."}
+
+    form = AddCartForm(data)
+    context = {}
+    if form.is_valid():
+        variant_uuid = form.cleaned_data['variant_uuid']
+        variant = None
+        try:
+            variant = ProductVariant.objects.get(product_uuid=variant_uuid)
+        except ProductVariant.DoesNotExist:
+            pass
+        result, cart = add_to_cart(user.cart, variant)
+        if result:
+            cart.refresh_from_db()
+            context['success'] = True
+            context['status'] = True
+            context['quantity'] = cart.quantity
+            context['message'] =  _(CORE_UI_STRINGS.PRODUCT_ADDED)
+            return context
+        else:
+            context['success'] = False
+            context['status'] = True
+            context['quantity'] = cart.quantity
+            context['message'] =  _(CORE_UI_STRINGS.PRODUCT_QTY_NOT_AVAILABLE)
+            return context
+
+
+    else:
+        logger.error(f"Form is invalid. {form.errors}")
+        context['error'] = _(CORE_UI_STRINGS.INVALID_FORM)
+        context['status'] = False
+        return context
+    
 
 
 def process_add_to_cart_request(request):
@@ -222,6 +259,13 @@ def is_valid_coupon(coupon):
     
     return coupon_exists
     
+
+def process_apply_coupon(user, data):
+    if not isinstance(user, User):
+        return {'success': False}
+    form = ApplyCouponForm(data)
+    if form.is_valid():
+        coupon = 
 
 def apply_coupon(cart, coupon):
     if not isinstance(cart, CartModel) or not isinstance(coupon, str) :

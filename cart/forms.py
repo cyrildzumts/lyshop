@@ -1,4 +1,5 @@
 from django import forms
+from django.utils import timezone
 from django.core.exceptions import ValidationError
 from lyshop import conf as GLOBAL_CONF
 from cart.models import CartItem, Coupon
@@ -65,4 +66,17 @@ class CouponForm(forms.ModelForm):
             )
 
         
-        
+
+
+class ApplyCouponForm(forms.ModelForm):
+
+    class Meta:
+        model = Coupon
+        fields = ['name']
+    
+
+    def clean(self):
+        cleaned_data = super().clean()
+        name = cleaned_data.get('name')
+        if not Coupon.objects.filter(name=name, is_active=True, expire_at__gte=timezone.now()).exists():
+            raise ValidationError(f"Coupon {name} not found. Check if the coupon exists and is valid")
