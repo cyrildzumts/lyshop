@@ -83,6 +83,14 @@ class CategoryListView(ListAPIView):
 
 
 
+
+@api_view(['GET'])
+def get_current_user(request):
+   
+    data = {'username': request.user.username, 'user_id': request.user.pk, 'last_login': request.user.last_login}
+    return Response(data)
+
+
 @api_view(['GET'])
 def analytics_data(request):
     response_status = status.HTTP_200_OK
@@ -154,13 +162,13 @@ def add_to_cart(request):
 
 
 @api_view(['POST'])
-def update_cart_item(request, item_uuid=None, action=None):
+def update_cart_item(request):
     logger.info(f"API: add_to_cart {request.user.username}")
     if request.method != 'POST':
         return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
     
     context = cart_service.add_product_to_cart(request.user, request.POST.copy())
-    if context.get('status') :
+    if not context.get('invalid_form') :
         return Response(data=context, status=status.HTTP_200_OK)
     
     return Response(data=context, status=status.HTTP_400_BAD_REQUEST)

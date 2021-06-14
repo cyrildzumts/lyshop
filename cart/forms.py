@@ -36,6 +36,7 @@ class CartProductUpdateForm(forms.Form):
     customer = forms.IntegerField()
     item_uuid = forms.UUIDField()
     action = forms.CharField(max_length=32)
+    quantity = forms.IntegerField()
 
 
     def clean_customer(self):
@@ -50,6 +51,7 @@ class CartProductUpdateForm(forms.Form):
         if not CartItem.objects.filter(item_uuid=item_uuid).exists():
             raise ValidationError("Cart item not found")
         return item_uuid
+    
 
 class CouponVerificationForm(forms.Form):
     coupon = forms.CharField(max_length=32)

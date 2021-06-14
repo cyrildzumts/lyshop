@@ -1,5 +1,5 @@
 
-define(['ajax_api', 'lang'], function(ajax_api, Locale) {
+define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
     'use strict';
     
 
@@ -249,10 +249,11 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/cart/ajax-cart-item/' + data['item'] + '/' + data['action'] + '/',
+            //url : '/cart/ajax-cart-item/' + data['item'] + '/' + data['action'] + '/',
+            url : '/api/update-cart-item/',
             data : data
         }
-        ajax_api.ajax_lang(option).then(function(response){
+        ajax_api.ajax(option).then(function(response){
             self.update_badge(response.count);
             if(response.count == 0){
                 document.location.reload();
@@ -321,6 +322,8 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
     Cart.prototype.update_badge = function(quantity){
         $('.cart .js-cart-count').text(quantity);
     }
+
+    console.log("Cart initialised for user %s", accounts.get_username())
 
     return Cart;
 });

@@ -492,6 +492,32 @@ def ajax_cart_item_update(request, item_uuid=None, action=None):
         return JsonResponse(context)
     
 
+
+@login_required
+def ajax_cart_item_updateV2(request, item_uuid=None, action=None):
+    logger.info(f"Cart Item Update Ajax : item \"{item_uuid}\" - action \"{action}\"")
+    cart, created = CartModel.objects.get_or_create(user=request.user)
+    item = None
+    context = {
+        'success' : False
+    }
+    if request.method != 'POST':
+        logger.debug(f"ajax_cart_item_update : REQUEST.METHOD : {request.method}")
+        context['error'] = 'Method not allowed. POST requets expected.'
+        context['status'] = False
+        logger.warn(context['error'])
+        return JsonResponse(context, status=HTTPStatus.METHOD_NOT_ALLOWED)
+    
+    postdata = utils.get_postdata(request)
+    result = cart_service.process_cart_action(postdata)
+    status = HTTPStatus.OK
+    if result.get('invalid_data'):
+        status = HTTPStatus.BAD_REQUEST
+    return JsonResponse(result, status=status)
+
+
+
+
 @login_required
 def cart_update(request, item_uuid):
     cart, created = CartModel.objects.get_or_create(user=request.user)

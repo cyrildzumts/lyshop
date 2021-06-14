@@ -234,13 +234,16 @@ def process_cart_action(data):
     
     form = CartProductUpdateForm(data)
     if not form.is_valid():
-        return {'error': "Bad request.", 'success': False} 
+        return {'error': "Bad request.", 'success': False, 'invalid_data': True } 
     customer = User.objects.get(pk=form.cleaned_data.get('customer'))
     item = CartItem.objects.get(item_uuid=form.cleaned_data.get('item_uuid'))
     action = form.cleaned_data.get('action')
     requested_quantity = -1
     cart = get_cart(customer)
-    context = {}
+    context = {
+        'success': False,
+        'invalid_data': False
+    }
     if action == Constants.CART_ACTION_DECREMENT:
         requested_quantity = item.quantity - 1
     elif action == Constants.CART_ACTION_INCREMENT:
