@@ -116,6 +116,7 @@ define([
 
 
     return {
+        user : user,
         get_username : function(){
             
             return user_available ?  user.username : "";
