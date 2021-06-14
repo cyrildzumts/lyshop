@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from cart.models import CartItem, CartModel, Coupon
-from cart.forms import AddCartForm, ApplyCouponForm
+from cart.forms import AddCartForm, ApplyCouponForm, CartProductUpdateForm
+from cart import constants as Constants
 from catalog.models import ProductVariant, Product
 from core.resources import ui_strings as CORE_UI_STRINGS
 import logging
@@ -225,6 +226,60 @@ def remove_from_cart(cart, cart_item=None):
             CartModel.objects.filter(pk=cart.pk).update(quantity=F('quantity') - cart_item.quantity, amount=F('amount')-cart_item.item_total_price, solded_price=solded_price)
             logger.info(f"Updated Cart \"{cart}\"")
     return deleted_count, delete_items
+
+
+def process_cart_action(data):
+    # if not isinstance(user, User):
+    #     return {'error': "Bad request. invaid user", 'success': False}
+    
+    form = CartProductUpdateForm(data)
+    if not form.is_valid():
+        return {'error': "Bad request.", 'success': False} 
+    customer = User.objects.get(pk=form.cleaned_data.get('customer'))
+    item = CartItem.objects.get(item_uuid=form.cleaned_data.get('item_uuid'))
+    action = form.cleaned_data.get('action')
+    requested_quantity = -1
+    cart = get_cart(customer)
+    context = {}
+    if action == Constants.CART_ACTION_DECREMENT:
+        requested_quantity = item.quantity - 1
+    elif action == Constants.CART_ACTION_INCREMENT:
+        requested_quantity = item.quantity + 1
+    elif action == Constants.CART_ACTION_DELETE:
+        requested_quantity = 0
+    updated_rows, cart_item = update_cart(get_cart(customer), item, requested_quantity)
+    cart, has_items = refresh_cart(cart)
+    if updated_rows == -1 :
+        context['error'] = f'Requested quantity \"{requested_quantity}\" not available.'
+        context['status'] = False
+        context['is_active'] = True
+        logger.warn(context['error'])
+
+    
+    elif updated_rows == 0:
+        context['error'] = f'invalid quantity \"{requested_quantity}\" received.'
+        context['status'] = False
+        context['is_active'] = True
+        logger.warn(context['error'])
+
+    else :
+        context['success'] = True
+        context['status'] = True
+        if requested_quantity > 0:
+            context['item_quantity'] = cart_item.quantity
+            context['item_total'] = float(f'{cart_item.item_total_price:g}')
+            context['removed'] = False
+        else:
+            context['removed'] = True
+        context['cart_total'] = float(f'{cart.amount:g}')
+        context['subtotal'] = float(f'{cart.amount:g}')
+        context['total'] = float(f'{cart.get_total():g}')
+        context['reduction'] = float(f'{cart.get_reduction():g}')
+        context['count'] = cart.quantity
+        logger.info(f'Cart Item \"{item}\" updated for user \"{customer}\""')
+    return context
+
+
 
 def cart_items_count(user=None):
     if not (isinstance(user, User)):

@@ -243,6 +243,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         data['quantity'] = to_update['quantity'];
         data['action'] = to_update['action'];
         data['item'] = to_update['item_uuid'];
+        data['customer'] = to_update['customer']
 
         var option = {
             type:'POST',

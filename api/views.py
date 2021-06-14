@@ -152,6 +152,20 @@ def add_to_cart(request):
     
     return Response(data=context, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['POST'])
+def update_cart_item(request, item_uuid=None, action=None):
+    logger.info(f"API: add_to_cart {request.user.username}")
+    if request.method != 'POST':
+        return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    context = cart_service.add_product_to_cart(request.user, request.POST.copy())
+    if context.get('status') :
+        return Response(data=context, status=status.HTTP_200_OK)
+    
+    return Response(data=context, status=status.HTTP_400_BAD_REQUEST)
+
+
 @api_view(['POST'])
 def verify_coupon(request):
     logger.info(f"user {request.user.username} verifying coupon")
