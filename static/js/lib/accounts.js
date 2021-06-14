@@ -103,7 +103,6 @@ define([
             ajax_api.ajax(options).then(function(response){
                 user = response;
                 user_available = true;
-                console.log("current user : ", response);
                 console.log("account module initialised for user : ", user)
             }, function(error){
                 user_available = false;
@@ -112,11 +111,16 @@ define([
         
     }
 
+    
+
     init();
+    function get_user(){
+        return user;
+    }
 
 
     return {
-        user : user,
+        get_user : get_user,
         get_username : function(){
             
             return user_available ?  user.username : "";
