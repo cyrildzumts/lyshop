@@ -73,7 +73,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         });
         $('.js-add-coupon').on('click', self.addCoupon.bind(this));
         $(".js-remove-coupon").on('click', self.removeCoupon);
-        console.log("Cart initialized");
+        console.log("Cart initialized with account : ", accounts);
     }
 
 

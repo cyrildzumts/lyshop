@@ -104,11 +104,12 @@ define([
                 user = response;
                 user_available = true;
                 console.log("current user : ", response);
+                console.log("account module initialised for user : ", user)
             }, function(error){
                 user_available = false;
             });
         }
-        console.log("account module initialised for user : ", user)
+        
     }
 
     init();
