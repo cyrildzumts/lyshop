@@ -108,7 +108,7 @@ define([
                 user_available = false;
             });
         }
-        console.log("account module initialised")
+        console.log("account module initialised for user : ", user)
     }
 
     init();
