@@ -1,5 +1,5 @@
 
-define(['ajax_api', 'lang'], function(ajax_api, Locale) {
+define(['ajax_api', 'lang', ], function(ajax_api, Locale) {
     'use strict';
     
 
