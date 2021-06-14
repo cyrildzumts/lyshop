@@ -103,6 +103,7 @@ define([
             ajax_api.ajax(options).then(function(response){
                 user = response;
                 user_available = true;
+                console.log("current user : ", response);
             }, function(error){
                 user_available = false;
             });
