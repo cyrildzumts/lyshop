@@ -101,7 +101,9 @@ define([
         });
         if(!user_available){
             ajax_api.ajax(options).then(function(response){
-                user = response;
+                user['username'] = response.username;
+                user['user_id'] = response.user_id;
+                user['last_login'] = response.last_login;
                 user_available = true;
                 console.log("account module initialised for user : ", user)
             }, function(error){
@@ -111,12 +113,12 @@ define([
         
     }
 
-    
-
-    init();
     function get_user(){
         return user;
     }
+
+    init();
+    
 
 
     return {
