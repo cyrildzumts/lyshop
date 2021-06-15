@@ -117,19 +117,23 @@ define([
         return user;
     }
 
+    function get_username(){
+            
+        return user_available ?  user.username : "";
+    }
+
+    function get_last_login(){
+        return user_available ?  user.last_login : "";
+    }
+
     init();
     
 
 
     return {
         get_user : get_user,
-        get_username : function(){
-            
-            return user_available ?  user.username : "";
-        },
-        get_last_login : function(){
-            return user_available ?  user.last_login : "";
-        },
+        get_username : get_username,
+        get_last_login : get_last_login,
 
         get_user_id : function(){
             return user_available ?  user.user_id : -1;

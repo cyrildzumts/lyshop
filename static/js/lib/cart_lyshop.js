@@ -74,6 +74,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         $('.js-add-coupon').on('click', self.addCoupon.bind(this));
         $(".js-remove-coupon").on('click', self.removeCoupon);
         console.log("Cart initialized with account : ", accounts.get_user());
+        console.log("Cart for user %s - user id : %s - user last login : %s", accounts.get_username(), accounts.get_user_id(), accounts.get_last_login());
     }
 
 
