@@ -234,6 +234,7 @@ def process_cart_action(data):
     
     form = CartProductUpdateForm(data)
     if not form.is_valid():
+        logger.warn(f"invalid CartProductUpdateForm data {form.errors} - data {data}")
         return {'error': "Bad request.", 'success': False, 'invalid_data': True } 
     customer = User.objects.get(pk=form.cleaned_data.get('customer'))
     item = CartItem.objects.get(item_uuid=form.cleaned_data.get('item_uuid'))
