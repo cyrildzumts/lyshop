@@ -126,11 +126,12 @@ define([
         return user_available ?  user.last_login : "";
     }
 
-    init();
+    //init();
     
 
 
     return {
+        init : init,
         get_user : get_user,
         get_username : get_username,
         get_last_login : get_last_login,

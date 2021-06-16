@@ -324,7 +324,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         $('.cart .js-cart-count').text(quantity);
     }
 
-    console.log("Cart initialised for user %s", accounts.get_username())
+    console.log("Cart initialised for user %s", accounts.get_user())
 
     return Cart;
 });
