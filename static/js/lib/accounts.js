@@ -1,6 +1,4 @@
-define([
-    'ajax_api',
-], function(ajax_api) {
+define(['ajax_api','exports'], function(ajax_api, exports) {
     'use strict';
     var user = {};
     var user_available = false;
@@ -109,6 +107,7 @@ define([
                 if(typeof callback === "function"){
                     callback(user);
                 }
+                exports.user = user;
                 console.log("account module initialised for user : ", user)
             }, function(error){
                 user_available = false;
