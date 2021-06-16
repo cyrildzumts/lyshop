@@ -36,7 +36,7 @@ class CartProductUpdateForm(forms.Form):
     customer = forms.IntegerField()
     item = forms.UUIDField()
     action = forms.CharField(max_length=32)
-    quantity = forms.IntegerField()
+    #quantity = forms.IntegerField()
 
 
     def clean_customer(self):

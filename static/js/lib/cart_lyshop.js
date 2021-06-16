@@ -251,7 +251,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         var self = this;
         var data = {
             "csrfmiddlewaretoken"   : this.csrfmiddlewaretoken.value,
-            "quantity"              : to_update['quantity'],
+            //"quantity"              : to_update['quantity'],
             "action"                :  to_update['action'],
             "item"                  : to_update['item_uuid'],
             "customer"              : customer
