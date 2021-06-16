@@ -34,7 +34,7 @@ class CartItemQuantityUpdateForm(forms.Form):
 
 class CartProductUpdateForm(forms.Form):
     customer = forms.IntegerField()
-    item_uuid = forms.UUIDField()
+    item = forms.UUIDField()
     action = forms.CharField(max_length=32)
     quantity = forms.IntegerField()
 
@@ -46,11 +46,11 @@ class CartProductUpdateForm(forms.Form):
             raise ValidationError("customer not found")
         return customer
     
-    def clean_item_uuid(self):
-        item_uuid = self.cleaned_data.get('item_uuid')
-        if not CartItem.objects.filter(item_uuid=item_uuid).exists():
+    def clean_item(self):
+        item = self.cleaned_data.get('item')
+        if not CartItem.objects.filter(item_uuid=item).exists():
             raise ValidationError("Cart item not found")
-        return item_uuid
+        return item
     
 
 class CouponVerificationForm(forms.Form):
