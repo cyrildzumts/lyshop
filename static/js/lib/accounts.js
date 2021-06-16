@@ -9,6 +9,7 @@ define([
     var $user_search_result = undefined;
     var $user_search_target = undefined;
     var $user_search_target_name = undefined;
+    var callback;
     var query = "";
     var options = {
         url:'/api/current-user/',
@@ -105,11 +106,15 @@ define([
                 user['user_id'] = response.user_id;
                 user['last_login'] = response.last_login;
                 user_available = true;
+                if(typeof callback === "function"){
+                    callback(user);
+                }
                 console.log("account module initialised for user : ", user)
             }, function(error){
                 user_available = false;
             });
         }
+        console.log("Account module : account user initialised this  : ", this);
         
     }
 
@@ -132,6 +137,9 @@ define([
 
     return {
         init : init,
+        set_callback : function (func) {
+            callback = func;
+        },
         get_user : get_user,
         get_username : get_username,
         get_last_login : get_last_login,

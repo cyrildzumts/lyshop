@@ -3,6 +3,12 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
     'use strict';
     
     accounts.init();
+    var user = {};
+    accounts.set_callback(function(obj){
+        console.log("Cart module : account user initialised : ", obj);
+        user = obj;
+        console.log("Cart module : account user initialised this  : ", this);
+    });
 
     function Cart(){
         this.user = "";
