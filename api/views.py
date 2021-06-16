@@ -167,8 +167,8 @@ def update_cart_item(request):
     if request.method != 'POST':
         return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
     
-    context = cart_service.add_product_to_cart(request.user, request.POST.copy())
-    if not context.get('invalid_form') :
+    context = cart_service.process_cart_action(request.POST.copy())
+    if not context.get('invalid_data') :
         return Response(data=context, status=status.HTTP_200_OK)
     
     return Response(data=context, status=status.HTTP_400_BAD_REQUEST)

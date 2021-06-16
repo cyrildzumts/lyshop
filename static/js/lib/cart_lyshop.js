@@ -4,9 +4,11 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
     
     accounts.init();
     var user = {};
+    var customer = - 1;
     accounts.set_callback(function(obj){
         console.log("Cart module : account user initialised : ", obj);
         user = obj;
+        customer = user.user_id;
         console.log("Cart module : account user initialised this  : ", this);
     });
 
@@ -99,7 +101,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
             url : '/api/add-to-cart/',
             data : formData
         }
-        console.log("adding product %s to cart for user : ", product_name, user);
+        
         ajax_api.ajax(option).then(function(response){
             self.update_badge(response.quantity);
             notify({level:response.success? 'info': 'error', content: response.message});
@@ -247,13 +249,13 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
 
     Cart.prototype.update_product = function(to_update){
         var self = this;
-        var data = {};
-        data['csrfmiddlewaretoken'] = this.csrfmiddlewaretoken.value;
-        data['quantity'] = to_update['quantity'];
-        data['action'] = to_update['action'];
-        data['item'] = to_update['item_uuid'];
-        data['customer'] = to_update['customer']
-
+        var data = {
+            "csrfmiddlewaretoken"   : this.csrfmiddlewaretoken.value,
+            "quantity"              : to_update['quantity'],
+            "action"                :  to_update['action'],
+            "item"                  : to_update['item_uuid'],
+            "customer"              : customer
+        };
         var option = {
             type:'POST',
             method: 'POST',
@@ -264,6 +266,10 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         }
         ajax_api.ajax(option).then(function(response){
             self.update_badge(response.count);
+            if(!response.success){
+                notify({level:'error', content:response.error});
+                return;
+            }
             if(response.count == 0){
                 document.location.reload();
                 return ;
@@ -295,6 +301,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         data['quantity'] = quantity;
         data['action'] = 'update';
         data['item_uuid'] = item_uuid;
+        data['customer'] = customer;
     
         var option = {
             type:'POST',
