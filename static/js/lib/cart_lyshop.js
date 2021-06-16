@@ -2,6 +2,7 @@
 define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
     'use strict';
     
+    accounts.init();
 
     function Cart(){
         this.user = "";
