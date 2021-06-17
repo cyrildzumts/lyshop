@@ -8,6 +8,7 @@
 {% block MAIN %}
 <div class="container product-detail-wrapper">
   <ul class="navigation-paths">
+    <li class="mat-button-text path"><a href="{% url 'catalog:catalog-home' %}"><span>{% trans 'Catalog' %}</span><span></span></a></li>
     {% if product.category.parent %}
     <li class="mat-button-text path"><a href="{{product.category.parent.get_slug_url}}"><span>{% trans product.category.parent.display_name %}</span><span></span></a></li>
 
