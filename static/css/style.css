@@ -435,3 +435,18 @@
 .no-child-margin a{
     margin: 0 !important;
 }
+
+.navigation-paths{
+    display: flex;
+    align-items: baseline;
+    justify-content: start;
+    padding: 1em;
+}
+
+.navigation-paths .path a::after{
+    content: "/";
+}
+
+.navigation-paths .path:last-of-type a::after{
+    content: "";
+}
