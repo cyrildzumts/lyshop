@@ -444,10 +444,16 @@
     padding: 1em;
 }
 
+.navigation-paths .path{
+    padding: 0 !important;
+}
+
 .navigation-paths .path a::after{
     content: "/";
+    padding: 0.5em !important;
 }
 
 .navigation-paths .path:last-of-type a::after{
     content: "";
+    padding: 0 !important;
 }
