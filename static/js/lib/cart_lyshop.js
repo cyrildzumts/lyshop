@@ -2,15 +2,13 @@
 define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
     'use strict';
     
-    accounts.init();
+    //accounts.init();
     var user = {};
     var customer = - 1;
-    accounts.set_callback(function(obj){
-        console.log("Cart module : account user initialised : ", obj);
-        user = obj;
-        customer = user.user_id;
-        console.log("Cart module : account user initialised this  : ", this);
-    });
+    // accounts.set_callback(function(obj){
+    //     user = obj;
+    //     customer = user.user_id;
+    // });
 
     function Cart(){
         this.user = "";
@@ -86,7 +84,11 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         console.log("Cart for user %s - user id : %s - user last login : %s", user.username, user.user_id, user.last_login);
     }
 
-
+    Cart.prototype.set_user = function(obj){
+        console.log("Cart : setting user to ", obj);
+        user = obj;
+        customer = user.user_id;
+    }
 
     Cart.prototype.add = function(formData, product_name){
         var self = this;
@@ -338,8 +340,6 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
     Cart.prototype.update_badge = function(quantity){
         $('.cart .js-cart-count').text(quantity);
     }
-
-    console.log("Cart initialised for user : ", user)
 
     return Cart;
 });

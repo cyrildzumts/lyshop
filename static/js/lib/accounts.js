@@ -107,14 +107,11 @@ define(['ajax_api','exports'], function(ajax_api, exports) {
                 if(typeof callback === "function"){
                     callback(user);
                 }
-                exports.user = user;
-                console.log("account module initialised for user : ", user)
+
             }, function(error){
                 user_available = false;
             });
         }
-        console.log("Account module : account user initialised this  : ", this);
-        
     }
 
     function get_user(){
