@@ -438,6 +438,7 @@
 
 .navigation-paths{
     display: flex;
+    width: 100%;
     align-items: baseline;
     justify-content: start;
     padding: 1em;
