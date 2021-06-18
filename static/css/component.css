@@ -2219,6 +2219,10 @@ table tbody tr, .mat-table tbody tr{
 
 }
 
+.category-nav .mat-button span{
+	width: max-content;
+}
+
 #static-page{
 	display: flex;
 	flex-direction: column;
