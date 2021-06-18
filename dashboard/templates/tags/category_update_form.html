@@ -34,9 +34,7 @@
             <div class="flex flex-column">
                 <div class="form-group">
                     <label for="description">{% trans "Description" %}</label>
-                    <textarea id="description" class="limited-input bordered"  name="description" cols="30" rows="10" data-target="#description-counter" data-max-length="{{DESCRIPTION_MAX_SIZE}}">
-                    {{category.description}}
-                    </textarea>
+                    <textarea id="description" class="limited-input bordered"  name="description" cols="30" rows="10" data-target="#description-counter" data-max-length="{{DESCRIPTION_MAX_SIZE}}">{{category.description}}</textarea>
                 </div>
                 
                 <div class="row"> <span id="description-counter" class="char-counter">0</span><span class="text-max-length">/{{DESCRIPTION_MAX_SIZE}}</span></div>
@@ -46,14 +44,14 @@
                 <label for="parent">{% trans "Parent Category" %}</label>
                 <select name="parent" id="parent">
                 {% if category.parent %}
-                    <option value="{{category.parent.id.pk}}" selected><span class="key">{{category.parent.display_name}}</span></option> 
+                    <option value="{{category.parent.id.pk}}" selected><span class="key">{{category.parent.name}}-{{category.parent.display_name}}</span></option> 
                     {% for c in category_list %} 
-                        <option value="{{c.pk}}"><span class="key">{{c.display_name}}</span></option>  
+                        <option value="{{c.pk}}"><span class="key">{{c.name}}-{{c.display_name}}</span></option>  
                     {% endfor %}
                 {% else %}
                 <option value="" selected><span class="key">{% trans "Select Parent category" %}</span></option> 
                 {% for c in category_list %} 
-                        <option value="{{c.pk}}"><span class="key">{{c.display_name}}</span></option>  
+                        <option value="{{c.pk}}"><span class="key">{{c.name}}-{{c.display_name}}</span></option>  
                 {% endfor %}
                 {% endif %}
                 
