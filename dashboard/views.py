@@ -147,7 +147,7 @@ def category_create (request):
             logger.error(f'[ NOT OK ] Error on adding New Category by user {request.user.username}.' )
     elif request.method == 'GET':
         form = CategoryForm()
-    context['form'] = form
+        context['form'] = form
     context['category_list'] = models.Category.objects.filter(is_active=True)
     context['CATEGORIES'] = Catalog_Constants.CATEGORIES
     context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.CATEGORY_DESCRIPTION_MAX_SIZE
