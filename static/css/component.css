@@ -2213,7 +2213,10 @@ table tbody tr, .mat-table tbody tr{
 	margin: 0 auto;
 }
 .category-nav .mat-button{
+	min-height: auto !important;
 	padding: 0 2px !important;
+	margin: 0 1em;
+
 }
 
 #static-page{
