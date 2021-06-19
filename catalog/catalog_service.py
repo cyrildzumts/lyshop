@@ -198,6 +198,7 @@ def build_category_paths(category):
     while parent:
         paths.append(parent)
         parent = parent.parent
+    paths.append(category)
     logger.info(f"Built paths from category {category.name} to roots : {paths}")
     return paths
     
