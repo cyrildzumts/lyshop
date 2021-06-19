@@ -1,3 +1,4 @@
+from cart.models import CartItem
 from django.db.models import Q, Count
 from catalog.models import Category, Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute, News
 from catalog.forms import NewsForm
@@ -202,3 +203,10 @@ def build_category_paths(category):
     logger.info(f"Built paths from category {category.name} to roots : {paths}")
     return paths
     
+
+def get_non_empty_root_category():
+    roots = Category.objects.filter(parent=None, is_active=True)
+    categories_with_products = Category.objects.exclude(pk__in=roots, products=None)
+    roots_cats = []
+    logger.info(f"Categories withs products : {categories_with_products}")
+    return roots_cats
