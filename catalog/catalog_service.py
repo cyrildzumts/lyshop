@@ -1,5 +1,5 @@
 from django.db.models import Q, Count
-from catalog.models import Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute, News
+from catalog.models import Category, Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute, News
 from catalog.forms import NewsForm
 from catalog import constants as Constants
 from core import core_tools
@@ -187,3 +187,17 @@ def update_news(news, data):
         logger.info("News updated")
     
     return updated_news
+
+
+def build_category_paths(category):
+    if not isinstance(category, Category):
+        return []
+
+    paths = []
+    parent = category.parent
+    while parent:
+        paths.append(parent)
+        parent = parent.parent
+    logger.info(f"Built paths from category {category.name} to roots : {paths}")
+    return paths
+    
