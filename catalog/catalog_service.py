@@ -193,12 +193,12 @@ def build_category_paths(category):
     if not isinstance(category, Category):
         return []
 
-    paths = []
+    paths = [category]
     parent = category.parent
     while parent:
         paths.append(parent)
         parent = parent.parent
-    paths.append(category)
+    
     logger.info(f"Built paths from category {category.name} to roots : {paths}")
     return paths
     
