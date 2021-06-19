@@ -35,8 +35,8 @@
         <div class="form-group">
             <label for="category">{% trans "Category" %}</label>
             <select name="category" id="category">
-            <option value="{{product.category.pk}}" selected>{% trans product.category.display_name %}</option>
-            {% for c in category_list %} <option value="{{c.pk}}">{{c.name}}</option> {% endfor %}
+            <option value="{{product.category.pk}}" selected>{{product.category.name}}--{% trans product.category.display_name %}</option>
+            {% for c in category_list %} <option value="{{c.pk}}">{{c.name}}--{% trans c.display_name %}</option> {% endfor %}
             </select>
         </div>
 

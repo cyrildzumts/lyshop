@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label for="category">{% trans "Category" %}</label>
                 <select name="category" id="category">
-                {% for c in category_list %} <option value="{{c.pk}}">{{c.display_name}}</option> {% endfor %}
+                {% for c in category_list %} <option value="{{c.pk}}">{{c.name}}-{{c.display_name}}</option> {% endfor %}
                 </select>
             </div>
 
