@@ -211,5 +211,4 @@ def get_non_empty_root_category():
     logger.info(f"Categories withs products :")
     for c in categories_with_products:
         logger.info(f"Category : {c.name} - {c.display_name} - products : {c.product_count}" )
-        logger.info(f"Category : {c.name} - {c.display_name} - products : {c.products.count()}" )
     return roots_cats
