@@ -5,7 +5,7 @@ from django.utils import timezone
 def catalog_context(request):
 
     context = {
-        'root_category_list': Category.objects.select_related('children').filter(parent=None, is_active=True),
+        'root_category_list': Category.objects.select_related().filter(parent=None, is_active=True),
         'brand_list': Brand.objects.all(),
         'FILTER_CONFIG' : Product.CATALOGUE_FILTER_CONFIG,
         'news' : News.objects.filter(is_active=True, end_at__gt=timezone.now()).first(),
