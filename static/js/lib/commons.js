@@ -348,7 +348,7 @@ define([
                 cache : false,
                 contentType : false
             };
-            ajax_api.ajax_lang(options, false).then(function(response){
+            ajax_api.ajax(options).then(function(response){
                 console.info("Files have bean uploaded.");
                 var msg = {
                     content : response.message,
