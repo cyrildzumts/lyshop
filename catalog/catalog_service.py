@@ -206,7 +206,7 @@ def build_category_paths(category):
 
 def get_non_empty_root_category():
     roots = Category.objects.filter(parent=None, is_active=True)
-    categories_with_products = Category.objects.exclude(pk__in=roots, products=None)
+    categories_with_products = Category.objects.exclude(parent=None).annotate(product_count=Count('products')).filter(product_count__gt=0)
     roots_cats = []
     logger.info(f"Categories withs products :")
     for c in categories_with_products:
