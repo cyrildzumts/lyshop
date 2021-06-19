@@ -1,7 +1,7 @@
 
 body{
     background-color: var(--body-bg);
-    color: var(--body-color);
+    color: var(--color-ebony);
 }
 
 .header{
@@ -38,6 +38,10 @@ body{
 	background-color: var(--sidebar-active-color);
 }
 
+.category-description p{
+	color: #777;
+}
+
 .info{
     
     /*border: 2px solid #616161;*/
@@ -62,6 +66,13 @@ body{
 
 .danger, .danger *, .saled-price, .sale, .sale-price{
     color: var(--warning-color) !important;
+}
+
+.entrant, .incoming{
+	color: var(--success-color) !important;
+}
+.outgoing{
+	color: var(--warning-color) !important;
 }
 
 .page--banner{
@@ -100,6 +111,9 @@ body{
 }
 
 
+.cancel:hover{
+	color: #aaa;
+}
 
 .mat-button{
     /*color: var(--primary-color);*/
@@ -142,12 +156,13 @@ li.active.selected{
 
 .highlight{
     background-color: var(--light-color) !important;
-    color: var(--primary-color) !important;;
 }
 
+/*
 .highlight > .label{
 	color: var(--primary-color) !important;
 }
+*/
 
 .docklet:hover{
 
@@ -205,6 +220,11 @@ li.active.selected{
 .metric{
     background-color:var(--primary-color);
     color: var(--third-color);
+}
+
+.metric .metric-value{
+    font-size: 1.1em;
+    color: #FAFAFA;
 }
 
 .banner-action .mat-button{
@@ -304,4 +324,7 @@ a {
 
 .footer-catalog a{
 	color: #0A0A0A;
+}
+h1, h2, h3, h4, h5, h6{
+	color: var(--color-ebony);
 }

@@ -11,27 +11,34 @@
                     <div class="step-header-1"><i class="icon"></i><span class="tab-title">{% trans "Shipping Info" %}</span></div>
                 </div>
                 <div class="tab" data-toggle="#step-2">
-                    <div class="step-header-2"><i class="icon"></i><span class="tab-title">{% trans "Payment Option" %}</span></div>
+                    <div class="step-header-2"><i class="icon"></i><span class="tab-title">{% trans "User Address Info" %}</span></div>
                 </div>
                 <div class="tab" data-toggle="#step-3">
-                    <div class="step-header-3"><i class="icon"></i><span class="tab-title">{% trans "Verification" %}</span></div>
+                    <div class="step-header-3"><i class="icon"></i><span class="tab-title">{% trans "Payment Option" %}</span></div>
                 </div>
                 <div class="tab" data-toggle="#step-4">
-                    <div class="step-header-4"><i class="icon"></i><span class="tab-title">{% trans "Confirmation" %}</span></div>
+                    <div class="step-header-4"><i class="icon"></i><span class="tab-title">{% trans "Verification" %}</span></div>
+                </div>
+                <div class="tab" data-toggle="#step-5">
+                    <div class="step-header-5"><i class="icon"></i><span class="tab-title">{% trans "Confirmation" %}</span></div>
                 </div>
             </div>
-            <form  action="{% url 'orders:checkout' %}" method="POST">{% csrf_token %}
+            <form id="checkout-form"  action="{% url 'orders:checkout' %}" method="POST">{% csrf_token %}
                 <div class="tab-container">
-                    {% include "tags/checkout_address.html" with step_id="step-1" index="0" icon_parent="step-header-1" %}
-                    {% include "tags/payment_options.html" with step_id="step-2" index="1" icon_parent="step-header-2" %}
-                    {% include "tags/cart_summary.html" with step_id="step-3" index="2" icon_parent="step-header-3" %}
-                    <div id="step-4" class="tab-content" data-index="3">
-                        <h5>{% trans "Confirmation" %}</h5>
-                        <div class="actions">
-                            <span class="mat-button mat-button-outlined js-tab" data-toggle="#step-3" data-icon_parent="step-header-3" data-next-tab-index="3" title="{% trans 'Previous Step' %}"><i class="fas fa-chevron-left"></i></span>
-                            <button class="mat-button mat-button-outlined js-send disabled" type="submit" title="{% trans 'Validate' %}" disabled><i class="fas fa-paper-plane"></i></button>
+                    {% include "tags/checkout_shipmode.html" with step_id="step-1" index="0" icon_parent="step-header-1" %}
+                    {% include "tags/checkout_address.html" with step_id="step-2" index="1" icon_parent="step-header-2" %}
+                    {% include "tags/payment_options.html" with step_id="step-3" index="2" icon_parent="step-header-3" %}
+                    {% include "tags/cart_summary.html" with step_id="step-4" index="3" icon_parent="step-header-4" %}
+                    {% include "tags/checkout_confirmation.html" with step_id="step-5" index="4" icon_parent="step-header-5" %}
+                    {% comment %}
+                        <div id="step-5" class="tab-content" data-index="4">
+                            <h5>{% trans "Confirmation" %}</h5>
+                            <div class="actions">
+                                <span class="mat-button mat-button-outlined js-tab" data-toggle="#step-3" data-icon_parent="step-header-4" data-next-tab-index="3" title="{% trans 'Previous Step' %}"><i class="fas fa-chevron-left"></i></span>
+                                <button class="mat-button mat-button-outlined js-send disabled" type="submit" title="{% trans 'Validate' %}" disabled><i class="fas fa-paper-plane"></i></button>
+                            </div>
                         </div>
-                    </div>
+                    {% endcomment %}
                 </div> <!--End of Tab Container-->
             </form>
         </div><!--End of mat-box-->

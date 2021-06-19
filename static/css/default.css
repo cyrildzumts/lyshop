@@ -9,7 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   font-size: 100%;
-  font-family: -apple-system,BlinkMacSystemFont,"Montserrat","Segoe UI","Roboto","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-family: "Oswald", sans-serif;
   line-height: 1.5em;
   margin: 0;
   height: 100%;
@@ -22,7 +22,7 @@ body {
 * {
   background-color: transparent;
   /*color: black;*/
-  font-family: "Montserrat";
+  font-family: "Oswald", sans-serif;
   line-height: 1.5em;
   list-style-type: none;
   text-decoration: none;

@@ -11,6 +11,12 @@
 
 {% block MAIN_CONTENT %}
 <div class="container">
+        {% if category.description %}
+        <div class="category-description padding">
+                <h1>{% trans category.display_name %}</h1>
+                <p>{% trans category.description %}</p>
+        </div>
+        {% endif %}
         {% if product_list %}
         <div id="products" class="products js-product-list">
                 {% include "tags/products_snippet.html" with product_list=product_list %}

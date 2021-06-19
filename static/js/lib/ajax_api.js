@@ -16,15 +16,26 @@ define(['lang'], function(Locale) {
         A future object is returned
     */
 
-      function ajax_api(options, debug){
+      function ajax_lang(options,no_add_lang, debug){
         if(debug){
           console.debug("ajax_api options - ", options);
         }
-        
+        if(!no_add_lang){
+          options.url = '/' + Locale.get_lang() + options.url;
+        }
+        return new Promise(function(resolve, reject){
+            $.ajax(options).done(resolve).fail(reject);
+        });
+      }
+
+      function ajax(options, debug){
+        if(debug){
+          console.debug("ajax_api options - ", options);
+        }
         return new Promise(function(resolve, reject){
             $.ajax(options).done(resolve).fail(reject);
         });
       }
     console.log("Ajax API ready");
-    return ajax_api;
+    return {ajax_lang:ajax_lang, ajax : ajax};
   });

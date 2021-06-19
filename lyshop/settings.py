@@ -26,9 +26,9 @@ SECRET_KEY          =  os.environ['LYSHOP_SECRET_KEY']
 # SITE NAME SETTING
 SITE_NAME           =  os.environ.get('LYSHOP_SITE_NAME', 'LYSHOP')
 
-META_KEYWORDS       = _("LYSHOP, Lyshoping, Gabon, Shop, Shopping, Shoes, kids shoes, mens shoes, Womens shoes, Fashion, Perfumes, Women, Men, Child, Children, Kid, Electronics, Smartphones")
-META_DESCRIPTION    = _("LYSHOP offers fashion items, accessories and perfumes, all authentic. Become a LYSHOP member and take advantage of the special advantages. We deliver to Libreville and Port-Gentil in Gabon")
-HOME_TITLE          = _("Fashion and quality for everyone | LYSHOP")
+META_KEYWORDS       = _("LYSHOP Gabon, Online Shop, Shoes, Fashion, Perfumes, Electronics, Smartphones")
+META_DESCRIPTION    = _("LYSHOP is an online store in Gabon. We sell shoes, perfumes, accessories and more for men, women and children. We offer deliveries to libreville and port-gentil.")
+HOME_TITLE          = _("Fashion and quality for everyone | Online Shop | LYSHOP")
 
 CELERY_BROKER_URL   = os.environ.get('LYSHOP_CELERY_BROKER_URL')
 CELERY_BACKEND      = os.environ.get('LYSHOP_CELERY_BACKEND')

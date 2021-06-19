@@ -13,7 +13,7 @@
 {% endblock CATEGORIES %}
 <div class="main container">
     {% if queryset or product_list %}
-        <div class="col-m-12 col-12">
+        <div class="full">
             <form id="filter-form" class="full" method="GET">
                 <div class="catalog-filter">
                     {% include "tags/catalog_filter.html" %}
@@ -21,7 +21,7 @@
             </form>
         </div>
     {% endif %}
-    <div class="col-m-12 col-12">
+    <div class="full">
         {% block MAIN_CONTENT %}
         {% endblock MAIN_CONTENT %}
     </div>

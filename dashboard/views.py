@@ -144,12 +144,13 @@ def category_create (request):
             return redirect('dashboard:categories')
         else:
             messages.error(request,_('Error when creating new category'))
-            logger.error(f'[ NOT OK ] Error on adding New Category by user {request.user.username}. Errors : {form.errors}' )
+            logger.error(f'[ NOT OK ] Error on adding New Category by user {request.user.username}.' )
     elif request.method == 'GET':
         form = CategoryForm()
-    context['form'] = form
+        context['form'] = form
     context['category_list'] = models.Category.objects.filter(is_active=True)
     context['CATEGORIES'] = Catalog_Constants.CATEGORIES
+    context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.CATEGORY_DESCRIPTION_MAX_SIZE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
     
@@ -245,6 +246,7 @@ def category_update(request, category_uuid):
         'category_list': Category.objects.exclude(id__in=[category.pk]),
         'content_title': f"{category.display_name} - {_('Update')}"
     }
+    context['DESCRIPTION_MAX_SIZE'] = Catalog_Constants.CATEGORY_DESCRIPTION_MAX_SIZE
     context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
@@ -1183,7 +1185,7 @@ def product_detail(request, product_uuid=None):
 
     product = get_object_or_404(models.Product, product_uuid=product_uuid)
     images = ProductImage.objects.filter(product=product)
-    variants = models.ProductVariant.objects.filter(product=product)
+    variants = models.ProductVariant.objects.select_related().filter(product=product)
     context = {
         'page_title': page_title,
         'product': product,
@@ -1705,7 +1707,6 @@ def product_variant_detail(request, variant_uuid=None):
     }
     context['content_title'] =  CORE_STRINGS.DASHBOARD_PRODUCT_VARIANTE_TITLE
     context.update(Constants.DASHBOARD_PRODUCT_CONTEXT)
-    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 @login_required
@@ -2747,8 +2748,8 @@ def user_details(request, pk=None):
     context['cart_items'] = cart_items
     context['recent_orders'] = recent_orders
     context['ACCOUNT_TYPE'] = Account_Constants.ACCOUNT_TYPE
+    context['addressbook'] = addressbook_service.get_addresses(user)
     context['content_title'] = f"{CORE_STRINGS.DASHBOARD_USER_TITLE} - {user.get_full_name()}"
-    context.update(get_view_permissions(request.user))
     return render(request,template_name, context)
 
 

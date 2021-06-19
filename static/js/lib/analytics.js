@@ -1,6 +1,6 @@
 
 define(['vendor/Chart.bundle.min', 'ajax_api'],
-function(Chart, ajax){
+function(Chart, ajax_api){
     'use strict';
     var dashboardIntervalHandle;
     var order_chart;
@@ -234,7 +234,7 @@ function(Chart, ajax){
             data:{},
             dataType: 'json'
         }
-        var promise = ajax(options).then(function(response){
+        var promise = ajax_api.ajax(options).then(function(response){
             dispatchChartUpdate(response)
         }, function(error){
             console.log("Orders fetch failed");
@@ -381,7 +381,7 @@ function(Chart, ajax){
             data:{},
             dataType: 'json'
         }
-        var promise = ajax(options).then(function(response){
+        var promise = ajax_api.ajax(options, true).then(function(response){
             //report = response.report;
             refresh_chart(response);
             //updateMetrics(response)

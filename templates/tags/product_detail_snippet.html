@@ -85,18 +85,21 @@
                     
                       <thead>
                               <tr>
-                                    <th>{% trans "Display Name" %}</th>
+                                    <th scope="col">{% trans "Display Name" %}</th>
                                     <th>{% trans "Quantity" %}</th>
+                                    <th>{% trans "Attributes" %}</th>
                                     <th>{% trans "Price" %}</th>
+                                    <th>{% trans "Detail" %}</th>
                               </tr>
                       </thead>
                       <tbody>
                               {% for variant in variant_list %}
                               <tr>
-                                    <td>{{variant.display_name}}</td>
-                                    <td>{{variant.quantity}}</td>
-                                    <td>{{variant.price}} {% trans "XAF" %}</td>
-                                    <td><a class="mat-button mat-button-text" href="{% url VARIANT_URL variant.product_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
+                                    <td scope="row" data-label="{% trans 'Display Name' %}">{{variant.display_name}}</td>
+                                    <td data-label="{% trans 'Quantity' %}">{{variant.quantity}}</td>
+                                    <td data-label="{% trans 'Price' %}">{{variant.price}} {% trans "XAF" %}</td>
+                                    <td data-label="Attributes"><span class="flex flex-left">{% for attr in variant.attributes.all %}{{attr}}{% if not forloop.last %};{% endif %}{% endfor %}</span></td>
+                                    <td data-label="Detail"><a class="mat-button mat-button-text" href="{% url VARIANT_URL variant.product_uuid %}"><i class="fas fa-info icon"></i><span>{% trans "Details" %}</span></a></td>
                               </tr>
                               {% endfor %}
                               
@@ -105,6 +108,26 @@
           </div><!--End of Table Wrapper-->
       </div><!--End of mat-box-content-->
   </div><!--End of mat-box-->
+  <div class="mat-box full">
+    <div class="mat-box-title">
+      <h4>{% trans "Variants test" %}</h4>
+    </div>
+    <div class="mat-box-content">
+      {% for variant in variant_list %}
+        <ul>
+            {% regroup variant.attributes.all by name as attr_list %}
+            {% for attr in attr_list %}
+            <li>
+            {% trans attr.grouper %}
+              <ul>
+                  {% for entry in attr.list %} <li>{{entry.display_name}} : {{entry.value}}</li> {% endfor %}
+              </ul>
+            </li>
+            {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+  </div>
   <div class="mat-box wrapper full">
     <div class="mat-box-title">
       <h4>{% trans "Product Images" %}</h4>

@@ -318,7 +318,7 @@ def refresh_suspicious_request():
 
 
 def customers_report():
-    return User.objects.annotate(spent=Sum('orders__total'), last_ordered=Max('orders__created_at'))
+    return User.objects.annotate(spent=Sum('orders__total'), last_ordered=Max('orders__created_at')).order_by('-date_joined')
 
 
 def sellers_report():

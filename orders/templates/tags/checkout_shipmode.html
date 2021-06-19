@@ -1,0 +1,18 @@
+{% load i18n %}
+<div id="{{step_id}}" class="tab-content" data-index="{{index}}" data-checked="{{step_id}} tab-icon">
+    <div class="mat-box">
+        <h5>{% trans "Shipping Mode" %}</h5>
+        <div class="mat-box-content">
+            <ul>
+                {% for ship_mode in ship_modes %}
+                <li class="list-item" title="{% trans ship_mode.display_name %}"><input id="ship_mode-{{ship_mode.mode}}" class="js-input-ship-mode" data-mode="{{ship_mode.mode}}" data-price="{{ship_mode.price|floatformat:'-2'}}" type="radio" name="ship_mode" value="{{ship_mode.pk}}"><label for="ship_mode-{{ship_mode.mode}}">{% trans ship_mode.display_name %} - {{ship_mode.price|floatformat:"-2"}} {% trans CURRENCY %}</label></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div><!--End of Box-->
+    
+    <div class="actions">
+        <span class="mat-button mat-button-outlined disabled js-tab" data-toggle="#step-1" data-icon_parent="step-header-1" data-next-tab-index="1" title="{% trans 'Previous Step' %}"><i class="fas fa-chevron-left"></i>{% trans "previous" %}</span>
+        <span class="mat-button mat-button-outlined js-tab js-tab-next disabled" data-toggle="#step-2" data-icon_parent="step-header-2" data-next-tab-index="2"  title="{% trans 'Next step' %}"><i class="fas fa-chevron-right"></i>{% trans "next" %}</span>
+    </div>
+</div>

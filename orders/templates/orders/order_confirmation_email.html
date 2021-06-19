@@ -30,7 +30,12 @@ Nous avons bien reçu votre commande et vous en informerons dès que votre colis
                     <p>Envoi : {{order.ship_mode}}</p>
                     <p>Option de paiement : {{PAYMENT_OPTION}}</p>
                     <p>Statut de la commande : {{ORDER_STATUS}}</p>
+                    {% if ADDRESS %}
                     <p>Adresse : {{ADDRESS}}</p>
+                    {% else %}
+                    <p>Adresse : {{ship_mode}}</p>
+                    {% endif %}
+                    
                 </td>
             </tr>
             <tr>

@@ -1,0 +1,4 @@
+
+CART_ACTION_DELETE = 'delete'
+CART_ACTION_INCREMENT = 'increment'
+CART_ACTION_DECREMENT = 'decrement'

@@ -34,12 +34,20 @@
                 <label for="is_active">{% trans "Is Active" %}</label>
                 <input id="is_active" type="checkbox"  name="is_active" checked>
             </div>
+            <div class="flex flex-column">
+                <div class="form-group">
+                    <label for="description">{% trans "Description" %}</label>
+                    <textarea id="description" class="limited-input bordered"  name="description" cols="30" rows="10" data-target="#description-counter" data-max-length="{{DESCRIPTION_MAX_SIZE}}"></textarea>
+                </div>
+                
+                <div class="row"> <span id="description-counter" class="char-counter">0</span><span class="text-max-length">/{{DESCRIPTION_MAX_SIZE}}</span></div>
+            </div>
             {% if category_list %}
             <div class="form-group">
                 <label for="parent">{% trans "Parent Category" %}</label>
                 <select name="parent" id="parent">
                     <option value=""><span class="mat-button">{% trans "Select a parent Category" %}</span></option>
-                    {% for c in category_list %} <option value="{{c.pk}}"><span class="key">{{c.name}}</span></option> {% endfor %}
+                    {% for c in category_list %} <option value="{{c.pk}}"><span class="key">{{c.name}}-{{c.display_name}}</span></option> {% endfor %}
                 </select>
             </div>
             {% endif %}

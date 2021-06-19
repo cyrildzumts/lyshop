@@ -53,6 +53,8 @@ urlpatterns = i18n_patterns(
     *[
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
+    #path('api/', include('api.urls', namespace='api')),
+    #path('api/api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('lyshop-admin-board/', admin.site.urls),
     path('addressbook/', include('addressbook.urls')),
     path('accounts/', include('accounts.urls')),

@@ -1,3 +1,4 @@
+from cart import cart_service
 from django.shortcuts import render
 from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
@@ -82,6 +83,14 @@ class CategoryListView(ListAPIView):
 
 
 
+
+@api_view(['GET'])
+def get_current_user(request):
+   
+    data = {'username': request.user.username, 'user_id': request.user.pk, 'last_login': request.user.last_login}
+    return Response(data)
+
+
 @api_view(['GET'])
 def analytics_data(request):
     response_status = status.HTTP_200_OK
@@ -138,6 +147,59 @@ def update_address(request, address_uuid):
     return Response(data={'status': False, 'error': 'address not created'}, status=status.HTTP_200_OK)
 
 
+
+@api_view(['POST'])
+def add_to_cart(request):
+    logger.info(f"API: add_to_cart {request.user.username}")
+    if request.method != 'POST':
+        return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    context = cart_service.add_product_to_cart(request.user, request.POST.copy())
+    if context.get('status') :
+        return Response(data=context, status=status.HTTP_200_OK)
+    
+    return Response(data=context, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def update_cart_item(request):
+    logger.info(f"API: add_to_cart {request.user.username}")
+    if request.method != 'POST':
+        return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    context = cart_service.process_cart_action(request.POST.copy())
+    if not context.get('invalid_data') :
+        return Response(data=context, status=status.HTTP_200_OK)
+    
+    return Response(data=context, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def verify_coupon(request):
+    logger.info(f"user {request.user.username} verifying coupon")
+    data = request.POST.copy()
+    valid = cart_service.is_valid_coupon(data)
+    context = {
+        'success' : True,
+        'is_valid' : valid,
+    }
+    return Response(data=context)
+
+
+@api_view(['POST'])
+def add_coupon(request):
+    logger.info(f"adding coupon to user cart \"{request.user.username}\"")
+    data = request.POST.copy()
+    valid, context = cart_service.process_apply_coupon(request.user, data)
+    return Response(data=context)
+
+
+@api_view(['POST'])
+def remove_coupon_from_cart(request):
+    logger.info(f"removing coupon for user {request.user.username}")
+    data = request.POST.copy()
+    removed , context = cart_service.remove_coupon(request.user, data)
+    return Response(data=context)
 
 
 @api_view(['GET', 'POST'])

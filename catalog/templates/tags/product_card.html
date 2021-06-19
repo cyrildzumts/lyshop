@@ -13,17 +13,17 @@
         </a>
         <div class="product-info">
                 <div class="product-name left full">
-                        <span class="full emphasis">{{p.brand.display_name}}</span> 
+                        <span class="full">{{p.brand.display_name}}</span> 
                         <span class="full">{{p.display_name}}</span>
                 </div>
                 <div class="full left">
                         {% if p.is_promoted %}
                         <div class="price">
-                                <span class="emphasis sale-price">{{p.active_price|floatformat:"-2"}} {% translate CURRENCY %}</span> <span class="old-price">{{p.price|floatformat:"-2"}} {% translate CURRENCY %}</span>
+                                <span class="sale-price">{{p.active_price|floatformat:"-2"}} {% translate CURRENCY %}</span> <span class="old-price">{{p.price|floatformat:"-2"}} {% translate CURRENCY %}</span>
                         </div>
                         {% else %}
                         <div class="price">
-                                <span class="emphasis">{{p.active_price|floatformat:"-2"}} {% translate CURRENCY %}</span>
+                                <span class="">{{p.active_price|floatformat:"-2"}} {% translate CURRENCY %}</span>
                         </div>
                         {% endif %}
                 </div>

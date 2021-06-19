@@ -9,7 +9,7 @@ class LyshopSiteMap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return ["home", "catalog:catalog-home", "about", "faq"]
+        return ["home", "catalog:catalog-home", "about", "faq", "accounts:login", "accounts:register"]
     
     def location(self, item):
         return reverse(item)

@@ -1,6 +1,6 @@
 define([
 'ajax_api'
-], function(ajax) {
+], function(ajax_api) {
     'use strict';
     var ADDRESS_FIELDS = [ 
             'user', 'city', 'firstname', 'lastname', 'country', 
@@ -24,6 +24,8 @@ define([
     var SHIP_IN_STORE_LBV = 4
     var SHIPPING_ADDRESS_CONTAINER = "address-container";
     var api_address_url = '/api/create-address/';
+    var SHIP_IN_HOUSE = [SHIP_STANDARD, SHIP_EXPRESS];
+    var SHIP_IN_STORE = [SHIP_IN_STORE, SHIP_IN_STORE_LBV, SHIP_IN_STORE_POG];
     var address = {
         id : "",
         name : "",
@@ -40,9 +42,12 @@ define([
         valid : false,
         tab : null
     };
-    var address_tab = 1;
-    var payment_tab = 2;
-    var verification_tab = 3;
+    var shipmode_tab = 1;
+    var address_tab = 2;
+    var payment_tab = 3;
+    var verification_tab = 4;
+    var confirmation_tab = 5
+    var steps_order = [shipmode_tab, address_tab, payment_tab, verification_tab, confirmation_tab]
     var tabs = null;
 
     var PAY_AT_DELIVERY = 0;
@@ -75,15 +80,29 @@ define([
         this.items_count = 0;
         this.steps = [];
         this.current_step = {};
+        this.address_required = true;
+        this.address_available = false;
+        this.ship_mode = -1;
+        this.ship_mode_valid = false;
+        this.payment_option_is_valid = false;
+        this.payment_method_is_valid = false;
+        this.address_is_valid = false;
+        this.shipping_price = 0;
+        this.sub_total = 0;
+        this.total = 0;
+        this.form_is_valid = false;
         
     };
     
     Checkout.prototype.init = function(){
         var self = this;
         var addr = document.getElementById('address');
+
         $('.js-input-payment-option').on('change', function(event){
             self.payment_option = this.value;
             self.payment_method = -1;
+            self.payment_method_is_valid = false;
+             tabs.toggle_checked(payment_tab, false);
             self.update_payment_method();
             self.validate_pament_options();
             console.log("payment option changed %s", this.value);
@@ -107,13 +126,32 @@ define([
         $('.js-input-ship-mode').on('change', function(event){
             self.ship_mode_changed(this);
         });
-        this.validate_address();
+        //this.validate_address();
         self.update_payment_method();
         tabs.init();
         
         $('input.js-input-ship-mode').prop('checked', false);
         $('.js-send').prop('disabled', true);
+        $('#checkout-form').on('submit', function(event){
+            event.stopPropagation();
+            if(!self.is_form_valid()){
+                event.preventDefault();
+                console.log("Checkout form is invalid");
+                return false;
+            }
+            return true;
+        });
+
     };
+
+    Checkout.prototype.update_send_btn = function(){
+        $('.js-send').prop('disabled', !this.is_form_valid());
+        $('.js-send').toggleClass('disabled', !this.is_form_valid());
+    }
+
+    Checkout.prototype.is_form_valid = function(){
+        return this.ship_mode_valid && this.address_is_valid && this.payment_option_is_valid && this.payment_method_is_valid;
+    }
 
     Checkout.prototype.validate_address = function(){
         var toggle = false;
@@ -121,6 +159,7 @@ define([
         var inputs_container = $('#new-address').get();
         if(address_input){
             toggle = true;
+            this.address_is_valid = true;
         }else if(inputs_container){
             var inputs = $("input", inputs_container);
             toggle = true;
@@ -132,7 +171,9 @@ define([
                 }
             }
         }
+        this.address_is_valid = toggle;
         tabs.toggle_checked(address_tab, toggle);
+        this.update_send_btn();
     };
     Checkout.prototype.validate_pament_options = function(){
        var is_valid = PAYMENT_OPTIONS.includes(parseInt(this.payment_option));
@@ -140,7 +181,8 @@ define([
            console.log("Payment Option is invalid");
        }
        //tabs.toggle_checked(payment_tab, is_valid);
-       this.validate_pament_method();
+       this.payment_option_is_valid = is_valid;
+       this.update_send_btn();
 
     };
 
@@ -151,6 +193,8 @@ define([
            console.log("Payment Method is invalid");
        }
         tabs.toggle_checked(payment_tab, is_valid);
+        this.payment_method_is_valid = is_valid;
+        this.update_send_btn();
         return is_valid;
      };
 
@@ -185,15 +229,17 @@ define([
             url : api_address_url,
             data : data
         }
-        var add_promise = ajax(option).then(function(response){
+        var add_promise = ajax_api.ajax(option).then(function(response){
             if(response.status){
                 address_inputs.each(function(){
                     this.disabled = 'disabled';
                 });
                 var input = $('<input>', {name : 'address', type :'hidden', value : response.id});
                 input.appendTo(container);
+                this.address_is_valid = true;
                 tabs.toggle_checked(address_tab, true);
                 $('.js-add-address, .js-create-address').addClass('disabled').prop('disabled', 'disabled');
+                this.update_send_btn();
             }else{
                 console.log("address not created. Error : %s", response.error);
             }
@@ -204,13 +250,6 @@ define([
         });
     }
 
-    Checkout.prototype.validate_cart = function(){
-
-    };
-
-    Checkout.prototype.update_payment_option = function(){
-
-    };
     Checkout.prototype.update_payment_method = function(){
         //this.payment_option = parseInt($('.js-input-payment-option').val());
         console.log("Checkout  update_payment_method :  option %s : type : %s ", this.payment_option, typeof this.payment_option);
@@ -225,20 +264,37 @@ define([
                 $(LI_PM_PREFIX + value, PAYMENT_METHOD_CONTAINER).show();
             });
         }
+        console.log("update_payment_method: Updating send button");
+        this.update_send_btn();
         
     };
+    Checkout.prototype.validate_shipmode = function(){
+        var shipmde_container = $('#step-' + shipmode_tab);
+        var $selectec_ship_mode = $('.js-input-ship-mode:checked')
+        var $input = $("input[type='radio']:checked", shipmde_container);
+        tabs.toggle_checked(shipmode_tab, is_valid);
+        return is_valid;
+    };
+
     Checkout.prototype.ship_mode_changed = function(el){
-        var mode = parseInt($(el).data('mode'));
-        var shipping_price_el = $('.js-shipping-price');
-        var grand_total_el = $('.js-grand-total');
-        var total_el = $('.js-final-price');
-        var total = parseInt(total_el.text());
-        var shipping_price = parseInt($(el).data('price'));
-        total += shipping_price;
-        shipping_price_el.text(shipping_price);
-        grand_total_el.text(total);
-        var show_address_container = mode == SHIP_EXPRESS || mode == SHIP_STANDARD;
-        $("#" + SHIPPING_ADDRESS_CONTAINER).toggleClass('hidden', !show_address_container)
+        this.ship_mode = parseInt($(el).data('mode'));
+        this.ship_mode_valid = SHIP_IN_HOUSE.includes(this.ship_mode) || SHIP_IN_STORE.includes(this.ship_mode);
+        //var shipping_price_el = $('.js-shipping-price');
+        //var grand_total_el = $('.js-grand-total');
+        //var total_el = $('.js-final-price');
+        this.sub_total = parseInt($('.js-final-price').text());
+        this.shipping_price = parseInt($(el).data('price'));
+        //total += shipping_price;
+        this.total = this.sub_total + this.shipping_price;
+        $('.js-shipping-price').text(this.shipping_price);
+        $('.js-grand-total').text(this.total);
+        this.address_required = SHIP_IN_HOUSE.includes(this.ship_mode);
+        $('.js-add-address').toggle(this.address_required);
+        $('#address-container').toggle(this.address_required);
+        $('.js-no-address-required').toggleClass('hidden', this.address_required);
+        tabs.toggle_checked(shipmode_tab, true);
+        this.validate_address();
+        this.update_send_btn();
     };
     
     return Checkout;

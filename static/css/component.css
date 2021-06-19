@@ -57,7 +57,7 @@ canvas{
 	position: relative;
 	background-color: var(--filter-background-color);
 	color: var(--filter-color);
-	font-size: 0.875em;
+	/*font-size: 0.875em;*/
 }
 
 .product-filter, .content-filter{
@@ -76,7 +76,6 @@ canvas{
 	margin: 0 !important;
 }
 .catalog-filter #filter-content{
-	/*font-size: 0.6em;*/
 	padding: 0 !important;
 	margin: 0 !important;
 }
@@ -299,6 +298,7 @@ li a{
 
 h1, h2, h3, h4, h5, h6{
 	font-family: 'Montserrat';
+	text-transform: uppercase;
 }
 
 input{
@@ -458,24 +458,6 @@ a.button{
 	margin: 0 16px;
 }
 
-/*
-.header--panel .mat-button{
-	min-width: 0;
-	padding: 0;
-	margin: 0 16px;
-}
-*/
-
-/*
-.header--panel .mat-button:last-child, .logo .mat-button:last-child{
-	padding: 0;
-	margin: 0 ;
-}
-*/
-
-
-
-
 .nav-container{
 	width: 100%;
 	padding: 0;
@@ -520,42 +502,7 @@ a.button{
 .ft-middle{
 	font-size: 0.85em;
 }
-.main{
-  font-family: 'Montserrat';
-  font-size: 1em;
-}
 
-/*
-#discover p, #pay p, #customer p, #enterprise p{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  margin: 0 auto;
-}
-
-#discover .bloc, #pay .bloc, #customer .bloc, #enterprise .bloc{
-  display: block;
-  padding: 10px 20px;
-  margin: 0 auto;
-}
-
-#discover, #pay, #customer, #enterprise{
-  text-align: center;
-  font-size: 1.25rem;
-  margin-bottom: 30px;
-}
-*/
-.title{
-  /*text-align: center;*/
-  font-size: 1.25em;
-}
-
-.product-title{
-	font-size: 1em;
-	font-family: 'Montserrat', sans-serif;
-}
 
 /* Design Component */
 .wrapper{
@@ -590,232 +537,6 @@ a.button{
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
-
-.column__list{
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(260px, 1fr));
-  grid-area: .5rem;
-  align-items: start;
-}
-
-.column__item{
-  border-radius: .2rem;
-  background-color: #dfe3e6;
-  padding: .5rem;
-}
-
-.column__title--wrapper{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding: .25rem;
-  align-items: center;
-}
-
-.column__title--wrapper h2{
-  color: #17394d;
-  font-weight: 700;
-  font-size: .9rem;
-}
-
-.column__title--wrapper i{
-  text-align: right;
-  color: #798d99;
-
-}
-
-.column__item--cta{
-  padding: .25rem;
-  display: flex;
-  color: #798d99;
-}
-
-.column__item--cta i{
-  margin-right: .25rem;
-}
-
-/* CARD COMPONENT */
-.card__list{
-  display: grid;
-  grid-auto-rows: auto;
-  grid-area: .5rem;
-  margin: .5rem 0;
-}
-
-.card{
-  /*background-color: #fff;*/
-  border-radius: .25rem;
-  box-shadow: 0 1px 0 rgba(9,45,66,.25);
-  padding: .5rem;
-  flex: 1;
-  align-self: center;
-  width: 350px;
-  min-width: 300px;
-  max-width: 350px;
-  /*height: 400px;*/
-  min-height: 380px;
-  margin: 0.2em;
-}
-
-.card__tag{
-  font-size: .75rem;
-  padding: .1rem .5rem;
-  border-radius: .25rem;
-  font-weight: 700;
-  margin-bottom: .75rem;
-  color: #fff;
-  display: inline-block;
-}
-
-.card__image{
-  position: relative;
-  width: 100%;
-}
-
-.card__image img, .card__image object{
-  width: 100%;
-  height: auto;
-  padding: 0;
-  margin: 0 auto;
-}
-.card__tag--info{
-  background-color: #61bd4f;
-}
-
-.card__tag--warning{
-  background-color: #eb5a46;
-}
-
-.card__title{
-  font-size: 1.25rem;
-  color: #fff;
-}
-
-.card__title h1{
-  font-size: 1.25rem;
-  color: #fff;
-}
-
-.card__actions{
-  display:flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  /*padding: 10px 20px;*/
-}
-
-
-.card__actions--wrapper i{
-  color: #798d99;
-  margin-right: .5rem;
-}
-
-.card__actions--text{
- /* color: #798d99;*/
-  font-size: .8rem;
-  margin-left: -.25rem;
-  margin-right: .5rem;
-}
-.card__avatars{
-  display: flex;
-  flex: 1;
-  justify-content: flex-end;
-}
-
-.card__avatars--item{
-  margin-left: .25rem;
-  width: 28px;
-  height: 28px;
-}
-
-.avatar__image{
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-/*
-.mat-card{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: var(--card-bg);
-  color: var(--card-color);
-  border-radius: .25rem;
-  
-  width: 344px;
-  max-height: 510px;
-  padding: 0;
-}*/
-
-.mat-card .card__image, .mat-card .card--image{
-  min-width: 100%;
-  min-height: 240px;
-  height: 240px;
-  padding: 0;
-  margin: 0 0 16px 0;
-}
-
-.mat-card .card__image img, .mat-card .card__image object,
-.mat-card .card--image img, .mat-card .card--image object{
-  min-width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 0;
-  margin: 0 auto;
-}
-
-.mat-card__body, .mat-card--body{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: baseline;
-  padding: 0 16px;
-  margin: 0 auto;
-}
-
-.mat-card__body .title, .mat-card--body .title{
-
-  font-size: 1.33rem;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  color: var(--btn-color);
-  width: 100%;
-  margin-bottom: 16px;
-
-}
-
-.mat-card__body .secondary--text, .mat-card--body .secondary--text{
-
-  font-size: 1em;
-  font-weight: 700;
-  /*height: 68px;*/
-  
-}
-
-.mat-card__body .subtitle, .mat-card--body .subtitle{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  font-size: 16px;
-
-}
-
-
-.mat-card .card__title, .mat-card .card--title{
-  min-width: 100%;
-  padding: 16px;
-}
-
-.mat-card__footer, .mat-card--footer{
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-  margin: 0;
-}
-
 
  .welcome-text{
   /*background-color: #fff;*/
@@ -1124,7 +845,6 @@ input, button, select{
 
 
 button, input, select, textarea{
-	font-size: 100%;
 	margin: 0;
 	vertical-align: baseline;
 }
@@ -1132,7 +852,6 @@ button, input, select, textarea{
 /****************************************************************/
 /* sections */
 .balance{
-	font-size: 0.6em;
 	font-weight: bold;
 	line-height: 1.5;
 	letter-spacing: 0.3em;
@@ -1141,7 +860,6 @@ button, input, select, textarea{
 .balance-info{
 	display: flex;
 	flex-direction: column;
-	font-size: 1em;
 	font-weight: bold;
 	max-width: 8em;
 }
@@ -1172,12 +890,13 @@ button, input, select, textarea{
 .footer {
   --width-mobile: 12;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  /*flex-basis: calc(var(--width) / var(--columns) * 100%);*/
   /*min-height: 25rem;*/
   flex-shrink: 0;
-  font-size: 1rem;
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   margin-top: 1em;
 }
@@ -1202,13 +921,10 @@ List Cards
 	vertical-align: top;
 	white-space: nowrap;
 	display: inline-block;
-	color: #17394d;
-	font-size: 14px;
 	font-weight: 400;
 }
 
 .list{
-	background-color: #dfe3e6;
 	border-radius: 3px;
 	display: flex;
 	flex-direction: column;
@@ -1227,60 +943,10 @@ List Cards
 
 .header-title{
 	font-weight: 700;
-	font-size: 1.25;
 	text-align: left;
 	text-decoration: none;
 }
 
-.list-cards{
-	flex : 1 1 auto;
-	overflow-y: auto;
-	overflow-x: hidden;
-	margin: 0 4px;
-	padding: 0 4px;
-	z-index: 1;
-	min-height: 0;
-}
-
-.list-card{
-	background-color: #fff;
-	border-radius: 3px;
-	box-shadow: 0 1px 0 rgba(9, 45, 66, .25);
-	cursor: pointer;
-	display: block;
-	margin-bottom: 8px;
-	max-width: 300px;
-	min-height: 20px;
-	position: relative;
-	text-decoration: none;
-	z-index: 1;
-}
-
-.list-card-cover{
-	background-position: 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
-.list-card-operation{
-	background-color: #f5f6f7;
-	background-clip: padding-box;
-	background-origin: padding-box;
-	border-radius: 3px;
-	opacity: .8;
-	padding: 4px;
-	position: absolute;
-	right: 2px;
-	top: 2px;
-	visibility: hidden;
-	z-index: 40;
-}
-.icon-sm{
-	height: 20px;
-	font-size: 12px;
-	line-height: 20px;
-	width: 20px;
-}
 .icon-sm{
 	display: inline-block;
 	font-style: normal;
@@ -1288,64 +954,12 @@ List Cards
 	text-align: center;
 	text-decoration: none;
 	color: #798d99;
-}
-.list-card-stickers-area{
-	border-radius: 3px;
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 1;
-}
-.list-card-details{
-	overflow: hidden;
-	padding: 6px 8px 2px;
-	position: relative;
-	z-index: 10;
-}
-
-.list-card-labels{
-	overflow: auto;
-	position: relative;
-}
-.card-label.card-front{
-	float: left;
+	height: 20px;
 	font-size: 12px;
-	font-weight: 700;
-	height: 8px;
-	width: auto;
-	max-width: 40px;
-	min-width: 40px;
-	text-shadow: none;
-	padding: 0;
-	margin: 0 4px 4px 0;
-
-}
-.card-label{
-	background-color: #b3bcc4;
-	border-radius: 4px;
-	color: #fff;
-	display: block;
-	margin-left: 4px;
-	max-width: 100%;
-	overflow: hidden;
-	padding: 4px 6px;
-	position: relative;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	line-height: 20px;
+	width: 20px;
 }
 
-.list-card-title{
-	clear: both;
-	display: block;
-	margin:  0 0 4px;
-	overflow: hidden;
-	text-decoration: none;
-	word-wrap: break-word;
-	color: #17394d;
-}
 
 .badges{
 	float: left;
@@ -1389,71 +1003,6 @@ List Cards
 	z-index: 10;
 }
 
-.list-card-members{
-	float: right;
-	margin: 0 -2px 0 0;
-}
-
-.list-card-members .member{
-	height: 28px;
-	width: 28px;
-	float: right;
-	margin: 0 0 4px 4px;
-}
-
-.member{
-	background-color: #dfe3e6;
-	border-radius: 25em;
-	color: #17394d;
-	cursor: pointer;
-	display: block;
-	height: 32px;
-	margin: 0 4px 4px 0;
-	overflow: visible;
-	position: relative;
-	width: 32px;
-	text-decoration: none;
-	z-index: 0;
-}
-
-.list-card-members .member .member-initials{
-	height: 28px;
-	width: 28px;
-}
-
-.member-initials{
-	display: block;
-	font-size: 12px;
-	font-weight: 700;
-	top: 0;
-	left: 0;
-	height: 32px;
-	width: 100%;
-	line-height: 32px;
-	overflow: hidden;
-	position: absolute;
-	text-align: center;
-
-}
-
-.create-transaction{
-	border-radius: 0 0 3px 3px;
-	color: #6b808c;
-	display: block;
-	flex: 0 0 auto;
-	padding: 8px;
-	position: relative;;
-	text-decoration: none;
-}
-
-
-.entrant, .incoming{
-	color: #00e676;
-}
-.outgoing{
-	color: #d32f2f;
-}
-
 .incoming::before, .outgoing::before{
 	font-weight: 600;
 }
@@ -1492,7 +1041,6 @@ List Cards
 }
 
 .form-title{
-	color: #252525;
 	font-size: 1.1em;
 	font-weight: 700;
 	border-bottom: 1px solid #ccc;
@@ -1547,7 +1095,6 @@ List Cards
 /** Errors Field **/
 .error{
 	color: #d32f2f;
-	font-size: 0.8em;
 }
 
 .circle{
@@ -1686,14 +1233,6 @@ input.editable{
 }
 
 
-.cancel{
-	font-size: 1em;
-}
-
-.cancel:hover{
-	color: #aaa;
-	font-size: 1em;
-}
 
 .action{
 	text-decoration: none;
@@ -1712,7 +1251,6 @@ input.editable{
 	color: #232F34;
 	background-color: #232F341E;
 	cursor: pointer;
-	font-size: 1em;
 	font-weight: 500;
 	text-transform: uppercase;
 	border-radius: 2em;
@@ -1942,45 +1480,6 @@ input.editable{
 	font-weight: 400;
 }
 
-.card-content .title{
-	font-size: 1.2em;
-	font-weight: bold;
-}
-
-.card-content  .subhead{
-	font-size: 0.8em;
-	font-weight: 400;
-}
-
-.mat-card .card-actions{
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-
-}
-
-.mat-card .card-actions .buttons{
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-}
-
-.mat-card .card-actions .buttons .btn{
-	padding: 16px 8px 16px 0;
-	margin: 0 8px 0 0;
-}
-
-.mat-card .card-actions .icons{
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-}
-
-.mat-card .card-actions .icons .icon{
-	padding: 16px 8px 16px 0;
-	margin: 0 8px 0 0;
-}
-
 .mat-button-default{
 	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
 				0px 1px 1px 0px rgba(0, 0, 0, 0.14),
@@ -2012,7 +1511,6 @@ input.editable{
 	font-size: 0.75em;
 	font-weight: 500;
 	letter-spacing: 0.15em;
-	font-family: 'Monserrat', sans-serif;
 	padding: 0 16px;
 	margin: 8px;
 	border: none;
@@ -2067,7 +1565,6 @@ a.mat-button{
 .list-links{
 	position: relative;
 	width: 100%;
-	font-size: 1em;
 	font-weight: 400;
 	letter-spacing: 0.00875em;
 	list-style-type: none;
@@ -2086,7 +1583,6 @@ a.mat-button{
 .footer .list-item{
 	display: flex;
 	align-items: baseline;
-	/*font-size: 0.8em;*/
 	justify-content: center;
 }
 
@@ -2100,7 +1596,6 @@ a.mat-button{
 	width: 100%;
 	max-height: 40em;
 	overflow: auto;
-	font-size: 1em;
 	font-weight: 400;
 	letter-spacing: 0.0875em;
 	list-style-type: none;
@@ -2126,7 +1621,6 @@ a.mat-button{
 	z-index: 10;
 	align-items: center;
 	justify-content: center;
-	font-size: 1em;
 	font-weight: 600;
 }
 
@@ -2144,7 +1638,6 @@ a.mat-button{
 	position: relative;
 	align-items: center;
 	justify-content: start;
-	font-size: 0.825em;
 	padding: 0;
 	/*overflow: hidden;*/
 	width: 100%;
@@ -2206,11 +1699,6 @@ a.mat-button{
 
 }
 
-.cart-item .price{
-	font-size: 0.875em;
-	font-weight: 700;
-
-}
 
 .entry .part{
 	padding: 0 16px;
@@ -2222,13 +1710,11 @@ a.mat-button{
 }
 
 .money .amount{
-	font-size: 1em;
 	font-weight: 700;
 	padding : 0 4px 0 16px;
 }
 
 .money .currency{
-	font-size: 1em;
 	font-weight: 700;
 	padding : 0;
 }
@@ -2351,7 +1837,6 @@ a.mat-button{
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	background-color: #fafafa;
-	color: #252525;
 }
 
 .mat-dialog .dialog-title{
@@ -2359,7 +1844,6 @@ a.mat-button{
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	font-size: 1.2em;
 	font-weight: 700;
 	margin-bottom: 16px;
 }
@@ -2370,7 +1854,6 @@ a.mat-button{
 	align-items: center;
 	justify-content: flex-start;
 	width: 100%;
-	font-size: 1.2em;
 	font-weight: 400;
 	padding: 16px 8px;
 }
@@ -2386,9 +1869,6 @@ a.mat-button{
 .dialog-actions .action{
 	padding: 8px 16px;
 	margin: 0 16px;
-	font-size: 1em;
-	border: 1px solid #252525;
-	color: #252525;
 
 }
 
@@ -2397,7 +1877,6 @@ a.mat-button{
 	align-items: center;
 	justify-content: center;
 	position: absolute;
-	font-size: 1.2em;
 	font-weight: bold;
 	top: 4px;
 	right: 8px;
@@ -2422,7 +1901,6 @@ a.mat-button{
 }
 
 .mat-table-title{
-	font-size: 0.875em;
 	font-weight: 600;
 }
 
@@ -2465,7 +1943,6 @@ a.mat-button{
 
 table thead, .mat-table thead{
 	max-height: 64px;
-	font-size: 0.875rem;
 	font-weight: 600;
 	color: #242424;
 }
@@ -2520,7 +1997,6 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .mat-table-wrapper .mat-table-filter{
-	font-size: 0.875em;
 	font-weight: 600;
 	border: none;
 	border-bottom: 1px solid #ccc;
@@ -2692,7 +2168,7 @@ table tbody tr, .mat-table tbody tr{
 	left: 0.5em;
 	position: absolute;
 	padding: 0.2em;
-	font-size: 0.875em;
+	font-size: 0.8em;
 	font-weight: 600;
 }
 
@@ -2745,10 +2221,6 @@ table tbody tr, .mat-table tbody tr{
 	display: block;
 }
 
-.product-item{
-	font-size: 0.75em;
-}
-
 /*
 .custom-input input:not([display=none]){
 	border: none !important;
@@ -2759,17 +2231,24 @@ table tbody tr, .mat-table tbody tr{
 */
 .category-nav{
 	width: 100%;
+	font-size: 0.75em;
 	padding: 0.5em 1em;
 }
 
 .category-nav ul{
 	display: flex;
 	overflow-x: auto;
-	font-size: 1em;
 	margin: 0 auto;
 }
 .category-nav .mat-button{
+	min-height: auto !important;
 	padding: 0 2px !important;
+	margin: 0 1em;
+
+}
+
+.category-nav .mat-button span{
+	width: max-content;
 }
 
 #static-page{
@@ -2819,7 +2298,7 @@ table tbody tr, .mat-table tbody tr{
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	font-size: 1em;
+	/*font-size: 1em;*/
 	padding: 0.2rem 0.5rem;
 	flex: 1 13%;
 }
@@ -2854,12 +2333,21 @@ table tbody tr, .mat-table tbody tr{
 
 .product-detail-properties ul li .entry .key{
 	margin: unset;
+	font-weight: 500;
+	font-size: 1em ;
 }
 
 .product-detail-properties ul li .entry > div .chips,
 .product-detail-properties ul li .entry > .value,
 .product-detail-properties ul li .entry > .chips{
 	font-size: 0.8rem;
+	font-weight: 500;
+}
+
+.product-detail-properties h1, .product-detail-properties h2,
+.product-detail-properties h3, .product-detail-properties h4{
+	font-weight: 500;
+	font-size: 1em ;
 }
 
 .product-detail-properties .description{
@@ -2884,6 +2372,8 @@ table tbody tr, .mat-table tbody tr{
 	align-items: flex-start;
 	padding: 2% 1%;
 	margin-top: auto;
+	font-size: 0.8em;
+	text-transform: uppercase;
 }
 .language{
 	cursor: default;
@@ -2925,9 +2415,26 @@ table tbody tr, .mat-table tbody tr{
 }
 */
 .products .product{
-	font-size: 0.8em;
 	padding: 0.2em !important;
 	margin: 4px auto;
+}
+
+.category-description{
+	font-size: 0.8em;
+	width: 100%;
+	text-transform: uppercase;
+}
+
+.category-description *{
+	font-family: "Nunito", sans-serif;
+}
+.category-description h1{
+	font-size: 0.875em;
+	font-family: "Montserrat", sans-serif;
+}
+.category-description p{
+	font-family: "Oswald", sans-serif;
+	width: 45em;
 }
 /*
 .products .product-card:first-child, 
@@ -2991,7 +2498,6 @@ table tbody tr, .mat-table tbody tr{
 	width: 100%;
 	justify-content: center;
 	flex-wrap: wrap;
-	font-size: 0.8em;
 	letter-spacing: 0.2em;
 	padding: 1em;
 	margin-bottom: 2em;
@@ -3003,7 +2509,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .footer-catalog .icon{
-	font-size: 1.2em;
+	font-size: 1em;
 }
 
 .footer-catalog ul{
@@ -3021,6 +2527,12 @@ table tbody tr, .mat-table tbody tr{
 }
 
 @media only screen and (max-width:40em){
+	.category-description{
+		font-size: 0.7em;
+	}
+	.category-description p{
+		width: 100%;
+	}
 	.product-detail-properties{
 		font-size: 0.8em;
 		margin-top: 1em;
@@ -3251,9 +2763,6 @@ table tbody tr, .mat-table tbody tr{
 		border: 1px solid #ccc;
 	}
 	
-	.mat-table caption{
-		font-size: 1.5em;
-	}
 	
 	.mat-table .table-header{
 		width: 100%;

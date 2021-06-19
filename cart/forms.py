@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.models import User
+from django.utils import timezone
 from django.core.exceptions import ValidationError
 from lyshop import conf as GLOBAL_CONF
 from cart.models import CartItem, Coupon
@@ -30,8 +32,31 @@ class CartItemQuantityUpdateForm(forms.Form):
     quantity = forms.IntegerField()
 
 
+class CartProductUpdateForm(forms.Form):
+    customer = forms.IntegerField()
+    item = forms.UUIDField()
+    action = forms.CharField(max_length=32)
+    #quantity = forms.IntegerField()
+
+
+    def clean_customer(self):
+        customer = self.cleaned_data.get('customer')
+        if not User.objects.filter(pk=customer).exists():
+            #self.add_error("customer", error="Customer doesn't exist")
+            raise ValidationError("customer not found")
+        return customer
+    
+    def clean_item(self):
+        item = self.cleaned_data.get('item')
+        if not CartItem.objects.filter(item_uuid=item).exists():
+            raise ValidationError("Cart item not found")
+        return item
+    
+
 class CouponVerificationForm(forms.Form):
     coupon = forms.CharField(max_length=32)
+
+    
 
 
 class AddCartForm(forms.Form):
@@ -65,4 +90,14 @@ class CouponForm(forms.ModelForm):
             )
 
         
-        
+
+
+class ApplyCouponForm(forms.Form):
+
+    coupon = forms.CharField(max_length=32)
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        coupon = cleaned_data.get('coupon')
+        if not Coupon.objects.filter(name=coupon, is_active=True, expire_at__gte=timezone.now()).exists():
+            raise ValidationError(f"Coupon {coupon} not found. Check if the coupon exists and is valid")

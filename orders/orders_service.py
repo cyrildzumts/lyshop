@@ -14,6 +14,7 @@ from orders.forms import PaymentMethodForm
 from catalog.models import Product, ProductVariant
 from vendors.models import SoldProduct, Balance, BalanceHistory
 from shipment import shipment_service
+from shipment import constants as SHIPMODE_CONSTANTS
 from addressbook import addressbook_service
 from itertools import islice
 import requests
@@ -543,6 +544,15 @@ def send_order_mail_confirmation(order, cancellation=False):
 
     order_status_key, order_status_value = commons.get_order_status_name(order.status)
     payment_option_key, payment_option_value = commons.get_payment_option_name(order.payment_option)
+    address = None
+    ship_mode = None
+    if order.ship_mode.mode not in SHIPMODE_CONSTANTS.IN_STORE_PICK_MODE:
+        address = order.address.to_str()
+    else:
+        address = order.ship_mode.display_name
+        ship_mode = address
+
+    
     send_order_mail_task.apply_async(
         args=[{
                 'order' : order.pk,
@@ -556,7 +566,8 @@ def send_order_mail_confirmation(order, cancellation=False):
                     'FULL_NAME': order.user.get_full_name(),
                     'AMOUNT': order.amount,
                     'SHIPPING_PRICE': order.ship_mode.price,
-                    'ADDRESS' : order.address.to_str(),
+                    'ADDRESS' : address,
+                    'SHIP_MODE': ship_mode,
                     'COUPON' : '',
                     'PAYMENT_OPTION' : payment_option_value,
                     'ORDER_STATUS': order_status_value,

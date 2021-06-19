@@ -1,7 +1,14 @@
 
-define(['ajax_api', 'lang'], function(ajax_api, Locale) {
+define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
     'use strict';
     
+    //accounts.init();
+    var user = {};
+    var customer = - 1;
+    // accounts.set_callback(function(obj){
+    //     user = obj;
+    //     customer = user.user_id;
+    // });
 
     function Cart(){
         this.user = "";
@@ -65,13 +72,15 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         });
         $('.js-add-coupon').on('click', self.addCoupon.bind(this));
         $(".js-remove-coupon").on('click', self.removeCoupon);
-        console.log("Cart initialized");
+        console.log("Cart initialized with account : ", accounts.get_user());
+        console.log("Cart for user %s - user id : %s - user last login : %s", user.username, user.user_id, user.last_login);
     }
 
-    Cart.prototype.ui_update = function(){
-
+    Cart.prototype.set_user = function(obj){
+        console.log("Cart : setting user to ", obj);
+        user = obj;
+        customer = user.user_id;
     }
-
 
     Cart.prototype.add = function(formData, product_name){
         var self = this;
@@ -82,10 +91,11 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/cart/ajax-add-to-cart/',
+            url : '/api/add-to-cart/',
             data : formData
         }
-        ajax_api(option).then(function(response){
+        
+        ajax_api.ajax(option).then(function(response){
             self.update_badge(response.quantity);
             notify({level:response.success? 'info': 'error', content: response.message});
         }, function(reason){
@@ -161,16 +171,21 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
                     type:'POST',
                     method: 'POST',
                     dataType: 'json',
-                    url : '/cart/ajax-add-coupon/',
+                    url : '/api/add-to-coupon/',
                     data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
                 }
-                ajax_api(option).then(function(response){
-                    $(".original-price").text(response.subtotal);
-                    $(".final-price").text(response.total);
-                    $(".js-cart-reduction").text(response.reduction);
-                    $(".js-add-coupon").hide().siblings(".js-remove-coupon").show();
-                    $("#coupon").prop('disabled', true).toggleClass('disabled');
-                    notify({level:'info', content:'coupon added'});
+                ajax_api.ajax(option).then(function(response){
+                    if(response.added){
+                        $(".original-price").text(response.subtotal);
+                        $(".final-price").text(response.total);
+                        $(".js-cart-reduction").text(response.reduction);
+                        $(".js-add-coupon").hide().siblings(".js-remove-coupon").show();
+                        $("#coupon").prop('disabled', true).toggleClass('disabled');
+                        notify({level:'info', content:'coupon added'});
+                    }else{
+                        notify({level:'info', content:'coupon could not be added'});
+                    }
+                    
                 }, function(reason){
                     notify({level:'info', content:'coupon could not be added'});
                     console.error("Error on adding Coupon \"%s\" to user cart", coupon);
@@ -193,23 +208,28 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             console.warning("Cart remove oporation not allowed: csrf_token missing");
             return;
         }
+        var coupon = $('#coupon');
         console.log("Remove coupon %s from cart");
         var option = {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/cart/ajax-coupon-remove/',
-            data : {csrfmiddlewaretoken : csrfmiddlewaretoken}
+            url : '/api/remove-coupon/',
+            data : {coupon: coupon.val(), csrfmiddlewaretoken : csrfmiddlewaretoken}
         }
-        ajax_api(option).then(
+        ajax_api.ajax(option).then(
             function(response){
                 var data = response;
-                $('#coupon').prop('disabled', false).removeClass('disabled', false).val('');
-                $(".original-price").text(response.subtotal);
-                $(".final-price").text(response.total);
-                $(".js-cart-reduction").text(response.reduction);
-                $(".js-add-coupon").show().siblings(".js-remove-coupon").hide();
-                notify({level:'info', content:'coupon removed'});
+                if(response.removed){
+                    coupon.prop('disabled', false).removeClass('disabled', false).val('');
+                    $(".original-price").text(response.subtotal);
+                    $(".final-price").text(response.total);
+                    $(".js-cart-reduction").text(response.reduction);
+                    $(".js-add-coupon").show().siblings(".js-remove-coupon").hide();
+                    notify({level:'info', content:'coupon removed'});
+                }else{
+                    notify({level:'warn', content:'Coupon not removed'});
+                }
                 //document.location.reload();
             }, 
             function(error){
@@ -230,10 +250,10 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/cart/ajax-coupon-verify/',
+            url : '/api/verify-coupon/',
             data : {coupon : coupon, csrfmiddlewaretoken : csrfmiddlewaretoken}
         }
-        ajax_api(option).then(
+        ajax_api.ajax(option).then(
             function(response){
                 if(typeof callback == "function"){
                     callback(response);
@@ -249,21 +269,27 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
 
     Cart.prototype.update_product = function(to_update){
         var self = this;
-        var data = {};
-        data['csrfmiddlewaretoken'] = this.csrfmiddlewaretoken.value;
-        data['quantity'] = to_update['quantity'];
-        data['action'] = to_update['action'];
-        data['item'] = to_update['item_uuid'];
-
+        var data = {
+            "csrfmiddlewaretoken"   : this.csrfmiddlewaretoken.value,
+            //"quantity"              : to_update['quantity'],
+            "action"                :  to_update['action'],
+            "item"                  : to_update['item_uuid'],
+            "customer"              : customer
+        };
         var option = {
             type:'POST',
             method: 'POST',
             dataType: 'json',
-            url : '/cart/ajax-cart-item/' + data['item'] + '/' + data['action'] + '/',
+            //url : '/cart/ajax-cart-item/' + data['item'] + '/' + data['action'] + '/',
+            url : '/api/update-cart-item/',
             data : data
         }
-        ajax_api(option).then(function(response){
+        ajax_api.ajax(option).then(function(response){
             self.update_badge(response.count);
+            if(!response.success){
+                notify({level:'error', content:response.error});
+                return;
+            }
             if(response.count == 0){
                 document.location.reload();
                 return ;
@@ -295,6 +321,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
         data['quantity'] = quantity;
         data['action'] = 'update';
         data['item_uuid'] = item_uuid;
+        data['customer'] = customer;
     
         var option = {
             type:'POST',
@@ -303,7 +330,7 @@ define(['ajax_api', 'lang'], function(ajax_api, Locale) {
             url : '/cart/ajax-cart-item-update/',
             data : data
         }
-        ajax_api(option).then(function(response){
+        ajax_api.ajax_lang(option).then(function(response){
             if(response['item_quantity'] == 0){
                 $('#' + target.data('parent')).fadeOut('slow').remove();
             }else{
