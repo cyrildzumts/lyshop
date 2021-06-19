@@ -118,7 +118,6 @@ def category_detail(request, sale=None, category_uuid=None):
         list_set = paginator.page(1)
     except EmptyPage:
         list_set = None
-    paths = catalog_service.build_category_paths(category)
     context = {
         'page_title': category.get_page_title(),
         'category' : category,
@@ -133,7 +132,6 @@ def category_detail(request, sale=None, category_uuid=None):
         'OG_DESCRIPTION': settings.META_DESCRIPTION,
         'OG_IMAGE': static('assets/lyshop_banner.png'),
         'OG_URL': request.build_absolute_uri(),
-        'CATEGORY_PATHS' : paths,
         'sale_category' : sale_category
     }
     return render(request,template_name, context)
@@ -165,7 +163,7 @@ def category_detail_slug(request, sale=None, slug=None):
         list_set = paginator.page(1)
     except EmptyPage:
         list_set = None
-
+    paths = catalog_service.build_category_paths(category)
     context = {
         'page_title': category.get_page_title(),
         'category' : category,
@@ -179,6 +177,7 @@ def category_detail_slug(request, sale=None, slug=None):
         'OG_TITLE' : category.get_page_title(),
         'OG_DESCRIPTION': settings.META_DESCRIPTION,
         'OG_IMAGE': static('assets/lyshop_banner.png'),
+        'CATEGORY_PATHS' : paths,
         'OG_URL': request.build_absolute_uri(),
         'sale_category' : sale_category
     }
