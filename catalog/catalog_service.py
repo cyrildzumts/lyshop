@@ -8,6 +8,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
+CATEGORY_CACHE = []
+
+
 def get_product_attributes(product_id):
     common_attrs = None
     selective_attrs = []
@@ -212,3 +216,11 @@ def get_non_empty_root_category():
     for c in categories_with_products:
         logger.info(f"Category : {c.name} - {c.display_name} - products : {c.product_count}" )
     return roots_cats
+
+
+def category_products(category):
+    if not isinstance(category, Category):
+        return []
+    category_list = []
+    
+    return category_list
