@@ -11,11 +11,13 @@
                 <div class="submenu full">
                     <span>{% trans c.display_name %} <i class="fas fa-caret-down icon"></i></span>
                     
+                    {% if c.children %}
                     <ul>
                         {% for cc in c.children.all %}
                             <li class="full"><a href="{{cc.get_slug_url}}"><span>{% trans cc.display_name %}</span></a></li>
                         {% endfor %}
                     </ul>
+                    {% endif %}
                 </div>
             </li>
             {% endfor %}
