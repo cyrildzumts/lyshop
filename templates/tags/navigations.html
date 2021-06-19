@@ -1,16 +1,19 @@
 {% load i18n %}
 
+
+
 <div class="big-menu full">
     <span>{% trans "Shop" %} <i class="fas fa-caret-down icon"></i></span>
     <div class="nav-menu full">
         <ul class="grid">
-            {% for k,v in GENDER %}
+            {% for c in root_category_list %}
             <li class="col-xs-12 col-2">
                 <div class="submenu full">
-                    <span>{% trans v %} <i class="fas fa-caret-down icon"></i></span>
+                    <span>{% trans c.display_name %} <i class="fas fa-caret-down icon"></i></span>
+                    
                     <ul>
-                        {% for p_type in PRODUCT_TYPES %}
-                            <li class="full"><a href="#">{% trans p_type.display_name %}</a></li>
+                        {% for cc in c.children.all %}
+                            <li class="full"><a href="{{cc.get_slug_url}}"><span>{% trans cc.display_name %}</span></a></li>
                         {% endfor %}
                     </ul>
                 </div>
