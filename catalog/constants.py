@@ -136,6 +136,34 @@ INTEGER_PATTERN_REGEX               = re.compile(r'^[0-9]+$')
 LIST_FILTER_PATTERN                 = re.compile(r'^\w+([,;]\w+)*$')
 INTEGER_RANGE_FILTER_PATTERN        = re.compile(r'(?P<START>\d+)?(?:-{1,2})(?P<END>\d+)?')
 
+CATEGORY_CHILD_TO_ROOT_QUERY = """
+WITH RECURSIVE CTE_CAT(id, name, parent_id, parents) AS (
+SELECT id,name, parent_id, array[parent_id] FROM catalog_category 
+WHERE id=%s
+UNION
+SELECT CTE_CAT.id, CTE_CAT.name, c.parent_id, CTE_CAT.parents||c.parent_id 
+FROM CTE_CAT
+JOIN catalog_category c ON CTE_CAT.parent_id = c.id
+)
+SELECT distinct on (id) id,name, parents
+FROM CTE_CAT 
+ORDER BY id, array_length(parents, 1) desc;
+"""
+
+CATEGORY_ROOT_TO_CHILD_QUERY = """
+WITH RECURSIVE CTE_CAT(id, name, parent_id, parents) AS (
+SELECT id,name, parent_id, array[parent_id] FROM catalog_category 
+WHERE parent_id=%s
+UNION
+SELECT CTE_CAT.id, CTE_CAT.name, c.parent_id, CTE_CAT.parents||c.parent_id 
+FROM CTE_CAT
+JOIN catalog_category c ON c.id = CTE_CAT.parent_id
+)
+SELECT distinct on (id) id,name, parents
+FROM CTE_CAT 
+ORDER BY id, array_length(parents, 1) desc;
+"""
+
 
 def get_attribute_type_key(value):
     return utils.find_element_by_value_in_tuples(value, ATTRIBUTE_TYPE)
