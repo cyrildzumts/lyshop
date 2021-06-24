@@ -203,9 +203,9 @@ def build_category_paths(category):
     while parent:
         paths.append(parent)
         parent = parent.parent
-    
+    paths.reverse()
     logger.info(f"Built paths from category {category.name} to roots : {paths}")
-    return paths.reverse()
+    return paths
     
 
 def get_non_empty_root_category():
