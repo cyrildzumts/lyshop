@@ -9,11 +9,9 @@
 <div class="container product-detail-wrapper">
   <ul class="navigation-paths">
     <li class="mat-button-text path"><a href="{% url 'catalog:catalog-home' %}"><span>{% trans 'Catalog' %}</span><span></span></a></li>
-    {% if product.category.parent %}
-    <li class="mat-button-text path"><a href="{{product.category.parent.get_slug_url}}"><span>{% trans product.category.parent.display_name %}</span><span></span></a></li>
-
-    {% endif %}
-    <li class="mat-button-text path"><a href="{{product.category.get_slug_url}}">{% trans product.category.display_name %}</a></li>
+    {% for c in category_paths %}
+    <li class="mat-button-text path"><a href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
+    {% endfor %}
   </ul>
   <div class="container">
     <div class="col-m-12 col-3">

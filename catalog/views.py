@@ -304,6 +304,7 @@ def product_detail_slug(request, category_slug=None, product_slug=None, product_
         'OG_IMAGE': request.build_absolute_uri(product.images.first().get_image_url()),
         'OG_URL': request.build_absolute_uri(),
         'wishlist_list' : wishlist_list,
+        'category_paths' : catalog_service.build_category_paths(product.category),
         'recommendations': inventory_service.get_recommandations(product),
         'recommendation_label' : CORE_UI_STRING.RECOMMANDATION_LABEL
     }

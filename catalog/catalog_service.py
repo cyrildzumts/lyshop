@@ -205,7 +205,7 @@ def build_category_paths(category):
         parent = parent.parent
     
     logger.info(f"Built paths from category {category.name} to roots : {paths}")
-    return paths
+    return paths.reverse()
     
 
 def get_non_empty_root_category():
@@ -223,6 +223,7 @@ def category_descendants(category):
         return []
     queryset = Category.objects.raw(Constants.CATEGORY_DESCENDANTS_QUERY, [category.id])
     category_list = [c for c in queryset]
+    category_list
     
     return category_list
 
