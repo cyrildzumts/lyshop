@@ -17,11 +17,11 @@
                 <p>{% trans category.description %}</p>
         </div>
         {% endif %}
-        <div class="sidebar-nav-wrapper col-3 hidden-m">
+        <div class="sidebar-nav-wrapper col-2 hidden-m">
         {% include "tags/sidebar_nav.html" %}
         </div>
         {% if product_list %}
-        <div class="product-list-wrapper col-9 col-m-12">
+        <div class="product-list-wrapper col-10 col-m-12">
         
                 <div id="products" class="products js-product-list">
                         {% include "tags/products_snippet.html" with product_list=product_list %}
