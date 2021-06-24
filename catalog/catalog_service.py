@@ -218,9 +218,19 @@ def get_non_empty_root_category():
     return roots_cats
 
 
+def category_descendants(category):
+    if not isinstance(category, Category):
+        return []
+    queryset = Category.objects.raw(Constants.CATEGORY_DESCENDANTS_QUERY, [category.id])
+    category_list = [c for c in queryset]
+    
+    return category_list
+
+
 def category_products(category):
     if not isinstance(category, Category):
         return []
-    category_list = []
+    queryset = Product.objects.raw(Constants.CATEGORY_PRODUCT_QUERY, [category.id])
+    product_list = [p for p in queryset]
     
-    return category_list
+    return product_list

@@ -145,6 +145,7 @@ def category_detail_slug(request, sale=None, slug=None):
     category = get_object_or_404(Category, slug__iexact=slug)
     sale_category = Product.objects.filter(is_active=True, sale=True).exists()
     subcats = category.get_children().filter(is_active=True)
+    descendants = catalog_service.category_descendants(category)
     filterquery = Q(category__category_uuid=category.category_uuid)
     subcatquery = Q(category__id__in=subcats.values_list('id'))
     queryDict = request.GET.copy()
@@ -152,7 +153,8 @@ def category_detail_slug(request, sale=None, slug=None):
     queryset = field_filter.apply_filter().filter(is_active=True)
     logger.debug(f"queryset count : {queryset.count()}")
     selected_filters = field_filter.selected_filters
-    queryset = queryset.filter(filterquery | subcatquery)
+    #queryset = queryset.filter(filterquery | subcatquery)
+    queryset = queryset.filter(category__in=descendants)
     if sale == 'sale':
         queryset = queryset.filter(sale=True)
     page = request.GET.get('page', 1)

@@ -165,6 +165,33 @@ ORDER BY id, array_length(parents, 1) desc;
 """
 
 
+CATEGORY_DESCENDANTS_QUERY = """
+WITH RECURSIVE graph(id) AS(
+SELECT id FROM catalog_category
+WHERE id=%s AND is_active=true
+UNION 
+SELECT c.id      
+FROM catalog_category c, graph g WHERE c.parent_id = g.id AND c.is_active=true
+)
+SELECT id
+FROM graph ORDER BY id desc;
+"""
+
+
+## GET ALL Product from the current category and subcategories
+CATEGORY_PRODUCT_QUERY = """
+
+WITH RECURSIVE graph(id) AS(
+SELECT id FROM catalog_category
+WHERE id=%s AND is_active=true
+UNION 
+SELECT c.id FROM catalog_category c, graph g WHERE c.parent_id = g.id AND c.is_active=true
+)
+SELECT * from catalog_product p
+WHERE p.category_id IN (SELECT id FROM graph ORDER BY id);
+"""
+
+
 def get_attribute_type_key(value):
     return utils.find_element_by_value_in_tuples(value, ATTRIBUTE_TYPE)
 
