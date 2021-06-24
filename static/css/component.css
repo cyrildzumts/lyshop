@@ -85,6 +85,25 @@ canvas{
 	margin: 0 !important;
 }
 
+.side-nav{
+	width: 100%;
+	padding: 1em;
+}
+
+.side-nav h1{
+	font-size: 1em !important;
+	font-weight: 500 !important;
+}
+
+.side-nav ul li{
+	text-align: left;
+	padding-bottom: 0.5em;
+}
+
+.side-nav ul a{
+	text-align: left;
+}
+
 .diagram-wrapper{
 	width: 100%;
 }
