@@ -89,6 +89,9 @@ canvas{
 	width: 100%;
 	padding-left: 1em;
 }
+.nav-title{
+	padding-bottom: 1em;
+}
 
 .side-nav h1{
 	font-size: 1em !important;
