@@ -17,15 +17,21 @@
                 <p>{% trans category.description %}</p>
         </div>
         {% endif %}
-        {% if product_list %}
-        <div id="products" class="products js-product-list">
-                {% include "tags/products_snippet.html" with product_list=product_list %}
+        <div class="sidebar-nav-wrapper col-3 hidden-m">
+        {% include "tags/sidebar_nav.html" %}
         </div>
-        {% else %}
-        <div class="mat-box">
-        <p>{% trans "There are no products to display for this  category yet." %}</p>
-        <p>{% trans "As soon as Product are available on this category, they will be listed here." %}</p>
-        <p>{% trans "Please try again later" %}</p>
+        {% if product_list %}
+        <div class="product-list-wrapper col-9 col-m-12">
+        
+                <div id="products" class="products js-product-list">
+                        {% include "tags/products_snippet.html" with product_list=product_list %}
+                </div>
+                {% else %}
+                <div class="mat-box">
+                <p>{% trans "There are no products to display for this  category yet." %}</p>
+                <p>{% trans "As soon as Product are available on this category, they will be listed here." %}</p>
+                <p>{% trans "Please try again later" %}</p>
+                </div>
         </div>
         {% endif %}
 </div>

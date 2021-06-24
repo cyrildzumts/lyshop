@@ -175,6 +175,7 @@ def category_detail_slug(request, sale=None, slug=None):
         'type_list': ProductType.objects.all(),
         'parent_sub_category_list': Category.objects.filter(parent=category.parent, is_active=True),
         'subcategory_list': subcats,
+        'subcategories': subcats,
         'GENDER' : Constants.GENDER,
         'SELECTED_FILTERS' : selected_filters,
         'OG_TITLE' : category.get_page_title(),

@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load static %} 
+
+
+<div class="side-nav">
+    <div class="medium">
+        <h1>{% trans category.display_name %}</h1>
+    </div>
+    <ul>
+        <li><a href="{% url category.get_slug_url %}"><span>{% trans "All" %}</span></a></li>
+        {% for c in subcategories %}
+        <li><a href="{% url c.get_slug_url %}"><span>{% trans c.display_name %}</span></a></li>
+        {% endfor %}
+    </ul>
+</div>
