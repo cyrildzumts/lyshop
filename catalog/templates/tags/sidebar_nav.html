@@ -1,11 +1,7 @@
 {% load i18n %}
 {% load static %} 
-{% comment %}
-    {% load cache %}
-    {%cache 600 side-nav%}
-    
-    {%endcache%}
-{% endcomment %}
+{% load cache %}
+{%cache 600 side-nav%}
 <div class="side-nav">
     <div class="nav-title medium">
         <h1>{% trans category.display_name %}</h1>
@@ -17,3 +13,4 @@
         {% endfor %}
     </ul>
 </div>
+{%endcache%}
