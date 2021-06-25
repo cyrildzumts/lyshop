@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load static %} 
 {% load cache %}
-{%cache 600 side-nav%}
+{%cache 600 category.name%}
 <div class="side-nav">
     <div class="nav-title medium">
         <h1>{% trans category.display_name %}</h1>
