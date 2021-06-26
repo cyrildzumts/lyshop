@@ -1,5 +1,7 @@
+from os import EX_PROTOCOL
 from cart.models import CartItem
 from django.db.models import Q, Count
+from django.core.cache import cache
 from catalog.models import Category, Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute, News
 from catalog.forms import NewsForm
 from catalog import constants as Constants
@@ -9,7 +11,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-CATEGORY_CACHE = []
+CACHE = {}
 
 
 def get_product_attributes(product_id):
@@ -104,6 +106,9 @@ def product_attributes(product_id):
     if not isinstance(product_id, int):
         logger.warn("product_attributes : product_id not of the type int")
         return {}
+    key = Constants.CACHE_PRODUCT_ATTRIBUTES_PREFIX + str(product_id)
+    if key in CACHE:
+        return CACHE.get(key)
     variants = ProductVariant.objects.filter(product=product_id)
     attr_dict = {}
     attrs = []
@@ -116,7 +121,8 @@ def product_attributes(product_id):
         logger.info("Attrs available")
     else: 
         logger.info("Attrs not available")
-    return group_attrs(attrs)
+    CACHE[key] = group_attrs(attrs)
+    return CACHE[key]
     
 
 
@@ -194,16 +200,22 @@ def update_news(news, data):
     return updated_news
 
 
+
+
+
 def build_category_paths(category):
     if not isinstance(category, Category):
         return []
-
+    key = Constants.CACHE_CATEGORY_PATH_PREFIX + category.name
+    if key in CACHE:
+        return CACHE.get(key)
     paths = [category]
     parent = category.parent
     while parent:
         paths.append(parent)
         parent = parent.parent
     paths.reverse()
+    CACHE[key] = paths
     logger.info(f"Built paths from category {category.name} to roots : {paths}")
     return paths
     
@@ -221,17 +233,23 @@ def get_non_empty_root_category():
 def category_descendants(category):
     if not isinstance(category, Category):
         return []
+    key = Constants.CACHE_CATEGORY_DESCENDANTS_PREFIX + category.name
+    if key in CACHE:
+        return CACHE.get(key)
     queryset = Category.objects.raw(Constants.CATEGORY_DESCENDANTS_QUERY, [category.id])
     category_list = [c for c in queryset]
     category_list
-    
+    CACHE[key] = category_list
     return category_list
 
 
 def category_products(category):
     if not isinstance(category, Category):
         return []
+    key = Constants.CACHE_CATEGORY_PRODUCTS_PREFIX + category.name
+    if key in CACHE:
+        return CACHE.get(key)
     queryset = Product.objects.raw(Constants.CATEGORY_PRODUCT_QUERY, [category.id])
     product_list = [p for p in queryset]
-    
+    CACHE[key] = product_list
     return product_list
