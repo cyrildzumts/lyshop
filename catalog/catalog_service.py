@@ -108,6 +108,7 @@ def product_attributes(product_id):
         return {}
     key = Constants.CACHE_PRODUCT_ATTRIBUTES_PREFIX + str(product_id)
     if key in CACHE:
+        logger.debug("get product attrs from cache")
         return CACHE.get(key)
     variants = ProductVariant.objects.filter(product=product_id)
     attr_dict = {}
@@ -121,6 +122,7 @@ def product_attributes(product_id):
         logger.info("Attrs available")
     else: 
         logger.info("Attrs not available")
+    logger.debug("adding product attrs into cache")
     CACHE[key] = group_attrs(attrs)
     return CACHE[key]
     
@@ -208,6 +210,7 @@ def build_category_paths(category):
         return []
     key = Constants.CACHE_CATEGORY_PATH_PREFIX + category.name
     if key in CACHE:
+        logger.debug(f"get category path  with key {key} from cache")
         return CACHE.get(key)
     paths = [category]
     parent = category.parent
@@ -215,6 +218,7 @@ def build_category_paths(category):
         paths.append(parent)
         parent = parent.parent
     paths.reverse()
+    logger.debug(f"adding category path  with key {key} into cache")
     CACHE[key] = paths
     logger.info(f"Built paths from category {category.name} to roots : {paths}")
     return paths
@@ -235,10 +239,12 @@ def category_descendants(category):
         return []
     key = Constants.CACHE_CATEGORY_DESCENDANTS_PREFIX + category.name
     if key in CACHE:
+        logger.debug(f"get category descendants  with key {key} from cache")
         return CACHE.get(key)
     queryset = Category.objects.raw(Constants.CATEGORY_DESCENDANTS_QUERY, [category.id])
     category_list = [c for c in queryset]
     category_list
+    logger.debug(f"adding category descendants  with key {key} into cache")
     CACHE[key] = category_list
     return category_list
 
@@ -248,8 +254,10 @@ def category_products(category):
         return []
     key = Constants.CACHE_CATEGORY_PRODUCTS_PREFIX + category.name
     if key in CACHE:
+        logger.debug(f"get category products  with key {key} from cache")
         return CACHE.get(key)
     queryset = Product.objects.raw(Constants.CATEGORY_PRODUCT_QUERY, [category.id])
     product_list = [p for p in queryset]
+    logger.debug(f"adding category product  with key {key} into cache")
     CACHE[key] = product_list
     return product_list
