@@ -11,7 +11,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-CACHE = {}
+CACHE = cache
 
 
 def get_product_attributes(product_id):
@@ -107,9 +107,10 @@ def product_attributes(product_id):
         logger.warn("product_attributes : product_id not of the type int")
         return {}
     key = Constants.CACHE_PRODUCT_ATTRIBUTES_PREFIX + str(product_id)
-    if key in CACHE:
+    p_attrs = CACHE.get(key)
+    if p_attrs is not None:
         logger.debug("get product attrs from cache")
-        return CACHE.get(key)
+        return p_attrs
     variants = ProductVariant.objects.filter(product=product_id)
     attr_dict = {}
     attrs = []
@@ -123,8 +124,9 @@ def product_attributes(product_id):
     else: 
         logger.info("Attrs not available")
     logger.debug("adding product attrs into cache")
-    CACHE[key] = group_attrs(attrs)
-    return CACHE[key]
+    p_attrs = group_attrs(attrs)
+    CACHE.set(key, p_attrs)
+    return p_attrs
     
 
 
@@ -209,9 +211,10 @@ def build_category_paths(category):
     if not isinstance(category, Category):
         return []
     key = Constants.CACHE_CATEGORY_PATH_PREFIX + category.name
-    if key in CACHE:
+    paths = CACHE.get(key)
+    if paths is not None:
         logger.debug(f"get category path  with key {key} from cache")
-        return CACHE.get(key)
+        return paths
     paths = [category]
     parent = category.parent
     while parent:
@@ -219,7 +222,7 @@ def build_category_paths(category):
         parent = parent.parent
     paths.reverse()
     logger.debug(f"adding category path  with key {key} into cache")
-    CACHE[key] = paths
+    CACHE.set(key,paths)
     logger.info(f"Built paths from category {category.name} to roots : {paths}")
     return paths
     
@@ -238,26 +241,27 @@ def category_descendants(category):
     if not isinstance(category, Category):
         return []
     key = Constants.CACHE_CATEGORY_DESCENDANTS_PREFIX + category.name
-    if key in CACHE:
+    descendants = CACHE.get(key)
+    if descendants is not None:
         logger.debug(f"get category descendants  with key {key} from cache")
-        return CACHE.get(key)
+        return descendants
     queryset = Category.objects.raw(Constants.CATEGORY_DESCENDANTS_QUERY, [category.id])
-    category_list = [c for c in queryset]
-    category_list
+    descendants = [c for c in queryset]
     logger.debug(f"adding category descendants  with key {key} into cache")
-    CACHE[key] = category_list
-    return category_list
+    CACHE.set(key, descendants)
+    return descendants
 
 
 def category_products(category):
     if not isinstance(category, Category):
         return []
     key = Constants.CACHE_CATEGORY_PRODUCTS_PREFIX + category.name
-    if key in CACHE:
+    product_list = CACHE.get(key)
+    if product_list is not None:
         logger.debug(f"get category products  with key {key} from cache")
-        return CACHE.get(key)
+        return product_list
     queryset = Product.objects.raw(Constants.CATEGORY_PRODUCT_QUERY, [category.id])
     product_list = [p for p in queryset]
     logger.debug(f"adding category product  with key {key} into cache")
-    CACHE[key] = product_list
+    CACHE.set(key,product_list)
     return product_list
