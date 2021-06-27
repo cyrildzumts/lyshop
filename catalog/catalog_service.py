@@ -216,7 +216,7 @@ def __create_map(category=None, category_list=[]):
             result['children'] = __create_map(c, category_list)
            
 
-    return {'category_name': category.name, 'category': category, 'children': children} 
+    return result
 
 
 
