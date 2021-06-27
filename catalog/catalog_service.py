@@ -219,6 +219,7 @@ def __create_map(category=None, category_list=[]):
     for c in children:
         result['category_name'] = c.name
         result['category'] = c
+        logger.debug(f"RECURSIVE CALL for Category : {c.name}")
         result['children'] = __create_map(c, category_list)
     logger.debug("Quitting __create_map()")
 
