@@ -221,7 +221,8 @@ def __create_map(category=None, category_list=[]):
         result['category'] = c
         logger.debug(f"RECURSIVE CALL for Category : {c.name}")
         result['children'] = __create_map(c, category_list)
-    logger.debug("Quitting __create_map()")
+        logger.debug(f"END RECURSIVE CALL for Category : {c.name} - result = {result}")
+    logger.debug(f"Quitting __create_map() : result = {result}")
 
     return result
 
