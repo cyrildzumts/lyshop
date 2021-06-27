@@ -227,6 +227,7 @@ def make_tree():
         roots.add(v)
     
     roots -= parents
+    logger.debug(f"Results")
     for p in roots:
         result.append(__ancestors(p))
         logger.debug(f"Result : {result}")
