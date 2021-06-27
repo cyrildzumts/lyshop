@@ -6,6 +6,7 @@ from catalog.models import Category, Product, ProductAttribute, ProductVariant, 
 from catalog.forms import NewsForm
 from catalog import constants as Constants
 from core import core_tools
+from itertools import groupby
 import logging
 
 logger = logging.getLogger(__name__)
@@ -205,6 +206,28 @@ def update_news(news, data):
 
 
 
+def __make_index(category_nodes):
+    return  {
+            k: list(v) for (k,v) in groupby(category_nodes, lambda x : x.parent)
+        }
+
+def __make_cat_node(index, child):
+    return {
+            'name': child['name'],
+            'children': __make_cat_tree(index, child.id)
+        }
+
+def __make_cat_tree(index, root):
+    if not root in index:
+        return []
+    else:
+        return [__make_cat_node(index, child) for child in index[root]]
+
+
+def make_cat_map(root=None):
+    queryset = Category.objects.filter(is_active=True)
+    category_list = [c for c in queryset]
+    return __make_cat_tree(__make_index(category_list), root)
 
 def __create_map(category=None, category_list=[]):
     result = {}
