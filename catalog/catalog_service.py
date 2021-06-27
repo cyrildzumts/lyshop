@@ -213,16 +213,19 @@ def __create_map(category=None, category_list=[]):
         logger.debug(f"Children Content : Category : {category} - child : {child.name}")
     
     if len(children) == 0:
-        logger.debug(f"NO Children Content : Category : {category}")
+        #logger.debug(f"NO Children Content : Category : {category}")
         return {'category': category, 'children': children}
 
     for c in children:
         result['category_name'] = c.name
         result['category'] = c
-        logger.debug(f"RECURSIVE CALL for Category : {c.name}")
-        result['children'] = __create_map(c, category_list)
-        logger.debug(f"END RECURSIVE CALL for Category : {c.name} - result = {result}")
-    logger.debug(f"Quitting __create_map() : result = {result}")
+        #logger.debug(f"RECURSIVE CALL for Category : {c.name}")
+        r = __create_map(c, category_list)
+        r_is_result = r == result
+        logger.debug(f"result =  r : {r_is_result} ")
+        result['children'] = r
+        #logger.debug(f"END RECURSIVE CALL for Category : {c.name} - result = {result}")
+    #logger.debug(f"Quitting __create_map() : result = {result}")
 
     return result
 
