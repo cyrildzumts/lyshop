@@ -208,7 +208,7 @@ def update_news(news, data):
 
 def __make_index(category_nodes):
     return  {
-            k: list(v) for (k,v) in groupby(category_nodes, lambda x : x.parent.id)
+            k: list(v) for (k,v) in groupby(category_nodes, lambda x : x.parent_id)
         }
 
 def __make_cat_node(index, child):
@@ -231,7 +231,7 @@ def make_cat_map(root=None):
 
 def __create_map(category=None, category_list=[]):
     result = {}
-    children = [c for c in filter(lambda x : x.parent_id == category, category_list)]
+    children = [c for c in filter(lambda x : x.parent == category, category_list)]
     for child in children:
         logger.debug(f"Children Content : Category : {category} - child : {child.name}")
     
