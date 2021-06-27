@@ -214,7 +214,7 @@ def __make_index(category_nodes):
 
 def __make_cat_node(index, child):
     return {
-            'name': child['name'],
+            'name': child.name,
             'children': __make_cat_tree(index, child)
         }
 
