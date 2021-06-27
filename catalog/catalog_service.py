@@ -208,7 +208,7 @@ def update_news(news, data):
 
 def __make_index(category_nodes):
     return  {
-            k: list(v) for (k,v) in groupby(category_nodes, lambda x : x.parent)
+            k: list(v) for (k,v) in groupby(category_nodes, lambda x : x.parent.id)
         }
 
 def __make_cat_node(index, child):
@@ -225,8 +225,8 @@ def __make_cat_tree(index, root):
 
 
 def make_cat_map(root=None):
-    queryset = Category.objects.filter(is_active=True)
-    category_list = [c for c in queryset]
+    category_list = list(Category.objects.filter(is_active=True).values())
+    #category_list = [c for c in queryset]
     return __make_cat_tree(__make_index(category_list), root)
 
 def __create_map(category=None, category_list=[]):
