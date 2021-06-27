@@ -210,9 +210,10 @@ def __create_map(category=None, category_list=[]):
     result = {}
     children = [c for c in filter(lambda x : x.parent == category, category_list)]
     for child in children:
-        logger.debug(f"Create MAP : Category : {category} - child : {child.name}")
+        logger.debug(f"Children Content : Category : {category} - child : {child.name}")
     
     if len(children) == 0:
+        logger.debug(f"NO Children Content : Category : {category}")
         return {'category': category, 'children': children}
 
     for c in children:
