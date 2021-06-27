@@ -231,7 +231,7 @@ def make_cat_map(root=None):
 
 def __create_map(category=None, category_list=[]):
     result = {}
-    children = [c for c in filter(lambda x : x.parent == category, category_list)]
+    children = [c for c in filter(lambda x : x.parent_id == category, category_list)]
     for child in children:
         logger.debug(f"Children Content : Category : {category} - child : {child.name}")
     
