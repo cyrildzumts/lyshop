@@ -209,12 +209,17 @@ def update_news(news, data):
 def __create_map(category=None, category_list=[]):
     result = {}
     children = [c for c in filter(lambda x : x.parent == category, category_list)]
-    if len(children):
-        for c in children:
-            result['category_name'] = c.name
-            result['category'] = c
-            result['children'] = __create_map(c, category_list)
-           
+    for child in children:
+        logger.debug(f"Create MAP : Category : {category} - child : {child.name}")
+    
+    if len(children) == 0:
+        return {'category': category, 'children': children}
+
+    for c in children:
+        result['category_name'] = c.name
+        result['category'] = c
+        result['children'] = __create_map(c, category_list)
+    logger.debug("Quitting __create_map()")
 
     return result
 
