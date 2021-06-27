@@ -207,6 +207,7 @@ def update_news(news, data):
 
 
 def __make_index(category_nodes):
+    logger.debug(f"MAKE INDEX : node {category_nodes}")
     return  {
             k: list(v) for (k,v) in groupby(category_nodes, lambda x : x.parent_id)
         }
