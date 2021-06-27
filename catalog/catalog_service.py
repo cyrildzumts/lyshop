@@ -207,9 +207,11 @@ def update_news(news, data):
 
 
 
-def _make_tree(category_list):
+def make_tree():
+    category_list = list(Category.objects.filter(is_active=True))
     parents = set()
     children = {}
+    result = []
     for c in category_list:
         c_id = str(c.id)
         p = c.parent
@@ -219,10 +221,15 @@ def _make_tree(category_list):
 
     def __ancestors(p):
         return (__ancestors(children[p.name]) if p.name in children else [] ) + [p]
-    c_link = None
-    for k in (schildren) - parents):
-
-        logger.debug()
+        
+    roots = set()
+    for k,v in children:
+        roots.add(v)
+    
+    roots -= parents
+    for p in roots:
+        result.append(__ancestors(p))
+        logger.debug(f"Result : {result}")
 
 
 
