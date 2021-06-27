@@ -258,11 +258,11 @@ def __make_cat_tree(index, root):
 
 
 def make_cat_map(root=None):
-    category_list = list(Category.objects.filter(is_active=True))
+    category_list = list(Category.objects.filter(is_active=True).values())
     #category_list = [c for c in queryset]
     logger.debug("Categories : ")
     logger.debug(category_list)
-    return __make_cat_tree(__make_index(category_list), root)
+    #return __make_cat_tree(__make_index(category_list), root)
 
 def __create_map(category=None, category_list=[]):
     result = {}
