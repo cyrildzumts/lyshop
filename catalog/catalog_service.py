@@ -221,9 +221,9 @@ def make_tree():
 
     def __ancestors(p):
         return (__ancestors(children[p.name]) if p.name in children else [] ) + [p]
-        
+
     roots = set()
-    for k,v in children:
+    for k,v in children.items():
         roots.add(v)
     
     roots -= parents
