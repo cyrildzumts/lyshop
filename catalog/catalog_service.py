@@ -206,10 +206,34 @@ def update_news(news, data):
 
 
 
+
+def _make_tree(category_list):
+    parents = set()
+    children = {}
+    for c in category_list:
+        c_id = str(c.id)
+        p = c.parent
+        if p is not None:
+            parents.add(p)
+            children[c.name] = p
+
+    def __ancestors(p):
+        return (__ancestors(children[p.name]) if p.name in children else [] ) + [p]
+    c_link = None
+    for k in (schildren) - parents):
+
+        logger.debug()
+
+
+
+
+
+
+
 def __make_index(category_nodes):
     #logger.debug(f"MAKE INDEX : node {category_nodes}")
     return  {
-            k: list(v) for (k,v) in groupby(category_nodes, lambda x : x.parent)
+            k: list(v) for (k,v) in groupby(category_nodes, lambda x : x.parent.id)
         }
 
 def __make_cat_node(index, child):
