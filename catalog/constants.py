@@ -14,6 +14,8 @@ CACHE_CATEGORY_PATH_PREFIX = 'category.path.'
 CACHE_CATEGORY_DESCENDANTS_PREFIX = 'category.descendants.'
 CACHE_CATEGORY_PRODUCTS_PREFIX = 'category.products.'
 CACHE_PRODUCT_ATTRIBUTES_PREFIX = 'product.attrs.'
+CACHE_CATEGORY_MAPS_PREFIX = "category.map"
+CACHE_CATEGORY_ALL_PREFIX = "category.categories.all"
 
 GENDER_MEN          = 1
 GENDER_WOMEN        = 2
@@ -155,6 +157,28 @@ FROM CTE_CAT
 ORDER BY id, array_length(parents, 1) desc;
 """
 
+### GET ANCESTOR :
+CATEGORY_ANCESTOR = """
+ WITH RECURSIVE
+    CTE AS (
+        SELECT 
+            *
+        FROM
+            catalog_category
+        WHERE
+            id = %s
+        UNION ALL
+        SELECT
+            c.*
+        FROM
+            catalog_category c
+                JOIN CTE  ON c.id = CTE.parent_id
+        WHERE
+            CTE.parent_id IS NOT NULL
+    )
+    SELECT * FROM CTE;
+"""
+
 CATEGORY_ROOT_TO_CHILD_QUERY = """
 WITH RECURSIVE CTE_CAT(id, name, parent_id, parents) AS (
 SELECT id,name, parent_id, array[parent_id] FROM catalog_category 
@@ -171,15 +195,15 @@ ORDER BY id, array_length(parents, 1) desc;
 
 
 CATEGORY_DESCENDANTS_QUERY = """
-WITH RECURSIVE graph(id) AS(
-SELECT id FROM catalog_category
-WHERE id=%s AND is_active=true
-UNION 
-SELECT c.id      
-FROM catalog_category c, graph g WHERE c.parent_id = g.id AND c.is_active=true
+WITH RECURSIVE CTE AS(
+    SELECT * FROM catalog_category
+    WHERE id=%s AND is_active=%s
+    UNION 
+    SELECT c.*   
+    FROM catalog_category c
+    JOIN CTE  ON c.parent_id = CTE.id
 )
-SELECT id
-FROM graph ORDER BY id desc;
+SELECT * FROM CTE;
 """
 
 
@@ -194,6 +218,11 @@ SELECT c.id FROM catalog_category c, graph g WHERE c.parent_id = g.id AND c.is_a
 )
 SELECT * from catalog_product p
 WHERE p.category_id IN (SELECT id FROM graph ORDER BY id);
+"""
+
+
+CATEGORY_TREE_QUERY = """
+
 """
 
 

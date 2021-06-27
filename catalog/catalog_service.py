@@ -206,6 +206,40 @@ def update_news(news, data):
 
 
 
+def __create_map(category=None, category_list=[]):
+    result = {}
+    children = [c for c in filter(lambda x : x.parent == category, category_list)]
+    if len(children):
+        for c in children:
+            result['category_name'] = c.name
+            result['category'] = c
+            result['children'] = __create_map(c, category_list)
+    else:
+        result = {'category_name': category.name, 'category': category, 'children': children}            
+
+    return result
+
+
+
+def create_category_map():
+    category_list= Category.objects.filter(is_active=True)
+    category_map = __create_map(category_list=category_list)
+    return category_map
+
+def build_category_map():
+    category_map = CACHE.get(Constants.CACHE_CATEGORY_MAPS_PREFIX)
+    if category_map:
+        return category_map
+    categories = CACHE.get(Constants.CACHE_CATEGORY_ALL_PREFIX)
+    if categories is None:
+        category_queryset = Category.objects.filter(is_active=True)
+        CACHE.set(Constants.CACHE_CATEGORY_ALL_PREFIX, [c for c in category_queryset])
+    filter_it = filter(lambda x : x.parent is None, categories)
+    root_categories = [c for c in  filter_it]
+
+    
+
+
 
 def build_category_paths(category):
     if not isinstance(category, Category):
