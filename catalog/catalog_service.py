@@ -258,7 +258,7 @@ def __make_cat_tree(index, root):
 
 
 def make_cat_map(root=None):
-    category_list = list(Category.objects.filter(is_active=True).values())
+    category_list = list(Category.objects.filter(is_active=True).values('id', 'parent', 'name', 'display_name', 'is_active'))
     #category_list = [c for c in queryset]
     logger.debug("Categories : ")
     logger.debug(category_list)
