@@ -183,7 +183,8 @@ def category_detail_slug(request, sale=None, slug=None):
         'OG_IMAGE': static('assets/lyshop_banner.png'),
         'CATEGORY_PATHS' : paths,
         'OG_URL': request.build_absolute_uri(),
-        'sale_category' : sale_category
+        'sale_category' : sale_category,
+        'categories_map': catalog_service.build_category_map()
     }
     return render(request,template_name, context)
 
