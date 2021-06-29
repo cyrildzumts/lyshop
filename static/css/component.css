@@ -2033,9 +2033,14 @@ table tbody tr, .mat-table tbody tr{
 	padding: 8px 16px;
 }
 
+.nav-tree{
+	font-size: 0.95em !important;
+	padding-left: 1em;
+}
+
 .nav-tree h1, .nav-tree h2, .nav-tree h3, .nav-tree h4, .nav-tree h5, .nav-tree h6{
-	font-size: 1.1em;
-	font-weight: 500;
+	font-size: 1em !important;
+	font-weight: 500 !important;
 }
 
 .controls{
