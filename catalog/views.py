@@ -87,7 +87,8 @@ def catalog_home(request, sale=None,):
         'OG_DESCRIPTION': settings.META_DESCRIPTION,
         'OG_IMAGE': static('assets/lyshop_banner.png'),
         'OG_URL': request.build_absolute_uri(),
-        'sale_category' : sale_category
+        'sale_category' : sale_category,
+        'categories_map': catalog_service.build_category_map()
     }
 
     return render(request, template_name, context)
