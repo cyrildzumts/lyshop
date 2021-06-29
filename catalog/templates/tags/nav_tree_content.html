@@ -3,12 +3,7 @@
     <h1>{{c.category.display_name}}</h1>
     {% if c.children|length %}
         <ul>
-            {% with "tags/nav_tree_content.html" as template_name  %}
-                {% with c.children as categeries_map %}
-                    {% include template_name %}
-                {% endwith %}
-            {% endwith %}
-            
+            {% nav_tree c %}
         </ul>
     {% else %}
     <li><a href="{{c.category.get_slug_url}}"><span>{{c.category.display_name }}</span></a></li>

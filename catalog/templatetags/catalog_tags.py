@@ -2,6 +2,7 @@ from django import template
 from django.utils.translation import gettext_lazy as _
 from lyshop import utils
 from catalog import constants as Constants
+from catalog import catalog_service
 import logging
 
 logger = logging.getLogger(__name__)
@@ -63,3 +64,8 @@ def category_page_title(key):
         logger.info(f"category_page_title : Could not found value  for key \"{key}\"")
         return key
     return v
+
+@register.inclusion_tag("tags/nav_tree_content.html")
+def nav_tree(category):
+    categories_map = category.children
+    return {"categories_map": categories_map}
