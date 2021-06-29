@@ -250,8 +250,8 @@ def build_category_map(root=None):
     
 
 
-def fill_category_map_ul():
-    template_name = "catalog/tags/navigation_tree.html"
+def fill_category_map_ul(template_name=None):
+    template_name = template_name or "tags/navigation_tree.html"
     #cmap = build_category_map()
     cmap = make_map()
     navigation_ul_string = render_to_string(template_name, {'categories_map': cmap})
