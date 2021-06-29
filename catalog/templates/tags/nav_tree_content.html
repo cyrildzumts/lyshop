@@ -3,8 +3,8 @@
     <h1>{{c.category.display_name}}</h1>
     {% if c.children|length %}
         <ul>
-            {% with template_name as "tags/nav_tree_content.html" %}
-                {% with categeries_map as c.children %}
+            {% with "tags/nav_tree_content.html" as template_name  %}
+                {% with c.children as categeries_map %}
                     {% include template_name %}
                 {% endwith %}
             {% endwith %}
