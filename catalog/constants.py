@@ -14,7 +14,7 @@ CACHE_CATEGORY_PATH_PREFIX = 'category.path.'
 CACHE_CATEGORY_DESCENDANTS_PREFIX = 'category.descendants.'
 CACHE_CATEGORY_PRODUCTS_PREFIX = 'category.products.'
 CACHE_PRODUCT_ATTRIBUTES_PREFIX = 'product.attrs.'
-CACHE_CATEGORY_MAPS_PREFIX = "category.map"
+CACHE_CATEGORY_MAPS_PREFIX = "category.map."
 CACHE_CATEGORY_ALL_PREFIX = "category.categories.all"
 
 GENDER_MEN          = 1

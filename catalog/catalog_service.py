@@ -2,6 +2,7 @@ from os import EX_PROTOCOL
 from cart.models import CartItem
 from django.db.models import Q, Count
 from django.core.cache import cache
+from django.template.loader import render_to_string, get_template
 from catalog.models import Category, Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute, News
 from catalog.forms import NewsForm
 from catalog import constants as Constants
@@ -233,19 +234,30 @@ def make_map(root=None):
 
 
 
-def build_category_map():
-    category_map = CACHE.get(Constants.CACHE_CATEGORY_MAPS_PREFIX)
-    if category_map:
+def build_category_map(root=None):
+    key = Constants.CACHE_CATEGORY_MAPS_PREFIX
+    if root is None:
+        key += 'root'
+    else:
+        key +=root.name
+    category_map = CACHE.get(key)
+    if category_map is not None:
         return category_map
-    categories = CACHE.get(Constants.CACHE_CATEGORY_ALL_PREFIX)
-    if categories is None:
-        category_queryset = Category.objects.filter(is_active=True)
-        CACHE.set(Constants.CACHE_CATEGORY_ALL_PREFIX, [c for c in category_queryset])
-    filter_it = filter(lambda x : x.parent is None, categories)
-    root_categories = [c for c in  filter_it]
+    category_map = make_map(root)
+    CACHE.set(key, category_map)
+    return category_map
 
     
 
+
+def fill_category_map_ul():
+    template_name = "catalog/tags/navigation_tree.html"
+    #cmap = build_category_map()
+    cmap = make_map()
+    navigation_ul_string = render_to_string(template_name, {'categories_map': cmap})
+    logger.debug("Navigation String : ")
+    logger.info(navigation_ul_string)
+    return navigation_ul_string
 
 
 def build_category_paths(category):
