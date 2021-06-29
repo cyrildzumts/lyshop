@@ -5,10 +5,5 @@
     <div class="nav-title medium">
         <h1>{% trans category.display_name %}</h1>
     </div>
-    <ul>
-        <li><a href="{{category.get_slug_url}}"><span>{% trans "All" %}</span></a></li>
-        {% for c in subcategories %}
-        <li><a href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
-        {% endfor %}
-    </ul>
+    {% include "tags/navigation_tree.html" %}
 </div>
