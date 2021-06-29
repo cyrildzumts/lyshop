@@ -204,95 +204,34 @@ def update_news(news, data):
     
     return updated_news
 
+def get_categories():
+    categories = CACHE.get(Constants.CACHE_CATEGORY_ALL_PREFIX)
+    if categories is None:
+        category_queryset = Category.objects.filter(is_active=True)
+        categories = [c for c in category_queryset]
+        CACHE.set(Constants.CACHE_CATEGORY_ALL_PREFIX, categories )
+    return categories
 
+def _find_children(category_list, root=None):
+    if root is None:
+        return [child for child in category_list if child.parent==root]
+    return [child for child in category_list if child.parent==root]
 
-
-def make_tree():
-    category_list = list(Category.objects.filter(is_active=True))
-    parents = set()
-    children = {}
-    result = []
-    for c in category_list:
-        c_id = str(c.id)
-        p = c.parent
-        if p is not None:
-            parents.add(p)
-            children[c.name] = p
-
-    def __ancestors(p):
-        return (__ancestors(children[p.name]) if p.name in children else [] ) + [p]
-
-    roots = set()
-    for k,v in children.items():
-        roots.add(v)
-    
-    roots -= parents
-    logger.debug(f"Results")
-    for p in roots:
-        result.append(__ancestors(p))
-        logger.debug(f"Result : {result}")
-
-
-
-
-
-
-
-def __make_index(category_nodes):
-    #logger.debug(f"MAKE INDEX : node {category_nodes}")
-    return  {
-            k: list(v) for (k,v) in groupby(category_nodes, lambda x : x.parent.id)
-        }
-
-def __make_cat_node(index, child):
-    return {
-            'name': child.name,
-            'children': __make_cat_tree(index, child)
-        }
-
-def __make_cat_tree(index, root):
-    if not root in index:
-        return []
-    else:
-        return [__make_cat_node(index, child) for child in index[root]]
-
-
-def make_cat_map(root=None):
-    category_list = list(Category.objects.filter(is_active=True).values('id', 'parent', 'name', 'display_name', 'is_active'))
-    #category_list = [c for c in queryset]
-    logger.debug("Categories : ")
-    logger.debug(category_list)
-    #return __make_cat_tree(__make_index(category_list), root)
-
-def __create_map(category=None, category_list=[]):
-    result = {}
-    children = [c for c in filter(lambda x : x.parent == category, category_list)]
-    for child in children:
-        logger.debug(f"Children Content : Category : {category} - child : {child.name}")
-    
+def make_map(root=None):
+    result_map = []
+    children = _find_children(get_categories(), root)
     if len(children) == 0:
-        #logger.debug(f"NO Children Content : Category : {category}")
-        return {'category': category, 'children': children}
+        return []
+    
+    #logger.debug(f"children Categeries for {root}: {children}")
 
-    for c in children:
-        result['category_name'] = c.name
-        result['category'] = c
-        #logger.debug(f"RECURSIVE CALL for Category : {c.name}")
-        r = __create_map(c, category_list)
-        r_is_result = r == result
-        logger.debug(f"result =  r : {r_is_result} ")
-        result['children'] = r
-        #logger.debug(f"END RECURSIVE CALL for Category : {c.name} - result = {result}")
-    #logger.debug(f"Quitting __create_map() : result = {result}")
+    for child in children:
+        descendants = make_map(child)
+        result_map.append({'category': child, 'parent': child.parent, 'children' : descendants })
 
-    return result
+    return result_map
 
 
-
-def create_category_map():
-    category_list= Category.objects.filter(is_active=True)
-    category_map = __create_map(category_list=category_list)
-    return category_map
 
 def build_category_map():
     category_map = CACHE.get(Constants.CACHE_CATEGORY_MAPS_PREFIX)
