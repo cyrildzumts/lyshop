@@ -1,7 +1,7 @@
 {% for c  in categories_map %}
 <li>
     <h1>{{c.category.display_name}}</h1>
-    {% if c.children|length %}
+    {% if c.children|length > 0 %}
         <ul>
             {% include "tags/nav_tree_content.html" with categeries_map=c.children %}
         </ul>
