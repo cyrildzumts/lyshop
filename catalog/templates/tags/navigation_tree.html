@@ -1,11 +1,11 @@
 {% load i18n %}
 
-<ul>
+<ul class="nav-tree">
     {% for c  in categories_map %}
         {% if c.children %}
             <li>
-            {% trans c.category.display_name %}
-                {% include "navigation_tree.html" with categeries_map=c.children %}
+                <h1>{% trans c.category.display_name %}</h1>
+                {% include "tags/navigation_tree.html" with categeries_map=c.children %}
             </li>
         {% else %}
         <li><a href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
