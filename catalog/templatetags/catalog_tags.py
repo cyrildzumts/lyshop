@@ -65,8 +65,8 @@ def category_page_title(key):
         return key
     return v
 
-@register.inclusion_tag("tags/nav_tree_content.html")
+@register.inclusion_tag("tags/navigation_tree.html")
 def nav_tree(category):
     categories_map = category.children
-    logger.info("nav_tree")
+    logger.info("nav_tree tags")
     return {"categories_map": categories_map}
