@@ -298,7 +298,7 @@ def category_descendants(category):
     if descendants is not None:
         logger.debug(f"get category descendants  with key {key} from cache")
         return descendants
-    queryset = Category.objects.raw(Constants.CATEGORY_DESCENDANTS_QUERY, [category.id])
+    queryset = Category.objects.raw(Constants.CATEGORY_DESCENDANTS_QUERY, [category.id, 'true'])
     descendants = [c for c in queryset]
     logger.debug(f"adding category descendants  with key {key} into cache")
     CACHE.set(key, descendants)
