@@ -3,11 +3,11 @@
 <ul class="nav-tree">
 {% for c  in categories_map %}
     <li>
-        <h1>{{c.category.display_name}}</h1>
         {% if c.children|length %}
+            <h1>{{c.category.display_name}}</h1>
             {% nav_tree c %}
         {% else %}
-        <li><a href="{{c.category.get_slug_url}}"><span>{{c.category.display_name }}</span></a></li>
+        <a href="{{c.category.get_slug_url}}"><span>{{c.category.display_name }}</span></a>
         {% endif %}
     </li>
 {% endfor %}
