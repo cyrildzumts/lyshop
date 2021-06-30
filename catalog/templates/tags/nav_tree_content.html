@@ -4,11 +4,11 @@
 {% for c  in categories_map %}
     <li>
         {% if c.children|length %}
+            <input id="{{c.category.display_name}}" type="checkbox">
             <label for="{{c.category.display_name}}">{% trans c.category.display_name %}</label>
-            <input id="{{c.category.display_name}}" type="checkbox" name="" id="">
             {% nav_tree c %}
         {% else %}
-        <a class="nav-link" href="{{c.category.get_slug_url}}"><span>{% trans c.category.display_name %}</span></a>
+        <a class="nav-link" href="{{c.category.get_slug_url}}"><span class="nav-label">{% trans c.category.display_name %}</span></a>
         {% endif %}
     </li>
 {% endfor %}

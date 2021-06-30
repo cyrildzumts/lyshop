@@ -2036,6 +2036,7 @@ table tbody tr, .mat-table tbody tr{
 .nav-tree{
 	font-size: 0.95em !important;
 	padding-left: 1em;
+	margin: 1em;
 }
 
 .nav-tree h1, .nav-tree h2, .nav-tree h3, .nav-tree h4, .nav-tree h5, .nav-tree h6{
@@ -2044,20 +2045,110 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .nav-tree li{
-	margin-left: -1em;
+	padding-left: 1em;
+	padding-bottom: 1em;
 	position: relative;
 }
 
-.nav-tree li input{
+.nav-tree ul li{
+	padding: 1em 0 0 1em !important;
+}
+
+.nav-tree > li:last-child{
+	padding-bottom: 0;
+}
+
+.nav-tree label, .nav-tree .nav-label{
+	position: relative;
+	display: inline-block;
+}
+
+.nav-tree label{
 	cursor: pointer;
+}
+
+.nav-tree label:hover{
+	color: #666;
+}
+
+.nav-tree label:before{
+	background-color: #1a1a1a;
+	color: #FAFAFA;
+	position: relative;
+	z-index: 1;
+	float: left;
+	margin: 0 1em 0 -2em;
 	height: 1em;
-	left: 0;
-	margin-left: 0;
-	opacity: 0;
+	width: 1em;
+	border-radius: 1em;
+	content: '+';
+	text-align: center;
+}
+
+input:checked ~ label::before{
+	content: '-';
+}
+
+.nav-tree li:before {
 	position: absolute;
 	top: 0;
-	width: 2em;
-	z-index: 2;
+	bottom: 0;
+	left: -0.5em;
+	display: block;
+	width: 0;
+	border-left: 1px solid #777;
+	content: "";
+}
+
+.nav-tree label:after{
+	position: absolute;
+	top: 0;
+	left: -1.5em;
+	display: block;
+	height: 0.5em;
+	width: 1em;
+	border-bottom: 1px solid #777;
+	border-left: 1px solid #777;
+	border-radius: 0 0 0 .3em;
+	content: '';
+}
+
+label.nav-label:after{
+	border-bottom: 0;
+}
+
+.nav-tree input:checked ~ label.nav-label:after{
+	top: 0.5em;
+	bottom: 0;
+	height: auto;
+	border-top: 1px solid #777;
+	border-right: 1px solid #777;
+	border-left: 0;
+	border-bottom: 0;
+	border-radius: 0 .3em 0 0;
+}
+
+.nav-tree li:last-child::before{
+	height: 1em;
+	bottom: auto;
+}
+
+.nav-tree > li:last-child::before{
+	display: none;
+}
+/*
+.nav-tree input{
+	clip: rect(0,0,0,0);
+	position: absolute;
+
+}
+
+.nav-tree input ~ ul{
+	display: none;
+}
+
+.nav-tree input:checked ~ ul{
+	display: block;
 }
 
 .nav-tree li input:checked + ul::before{
@@ -2089,7 +2180,7 @@ table tbody tr, .mat-table tbody tr{
 .nav-tree li input + ul{
 	padding-left: -2em;
 }
-
+*/
 .controls{
 	padding: 8px 16px;
 }
