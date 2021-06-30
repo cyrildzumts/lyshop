@@ -2046,7 +2046,7 @@ table tbody tr, .mat-table tbody tr{
 
 .nav-tree li{
 	padding-left: 1em;
-	padding-bottom: 1em;
+	padding: 0 0 1em 1em;
 	position: relative;
 }
 
@@ -2136,7 +2136,7 @@ label.nav-label:after{
 .nav-tree > li:last-child::before{
 	display: none;
 }
-/*
+
 .nav-tree input{
 	clip: rect(0,0,0,0);
 	position: absolute;
@@ -2151,36 +2151,8 @@ label.nav-label:after{
 	display: block;
 }
 
-.nav-tree li input:checked + ul::before{
-	content: "\f068"; 
-	font-family: Fontawesome;
-	font-size: 1em;
-	left: 0;
-	margin-right: 5px;
-	position: absolute;
-	top: 0;
-}
-
-.nav-tree li input:checked + ul>li{
-	display: block;
-	left: -3px;
-	margin: 0 0 3px;
-}
 
 
-.nav-tree li input:checked + ul>li:last-child{
-	margin: 0 0 0.063em;
-}
-
-.nav-tree li input:checked + ul{
-	height: auto;
-	margin-left: -1em;
-}
-
-.nav-tree li input + ul{
-	padding-left: -2em;
-}
-*/
 .controls{
 	padding: 8px 16px;
 }
