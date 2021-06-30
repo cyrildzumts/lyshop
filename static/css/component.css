@@ -2043,6 +2043,53 @@ table tbody tr, .mat-table tbody tr{
 	font-weight: 500 !important;
 }
 
+.nav-tree li{
+	margin-left: -1em;
+	position: relative;
+}
+
+.nav-tree li input{
+	cursor: pointer;
+	height: 1em;
+	left: 0;
+	margin-left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 2em;
+	z-index: 2;
+}
+
+.nav-tree li input:checked + ul::before{
+	content: "\f068"; 
+	font-family: Fontawesome;
+	font-size: 1em;
+	left: 0;
+	margin-right: 5px;
+	position: absolute;
+	top: 0;
+}
+
+.nav-tree li input:checked + ul>li{
+	display: block;
+	left: -3px;
+	margin: 0 0 3px;
+}
+
+
+.nav-tree li input:checked + ul>li:last-child{
+	margin: 0 0 0.063em;
+}
+
+.nav-tree li input:checked + ul{
+	height: auto;
+	margin-left: -1em;
+}
+
+.nav-tree li input + ul{
+	padding-left: -2em;
+}
+
 .controls{
 	padding: 8px 16px;
 }
