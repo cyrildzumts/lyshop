@@ -3,7 +3,7 @@
 <ul {% if nav_tree_class is None %}class="nav-tree"{% endif %}>
 {% for c  in categories_map %}
         {% if c.children|length %}
-        <li><a class="nav-link" href="{{c.category.get_slug_url}}"><span class="nav-label">{% trans "See all" %}</span></a></li>
+            {% if current_category %}<li><a class="nav-link" href="{{current_category.get_slug_url}}"><span class="nav-label">{% trans "See all" %}</span></a></li>{% endif %}
         <li>
             <input id="{{c.category.name}}" type="checkbox">
             <label class="nav-label" for="{{c.category.name}}">{% trans c.category.display_name %}</label>
