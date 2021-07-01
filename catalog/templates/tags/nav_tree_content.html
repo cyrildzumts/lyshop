@@ -1,10 +1,10 @@
 {% load i18n %}
 {% load catalog_tags %}
-<ul class="nav-tree">
+<ul {% if nav_tree_class is not None %}class="{{nav_tree_class}}"{% else %}class="nav_tree"{% endif %}>
 {% for c  in categories_map %}
     <li>
         {% if c.children|length %}
-            <input id="{{c.category.display_name}}" type="checkbox">
+            <input id="{{c.category.name}}" type="checkbox">
             <label for="{{c.category.display_name}}">{% trans c.category.display_name %}</label>
             {% nav_tree c %}
         {% else %}
