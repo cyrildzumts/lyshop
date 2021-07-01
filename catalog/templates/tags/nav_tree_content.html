@@ -2,15 +2,18 @@
 {% load catalog_tags %}
 <ul {% if nav_tree_class is None %}class="nav-tree"{% endif %}>
 {% for c  in categories_map %}
-    <li>
         {% if c.children|length %}
-            <a class="nav-link" href="{{c.category.get_slug_url}}"><span class="nav-label">{% trans "See all" %}</span></a>
+        <li><a class="nav-link" href="{{c.category.get_slug_url}}"><span class="nav-label">{% trans "See all" %}</span></a></li>
+        <li>
             <input id="{{c.category.name}}" type="checkbox">
             <label class="nav-label" for="{{c.category.name}}">{% trans c.category.display_name %}</label>
             {% nav_tree c %}
+        </li>
         {% else %}
-        <a class="nav-link" href="{{c.category.get_slug_url}}"><span class="nav-label">{% trans c.category.display_name %}</span></a>
+        <li>
+            <a class="nav-link" href="{{c.category.get_slug_url}}"><span class="nav-label">{% trans c.category.display_name %}</span></a>
+        </li>
         {% endif %}
-    </li>
+    
 {% endfor %}
 </ul>
