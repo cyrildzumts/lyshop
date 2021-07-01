@@ -2072,20 +2072,20 @@ table tbody tr, .mat-table tbody tr{
 	padding-bottom: 0;
 }
 
-.nav-tree label, .nav-tree .nav-label{
+.nav-label{
 	position: relative;
 	display: inline-block;
 }
 
-.nav-tree label{
+label.nav-label{
 	cursor: pointer;
 }
 
-.nav-tree label:hover{
+.nav-label:hover{
 	color: #666;
 }
 
-.nav-tree label:before{
+label.nav-label:before{
 	color: #1a1a1a;
 	position: relative;
 	z-index: 1;
@@ -2115,7 +2115,7 @@ table tbody tr, .mat-table tbody tr{
 	content: "";
 }
 
-.nav-tree label:after{
+.nav-label:after{
 	position: absolute;
 	top: 0;
 	left: -1.5em;
@@ -2125,6 +2125,11 @@ table tbody tr, .mat-table tbody tr{
 	border-radius: 0 0 0 .3em;
 	content: '';
 }
+
+label.nav-label::after{
+	border-bottom: 0;
+}
+
 
 
 :checked ~ label.nav-label:after{
