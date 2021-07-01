@@ -5,7 +5,7 @@
     <li>
         {% if c.children|length %}
             <input id="{{c.category.name}}" type="checkbox">
-            <label class="nav-label" for="{{c.category.display_name}}">{% trans c.category.display_name %}</label>
+            <label class="nav-label" for="{{c.category.name}}">{% trans c.category.display_name %}</label>
             {% nav_tree c %}
         {% else %}
         <a class="nav-link" href="{{c.category.get_slug_url}}"><span class="nav-label">{% trans c.category.display_name %}</span></a>
