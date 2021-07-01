@@ -22,7 +22,14 @@
         </div>
         {% if product_list %}
         <div class="product-list-wrapper col-10 col-m-12">
-        
+                <div class="nav-path-wrapper">
+                <ul class="navigation-paths">
+                        <li class="mat-button-text path"><a href="{% url 'catalog:catalog-home' %}"><span>{% trans 'Catalog' %}</span><span></span></a></li>
+                        {% for c in CATEGORY_PATHS %}
+                        <li class="mat-button-text path"><a href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
+                        {% endfor %}
+                </ul>
+                </div>
                 <div id="products" class="products js-product-list">
                         {% include "tags/products_snippet.html" with product_list=product_list %}
                 </div>
