@@ -61,10 +61,8 @@ def send_validation_mail(sender, instance, created, **kwargs):
 
 @receiver(pre_save, sender=Category)
 def generate_category_slug(sender, instance, *args, **kwargs):
-    if not instance.slug:
-        instance.slug = slugify(instance.name)
+    instance.slug = slugify(instance.name)
 
 @receiver(pre_save, sender=Product)
 def generate_product_slug(sender, instance, *args, **kwargs):
-    if not instance.slug:
-        instance.slug = slugify(instance.name)
+    instance.slug = slugify(instance.name)
