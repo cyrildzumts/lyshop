@@ -4,6 +4,7 @@
 {% for c  in categories_map %}
     <li>
         {% if c.children|length %}
+            <a class="nav-link" href="{{c.category.get_slug_url}}"><span class="nav-label">{% trans "See all" %}</span></a>
             <input id="{{c.category.name}}" type="checkbox">
             <label class="nav-label" for="{{c.category.name}}">{% trans c.category.display_name %}</label>
             {% nav_tree c %}
