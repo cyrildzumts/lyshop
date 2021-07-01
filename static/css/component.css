@@ -2044,6 +2044,20 @@ table tbody tr, .mat-table tbody tr{
 	font-weight: 500 !important;
 }
 
+.nav-tree input{
+	clip: rect(0,0,0,0);
+	position: absolute;
+
+}
+
+.nav-tree input ~ ul{
+	display: none;
+}
+
+.nav-tree input:checked ~ ul{
+	display: block;
+}
+
 .nav-tree li{
 	padding-left: 1em;
 	padding: 0 0 1em 1em;
@@ -2051,7 +2065,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .nav-tree ul li{
-	padding: 1em 0 0 1em !important;
+	padding: 1em 0 0 1em;
 }
 
 .nav-tree > li:last-child{
@@ -2086,7 +2100,7 @@ table tbody tr, .mat-table tbody tr{
 	text-align: center;
 }
 
-input:checked ~ label::before{
+:checked ~ label.nav-label::before{
 	content: '-';
 }
 
@@ -2113,7 +2127,7 @@ input:checked ~ label::before{
 }
 
 
-.nav-tree input:checked ~ label.nav-label:after{
+:checked ~ label.nav-label:after{
 	top: 0.5em;
 	bottom: 0;
 	height: auto;
@@ -2127,20 +2141,6 @@ input:checked ~ label::before{
 
 .nav-tree > li:last-child::before{
 	display: none;
-}
-
-.nav-tree input{
-	clip: rect(0,0,0,0);
-	position: absolute;
-
-}
-
-.nav-tree input ~ ul{
-	display: none;
-}
-
-.nav-tree input:checked ~ ul{
-	display: block;
 }
 
 
