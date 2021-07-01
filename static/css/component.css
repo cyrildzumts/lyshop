@@ -2033,6 +2033,14 @@ table tbody tr, .mat-table tbody tr{
 	padding: 8px 16px;
 }
 
+input.nav-tree-toggle ~ ul.nav-tree {
+	display: none;
+}
+
+
+input.nav-tree-toggle:checked ~ ul.nav-tree {
+	display: block;
+}
 .nav-tree{
 	font-size: 0.95em !important;
 	padding-left: 1em;

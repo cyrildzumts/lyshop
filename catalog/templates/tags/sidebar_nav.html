@@ -3,7 +3,11 @@
 
 <div class="side-nav">
     <div class="nav-title medium">
-        <h1>{% trans "Categories" %}</h1>
+        <h1><label for="nav-tree-toggle">{% trans "Categories" %}</label></h1>
     </div>
+    <div class="nav-tree-wrapper">
+    <input type="checkbox"  id="nav-tree-toggle" class="hidden">
     {% include "tags/navigation_tree.html" %}
+    </div>
+    
 </div>
