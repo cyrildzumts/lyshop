@@ -2065,7 +2065,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .nav-tree ul li{
-	padding: 1em 0 0 1em;
+	padding: 0 0 0 1em;
 }
 
 .nav-tree > li:last-child{
