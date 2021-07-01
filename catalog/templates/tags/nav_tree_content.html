@@ -5,7 +5,7 @@
 {% for c  in categories_map %}
         {% if c.children|length %}
         
-        {% if c.category.parent %}<li><a class="nav-link" href="{{c.category.parent.get_slug_url}}"><span class="nav-label">{% trans "See all" %}</span></a></li>{% endif %}
+        <li><a class="nav-link" href="{{c.category.get_slug_url}}"><span class="nav-label">{% trans "See all" %}</span></a></li>
             
         <li>
             <input id="{{c.category.name}}" type="checkbox">
