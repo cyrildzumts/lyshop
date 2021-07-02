@@ -21,6 +21,9 @@
     </ul>
     {% elif RANGE %}
     <div class="box-content">
+        <div>
+            <label>{% trans DISPLAY_NAME %} : </label>
+        </div>
         <div class="form-group">
             <label for="{{field_name}}-start">{% trans "Min" %}</label>
             <input id="{{field_name}}-start" class="filter-input-start js-range-filter js-range-start no-submit" data-range-next="{{field_name}}-end" data-type="range-start" data-target="{{field_name}}-id" type="text" name="{{field_name}}-start" value="{{FILTER.range_start}}">
