@@ -167,7 +167,7 @@ def category_detail_slug(request, sale=None, slug=None):
     except EmptyPage:
         list_set = None
     paths = catalog_service.build_category_paths(category)
-    root_cats = catalog_service.get_non_empty_root_category()
+    #root_cats = catalog_service.get_non_empty_root_category()
     context = {
         'page_title': category.get_page_title(),
         'category' : category,
@@ -185,7 +185,8 @@ def category_detail_slug(request, sale=None, slug=None):
         'CATEGORY_PATHS' : paths,
         'OG_URL': request.build_absolute_uri(),
         'sale_category' : sale_category,
-        'categories_map': catalog_service.build_category_map()
+        'categories_map': catalog_service.build_category_map(),
+        'CURRENT_CATEGORY_MAP': catalog_service.build_category_map(category)
     }
     return render(request,template_name, context)
 

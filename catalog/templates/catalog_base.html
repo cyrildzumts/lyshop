@@ -20,9 +20,12 @@
                 </div>
             </form>
         </div>
-        <div class="full">
-        <h2><label for="nav-tree-toggle">{% trans "Categories" %}</label></h2>
+        {% if CURRENT_CATEGORY_MAP %}
+        <div class="current-category-map-wrapper hidden-xl">
+            <label for="nav-tree-toggle"><i class="fas fa-sliders-h"></i><span>{% trans "Categories" %}</span></label>
+            {% include "tags/nav_tree_content.html" with categories_map=CURRENT_CATEGORY_MAP%}
         </div>
+        {% endif %}
     {% endif %}
     <div class="full">
         {% block MAIN_CONTENT %}
