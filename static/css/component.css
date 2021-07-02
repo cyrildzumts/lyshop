@@ -2033,9 +2033,18 @@ table tbody tr, .mat-table tbody tr{
 	padding: 8px 16px;
 }
 
+#catalog-options-toggle ~ .catalog-options{
+	display: none;
+}
+
+#catalog-options-toggle:checked ~ .catalog-options{
+	display: flex;
+}
+
 .catalog-options{
 	display: flex;
 	width: 100%;
+	flex-direction: column;
 	position: relative;
 	align-items: center;
 	justify-content: space-between;
