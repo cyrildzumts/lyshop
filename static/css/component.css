@@ -2087,7 +2087,6 @@ table tbody tr, .mat-table tbody tr{
 #catalog-filter-toggle ~ .catalog-filter, 
 #current-nav-toggle ~ .category-map-container{
 	display: none;
-	font-size: 1.2em;
 }
 
 #catalog-filter-toggle:checked ~ .catalog-filter, 
