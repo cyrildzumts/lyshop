@@ -2058,12 +2058,8 @@ table tbody tr, .mat-table tbody tr{
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.5em;
-	font-size: 0.7em;
 }
 
-.catalog-options .catalog-filter{
-	font-size: 0.7em;
-}
 
 .catalog-options .form-group{
 	min-height: unset;
