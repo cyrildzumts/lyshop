@@ -179,12 +179,12 @@ li a{
 	position: relative;
 }
 
-.category-overlay-wrapper{
+.catalog-overlay-wrapper{
 	width: 100%;
 	position: relative;
 }
 
-.category-overlay-wrapper .catalog-overlay{
+.catalog-overlay-wrapper .catalog-overlay{
 	position: fixed;
 }
 
