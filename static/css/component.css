@@ -201,9 +201,6 @@ li a{
 	font-weight: lighter;
 }
 
-.filter-body{
-	overflow: auto;
-}
 
 .filter-body .option-list-filter{
 	padding: 0.5em;
