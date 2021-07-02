@@ -2033,6 +2033,15 @@ table tbody tr, .mat-table tbody tr{
 	padding: 8px 16px;
 }
 
+/*
+.catalog-options-wrapper{
+	width: 12.5em;
+}
+
+.catalog-main-wrapper{
+	width: calc(100% - 12.5em);
+}
+*/
 #catalog-options-toggle ~ .catalog-options{
 	display: none;
 }
@@ -2716,6 +2725,13 @@ label.nav-label::after{
 }
 
 @media only screen and (max-width:40em){
+	.catalog-options-wrapper{
+		width: 100%;
+	}
+	
+	.catalog-main-wrapper{
+		width: 100%;
+	}
 	.category-description{
 		font-size: 0.7em;
 	}
@@ -2898,6 +2914,13 @@ label.nav-label::after{
 
 
 @media only screen and (min-width:40em){
+	.catalog-options-wrapper{
+		width: 12.5em;
+	}
+	
+	.catalog-main-wrapper{
+		width: calc(100% - 12.5em);
+	}
 	.modal-container{
 		width: 25% !important;
 	}
