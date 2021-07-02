@@ -2070,6 +2070,10 @@ table tbody tr, .mat-table tbody tr{
 	padding-left: 1em;
 	padding: 0 0 1em 1em;
 	position: relative;
+
+}
+.nav-tree li a{
+	text-align: left;
 }
 
 .nav-tree ul li{
