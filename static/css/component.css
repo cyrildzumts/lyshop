@@ -2033,12 +2033,12 @@ table tbody tr, .mat-table tbody tr{
 	padding: 8px 16px;
 }
 
-#nav-tree-toggle ~ ul.nav-tree {
+#nav-tree-toggle ~ ul.nav-tree, #current-nav-tree-toggle ~ ul.nav-tree {
 	display: none;
 }
 
 
-#nav-tree-toggle:checked ~ ul.nav-tree {
+#nav-tree-toggle:checked ~ ul.nav-tree, #current-nav-tree-toggle:checked ~ ul.nav-tree {
 	display: block;
 }
 .nav-tree{

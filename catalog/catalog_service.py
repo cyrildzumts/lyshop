@@ -235,6 +235,7 @@ def make_map(root=None):
 
 
 def build_category_map(root=None):
+    logger.info(f"Building category path for category : {root}")
     key = Constants.CACHE_CATEGORY_MAPS_PREFIX
     if root is None:
         key += 'root'
