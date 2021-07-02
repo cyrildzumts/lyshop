@@ -146,6 +146,10 @@
 .space-around{
   justify-content: space-around;
 }
+
+.space-between{
+  justify-content: space-between;
+}
 .column {
   --columns: 12; /* number of columns in the grid system */
   --width: var(--width-mobile, 0); /* width of the element */

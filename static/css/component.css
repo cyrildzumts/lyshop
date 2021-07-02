@@ -2033,6 +2033,15 @@ table tbody tr, .mat-table tbody tr{
 	padding: 8px 16px;
 }
 
+.catalog-options{
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1em;
+
+}
+
 #nav-tree-toggle ~ ul.nav-tree, #current-nav-tree-toggle ~ ul.nav-tree {
 	display: none;
 }
