@@ -464,25 +464,3 @@
     font-size: .875rem !important;
 }
 
-.navigation-paths{
-    display: flex;
-    width: 100%;
-    font-size: 0.875em;
-    align-items: baseline;
-    justify-content: start;
-    padding: 1em;
-}
-
-.navigation-paths .path{
-    padding: 0 !important;
-}
-
-.navigation-paths .path a::after{
-    content: "/";
-    padding: 0.5em !important;
-}
-
-.navigation-paths .path:last-of-type a::after{
-    content: "";
-    padding: 0 !important;
-}
