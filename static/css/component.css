@@ -200,6 +200,9 @@ li a{
 	font-size: 0.75em;
 	font-weight: lighter;
 }
+.submenu a span{
+	width: 100%;
+}
 
 
 .filter-body .option-list-filter{
