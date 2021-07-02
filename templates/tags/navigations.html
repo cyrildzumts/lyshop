@@ -5,6 +5,11 @@
 <div class="big-menu full">
     <span>{% trans "Shop" %} <i class="fas fa-caret-down icon"></i></span>
     <div class="nav-menu full">
+        <div class="flex flex-left">
+            <ul class="grid">
+                <li><a class="mat-button mat-button-text" href="{% url 'catalog:catalog-home' %}"><span>{% trans "Our Catalog" %}</span></a></li>
+            </ul>
+        </div>
         <ul class="grid">
             {% for c in root_category_list %}
             <li class="col-xs-12 col-2">
