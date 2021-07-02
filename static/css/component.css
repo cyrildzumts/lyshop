@@ -186,14 +186,15 @@ li a{
 
 .catalog-overlay-wrapper .catalog-overlay{
 	position: fixed;
+	z-index: 100;
 }
 
-.catalog-overlay-toggle .catalog-overlay{
+#catalog-overlay-toggle ~ .catalog-overlay{
 	display: none;
 }
 
-.catalog-overlay-toggle:checked ~ .catalog-overlay,
-.catalog-overlay-toggle:hover ~ .catalog-overlay{
+#catalog-overlay-toggle:checked ~ .catalog-overlay,
+#catalog-overlay-toggle:hover ~ .catalog-overlay{
 	display: block;
 }
 
