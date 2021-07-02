@@ -14,10 +14,12 @@
 {% block MAIN_CONTENT %}
 <div class="container">
         {% if queryset %}
-        <div class="sidebar-nav-wrapper col-2 col-m-12">
-        {% include "tags/sidebar_nav.html" %}
-        </div>
-        <div class="product-list-wrapper col-10 col-m-12">
+        {% comment %}
+                <div class="sidebar-nav-wrapper col-2 col-m-12">
+                {% include "tags/sidebar_nav.html" %}
+                </div>
+        {% endcomment %}
+        <div class="product-list-wrapper">
                 <div id="products" class="products js-product-list">
                         {% include "tags/products_snippet.html" with product_list=queryset %}
                 </div>
