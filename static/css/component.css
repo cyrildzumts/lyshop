@@ -79,6 +79,7 @@ canvas{
 .catalog-filter #filter-content{
 	padding: 0 !important;
 	margin: 0 !important;
+	width: 100%;
 }
 
 .catalog-filter .actions .mat-button{
