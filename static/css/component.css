@@ -174,18 +174,49 @@ li a{
 	text-decoration: none;
 }
 
-.big-menu{
+.big-menu, .catalog-overlay{
 	width: 100%;
 	position: relative;
 }
-.big-menu > .nav-menu{
-	display: none;
-	background-color: #fafafa;
+
+.category-overlay-wrapper{
+	width: 100%;
+	position: relative;
+}
+
+.category-overlay-wrapper .catalog-overlay{
 	position: fixed;
+}
+
+.catalog-overlay-toggle .catalog-overlay{
+	display: none;
+}
+
+.catalog-overlay-toggle:checked ~ .catalog-overlay,
+.catalog-overlay-toggle:hover ~ .catalog-overlay{
+	display: block;
+}
+
+
+.big-menu > .nav-menu, .catalog-overlay > .nav-menu{
+	background-color: #fafafa;
 	overflow-y: auto;
 	max-height: 24em;
 	padding: 1em;
 	z-index: 10;
+}
+
+.big-menu > .nav-menu{
+	position: fixed;
+}
+
+
+.big-menu > .nav-menu{
+	display: none;
+}
+
+.catalog-overlay > .nav-menu{
+	display: none;
 }
 
 .big-menu:hover > .nav-menu{
