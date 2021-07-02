@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load catalog_tags %}
-<ul {% if nav_tree_class is None %}class="nav-tree full"{% endif %}>
+<ul {% if nav_tree_class is None %}class="nav-tree"{% endif %}>
 
 {% for c  in categories_map %}
         {% if c.children|length %}  
