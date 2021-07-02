@@ -6,10 +6,12 @@
                 <div class="filter-body">
                     {% include TEMPLATE_NAME with SELECTION=FIELD_FILTER.selection SELECTION_OPTIONS=FIELD_FILTER.selection_options RANGE=FIELD_FILTER.range FILTER=SELECTED_FILTERS|access_dict:field_name  %}
                 </div>
-                <div class="actions">
-                    <span class="collapse-toggle mat-button mat-button-text" data-target="{{field_name}}-content" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
-                    <button class="collapse-toggle mat-button mat-button-default" data-target="{{field_name}}-content">{% trans "Apply" %}</button>
-                </div>
+{% comment %}
+                    <div class="actions">
+                        <span class="collapse-toggle mat-button mat-button-text" data-target="{{field_name}}-content" ><i class="fas fa-close"></i>{% trans "Close" %}</span>
+                        <button class="collapse-toggle mat-button mat-button-default" data-target="{{field_name}}-content">{% trans "Apply" %}</button>
+                    </div>
+{% endcomment %}
             </div><!--End of mat-box -->
     </div><!--End of collapse-content -->
 </div><!--End of Container-->
