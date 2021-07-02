@@ -1296,20 +1296,20 @@ input.editable{
 	background-color: #232F343E;
 }
 
-.chips-disabled{
+.chips-disabled .chips{
 	color: #232F345A;
 	background-color: #232F341A;
 	font-weight: 500;
 	cursor: default;
 }
 
-.chips-selected{
+.chips-selected .chips{
 	color: #232F34;
 	background-color: #232F345E;
 	font-weight: 700;
 }
 
-.chips-activated{
+.chips-activated .chips{
 	color: #232F34;
 	background-color: #232F346E;
 	font-weight: 600;
