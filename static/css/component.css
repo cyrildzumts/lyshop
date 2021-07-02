@@ -186,6 +186,7 @@ li a{
 
 .catalog-overlay-wrapper .catalog-overlay{
 	position: fixed;
+	top: 3em;
 	z-index: 100;
 }
 
