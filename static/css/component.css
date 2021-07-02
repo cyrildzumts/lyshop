@@ -224,11 +224,13 @@ li a{
 
 .submenu{
 	width: 100%;
+	color: #1a1a1a;
 }
 .submenu li a {
 	text-align: left;
 	font-size: 0.75em;
 	font-weight: lighter;
+	color: #1a1a1a !important;
 	padding: 0 !important;
 	margin: 0;
 }
