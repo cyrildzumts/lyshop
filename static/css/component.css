@@ -2061,9 +2061,17 @@ table tbody tr, .mat-table tbody tr{
 	font-size: 0.7em;
 }
 
+.catalog-options .form-group{
+	min-height: unset;
+}
+
 .catalog-options .mat-box{
 	padding: 0;
 	margin: 0;
+}
+
+.catalog-options .actions{
+	font-size: 0.9em;
 }
 
 .catalog-options .catalog-filter-wrapper{
