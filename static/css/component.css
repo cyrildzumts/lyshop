@@ -2036,10 +2036,30 @@ table tbody tr, .mat-table tbody tr{
 .catalog-options{
 	display: flex;
 	width: 100%;
+	position: relative;
 	align-items: center;
 	justify-content: space-between;
 	padding: 1em;
+}
 
+.catalog-options .catalog-filter-wrapper{
+	position: relative;
+	width: 100%;
+}
+
+.catalog-options .current-category-map-wrapper{
+	position: relative;
+	width: 100%;
+}
+
+#catalog-filter-toggle ~ .catalog-filter, 
+#current-nav-toggle ~ .category-map-container{
+	display: none;
+}
+
+#catalog-filter-toggle:checked ~ .catalog-filter, 
+#current-nav-toggle:checked ~ .category-map-container{
+	display: block;
 }
 
 #nav-tree-toggle ~ ul.nav-tree, #current-nav-tree-toggle ~ ul.nav-tree {
