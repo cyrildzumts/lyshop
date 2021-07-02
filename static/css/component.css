@@ -2061,6 +2061,10 @@ table tbody tr, .mat-table tbody tr{
 	font-size: 0.7em;
 }
 
+.catalog-options .catalog-filter{
+	font-size: 0.7em;
+}
+
 .catalog-options .form-group{
 	min-height: unset;
 }
@@ -2087,6 +2091,7 @@ table tbody tr, .mat-table tbody tr{
 #catalog-filter-toggle ~ .catalog-filter, 
 #current-nav-toggle ~ .category-map-container{
 	display: none;
+	font-size: 1.2em;
 }
 
 #catalog-filter-toggle:checked ~ .catalog-filter, 
@@ -2222,6 +2227,28 @@ label.nav-label::after{
 }
 
 
+.navigation-paths{
+    display: flex;
+    width: 100%;
+    /*font-size: 0.875em;*/
+    align-items: baseline;
+    justify-content: start;
+    padding: 1em;
+}
+
+.navigation-paths .path{
+    padding: 0 !important;
+}
+
+.navigation-paths .path a::after{
+    content: "/";
+    padding: 0.5em !important;
+}
+
+.navigation-paths .path:last-of-type a::after{
+    content: "";
+    padding: 0 !important;
+}
 
 .controls{
 	padding: 8px 16px;
@@ -2584,7 +2611,7 @@ label.nav-label::after{
 	align-items: flex-start;
 	padding: 2% 1%;
 	margin-top: auto;
-	font-size: 0.8em;
+	/*font-size: 0.8em;*/
 	text-transform: uppercase;
 }
 .language{
@@ -2632,7 +2659,7 @@ label.nav-label::after{
 }
 
 .category-description{
-	font-size: 0.8em;
+	/*font-size: 0.8em;*/
 	width: 100%;
 	text-transform: uppercase;
 }
