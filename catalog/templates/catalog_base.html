@@ -13,20 +13,21 @@
 {% endblock CATEGORIES %}
 <div class="main container">
     {% if queryset or product_list %}
-        <div class="full">
-            <form id="filter-form" class="full" method="GET">
+        <div class="row flex space-around">
+            <form id="filter-form" method="GET">
                 <div class="catalog-filter">
                     {% include "tags/catalog_filter.html" %}
                 </div>
             </form>
+            {% if CURRENT_CATEGORY_MAP %}
+            <div class="current-category-map-wrapper full hidden-xl">
+                <label for="current-nav-tree-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Categories" %}</span></label>
+                <input type="checkbox"  id="current-nav-tree-toggle" class="hidden">
+                {% include "tags/nav_tree_content.html" with categories_map=CURRENT_CATEGORY_MAP%}
+            </div>
+            {% endif %}
         </div>
-        {% if CURRENT_CATEGORY_MAP %}
-        <div class="current-category-map-wrapper full hidden-xl">
-            <label for="current-nav-tree-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Categories" %}</span></label>
-            <input type="checkbox"  id="current-nav-tree-toggle" class="hidden">
-            {% include "tags/nav_tree_content.html" with categories_map=CURRENT_CATEGORY_MAP%}
-        </div>
-        {% endif %}
+        
     {% endif %}
     <div class="full">
         {% block MAIN_CONTENT %}
