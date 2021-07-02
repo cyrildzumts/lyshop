@@ -1,10 +1,10 @@
 {% load i18n %}
 {% load core_tags %}
- <div class="product-filter flex-left">
+ <div class="collapsible product-filter flex-left">
     <div {% if field_name in SELECTED_FILTERS  %} class="chips chips-selected" {% else %}class="chips" {% endif %}  title="{{field_name}}">
         <span class="collapse-toggle" data-target="{{field_name}}-content" >{% trans DISPLAY_NAME %}</span>
     </div>
-    <div id="{{field_name}}-content">
+    <div id="{{field_name}}-content" class="collapse-content">
             <div class="mat-box">
                 <div class="filter-body">
                     {% include TEMPLATE_NAME with SELECTION=FIELD_FILTER.selection SELECTION_OPTIONS=FIELD_FILTER.selection_options RANGE=FIELD_FILTER.range FILTER=SELECTED_FILTERS|access_dict:field_name  %}
