@@ -12,37 +12,47 @@
 {% include 'tags/category_nav.html' %}
 {% endblock CATEGORIES %}
 <div class="main container">
-    {% if queryset or product_list %}
-        <div class="catalog-options">
-            <div class="col-m-6 col-4">
-                <div class="catalog-filter-wrapper">
-                    <label for="catalog-filter-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Filter" %}</span></label>
-                    <input type="checkbox"  id="catalog-filter-toggle" class="hidden">
-                    <div class="catalog-filter">
-                        <form id="filter-form" method="GET">
-                                {% include "tags/catalog_filter.html" %}
-                        </form>
+    <div class="col-2 col-m-12">
+    
+        {% if queryset or product_list %}
+        <div class="catalog-options-wrapper">
+            <label for="catalog-options-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Settings" %}</span></label>
+            <input type="checkbox"  id="catalog-options-toggle" class="hidden">
+            <div class="catalog-options">
+                <div class="col-m-12 col-4">
+                    {% if CURRENT_CATEGORY_MAP %}
+                    <div class="current-category-map-wrapper">
+                        <label for="current-nav-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Categories" %}</span></label>
+                        <input type="checkbox"  id="current-nav-toggle" class="hidden">
+                        <div class="category-map-container">
+                            {% include "tags/nav_tree_content.html" with categories_map=CURRENT_CATEGORY_MAP%}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-m-12 col-4">
+                    <div class="catalog-filter-wrapper">
+                        <label for="catalog-filter-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Filter" %}</span></label>
+                        <input type="checkbox"  id="catalog-filter-toggle" class="hidden">
+                        <div class="catalog-filter">
+                            <form id="filter-form" method="GET">
+                                    {% include "tags/catalog_filter.html" %}
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-m-6 col-4">
-                {% if CURRENT_CATEGORY_MAP %}
-                <div class="current-category-map-wrapper">
-                    <label for="current-nav-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Categories" %}</span></label>
-                    <input type="checkbox"  id="current-nav-toggle" class="hidden">
-                    <div class="category-map-container">
-                        {% include "tags/nav_tree_content.html" with categories_map=CURRENT_CATEGORY_MAP%}
-                    </div>
-                </div>
-            {% endif %}
+                
             </div>
         </div>
-        
-    {% endif %}
-    <div class="full">
-        {% block MAIN_CONTENT %}
-        {% endblock MAIN_CONTENT %}
+        {% endif %}
     </div>
+    <div class="col-2 col-m-12">
+        <div class="full">
+            {% block MAIN_CONTENT %}
+            {% endblock MAIN_CONTENT %}
+        </div>
+    </div>
+    
 </div>
 {% endblock MAIN %}
 
