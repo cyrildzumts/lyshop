@@ -17,9 +17,11 @@
                 <p>{% trans category.description %}</p>
         </div>
         {% endif %}
-        <div class="sidebar-nav-wrapper col-2 col-m-12">
-        {% include "tags/sidebar_nav.html" %}
-        </div>
+        {% comment %}
+                <div class="sidebar-nav-wrapper col-2 col-m-12">
+                {% include "tags/sidebar_nav.html" %}
+                </div>
+        {% endcomment %}
         {% if product_list %}
         <div class="product-list-wrapper col-10 col-m-12">
                 <div class="nav-path-wrapper">
