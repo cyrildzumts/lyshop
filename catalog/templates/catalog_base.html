@@ -11,7 +11,7 @@
 {% include "tags/navigations.html" %}
 {% include 'tags/category_nav.html' %}
 {% endblock CATEGORIES %}
-<div class="main container">
+<div class="main flex">
     <div class="col-2 col-m-12">
     
         {% if queryset or product_list %}
@@ -19,7 +19,7 @@
             <label for="catalog-options-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Settings" %}</span></label>
             <input type="checkbox"  id="catalog-options-toggle" class="hidden">
             <div class="catalog-options">
-                <div class="col-m-12 col-4">
+                <div class="full">
                     {% if CURRENT_CATEGORY_MAP %}
                     <div class="current-category-map-wrapper">
                         <label for="current-nav-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Categories" %}</span></label>
@@ -30,7 +30,7 @@
                     </div>
                     {% endif %}
                 </div>
-                <div class="col-m-12 col-4">
+                <div class="full">
                     <div class="catalog-filter-wrapper">
                         <label for="catalog-filter-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Filter" %}</span></label>
                         <input type="checkbox"  id="catalog-filter-toggle" class="hidden">
