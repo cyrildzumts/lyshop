@@ -86,38 +86,7 @@
         {% include "tags/language.html" %}
       </li>
       <li class="mat-list-item">
-      {% block CATEGORY_OVERLAY_MENU %}
-<div class="catalog-overlay-wrapper">
-<input type="checkbox" id="catalog-overlay-toggle" class="hidden">
-<div class="catalog-overlay">
-    <div class="nav-menu">
-        <div class="flex flex-left submenu">
-            <ul class="grid">
-                <li><a class="mat-button mat-button-text bold" href="{% url 'catalog:catalog-home' %}"><span>{% trans "Discover Our Catalog" %}</span></a></li>
-            </ul>
-        </div>
-        <ul class="grid">
-            {% for c in root_category_list %}
-            <li class="col-xs-12 col-2">
-                <div class="submenu full">
-                    <span>{% trans c.display_name %} <i class="icon"></i></span>
-                    
-                    {% if c.children.exists %}
-                    <ul>
-                        <li><a class="mat-button mat-button-text" href="{{c.get_slug_url}}"><span>{% trans "See all" %}</span></a></li>
-                        {% for cc in c.children.all %}
-                            <li class="full"><a class="mat-button mat-button-text" href="{{cc.get_slug_url}}"><span>{% trans cc.display_name %}</span></a></li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
-</div>
-{% endblock CATEGORY_OVERLAY_MENU %}
+
       </li>
       {% if dev_mode %}
         {% block GRID %}
@@ -140,7 +109,39 @@
     </ul>
     
 </div>
-{% endblock HEADER_PANEL %}           
+{% endblock HEADER_PANEL %}
+{% block CATEGORY_OVERLAY_MENU %}
+<div class="catalog-overlay-wrapper">
+<input type="checkbox" id="catalog-overlay-toggle" class="hidden">
+<div class="catalog-overlay">
+<div class="nav-menu">
+<div class="flex flex-left submenu">
+        <ul class="grid">
+        <li><a class="mat-button mat-button-text bold" href="{% url 'catalog:catalog-home' %}"><span>{% trans "Discover Our Catalog" %}</span></a></li>
+        </ul>
+</div>
+<ul class="grid">
+        {% for c in root_category_list %}
+        <li class="col-xs-12 col-2">
+        <div class="submenu full">
+                <span>{% trans c.display_name %} <i class="icon"></i></span>
+                
+                {% if c.children.exists %}
+                <ul>
+                <li><a class="mat-button mat-button-text" href="{{c.get_slug_url}}"><span>{% trans "See all" %}</span></a></li>
+                {% for cc in c.children.all %}
+                        <li class="full"><a class="mat-button mat-button-text" href="{{cc.get_slug_url}}"><span>{% trans cc.display_name %}</span></a></li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+        </div>
+        </li>
+        {% endfor %}
+</ul>
+</div>
+</div>
+</div>
+{% endblock CATEGORY_OVERLAY_MENU %}           
 </header>
 {% endblock HEADER %}
 {% block NEWS %}
