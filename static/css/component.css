@@ -199,6 +199,8 @@ li a{
 	text-align: left;
 	font-size: 0.75em;
 	font-weight: lighter;
+	padding: 0 !important;
+	margin: 0;
 }
 .submenu a span{
 	width: 100%;
