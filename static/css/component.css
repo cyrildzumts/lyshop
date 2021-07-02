@@ -215,9 +215,6 @@ li a{
 	display: none;
 }
 
-.catalog-overlay > .nav-menu{
-	display: none;
-}
 
 .big-menu:hover > .nav-menu{
 	display: block;
