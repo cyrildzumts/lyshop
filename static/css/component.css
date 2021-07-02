@@ -2057,7 +2057,7 @@ table tbody tr, .mat-table tbody tr{
 	position: relative;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0.5em;
+	padding: 0;
 }
 
 
@@ -2951,11 +2951,12 @@ label.nav-label::after{
 
 @media only screen and (min-width:40em){
 	.catalog-options-wrapper{
-		width: 12.5em;
+		width: 15rem;
+		padding: 1em 0;
 	}
 	
 	.catalog-main-wrapper{
-		width: calc(100% - 12.5em);
+		width: calc(100% - 15rem);
 	}
 	.modal-container{
 		width: 25% !important;
