@@ -2811,6 +2811,15 @@ label.nav-label::after{
 }
 
 @media only screen and (max-width:40em){
+
+	#catalog-options-toggle ~ .catalog-options{
+		display: none;
+	}
+	
+	#catalog-options-toggle:checked ~ .catalog-options{
+		display: block;
+	}
+
 	.catalog-options-wrapper{
 		width: 100%;
 	}
