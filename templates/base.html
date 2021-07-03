@@ -61,7 +61,7 @@
         </div>
   </div>
     <ul class="mat-list site-panel">
-        <li><label for="catalog-overlay-toggle"><i class="fas fa-bars icon"></i><span>{% trans "Categories" %}</span></label></li>
+        <li class="mat-list-item"><label for="catalog-overlay-toggle"><i class="fas fa-bars icon"></i><span>{% trans "Categories" %}</span></label></li>
         <li class="mat-list-item"><a class="mat-button mat-button-text" href="{%url 'catalog:catalog-home'%}">{% trans "Catalog" %}</a></li>
       {% if is_dashboard_allowed %}
        <li class="mat-list-item"><a class="mat-button mat-button-text" href="{%url 'dashboard:home'%}" title="{% trans 'Dashboard' %}"><i class="fas fa-tachometer-alt icon"></i>{% trans "Dashboard" %}</a></li>
