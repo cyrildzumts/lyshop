@@ -306,7 +306,7 @@ def category_manage_products(request, category_uuid):
         raise PermissionDenied
     category = get_object_or_404(models.Category, category_uuid=category_uuid)
     template_name = 'dashboard/category_manage_products.html'
-
+    page_title = _('Category Product Managements')
     if request.method == "POST":
         postdata = utils.get_postdata(request)
         id_list = postdata.getlist('products')
@@ -327,7 +327,9 @@ def category_manage_products(request, category_uuid):
     else:
         context = {
             'category': category,
-            'product_list': Product.objects.filter(is_active=True).exclude(category=category)
+            'product_list': Product.objects.filter(is_active=True).exclude(category=category),
+            'page_title' : page_title,
+            'content_title' :_('Category Management')
         }
     
     
