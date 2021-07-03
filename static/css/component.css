@@ -275,7 +275,7 @@ li a{
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 10;
   font-family: 'Montserrat';
   font-size: 1.2em;
   height: 48px;
