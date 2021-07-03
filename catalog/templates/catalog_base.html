@@ -16,11 +16,12 @@
 {% endcomment %}
 {% endblock CATEGORIES %}
 <div class="main-container">
-
-    
     {% if queryset or product_list %}
     <div class="catalog-options-wrapper">
-        <label for="catalog-options-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Sort & Filter" %}</span></label>
+        <div class="padding-v">
+            <label for="catalog-options-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Sort & Filter" %}</span></label>
+        </div>
+        
         <input type="checkbox"  id="catalog-options-toggle" class="hidden">
         <div class="catalog-options">
             <div class="full">
