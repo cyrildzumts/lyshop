@@ -2140,15 +2140,6 @@ table tbody tr, .mat-table tbody tr{
 }
 
 
-#current-nav-toggle ~ .category-map-container{
-	display: none;
-}
-
-
-#current-nav-toggle:checked ~ .category-map-container{
-	display: block;
-}
-
 #nav-tree-toggle ~ ul.nav-tree, #current-nav-tree-toggle ~ ul.nav-tree {
 	display: none;
 }
@@ -2816,6 +2807,14 @@ label.nav-label::after{
 }
 
 @media only screen and (max-width:40em){
+	#current-nav-toggle ~ .category-map-container{
+		display: none;
+	}
+	
+	
+	#current-nav-toggle:checked ~ .category-map-container{
+		display: block;
+	}
 
 	#catalog-options-toggle ~ .catalog-options{
 		display: none;
