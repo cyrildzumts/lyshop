@@ -202,7 +202,7 @@ li a{
 .catalog-overlay .actions label{
 	position: absolute;
 	top: 1em;
-	right: 0;
+	right: 1em;
 	text-transform: uppercase;
 }
 .catalog-overlay-item label{
