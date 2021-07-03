@@ -2092,6 +2092,7 @@ table tbody tr, .mat-table tbody tr{
 	width: calc(100% - 12.5em);
 }
 */
+/*
 #catalog-options-toggle ~ .catalog-options{
 	display: none;
 }
@@ -2099,6 +2100,7 @@ table tbody tr, .mat-table tbody tr{
 #catalog-options-toggle:checked ~ .catalog-options{
 	display: block;
 }
+*/
 
 .catalog-options{
 	display: block;
