@@ -41,6 +41,13 @@ body{
 .main-container{
     background-color: #fff;
 }
+.catalog-options-wrapper{
+    background-color: #FAFAFA;
+}
+
+.category-title-wrapper{
+    background-color: #fff;
+}
 
 .category-description p{
 	color: #777;
