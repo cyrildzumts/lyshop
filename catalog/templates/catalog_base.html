@@ -33,7 +33,7 @@
                     <input type="checkbox"  id="current-nav-toggle" class="hidden">
                     <div class="category-map-container">
                         {% if category %}
-                            <div class="padding flex"><span>{% trans category.display_name %}</span></div>
+                            <div class="padding flex category-title-wrapper"><span class="cate">{% trans category.display_name %}</span></div>
                         {% endif %}
                         {% include "tags/nav_tree_content.html" with categories_map=CURRENT_CATEGORY_MAP%}
                     </div>
