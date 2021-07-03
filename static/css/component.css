@@ -199,6 +199,16 @@ li a{
 	display: block;
 }
 
+.catalog-overlay .actions label{
+	position: absolute;
+	top: 1em;
+	right: 0;
+	text-transform: uppercase;
+}
+
+.catalog-overlay .actions .fas{
+	font-size: 1.2em;
+}
 
 .big-menu > .nav-menu, .catalog-overlay > .nav-menu{
 	background-color: #fafafa;
