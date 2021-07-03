@@ -295,6 +295,46 @@ def categories_delete(request):
 
 
 @login_required
+def category_manage_products(request, category_uuid):
+    username = request.user.username
+    if not PermissionManager.user_can_access_dashboard(request.user):
+        logger.warning("Dashboard : PermissionDenied to user %s for path %s", username, request.path)
+        raise PermissionDenied
+
+    if not PermissionManager.user_can_change_category(request.user):
+        logger.warning(f"PermissionDenied to user \"{username}\" for path \"{request.path}\"")
+        raise PermissionDenied
+    category = get_object_or_404(models.Category, category_uuid=category_uuid)
+    template_name = 'dashboard/category_manage_products.html'
+
+    if request.method == "POST":
+        postdata = utils.get_postdata(request)
+        id_list = postdata.getlist('products')
+        action = postdata.get('action')
+
+
+        if len(id_list):
+            product_list = list(map(int, id_list))
+            Product.objects.filter(id__in=product_list).update(category=category)
+            
+            messages.success(request, f"Catergories \"{product_list}\" updated")
+            logger.info(f"Categories \"{product_list}\" updated by user {username}")
+            
+        else:
+            messages.error(request, f"Catergories  could not be updated")
+            logger.error(f"ID list invalid. Error : {id_list}")
+        return redirect(category.get_dashboard_url())
+    else:
+        context = {
+            'category': category,
+            'product_list': Product.objects.filter(is_active=True).exclude(category=category)
+        }
+    
+    
+    return render(request,template_name, context)
+
+
+@login_required
 def category_products(request, category_uuid=None):
     template_name = 'dashboard/category_product_list.html'
     username = request.user.username

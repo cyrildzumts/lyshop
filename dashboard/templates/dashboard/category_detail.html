@@ -2,7 +2,10 @@
 {% load i18n %}
 {% load catalog_tags %}
 {% block ACTIONS %}
-{% if can_change_category %}<a class="mat-button mat-button-default" href="{{category.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span> </a>{% endif %}
+{% if can_change_category %}
+<a class="mat-button mat-button-default" href="{{category.get_update_url}}"> <i class="fas fa-edit icon"></i><span>{% trans "Edit" %}</span></a>
+<a class="mat-button mat-button-default" href="{% url 'dashboard:category-manage-product' category.category_uuid %}"> <i class="fas fa-edit icon"></i><span>{% trans "Manage Products" %}</span></a>
+{% endif %}
 {% if can_add_category %}<a class="mat-button mat-button-default" href="{% url 'dashboard:category-create' %}"> <i class="fas fa-plus icon"></i> <span>{% trans "Add new Category" %}</span></a>{% endif %}
 {% if can_delete_category %}<a class="mat-button mat-button-default" href="{{category.get_delete_url}}"> <i class="fas fa-trash icon"></i><span>{% trans "Delete" %}</span> </a>{% endif %}
 <a class="mat-button mat-button-default" href="{% url 'dashboard:categories' %}"> <i class="fas fa-list icon"></i><span>{% trans "Categories" %}</span></a>

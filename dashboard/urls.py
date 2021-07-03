@@ -212,6 +212,7 @@ urlpatterns = [
     path('categories/delete/<uuid:category_uuid>/', views.category_delete, name='category-delete'),
     path('categories/delete/', views.categories_delete, name='categories-delete'),
     path('categories/update/<uuid:category_uuid>/', views.category_update, name='category-update'),
+    path('categories/products-update/<uuid:category_uuid>/', views.category_manage_products, name='category-manage-product'),
     path('categories/create/', views.category_create, name='category-create'),
 
     path('coupon-create/',views.coupon_create, name='coupon-create'),

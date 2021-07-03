@@ -1,0 +1,61 @@
+{% load i18n %} 
+
+    <div class="mat-box">
+        <div class="title">
+            <h3>{% trans "Category Products Management" %}</h3>
+        </div>
+        <form class="form" name="category" action="{% url 'dashboard:category-manage-product' category.category_uuid %}" method="POST">{% csrf_token %}
+            <div class="container">
+            
+                <div class="form-group">
+                    <label>{% trans "Name" %}</label>
+                    <span>{{category.name}}</span>
+                </div>
+                <div class="form-group">
+                    <label>{% trans "Display Name" %}</label>
+                    <span>{{category.display_name}}</span>
+                </div>
+                <div class="mat-table-wrapper">
+                
+                    <table id="product-list" class="mat-table js-filter-table">
+                        
+                        <thead>
+                                <tr>
+                                        <th scope="col"><label><input id="filter-select-all" class="js-select-all" type="checkbox" name="allselected" title="{% trans 'Select all' %}"></label></th>
+                                        <th></th>
+                                        <th scope="col">{% trans "Name" %}</th>
+                                        <th scope="col">{% trans "Display Name" %}</th>
+                                        <th scope="col">{% trans "Gender" %}</th>
+                                        <th scope="col">{% trans "Price" %}</th>
+                                        <th scope="col">{% trans "Details" %}</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for product in product_list  %}
+                                <tr>
+
+                                <td scope="row" class="checkbox"><label><input class="js-selectable" type="checkbox" name="products" value="{{product.pk}}"><span class="checkbox-label"></span></label></td>
+                                <td><div class="col-xs-3 col-4"><img class="img-responsive" src="{{product.image}}" alt="{{product.display_name}}"></div></td>
+                                <td scope="row" data-label="{% trans 'Name' %}"><span>{{product.name}}</span></td>
+                                <td data-label="{% trans 'Display Name' %}"><span>{{product.display_name}}</span></td>
+                                <td data-label="{% trans 'Gender' %}"><span>{{product.gender|gender_value}}</span></td>
+                                <td data-label="{% trans 'Price' %}"><span>{{product.price|floatformat:"-2"}} {% trans CURRENCY %}</span></td>
+
+                                <td data-label="{% trans 'Detail' %}"><a class="mat-button mat-button-default" href="{{product.get_dashboard_url}}"><span><i class="fas fa-info icon"></i>{% trans "Details" %}</span></a></td>
+                                
+                                </tr>
+                                {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+            </div><!-- End of Container-->
+
+            <div class="actions">
+                    <a class="mat-button mat-button-text js-cancel" href="{{category.get_dashboard_url}}">{% trans "Cancel" %}</a>
+                    <button class="mat-button mat-button-default" type="submit">{% trans "Update" %}</button>
+                </div>
+            
+        </form>
+    </div>          
+
