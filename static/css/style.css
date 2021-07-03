@@ -415,6 +415,13 @@
 .padding-r{
     padding-right: 1rem !important;
 }
+.padding-top{
+    padding-top: 1em !important;
+}
+
+.padding-bottom{
+    padding-bottom: 1em !important;
+}
 
 .padding-v{
     padding-top: 1rem !important;

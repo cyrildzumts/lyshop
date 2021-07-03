@@ -18,7 +18,7 @@
 <div class="main-container">
     {% if queryset or product_list %}
     <div class="catalog-options-wrapper">
-        <div class="padding-v">
+        <div class="padding-bottom">
             <label for="catalog-options-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Sort & Filter" %}</span></label>
         </div>
         
@@ -27,7 +27,7 @@
             <div class="full">
                 {% if CURRENT_CATEGORY_MAP %}
                 <div class="current-category-map-wrapper">
-                    <div class="padding-v">
+                    <div class="padding-bottom">
                         <label for="current-nav-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Categories" %}</span></label>
                     </div>
                     <input type="checkbox"  id="current-nav-toggle" class="hidden">
