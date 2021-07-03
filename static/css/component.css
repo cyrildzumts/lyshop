@@ -197,8 +197,7 @@ label .icon{
 	display: none;
 }
 
-#catalog-overlay-toggle:checked ~ .catalog-overlay,
-#catalog-overlay-toggle:hover ~ .catalog-overlay{
+#catalog-overlay-toggle:checked ~ .catalog-overlay{
 	display: block;
 }
 
