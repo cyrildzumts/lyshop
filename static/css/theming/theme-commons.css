@@ -38,6 +38,10 @@ body{
 	background-color: var(--sidebar-active-color);
 }
 
+.main-container{
+    background-color: #fff;
+}
+
 .category-description p{
 	color: #777;
 }
