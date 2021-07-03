@@ -205,6 +205,12 @@ li a{
 	right: 0;
 	text-transform: uppercase;
 }
+.catalog-overlay-item label{
+	padding-left : 0
+}
+.catalog-overlay-item label .icon{
+	padding-left : 0
+}
 
 .catalog-overlay .actions .fas{
 	font-size: 1.2em;
