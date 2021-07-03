@@ -9,7 +9,7 @@ body{
     color: var(--fourth-color);
 }
 
-.header a{
+.header a, .header .catalog-overlay-item .mat-button{
     color: var(--fourth-color) !important;
     font-weight: 700;
 }
