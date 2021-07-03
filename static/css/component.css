@@ -184,6 +184,9 @@ li a{
 	position: relative;
 }
 
+label .icon{
+	padding-left: 0;
+}
 .catalog-overlay-wrapper .catalog-overlay{
 	position: fixed;
 	top: 3em;
