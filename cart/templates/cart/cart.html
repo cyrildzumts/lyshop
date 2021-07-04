@@ -4,9 +4,9 @@
 {% block MAIN %}
 {% csrf_token %}
 {% if item_list %}
-<div class="container wrapper cart-container">
+<div class="container  cart-container">
     <div class="col-m-12 col-8">
-        <div class="mat-list-wrapper wrapper">
+        <div class="mat-list-wrapper">
             <ul class="mat-list">
                 {% for item in item_list %}
                 <li class="mat-list-item" id="item-{{item.id}}">
