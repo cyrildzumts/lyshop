@@ -2818,6 +2818,16 @@ label.nav-label::after{
 	width: 100%;
 }
 
+.cart-container .mat-list{
+	overflow: hidden;
+	max-height: unset;
+}
+
+.cart-container .mat-box{
+	padding: 0 1em;
+	margin: 0 1em;
+}
+
 .cart-item-remove{
 	position: absolute;
 	right: 1em;
