@@ -2859,6 +2859,29 @@ label.nav-label::after{
 	.user-registration, .user-login{
 		font-size: 0.7em;
 	}
+	.cart-item{
+		display: flex;
+		position: relative;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
+	
+	.cart-item-remove{
+		position: absolute;
+		right: 1em;
+		bottom: 1em;
+		font-size: 1.5em;
+		padding: 16px;
+		z-index: 10;
+	}
+	.cart-item-content{
+		position: relative;
+	}
+	.cart-item-content .item-total{
+		position: absolute;
+		right: 1em;
+	}
 	.cart-container, .checkout-container{
 		font-size: 0.7em;
 	}

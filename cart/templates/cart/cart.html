@@ -10,7 +10,7 @@
             <ul class="mat-list">
                 {% for item in item_list %}
                 <li class="mat-list-item" id="item-{{item.id}}">
-                    {% include "cart_tags/item_snippet.html" %}
+                    {% include "cart_tags/item_snippet.html" with item=item%}
                 </li>
                 {% endfor %}
             </ul>

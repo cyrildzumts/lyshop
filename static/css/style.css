@@ -367,22 +367,7 @@
     border-bottom: 2px solid #e64a19;
 }
 
-.cart-item{
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
 
-.cart-item-remove{
-    position: absolute;
-    right: 2%;
-    top: 1%;
-    font-size: 1.5em;
-    padding: 16px;
-    z-index: 10;
-}
 
 #lang-form{
     display: flex;
