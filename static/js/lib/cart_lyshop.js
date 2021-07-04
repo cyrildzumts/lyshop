@@ -28,7 +28,6 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         }
         var self = this;
         this.customer = document.querySelector('#cart-customer');
-        console.log("cart init update : ", this.customer);
         $('.js-cart-update-item-quantity,.js-cart-delete-item').on('click', function(){
             var item = $(this);
             var obj = {};
@@ -287,7 +286,8 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
             url : '/api/update-cart-item/',
             data : data
         }
-        console.log("Cart update product : customer : %s", self.customer.value);
+        console.log("Cart update data : %s", accounts.get_user());
+        console.log("Cart update data : %s", accounts.get_user().user_id);
         ajax_api.ajax(option).then(function(response){
             self.update_badge(response.count);
             if(!response.success){
