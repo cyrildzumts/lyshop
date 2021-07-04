@@ -1343,31 +1343,31 @@ input.editable{
 }
 */
 
-.chips-enabled{
+.chips-enabled, span.chips-enabled{
 	color: #232F34;
 	background-color: #232F343E;
 }
 
-.chips-disabled .chips{
+.chips-disabled .chips, span.chips-disabled{
 	color: #232F345A;
 	background-color: #232F341A;
 	font-weight: 500;
 	cursor: default;
 }
 
-.chips-selected .chips{
+.chips-selected .chips, span.chips-selected{
 	color: #232F34;
 	background-color: #232F345E;
 	font-weight: 700;
 }
 
-.chips-activated .chips{
+.chips-activated .chips, span.chips-activated{
 	color: #232F34;
 	background-color: #232F346E;
 	font-weight: 600;
 }
 
-.chips:hover{
+.chips:hover, span.chips:hover{
 	color: #232F34;
 	background-color: #232F342E;
 	cursor: pointer;
