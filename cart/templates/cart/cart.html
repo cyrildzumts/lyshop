@@ -4,6 +4,7 @@
 {% block MAIN %}
 {% csrf_token %}
 {% if item_list %}
+<input type="text" id="cart-customer" class="hidden" name="customer" value="{{request.user.pk}}">
 <div class="container  cart-container">
     <div class="col-m-12 col-8">
         <div class="mat-list-wrapper">

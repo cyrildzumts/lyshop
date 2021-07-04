@@ -16,6 +16,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         this.total = 0;
         this.csrfmiddlewaretoken = document.querySelector('input[name="csrfmiddlewaretoken"]');
 
+
         console.log("New Cart created");
     }
 
@@ -25,7 +26,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
             return;
         }
         var self = this;
-
+        customer = document.querySelector('#cart-customer');
         $('.js-cart-update-item-quantity,.js-cart-delete-item').on('click', function(){
             var item = $(this);
             var obj = {};
@@ -274,7 +275,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
             //"quantity"              : to_update['quantity'],
             "action"                :  to_update['action'],
             "item"                  : to_update['item_uuid'],
-            "customer"              : customer
+            "customer"              : customer.value
         };
         var option = {
             type:'POST',
@@ -284,7 +285,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
             url : '/api/update-cart-item/',
             data : data
         }
-        console.log("Cart update product : customer : %s", customer);
+        console.log("Cart update product : customer : %s", customer.value);
         ajax_api.ajax(option).then(function(response){
             self.update_badge(response.count);
             if(!response.success){
