@@ -2818,6 +2818,10 @@ label.nav-label::after{
 	width: 100%;
 }
 
+.cart-container .mat-list-wrapper{
+	margin: 0;
+}
+
 .cart-container .mat-list{
 	overflow: hidden;
 	max-height: unset;
