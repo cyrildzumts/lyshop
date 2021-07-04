@@ -238,6 +238,10 @@ li.active.selected{
     color: #FAFAFA;
 }
 
+.banner{
+    background-color: #fafafa;
+}
+
 .banner-action .mat-button{
     background-color: #FFFFFF !important;
     color: var(--primary-color) !important;
