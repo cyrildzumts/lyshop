@@ -11,7 +11,7 @@
 
 {% block MAIN_CONTENT %}
 <div class="container">
-        {% if category.description %}
+        {% if category.description is not None %}
         <div class="category-description padding">
                 <h1>{% trans category.display_name %}</h1>
                 <p>{% trans category.description %}</p>
