@@ -27,6 +27,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         }
         var self = this;
         customer = document.querySelector('#cart-customer');
+        console.log("cart init update : ", customer);
         $('.js-cart-update-item-quantity,.js-cart-delete-item').on('click', function(){
             var item = $(this);
             var obj = {};
