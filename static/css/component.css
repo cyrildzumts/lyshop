@@ -252,6 +252,13 @@ label .icon{
 	padding: 0 !important;
 	margin: 0;
 }
+
+.submenu .mat-button-default{
+	color: #fafafa !important;
+	padding: 1em !important;
+	margin-bottom: 1em !important;
+}
+
 .submenu a span{
 	width: 100%;
 }
