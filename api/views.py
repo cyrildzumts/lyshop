@@ -167,6 +167,8 @@ def update_cart_item(request):
     if request.method != 'POST':
         return Response({'status': False, 'errror': 'Bad request. Use POST instead'}, status=status.HTTP_400_BAD_REQUEST)
     
+    logger.debug(f"update cart item for user : {request.user}")
+
     context = cart_service.process_cart_action(request.POST.copy())
     if not context.get('invalid_data') :
         return Response(data=context, status=status.HTTP_200_OK)
