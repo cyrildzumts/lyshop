@@ -276,7 +276,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
             //"quantity"              : to_update['quantity'],
             "action"                :  to_update['action'],
             "item"                  : to_update['item_uuid'],
-            "customer"              : self.customer.value
+            "customer"              : accounts.get_user().user_id
         };
         var option = {
             type:'POST',
@@ -286,8 +286,6 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
             url : '/api/update-cart-item/',
             data : data
         }
-        console.log("Cart update data : %s", accounts.get_user());
-        console.log("Cart update data : %s", accounts.get_user().user_id);
         ajax_api.ajax(option).then(function(response){
             self.update_badge(response.count);
             if(!response.success){
