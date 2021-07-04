@@ -287,7 +287,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
             url : '/api/update-cart-item/',
             data : data
         }
-        console.log("Cart update product : customer : %s", customer.value);
+        console.log("Cart update product : customer : %s", self.customer.value);
         ajax_api.ajax(option).then(function(response){
             self.update_badge(response.count);
             if(!response.success){
