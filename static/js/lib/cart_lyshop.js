@@ -14,6 +14,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
         this.user = "";
         this.items = [];
         this.total = 0;
+        this.customer = {};
         this.csrfmiddlewaretoken = document.querySelector('input[name="csrfmiddlewaretoken"]');
 
 
@@ -26,8 +27,8 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
             return;
         }
         var self = this;
-        customer = document.querySelector('#cart-customer');
-        console.log("cart init update : ", customer);
+        this.customer = document.querySelector('#cart-customer');
+        console.log("cart init update : ", this.customer);
         $('.js-cart-update-item-quantity,.js-cart-delete-item').on('click', function(){
             var item = $(this);
             var obj = {};
@@ -276,7 +277,7 @@ define(['ajax_api', 'lang', 'accounts'], function(ajax_api, Locale, accounts) {
             //"quantity"              : to_update['quantity'],
             "action"                :  to_update['action'],
             "item"                  : to_update['item_uuid'],
-            "customer"              : customer.value
+            "customer"              : self.customer.value
         };
         var option = {
             type:'POST',
