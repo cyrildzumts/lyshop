@@ -9,6 +9,7 @@ from catalog.models import Category, Product
 from core.tasks import send_mail_task
 from lyshop import settings
 import logging
+import copy
 
 
 logger = logging.getLogger(__name__)
@@ -31,6 +32,14 @@ def send_welcome_mail(sender, instance, created, **kwargs):
         }
         send_mail_task.apply_async(
             args=[email_context],
+            queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
+            routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
+        )
+        admin_email_context = copy.deepcopy(email_context)
+        admin_email_context['recipient_email'] = settings.ADMIN_EXTERNAL_EMAIL
+        admin_email_context['title'] = "Nouvel utilisateur"
+        send_mail_task.apply_async(
+            args=[admin_email_context],
             queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
             routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
         )

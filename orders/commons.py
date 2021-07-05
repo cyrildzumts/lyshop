@@ -179,6 +179,7 @@ REFUND_DECLINED_REASON = (
 
 ORDER_CONFIRMATION_MAIL_TITLE = _("Order Confirmation")
 ORDER_CONFIRMATION_MAIL_TEMPLATE = 'orders/order_confirmation_email.html'
+ADMIN_ORDER_CONFIRMATION_MAIL_TEMPLATE = 'orders/admin_order_confirmation_email.html'
 
 ORDER_CANCEL_CONFIRMATION_MAIL_TITLE = _("Order Cancell Confirmation")
 ORDER_CANCEL_CONFIRMATION_MAIL_TEMPLATE = 'orders/order_cancel_confirmation_email.html'

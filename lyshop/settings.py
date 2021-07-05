@@ -64,11 +64,13 @@ EMAIL_HOST_PASSWORD = os.environ.get('LYSHOP_EMAIL_PASSWORD')
 EMAIL_HOST_USER = os.environ.get('LYSHOP_EMAIL_USER')
 DEFAULT_FROM_EMAIL = os.environ.get('LYSHOP_DEFAULT_FROM_EMAIL', 'LYSHOP <info@lyshoping.com>')
 CONTACT_MAIL =  os.environ.get('LYSHOP_CONTACT_MAIL')
+ADMIN_EXTERNAL_EMAIL = os.environ.get("LYSHOP_ADMIN_EXTERNAL_EMAIL")
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_BACKEND = os.environ.get('LYSHOP_EMAIL_BACKEND')
 
 DJANGO_EMAIL_TEMPLATE = "tags/template_email.html"
+DJANGO_EMAIL_TO_ADMIN_TEMPLATE = "tags/admin_newuser_template_email.html"
 DJANGO_EMAIL_TEMPLATE_TXT = "tags/template_email.txt"
 DJANGO_WELCOME_EMAIL_TEMPLATE = "welcome_email.html"
 DJANGO_VALIDATION_EMAIL_TEMPLATE = "validation_email.html"

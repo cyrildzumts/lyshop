@@ -22,6 +22,7 @@ import json
 import logging
 import uuid
 import datetime
+import copy
 
 
 logger = logging.getLogger(__name__)
@@ -552,9 +553,7 @@ def send_order_mail_confirmation(order, cancellation=False):
         address = order.ship_mode.display_name
         ship_mode = address
 
-    
-    send_order_mail_task.apply_async(
-        args=[{
+    email_context = {
                 'order' : order.pk,
                 'template_name' : TEMPLATE_NAME,
                 'title': TEMPLATE_TITLE,
@@ -575,21 +574,40 @@ def send_order_mail_confirmation(order, cancellation=False):
                     'TOTAL' : order.total,
                     'REFERENCE_NUMBER' : order.order_ref_number
                 }
-            }],
+            }
+    send_order_mail_task.apply_async(
+        args=[email_context],
         queue=settings.CELERY_OUTGOING_MAIL_EXCHANGE,
+        routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
+    )
+
+    admin_email_context = copy.deepcopy(email_context)
+    admin_email_context['recipient_email'] = settings.ADMIN_EXTERNAL_EMAIL
+    send_mail_task.apply_async(
+        args=[admin_email_context],
+        queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
         routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
     )
 
 
 
 def send_shipment_mail_confirmation(order):
-    send_mail_task.apply_async(
-        args=[{
+    email_context = {
                 'order_id' : order.pk,
                 'template_name' : commons.SHIPMENT_CONFIRMATION_MAIL_TEMPLATE,
                 'title': commons.SHIPMENT_CONFIRMATION_MAIL_TITLE,
                 'recipient_email': order.user.email
-            }],
+            }
+    send_mail_task.apply_async(
+        args=[email_context],
         queue=settings.CELERY_OUTGOING_MAIL_EXCHANGE,
+        routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
+    )
+
+    admin_email_context = copy.deepcopy(email_context)
+    admin_email_context['recipient_email'] = settings.ADMIN_EXTERNAL_EMAIL
+    send_mail_task.apply_async(
+        args=[admin_email_context],
+        queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
         routing_key=settings.CELERY_OUTGOING_MAIL_ROUTING_KEY
     )
