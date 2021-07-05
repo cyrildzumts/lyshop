@@ -75,12 +75,12 @@ MAX_IMAGE_SIZE = 2097152
 @login_required
 def dashboard(request):
     template_name = "dashboard/dashboard.html"
+    username = request.user.username
     can_view_dashboard = PermissionManager.user_can_access_dashboard(request.user)
     if not can_view_dashboard :
         logger.warning(f"Dashboard : PermissionDenied to user {username} for path {request.path}")
         raise PermissionDenied
     page_title = _('Dashboard') + ' - ' + settings.SITE_NAME
-    username = request.user.username
     now = timezone.now()
     recent_orders = Order.objects.all()[:Constants.MAX_RECENT]
     currents_orders = Order.objects.filter(created_at__year=now.year, created_at__month=now.month)
