@@ -1,4 +1,5 @@
 
+from cart.models import CartModel
 from django.db.models.signals import post_save, pre_save
 from django.contrib.auth.models import User
 from django.dispatch import receiver
@@ -52,6 +53,7 @@ def send_validation_mail(sender, instance, created, **kwargs):
                 'validation_url' : settings.SITE_HOST + instance.get_validation_url()
             }
         }
+        
         send_mail_task.apply_async(
             args=[email_context],
             queue=settings.CELERY_OUTGOING_MAIL_QUEUE,
@@ -66,3 +68,11 @@ def generate_category_slug(sender, instance, *args, **kwargs):
 @receiver(pre_save, sender=Product)
 def generate_product_slug(sender, instance, *args, **kwargs):
     instance.slug = slugify(instance.name)
+
+
+@receiver(post_save, sender=User)
+def generate_user_cart(sender, instance, created, **kwargs):
+    if created:
+        logger.debug("creating user cart ...")
+        CartModel.objects.create(user=instance)
+        logger.debug("new user cart created.")
