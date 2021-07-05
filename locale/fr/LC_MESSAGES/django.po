@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-05 16:23+0200\n"
+"POT-Creation-Date: 2021-07-05 16:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1456,7 +1456,7 @@ msgstr "Ajouter au panier"
 msgid "Variants"
 msgstr "Déclinaisons"
 
-#: catalog/templates/catalog_base.html:22 core/resources/ui_strings.py:213
+#: catalog/templates/catalog_base.html:22 core/resources/ui_strings.py:215
 msgid "Sort & Filter"
 msgstr "Trier & Filtrer"
 
@@ -2667,6 +2667,18 @@ msgstr "Tout voir"
 #: vendors/templates/vendors/product_variant_detail.html:26
 #: vendors/templates/vendors/sold_product_detail.html:26
 msgid "Gender"
+msgstr "Genre"
+
+#: core/resources/ui_strings.py:213
+#, fuzzy
+#| msgid "Brand"
+msgid "brand"
+msgstr "Marque"
+
+#: core/resources/ui_strings.py:214
+#, fuzzy
+#| msgid "Gender"
+msgid "gender"
 msgstr "Genre"
 
 #: core/templates/core/catalog_filter_old.html:13

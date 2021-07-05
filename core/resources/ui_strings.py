@@ -210,4 +210,6 @@ CATEGORY_SEE_ALL = _('See all')
 
 UI_BRAND = _('Brand')
 UI_GENDER = _('Gender')
+UI_BRAND_LOWER = _('brand')
+UI_GENDER_LOWER = _('gender')
 UI_SORT_FILTER = _('Sort & Filter')
