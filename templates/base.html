@@ -132,7 +132,9 @@
                                         <ul>
                                         <li><a class="mat-button mat-button-text" href="{{c.get_slug_url}}"><span>{% trans "See all" %}</span></a></li>
                                         {% for cc in c.children.all %}
+                                                {% if cc.is_active %}
                                                 <li class="full"><a class="mat-button mat-button-text" href="{{cc.get_slug_url}}"><span>{% trans cc.display_name %}</span></a></li>
+                                                {% endif %}
                                         {% endfor %}
                                         </ul>
                                         {% endif %}
