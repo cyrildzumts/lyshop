@@ -24,6 +24,7 @@ def send_welcome_mail(sender, instance, created, **kwargs):
             'template_name': settings.DJANGO_WELCOME_EMAIL_TEMPLATE,
             'title': 'Bienvenu chez LYSHOP',
             'recipient_email': instance.email,
+            
             'context':{
                 'SITE_NAME': settings.SITE_NAME,
                 'SITE_HOST': settings.SITE_HOST,

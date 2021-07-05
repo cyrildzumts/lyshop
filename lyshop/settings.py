@@ -69,7 +69,7 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_BACKEND = os.environ.get('LYSHOP_EMAIL_BACKEND')
 
-DJANGO_EMAIL_TEMPLATE = "tags/template_email.html"
+DJANGO_EMAIL_TEMPLATE = "tags/template_email_new.html"
 DJANGO_EMAIL_TO_ADMIN_TEMPLATE = "tags/admin_newuser_template_email.html"
 DJANGO_EMAIL_TEMPLATE_TXT = "tags/template_email.txt"
 DJANGO_WELCOME_EMAIL_TEMPLATE = "welcome_email.html"
