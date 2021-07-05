@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-05 16:20+0200\n"
+"POT-Creation-Date: 2021-07-05 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1457,10 +1457,8 @@ msgid "Variants"
 msgstr "Déclinaisons"
 
 #: catalog/templates/catalog_base.html:22 core/resources/ui_strings.py:213
-#, fuzzy
-#| msgid "Amount Filter"
 msgid "Sort & Filter"
-msgstr "filtre du montant"
+msgstr "Trier & Filtrer"
 
 #: catalog/templates/catalog_base.html:31
 #: catalog/templates/tags/sidebar_nav.html:6
