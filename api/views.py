@@ -86,7 +86,6 @@ class CategoryListView(ListAPIView):
 
 @api_view(['GET'])
 def get_current_user(request):
-    logger.debug(f"get_current_user api : {request.user}")
     if request.user.is_authenticated:
         data = {'username': request.user.username, 'user_id': request.user.pk, 'last_login': request.user.last_login, 'is_valid':True}
     else:
