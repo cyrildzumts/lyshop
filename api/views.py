@@ -85,8 +85,6 @@ class CategoryListView(ListAPIView):
 
 
 @api_view(['GET'])
-@permission_classes([])
-@authentication_classes([])
 def get_current_user(request):
     logger.debug(f"get_current_user api : {request.user}")
     if request.user.is_authenticated:
