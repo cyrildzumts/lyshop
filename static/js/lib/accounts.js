@@ -100,10 +100,18 @@ define(['ajax_api','exports'], function(ajax_api, exports) {
         });
         if(!user_available){
             ajax_api.ajax(options).then(function(response){
-                user['username'] = response.username;
-                user['user_id'] = response.user_id;
-                user['last_login'] = response.last_login;
-                user_available = true;
+                if(response.is_valid){
+                    user['username'] = response.username;
+                    user['user_id'] = response.user_id;
+                    user['last_login'] = response.last_login;
+                    user_available = true;
+                }else{
+                    user['username'] = response.username;
+                    user['user_id'] = response.user_id;
+                    user['last_login'] = "-"
+                    user_available = false;
+                }
+                
                 if(typeof callback === "function"){
                     callback(user);
                 }

@@ -85,9 +85,13 @@ class CategoryListView(ListAPIView):
 
 
 @api_view(['GET'])
+@permission_classes([])
+@authentication_classes([])
 def get_current_user(request):
-   
-    data = {'username': request.user.username, 'user_id': request.user.pk, 'last_login': request.user.last_login}
+    if request.user.is_authenticated:
+        data = {'username': request.user.username, 'user_id': request.user.pk, 'last_login': request.user.last_login, 'is_valid':True}
+    else:
+        data = {'username': 'anonymous user', 'user_id': -1, 'is_valid':False}
     return Response(data)
 
 

@@ -61,7 +61,7 @@ def send_order_mail_task(email_context=None):
         order_items = order.order_items.all()
         context['order'] = order
         context['order_items'] = order_items
-        html_message = render_to_string(template_name, email_context['context'])
+        html_message = render_to_string(template_name, context)
         send_mail(
             email_context['title'],
             None,
