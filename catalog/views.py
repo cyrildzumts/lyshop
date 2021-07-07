@@ -76,11 +76,20 @@ def catalog_home(request, sale=None,):
     sale_category = Product.objects.filter(is_active=True, sale=True).exists()
     if sale == 'sale':
         queryset = queryset.filter(sale=True)
+    
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, GLOBAL_CONF.PAGINATED_BY)
+    try:
+        list_set = paginator.page(page)
+    except PageNotAnInteger:
+        list_set = paginator.page(1)
+    except EmptyPage:
+        list_set = None
     context = {
         'page_title' : Constants.CATALOG_HOME_PAGE_TITLE,
         'product_list': recent_products,
         'type_list': ProductType.objects.all(),
-        'queryset' : queryset,
+        'queryset' : list_set,
         'GENDER' : Constants.GENDER,
         'SELECTED_FILTERS' : selected_filters,
         'OG_TITLE' : Constants.CATALOG_HOME_PAGE_TITLE,
