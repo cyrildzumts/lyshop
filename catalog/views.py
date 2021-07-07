@@ -84,7 +84,7 @@ def catalog_home(request, sale=None,):
     except PageNotAnInteger:
         list_set = paginator.page(1)
     except EmptyPage:
-        list_set = None
+        list_set = paginator.page(1)
     context = {
         'page_title' : Constants.CATALOG_HOME_PAGE_TITLE,
         'product_list': recent_products,
@@ -174,7 +174,7 @@ def category_detail_slug(request, sale=None, slug=None):
     except PageNotAnInteger:
         list_set = paginator.page(1)
     except EmptyPage:
-        list_set = None
+        list_set = paginator.page(1)
     paths = catalog_service.build_category_paths(category)
     #root_cats = catalog_service.get_non_empty_root_category()
     context = {
