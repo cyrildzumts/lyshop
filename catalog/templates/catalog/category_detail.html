@@ -34,7 +34,9 @@
                 </div>
                 <div id="products" class="products js-product-list">
                         {% include "tags/products_snippet.html" with product_list=product_list %}
-                        {% include "tags/pagination.html" with page_set=queryset %}
+                        <div class="full">
+                        {% include "tags/pagination.html" with page_set=product_list %}
+                        </div>
                 </div>
                 {% else %}
                 <div class="mat-box">
