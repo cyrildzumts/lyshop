@@ -22,6 +22,7 @@
         <div class="product-list-wrapper">
                 <div id="products" class="products js-product-list">
                         {% include "tags/products_snippet.html" with product_list=queryset %}
+                        {% include "tags/pagination.html" with page_set=queryset %}
                 </div>
                 {% else %}
                 <div class="mat-box">
