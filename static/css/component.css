@@ -2537,7 +2537,7 @@ label.nav-label::after{
 }
 
 .category-nav ul li a{
-	margin: 0;
+	margin: 0 !important;
 }
 
 .category-nav .mat-button{
