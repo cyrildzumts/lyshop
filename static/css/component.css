@@ -2181,7 +2181,7 @@ table tbody tr, .mat-table tbody tr{
 
 .nav-tree li{
 	padding-left: 1em;
-	padding: 0 0 1em 1em;
+	padding: 1em 0 1em 1em;
 	position: relative;
 
 }
@@ -2190,7 +2190,7 @@ table tbody tr, .mat-table tbody tr{
 }
 
 .nav-tree ul li{
-	padding: 0 0 0 1em;
+	padding: 1em 0 0 1em;
 }
 
 .nav-tree > li:last-child{
