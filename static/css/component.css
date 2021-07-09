@@ -2535,6 +2535,11 @@ label.nav-label::after{
 .category-nav ul li{
 	padding: 1em 0;
 }
+
+.category-nav ul li a{
+	margin: 0;
+}
+
 .category-nav .mat-button{
 	min-height: auto !important;
 	padding: 0 2px !important;
