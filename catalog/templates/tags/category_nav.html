@@ -6,7 +6,7 @@
     <ul class="list-horizontal">
             {% if sale_category %}<li><a class="mat-button sale" href="{% url 'catalog:sale:catalog-home' 'sale' %}"><span>{% trans "Sale" %}</span></a></li>{% endif %}
             {% for c in root_category_list %}
-                {% if category.parent and c.id == category.parent.id or c.id == category.id  %}
+                {% if c in CATEGORY_PATHS  %}
                 <li class="active"><a class="mat-button" href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
                 {% else %}
                 <li><a class="mat-button" href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
