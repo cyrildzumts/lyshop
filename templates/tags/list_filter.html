@@ -1,7 +1,7 @@
 {% load i18n %}
 <div class="option-list-filter">
     <div class="form-group">
-        <label for="search">{% trans field %} : </label>
-        <input class="js-list-filter clearable" type="text" name="search" id="entry-filter" data-target="{{target}}" data-field="{{field}}">
+        <label for="search-entry-filter-{{field}}">{% trans field %} : </label>
+        <input class="js-list-filter clearable" type="text" name="search-{{field}}" id="entry-filter-{{field}}" data-target="{{target}}" data-field="{{field}}">
     </div>
 </div>
