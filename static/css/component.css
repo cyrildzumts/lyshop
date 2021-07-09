@@ -2531,6 +2531,10 @@ label.nav-label::after{
 	overflow-x: auto;
 	margin: 0 auto;
 }
+
+.category-nav ul li{
+	padding: 0.5em 1em;
+}
 .category-nav .mat-button{
 	min-height: auto !important;
 	padding: 0 2px !important;
