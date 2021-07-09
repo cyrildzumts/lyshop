@@ -17,31 +17,33 @@
 </div>
 {% endif %}
 
-{% if parent_category %}
-<div id="parent-subcategory-list" class="category-nav">
-    <ul class="list-horizontal">
-            {% for c in parent_sub_category_list %}
-            {% if c.id == category.id %}
-            <li class="active selected"><a class="mat-button" href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
-            {% else %}
-            <li><a class="mat-button" href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
-            {% endif %}
-            {% endfor %}
-            
-    </ul><!--End of list-->
-</div>
-{% endif %}
-{% if subcategory_list %}
-<div id="subcategory-list" class="category-nav">
-    <ul class="list-horizontal">
-            {% for c in subcategory_list %}
-            {% if c.id == category.id %}
-            <li class="active current selected"><a class="mat-button" href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
-            {% else %}
-            <li><a class="mat-button" href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
-            {% endif %}
-            {% endfor %}
-            
-    </ul><!--End of list-->
-</div>
-{% endif %}
+{% comment %}
+    {% if parent_category %}
+    <div id="parent-subcategory-list" class="category-nav">
+        <ul class="list-horizontal">
+                {% for c in parent_sub_category_list %}
+                {% if c.id == category.id %}
+                <li class="active selected"><a class="mat-button" href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
+                {% else %}
+                <li><a class="mat-button" href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
+                {% endif %}
+                {% endfor %}
+                
+        </ul><!--End of list-->
+    </div>
+    {% endif %}
+    {% if subcategory_list %}
+    <div id="subcategory-list" class="category-nav">
+        <ul class="list-horizontal">
+                {% for c in subcategory_list %}
+                {% if c.id == category.id %}
+                <li class="active current selected"><a class="mat-button" href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
+                {% else %}
+                <li><a class="mat-button" href="{{c.get_slug_url}}"><span>{% trans c.display_name %}</span></a></li>
+                {% endif %}
+                {% endfor %}
+                
+        </ul><!--End of list-->
+    </div>
+    {% endif %}
+{% endcomment %}
