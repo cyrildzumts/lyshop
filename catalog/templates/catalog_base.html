@@ -20,7 +20,7 @@
     {% if queryset or product_list %}
     <div class="catalog-options-wrapper">
         <div class="padding-bottom hidden-xl">
-            <label for="catalog-options-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Sort & Filter" %}</span></label>
+            <label for="catalog-options-toggle"><i class="fas fa-sort icon"></i><span>{% trans "Sort & Filter" %}</span></label>
         </div>
         
         <input type="checkbox"  id="catalog-options-toggle" class="hidden">
@@ -29,7 +29,7 @@
                 {% if CURRENT_CATEGORY_MAP %}
                 <div class="current-category-map-wrapper">
                     <div class="padding-bottom">
-                        <label for="current-nav-toggle"><i class="fas fa-sliders-h icon"></i><span>{% trans "Categories" %}</span></label>
+                        <label for="current-nav-toggle"><i class="fas fa-bars icon"></i><span>{% trans "Categories" %}</span></label>
                     </div>
                     <input type="checkbox"  id="current-nav-toggle" class="hidden">
                     <div class="category-map-container">
@@ -43,7 +43,7 @@
             </div>
             <div class="full">
                 <div class="catalog-filter-wrapper">
-                    <label for="catalog-filter-toggle"><i class="fas fa-sliders-h icon hidden-xl"></i><span>{% trans "Filter" %}</span></label>
+                    <label for="catalog-filter-toggle"><i class="fas fa-filter icon hidden-xl"></i><span>{% trans "Filter" %}</span></label>
                     <input type="checkbox"  id="catalog-filter-toggle" class="hidden">
                     <div class="catalog-filter">
                         <form id="filter-form" method="GET">
