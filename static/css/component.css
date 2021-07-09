@@ -2522,8 +2522,8 @@ label.nav-label::after{
 */
 .category-nav{
 	width: 100%;
-	font-size: 0.75em;
-	padding: 0.5em 1em;
+	font-size: 0.9em;
+	padding: 1em;
 }
 
 .category-nav ul{
@@ -2533,7 +2533,7 @@ label.nav-label::after{
 }
 
 .category-nav ul li{
-	padding: 0.5em 1em;
+	padding: 1em 0;
 }
 .category-nav .mat-button{
 	min-height: auto !important;
