@@ -9,11 +9,12 @@
 
 {% block CATEGORIES %}
 
-{% include "tags/navigations.html" %}
-
 {% comment %}
-    {% include 'tags/category_nav.html' %}
+    {% include "tags/navigations.html" %}
 {% endcomment %}
+
+
+{% include 'tags/category_nav.html' %}
 {% endblock CATEGORIES %}
 <div class="main-container">
     {% if queryset or product_list %}
