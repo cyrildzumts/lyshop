@@ -136,7 +136,7 @@ var Carousel = (function(){
 
     Carousel.prototype.setActivedot = function(){
         var self = this;
-        this.dots.forEach(dot, i => {
+        this.dots.forEach((dot, i) => {
             i == self.current ? dot.classList.add(self.active): dot.classList.remove(self.active)
         });
     }
