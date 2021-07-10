@@ -116,14 +116,47 @@ var Slider = (function(){
 
 var Carousel = (function(){
     function Carousel(){
+        this.carousel = document.querySelector('.carousel');
+        this.items = document.querySelector('.carousel-items');
+        this.dots = document.querySelector('.dot');
+        this.next = document.querySelector('.carousel-control.next');
+        this.prev = document.querySelector('.carousel-control.prev');
+        this.total = this.items.length -1;
+        this.active = 'active';
+        this.current = 0;
 
     }
 
     Carousel.prototype.init = function(){
-        
+        if(this.carousel.length == 0)return;
+        this.prev.addEventListener('click', this.scrollPrev);
+        this.next.addEventListener('click', this.scrollNext);
     }
 
+    Carousel.prototype.setActivedot = function(){
+        var self = this;
+        this.dots.forEach(dot, i => {
+            i == self.current ? dot.classList.add(self.active): dot.classList.remove(self.active)
+        });
+    }
 
+    Carousel.prototype.scrollToCurrent = function(){
+        var self = this;
+        this.items.getElementsByClassName.transform = `translateX(${current * -100}%)`;
+        this.setActivedot();
+    }
+
+    Carousel.prototype.scrollPrev = function(){
+        if(this.current === 0) return;
+        this.current--;
+        this.scrollToCurrent();
+    }
+
+    Carousel.prototype.scrollNext = function(){
+        if(this.current === 0) return;
+        this.current++;
+        this.scrollToCurrent();
+    }
 
     return Carousel;
 })();
@@ -226,10 +259,12 @@ var Component = {
     modal : new Modal(),
     collapsible : new Collapsible(),
     tabs : new Tabs(),
+    carousel : new Carousel(),
     initComponent : function(){
         this.modal.init();
         this.tabs.init();
         this.collapsible.init();
+        this.carousel.init();
         console.log("Component module initialized");
     }
 };
