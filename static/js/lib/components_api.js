@@ -1,7 +1,7 @@
 define(function() {
     'use strict';
 
-    var CAROUSEL_INTERVAL = 2000;
+    var CAROUSEL_INTERVAL = 3500;
 
 var Tabs = (function(){
     var tab_preffix = "step-header-";
