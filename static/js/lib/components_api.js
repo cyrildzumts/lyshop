@@ -1,6 +1,8 @@
 define(function() {
     'use strict';
 
+    var CAROUSEL_INTERVAL = 2000;
+
 var Tabs = (function(){
     var tab_preffix = "step-header-";
     var tab_content_prefix = "step-";
@@ -133,7 +135,7 @@ var Carousel = (function(){
         this.prev.addEventListener('click', this.scrollPrev.bind(this));
         this.next.addEventListener('click', this.scrollNext.bind(this));
         console.log("Carousel initialized");
-        setInterval(this.scrollNext.bind(this), 500);
+        setInterval(this.scrollNext.bind(this), CAROUSEL_INTERVAL);
     }
 
     Carousel.prototype.setActivedot = function(){
