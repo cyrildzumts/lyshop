@@ -2905,7 +2905,7 @@ label.nav-label::after{
 }
 
 .carousel-control{
-	--size : clamp(2.5rem, 8vw, 4rem);
+	--size : 3em;
 	position: relative;
 	cursor: pointer;
 	display: flex;
@@ -2915,12 +2915,15 @@ label.nav-label::after{
 	fill: currentColor;
 	background-color: #1a1a1aa0;
 	border: none;
-	width: var(--size);
-	height: var(--size);
+	min-width: unset !important;
+	min-height: unset !important;
+	width: var(--size) !important;
+	height: var(--size) !important;
 	padding: 0.25rem;
 	touch-action: manipulation;
 	transform: translateY(0);
 	z-index: 1;
+	margin: 0 !important;
 
 }
 .carousel-control.prev{
