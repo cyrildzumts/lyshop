@@ -2897,7 +2897,7 @@ label.nav-label::after{
 	transform: translateZ(0);
 }
 
-.carousel .image-wrapper{
+.carousel .img-wrapper{
 	position: relative;
 	width: 100%;
 }
@@ -2908,7 +2908,7 @@ label.nav-label::after{
 	user-select: none;
 }
 
-.carousel .image-wrapper p{
+.carousel .img-wrapper p{
 	position: absolute;
 	width: 100%;
 	padding: 2em;
