@@ -330,7 +330,7 @@ def get_brands():
     brands = CACHE.get(key)
     if brands is not None:
         return brands
-    queryset = Brand.objects.order_by('name')
+    queryset = Brand.objects.order_by('-name')
     brands = [b for b in queryset]
     CACHE.set(key, brands)
     return brands
@@ -366,7 +366,7 @@ def get_product_types():
     product_type_list = CACHE.get(key)
     if product_type_list is not None:
         return product_type_list
-    queryset = ProductType.objects.order_by('name')
+    queryset = ProductType.objects.order_by('-name')
     product_type_list = [n for n in queryset]
     CACHE.set(key, product_type_list)
     return product_type_list
