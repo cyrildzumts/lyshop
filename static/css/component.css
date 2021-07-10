@@ -2920,6 +2920,7 @@ label.nav-label::after{
 	padding: 0.25rem;
 	touch-action: manipulation;
 	transform: translateY(0);
+	z-index: 1;
 
 }
 .carousel-control.prev{
