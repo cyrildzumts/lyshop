@@ -121,7 +121,7 @@ var Carousel = (function(){
         this.dots = document.querySelectorAll('.dot');
         this.next = document.querySelector('.carousel-control.next');
         this.prev = document.querySelector('.carousel-control.prev');
-        this.total = this.items.length -1;
+        this.total = this.items.children.length -1;
         this.active = 'active';
         this.current = 0;
 
