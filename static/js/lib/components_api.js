@@ -131,6 +131,7 @@ var Carousel = (function(){
         if(this.carousel.length == 0)return;
         this.prev.addEventListener('click', this.scrollPrev);
         this.next.addEventListener('click', this.scrollNext);
+        console.log("Carousel initialized");
     }
 
     Carousel.prototype.setActivedot = function(){
