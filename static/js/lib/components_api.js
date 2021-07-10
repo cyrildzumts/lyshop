@@ -129,8 +129,8 @@ var Carousel = (function(){
 
     Carousel.prototype.init = function(){
         if(this.carousel.length == 0)return;
-        this.prev.addEventListener('click', this.scrollPrev);
-        this.next.addEventListener('click', this.scrollNext);
+        this.prev.addEventListener('click', this.scrollPrev.bind(this));
+        this.next.addEventListener('click', this.scrollNext.bind(this));
         console.log("Carousel initialized");
     }
 
