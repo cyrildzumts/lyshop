@@ -114,6 +114,20 @@ var Slider = (function(){
     return Slider;
 })();
 
+var Carousel = (function(){
+    function Carousel(){
+
+    }
+
+    Carousel.prototype.init = function(){
+        
+    }
+
+
+
+    return Carousel;
+})();
+
 var Collapsible = (function(){
     function Collapsible(){
         this.$collapsible   = {}; // all element with collapsible class

@@ -2868,11 +2868,19 @@ label.nav-label::after{
 	right: 1em;
 }
 
+.carousel-wrapper{
+	display: flex;
+	position: relative;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	
+}
 .carousel{
 	position: relative;
 	overflow: hidden;
 	margin: 0 auto;
-	z-index: -1;
+	z-index: 1;
 }
 
 .carousel .carousel-items{
@@ -2884,7 +2892,7 @@ label.nav-label::after{
 .carousel .carousel-item{
 	position: relative;
 	overflow: hidden;
-	aspect-ratio: 16 / 9;
+	/*aspect-ratio: 16 / 9;*/
 	min-width: 100%;
 	transform: translateZ(0);
 }
