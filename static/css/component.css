@@ -269,7 +269,7 @@ label .icon{
 	margin: 0.2;
 }
 
-.option-list-filter .form-group{
+.option-list-filter .form-group, .form-group label{
 	text-transform: capitalize;
 }
 
