@@ -118,7 +118,7 @@ var Carousel = (function(){
     function Carousel(){
         this.carousel = document.querySelector('.carousel');
         this.items = document.querySelector('.carousel-items');
-        this.dots = document.querySelector('.dot');
+        this.dots = document.querySelectorAll('.dot');
         this.next = document.querySelector('.carousel-control.next');
         this.prev = document.querySelector('.carousel-control.prev');
         this.total = this.items.length -1;
