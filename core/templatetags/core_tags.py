@@ -35,6 +35,7 @@ def account_type_value(key):
         return key
     return v
 
+@register.simple_tag
 @register.filter
 def splitize(value):
     logger.debug(f"splitize called with value {value}")
