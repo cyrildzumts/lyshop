@@ -35,7 +35,7 @@ def account_type_value(key):
         return key
     return v
 
-
+@register.filter
 def splitize(value):
     if not isinstance(value, str):
         return value
