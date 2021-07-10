@@ -112,7 +112,6 @@ def product_attributes(product_id):
     key = Constants.CACHE_PRODUCT_ATTRIBUTES_PREFIX + str(product_id)
     p_attrs = CACHE.get(key)
     if p_attrs is not None:
-        logger.debug("get product attrs from cache")
         return p_attrs
     variants = ProductVariant.objects.filter(product=product_id)
     attr_dict = {}
@@ -126,7 +125,6 @@ def product_attributes(product_id):
         logger.info("Attrs available")
     else: 
         logger.info("Attrs not available")
-    logger.debug("adding product attrs into cache")
     p_attrs = group_attrs(attrs)
     CACHE.set(key, p_attrs)
     return p_attrs
@@ -177,7 +175,6 @@ def get_variant_from_attr(attr_id, product):
     p_variants = product.variants.all()
     attr = ProductAttribute.objects.filter(id=attr_id).first()
     variant = attr.products.filter(id__in=p_variants).first()
-    logger.debug(f"get variant \"{variant}\" for attr \"{attr}\"")
     return variant
 
 
@@ -292,7 +289,6 @@ def get_non_empty_root_category():
     roots = Category.objects.filter(parent=None, is_active=True)
     categories_with_products = Category.objects.exclude(parent=None).annotate(product_count=Count('products')).filter(product_count__gt=0)
     roots_cats = []
-    logger.info(f"Categories withs products :")
     for c in categories_with_products:
         logger.info(f"Category : {c.name} - {c.display_name} - products : {c.product_count}" )
     return roots_cats

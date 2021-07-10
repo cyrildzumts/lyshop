@@ -38,10 +38,7 @@ def account_type_value(key):
 @register.simple_tag
 @register.filter
 def splitize(value):
-    logger.debug(f"splitize called with value {value}")
     if not isinstance(value, str):
-        logger.debug(f"splitize called with non string value {value} actual type : {type(value)}")
         return value
     result = " ".join(NAME_PATTERN.split(value))
-    logger.debug(f"splitize splitted string: {result}")
     return result
