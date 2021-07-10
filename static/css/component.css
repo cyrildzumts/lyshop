@@ -2935,7 +2935,7 @@ label.nav-label::after{
 	right: 1em;
 }
 
-.carousel-control:active{
+.carousel-control.active{
 	transform: translateY(1px);
 }
 
@@ -2957,7 +2957,7 @@ label.nav-label::after{
 	width: var(--size);
 }
 
-.carousel-dots .dot:active{
+.carousel-dots .dot.active{
 	background-color: dodgerblue;
 }
 
