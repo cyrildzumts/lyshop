@@ -6,7 +6,7 @@
 {% block HEADER_BANNER %}
 <div class="banner">
     <div class="container banner-container">
-        <div class="image-banner">
+        <div class="image-banner hidden">
           <picture class="img-responsive">
             <source media="(min-width:40em)" srcset="{% static 'assets/lyshop_banner.png' %}">
             <source media="(max-width:40em)" srcset="{% static 'assets/lyshop_banner_small.png' %}">
@@ -18,19 +18,35 @@
             <ul class="carousel-items">
               <li class="carousel-item">
                 <div class="img-wrapper">
-                  <img class="img-responsive" src="{% static 'assets/lyshop_banner.png' %}" alt="{{site_name}}">
+                  {% comment %}
+                    <img class="img-responsive" src="{% static 'assets/lyshop_banner.png' %}" alt="{{site_name}}">
+                  {% endcomment %}
+                  <picture class="img-responsive">
+                    <source media="(min-width:40em)" srcset="{% static 'assets/lyshop_banner.png' %}">
+                    <source media="(max-width:40em)" srcset="{% static 'assets/lyshop_banner_small.png' %}">
+                    <img class="img-responsive" src="{% static 'assets/lyshop_banner.png' %}" alt="{{site_name}}">
+                  </picture>
                   <p>{% trans "Are you looking for something new ?" %}</p>
                 </div>
               </li>
               <li class="carousel-item">
                 <div class="img-wrapper">
-                  <img class="img-responsive" src="{% static 'assets/mode_banner.png' %}" alt="{{site_name}}">
+                  <picture class="img-responsive">
+                    <source media="(min-width:40em)" srcset="{% static 'assets/mode_banner.png' %}">
+                    <source media="(max-width:40em)" srcset="{% static 'assets/mode_banner_small.png' %}">
+                    <img class="img-responsive" src="{% static 'assets/mode_banner.png' %}" alt="{{site_name}}">
+                  </picture>
                   <p>{% trans "Discover our selection of  mode articles" %}</p>
                 </div>
               </li>
               <li class="carousel-item">
                 <div class="img-wrapper">
-                  <img class="img-responsive" src="{% static 'assets/parfum_banner.png' %}" alt="{{site_name}}">
+                  <picture class="img-responsive">
+                    <source media="(min-width:40em)" srcset="{% static 'assets/parfum_banner.png' %}">
+                    <source media="(max-width:40em)" srcset="{% static 'assets/parfum_banner_small.png' %}">
+                    <img class="img-responsive" src="{% static 'assets/parfum_banner.png' %}" alt="{{site_name}}">
+                  </picture>
+                  
                   <p>{% trans "Discover our selected Perfumes - Smell good for the whole day !" %}</p>
                 </div>
                 
