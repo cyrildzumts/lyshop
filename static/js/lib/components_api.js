@@ -154,7 +154,7 @@ var Carousel = (function(){
     }
 
     Carousel.prototype.scrollNext = function(){
-        if(this.current === 0) return;
+        if(this.current === this.total) return;
         this.current++;
         this.scrollToCurrent();
     }
