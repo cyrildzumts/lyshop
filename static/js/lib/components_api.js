@@ -148,13 +148,17 @@ var Carousel = (function(){
     }
 
     Carousel.prototype.scrollPrev = function(){
-        if(this.current === 0) return;
+        if(this.current === 0){
+            this.current = this.total +1;
+        }
         this.current--;
         this.scrollToCurrent();
     }
 
     Carousel.prototype.scrollNext = function(){
-        if(this.current === this.total) return;
+        if(this.current === this.total){
+            this.current = -1;
+        }
         this.current++;
         this.scrollToCurrent();
     }
