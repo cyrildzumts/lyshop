@@ -2958,7 +2958,7 @@ label.nav-label::after{
 }
 
 .carousel-dots .dot.active{
-	background-color: dodgerblue;
+	background-color: dodgerblue !important;
 }
 
 @media only screen and (max-width:40em){
