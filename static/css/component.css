@@ -2922,6 +2922,17 @@ label.nav-label::after{
 	transform: translateY(0);
 
 }
+.carousel-control.prev{
+	position: absolute;
+	top: 50%;
+	left: 1em;
+}
+
+.carousel-control.next{
+	position: absolute;
+	top: 50%;
+	right: 1em;
+}
 
 .carousel-control:active{
 	transform: translateY(1px);
