@@ -2939,7 +2939,7 @@ label.nav-label::after{
 	font-size: 0;
 	color: transparent;
 	border: 3px solid #fff;
-	background-color: #fff;
+	background-color: #1a1a1a !important;
 	border-radius: 50%;
 	height: var(--size);
 	width: var(--size);
