@@ -2869,7 +2869,7 @@ label.nav-label::after{
 }
 
 .carousel-wrapper{
-	display: flex;
+	/*display: flex;*/
 	position: relative;
 	width: 100%;
 	align-items: center;

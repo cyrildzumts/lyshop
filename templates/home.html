@@ -21,13 +21,15 @@
               <li class="carousel-item"><img class="img-responsive" src="{% static 'assets/lyshop_banner.png' %}" alt="{{site_name}}"></li>
             </ul>
           </div>
-          <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
-          <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
-          <ol class="carousel-dots">
-            <li class="dot active">1</li>
-            <li class="dot">2</li>
-            <li class="dot">3</li>
-          </ol>
+          <div class="actions">
+            <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
+            <ol class="carousel-dots">
+              <li class="dot active">1</li>
+              <li class="dot">2</li>
+              <li class="dot">3</li>
+            </ol>
+            <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
+          </div>
         </div>
         <div class="banner--title hidden">
           <h4> {%trans 'Welcome to '%} {{site_name}}</h4>
