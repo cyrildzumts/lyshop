@@ -143,7 +143,7 @@ var Carousel = (function(){
 
     Carousel.prototype.scrollToCurrent = function(){
         var self = this;
-        this.items.getElementsByClassName.transform = `translateX(${this.current * -100}%)`;
+        this.items.style.transform = `translateX(${this.current * -100}%)`;
         this.setActivedot();
     }
 
