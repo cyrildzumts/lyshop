@@ -16,9 +16,25 @@
         <div class="carousel-wrapper">
           <div class="carousel">
             <ul class="carousel-items">
-              <li class="carousel-item"><img class="img-responsive" src="{% static 'assets/lyshop_banner.png' %}" alt="{{site_name}}"></li>
-              <li class="carousel-item"><img class="img-responsive" src="{% static 'assets/mode_banner.png' %}" alt="{{site_name}}"></li>
-              <li class="carousel-item"><img class="img-responsive" src="{% static 'assets/parfum_banner.png' %}" alt="{{site_name}}"></li>
+              <li class="carousel-item">
+                <div class="img-wrapper">
+                  <img class="img-responsive" src="{% static 'assets/lyshop_banner.png' %}" alt="{{site_name}}">
+                  <p>{% trans "Are you looking for something new ?" %}</p>
+                </div>
+              </li>
+              <li class="carousel-item">
+                <div class="img-wrapper">
+                  <img class="img-responsive" src="{% static 'assets/mode_banner.png' %}" alt="{{site_name}}">
+                  <p>{% trans "Discover our selection of  mode articles" %}</p>
+                </div>
+              </li>
+              <li class="carousel-item">
+                <div class="img-wrapper">
+                  <img class="img-responsive" src="{% static 'assets/parfum_banner.png' %}" alt="{{site_name}}">
+                  <p>{% trans "Discover our selected Perfumes - Smell good for the whole day !" %}</p>
+                </div>
+                
+              </li>
             </ul>
             <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
             <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
