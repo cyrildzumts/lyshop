@@ -1,7 +1,8 @@
 {% load i18n %}
+{% load core_tags %}
 <div class="option-list-filter">
     <div class="form-group">
-        <label for="search-entry-filter-{{field}}">{% trans field %} : </label>
+        <label for="search-entry-filter-{{field}}">{% trans field|splitize %} : </label>
         <input class="js-list-filter clearable" type="text"  id="entry-filter-{{field}}" data-target="{{target}}" data-field="{{field}}">
     </div>
 </div>

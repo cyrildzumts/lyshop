@@ -2,6 +2,9 @@ from django import template
 from lyshop import utils
 from accounts import constants as ACCOUNT_CONSTANTS
 import logging
+import re
+
+NAME_PATTERN = re.compile(r"[,.-_\\]")
 
 logger = logging.getLogger(__name__)
 register = template.Library()
@@ -31,3 +34,10 @@ def account_type_value(key):
         logger.info(f"account_type_value: Could not found value  for key \"{key}\"")
         return key
     return v
+
+
+def splitize(value):
+    if not isinstance(value, str):
+        return value
+    
+    return " ".join(NAME_PATTERN.split(value))
