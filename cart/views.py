@@ -54,7 +54,6 @@ def add_to_cart_old(request):
     context = {
         'success': False
     }
-    logger.debug("ajax-add-to-cart")
     if request.method == 'POST':
         postdata = request.POST.copy()
         form = AddToCartForm(postdata)
@@ -131,7 +130,6 @@ def ajax_add_to_cart_old(request):
 
         form = AddCartForm(postdata)
         if form.is_valid():
-            logger.debug("Summitted data are valid")
             variant_uuid = form.cleaned_data['variant_uuid']
             attr = form.cleaned_data['attr']
             variant = get_object_or_404(ProductVariant, product_uuid=variant_uuid)
@@ -305,7 +303,6 @@ def ajax_cart_item_decrement(request, item_uuid):
 
 @login_required
 def ajax_cart_item_update_quantity(request):
-    logger.info(f"Ajax Cart item update requested by User \"{request.user}\"")
     cart, created = CartModel.objects.get_or_create(user=request.user)
     item = None
     context = {
@@ -398,7 +395,6 @@ def ajax_cart_item_delete(request, item_uuid):
 
 @login_required
 def ajax_cart_item_to_wishlist(request, item_uuid):
-    logger.info('Adding Cart Item with uuid \"{item_uuid}\" into wishlist')
     context = {
         'success' : False
     }
@@ -422,14 +418,12 @@ def ajax_cart_item_to_wishlist(request, item_uuid):
 
 @login_required
 def ajax_cart_item_update(request, item_uuid=None, action=None):
-    logger.info(f"Cart Item Update Ajax : item \"{item_uuid}\" - action \"{action}\"")
     cart, created = CartModel.objects.get_or_create(user=request.user)
     item = None
     context = {
         'success' : False
     }
     if request.method != 'POST':
-        logger.debug(f"ajax_cart_item_update : REQUEST.METHOD : {request.method}")
         context['error'] = 'Method not allowed. POST requets expected.'
         context['status'] = False
         logger.warn(context['error'])
@@ -495,7 +489,6 @@ def ajax_cart_item_update(request, item_uuid=None, action=None):
 
 @login_required
 def ajax_cart_item_updateV2(request, item_uuid=None, action=None):
-    logger.info(f"Cart Item Update Ajax : item \"{item_uuid}\" - action \"{action}\"")
     cart, created = CartModel.objects.get_or_create(user=request.user)
     item = None
     context = {

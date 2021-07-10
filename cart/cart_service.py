@@ -109,7 +109,6 @@ def process_add_to_cart_request(request):
     form = AddCartForm(postdata)
     context = {}
     if form.is_valid():
-        logger.debug("Summitted data are valid")
         variant_uuid = form.cleaned_data['variant_uuid']
         attr = form.cleaned_data['attr']
         variant = None
@@ -295,9 +294,6 @@ def cart_items_count(user=None):
     cart = get_cart(user)
     if cart:
         items_count = cart.quantity
-        logger.debug(f"Cart Items Count : {items_count}")
-    else:
-        logger.debug(f"No Cart found for user {user.username} - Cart Items Count : {items_count}")
     return items_count
 
 
@@ -317,8 +313,6 @@ def is_valid_coupon_old(coupon):
     if not isinstance(coupon, str) :
         return False
     coupon_exists = Coupon.objects.filter(name=coupon, is_active=True, expire_at__gte=datetime.datetime.now()).exists()
-    logger.info(f"Coupon \"{coupon}\" is valid :  \"{coupon_exists}\"")
-    
     return coupon_exists
     
 
@@ -392,8 +386,7 @@ def coupons_cleanup():
     cart_set = CartModel.objects.filter(coupon__in=coupon_set)
     cart_count = cart_set.count()
     coupon_count = coupon_set.count()
-    logger.info(f"coupons_cleanup : Found {coupon_count} expired coupon.")
-    logger.info(f"coupons_cleanup : Found {cart_count} Carts using expired coupons.")
+    logger.info(f"coupons_cleanup : Found {coupon_count} expired coupon on {cart_count} carts.")
     coupon_set.update(is_active=False)
     cart_set.update(coupon=None, solded_price=0)
     logger.info(f"coupons_cleanup : Finished cleaning expired coupons.")

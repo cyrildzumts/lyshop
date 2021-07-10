@@ -147,7 +147,6 @@ def category_detail(request, sale=None, category_uuid=None):
     return render(request,template_name, context)
 
 def category_detail_slug(request, sale=None, slug=None):
-    logger.debug(f"category_detail_slug called with slug {slug}")
     template_name = 'catalog/category_detail.html'
     if request.method != 'GET':
         raise HttpResponseBadRequest
@@ -161,7 +160,6 @@ def category_detail_slug(request, sale=None, slug=None):
     queryDict = request.GET.copy()
     field_filter = filters.Filter(Product, queryDict)
     queryset = field_filter.apply_filter().filter(is_active=True)
-    logger.debug(f"queryset count : {queryset.count()}")
     selected_filters = field_filter.selected_filters
     #queryset = queryset.filter(filterquery | subcatquery)
     queryset = queryset.filter(category__in=descendants)
@@ -285,10 +283,8 @@ def product_detail_slug(request, category_slug=None, product_slug=None, product_
                 item, cart = cart_service.add_to_cart(cart_service.get_cart(request.user), variant)
                 if item:
                     messages.success(request, message=_("Product added"))
-                    logger.info("Product added")
                 else:
                     messages.success(request, message=_("Product not added"))
-                    logger.info("Product not added")
             else:
                     messages.warning(request, message=_("Invalid form"))
                     logger.info(f"Product not added. Form is not valid : {form.errors} ")
@@ -330,13 +326,11 @@ def add_product_to_cart(request):
     context = {
         'success': False
     }
-    logger.debug("ajax-add-to-cart")
     utils.show_request(request)
     template_name = 'catalog/product_detail.html'
     page_title = _('Product Detail')
     if request.method == 'POST':
         postdata = request.POST.copy()
-        logger.info("send as POST")
         form = AddCartForm(postdata)
         if form.is_valid():
             product = form.cleaned_data['product']
