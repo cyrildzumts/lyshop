@@ -2913,7 +2913,7 @@ label.nav-label::after{
 	justify-content: center;
 	color: #fff;
 	fill: currentColor;
-	background-color: #1a1a1a;
+	background-color: #1a1a1aa0;
 	border: none;
 	width: var(--size);
 	height: var(--size);
