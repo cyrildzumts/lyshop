@@ -3,11 +3,12 @@ from cart.models import CartItem
 from django.db.models import Q, Count
 from django.core.cache import cache
 from django.template.loader import render_to_string, get_template
-from catalog.models import Category, Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute, News
+from catalog.models import Brand, Category, Product, ProductAttribute, ProductVariant, ProductType, ProductTypeAttribute, News
 from catalog.forms import NewsForm
 from catalog import constants as Constants
 from core import core_tools
 from itertools import groupby
+from django.utils import timezone
 import logging
 
 logger = logging.getLogger(__name__)
@@ -213,14 +214,25 @@ def get_categories():
         CACHE.set(Constants.CACHE_CATEGORY_ALL_PREFIX, categories )
     return categories
 
-def _find_children(category_list, root=None):
+
+def find_children(root=None):    
+    key = Constants.CACHE_CATEGORY_CHILDREN_PREFIX
     if root is None:
-        return [child for child in category_list if child.parent==root]
-    return [child for child in category_list if child.parent==root]
+        key = Constants.CACHE_CATEGORY_ROOT_CHILDREN_KEY
+    else:
+        key += root.name
+    
+    children = CACHE.get(key)
+    if children is None:
+        category_list = get_categories()
+        children = [child for child in category_list if child.parent==root]
+        CACHE.set(key, children)
+
+    return children
 
 def make_map(root=None):
     result_map = []
-    children = _find_children(get_categories(), root)
+    children = find_children(root)
     if len(children) == 0:
         return []
     
@@ -310,3 +322,51 @@ def category_products(category):
     product_list = [p for p in queryset]
     CACHE.set(key,product_list)
     return product_list
+
+
+
+def get_brands():
+    key = Constants.CACHE_BRAND_ALL_KEY
+    brands = CACHE.get(key)
+    if brands is not None:
+        return brands
+    queryset = Brand.objects.order_by('name')
+    brands = [b for b in queryset]
+    CACHE.set(key, brands)
+    return brands
+
+
+def get_brand_products(brand):
+    key = Constants.CACHE_BRAND_PRODUCT_PREFIX + brand.name
+    products = CACHE.get(key)
+    if products is not None:
+        return products
+    
+    queryset = Product.objects.filter(brand=brand)
+    products = [p for p in queryset]
+    CACHE.set(key, products)
+    return products
+
+
+
+
+def get_news():
+    key = Constants.CACHE_NEWS_ALL_KEY
+    news_list = CACHE.get(key)
+    if news_list is not None:
+        return news_list
+    queryset = News.objects.filter(is_active=True, end_at__gt=timezone.now())
+    news_list = [n for n in queryset]
+    CACHE.set(key, news_list)
+    return news_list
+
+
+def get_product_types():
+    key = Constants.CACHE_PRODUCT_TYPES_ALL_KEY
+    product_type_list = CACHE.get(key)
+    if product_type_list is not None:
+        return product_type_list
+    queryset = ProductType.objects.order_by('name')
+    product_type_list = [n for n in queryset]
+    CACHE.set(key, product_type_list)
+    return product_type_list
