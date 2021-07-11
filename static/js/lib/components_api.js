@@ -135,7 +135,7 @@ var Carousel = (function(){
         this.prev.addEventListener('click', this.scrollPrev.bind(this));
         this.next.addEventListener('click', this.scrollNext.bind(this));
         console.log("Carousel initialized");
-        setInterval(this.scrollNext.bind(this), CAROUSEL_INTERVAL);
+        //setInterval(this.scrollNext.bind(this), CAROUSEL_INTERVAL);
     }
 
     Carousel.prototype.setActivedot = function(){
