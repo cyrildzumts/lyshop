@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 12:22+0200\n"
+"POT-Creation-Date: 2021-07-12 12:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2687,7 +2687,9 @@ msgstr "Sentez toujours bon avec notre sélection de parfums exclusive !"
 #: core/resources/ui_strings.py:219
 msgid ""
 "Define your own style with our items available for men, women and children !"
-msgstr "Définissez votre propre style avec nos articles disponible pour hommes, femmes et enfants !"
+msgstr ""
+"Définissez votre propre style avec nos articles disponible pour hommes, "
+"femmes et enfants !"
 
 #: core/resources/ui_strings.py:220
 msgid "Make your purchases online with peace of mind!"
@@ -6775,8 +6777,7 @@ msgstr ""
 msgid "Protection for business"
 msgstr ""
 
-#: templates/customer_overview.html:12 templates/home.html:30
-#: templates/home.html:75
+#: templates/customer_overview.html:12 templates/home.html:75
 msgid "Are you looking for something new ?"
 msgstr "Recherchez-vous quelque chose de nouveau ?"
 
