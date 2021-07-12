@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-10 13:00+0200\n"
+"POT-Creation-Date: 2021-07-12 12:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1698,31 +1698,31 @@ msgstr "Prix inférieur à prix plus élevé"
 msgid "Populariy"
 msgstr "Popularité"
 
-#: catalog/views.py:237 catalog/views.py:287
+#: catalog/views.py:235 catalog/views.py:285
 msgid "Product added"
 msgstr "Produit ajouté"
 
-#: catalog/views.py:240 catalog/views.py:290
+#: catalog/views.py:238 catalog/views.py:287
 msgid "Product not added"
 msgstr "Le produit n'a pas été ajouté."
 
-#: catalog/views.py:243 catalog/views.py:293
+#: catalog/views.py:241 catalog/views.py:289
 msgid "Invalid form"
 msgstr "Formulaire invalide"
 
-#: catalog/views.py:246 catalog/views.py:296
+#: catalog/views.py:244 catalog/views.py:292
 msgid "You must first login before you can add item to your cart"
 msgstr ""
 "Vous devez d'abord vous connecter avant de pouvoir ajouter un article à "
 "votre panier"
 
-#: catalog/views.py:336 dashboard/views.py:1225 dashboard/views.py:1878
+#: catalog/views.py:331 dashboard/views.py:1225 dashboard/views.py:1878
 #: dashboard/views.py:2533 vendors/views.py:281 vendors/views.py:341
 #: vendors/views.py:1614
 msgid "Product Detail"
 msgstr "Les détails du produit"
 
-#: catalog/views.py:363 dashboard/views.py:1733 vendors/views.py:536
+#: catalog/views.py:357 dashboard/views.py:1733 vendors/views.py:536
 msgid "Product Variant Detail"
 msgstr "Détail de la variante de produit"
 
@@ -2375,7 +2375,7 @@ msgstr "Rapport"
 msgid "Features"
 msgstr "En Vogue"
 
-#: core/resources/ui_strings.py:132 templates/home.html:53
+#: core/resources/ui_strings.py:132 templates/home.html:106
 msgid "New Arrivals"
 msgstr "Nouveautés"
 
@@ -2389,7 +2389,7 @@ msgstr "Meilleures offres de la semaine"
 
 #: core/resources/ui_strings.py:135
 #: dashboard/templates/dashboard/sellers.html:27
-#: dashboard/templates/dashboard/sellers.html:41 templates/home.html:62
+#: dashboard/templates/dashboard/sellers.html:41 templates/home.html:115
 msgid "Sales"
 msgstr "Soldes"
 
@@ -2679,6 +2679,19 @@ msgstr "genre"
 #: core/resources/ui_strings.py:216
 msgid "product type"
 msgstr "type de produit"
+
+#: core/resources/ui_strings.py:218
+msgid "Always smell good with our exclusive selection of fragrances!"
+msgstr "Sentez toujours bon avec notre sélection de parfums exclusive !"
+
+#: core/resources/ui_strings.py:219
+msgid ""
+"Define your own style with our items available for men, women and children !"
+msgstr "Définissez votre propre style avec nos articles disponible pour hommes, femmes et enfants !"
+
+#: core/resources/ui_strings.py:220
+msgid "Make your purchases online with peace of mind!"
+msgstr "Faites vos achats en ligne en toute quiétude !"
 
 #: core/templates/core/catalog_filter_old.html:13
 #: core/templates/core/filter.html:13
@@ -6287,7 +6300,7 @@ msgid "You have not order any product yet."
 msgstr "Vous n'avez encore commandé aucun produit"
 
 #: templates/accounts/account.html:59 templates/base.html:126
-#: templates/home.html:41 templates/tags/navigations.html:10
+#: templates/home.html:94 templates/tags/navigations.html:10
 msgid "Discover Our Catalog"
 msgstr "Découvrir notre Catalogue"
 
@@ -6673,12 +6686,12 @@ msgid "Enable Grid"
 msgstr "Activer la Grille"
 
 #: templates/business_overview.html:7 templates/customer_overview.html:7
-#: templates/home.html:17
+#: templates/home.html:70
 msgid "Welcome to "
 msgstr "Bienvenu chez"
 
 #: templates/business_overview.html:8 templates/customer_overview.html:8
-#: templates/home.html:18
+#: templates/home.html:71
 msgid "ONLINE SHOPPING MADE EASY"
 msgstr "ACHAT EN LIGNE SIMPLIFIÉ"
 
@@ -6762,7 +6775,8 @@ msgstr ""
 msgid "Protection for business"
 msgstr ""
 
-#: templates/customer_overview.html:12 templates/home.html:22
+#: templates/customer_overview.html:12 templates/home.html:30
+#: templates/home.html:75
 msgid "Are you looking for something new ?"
 msgstr "Recherchez-vous quelque chose de nouveau ?"
 
@@ -6995,16 +7009,24 @@ msgstr ""
 msgid "Make sure you pay your order on time"
 msgstr "Assurez-vous de payer votre commande à temps"
 
-#: templates/home.html:27
+#: templates/home.html:40
+msgid "Discover our selection of  mode articles"
+msgstr ""
+
+#: templates/home.html:51
+msgid "Discover our selected Perfumes - Smell good for the whole day !"
+msgstr ""
+
+#: templates/home.html:80
 #, python-format
 msgid "You can get it at %(site_name)s"
 msgstr "Vous pouvez l'obtenir chez %(site_name)s"
 
-#: templates/home.html:32
+#: templates/home.html:85
 msgid "Your online shop in Gabon"
 msgstr "Votre boutique en ligne au Gabon"
 
-#: templates/home.html:37
+#: templates/home.html:90
 msgid "Our catalog"
 msgstr "Notre Catalogue"
 

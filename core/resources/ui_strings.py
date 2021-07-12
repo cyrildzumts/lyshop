@@ -214,3 +214,15 @@ UI_BRAND_LOWER = _('brand')
 UI_GENDER_LOWER = _('gender')
 UI_SORT_FILTER = _('Sort & Filter')
 UI_PRODUCT_TYPE_LOW = _('product type')
+
+UI_PARFUM_BANNER_DESCRIPTION = _("Always smell good with our exclusive selection of fragrances!")
+UI_MODE_BANNER_DESCRIPTION = _("Define your own style with our items available for men, women and children !")
+UI_LYSHOP_BANNER_DESCRIPTION = _("Make your purchases online with peace of mind!")
+
+
+UI_STRINGS_CONTEXT = {
+    'UI_PARFUM_BANNER_DESCRIPTION': UI_PARFUM_BANNER_DESCRIPTION,
+    'UI_MODE_BANNER_DESCRIPTION': UI_MODE_BANNER_DESCRIPTION,
+    'UI_LYSHOP_BANNER_DESCRIPTION': UI_LYSHOP_BANNER_DESCRIPTION
+
+}

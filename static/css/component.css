@@ -2983,7 +2983,7 @@ label.nav-label::after{
 
 @media only screen and (max-width:40em){
 	.carousel .img-wrapper p{
-		font-size: 0.7em;
+		font-size: 1.1em;
 	}
 	#current-nav-toggle ~ .category-map-container{
 		display: none;

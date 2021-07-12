@@ -26,10 +26,10 @@
                     <source media="(max-width:40em)" srcset="{% static 'assets/lyshop_banner_small.png' %}">
                     <img class="img-responsive" src="{% static 'assets/lyshop_banner.png' %}" alt="{{site_name}}">
                   </picture>
-                  <p>{% trans "Are you looking for something new ?" %}</p>
+                  <p>{{UI_STRINGS_CONTEXT.UI_LYSHOP_BANNER_DESCRIPTION}}</p>
                 </div>
               </li>
-              <li class="carousel-item">
+              <li class="carousel-item hidden">
                 <div class="img-wrapper">
                   <picture class="img-responsive">
                     <source media="(min-width:40em)" srcset="{% static 'assets/mode_banner.png' %}">
@@ -39,7 +39,7 @@
                   <p>{% trans "Discover our selection of  mode articles" %}</p>
                 </div>
               </li>
-              <li class="carousel-item">
+              <li class="carousel-item hidden">
                 <div class="img-wrapper">
                   <picture class="img-responsive">
                     <source media="(min-width:40em)" srcset="{% static 'assets/parfum_banner.png' %}">
@@ -52,11 +52,11 @@
                 
               </li>
             </ul>
-            <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
-            <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
+            <button class="carousel-control prev hidden"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-control next hidden"><i class="fas fa-chevron-right"></i></button>
           </div>
           
-          <div class="actions">
+          <div class="actions hidden">
             <ol class="carousel-dots">
               <li class="dot active">1</li>
               <li class="dot">2</li>
