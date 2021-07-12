@@ -184,6 +184,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.core_context',
                 'lyshop.context_processors.site_context',
                 'accounts.context_processors.account_context',
                 'catalog.context_processors.catalog_context',
