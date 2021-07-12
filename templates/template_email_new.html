@@ -31,7 +31,7 @@
         </tr>
         <tr><!--NAVIGATION-->
             <td>
-                <table>
+                <table style="padding:1em;background-color:#ccc;">
                     <tr>
                         {% for c in root_categories %}<th><a href="{{SITE_HOST}}/{{LANGUAGE_CODE}}{{c.get_slug_url}}"></a></th>{% endfor %}
                     </tr>
